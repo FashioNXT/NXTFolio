@@ -1,0 +1,2 @@
+class GeneralInfoController < ApplicationController
+end

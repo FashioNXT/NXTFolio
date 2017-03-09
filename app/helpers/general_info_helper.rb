@@ -1,0 +1,2 @@
+module GeneralInfoHelper
+end

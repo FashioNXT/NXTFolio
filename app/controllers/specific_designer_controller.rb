@@ -1,0 +1,2 @@
+class SpecificDesignerController < ApplicationController
+end

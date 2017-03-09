@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-require 'active_record'
-
-ActiveRecord::Schema.define(version: 20170306204435) do
+ActiveRecord::Schema.define(version: 20170308000208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170306204435) do
     t.string   "experience"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "user_key"
   end
 
   create_table "specific_models", force: :cascade do |t|
@@ -76,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170306204435) do
     t.text     "genre"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "user_key"
   end
 
   create_table "specific_photographers", force: :cascade do |t|
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170306204435) do
     t.text     "genre"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "user_key"
   end
 
 end

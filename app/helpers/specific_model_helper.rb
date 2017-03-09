@@ -1,0 +1,2 @@
+module SpecificModelHelper
+end

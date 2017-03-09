@@ -1,0 +1,2 @@
+class SpecificPhotographerController < ApplicationController
+end
