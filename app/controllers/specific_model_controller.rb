@@ -42,7 +42,7 @@ class SpecificModelController < ApplicationController
       render :action => 'edit'
     end
   end
-   
+  
   def delete
     SpecificModel.find(params[:id]).destroy
     redirect_to :action => 'list'
