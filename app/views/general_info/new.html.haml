@@ -1,5 +1,5 @@
 %h1 Sign Up
-= form_tag :action => 'create' do 
+= form_tag :action => 'select_next' do 
   %p
     %label{:for => 'first_name'}> First Name
     \:
@@ -25,5 +25,45 @@
     \:
     = select :general_info, :gender, options_for_select([["Female","Female"],["Male","Male"],["Other","Other"],["Prefer Not to Disclose","Prefer Not to Disclose"]])
   %p
-    = submit_tag 'Create'
+    %label{:for => 'country'}> Country
+    \:
+    = select :general_info, :country, options_for_select([["United States", "United States"],["Canada","Canada"],["Mexico","Mexico"]])
+  %p
+    %label{:for => 'state'}> State
+    \:
+    = text_field 'general_infos', 'state'
+  %p
+    %label{:for => 'city'}> City
+    \: Coming Soon
+  %p
+    %label{:for => 'compensation'}> Compensation
+    \:
+    = select :general_infos, :compensation, options_for_select([["Any Payment", "Any Payment"],["Assignment Based","Assignment Based"],["Paid Only","Paid Only"]])
+  %p
+    %label{:for => 'facebook_link'}> Facebook Link
+    \:
+    = text_field 'general_infos', 'facebook_link'
+  %p
+    %label{:for => 'linkedIn_link'}> LinkedIn Link
+    \:
+    = text_field 'general_infos', 'linkedIn_link'
+  %p
+    %label{:for => 'instagram_link'}> Instagram Link
+    \:
+    = text_field 'general_infos', 'instagram_link'
+  %p
+    %label{:for => 'personalWebsite_link'}> Personal Website Link 
+    \:
+    = text_field 'general_infos', 'personalWebsite_link'
+  %p
+    %label{:for => 'bio'}> Biography
+    \:
+    = text_area 'general_infos', 'bio'
+  %p
+    %label{:for => 'specific_profile_id'}> Profession
+    \:
+    = select :general_infos, :specific_profile_id, options_for_select([["Designer", 1],["Model",2],["Photographer",3]])
+    //Variable that stores what we clicked on select  
+  %p
+    = submit_tag 'Next'
     

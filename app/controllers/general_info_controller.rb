@@ -8,7 +8,17 @@ class GeneralInfoController < ApplicationController
   end
    
   def new
-     @general_info = GeneralInfo.new
+    @general_info = GeneralInfo.new
+  end
+  
+  def select_next
+    if params[:select_profile_id] == 1
+      render :action => 'new_designer'
+    elsif params[:select_profile_id] == 2
+      render :action => 'new_model'
+    elsif params[:select_profile_id] == 3
+      render :action => 'new_photographer'
+    end
   end
    
   def create
