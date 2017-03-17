@@ -13,16 +13,28 @@ class LoginInfoController < ApplicationController
    
   def create
     @login_info = LoginInfo.new(login_info_params)
-      
-    if @login_info.save
-      redirect_to :action => 'list'
+    #@login_info = LoginInfo.new(params[:login_info])
+    puts @login_info[:email]
+    puts @login_info[:password]
+    puts login_info_params[:password_confirmation]
+    
+    if @login_info[:password] == login_info_params[:password_confirmation]
+      puts "true"
     else
-      render :action=> 'new'                  # Render the new page again
+      puts "false"
     end
+    #if @login_info.save
+    #  puts "saved"
+    #  redirect_to :action => 'list'
+    #else
+    #  puts "Failed Saving"
+    #  render :action=> 'new'                  # Render the new page again
+    #end
   end
   
   def login_info_params
-    params.require(:login_infos).permit(:email, :password)  #passing into create with these keys.
+    #passing into create with these keys.
+    params.require(:login_info).permit(:email, :password, :password_confirmation)
   end
    
   def edit
@@ -40,7 +52,7 @@ class LoginInfoController < ApplicationController
   end
 
   def login_info_param
-     params.require(:login_infos).permit(:title, :price, :subject_id, :description)
+     params.require(:login_info).permit(:title, :price, :subject_id, :description)
   end
    
   def delete

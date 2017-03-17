@@ -1,2 +1,16 @@
-<h1>LoginInfo#new</h1>
-<p>Find me in app/views/login_info/new.html.erb</p>
+%h1 Log In
+= form_for @login_info, :url => '/login_info' do |f|
+  %p
+  = f.label :email
+  %br/
+  = f.text_field :email
+  %p
+  = f.label :password
+  %br/
+  = f.password_field :password
+  %p
+  = f.label :password_confirmation
+  %br/
+  = f.password_field :password_confirmation
+  %p.button 
+  = f.submit "Submit"
