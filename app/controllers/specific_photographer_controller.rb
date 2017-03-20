@@ -12,13 +12,15 @@ class SpecificPhotographerController < ApplicationController
   end
    
   def create
-    @specific_photographer = SpecificPhotographer.new(specific_photographer_params)
     
-    if @specific_photographer.save
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
-    end
+    puts specific_photographer_params[:compensation]
+    # @specific_photographer = SpecificPhotographer.new(specific_photographer_params)
+    
+    # if @specific_photographer.save
+    #   redirect_to :action => 'list'
+    # else
+    #   render :action => 'new'
+    # end
   end
   
   def specific_photographer_params

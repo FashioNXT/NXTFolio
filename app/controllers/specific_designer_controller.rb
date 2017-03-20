@@ -13,16 +13,25 @@ class SpecificDesignerController < ApplicationController
    
   def create
     @specific_designer = SpecificDesigner.new(specific_designer_params)
-  
-    if @specific_designer.save
-      redirect_to :action => 'list'
+    @genre_str
+    if !params[:specific_designer][:allgenres].nil?
+      for index in 0 ... params[:specific_designer][:allgenres].size
+         @genre_str = @genre_str.to_s + params[:specific_designer][:allgenres][index] + ","
+      end
     else
-      render :action=> 'new'                  # Render the new page again
     end
+      
+    puts @genre_str
+    
+    # if @specific_designer.save
+    #   redirect_to :action => 'list'
+    # else
+    #   render :action=> 'new'                  # Render the new page again
+    # end
   end
   
   def specific_designer_params
-    params.require(:specific_designer).permit(:genre, :influencers, :specialties, :compensation, :experience)  #passing into create with these keys.
+    params.require(:specific_designer).permit(:genre, {:allgenres => []}, :influencers, :specialties, :compensation, :experience)  #passing into create with these keys.
   end
    
   def edit

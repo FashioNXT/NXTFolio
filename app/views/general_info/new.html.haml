@@ -1,4 +1,4 @@
-%h1 Sign Up
+%h1 Sign Up - General Information
 = form_tag :action => 'select_next' do 
   %p
     %label{:for => 'first_name'}> First Name
@@ -62,7 +62,7 @@
   %p
     %label{:for => 'specific_profile_id'}> Profession
     \:
-    = select :general_infos, :specific_profile_id, options_for_select([["Designer", 1],["Model",2],["Photographer",3]])
+    = select :general_infos, :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
     //Variable that stores what we clicked on select  
   %p
     = submit_tag 'Next'

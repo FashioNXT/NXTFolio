@@ -4,8 +4,28 @@
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 %body
-  %h1 Match My F
-  %p Howdy World
-  %P Login OR SignUp
-  %img{:src => "https://images8.alphacoders.com/414/414613.jpg"}
-  = yield
+  #HEADER
+    %h1 Match My Fatshion
+    %p Brought to you by Team TAMU-PROR
+    %ul
+      %li
+        %a{:href => "login_info/new"} Login
+      %li
+        %a{:href => "login_info/new"} Sign Up
+    %img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760, :height => 380 }
+    = yield
+  #CONTENT
+    %h2 Getting Started!
+    #TEXT
+      %p Create a profile.
+      %p Search for others by profession.
+      %p Then connect with other fashion professionals!
+  //#HEADER
+  //  %img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760}
+
+
+//
+//%P
+//    = link_to "Login", "login_info/new"
+//    Or
+//    = link_to "Sign Up", "login_info/new"

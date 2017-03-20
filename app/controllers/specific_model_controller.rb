@@ -12,17 +12,17 @@ class SpecificModelController < ApplicationController
   end
    
   def create
-    @specific_model = SpecificModel.new(specific_model_params)
-    
-    if @specific_model.save
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
-    end
+    @specific_model = SpecificModel.new(specific_model_param)
+    puts "Hello, I'm executing"
+    # if @specific_model.save
+    #   redirect_to :action => 'list'
+    # else
+    #   render :action => 'new'
+    # end
   end
   
   def specific_model_params
-    params.require(:specific_models).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre)
+    params.require(:specific_models).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, :test)
   end
    
   def edit
@@ -30,7 +30,7 @@ class SpecificModelController < ApplicationController
   end
   
   def specific_model_param
-    params.require(:specific_model).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre)
+    params.require(:specific_model).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, :test)
   end
    
   def update

@@ -1,4 +1,6 @@
 class LoginInfoController < ApplicationController
+  
+  #Variable that holds a params/object with all the attributes filled in
   def list
     @login_infos = LoginInfo.all
   end
@@ -20,16 +22,15 @@ class LoginInfoController < ApplicationController
     
     if @login_info[:password] == login_info_params[:password_confirmation]
       puts "true"
+      #if @login_info.save
+      #  puts "saved"
+      #redirect_to :action => 'list'
+      redirect_to new_general_info_path and return
     else
       puts "false"
+      #puts "Failed Saving"
+      render :action=> 'new'                  # Render the new page again
     end
-    #if @login_info.save
-    #  puts "saved"
-    #  redirect_to :action => 'list'
-    #else
-    #  puts "Failed Saving"
-    #  render :action=> 'new'                  # Render the new page again
-    #end
   end
   
   def login_info_params

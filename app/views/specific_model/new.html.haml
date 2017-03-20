@@ -1,0 +1,76 @@
+%h1 Sign Up - Model Profile
+= form_for @specific_model, :url => '/specific_model' do |f|
+  %p
+  = f.label :height_feet
+  %br/
+  = f.number_field :height_feet, :in => 0..12, :step => 1.0
+  %p
+  = f.label :height_inches
+  %br/
+  = f.number_field :height_inches, :in => 0..11, :step => 0.25
+  %p
+  = f.label :bust
+  %br/
+  = f.number_field :bust
+  %p
+  = f.label :waist
+  %br/
+  = f.number_field :waist
+  %p
+  = f.label :hips
+  %br/
+  = f.number_field :hips
+  %p
+  = f.label :cups
+  %br/
+  = f.select :cups, options_for_select([["AA", "AA"],["A","A"],["B","B"],["C","C"],["D","D"],["DD/E","DD/E"],["DDD/F","DDD/F"],["DDDD/G","DDDD/G"],["H","H"],["I","I"],["J","J"],["K","K"],["L","L"],["M","M"],["N","N"],["O","O"]])
+  %p
+  = f.label :shoe_size
+  %br/
+  = f.select :shoe_size, options_for_select([["1", "1"],["1.5","1.5"],["2","2"],["2.5","2.5"],["3","3"],["3.5","3.5"],["4","4"],["4.5","4.5"],["5","5"],["5.5","5.5"],["6","6"],["6.5","6.5"],["7","7"],["7.5","7.5"],["8","8"],["8.5","8.5"],["9","9"],["9.5","9.5"],["10","10"],["10.5","10.5"],["11","11"],["11.5","11.5"],["12","12"],["12.5","12.5"],["13","13"],["13.5","13.5"],["14","14"],["14.5","14.5"],["15","15"]])
+  %p
+  = f.label :dress_size
+  %br/
+  = f.number_field :dress_size
+  %p
+  = f.label :hair_color
+  %br/
+  = f.text_field :hair_color
+  %p
+  = f.label :eye_color
+  %br/
+  = f.text_field :eye_color
+  %p
+  = f.label :ethnicity
+  %br/
+  = f.text_field :ethnicity
+  %p
+  = f.label :skin_color
+  %br/
+  = f.text_field :skin_color
+  %p
+  = f.label :shoot_nudes
+  %br/
+  = f.select :shoot_nudes, options_for_select([["No","No"],["Yes","Yes"],["Partial","Partial"]])
+  %p
+  = f.label :tattoos
+  %br/
+  = f.select :tattoos, options_for_select([["No","No"],["Yes","Yes"]])
+  %p
+  = f.label :piercings
+  %br/
+  = f.select :tattoos, options_for_select([["No","No"],["Yes","Yes"]])
+  %p
+  = f.label :experience
+  %br/
+  = f.select :experience, options_for_select([["Amateur", "Amateur"],["Semi-Professional", "Semi-Professional"],["Professional","Professional"]])
+  %p
+  = f.label :genre
+  %br/
+  = f.text_field :genre
+  %p
+  = f.label :test
+  %br
+  = check_box_tag :tag_ids, 1, nil
+  %p.button 
+  = f.submit "Submit"
