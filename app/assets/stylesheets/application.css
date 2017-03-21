@@ -22,7 +22,7 @@ a{ color: #76DEFC; text-decoration: none; }
 a:hover{	text-decoration: underline;  color: White;   }
 form{	margin:0;}
 
-#HEADER{	width:760px; margin-left:auto; margin-right:auto;}
+#HEADER{ width:760px; margin-left:auto; margin-right:auto;}
 #HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: block; list-style: none; background-color: #4D4D4D; background-image: url(bg_topnav.gif); background-repeat: no-repeat;  }
 #HEADER li{ display: inline; background-color: #222222;  float: right;  }
 #HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid Black;  float: left;     }

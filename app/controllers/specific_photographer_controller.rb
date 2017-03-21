@@ -13,7 +13,18 @@ class SpecificPhotographerController < ApplicationController
    
   def create
     
-    puts specific_photographer_params[:compensation]
+    #puts specific_photographer_params[:compensation]
+    
+    @specific_photographer = SpecificDesigner.new(specific_photographer_params)
+    @genre_str
+    if !params[:specific_photographer][:allgenres].nil?
+      for index in 0 ... params[:specific_photographer][:allgenres].size
+         @genre_str = @genre_str.to_s + params[:specific_photographer][:allgenres][index] + ","
+      end
+    else
+    end
+      
+    puts @genre_str
     # @specific_photographer = SpecificPhotographer.new(specific_photographer_params)
     
     # if @specific_photographer.save
@@ -24,7 +35,7 @@ class SpecificPhotographerController < ApplicationController
   end
   
   def specific_photographer_params
-    params.require(:specific_photographers).permit(:compensation, :experience, :influencers, :specialties, :genre)
+    params.require(:specific_photographer).permit(:compensation, {:allgenres => []} , :experience, :influencers, :specialties, :genre)
   end
    
   def edit 

@@ -5,13 +5,15 @@
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 %body
   #HEADER
-    %h1 Match My Fatshion
+    %h1 Match My Fashion
     %p Brought to you by Team TAMU-PROR
     %ul
       %li
         %a{:href => "login_info/new"} Login
       %li
         %a{:href => "login_info/new"} Sign Up
+      %li
+        %a{:href => ""} Profile Search
     %img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760, :height => 380 }
     = yield
   #CONTENT
