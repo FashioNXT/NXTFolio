@@ -21,13 +21,15 @@ class SpecificModelController < ApplicationController
     else
     end
     
-    return
     #puts @genre_str
-    #if @specific_model.save
-    #  redirect_to :action => 'list'
-    #else
-    #  render :action => 'new'
-    #end
+    @specific_model.genre = genre_str
+    @specific_model.userKey = session[:current_user_key] 
+    
+    if @specific_model.save
+      root_path and return
+    else
+      render :action => 'new'
+    end
   end
   
   def specific_model_params

@@ -12,9 +12,6 @@ class SpecificPhotographerController < ApplicationController
   end
    
   def create
-    
-    #puts specific_photographer_params[:compensation]
-    
     @specific_photographer = SpecificDesigner.new(specific_photographer_params)
     @genre_str
     if !params[:specific_photographer][:allgenres].nil?
@@ -24,14 +21,15 @@ class SpecificPhotographerController < ApplicationController
     else
     end
       
-    puts @genre_str
-    # @specific_photographer = SpecificPhotographer.new(specific_photographer_params)
-    
-    # if @specific_photographer.save
-    #   redirect_to :action => 'list'
-    # else
-    #   render :action => 'new'
-    # end
+    #puts @genre_str
+    @specific_photographer.genre = genre_str
+    @specific_photographer.userKey = session[:current_user_key] 
+
+    if @specific_photographer.save
+      root_path and return
+    else
+      render :action => 'new'
+    end
   end
   
   def specific_photographer_params

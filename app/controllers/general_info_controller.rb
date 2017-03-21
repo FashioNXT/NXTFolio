@@ -13,22 +13,31 @@ class GeneralInfoController < ApplicationController
   
   def select_next
     @general_info = GeneralInfo.new(general_info_params)
-    if @general_info.save
-      puts @general_info[:specific_profile_id]
-      if @general_info[:specific_profile_id] == 1
-        #render :action => 'new_designer'
-        redirect_to new_specific_designer_path #and return
-      elsif @general_info[:specific_profile_id] == 2
-        #render :action => 'new_model'
-        redirect_to new_specific_model_path #and return
-      elsif @general_info[:specific_profile_id] == 3
-        #render :action => 'new_photographer'
-        redirect_to new_specific_photographer_path #and return
-      end
-    else
-      render :action => 'new'
+    #@general_info.userKey = session[:current_user_key]  
+    
+    puts @general_info[:specific_profile_id]
+    if @general_info[:specific_profile_id] == 1
+      redirect_to new_specific_designer_path and return
+    elsif @general_info[:specific_profile_id] == 2
+      redirect_to new_specific_model_path and return
+    elsif @general_info[:specific_profile_id] == 3
+      redirect_to new_specific_photographer_path and return
     end
-  end
+
+  #   if @general_info.save
+  #     puts @general_info[:specific_profile_id]
+  #     if @general_info[:specific_profile_id] == 1
+  #       redirect_to new_specific_designer_path and return
+  #     elsif @general_info[:specific_profile_id] == 2
+  #       redirect_to new_specific_model_path and return
+  #     elsif @general_info[:specific_profile_id] == 3
+  #       redirect_to new_specific_photographer_path and return
+  #     end
+  #   else
+  #     puts "Failed to save"
+  #     render :action => 'new'
+  #   end
+   end
    
   def create
     @general_info = GeneralInfo.new(general_info_params)

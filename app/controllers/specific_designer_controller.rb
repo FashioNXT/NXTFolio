@@ -22,17 +22,15 @@ class SpecificDesignerController < ApplicationController
     end
       
     puts @genre_str
+    @specific_designer.genre = genre_str
+    @specific_designer.userKey = session[:current_user_key]  
+
     
-    #generate the user key
-    #@specific_designer.userKey = generated password
-    #params[:shared_param] = generated password
-    #redirect_to save_general_info_path
-    
-    # if @specific_designer.save
-    #   redirect_to :action => 'list'
-    # else
-    #   render :action=> 'new'                  # Render the new page again
-    # end
+     if @specific_designer.save
+       root_path and return
+     else
+       render :action=> 'new'                  # Render the new page again
+     end
   end
   
   def specific_designer_params

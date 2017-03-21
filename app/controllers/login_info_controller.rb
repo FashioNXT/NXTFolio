@@ -23,13 +23,12 @@ class LoginInfoController < ApplicationController
     #DO LATER: Check user name against the database.
     if @login_info[:password] == login_info_params[:password_confirmation]
       puts "true"
-      #Generate the password here.
       @login_info.userKey = SecureRandom.hex(10)
       puts @login_info.userKey
+      session[:current_user_key] = @login_info.userKey 
       
       if @login_info.save
         puts "saved"
-        #redirect_to :action => 'list'
         redirect_to new_general_info_path and return
       else
         puts "false"
