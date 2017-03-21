@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
   get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
-
+  get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
+  
   root 'application#index'
 end

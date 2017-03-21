@@ -23,6 +23,11 @@ class SpecificDesignerController < ApplicationController
       
     puts @genre_str
     
+    #generate the user key
+    #@specific_designer.userKey = generated password
+    #params[:shared_param] = generated password
+    #redirect_to save_general_info_path
+    
     # if @specific_designer.save
     #   redirect_to :action => 'list'
     # else

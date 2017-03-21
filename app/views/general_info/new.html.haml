@@ -1,69 +1,80 @@
-%h1 Sign Up - General Information
-= form_tag :action => 'select_next' do 
-  %p
-    %label{:for => 'first_name'}> First Name
-    \:
-    = text_field 'general_infos', 'first_name'
-  %p
-    %label{:for => 'last_name'}> Last Name
-    \:
-    = text_field 'general_infos', 'last_name'
-  %p
-    %label{:for => 'month_ofbirth'}> Birth Month
-    \:
-    = select :general_info, :month_ofbirth, options_for_select([["Jan","Jan"],["Feb","Feb"],["Mar","Mar"],["Apr","Apr"],["May","May"],["Jun","Jun"],["Jul","Jul"],["Aug","Aug"],["Sep","Sep"],["Oct","Oct"],["Nov","Nov"],["Dec","Dec"]])
-  %p
-    %label{:for => 'day_ofbirth'}> Birth Day
-    \:
-    = select :general_info, :day_ofbirth, options_for_select([["01","01"],["02","02"],["03","03"],["04","04"],["05","05"],["06","06"],["07","07"],["08","08"],["09","09"],["10","10"],["11","11"],["12","12"],["13","13"],["14","14"],["15","15"],["16","16"],["17","17"],["18","18"],["19","19"],["20","20"],["21","21"],["22","22"],["23","23"],["24","24"],["25","25"],["26","26"],["27","27"],["28","28"],["29","29"],["30","30"],["31","31"]])
-  %p
-    %label{:for => 'year_ofbirth'}> Birth Year
-    \:
-    = select :general_info, :year_ofbirth, options_for_select([["2017","2017"],["2016","2016"],["2015","2015"],["2014","2014"],["2013","2013"],["2012","2012"],["2011","2011"],["2010","2010"],["2009","2009"],["2008","2008"],["2007","2007"],["2006","2006"],["2005","2005"],["2004","2004"],["2003","2003"],["2002","2002"],["2001","2001"],["2000","2000"]])
-  %p
-    %label{:for => 'gender'}> Gender
-    \:
-    = select :general_info, :gender, options_for_select([["Female","Female"],["Male","Male"],["Other","Other"],["Prefer Not to Disclose","Prefer Not to Disclose"]])
-  %p
-    %label{:for => 'country'}> Country
-    \:
-    = select :general_info, :country, options_for_select([["United States", "United States"],["Canada","Canada"],["Mexico","Mexico"]])
-  %p
-    %label{:for => 'state'}> State
-    \:
-    = text_field 'general_infos', 'state'
-  %p
-    %label{:for => 'city'}> City
-    \: Coming Soon
-  %p
-    %label{:for => 'compensation'}> Compensation
-    \:
-    = select :general_infos, :compensation, options_for_select([["Any Payment", "Any Payment"],["Assignment Based","Assignment Based"],["Paid Only","Paid Only"]])
-  %p
-    %label{:for => 'facebook_link'}> Facebook Link
-    \:
-    = text_field 'general_infos', 'facebook_link'
-  %p
-    %label{:for => 'linkedIn_link'}> LinkedIn Link
-    \:
-    = text_field 'general_infos', 'linkedIn_link'
-  %p
-    %label{:for => 'instagram_link'}> Instagram Link
-    \:
-    = text_field 'general_infos', 'instagram_link'
-  %p
-    %label{:for => 'personalWebsite_link'}> Personal Website Link 
-    \:
-    = text_field 'general_infos', 'personalWebsite_link'
-  %p
-    %label{:for => 'bio'}> Biography
-    \:
-    = text_area 'general_infos', 'bio'
-  %p
-    %label{:for => 'specific_profile_id'}> Profession
-    \:
-    = select :general_infos, :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
-    //Variable that stores what we clicked on select  
-  %p
-    = submit_tag 'Next'
-    
+%head
+  %title Match My Fashion
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+
+%body
+  #CONTENT
+    %h1 Sign Up - General Information
+    = form_tag :action => 'select_next' do 
+      %p
+        %label{:for => 'first_name'}> First Name
+        \:
+        = text_field 'general_infos', 'first_name'
+      %p
+        %label{:for => 'last_name'}> Last Name
+        \:
+        = text_field 'general_infos', 'last_name'
+      %p
+        %label{:for => 'month_ofbirth'}> Birth Month
+        \:
+        = select :general_info, :month_ofbirth, options_for_select([["Jan","Jan"],["Feb","Feb"],["Mar","Mar"],["Apr","Apr"],["May","May"],["Jun","Jun"],["Jul","Jul"],["Aug","Aug"],["Sep","Sep"],["Oct","Oct"],["Nov","Nov"],["Dec","Dec"]])
+      %p
+        %label{:for => 'day_ofbirth'}> Birth Day
+        \:
+        = select :general_info, :day_ofbirth, options_for_select([["01","01"],["02","02"],["03","03"],["04","04"],["05","05"],["06","06"],["07","07"],["08","08"],["09","09"],["10","10"],["11","11"],["12","12"],["13","13"],["14","14"],["15","15"],["16","16"],["17","17"],["18","18"],["19","19"],["20","20"],["21","21"],["22","22"],["23","23"],["24","24"],["25","25"],["26","26"],["27","27"],["28","28"],["29","29"],["30","30"],["31","31"]])
+      %p
+        %label{:for => 'year_ofbirth'}> Birth Year
+        \:
+        = select :general_info, :year_ofbirth, options_for_select([["2017","2017"],["2016","2016"],["2015","2015"],["2014","2014"],["2013","2013"],["2012","2012"],["2011","2011"],["2010","2010"],["2009","2009"],["2008","2008"],["2007","2007"],["2006","2006"],["2005","2005"],["2004","2004"],["2003","2003"],["2002","2002"],["2001","2001"],["2000","2000"]])
+      %p
+        %label{:for => 'gender'}> Gender
+        \:
+        = select :general_info, :gender, options_for_select([["Female","Female"],["Male","Male"],["Other","Other"],["Prefer Not to Disclose","Prefer Not to Disclose"]])
+      %p
+        %label{:for => 'country'}> Country
+        \:
+        = select :general_info, :country, options_for_select([["United States", "United States"],["Canada","Canada"],["Mexico","Mexico"]])
+      %p
+        %label{:for => 'state'}> State
+        \:
+        = text_field 'general_infos', 'state'
+      %p
+        %label{:for => 'city'}> City
+        \: Coming Soon
+      %p
+        %label{:for => 'compensation'}> Compensation
+        \:
+        = select :general_infos, :compensation, options_for_select([["Any Payment", "Any Payment"],["Assignment Based","Assignment Based"],["Paid Only","Paid Only"]])
+      %p
+        %label{:for => 'facebook_link'}> Facebook Link
+        \:
+        = text_field 'general_infos', 'facebook_link'
+      %p
+        %label{:for => 'linkedIn_link'}> LinkedIn Link
+        \:
+        = text_field 'general_infos', 'linkedIn_link'
+      %p
+        %label{:for => 'instagram_link'}> Instagram Link
+        \:
+        = text_field 'general_infos', 'instagram_link'
+      %p
+        %label{:for => 'personalWebsite_link'}> Personal Website Link 
+        \:
+        = text_field 'general_infos', 'personalWebsite_link'
+      %p
+        %label{:for => 'bio'}> Biography
+        \:
+        = text_area 'general_infos', 'bio'
+      %p
+        %label{:for => 'specific_profile_id'}> Profession
+        \:
+        = select :general_infos, :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
+        //Variable that stores what we clicked on select  
+      %p
+        = submit_tag 'Next'
+        
+    = button_to 'Skip', root_path, :method => 'get'
+        

@@ -20,6 +20,8 @@ class SpecificModelController < ApplicationController
       end
     else
     end
+    
+    return
     #puts @genre_str
     #if @specific_model.save
     #  redirect_to :action => 'list'

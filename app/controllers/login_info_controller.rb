@@ -20,16 +20,22 @@ class LoginInfoController < ApplicationController
     puts @login_info[:password]
     puts login_info_params[:password_confirmation]
     
+    #DO LATER: Check user name against the database.
     if @login_info[:password] == login_info_params[:password_confirmation]
       puts "true"
-      #if @login_info.save
-      #  puts "saved"
-      #redirect_to :action => 'list'
-      redirect_to new_general_info_path and return
-    else
-      puts "false"
-      #puts "Failed Saving"
-      render :action=> 'new'                  # Render the new page again
+      #Generate the password here.
+      @login_info.userKey = SecureRandom.hex(10)
+      puts @login_info.userKey
+      
+      if @login_info.save
+        puts "saved"
+        #redirect_to :action => 'list'
+        redirect_to new_general_info_path and return
+      else
+        puts "false"
+        puts "Failed Saving"
+        render :action=> 'new'                  # Render the new page again
+      end
     end
   end
   
@@ -60,4 +66,8 @@ class LoginInfoController < ApplicationController
     LoginInfo.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+  # def login
+    
+  # end
 end
