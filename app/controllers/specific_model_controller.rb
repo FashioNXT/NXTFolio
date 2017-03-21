@@ -22,10 +22,11 @@ class SpecificModelController < ApplicationController
     end
     
     #puts @genre_str
-    @specific_model.genre = genre_str
-    @specific_model.userKey = session[:current_user_key] 
+    @specific_model.genre = @genre_str
+    @specific_model.user_key = session[:current_user_key] 
     
     if @specific_model.save
+      puts "Saved and returning to root"
       root_path and return
     else
       render :action => 'new'

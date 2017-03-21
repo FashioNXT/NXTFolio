@@ -22,10 +22,11 @@ class SpecificPhotographerController < ApplicationController
     end
       
     #puts @genre_str
-    @specific_photographer.genre = genre_str
-    @specific_photographer.userKey = session[:current_user_key] 
+    @specific_photographer.genre = @genre_str
+    @specific_photographer.user_key = session[:current_user_key] 
 
     if @specific_photographer.save
+      puts "Saved and returning to root"
       root_path and return
     else
       render :action => 'new'

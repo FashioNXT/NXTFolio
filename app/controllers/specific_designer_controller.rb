@@ -21,14 +21,16 @@ class SpecificDesignerController < ApplicationController
     else
     end
       
-    puts @genre_str
-    @specific_designer.genre = genre_str
-    @specific_designer.userKey = session[:current_user_key]  
+    puts session[:current_user_key]
+    @specific_designer.genre = @genre_str
+    @specific_designer.user_key = session[:current_user_key]  
 
     
      if @specific_designer.save
+       puts "Saved and returning to root"
        root_path and return
      else
+       puts "Error, returning to new"
        render :action=> 'new'                  # Render the new page again
      end
   end
