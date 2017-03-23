@@ -6,7 +6,15 @@
 
 
 %body
-  #CONTENT
+  #HEADER
+    %ul
+      %li
+        %a{:href => "login_info/new"} Login
+      %li
+        %a{:href => "login_info/new"} Sign Up
+      %li
+        %a{:href => ""} Profile Search
+  #LOGINFORM
     %h1 Sign Up - Login Information
     = form_for @login_info, :url => '/login_info' do |f|
       %p

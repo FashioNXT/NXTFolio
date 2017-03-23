@@ -13,30 +13,30 @@ class GeneralInfoController < ApplicationController
   
   def select_next
     @general_info = GeneralInfo.new(general_info_params)
-    #@general_info.userKey = session[:current_user_key]  
+    @general_info.userKey = session[:current_user_key] 
     
-    puts @general_info[:specific_profile_id]
-    if @general_info[:specific_profile_id] == 1
-      redirect_to new_specific_designer_path and return
-    elsif @general_info[:specific_profile_id] == 2
-      redirect_to new_specific_model_path and return
-    elsif @general_info[:specific_profile_id] == 3
-      redirect_to new_specific_photographer_path and return
-    end
+    # puts @general_info[:specific_profile_id]
+    # if @general_info[:specific_profile_id] == 1
+    #   redirect_to new_specific_designer_path and return
+    # elsif @general_info[:specific_profile_id] == 2
+    #   redirect_to new_specific_model_path and return
+    # elsif @general_info[:specific_profile_id] == 3
+    #   redirect_to new_specific_photographer_path and return
+    # end
 
-  #   if @general_info.save
-  #     puts @general_info[:specific_profile_id]
-  #     if @general_info[:specific_profile_id] == 1
-  #       redirect_to new_specific_designer_path and return
-  #     elsif @general_info[:specific_profile_id] == 2
-  #       redirect_to new_specific_model_path and return
-  #     elsif @general_info[:specific_profile_id] == 3
-  #       redirect_to new_specific_photographer_path and return
-  #     end
-  #   else
-  #     puts "Failed to save"
-  #     render :action => 'new'
-  #   end
+    if @general_info.save!
+      puts @general_info[:specific_profile_id]
+      if @general_info[:specific_profile_id] == 1
+        redirect_to new_specific_designer_path 
+      elsif @general_info[:specific_profile_id] == 2
+        redirect_to new_specific_model_path 
+      elsif @general_info[:specific_profile_id] == 3
+        redirect_to new_specific_photographer_path 
+      end
+    else
+      puts "Failed to save"
+      render :action => 'new'
+    end
    end
    
   def create
@@ -49,7 +49,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_params
-     params.require(:general_infos).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
+     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
   end
    
   def edit

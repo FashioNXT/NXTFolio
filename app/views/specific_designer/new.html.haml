@@ -6,6 +6,14 @@
 
 
 %body
+  #HEADER
+    %ul
+      %li
+        %a{:href => "login_info/new"} Login
+      %li
+        %a{:href => "login_info/new"} Sign Up
+      %li
+        %a{:href => ""} Profile Search
   #CONTENT
     %h1 Sign Up - Designer Profile
     = form_for @specific_designer, :action => 'create', :url => '/specific_designer' do |f|

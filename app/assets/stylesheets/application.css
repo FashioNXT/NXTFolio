@@ -15,7 +15,7 @@
  */
 
 /* STANDARD TAG REDEFINITIONS */
-BODY{ color: Black; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; background-color: #F1F1F1; margin: 0; padding: 0; }
+BODY{ color: Black; font-family: Helvetica; font-size: 10pt; background-color: #F1F1F1; margin: 0; padding: 0; }
 TD {font-size: 10pt;  }
 p { font-size: 10pt;  margin-bottom: 7px; margin-top: 0; }
 a{ color: white; text-decoration: none; }
@@ -27,19 +27,22 @@ form{	margin:0;}
 #HEADER li{ display: inline; background-color: black;  float: right;  }
 #HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid #F1F1F1;  float: left;     }
 #HEADER li a:hover{ background-color: white; text-decoration: none;}
-h1{ margin: 0; padding: 40px 0 0 0; font-family: "trebuchet ms",arial,tahoma,verdana,sans-serif; font-weight: normal; letter-spacing: .005em; color: Black;  font-size: 20pt;  }
+h1{ margin: 0; padding: 40px 0 0 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black;  font-size: 20pt;  }
 
-#TITLE{width:1000px; margin-left:auto; margin-right:auto; text-align: center; background-color: White;}
-#TITLE h1{font-size: 40pt;}
+#TITLE{width:73.3%; margin-left:auto; margin-right:auto; text-align: center; background-color: White; padding: 0px 10px 10px 10px; }
+#TITLE h1{font-size: 4em; }
 
-#HOMEPAGEIMAGE{width:1000px; margin-left:auto; margin-right:auto;}
+#HOMEPAGEIMAGE{width:75%; margin-left:auto; margin-right:auto; margin-bottom: .5%; margin-top: .5% }
+#HOMEPAGEIMAGE img{width:100%; margin-left:auto; margin-right:auto }
 
-#CONTENT{ width:1000px; height: 100%; margin-left:auto; margin-right:auto; background-color: White; }
-h2{ margin: 0; padding: 24px 0 7px 40px; font-family: "trebuchet ms",arial,tahoma,verdana,sans-serif; font-weight: normal; letter-spacing: .005em; color: Black; font-size: 15pt; }
+#CONTENT{ width:75%; height: 100%; margin-left:auto; margin-right:auto; background-color: White; }
+h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black; font-size: 15pt; }
 #TEXT{ padding: 35px 40px 35px 40px; border-bottom: 1px solid #484848; border-top: 1px solid #484848; background-color: White; }
-#TEXT p{	margin-bottom: 1em;}
+#TEXT p{ margin-bottom: 1em; }
 
-#FOOTER{	width:1000px; margin-top:27px; margin-left:auto; margin-right:auto;  border-top: 4px solid #363636;  text-align: right;  padding-top: 5px;   }
+#LOGINFORM{ width:40%; height: 40%; margin: auto; background-color: White; margin-top: 5%;}
+
+#FOOTER{ width:75%; margin-top:27px; margin-left:auto; margin-right:auto; border-top: 4px solid #363636; text-align: right; padding-top: 5px; }
 #FOOTER p{ font-size: 11px; line-height: 14px; margin: 0;  color: #DDDDDD; }
 #FOOTER a{ font-size: 11px;	font-weight: normal;	text-decoration: none;  color: Black;    }
 #FOOTER a:hover{ color: Black; text-decoration: underline; }

@@ -1,6 +1,6 @@
 class LoginInfo < ApplicationRecord
   ### Initial add by Shaeeta and Willer
-  has_one :general_info
+  #has_one :general_info
   
   #self.primary_key = :userKey
   validates_presence_of :email

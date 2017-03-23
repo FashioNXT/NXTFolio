@@ -25,9 +25,9 @@ class SpecificModelController < ApplicationController
     @specific_model.genre = @genre_str
     @specific_model.user_key = session[:current_user_key] 
     
-    if @specific_model.save
+    if @specific_model.save!
       puts "Saved and returning to root"
-      root_path and return
+      redirect_to root_path
     else
       render :action => 'new'
     end
