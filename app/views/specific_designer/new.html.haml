@@ -1,22 +1,28 @@
-%head
-  %title Match My Fashion
-  = csrf_meta_tags
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= render :partial => "/layout/header"
 
 
 %body
-  #HEADER
-    %ul
-      %li
-        %a{:href => "login_info/new"} Login
-      %li
-        %a{:href => "login_info/new"} Sign Up
-      %li
-        %a{:href => ""} Profile Search
-  #CONTENT
-    %h1 Sign Up - Designer Profile
+  #SPECIFICFORM
+    %h1 DESIGNER INFORMATION
     = form_for @specific_designer, :action => 'create', :url => '/specific_designer' do |f|
+      
+      %p
+      = f.label :influencers
+      %br/
+      = f.text_area :influencers
+      %p
+      = f.label :specialties
+      %br/
+      = f.text_area :specialties
+      %p
+      = f.label :compensation
+      %br/
+      = f.select :compensation, options_for_select(["Any","Assignment Based", "Pay Only"])
+      %p
+      = f.label :experience
+      %br/
+      = f.select :experience, options_for_select(["0-2 years","3-6 years","7-10 years","11+ years"])
+      %p
       %b= f.label "Genres (Select all that apply):"
       %br/
       = f.label "Acting" 
@@ -70,21 +76,6 @@
       = f.check_box :allgenres, {:multiple => true}, "Swimwear", nil
       = f.label "Underwater"
       = f.check_box :allgenres, {:multiple => true}, "Underwater", nil
-      %p
-      = f.label :influencers
-      %br/
-      = f.text_area :influencers
-      %p
-      = f.label :specialties
-      %br/
-      = f.text_area :specialties
-      %p
-      = f.label :compensation
-      %br/
-      = f.select :compensation, options_for_select(["Any","Assignment Based", "Pay Only"])
-      %p
-      = f.label :experience
-      %br/
-      = f.select :experience, options_for_select(["0-2 years","3-6 years","7-10 years","11+ years"])
       %p.button 
       = f.submit "Submit"
+      

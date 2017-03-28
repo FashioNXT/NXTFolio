@@ -1,19 +1,31 @@
 Rails.application.routes.draw do
 
+  get 'search_profile/search'
+
+  get 'search_profile/show'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
+  get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
+  get 'general_info/search' => 'general_info#search', :as => 'general_info/search'
+  get 'general_info/search_redirect' => 'general_info#search_redirect', :as => 'general_info/search_redirect'
+  post 'general_info_select_next' => 'general_info#select_next', :as => 'general_info_select_next'
+  get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
+  #match "login_info/login" => "login_info#login", :as => 'login_info_login', via: [:get, :post]
+  get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
+  post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
+  get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
+  get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
+  get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
+
   resources :general_info
   resources :login_info
   resources :specific_designer
   resources :specific_model
   resources :specific_photographer
-  
-  get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
-  post 'general_info_select_next' => 'general_info#select_next', :as => 'general_info_select_next'
-  get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
-  get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
-  get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
-  get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
-  get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
+  resources :search_profile
   
   root 'application#index'
 end

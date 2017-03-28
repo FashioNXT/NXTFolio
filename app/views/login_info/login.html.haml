@@ -1,0 +1,19 @@
+= render :partial => "/layout/header"
+
+%body
+  #LOGINFORM
+    %h1 
+      %b LOGIN
+      .notice= flash[:notice]
+    = form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f|
+      %p
+      = f.label :email
+      %br/
+      = f.text_field :email
+      %p
+      = f.label :password
+      %br/
+      = f.password_field :password
+      %p.button 
+      = f.submit "Login"
+      

@@ -29,11 +29,15 @@ class LoginInfoController < ApplicationController
       
       if @login_info.save
         puts "saved"
+        flash[:notice] = "Account Created!"
         redirect_to new_general_info_path and return
       else
         puts "false"
         puts "Failed Saving"
-        render :action=> 'new'                  # Render the new page again
+        # flash[:alert] = "Invalid Email or Password! Please try again."
+        # format.html { redirect_to @post, alert: "Invalid Email or Password! Please try again." }
+        # redirect_to new_login_info_path and return               # Render the new page again
+        render :action => 'new', notice: "Invalid Email or Password! Please try again."
       end
     end
   end
@@ -56,17 +60,43 @@ class LoginInfoController < ApplicationController
       render :action => 'edit'
     end
   end
-
-  def login_info_param
-     params.require(:login_info).permit(:title, :price, :subject_id, :description)
-  end
    
   def delete
     LoginInfo.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
   
-  # def login
-    
-  # end
+  def login
+    @login_info = LoginInfo.new
+  end
+  
+  def login_submit
+    @login_info = LoginInfo.new(login_info_param)
+    if LoginInfo.exists?(:email => @login_info[:email])
+      puts "correct email"
+      @login_user = LoginInfo.find_by(email: @login_info[:email])
+      if @login_user[:password] == @login_info[:password]
+        #login
+        session[:current_user_key] = @login_user[:userKey] 
+        redirect_to root_path
+      else
+        #wrong password - NEED TO MAKE FLASH
+        flash[:notice] = "Incorrect Password"
+        redirect_to login_info_login_path
+      end
+    else
+      #User does not exist - NEED TO MAKE FLASH
+      flash[:notice] = "Incorrect Email"
+      redirect_to login_info_login_path
+    end
+  end
+  
+  def login_info_param
+     params.require(:login_info).permit(:email, :password)
+  end
+  
+  def logout
+    session[:current_user_key] = nil
+    redirect_to root_path
+  end
 end

@@ -1,34 +1,25 @@
-%head
-  %title Match My Fashion
-  = csrf_meta_tags
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= render :partial => "/layout/header"
 %body
-  #HEADER
-    %ul
-      %li
-        %a{:href => "login_info/new"} Login
-      %li
-        %a{:href => "login_info/new"} Sign Up
-      %li
-        %a{:href => ""} Profile Search
-  #TITLE
-    %h1 Match My Fashion
-    %p Brought to you by Team TAMU-PROR
-    = yield
+  #HOMEPAGECONTAINER
+    #TITLE
+      %h1 Match My Fashion
+      %p Brought to you by Team TAMU-PROR
+      = yield
+      
+      
+    #HOMEPAGEIMAGE
+      //%img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760, :height => 380}
+      %img{:src => "http://fashionxt.net/images/uploads/Walter-Mendez_Under-the-Bridge%20_at-FashioNXT-2016-1000w.jpg"}
+      
     
-    
-  #HOMEPAGEIMAGE
-    //%img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760, :height => 380}
-    %img{:src => "http://fashionxt.net/images/uploads/Walter-Mendez_Under-the-Bridge%20_at-FashioNXT-2016-1000w.jpg"}
-    
+    #CONTENT
+      %h2 Getting Started!
+      #TEXT
+        %p Create a profile.
+        %p Search for others by profession.
+        %p Then connect with other fashion professionals!
+        
   
-  #CONTENT
-    %h2 Getting Started!
-    #TEXT
-      %p Create a profile.
-      %p Search for others by profession.
-      %p Then connect with other fashion professionals!
   //#HEADER
   //  %img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760}
 

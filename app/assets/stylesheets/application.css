@@ -15,33 +15,57 @@
  */
 
 /* STANDARD TAG REDEFINITIONS */
-BODY{ color: Black; font-family: Helvetica; font-size: 10pt; background-color: #F1F1F1; margin: 0; padding: 0; }
-TD {font-size: 10pt;  }
-p { font-size: 10pt;  margin-bottom: 7px; margin-top: 0; }
-a{ color: white; text-decoration: none; }
-a:hover{	text-decoration: underline;  color: black;   }
+BODY{ color: Black; font-family: Helvetica; font-size: 10pt; background-color: #111111; margin: 0; padding: 0; }
+TD { font-size: 10pt; }
+p { font-size: 10pt; margin-bottom: 7px; margin-top: 0; }
+a{ color: black; text-decoration: none; cursor: pointer; }
+a:hover{ text-decoration: underline; color: black; }
 form{	margin:0;}
 
-#HEADER{ width:100%; margin-left:auto; margin-right:auto;}
-#HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: block; list-style: none; background-color: black; background-image: url(bg_topnav.gif); background-repeat: no-repeat;  }
-#HEADER li{ display: inline; background-color: black;  float: right;  }
-#HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid #F1F1F1;  float: left;     }
-#HEADER li a:hover{ background-color: white; text-decoration: none;}
+#HEADER{ width:100%; margin-left:auto; margin-right:auto; background-color: #f2f2f2;}
+#HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: block; list-style: none;}
+#HEADER li{ display: inline; float: right;  }
+#HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid black;  float: left;     }
+#HEADER li a:hover{ background-color: #ffffff; text-decoration: none;}
 h1{ margin: 0; padding: 40px 0 0 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black;  font-size: 20pt;  }
 
-#TITLE{width:73.3%; margin-left:auto; margin-right:auto; text-align: center; background-color: White; padding: 0px 10px 10px 10px; }
-#TITLE h1{font-size: 4em; }
+#HOMEPAGECONTAINER{width:75%; margin-left:auto; margin-right:auto;}
 
-#HOMEPAGEIMAGE{width:75%; margin-left:auto; margin-right:auto; margin-bottom: .5%; margin-top: .5% }
+#TITLE{margin-left:auto; margin-right:auto; text-align: center; background-color: white; padding: 0px 10px 10px 10px; }
+#TITLE h1{font-size: 4em;}
+
+#HOMEPAGEIMAGE{margin-left:auto; margin-right:auto;}
 #HOMEPAGEIMAGE img{width:100%; margin-left:auto; margin-right:auto }
 
-#CONTENT{ width:75%; height: 100%; margin-left:auto; margin-right:auto; background-color: White; }
+#CONTENT{height: 100%; margin-left:auto; margin-right:auto; background-color: white; }
+#CONTENT input[type=submit]{cursor: pointer;}
 h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black; font-size: 15pt; }
-#TEXT{ padding: 35px 40px 35px 40px; border-bottom: 1px solid #484848; border-top: 1px solid #484848; background-color: White; }
+#TEXT{ padding: 35px 40px 35px 40px; border-bottom: 1px solid #484848; border-top: 1px solid #484848; background-color: white; }
 #TEXT p{ margin-bottom: 1em; }
 
-#LOGINFORM{ width:40%; height: 40%; margin: auto; background-color: White; margin-top: 5%;}
-#LOGINFORM h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: hotpink;}
+#LOGINFORM{ max-width: 500px; max-height: 400px; min-height: 250px; margin: auto; background-color: White; margin-top: 5%;}
+#LOGINFORM h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #60B9CD;; color: white; text-align: center;}
+#LOGINFORM form{padding: 2% 5% 2% 5%;}
+#LOGINFORM input[type=text]{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#LOGINFORM input[type=password]{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#LOGINFORM input[type=submit]{border: none; background-color: #60B9CD; width: 100%; min-height: 5%; color: white; margin: 8px 0 8px 0; border-radius: 4px; cursor: pointer; }
+
+#GENERALFORM{ max-width: 700px; min-height: 250px; margin: auto; background-color: White; margin-top: 5%; margin-bottom: 5%;}
+#GENERALFORM h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #60B9CD;; color: white; text-align: center;}
+#GENERALFORM form{padding: 2% 10% 2% 10%;}
+#GENERALFORM input[type=text], select, textarea{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#GENERALFORM textarea{min-height: 50px; max-width: 100%; }
+#GENERALFORM input[type=password]{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#GENERALFORM input[type=submit]{border: none; background-color: #60B9CD; width: 100%; min-height: 5%; margin: 8px 0 8px 0; color: white; border-radius: 4px; cursor: pointer; }
+
+#SPECIFICFORM { max-width: 700px; min-height: 250px; margin: auto; background-color: White; margin-top: 5%; margin-bottom: 5%;}
+#SPECIFICFORM h1 {font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #60B9CD;; color: white; text-align: center;}
+#SPECIFICFORM form{padding: 2% 10% 2% 10%;}
+#SPECIFICFORM input[type=text], select, textarea{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#SPECIFICFORM input[type=number], select, textarea{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#SPECIFICFORM textarea{min-height: 50px; max-width: 100%; }
+#SPECIFICFORM input[type=password]{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
+#SPECIFICFORM input[type=submit]{border: none; background-color: #60B9CD; width: 100%; min-height: 5%; margin: 8px 0 8px 0; color: white; border-radius: 4px; cursor: pointer; }
 
 #FOOTER{ width:75%; margin-top:27px; margin-left:auto; margin-right:auto; border-top: 4px solid #363636; text-align: right; padding-top: 5px; }
 #FOOTER p{ font-size: 11px; line-height: 14px; margin: 0;  color: #DDDDDD; }

@@ -12,4 +12,14 @@ class GeneralInfo < ApplicationRecord
     validates_presence_of :country
     validates_presence_of :state
     validates_presence_of :city
+    
+  def self.search searchArg
+    #http://stackoverflow.com/questions/35414443/search-through-another-model
+    #(2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
+    #Takes in an array corresponding to certain aspects of general info.
+    #joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
+    #"%#{params[:q]}%"  
+    GeneralInfo.where("first_name ILIKE ? OR last_name ILIKE ?", searchArg[:first_name], searchArg[:last_name])
+    
+  end
 end

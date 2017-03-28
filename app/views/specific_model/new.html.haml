@@ -1,21 +1,10 @@
-%head
-  %title Match My Fashion
-  = csrf_meta_tags
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= render :partial => "/layout/header"
 
 
 %body
-  #HEADER
-    %ul
-      %li
-        %a{:href => "login_info/new"} Login
-      %li
-        %a{:href => "login_info/new"} Sign Up
-      %li
-        %a{:href => ""} Profile Search
-  #CONTENT
-    %h1 Sign Up - Model Profile
+  #SPECIFICFORM
+    %h1 
+      %b MODEL PROFILE INFORMATION
     = form_for @specific_model, :url => '/specific_model' do |f|
       %p
       = f.label :height_feet
@@ -76,7 +65,7 @@
       %p
       = f.label :piercings
       %br/
-      = f.select :tattoos, options_for_select([["No","No"],["Yes","Yes"]])
+      = f.select :piercings, options_for_select([["No","No"],["Yes","Yes"]])
       %p
       = f.label :experience
       %br/

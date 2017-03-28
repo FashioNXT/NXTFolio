@@ -1,20 +1,12 @@
-%head
-  %title Match My Fashion
-  = csrf_meta_tags
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+- if flash[:notice]
+  .notice= flash[:notice]
+
+= render :partial => "/layout/header"
 
 %body
-  #HEADER
-    %ul
-      %li
-        %a{:href => "login_info/new"} Login
-      %li
-        %a{:href => "login_info/new"} Sign Up
-      %li
-        %a{:href => ""} Profile Search
-  #CONTENT
-    %h1 Sign Up - General Information
+  #GENERALFORM
+    %h1
+      %b GENERAL INFORMATION
     = form_for @general_info, :action => 'select_next', :url => general_info_select_next_path do |f|
       %p
       = f.label 'First Name'

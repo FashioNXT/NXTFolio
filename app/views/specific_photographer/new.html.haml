@@ -1,13 +1,10 @@
-%head
-  %title Match My Fashion
-  = csrf_meta_tags
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= render :partial => "/layout/header"
 
 
 %body
-  #CREATE
-    %h1 Sign Up - Photographer Profile
+  #SPECIFICFORM
+    %h1 
+      %b PHOTOGRAPHER INFORMATION
     = form_for @specific_photographer, :action => 'create', :url => '/specific_photographer' do |f|
       %p
       %b= f.label :compensation 

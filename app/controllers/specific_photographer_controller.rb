@@ -60,4 +60,8 @@ class SpecificPhotographerController < ApplicationController
     redirect_to :action => 'list'
   end    
   
+  def search
+    
+  end
+  
 end

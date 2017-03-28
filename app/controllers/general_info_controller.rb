@@ -1,10 +1,31 @@
 class GeneralInfoController < ApplicationController
+  @counter = 0
+  
   def list
       @general_infos = GeneralInfo.all
   end
-   
+  
   def show
      @general_info = GeneralInfo.find(params[:id])
+  end
+  
+  def search_redirect
+    
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++SHOWINGx"
+    #@general_info = GeneralInfo.new(general_info_search_params)
+    @objects = params.except("utf8")
+    @objects = @objects.except("button")
+    @general_queries = GeneralInfo.search @objects
+    puts @general_queries.length
+    puts @general_queries[0][:first_name]
+    puts @general_queries[0][:last_name]
+    
+    #if @objects[:profession] == 
+    #elsif
+    #elsif
+    #else
+    #end
+    redirect_to root_path
   end
    
   def new
@@ -15,14 +36,6 @@ class GeneralInfoController < ApplicationController
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key] 
     
-    # puts @general_info[:specific_profile_id]
-    # if @general_info[:specific_profile_id] == 1
-    #   redirect_to new_specific_designer_path and return
-    # elsif @general_info[:specific_profile_id] == 2
-    #   redirect_to new_specific_model_path and return
-    # elsif @general_info[:specific_profile_id] == 3
-    #   redirect_to new_specific_photographer_path and return
-    # end
 
     if @general_info.save!
       puts @general_info[:specific_profile_id]
@@ -73,5 +86,9 @@ class GeneralInfoController < ApplicationController
   def delete
     GeneralInfo.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+  
+  def search
+    #Take the input from the search view and call the model search functions.
   end
 end
