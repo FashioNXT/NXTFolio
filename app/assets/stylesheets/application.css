@@ -29,6 +29,8 @@ form{	margin:0;}
 #HEADER li a:hover{ background-color: #ffffff; text-decoration: none;}
 h1{ margin: 0; padding: 40px 0 0 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black;  font-size: 20pt;  }
 
+#NOTICE{ margin: 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: White;  font-size: 15pt; }
+
 #HOMEPAGECONTAINER{width:75%; margin-left:auto; margin-right:auto;}
 
 #TITLE{margin-left:auto; margin-right:auto; text-align: center; background-color: white; padding: 0px 10px 10px 10px; }
@@ -71,6 +73,3 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 #FOOTER p{ font-size: 11px; line-height: 14px; margin: 0;  color: #DDDDDD; }
 #FOOTER a{ font-size: 11px;	font-weight: normal;	text-decoration: none;  color: Black;    }
 #FOOTER a:hover{ color: Black; text-decoration: underline; }
-
-
-

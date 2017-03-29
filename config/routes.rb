@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
   get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  get 'specific_designer/search' => 'specific_designer#search', :as => 'specific_designer/search'
+  get 'specific_designer/search_redirect' => 'specific_designer#search_redirect', :as => 'specific_designer/search_redirect'
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
   get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'

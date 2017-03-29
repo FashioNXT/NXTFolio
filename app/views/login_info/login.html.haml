@@ -7,11 +7,11 @@
       .notice= flash[:notice]
     = form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f|
       %p
-      = f.label :email
+      = f.label :email, "Email"
       %br/
       = f.text_field :email
       %p
-      = f.label :password
+      = f.label :password, "Password"
       %br/
       = f.password_field :password
       %p.button 

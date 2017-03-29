@@ -78,14 +78,13 @@ class LoginInfoController < ApplicationController
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey] 
+        flash[:notice] = "Logged In!"
         redirect_to root_path
       else
-        #wrong password - NEED TO MAKE FLASH
         flash[:notice] = "Incorrect Password"
         redirect_to login_info_login_path
       end
     else
-      #User does not exist - NEED TO MAKE FLASH
       flash[:notice] = "Incorrect Email"
       redirect_to login_info_login_path
     end
@@ -97,6 +96,7 @@ class LoginInfoController < ApplicationController
   
   def logout
     session[:current_user_key] = nil
+    flash[:notice] = "Logged Out!"
     redirect_to root_path
   end
 end

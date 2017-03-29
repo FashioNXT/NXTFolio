@@ -9,9 +9,19 @@ class GeneralInfoController < ApplicationController
      @general_info = GeneralInfo.find(params[:id])
   end
   
-  def search_redirect
+  def get_user_keys array
+    puts "+++++++++++++++IN GET USER KEYS"
     
-    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++SHOWINGx"
+    @return_array
+    array.each do |element,index|
+      puts "#{element[:userKey]} is part of the array"
+      @return_array[index] = element[:userKey]
+    end
+    
+    return @return_array
+  end
+  
+  def search_redirect
     #@general_info = GeneralInfo.new(general_info_search_params)
     @objects = params.except("utf8")
     @objects = @objects.except("button")
@@ -19,13 +29,17 @@ class GeneralInfoController < ApplicationController
     puts @general_queries.length
     puts @general_queries[0][:first_name]
     puts @general_queries[0][:last_name]
+    flash[:general_queries] = get_user_keys @general_queries
     
-    #if @objects[:profession] == 
-    #elsif
-    #elsif
-    #else
-    #end
-    redirect_to root_path
+    if @objects[:profession] == 1
+      redirect_to search_specific_designer_path 
+    elsif @objects[:profession] == 2
+      redirect_to search_specific_model_path 
+    elsif @objects[:profession] == 3
+      redirect_to search_specific_photographer_path 
+    else
+      redirect_to root_path
+    end
   end
    
   def new

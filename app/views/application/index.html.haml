@@ -1,11 +1,16 @@
+
 = render :partial => "/layout/header"
+
 %body
   #HOMEPAGECONTAINER
+    #NOTICE
+      = notice
+    
+    
     #TITLE
       %h1 Match My Fashion
       %p Brought to you by Team TAMU-PROR
-      = yield
-      
+    
       
     #HOMEPAGEIMAGE
       //%img{:src => "https://images8.alphacoders.com/414/414613.jpg", :width => 760, :height => 380}

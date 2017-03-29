@@ -6,6 +6,15 @@ class SpecificDesignerController < ApplicationController
   def show
     @specific_designer = SpecificDesigner.find(params[:id])
   end
+  
+  def search
+    
+  end
+  
+  def search_redirect
+    #puts ";sLDjeafjlefkjlfdkjfelkwjflkejfklewjflkewjfklwejflkewjfklwejflkwejfklwejfkljwefkljwefkl"
+    redirect_to root_path
+  end
    
   def new
     @specific_designer = SpecificDesigner.new
