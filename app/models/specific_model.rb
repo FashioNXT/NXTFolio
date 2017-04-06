@@ -15,9 +15,6 @@ class SpecificModel < ApplicationRecord
       end
     end
     
-    puts "COOL THANKS USER ARRAY SIZE"
-    puts @user_array.size
-    
     # For every user in user_array, check if A genre matches ANY genre. 
     #If there are no genres , loop through @user_array, push the key into @genre_checked_array
     if params_arg[:genre].nil?

@@ -12,17 +12,6 @@ class SpecificModelController < ApplicationController
   end
   
   def search_redirect
-    #@height_feet = params[:height_feet]
-    #@height_inches = params[:height_inches]
-    #@dress_size = params[:dress_size]
-    #@hair_color = params[:hair_color]
-    #@skin_color = params[:skin_color]
-    #@shoot_nudes = params[:shoot_nudes]
-    #@tattoos = params[:tattoos]
-    #@piercings = params[:piercings]
-    #@genres = params[:checkboxes]           
-    #@experience = params[:experience]
-    
     @params_arg = params
     @checkboxes = params[:checkboxes]
     

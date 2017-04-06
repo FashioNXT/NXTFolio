@@ -29,7 +29,6 @@ class GeneralInfoController < ApplicationController
     
     @general_queries = GeneralInfo.search @objects
     
-    puts "BBBBBBBBBBBBBBBBBBBB"
     puts @general_queries.length
     #puts @general_queries[0][:first_name]
     #puts @general_queries[0][:last_name]
@@ -45,7 +44,6 @@ class GeneralInfoController < ApplicationController
     elsif @objects[:profession] == "3"
       redirect_to specific_photographer_search_path 
     else
-      puts "ELLLLLLLLLLLSEEEE"
       redirect_to root_path
     end
   end

@@ -24,7 +24,6 @@ class SpecificPhotographer < ApplicationRecord
       end
     end
     
-    # passed genre test
     # For each element in @return_array, check if that object matches the experiece
     @genre_checked_array.each do |user_key_in_array|
       # If that object's experience == experience_arg, Then it's allll gucci
