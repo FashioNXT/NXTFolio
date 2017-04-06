@@ -15,7 +15,6 @@ class LoginInfoController < ApplicationController
    
   def create
     @login_info = LoginInfo.new(login_info_params)
-    #@login_info = LoginInfo.new(params[:login_info])
     puts @login_info[:email]
     puts @login_info[:password]
     puts login_info_params[:password_confirmation]
@@ -32,13 +31,13 @@ class LoginInfoController < ApplicationController
         flash[:notice] = "Account Created!"
         redirect_to new_general_info_path and return
       else
-        puts "false"
         puts "Failed Saving"
-        # flash[:alert] = "Invalid Email or Password! Please try again."
-        # format.html { redirect_to @post, alert: "Invalid Email or Password! Please try again." }
-        # redirect_to new_login_info_path and return               # Render the new page again
-        render :action => 'new', notice: "Invalid Email or Password! Please try again."
+        flash[:notice] = "Failed Saving!"
+        redirect_to new_login_info_path
       end
+    else
+      flash[:notice] = "Passwords don't match! Please try again."
+      redirect_to new_login_info_path
     end
   end
   

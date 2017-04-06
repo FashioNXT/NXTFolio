@@ -1,0 +1,86 @@
+= render :partial => "/layout/header"
+
+%body
+  = render :partial => "/layout/body"
+  #TOPPICTURES
+    %img.Cover{:src => "http://i26.tinypic.com/m7yvlu.jpg"}
+    %img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
+    //#COVERPICTURE
+    //  %img{:src => "http://www.pearldistrict.org/wp-content/uploads/2014/09/FashioNXT.jpg"}
+    //#PROFILEPICTURE
+    //  %img{:src => "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/0ae/2bb/193f464.jpg"}
+  #PROFILEINFO
+    #PROFILENAME 
+      %p
+        = @general_info.first_name
+        = @general_info.last_name
+        \- 
+        %b Model
+    #PROFILETEXT 
+      %h2 Intro
+      %p
+        //= @general_info_attributes.to_s
+        
+        - @general_info_attributes.each do |attribute|
+          - case attribute
+          - when "year_ofbirth"
+            %br
+            %b 
+              = "Birthday: "
+            = @general_info.month_ofbirth.to_s + " /"
+            = @general_info.day_ofbirth.to_s + " / "
+            = @general_info.year_ofbirth.to_s
+          - when "gender"
+            %br
+            %b 
+              = "Gender: "
+            = @general_info.gender
+          - when "country"
+            %br
+            %b 
+              = "Location: "
+            = @general_info.city + ","
+            = @general_info.state + ","
+            = @general_info.country
+          - when "compensation"
+            %br
+            %b 
+              = "Compensation: "
+            = @general_info.compensation
+          - when "bio"
+            %br
+            %b 
+              = "About Me: "
+            = @general_info.bio
+          - when "facebook_link"
+            %br
+            %b 
+              = "Facebook: "
+            = @general_info.facebook_link
+          - when "instagram_link"
+            %br
+            %b 
+              = "Instagram: "
+            = @general_info.instagram_link
+          - when "personalWebsite_link"
+            %br
+            %b 
+              = "Personal Website: "
+            = @general_info.personalWebsite_link
+          //- else
+          //  %br
+          //  %b 
+          //    = attribute + "...... "
+
+
+      %h2
+        = @profile_type + " Specifics"
+      %p
+        d
+    #PROFILEIMAGES
+      %ul.rig
+        %li
+          %img{:src => "http://a1smallbusinessmarketing.com/images/prosbo_hires.jpg"}
+          %h3 Image Title
+          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+    

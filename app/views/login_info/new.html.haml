@@ -1,12 +1,11 @@
-- if flash[:notice]
-  .notice= flash[:notice]
-
 = render :partial => "/layout/header"
 
 %body
+  = render :partial => "/layout/body"
   #LOGINFORM
     %h1 
       %b SIGN UP
+      .notice= flash[:notice]
     = form_for @login_info, :url => '/login_info' do |f|
       %p
       = f.label :email

@@ -12,7 +12,9 @@ class SpecificDesignerController < ApplicationController
   end
   
   def search_redirect
-    #puts ";sLDjeafjlefkjlfdkjfelkwjflkejfklewjflkewjfklwejflkewjfklwejflkwejfklwejfkljwefkljwefkl"
+    @checkboxes = params[:checkboxes]
+    @experience = params[:checkboxes]
+    SpecificDesigner.search @checkboxes,flash[:general_queries],@experience
     redirect_to root_path
   end
    

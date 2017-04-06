@@ -1,0 +1,23 @@
+:javascript
+  var loginLogout = "";
+  var loginLogoutLink = "/login_info/login";
+  var session_val = #{session[:current_user_key].to_json};
+  
+  function loginLogoutButton()
+  {
+    console.log("in the function");
+    if (session_val !== null)
+    {
+      loginLogout = "Logout";
+      var loginLogoutLink = "/login_info/logout";
+    }
+    else
+    {
+      loginLogout = "Login";
+      var loginLogoutLink = "/login_info/login";
+    }
+    document.getElementById("loginLogoutButtonID").innerHTML = loginLogout;
+    document.getElementById("loginLogoutButtonID").href = loginLogoutLink;
+    console.log("This is your key " + session_val);
+  }
+  $ (document).ready(loginLogoutButton);

@@ -18,8 +18,6 @@ class GeneralInfo < ApplicationRecord
     #(2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
     #Takes in an array corresponding to certain aspects of general info.
     #joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
-    #"%#{params[:q]}%"  
-    GeneralInfo.where("first_name ILIKE ? OR last_name ILIKE ?", searchArg[:first_name], searchArg[:last_name])
-    
+    return GeneralInfo.where("first_name ILIKE ? OR last_name ILIKE ? OR gender ILIKE ? OR state ILIKE ? OR city ILIKE ? OR compensation ILIKE ?", searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation])
   end
 end

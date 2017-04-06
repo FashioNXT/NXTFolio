@@ -23,10 +23,14 @@ a:hover{ text-decoration: underline; color: black; }
 form{	margin:0;}
 
 #HEADER{ width:100%; margin-left:auto; margin-right:auto; background-color: #f2f2f2;}
-#HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: block; list-style: none;}
+#HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: inline; list-style: none;}
 #HEADER li{ display: inline; float: right;  }
 #HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid black;  float: left;     }
 #HEADER li a:hover{ background-color: #ffffff; text-decoration: none;}
+#HEADER img{ height:44px; cursor: pointer; }
+#HEADER img:onclick{ href:"http://matchmyf-db-cloned-willerdasilva.c9users.io:8080";}
+#HEADER input[type=submit]{background:url(./images/but.png) no-repeat; cursor:pointer; border:none; }
+
 h1{ margin: 0; padding: 40px 0 0 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: Black;  font-size: 20pt;  }
 
 #NOTICE{ margin: 0; font-family: Helvetica; font-weight: normal; letter-spacing: .005em; color: White;  font-size: 15pt; }
@@ -68,8 +72,29 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 #SPECIFICFORM textarea{min-height: 50px; max-width: 100%; }
 #SPECIFICFORM input[type=password]{padding-left: 10px; border: none; background-color: #e6e6e6; width: 100%; min-height: 4%; border-radius:4px}
 #SPECIFICFORM input[type=submit]{border: none; background-color: #60B9CD; width: 100%; min-height: 5%; margin: 8px 0 8px 0; color: white; border-radius: 4px; cursor: pointer; }
+#SPECIFICFORM button{border: none; background-color: #60B9CD; width: 100%; min-height: 5%; margin: 8px 0 8px 0; color: white; border-radius: 4px; cursor: pointer; }
+
 
 #FOOTER{ width:75%; margin-top:27px; margin-left:auto; margin-right:auto; border-top: 4px solid #363636; text-align: right; padding-top: 5px; }
 #FOOTER p{ font-size: 11px; line-height: 14px; margin: 0;  color: #DDDDDD; }
 #FOOTER a{ font-size: 11px;	font-weight: normal;	text-decoration: none;  color: Black;    }
 #FOOTER a:hover{ color: Black; text-decoration: underline; }
+
+#TOPPICTURES{margin: auto; text-align: center;}
+
+.Cover {position: relative; top: 0; left: 0; width: 100%; height: 200px;}
+.Profile {position: absolute; top: 16%; left: 42%; max-width: 200px; max-height: 200px; border-radius: 10px; border-color: #f2f2f2; border-style: solid; border-width: 5px;}
+
+#PROFILEINFO {max-width: 1000px; min-height: 100%; margin: auto;}
+
+#PROFILENAME {width: 100%; height: 100px; color: #111111; margin: auto; text-align: justify; background-color: white;}
+#PROFILENAME p{ position: absolute; text-align: right; font-size: 5em; vertical-align: middle; }
+
+#PROFILETEXT {background-color: white; float: left; width: 400px; height: 100%; color: #111111; margin: auto; text-align: justify; padding-left: 2%;}
+#PROFILETEXT h2{border-left: solid pink 10px;}
+#PROFILETEXT h3{border-left: solid blue 5px;}
+
+#PROFILEIMAGES {background-color: white; position: relative; float: right; max-width: 560px; min-width: 560px; height: 100%; margin: auto;}
+
+.gallery { margin: 5px; float: left; width: 100px; }
+.gallery img { width: 100%; height: auto;  }

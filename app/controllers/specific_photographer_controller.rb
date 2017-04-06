@@ -12,7 +12,7 @@ class SpecificPhotographerController < ApplicationController
   end
    
   def create
-    @specific_photographer = SpecificDesigner.new(specific_photographer_params)
+    @specific_photographer = SpecificPhotographer.new(specific_photographer_params)
     @genre_str
     if !params[:specific_photographer][:allgenres].nil?
       for index in 0 ... params[:specific_photographer][:allgenres].size
@@ -62,6 +62,13 @@ class SpecificPhotographerController < ApplicationController
   
   def search
     
+  end
+  
+  def search_redirect
+    @checkboxes = params[:checkboxes]
+    @experience = params[:experience]
+    SpecificPhotographer.search @checkboxes,flash[:general_queries],@experience
+    redirect_to root_path
   end
   
 end

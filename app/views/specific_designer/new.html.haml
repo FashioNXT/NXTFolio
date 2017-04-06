@@ -2,8 +2,10 @@
 
 
 %body
+  = render :partial => "/layout/body"
   #SPECIFICFORM
-    %h1 DESIGNER INFORMATION
+    %h1
+      %b DESIGNER INFORMATION
     = form_for @specific_designer, :action => 'create', :url => '/specific_designer' do |f|
       
       %p
