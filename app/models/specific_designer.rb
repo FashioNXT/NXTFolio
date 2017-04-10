@@ -25,6 +25,7 @@ class SpecificDesigner < ApplicationRecord
           @genre_checked_hash.push(user_object[:user_key])
           break
         end
+      end
     end
     
     # passed genre test
