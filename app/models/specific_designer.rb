@@ -39,3 +39,4 @@ class SpecificDesigner < ApplicationRecord
     puts @return_array.size
   end
 end
+end
