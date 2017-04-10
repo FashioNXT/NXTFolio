@@ -24,9 +24,8 @@ class SpecificDesigner < ApplicationRecord
         if user_object[:genre].to_s.include? key.to_s
           @genre_checked_hash.push(user_object[:user_key])
           break
+        end
     end
-    
-   
     
     # passed genre test
     # For each element in @return_array, check if that object matches the experiece
