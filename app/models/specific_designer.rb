@@ -2,10 +2,11 @@ class SpecificDesigner < ApplicationRecord
     #belongs_to :general_info
     attr_accessor :allgenres
     
-  def self.search checkboxes, user_keys_array, experience_arg
+  def self.search checkboxes, user_keys_array, experience_arg, params_arg
     @user_array = Array.new
     @genre_checked_hash = Array.new
     @return_array = Array.new
+    @experience_str = params_arg[:experiece]
     
     # Search based on the user keys, store into @user_array
     user_keys_array.each do |user_key_element|
@@ -35,12 +36,6 @@ class SpecificDesigner < ApplicationRecord
         @return_array.push(user_key_in_array)
       end
     end
-      
-    
     puts @return_array.size
-    # Now we have the user_keys that have passed the genre test.
-    # Use these keys in a .where to specify the search for only them. 
-    # Example: SpecificPhotographer.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ?)", searchArg[:user_key], searchArg[:height_feet], searchArg[:height_inches])
-
   end
 end

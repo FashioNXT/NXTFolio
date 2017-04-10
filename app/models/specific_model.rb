@@ -56,8 +56,10 @@ class SpecificModel < ApplicationRecord
     
   end
   
-  #def self.attribute_values 
-  #  @attribute_values = Hash.new
-  #  @attribute_values[:height] = "Height: " + self.height_feet
-  #end
+  def attribute_values 
+    @attribute_values = Hash.new
+    @attribute_values[:height] = "Height: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."
+    @attribute_values[:test] = "ttttt: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."
+    @attribute_values
+  end
 end

@@ -2,10 +2,12 @@ class SpecificPhotographer < ApplicationRecord
     #belongs_to :general_info
     attr_accessor :allgenres
     
-  def self.search checkboxes, user_keys_array, experience_arg
+  def self.search checkboxes, user_keys_array, experience_arg, params_arg
     @user_array = Array.new
     @genre_checked_array = Array.new
     @return_array = Array.new
+    @experience_str = params_arg[:experiece]
+
     
     # Search based on the user keys, store into @user_array
     user_keys_array.each do |user_key_element|
@@ -15,6 +17,18 @@ class SpecificPhotographer < ApplicationRecord
     end
     
     # For every user in user_array, check if A genre matches ANY genre. 
+    if params_arg[:genre].nil?
+      @genre_checked_array = user_keys_array
+    else
+      @user_array.each do |user_object|
+        checkboxes.each do |key, checkbox_genre|
+          if user_object[:genre].to_s.include? key.to_s
+            @genre_checked_array.push(user_object[:user_key])
+            break
+          end
+        end
+      end
+    end
     @user_array.each do |user_object|
       checkboxes.each do |key, checkbox_genre|
         if user_object[:genre].to_s.include? key.to_s

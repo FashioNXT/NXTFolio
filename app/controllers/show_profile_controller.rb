@@ -51,6 +51,7 @@ class ShowProfileController < ApplicationController
         @profile_type = "Designer"
       when 2
         @specific_model = SpecificModel.find_by(user_key: session[:current_user_key])
+        @model_info = @specific_model.attribute_values
         @profile_type = "Model"
       when 3
         @specific_photographer = SpecificPhotographer.find_by(user_key: session[:current_user_key])

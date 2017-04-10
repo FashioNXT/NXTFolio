@@ -67,7 +67,9 @@ class SpecificPhotographerController < ApplicationController
   def search_redirect
     @checkboxes = params[:checkboxes]
     @experience = params[:experience]
-    SpecificPhotographer.search @checkboxes,flash[:general_queries],@experience
+    @params_arg = params
+
+    SpecificPhotographer.search @checkboxes,flash[:general_queries],@experience, @params_arg
     redirect_to root_path
   end
   

@@ -76,7 +76,14 @@
       %h2
         = @profile_type + " Specifics"
       %p
-        d
+        - @model_info.each do |info|
+          //= info
+          - info_array = info[1].split(":")
+          - if(info_array[1] != nil)
+            %br
+            %b
+              = info_array[0] + ":"
+            = info_array[1]
     #PROFILEIMAGES
       %ul.rig
         %li
