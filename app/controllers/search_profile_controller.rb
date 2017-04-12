@@ -59,7 +59,7 @@ class SearchProfileController < ApplicationController
     @params_arg = params
     
     @user_objects = SpecificDesigner.search @checkboxes,flash[:users], @experience, @params_arg
-    
+    #akljlkjas
     flash[:users] = user_objects[:user_key]
     redirect_to :action => 'show'
   end
