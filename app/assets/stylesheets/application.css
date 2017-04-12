@@ -15,17 +15,17 @@
  */
 
 /* STANDARD TAG REDEFINITIONS */
-BODY{ color: Black; font-family: Helvetica; font-size: 10pt; background-color: #111111; margin: 0; padding: 0; }
+BODY{ color: #111111; font-family: Helvetica; font-size: 10pt; background-color: #f2f2f2; margin: 0; padding: 0; }
 TD { font-size: 10pt; }
 p { font-size: 10pt; margin-bottom: 7px; margin-top: 0; }
-a{ color: black; text-decoration: none; cursor: pointer; }
+a{ color: white; text-decoration: none; cursor: pointer; }
 a:hover{ text-decoration: underline; color: black; }
 form{	margin:0;}
 
-#HEADER{ width:100%; margin-left:auto; margin-right:auto; background-color: #f2f2f2;}
+#HEADER{ width:100%; margin-left:auto; margin-right:auto; background-color: #111111; color: white;}
 #HEADER ul{ margin: 0; padding-left: 0; height: 44px; line-height: 44px; display: inline; list-style: none;}
 #HEADER li{ display: inline; float: right;  }
-#HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid black;  float: left;     }
+#HEADER li a{ height: 44px; line-height: 44px; display: block; padding-left: 27px; padding-right: 27px; border-left: 1px solid white;  float: left;     }
 #HEADER li a:hover{ background-color: #ffffff; text-decoration: none;}
 #HEADER img{ height:44px; cursor: pointer; }
 #HEADER img:onclick{ href:"http://matchmyf-db-cloned-willerdasilva.c9users.io:8080";}
@@ -82,19 +82,35 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 
 #TOPPICTURES{margin: auto; text-align: center;}
 
-.Cover {position: relative; top: 0; left: 0; width: 100%; height: 200px;}
-.Profile {position: absolute; top: 16%; left: 42%; max-width: 200px; max-height: 200px; border-radius: 10px; border-color: #f2f2f2; border-style: solid; border-width: 5px;}
+.Cover {position: relative; top: 0; left: 0; width: 1200px; height: 50%;}
+.Profile {position: absolute; top: 10%; left: 42%; max-width: 200px; max-height: 200px; border-radius: 10px; border-color: #f2f2f2; border-style: solid; border-width: 5px;}
 
-#PROFILEINFO {max-width: 1000px; min-height: 100%; margin: auto;}
+#PROFILEINFO {max-width: 1200px; min-height: 100%; margin: auto;}
 
-#PROFILENAME {width: 100%; height: 100px; color: #111111; margin: auto; text-align: justify; background-color: white;}
-#PROFILENAME p{ position: absolute; text-align: right; font-size: 5em; vertical-align: middle; }
+#PROFILENAME {position: absolute;  top: 45%; left: 25%; width: 50%; height: 60px; color: 111111; margin: auto; text-align: justify;}
+#PROFILENAME p{ text-align: center; font-size: 4em; vertical-align: middle; }
 
-#PROFILETEXT {background-color: white; float: left; width: 400px; height: 100%; color: #111111; margin: auto; text-align: justify; padding-left: 2%;}
-#PROFILETEXT h2{border-left: solid pink 10px;}
-#PROFILETEXT h3{border-left: solid blue 5px;}
+#PROFILETEXT {background-color: white; float: left; width: 400px; height: 100%; color: #111111; margin: auto; text-align: justify;}
+#PROFILETEXT h2{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white; padding-left: 10%}
+#PROFILETEXT p{padding-left: 2%; padding-right: 2%;}
 
-#PROFILEIMAGES {background-color: white; position: relative; float: right; max-width: 560px; min-width: 560px; height: 100%; margin: auto;}
 
-.gallery { margin: 5px; float: left; width: 100px; }
+#EDITLINKS {position: absolute; width: 300px; height: 50px; top: 53%; right: 6%;}
+#EDITLINKS a{border-bottom: 1px solid grey; color: black; background-color: #e6e6e6; padding: 1% 1% 1% 1%; border-radius: 2px; transition: all 0.5s; margin-top: 1%;}
+#EDITLINKS a:hover{color: grey; background-color: white; text-decoration: none;}
+
+#PROFILEIMAGES {bottom: 0; overflow: scroll; background-color: white; position: relative; float: left; margin-left: 20px; max-width: 65%; height: 100%;}
+
+.gallery { margin: 20px; float: left; width: 200px; }
 .gallery img { width: 100%; height: auto;  }
+
+#SEARCHMAINDIV {background-color: white; margin: auto; height: 100%; max-width: 1000px;}
+#SEARCHMAINDIV h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F;; color: white; text-align: center;}
+
+#SEARCHDISPLAYDIV {background-color: #e6e6e6; margin: auto; height: 25%; max-width: 900px; margin-top: 5%; border-radius: 10px; padding-top: 2%; padding-bottom: 2%; padding-left: 2%; padding-right: 2%;}
+#SEARCHDISPLAYDIV img{float: left; max-height: 100%;}
+
+#SEARCHDISPLAYTEXT {float:left; margin-left: 2%;}
+#SEARCHDISPLAYTEXT h2 {font-size: 1.5em; padding-top: 1%; padding-left: 1%; padding-bottom: 1%; margin-bottom: 0px;}
+#SEARCHDISPLAYTEXT h3 {border-bottom: 1px solid #484848; width: 300px;}
+#SEARCHDISPLAYTEXT p {height: 50px;}

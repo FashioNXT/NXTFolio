@@ -20,23 +20,28 @@ class LoginInfoController < ApplicationController
     puts login_info_params[:password_confirmation]
     
     #DO LATER: Check user name against the database.
-    if @login_info[:password] == login_info_params[:password_confirmation]
-      puts "true"
-      @login_info.userKey = SecureRandom.hex(10)
-      puts @login_info.userKey
-      session[:current_user_key] = @login_info.userKey 
-      
-      if @login_info.save
-        puts "saved"
-        flash[:notice] = "Account Created!"
-        redirect_to new_general_info_path and return
+    if @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
+      if @login_info[:password] == login_info_params[:password_confirmation]
+        puts "true"
+        @login_info.userKey = SecureRandom.hex(10)
+        puts @login_info.userKey
+        
+        if @login_info.save
+          session[:current_user_key] = @login_info.userKey 
+          puts "saved"
+          flash[:notice] = "Account Created!"
+          redirect_to new_general_info_path#and return
+        else
+          puts "Failed Saving"
+          flash[:notice] = "Failed Saving!"
+          redirect_to new_login_info_path
+        end
       else
-        puts "Failed Saving"
-        flash[:notice] = "Failed Saving!"
+        flash[:notice] = "Passwords don't match! Please try again."
         redirect_to new_login_info_path
       end
     else
-      flash[:notice] = "Passwords don't match! Please try again."
+      flash[:notice] = "Enter your password! Please try again."
       redirect_to new_login_info_path
     end
   end
@@ -47,15 +52,22 @@ class LoginInfoController < ApplicationController
   end
    
   def edit
-    @login_info = LoginInfo.find(params[:id])
+    if LoginInfo.exists?(:userKey => session[:current_user_key])
+      @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
+    end
   end
    
   def update
-    @login_info = LoginInfo.find(params[:id])
-    	
-    if @login_info.update_attributes(login_info_param)
-      redirect_to :action => 'show', :id => @login_info
+    @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
+    
+    if login_info_params[:password] == login_info_params[:password_confirmation]
+      if @login_info.update_attributes(login_info_params)
+        redirect_to '/show_profile'
+      else
+        render :action => 'edit'
+      end
     else
+      flash[:notice] = "Passwords don't match!"
       render :action => 'edit'
     end
   end

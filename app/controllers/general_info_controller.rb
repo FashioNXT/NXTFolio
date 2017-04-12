@@ -34,8 +34,8 @@ class GeneralInfoController < ApplicationController
     #puts @general_queries[0][:last_name]
     #puts @general_queries[1][:first_name]
     #puts @general_queries[1][:last_name]
-    flash[:general_queries] = get_user_keys @general_queries
     
+    flash[:general_queries] = get_user_keys @general_queries
     
     if @objects[:profession] == "1"
       redirect_to specific_designer_search_path 
@@ -52,11 +52,12 @@ class GeneralInfoController < ApplicationController
     @general_info = GeneralInfo.new
   end
   
-  def select_next
+  #create is called upon profile creation, and routes to which specific profile to create after general info is filled
+  def create
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key] 
     
-
+    #save general info and redirect to specific profile
     if @general_info.save!
       puts @general_info[:specific_profile_id]
       if @general_info[:specific_profile_id] == 1
@@ -70,15 +71,6 @@ class GeneralInfoController < ApplicationController
       puts "Failed to save"
       render :action => 'new'
     end
-   end
-   
-  def create
-    @general_info = GeneralInfo.new(general_info_params)
-    #if @general_info.save
-    #  redirect_to :action => 'list'
-    #else
-    #  render :action => 'new'
-    #end
   end
   
   def general_info_params
@@ -86,21 +78,25 @@ class GeneralInfoController < ApplicationController
   end
    
   def edit
-     @general_info = GeneralInfo.find(params[:id])
+    if GeneralInfo.exists?(:userKey => session[:current_user_key])
+      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    else
+      redirect_to :action => 'new'
+    end
   end
    
   def update
-    @general_info = GeneralInfo.find(params[:id])
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
      
-    if @general_info.update_attributes(general_info_param)
-      redirect_to :action => 'show', :id => @general_info
+    if @general_info.update_attributes(general_info_update_param)
+      redirect_to '/show_profile'
     else
       render :action => 'edit'
     end
   end
   
-  def general_info_param
-     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
+  def general_info_update_param
+     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio)
   end
    
   def delete

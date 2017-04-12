@@ -15,10 +15,28 @@ class SpecificDesignerController < ApplicationController
     @checkboxes = params[:checkboxes]
     @experience = params[:checkboxes]
     @params_arg = params
-    SpecificDesigner.search @checkboxes,flash[:general_queries], @experience, @params_arg
-    redirect_to root_path
+    
+    @user_objects = SpecificDesigner.search @checkboxes,flash[:general_queries], @experience, @params_arg
+    
+    @user_objects.each do |object|
+      @general_info_object = GeneralInfo.find_by(object[:userKey])
+      
+      @attribute_param = object.attribute_values
+      @attribute_param[:first_name] = @general_info_object[:first_name]
+      @attribute_param[:last_name] = @general_info_object[:last_name]
+      @attribute_param[:gender] = @general_info_object[:gender]
+      @attribute_param[:state] = @general_info_object[:state]
+      @attribute_param[:profession] = @general_info_object[:profession]
+      
+    end
+    
+    redirect_to search_profile_show_path
   end
+  
+  def prep_show 
    
+  end
+  
   def new
     @specific_designer = SpecificDesigner.new
   end
@@ -52,16 +70,20 @@ class SpecificDesignerController < ApplicationController
   end
    
   def edit
-    @specific_designer = SpecificDesigner.find(params[:id])
+    if SpecificDesigner.exists?(:user_key => session[:current_user_key])
+      @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
+    else
+      redirect_to :action => 'new'
+    end
   end
    
   def update
-    @specific_designer = SpecificDesigner.find(params[:id])
-  
+    @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
+    
     if @specific_designer.update_attributes(specific_designer_param)
-      redirect_to :action => 'show', :id => @specific_designer
+      redirect_to '/show_profile'
     else
-      render :action=> 'edit'                  # Render the new page again
+      render :action => 'edit'
     end
   end
   

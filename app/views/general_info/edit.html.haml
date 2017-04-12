@@ -9,7 +9,7 @@
       
     %h1
       %b GENERAL INFORMATION
-    = form_for @general_info, url: {action: "create"} do |f|
+    = form_for @general_info, :action => 'update', :url => general_info_update_path do |f|
       %p
       = f.label 'First Name'
       %br
@@ -71,12 +71,7 @@
       %br
       = f.text_area :bio
       %p
-      = f.label 'Profession'
-      %br
-      = f.select :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
-      //Variable that stores what we clicked on select  
-      %p
-      = f.submit 'Next'
+      = f.submit 'Commit'
         
-    = button_to 'Skip', root_path, :method => 'get'
+    = button_to 'Cancel', '/show_profile', :method => 'get'
         

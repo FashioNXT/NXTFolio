@@ -5,48 +5,8 @@
   = render :partial => "/layout/body"
   #SPECIFICFORM
     %h1 
-      %b SEARCH FOR MODEL PROFILE
-    = form_tag(search_profile_search_specific_model_path, :method=>'get') do
-      %p
-        %b
-          = label_tag "Height (in feet)"
-        %br/
-        = number_field_tag :height_feet, :in => 0..12, :step => 1.0
-      %p
-        %b
-          = label_tag "Height (in inches)"
-        %br/
-        = number_field_tag :height_inches, :in => 0..12, :step => 1.0
-      %p
-        %b
-          = label_tag "Dress size"
-        %br/
-        = number_field_tag :dress_size
-      %p
-        %b
-          = label_tag "Hair color"
-        %br/
-        = select_tag :hair_color, options_for_select([[''],["Red"],["Auburn"],["Platinum blonde"],["Light ash blonde"],["Golden blonde"],["Light golden brown"],["Light brown"],["Medium  brown"],["Dark brown"],["Natural black"],["Jet black"]])
-      %p
-        %b
-          = label_tag "Skin color"
-        %br/
-        = select_tag :skin_color, options_for_select([[''],["Very light or white"],["Light"],["Light intermediate"],["Dark intermediate"],["Dark or brown"],["Very dark or black"]])
-      %p
-        %b
-          = label_tag "Shoot nudes"
-        %br/
-        = select_tag :shoot_nudes, options_for_select([[''],["No"],["Yes"],["Partial"]])
-      %p
-        %b
-          = label_tag "Tattoos"
-        %br/
-        = select_tag :shoot_nudes, options_for_select([[''],["No"],["Yes"]])
-      %p
-        %b
-          = label_tag "Piercings"
-        %br/
-        = select_tag :shoot_nudes, options_for_select([[''],["No"],["Yes"]])
+      %b SEARCH FOR DESIGNER PROFILE
+    = form_tag(search_profile_show_path, :method=>'get') do
       %p
         %b
           = label_tag "Genre"
@@ -105,6 +65,7 @@
       %b
         = label_tag "Experience"
         %br/
-        = select_tag :experience, options_for_select([[''],["0-2 years"],["3-6 years"],["7-10 years"],["11+ years"]])
+        = select_tag :experience, options_for_select([["0-2 years"],["3-6 years"],["7-10 years"],["11+ years"]])
+      
       %p
         = button_tag 'Submit'

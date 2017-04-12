@@ -7,16 +7,19 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-    = link_to image_tag('FashionNextLogoBlack.png'), "/"
+    = link_to image_tag('Small-White-FashioNXTLogo.png'), "/"
     //= image_tag "FashionNextLogoBlack.png"
     %ul
       %li
         %a{:id => "loginLogoutButtonID", :href => "/login_info/login"}
       %li
-        %a{:href => "/login_info/new"} Sign Up
+        %a{:id => "signUpButtonID", :href => "/login_info/new"} Sign Up
       %li
-        %a{:href => "/general_info/search"} Search
+        %a{:href => "/search_profile/search"} Search
       %li
-        %a{:href => "/show_profile/mymodel"} My Profile
-      %li
-        %a{:href => "http://wallup.net/wp-content/uploads/2014/10/animal/Black_Dog_Puppies_Best.jpg"} PUPPIES!!!!!
+        %a{:href => "/show_profile"} My Profile
+        //%li
+        //  %a{:href => "http://wallup.net/wp-content/uploads/2014/10/animal/Black_Dog_Puppies_Best.jpg"} PUPPy!!!!!
+        //%li
+        //  %a{:href => root_path} Testing If Ya Want!!
+

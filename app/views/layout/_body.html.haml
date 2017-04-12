@@ -2,6 +2,7 @@
   var loginLogout = "";
   var loginLogoutLink = "/login_info/login";
   var session_val = #{session[:current_user_key].to_json};
+  var signUpButton = document.getElementById("signUpButtonID")
   
   function loginLogoutButton()
   {
@@ -9,12 +10,14 @@
     if (session_val !== null)
     {
       loginLogout = "Logout";
-      var loginLogoutLink = "/login_info/logout";
+      loginLogoutLink = "/login_info/logout";
+      signUpButton.style.display = 'none'
     }
     else
     {
+      signUpButton.style.display = 'block'
       loginLogout = "Login";
-      var loginLogoutLink = "/login_info/login";
+      loginLogoutLink = "/login_info/login";
     }
     document.getElementById("loginLogoutButtonID").innerHTML = loginLogout;
     document.getElementById("loginLogoutButtonID").href = loginLogoutLink;

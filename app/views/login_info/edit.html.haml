@@ -1,0 +1,25 @@
+= render :partial => "/layout/header"
+
+%body
+  = render :partial => "/layout/body"
+  #LOGINFORM
+    %h1 
+      %b EDIT LOGIN INFORMATION
+      .notice= flash[:notice]
+    = form_for @login_info, :action => 'update', :url => login_info_update_path do |f|
+      %p
+      = f.label :email
+      %br/
+      = f.text_field :email
+      %p
+      = f.label :password
+      %br/
+      = f.password_field :password
+      %p
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation
+      %p.button 
+      = f.submit "Commit"
+      
+    = button_to 'Cancel', '/show_profile', :method => 'get'

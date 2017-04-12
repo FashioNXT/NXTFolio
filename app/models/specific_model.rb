@@ -2,64 +2,117 @@ class SpecificModel < ApplicationRecord
   #belongs_to :general_info
   attr_accessor :allgenres
   
-  def self.search user_keys_array, checkboxes, params_arg
+  
+  def self.search general_info_user_keys, checkboxes, params_arg    #params_arg would be the params that returned from the specific model search. DOES NOT INCLUDE GENRE
     @user_array = Array.new
     @genre_checked_array = Array.new
     @return_array = Array.new
     
-    # Search based on the user keys, store into @user_array
-    user_keys_array.each do |user_key_element|
-      if SpecificModel.exists?(user_key: user_key_element)
-        puts "ONCE"
-        @user_array.push(SpecificModel.find_by(user_key: user_key_element))
+    puts "SPECIFIC MODEL - MODEL"
+    puts general_info_user_keys.size
+    # Search based on the user keys we got from general info, store into @user_array
+    if (general_info_user_keys.length > 0)
+      puts "SPECIFIC MODEL - MODEL -  general_info_user_keys has a few entries"
+      general_info_user_keys.each do |user_key_element|
+        puts user_key_element.to_s
+        if SpecificModel.exists?(user_key: user_key_element)
+          @user_array.push(SpecificModel.find_by(user_key: user_key_element))
+        end
       end
+    else
+      puts "SPECIFIC MODEL - MODEL - ELSE, this means nothing came through general_info_user_keys"
     end
     
     # For every user in user_array, check if A genre matches ANY genre. 
-    #If there are no genres , loop through @user_array, push the key into @genre_checked_array
-    if params_arg[:genre].nil?
-      @genre_checked_array = user_keys_array 
+    # If there are no genres , loop through @user_array, push the key into @genre_checked_array
+    if checkboxes.nil?
+      puts "SPECIFIC MODEL - MODEL : GENRES ARE EMPTY"
+      #Leave genre checked hash empty as we are not searching for genres.
+    elsif !(@user_array.length > 0)
+      puts "SPECIFIC MODEL - MODEL : USER_ARRAY IS EMPTY(General Info didn't have any searches), but we do have genres to search by"
+      #They did not search for anything in General Info and user array never got populated, 
+      #therefore they are looking for everyone in the profession.
+      SpecificModel.all.find_each do |user_object|
+        checkboxes.each do |key, checkbox_genre|
+          if user_object[:genre].to_s.include? key.to_s
+            @genre_checked_array.push(user_object)
+            break
+          end
+        end
+      end
     else
+      puts "SPECIFIC MODEL - MODEL : GENRE ELSE, User Array has a few entries."
       @user_array.each do |user_object|
         checkboxes.each do |key, checkbox_genre|
           if user_object[:genre].to_s.include? key.to_s
-            @genre_checked_array.push(user_object[:user_key])
+            @genre_checked_array.push(user_object)
             break
           end
         end
       end
     end
     
-    
-    
-    puts "COOL THINGS GENRE CHECKED"
+    puts "After genre check, the size is..."
     puts @genre_checked_array.size
-    # passed genre test
-    @genre_checked_array.each do |user_key|
-      if !params_arg[:height_feet].nil? || !params_arg[:height_inch].nil? || !params_arg[:dress_size].nil? || !params_arg[:hair_color].nil? || !params_arg[:skin_color].nil? || !params_arg[:shoot_nudes].nil? || !params_arg[:piercings].nil? || !params_arg[:experience].nil?  
-        if SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ? OR dress_size ILIKE ? OR hair_color ILIKE ? OR skin_color ILIKE ? OR shoot_nudes ILIKE ? OR tattoos ILIKE ? OR piercings ILIKE ? OR experience ILIKE ?)" , user_key, params_arg[:height_feet], params_arg[:height_inches], params_arg[:dress_size], params_arg[:hair_color], params_arg[:skin_color], params_arg[:shoot_nudes], params_arg[:tattoos], params_arg[:piercings], params_arg[:experience])
-          @return_array.push(user_key)
+    
+    #First check that we even have any params worth searching
+    if params_arg[:height_feet].to_s != '' || params_arg[:height_inch].to_s != '' || params_arg[:dress_size].to_s != '' || params_arg[:hair_color].to_s != ''  || params_arg[:skin_color].to_s != ''  || params_arg[:shoot_nudes].to_s != ''  || params_arg[:piercings].to_s != ''  || params_arg[:experience].to_s != '' 
+      if(@genre_checked_array.length > 0)
+        puts "FINAL STEP - We have specific params to search by, and we had previous genre-checked results"
+        @genre_checked_array.each do |user_object|
+          if SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ? OR dress_size ILIKE ? OR hair_color ILIKE ? OR skin_color ILIKE ? OR shoot_nudes ILIKE ? OR tattoos ILIKE ? OR piercings ILIKE ? OR experience ILIKE ?)" , user_object[:user_key], params_arg[:height_feet], params_arg[:height_inches], params_arg[:dress_size], params_arg[:hair_color], params_arg[:skin_color], params_arg[:shoot_nudes], params_arg[:tattoos], params_arg[:piercings], params_arg[:experience])
+            @return_array.push(user_object[:user_key])
+          end
         end
       else
-        @return_array = @genre_checked_array
+        puts "FINAL STEP - We have params to search by, but no genre matches previously. Search entire model and check for the params"
+        SpecificModel.all.find_each do |user_object|
+          if SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ? OR dress_size ILIKE ? OR hair_color ILIKE ? OR skin_color ILIKE ? OR shoot_nudes ILIKE ? OR tattoos ILIKE ? OR piercings ILIKE ? OR experience ILIKE ?)" , user_object[:user_key], params_arg[:height_feet], params_arg[:height_inches], params_arg[:dress_size], params_arg[:hair_color], params_arg[:skin_color], params_arg[:shoot_nudes], params_arg[:tattoos], params_arg[:piercings], params_arg[:experience])
+            @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
+          end
+        end
+      end
+    else
+      puts "FINAL STEP - We DO NOT have specific params to search by, but we had genre-checks. Return them."
+      if(@genre_checked_array.length > 0)
+        @genre_checked_array.each do |user_object|
+          @return_array.push(user_object[:user_key])
+        end
+      else
+        puts "FINAL STEP - We DO NOT have specific params to search by, and we DO NOT have genres... Return everything in the table..."
+        SpecificModel.all.find_each do |user_object|
+          @return_array.push(user_object[:user_key]) 
+        end
       end
     end
     
-    # Now we have the user_keys that have passed the genre test.
-    # Use these keys in a .where to specify the search for only them. 
-    # Example: SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ?)", searchArg[:user_key], searchArg[:height_feet], searchArg[:height_inches])
-    puts "AAAAAAAAAAAAAAAAAA"
-    puts @return_array.size
-    puts @return_array[0].to_s
-    puts @return_array[1].to_s
-    
-    
+    @users = @return_array
   end
   
   def attribute_values 
     @attribute_values = Hash.new
     @attribute_values[:height] = "Height: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."
-    @attribute_values[:test] = "ttttt: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."
+    @attribute_values[:bust] = "Bust size: " + self.bust.to_s + " in."
+    @attribute_values[:waist] = "Waist size: " + self.bust.to_s + " in."
+    @attribute_values[:hips] = "Hips size: " + self.hips.to_s + " in."
+    @attribute_values[:cups] = "Cup size: " + self.cups.to_s
+    @attribute_values[:shoe_size] = "Shoe size: " + self.shoe_size.to_s
+    @attribute_values[:dress_size] = "Dress size: " + self.dress_size.to_s
+    @attribute_values[:hair_color] = "Hair color: " + self.hair_color.to_s
+    @attribute_values[:eye_color] = "Eye color: " + self.eye_color.to_s
+    @attribute_values[:ethnicity] = "Ethnicity: " + self.ethnicity.to_s
+    @attribute_values[:skin_color] = "Skin color: " + self.skin_color.to_s
+    @attribute_values[:shoot_nudes] = "Shoots nudes: " + self.shoot_nudes.to_s
+    @attribute_values[:tattoos] = "Has tattoos: " + self.tattoos.to_s
+    @attribute_values[:piercings] = "Piercings: " + self.piercings.to_s
+    @attribute_values[:experience] = "Experience: " + self.experience.to_s
+    
+    @attribute_values[:genre] = "Genre: "
+    self.genre.split(",").each do |genre|
+      @attribute_values[:genre] += genre + ", "
+    end
+    @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
+
     @attribute_values
   end
 end

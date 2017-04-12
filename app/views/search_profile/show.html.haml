@@ -1,0 +1,18 @@
+= render :partial => "/layout/header"
+
+%body
+  = render :partial => "/layout/body"
+  #SEARCHMAINDIV
+    %h1 
+      %b SEARCH RESULTS
+    - @users.each do |info|
+      #SEARCHDISPLAYDIV
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"}/
+        #SEARCHDISPLAYTEXT
+          //name gender state profession
+          %h2= info.first_name + " " + info.last_name
+          %h3
+          %br my name is..
+          %br my job is....
+          %br my whatever is whatever....
+          

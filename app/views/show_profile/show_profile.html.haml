@@ -3,91 +3,77 @@
 %body
   = render :partial => "/layout/body"
   #TOPPICTURES
-    %img.Cover{:src => "http://i26.tinypic.com/m7yvlu.jpg"}
+    %img.Cover{:src => "http://i.imgur.com/lxUw5lC.jpg"}
     %img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
+    #PROFILENAME 
+      %p
+        = @general_info.first_name
+        = @general_info.last_name
+    #EDITLINKS
+      %a{:href => "/login_info/edit"} Edit Login Info
+      %a{:href => "/general_info/edit"} Edit General Info
+      - if (@profile_type != nil)
+        - if @profile_type.upcase == "MODEL"
+          %a{:href => "/specific_model/edit"} Edit Model Info
+        - elsif @profile_type.upcase == "DESIGNER"
+          %a{:href => "/specific_designer/edit"} Edit Designer Info
+        - elsif @profile_type.upcase == "PHOTOGRAPHER"
+          %a{:href => "/specific_photographer/edit"} Edit Photographer Info
+      - else
+        
+        
     //#COVERPICTURE
     //  %img{:src => "http://www.pearldistrict.org/wp-content/uploads/2014/09/FashioNXT.jpg"}
     //#PROFILEPICTURE
     //  %img{:src => "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/0ae/2bb/193f464.jpg"}
   #PROFILEINFO
-    #PROFILENAME 
-      %p
-        = @general_info.first_name
-        = @general_info.last_name
-        \- 
-        %b Model
     #PROFILETEXT 
-      %h2 Intro
+      %h2 
+        %b GENERAL INFO
       %p
-        //= @general_info_attributes.to_s
-        
-        - @general_info_attributes.each do |attribute|
-          - case attribute
-          - when "year_ofbirth"
-            %br
-            %b 
-              = "Birthday: "
-            = @general_info.month_ofbirth.to_s + " /"
-            = @general_info.day_ofbirth.to_s + " / "
-            = @general_info.year_ofbirth.to_s
-          - when "gender"
-            %br
-            %b 
-              = "Gender: "
-            = @general_info.gender
-          - when "country"
-            %br
-            %b 
-              = "Location: "
-            = @general_info.city + ","
-            = @general_info.state + ","
-            = @general_info.country
-          - when "compensation"
-            %br
-            %b 
-              = "Compensation: "
-            = @general_info.compensation
-          - when "bio"
-            %br
-            %b 
-              = "About Me: "
-            = @general_info.bio
-          - when "facebook_link"
-            %br
-            %b 
-              = "Facebook: "
-            = @general_info.facebook_link
-          - when "instagram_link"
-            %br
-            %b 
-              = "Instagram: "
-            = @general_info.instagram_link
-          - when "personalWebsite_link"
-            %br
-            %b 
-              = "Personal Website: "
-            = @general_info.personalWebsite_link
-          //- else
-          //  %br
-          //  %b 
-          //    = attribute + "...... "
-
-
-      %h2
-        = @profile_type + " Specifics"
-      %p
-        - @model_info.each do |info|
-          //= info
+        - @general_info_values.each do |info|
           - info_array = info[1].split(":")
           - if(info_array[1] != nil)
             %br
             %b
               = info_array[0] + ":"
             = info_array[1]
+      %br
+      - if (@profile_type != nil)
+        %h2
+          %b
+            = @profile_type.upcase + " SPECIFICS"
+        %p
+          - @profile_info.each do |info|
+            - info_array = info[1].split(":")
+            - if(info_array[1] != nil)
+              %br
+              %b
+                = info_array[0] + ":"
+              = info_array[1]
     #PROFILEIMAGES
-      %ul.rig
-        %li
-          %img{:src => "http://a1smallbusinessmarketing.com/images/prosbo_hires.jpg"}
-          %h3 Image Title
-          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17362849_10211223581478861_2645443704418619416_n.jpg?oh=97b2a311b5af84a41cad41a1292ecdc4&oe=595821F5"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17362849_10211223581478861_2645443704418619416_n.jpg?oh=97b2a311b5af84a41cad41a1292ecdc4&oe=595821F5"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
+      .gallery
+        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"}/
     

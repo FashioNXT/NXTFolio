@@ -20,4 +20,19 @@ class GeneralInfo < ApplicationRecord
     #joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
     return GeneralInfo.where("first_name ILIKE ? OR last_name ILIKE ? OR gender ILIKE ? OR state ILIKE ? OR city ILIKE ? OR compensation ILIKE ?", searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation])
   end
+  
+  def attribute_values 
+    @attribute_values = Hash.new
+    @attribute_values[:name] = "Name: " + self.first_name.to_s + " " + self.last_name.to_s
+    @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " +  + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s  
+    @attribute_values[:gender] = "Gender: " + self.gender.to_s
+    @attribute_values[:location] = "Location: " + self.city.to_s + ", " + self.state.to_s + ", " + self.country.to_s
+    @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s 
+    @attribute_values[:facebook_link] = "Facebook: " + self.facebook_link.to_s
+    @attribute_values[:linkedIn_link] = "LinkedIn: " + self.linkedIn_link.to_s
+    @attribute_values[:instagram_link] = "Instagram: " + self.instagram_link.to_s
+    @attribute_values[:personalWebsite_link] = "Personal website: " + self.personalWebsite_link.to_s
+    @attribute_values[:bio] = "Biography: " + self.bio.to_s
+    @attribute_values
+  end
 end
