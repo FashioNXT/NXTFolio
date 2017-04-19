@@ -1,0 +1,21 @@
+= render :partial => "/layout/header"
+
+%body
+  = render :partial => "/layout/body"
+  #GENERALFORM
+    #NOTICE
+      = notice
+      
+      
+    %h1
+      %b GENERAL INFORMATION
+    = form_for @general_info, :action => 'update_profession', :url => general_info_update_profession_path do |f|
+      %p
+      = f.label 'Profession'
+      %br
+      = f.select :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
+      %p
+      = f.submit 'Commit'
+        
+    = button_to 'Cancel', '/show_profile', :method => 'get'
+        

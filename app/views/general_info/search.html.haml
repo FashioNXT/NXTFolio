@@ -1,46 +1,46 @@
-= render :partial => "/layout/header"
+//= render :partial => "/layout/header"
 
-%body
+//%body
   = render :partial => "/layout/body"
   #SPECIFICFORM
     %h1 
-      %b SEARCH FOR FASHION PROFILES
+//      %b SEARCH FOR FASHION PROFILES
     = form_tag(search_profile_search_general_path, :method=>'get') do
       %p
-        First Name
+/        First Name
         %br/
-        = text_field_tag "first_name"
-      %p
+  //      = text_field_tag "first_name"
+///      %p
         Last Name
         %br/
-        = text_field_tag "last_name"
-      %p
-        Gender
+ /       = text_field_tag "last_name"
+  /    %p
+  /      Gender
+/        %br/
+//        = text_field_tag "gender"
+  //    %p
+//        State
         %br/
-        = text_field_tag "gender"
+/        = text_field_tag "state"
       %p
-        State
-        %br/
-        = text_field_tag "state"
-      %p
-        City
+//        City
         %br/
         = text_field_tag "city"
-      %p
-        Compensation
-        %br/
+/ /     %p
+////        Compensation
+  //      %br/
         = select_tag "compensation", options_for_select([[''], ['Any', 'Any'], ['Assignment Based', 'Assignment Based'],['Pay Only','Pay Only']])
-      %p
-        Profession
-        %br/
-        = select_tag "profession", options_for_select([['Any', '0'],['Designer', '1'], ['Model', '2'],['Photographer','3']])
-      %p
-        = button_tag 'Submit'
+  /    %p
+/        Profession
+/br/
+        = select_tag "specific_profile_id", options_for_select([['Any', 0],['Designer', 1], ['Model', 2],['Photographer',3]])
+//      %p
+///        = button_tag 'Submit'
         
 
     //Priority:
     //%br/
-    //= select_tag("priority", options_for_select([['Critical', '1'], |
+  //  //= select_tag("priority", options_for_select([['Critical', '1'], |
     //  ['Important', '2'],['Standard','3']], '3'))                   |
   //%p
   //  Describe your problem:

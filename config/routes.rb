@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   #get 'general_info/search_redirect' => 'general_info#search_redirect', :as => 'general_info/search_redirect'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
+  get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'
+  post 'general_info/update_profession' => 'general_info#update_profession', :as => 'general_info/update_profession'
   
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
@@ -40,6 +42,9 @@ Rails.application.routes.draw do
   get 'search_profile/show' => 'search_profile#show', :as => 'search_profile/show'
   get 'search_profile/search' => 'search_profile#search', :as => 'search_profile/search'
   get 'search_profile/search_general' => 'search_profile#search_general', :as => 'search_profile/search_general'
+  get 'search_profile/search_designer' => 'search_profile#search_designer', :as => 'search_profile/search_designer'
+  get 'search_profile/search_model' => 'search_profile#search_model', :as => 'search_profile/search_model'
+  get 'search_profile/search_photographer' => 'search_profile#search_photographer', :as => 'search_profile/search_photographer'
   get 'search_profile/search_specific_designer' => 'search_profile#search_specific_designer', :as => 'search_profile/search_specific_designer'
   get 'search_profile/search_specific_model' => 'search_profile#search_specific_model', :as => 'search_profile/search_specific_model'
   get 'search_profile/search_specific_photographer' => 'search_profile#search_specific_photographer', :as => 'search_profile/search_specific_photographer'

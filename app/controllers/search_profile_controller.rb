@@ -5,8 +5,10 @@ class SearchProfileController < ApplicationController
   end
    
   def show
-    if !(flash[:users].empty?)
-      @users = GeneralInfo.where(userKey: flash[:users])
+    if !(flash[:user_keys].empty?)
+      @users = GeneralInfo.where(userKey: flash[:user_keys])
+    else
+      flash[:notice] = "No entries matched your search."
     end
   end
    
@@ -14,7 +16,7 @@ class SearchProfileController < ApplicationController
   end
   
   def get_user_keys(array)
-    puts "+++++++++++++++IN GET USER KEYS"
+    puts "IN GET USER KEYS"
     @return_array = Array.new
     array.each do |element,index|
       puts "#{element[:userKey]} is part of the array"
@@ -26,31 +28,53 @@ class SearchProfileController < ApplicationController
   end
   
   def search
-    
+    #What is this function? It's like an empty function that is needed to render stuff.
   end
   
   def search_general
     #@general_info = GeneralInfo.new(general_info_search_params)
-    @objects = params.except("utf8")
-    @objects = @objects.except("button")
+    @search_params = params.except("utf8").except("button")
+
+    #Search for users based on the general info search params. Not by profession though.
+    @general_queries = GeneralInfo.search @search_params
+
+    puts "This is the profession id: #{@search_params[:profession]}"
     
-    @general_queries = GeneralInfo.search @objects
-    
+    #Get the user keys
     @user_keys = get_user_keys @general_queries
-    flash[:users] = @user_keys
-    puts "CHECKING FLASH USERS"
-    puts @user_keys.length.to_s
-    #puts flash[:users].length.to_s
     
-    if @objects[:profession] == "1"
-      redirect_to :action => 'search_specific_designer'
-    elsif @objects[:profession] == "2"
-      redirect_to :action => 'search_specific_model'
-    elsif @objects[:profession] == "3"
-      redirect_to :action => 'search_specific_photographer'
+    #If no user keys were returned from search, user keys needs to have everyone of the corresponding profession.
+    #if @user_keys.empty?
+    #  if @search_params[:profession] == "1"
+    #    @user_keys = get_user_keys SpecificDesigner.all
+    #  elsif @search_params[:profession] == "2"
+    #    @user_keys = get_user_keys SpecificModel.all
+    #  elsif @search_params[:profession] == "3"
+    #    @user_keys = get_user_keys SpecificPhotographer.all
+    #  else
+    #    @user_keys = get_user_keys GeneralInfo.all
+    #  end
+    #end
+    
+    flash[:user_keys] = @user_keys
+    
+
+    #Pass which ever users were in the resulting @user_keys to the next tier of searching.
+    if @search_params[:profession] == "0"
+      redirect_to :action => 'show'
+    elsif @search_params[:profession] == "1"
+      redirect_to :action => 'search_designer'
+    elsif @search_params[:profession] == "2"
+      redirect_to :action => 'search_model'
+    elsif @search_params[:profession] == "3"
+      redirect_to :action => 'search_photographer'
     else
       redirect_to :action => 'show'
     end
+  end
+  
+  def search_designer
+    
   end
   
   def search_specific_designer
@@ -58,18 +82,35 @@ class SearchProfileController < ApplicationController
     @experience = params[:checkboxes]
     @params_arg = params
     
-    @user_objects = SpecificDesigner.search @checkboxes,flash[:users], @experience, @params_arg
-    #akljlkjas
-    flash[:users] = user_objects[:user_key]
+    puts "SpecificDesigner Search "
+    @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @params_arg
+    
+    puts "SpecificDesigner Search returned #{@user_keys.length} users"
+    if @user_keys.empty?
+      @user_keys = get_user_keys SpecificDesigner.all
+    end
+    
+    flash[:user_keys] = @user_keys
     redirect_to :action => 'show'
+  end
+  
+  def search_model
+    
   end
   
   def search_specific_model
     @params_arg = params
     @checkboxes = params[:checkboxes]
     
-    @user_objects = SpecificModel.search flash[:users], @checkboxes, @params_arg
-    flash[:users] = @user_objects
+    puts "SpecificModel Search "
+    #@user_objects = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
+    @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
+    
+    if @user_keys.empty?
+      @user_keys = get_user_keys SpecificModel.all
+    end
+    
+    flash[:user_keys] = @user_keys
     redirect_to :action => 'show'
   end
   
@@ -77,10 +118,13 @@ class SearchProfileController < ApplicationController
     @checkboxes = params[:checkboxes]
     @experience = params[:experience]
     @params_arg = params
-
-    @user_objects = SpecificPhotographer.search @checkboxes,flash[:general_queries],@experience, @params_arg
     
-    flash[:users] = @user_objects
+    @user_keys = SpecificPhotographer.search @checkboxes,flash[:user_keys],@experience, @params_arg
+    
+    if @user_keys.empty?
+      @user_keys = get_user_keys SpecificPhotographer.all
+    end
+    flash[:user_keys] = @user_keys
     redirect_to :action => 'show'
   end
   

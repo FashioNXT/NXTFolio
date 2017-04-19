@@ -6,7 +6,7 @@
   #SPECIFICFORM
     %h1 
       %b SEARCH FOR PHOTOGRAPHER PROFILE
-    = form_tag(search_profile_search_specific_model_pat, :method=>'get') do
+    = form_tag(search_profile_search_specific_photographer_path, :method=>'get') do
       %p
         %b
           = label_tag "Genre"
@@ -65,7 +65,7 @@
       %b
         = label_tag "Experience"
         %br/
-        = select_tag :experience, options_for_select([["0-2 years"],["3-6 years"],["7-10 years"],["11+ years"]])
+        = select_tag :experience, options_for_select([[""],["0-2 years"],["3-6 years"],["7-10 years"],["11+ years"]])
       
       %p
         = button_tag 'Submit'

@@ -19,6 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Use Haml instead of ERB
 gem 'haml'
+#Carrier Wave for uploading images
+gem 'carrierwave', '~> 1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

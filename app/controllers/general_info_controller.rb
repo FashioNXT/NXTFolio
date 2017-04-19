@@ -98,7 +98,30 @@ class GeneralInfoController < ApplicationController
   def general_info_update_param
      params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio)
   end
-   
+  
+  def edit_profession
+    if GeneralInfo.exists?(:userKey => session[:current_user_key])
+      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    else
+      redirect_to :action => 'new'
+    end
+  end
+  
+  def update_profession
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+     
+    #if @general_info.update_attributes(general_info_update_profession_param)
+    if @general_info.update_attribute(specific_profile_id, :specific_profile_id)
+      redirect_to '/show_profile'
+    else
+      render :action => 'edit_profession'
+    end
+  end
+  
+  def general_info_update_profession_param
+     params.require(:general_info).permit(:specific_profile_id)
+  end 
+  
   def delete
     GeneralInfo.find(params[:id]).destroy
     redirect_to :action => 'list'

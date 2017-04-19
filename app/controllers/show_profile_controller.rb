@@ -12,26 +12,26 @@ class ShowProfileController < ApplicationController
         
         case @general_info.specific_profile_id
         when 1
+          @profile_type = "Designer"
           if SpecificDesigner.exists?(:user_key => session[:current_user_key])
             @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
             @profile_info = @specific_designer.attribute_values
-            @profile_type = "Designer"
           else
             #stuff
           end
         when 2
+          @profile_type = "Model"
           if SpecificModel.exists?(:user_key => session[:current_user_key])
             @specific_model = SpecificModel.find_by(user_key: session[:current_user_key])
             @profile_info = @specific_model.attribute_values
-            @profile_type = "Model"
           else
             #stuff
           end
         when 3
+          @profile_type = "Photographer"
           if SpecificPhotographer.exists?(:user_key => session[:current_user_key])
             @specific_photographer = SpecificPhotographer.find_by(user_key: session[:current_user_key])
             @profile_info = @specific_photographer.attribute_values
-            @profile_type = "Photographer"
           else
             #stuff
           end

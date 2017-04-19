@@ -3,19 +3,19 @@
 %body
   = render :partial => "/layout/body"
   #GENERALFORM
-    #NOTICE
-      = notice
+    //#NOTICE
+    //  = notice
       
       
     %h1
       %b GENERAL INFORMATION
     = form_for @general_info, url: {action: "create"} do |f|
       %p
-      = f.label 'First Name'
+      = f.label 'First Name *'
       %br
       = f.text_field :first_name
       %p
-      = f.label 'Last Name'
+      = f.label 'Last Name *'
       %br
       = f.text_field :last_name
       %p
@@ -39,11 +39,11 @@
       %br
       = f.select :country, options_for_select([["United States", "United States"],["Canada","Canada"],["Mexico","Mexico"]])
       %p
-      = f.label 'State'
+      = f.label 'State *'
       %br
       = f.text_field :state
       %p
-      = f.label 'City'
+      = f.label 'City *'
       %br
       = f.text_field :city
       %p
@@ -79,4 +79,5 @@
       = f.submit 'Next'
         
     = button_to 'Skip', root_path, :method => 'get'
-        
+    %p
+      * Indicates required field

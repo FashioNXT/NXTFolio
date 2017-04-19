@@ -9,7 +9,6 @@ class SpecificModel < ApplicationRecord
     @return_array = Array.new
     
     puts "SPECIFIC MODEL - MODEL"
-    puts general_info_user_keys.size
     # Search based on the user keys we got from general info, store into @user_array
     if (general_info_user_keys.length > 0)
       puts "SPECIFIC MODEL - MODEL -  general_info_user_keys has a few entries"
@@ -21,6 +20,7 @@ class SpecificModel < ApplicationRecord
       end
     else
       puts "SPECIFIC MODEL - MODEL - ELSE, this means nothing came through general_info_user_keys"
+      @user_array = SpecificModel.all
     end
     
     # For every user in user_array, check if A genre matches ANY genre. 
@@ -73,8 +73,8 @@ class SpecificModel < ApplicationRecord
         end
       end
     else
-      puts "FINAL STEP - We DO NOT have specific params to search by, but we had genre-checks. Return them."
       if(@genre_checked_array.length > 0)
+        puts "FINAL STEP - We DO NOT have specific params to search by, but we had genre-checks. Return them."
         @genre_checked_array.each do |user_object|
           @return_array.push(user_object[:user_key])
         end
@@ -87,6 +87,7 @@ class SpecificModel < ApplicationRecord
     end
     
     @users = @return_array
+    return @return_array
   end
   
   def attribute_values 
@@ -108,11 +109,13 @@ class SpecificModel < ApplicationRecord
     @attribute_values[:experience] = "Experience: " + self.experience.to_s
     
     @attribute_values[:genre] = "Genre: "
-    self.genre.split(",").each do |genre|
-      @attribute_values[:genre] += genre + ", "
+    if self.genre != nil
+      self.genre.split(",").each do |genre|
+        @attribute_values[:genre] += genre + ", "
+      end
+      @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
     end
-    @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
-
+    
     @attribute_values
   end
 end
