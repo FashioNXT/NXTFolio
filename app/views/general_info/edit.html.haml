@@ -71,6 +71,14 @@
       %br
       = f.text_area :bio
       %p
+      = f.label :profile_picture
+      %br
+      = f.file_field :profile_picture
+      %p
+      = f.label :cover_image
+      %br
+      = f.file_field :cover_image
+      %p
       = f.submit 'Commit'
         
     = button_to 'Cancel', '/show_profile', :method => 'get'

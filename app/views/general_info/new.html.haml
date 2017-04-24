@@ -78,6 +78,14 @@
       = f.select :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]])
       //Variable that stores what we clicked on select  
       %p
+      = f.label :profile_picture
+      %br
+      = f.file_field :profile_picture
+      %p
+      = f.label :cover_image
+      %br
+      = f.file_field :cover_image
+      %p
       = f.submit 'Next'
         
     = button_to 'Skip', root_path, :method => 'get'

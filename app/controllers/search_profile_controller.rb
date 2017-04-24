@@ -172,11 +172,6 @@ class SearchProfileController < ApplicationController
   end
   
   
-  
-  
-  
-  
-  
   def edit
     @search_profile = SearchProfile.find(params[:id])
   end

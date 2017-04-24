@@ -67,11 +67,12 @@ class GeneralInfoController < ApplicationController
     if params[:general_info][:city] == ""
       error_statement += "City, "
     end
-    error_statement = error_statement[0, error_statement.length-2]
-    error_statement += " are required."
-    flash[:notice] = error_statement
-    redirect_to new_general_info_path and return
-    
+    if error_statement.length > 0
+      error_statement = error_statement[0, error_statement.length-2]
+      error_statement += " are required."
+      flash[:notice] = error_statement
+      redirect_to new_general_info_path and return
+    end
       
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key] 
@@ -93,7 +94,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture)
   end
    
   def edit
@@ -115,7 +116,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_update_param
-     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio)
+     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture)
   end
   
   def edit_profession

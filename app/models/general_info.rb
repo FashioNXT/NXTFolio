@@ -13,6 +13,9 @@ class GeneralInfo < ApplicationRecord
     validates_presence_of :state
     validates_presence_of :city
     
+    mount_uploader :profile_picture, AvatarUploader
+    
+    
   def self.search searchArg
     #http://stackoverflow.com/questions/35414443/search-through-another-model
     #(2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
