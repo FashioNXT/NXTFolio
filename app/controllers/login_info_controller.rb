@@ -19,7 +19,11 @@ class LoginInfoController < ApplicationController
     puts @login_info[:password]
     puts login_info_params[:password_confirmation]
     
-    #DO LATER: Check user name against the database.
+    if LoginInfo.exists?(:email => @login_info[:email])
+      flash[:notice] = "Email already exists."
+      redirect_to new_login_info_path and return
+    end
+    
     if @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
       if @login_info[:password] == login_info_params[:password_confirmation]
         puts "true"
@@ -30,7 +34,7 @@ class LoginInfoController < ApplicationController
           session[:current_user_key] = @login_info.userKey 
           puts "saved"
           flash[:notice] = "Account Created!"
-          redirect_to new_general_info_path#and return
+          redirect_to new_general_info_path
         else
           puts "Failed Saving"
           flash[:notice] = "Failed Saving!"
@@ -93,7 +97,6 @@ class LoginInfoController < ApplicationController
         redirect_to root_path
       else
         flash[:notice] = "Incorrect Password"
-        redirect_to login_info_login_path
       end
     else
       flash[:notice] = "Incorrect Email"

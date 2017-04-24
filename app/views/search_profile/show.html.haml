@@ -9,12 +9,12 @@
     %p
       = flash[:notice]
     - @users.each do |info|
-      #SEARCHDISPLAYDIV
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"}/
+      #SEARCHDISPLAYDIV 
+        = link_to image_tag("https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"), search_profile_show_profile_path(info.userKey)
         #SEARCHDISPLAYTEXT
           //name gender state profession
           %h2
-            = info.first_name + " " + info.last_name
+            = link_to "#{info.first_name} #{info.last_name}", search_profile_show_profile_path(info.userKey)
             %h3
             // %br
             - if info.specific_profile_id == 1
@@ -25,5 +25,7 @@
               = "Photographer"
             %br
           = info.city + ", " + info.state
+          %br
+          //= link_to "Profile", search_profile_show_profile_path(info.userKey)
           %br= truncate(info.bio, length: 80)
           

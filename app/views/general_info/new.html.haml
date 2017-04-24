@@ -9,7 +9,9 @@
       
     %h1
       %b GENERAL INFORMATION
-    = form_for @general_info, url: {action: "create"} do |f|
+    %p
+      = flash[:notice]
+    = form_for GeneralInfo.new, url: {action: "create"} do |f|
       %p
       = f.label 'First Name *'
       %br

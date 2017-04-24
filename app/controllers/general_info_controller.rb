@@ -10,7 +10,6 @@ class GeneralInfoController < ApplicationController
   end
   
   def get_user_keys array
-    puts "+++++++++++++++IN GET USER KEYS"
     
     @return_array = Array.new
     array.each do |element,index|
@@ -18,8 +17,8 @@ class GeneralInfoController < ApplicationController
       @return_array.push(element[:userKey])
     end
     
-    puts "HEY! THIS IS THE ARRAYS SIZE:" + @return_array.length.to_s
     return @return_array
+    
   end
   
   def search_redirect
@@ -54,6 +53,26 @@ class GeneralInfoController < ApplicationController
   
   #create is called upon profile creation, and routes to which specific profile to create after general info is filled
   def create
+    # Check to see if the required params 
+    error_statement = ""
+    if params[:general_info][:first_name] == ""
+      error_statement += "First Name, "
+    end
+    if params[:general_info][:last_name] == ""
+      error_statement += "Last Name, "
+    end
+    if params[:general_info][:state] == ""
+      error_statement += "State, "
+    end
+    if params[:general_info][:city] == ""
+      error_statement += "City, "
+    end
+    error_statement = error_statement[0, error_statement.length-2]
+    error_statement += " are required."
+    flash[:notice] = error_statement
+    redirect_to new_general_info_path and return
+    
+      
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key] 
     
@@ -74,7 +93,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_params
-     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id)
   end
    
   def edit

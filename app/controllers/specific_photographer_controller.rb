@@ -29,6 +29,7 @@ class SpecificPhotographerController < ApplicationController
       puts "Saved and returning to root"
       redirect_to root_path
     else
+      puts "Error saving, returning to new"
       render :action => 'new'
     end
   end
@@ -85,7 +86,6 @@ class SpecificPhotographerController < ApplicationController
       @attribute_param[:state] = @general_info_object[:state]
       @attribute_param[:profession] = @general_info_object[:profession]
       
-      puts "++++++++++++++++++++++++++++++"
       puts @attribute_param[:first_name]
       puts @attribute_param[:last_name]
       puts @attribute_param[:gender]

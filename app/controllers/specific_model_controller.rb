@@ -29,7 +29,6 @@ class SpecificModelController < ApplicationController
       @attribute_param[:state] = @general_info_object[:state]
       @attribute_param[:profession] = @general_info_object[:profession]
       
-      puts "++++++++++++++++++++++++++++++"
       puts @attribute_param[:first_name]
       puts @attribute_param[:last_name]
       puts @attribute_param[:gender]
@@ -38,7 +37,6 @@ class SpecificModelController < ApplicationController
       @attribute_param_array.push(@attribute_param)
     end
     
-    puts "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
     #flash[:attribute_param_array] = @attribute_param_array
     puts @attribute_param_array.size
     redirect_to search_model_show_path
@@ -66,6 +64,7 @@ class SpecificModelController < ApplicationController
       puts "Saved and returning to root"
       redirect_to root_path
     else
+      puts "Error saving, returning to new"
       render :action => 'new'
     end
   end

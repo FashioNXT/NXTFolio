@@ -60,7 +60,7 @@ class SpecificDesignerController < ApplicationController
        puts "Saved and returning to root"
        redirect_to root_path
      else
-       puts "Error, returning to new"
+       puts "Error saving, returning to new"
        render :action=> 'new'                  # Render the new page again
      end
   end

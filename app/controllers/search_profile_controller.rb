@@ -5,7 +5,10 @@ class SearchProfileController < ApplicationController
   end
    
   def show
-    if !(flash[:user_keys].empty?)
+    if flash[:user_keys] == "ALL"
+      puts "Users = GeneralInfo.all"
+      @users = GeneralInfo.all
+    elsif !(flash[:user_keys].empty?)
       @users = GeneralInfo.where(userKey: flash[:user_keys])
     else
       flash[:notice] = "No entries matched your search."
@@ -43,24 +46,15 @@ class SearchProfileController < ApplicationController
     #Get the user keys
     @user_keys = get_user_keys @general_queries
     
-    #If no user keys were returned from search, user keys needs to have everyone of the corresponding profession.
-    #if @user_keys.empty?
-    #  if @search_params[:profession] == "1"
-    #    @user_keys = get_user_keys SpecificDesigner.all
-    #  elsif @search_params[:profession] == "2"
-    #    @user_keys = get_user_keys SpecificModel.all
-    #  elsif @search_params[:profession] == "3"
-    #    @user_keys = get_user_keys SpecificPhotographer.all
-    #  else
-    #    @user_keys = get_user_keys GeneralInfo.all
-    #  end
-    #end
-    
     flash[:user_keys] = @user_keys
     
 
     #Pass which ever users were in the resulting @user_keys to the next tier of searching.
     if @search_params[:profession] == "0"
+      if flash[:user_keys].empty?
+        flash[:user_keys] = "ALL"
+        puts "user_keys = ALL"
+      end
       redirect_to :action => 'show'
     elsif @search_params[:profession] == "1"
       redirect_to :action => 'search_designer'
@@ -82,10 +76,10 @@ class SearchProfileController < ApplicationController
     @experience = params[:checkboxes]
     @params_arg = params
     
-    puts "SpecificDesigner Search "
+    # puts "SpecificDesigner Search "
     @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @params_arg
     
-    puts "SpecificDesigner Search returned #{@user_keys.length} users"
+    # puts "SpecificDesigner Search returned #{@user_keys.length} users"
     if @user_keys.empty?
       @user_keys = get_user_keys SpecificDesigner.all
     end
@@ -102,7 +96,7 @@ class SearchProfileController < ApplicationController
     @params_arg = params
     @checkboxes = params[:checkboxes]
     
-    puts "SpecificModel Search "
+    # puts "SpecificModel Search "
     #@user_objects = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
     @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
     
@@ -132,6 +126,56 @@ class SearchProfileController < ApplicationController
     #passing into create with these keys.
     params.require(:search_profile).permit(:email, :password, :password_confirmation)
   end
+  
+  def show_profile 
+    
+    if GeneralInfo.exists?(:userKey => params[:id])
+      @general_info = GeneralInfo.find_by(userKey: params[:id])
+      @general_info_attributes = GeneralInfo.attribute_names
+      @general_info_values = @general_info.attribute_values
+      
+      case @general_info.specific_profile_id
+      when 1
+        @profile_type = "Designer"
+        if SpecificDesigner.exists?(:user_key => params[:id])
+          @specific_designer = SpecificDesigner.find_by(user_key: params[:id])
+          @profile_info = @specific_designer.attribute_values
+        else
+          #stuff
+        end
+      when 2
+        @profile_type = "Model"
+        if SpecificModel.exists?(:user_key => params[:id])
+          @specific_model = SpecificModel.find_by(user_key: params[:id])
+          @profile_info = @specific_model.attribute_values
+        else
+          #stuff
+        end
+      when 3
+        @profile_type = "Photographer"
+        if SpecificPhotographer.exists?(:user_key => params[:id])
+          @specific_photographer = SpecificPhotographer.find_by(user_key: params[:id])
+          @profile_info = @specific_photographer.attribute_values
+        else
+          #stuff
+        end
+      else
+        puts "Unknown profile type! Profile type given: " + @general_info.specific_profile_id
+        @profile_type = "Error"
+      end
+    else
+      #SHOULD SHOW BLANK STUFF!!!!
+      @general_info = GeneralInfo.new
+      @general_info_values = Hash.new
+      
+    end
+  end
+  
+  
+  
+  
+  
+  
   
   def edit
     @search_profile = SearchProfile.find(params[:id])
