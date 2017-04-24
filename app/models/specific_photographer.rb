@@ -67,6 +67,7 @@ class SpecificPhotographer < ApplicationRecord
       else
         puts "FINAL STEP - We have experience to search by, but no genre matches previously. Search entire model and check for the params"
         SpecificPhotographer.all.find_each do |user_object|
+          puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
           if SpecificPhotographer.where("user_key ILIKE ?", user_object[:user_key])
             @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
           end

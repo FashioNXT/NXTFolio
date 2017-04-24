@@ -7,10 +7,10 @@
     //%img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
     //%img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
     //{:class => 'Profile'}.
-    - if @general_info.profile_picture?
+    //- if @general_info.profile_picture?
       //= image_tag @general_info.profile_picture.url, :class => 'Profile'
-    - else
-      %img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
+    //- else
+    //  %img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
     #PROFILENAME 
       %p
         = @general_info.first_name
