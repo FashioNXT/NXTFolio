@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425004010) do
+ActiveRecord::Schema.define(version: 20170425033957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170425004010) do
     t.integer  "specific_profile_id"
     t.string   "profile_picture"
     t.string   "cover_picture"
+    t.string   "gallery_pictures",                  array: true
   end
 
   create_table "login_infos", force: :cascade do |t|
