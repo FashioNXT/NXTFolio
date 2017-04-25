@@ -45,6 +45,11 @@ class SpecificPhotographer < ApplicationRecord
       puts "SPECIFIC PHOTOGRAPHER - MODEL : GENRE ELSE, User Array has a few entries."
       @user_array.each do |user_object|
         checkboxes.each do |key, checkbox_genre|
+          puts "First user, then the search key"
+          @user_genre_str = String.new
+          @key_str = String.new
+          @user_genre_str = user_object[:genre]
+          @key_str = key.to_s
           if user_object[:genre].to_s.include? key.to_s
             @genre_checked_array.push(user_object)
             break
@@ -57,8 +62,7 @@ class SpecificPhotographer < ApplicationRecord
     puts @genre_checked_array.size
     
     #First check that we even have any params worth searching
-    if !experience_arg.nil?
-      puts experience_arg.to_s
+    if params_arg[:experience] != ''
       if(@genre_checked_array.length > 0)
         puts "FINAL STEP - We have experience to search by, and we had previous genre-checked results"
         @genre_checked_array.each do |user_object|
@@ -82,9 +86,6 @@ class SpecificPhotographer < ApplicationRecord
         end
       else
         puts "FINAL STEP - We DO NOT have experience to search by, and we DO NOT have genres... Return everything in the table..."
-        SpecificPhotographer.all.find_each do |user_object|
-          @return_array.push(user_object[:user_key]) 
-        end
       end
     end
     

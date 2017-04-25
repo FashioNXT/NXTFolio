@@ -3,7 +3,10 @@
 %body
   = render :partial => "/layout/body"
   #TOPPICTURES
-    %img.Cover{:src => "http://i.imgur.com/lxUw5lC.jpg"}
+    - if @general_info.cover_picture?
+      = image_tag @general_info.cover_picture.url, :class => 'Cover'
+    - else
+      %img.Cover{:src => "https://weathervanemusic.org/uploads/files/914651792900347299-gray-block.full.jpg"}
     - if @general_info.profile_picture?
       = image_tag @general_info.profile_picture.url, :class => 'Profile'
     - else

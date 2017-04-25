@@ -14,8 +14,7 @@ class GeneralInfo < ApplicationRecord
     validates_presence_of :city
     
     mount_uploader :profile_picture, AvatarUploader
-    ### Adding the following soon ###
-    # mount_uploader :cover_picture, CoverUploader
+    mount_uploader :cover_picture, CoverUploader
     # mount_uploader :gallery, GalleryUploader
     
     
