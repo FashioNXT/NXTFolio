@@ -60,8 +60,8 @@
     #PROFILEIMAGES
       %h2 
         %b FEATURED GALLERY
-      %p These images are you current featured images. 
-      %p If you would like to upload a new set of images go to the "edit general images" link.
+      %p These images are your currently featured images for your profile.
+      %p If you would like to upload a new set of images, go to the "edit general images" link.
       - if @general_info.gallery_pictures?
         - @general_info.gallery_pictures.each do |picture|
           = image_tag picture.url, :class => 'gallery'
