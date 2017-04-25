@@ -104,16 +104,17 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 #EDITLINKS a{border-bottom: 1px solid grey; color: black; background-color: #e6e6e6; padding: 1% 1% 1% 1%; border-radius: 2px; transition: all 0.5s; margin-top: 1%;}
 #EDITLINKS a:hover{color: grey; background-color: white; text-decoration: none;}
 
-#PROFILEIMAGES {bottom: 0; overflow: scroll; background-color: white; position: relative; float: left; margin-left: 20px; max-width: 65%; height: 100%;}
+#PROFILEIMAGES {text-align: center; bottom: 0; overflow: scroll; background-color: white; position: relative; float: left; margin-left: 20px; width: 65%; height: 100%;}
+#PROFILEIMAGES h2{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white;}
 
 .gallery { margin: 20px; float: left; width: 200px; height: 200px; }
 .gallery img { width: 150px; height: 150px;  }
 
-#SEARCHMAINDIV {background-color: white; margin: auto; height: 100%; max-width: 1000px;}
+#SEARCHMAINDIV {background-color: white; margin: auto; max-height: 10000px; max-width: 1000px; padding-bottom: 30px;}
 #SEARCHMAINDIV h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white; text-align: center;}
 
-#SEARCHDISPLAYDIV {background-color: #e6e6e6; margin: auto; height: 25%; max-width: 900px; margin-top: 5%; border-radius: 10px; padding-top: 2%; padding-bottom: 2%; padding-left: 2%; padding-right: 2%;}
-#SEARCHDISPLAYDIV img{float: left; max-height: 100%; transition: all 0.3s}
+#SEARCHDISPLAYDIV {background-color: #e6e6e6; margin: auto; height: 200px; max-width: 900px; margin-top: 5%; border-radius: 10px; padding-top: 2%; padding-bottom: 2%; padding-left: 2%; padding-right: 2%;}
+#SEARCHDISPLAYDIV img{float: left; height: 200px; width: 200px; transition: all 0.3s}
 #SEARCHDISPLAYDIV img:hover{ filter: opacity(80%); transition: all 0.3s}
 #SEARCHDISPLAYDIV a{color: black;}
 #SEARCHDISPLAYDIV a:hover{ text-decoration: none; color: gray; transition: all 0.3s;}

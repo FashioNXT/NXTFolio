@@ -84,7 +84,7 @@ class SpecificModel < ApplicationRecord
         end
       else
         puts "FINAL STEP - We DO NOT have specific params to search by, and we DO NOT have genres... Return everything in the table..."
-        if (checkboxes.nil? || params_arg.nil?)
+        if (general_info_user_keys.length > 0 && (checkboxes.nil? || params_arg.nil?))
           SpecificModel.all.find_each do |user_object|
             @return_array.push(user_object[:user_key]) 
           end
@@ -95,7 +95,7 @@ class SpecificModel < ApplicationRecord
    #Ranking users for how closely they matched the search params.
     @return_array.each do |user_key|
       @priority_counter = 0
-      @user = SpecificDesigner.find_by(user_key: user_key)
+      @user = SpecificModel.find_by(user_key: user_key)
       
       if !checkboxes.nil?
         checkboxes.each do |key, checkbox_genre|
@@ -106,6 +106,34 @@ class SpecificModel < ApplicationRecord
       end
 
       if @user[:experience] == params_arg[:experience]
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if (@user[:height_feet] == params_arg[:height_feet] && @user[:height_inches] == params_arg[:height_inches])
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:dress_size] == params_arg[:dress_size] 
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:skin_color] == params_arg[:skin_color] 
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:shoot_nude] == params_arg[:shoot_nude] 
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:hair_color] == params_arg[:hair_color] 
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:tattoos] == params_arg[:tattos] 
+        @priority_counter = @priority_counter + 1
+      end
+      
+      if @user[:piercings] == params_arg[:piercings] 
         @priority_counter = @priority_counter + 1
       end
       

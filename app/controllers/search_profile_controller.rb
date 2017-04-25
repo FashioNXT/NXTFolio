@@ -40,10 +40,14 @@ class SearchProfileController < ApplicationController
   def search_general
     #@general_info = GeneralInfo.new(general_info_search_params)
     @search_params = params.except("utf8").except("button")
-
+    
     #Search for users based on the general info search params. Not by profession though.
-    @general_queries = GeneralInfo.search @search_params
-
+    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == '' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == ''
+      @general_queries = GeneralInfo.all
+    else
+      @general_queries = GeneralInfo.search @search_params
+    end
+    
     puts "This is the profession id: #{@search_params[:profession]}"
     
     #Get the user keys
