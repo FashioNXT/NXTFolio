@@ -4,33 +4,10 @@
   = render :partial => "/layout/body"
   #TOPPICTURES
     %img.Cover{:src => "http://i.imgur.com/lxUw5lC.jpg"}
-    
-    
-    //%img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
-    //%img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
-    //{:class => 'Profile'}.
-    //- if @general_info.profile_picture?
-      //= image_tag @general_info.profile_picture.url, :class => 'Profile'
-    //- else
-    //  %img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
-    
-    
     #PROFILENAME 
       %p
         = @general_info.first_name
         = @general_info.last_name
-    // #EDITLINKS
-    //   %a{:href => "/login_info/edit"} Edit Login Info
-    //   %a{:href => "/general_info/edit"} Edit General Info
-    //   - if (@profile_type != nil)
-    //     - if @profile_type.upcase == "MODEL"
-    //       %a{:href => "/specific_model/edit"} Edit Model Info
-    //     - elsif @profile_type.upcase == "DESIGNER"
-    //       %a{:href => "/specific_designer/edit"} Edit Designer Info
-    //     - elsif @profile_type.upcase == "PHOTOGRAPHER"
-    //       %a{:href => "/specific_photographer/edit"} Edit Photographer Info
-    //   - else
-    //     %a{:href => "/general_info/edit"} Edit Proffesion
   #PROFILEINFO
     #PROFILETEXT 
       %h2 
@@ -99,3 +76,23 @@
       .gallery
         %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"}/
     
+    
+    //%img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
+    //%img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
+    //{:class => 'Profile'}.
+    //- if @general_info.profile_picture?
+      //= image_tag @general_info.profile_picture.url, :class => 'Profile'
+    //- else
+    //  %img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
+    // #EDITLINKS
+    //   %a{:href => "/login_info/edit"} Edit Login Info
+    //   %a{:href => "/general_info/edit"} Edit General Info
+    //   - if (@profile_type != nil)
+    //     - if @profile_type.upcase == "MODEL"
+    //       %a{:href => "/specific_model/edit"} Edit Model Info
+    //     - elsif @profile_type.upcase == "DESIGNER"
+    //       %a{:href => "/specific_designer/edit"} Edit Designer Info
+    //     - elsif @profile_type.upcase == "PHOTOGRAPHER"
+    //       %a{:href => "/specific_photographer/edit"} Edit Photographer Info
+    //   - else
+    //     %a{:href => "/general_info/edit"} Edit Proffesion

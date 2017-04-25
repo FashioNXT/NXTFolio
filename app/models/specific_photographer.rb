@@ -69,6 +69,8 @@ class SpecificPhotographer < ApplicationRecord
         SpecificPhotographer.all.find_each do |user_object|
           if user_object[:experiece] ==  params_arg[:experiece]
             puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
+            puts user_object[:experiece]
+            puts params_arg[:experiece]
             @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
           end
         end
