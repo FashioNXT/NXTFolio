@@ -69,6 +69,8 @@ class SpecificPhotographer < ApplicationRecord
         SpecificPhotographer.all.find_each do |user_object|
           puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
           if SpecificPhotographer.where("user_key ILIKE ?", user_object[:user_key])
+            @tempObject = SpecificPhotographer.find_by(user_key: user_object[:user_key])
+            puts @tempObject[:experiece]
             @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
           end
         end

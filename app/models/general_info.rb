@@ -30,7 +30,7 @@ class GeneralInfo < ApplicationRecord
   def attribute_values 
     @attribute_values = Hash.new
     @attribute_values[:name] = "Name: " + self.first_name.to_s + " " + self.last_name.to_s
-    @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " +  + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s  
+    @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s  
     @attribute_values[:gender] = "Gender: " + self.gender.to_s
     @attribute_values[:location] = "Location: " + self.city.to_s + ", " + self.state.to_s + ", " + self.country.to_s
     @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s 
