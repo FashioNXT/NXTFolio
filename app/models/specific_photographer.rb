@@ -23,8 +23,8 @@ class SpecificPhotographer < ApplicationRecord
         @user_array = SpecificPhotographer.all
     end
     
-    # For every user in user_array, check if A genre matches ANY genre. 
-    # If there are no genres , loop through @user_array, push the key into @genre_checked_array
+    # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 
+    # If there are no genres , loop through @user_array, push the keys into @genre_checked_array
     if checkboxes.nil?
       puts "SPECIFIC PHOTOGRAPHER - MODEL : GENRES ARE EMPTY"
       #Leave genre checked hash empty as we are not searching for genres.
@@ -67,8 +67,8 @@ class SpecificPhotographer < ApplicationRecord
       else
         puts "FINAL STEP - We have experience to search by, but no genre matches previously. Search entire model and check for the params"
         SpecificPhotographer.all.find_each do |user_object|
-          puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
           if SpecificPhotographer.where("user_key ILIKE ?", user_object[:user_key])
+            puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
             @tempObject = SpecificPhotographer.find_by(user_key: user_object[:user_key])
             puts @tempObject[:experiece]
             @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
@@ -88,6 +88,7 @@ class SpecificPhotographer < ApplicationRecord
         end
       end
     end
+    
     
     return @return_array 
   end
