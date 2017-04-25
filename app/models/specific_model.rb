@@ -7,6 +7,8 @@ class SpecificModel < ApplicationRecord
     @user_array = Array.new
     @genre_checked_array = Array.new
     @return_array = Array.new
+    @priority_hash = Hash.new
+    @priority_return_array = Array.new
     
     puts "SPECIFIC MODEL - MODEL"
     # Search based on the user keys we got from general info, store into @user_array
@@ -20,11 +22,11 @@ class SpecificModel < ApplicationRecord
       end
     else
       puts "SPECIFIC MODEL - MODEL - ELSE, this means nothing came through general_info_user_keys"
-      @user_array = SpecificModel.all
+        @user_array = SpecificModel.all
     end
     
-    # For every user in user_array, check if A genre matches ANY genre. 
-    # If there are no genres , loop through @user_array, push the key into @genre_checked_array
+    # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 
+    # If there are no genres , loop through @user_array, push the keys into @genre_checked_array
     if checkboxes.nil?
       puts "SPECIFIC MODEL - MODEL : GENRES ARE EMPTY"
       #Leave genre checked hash empty as we are not searching for genres.
@@ -32,7 +34,7 @@ class SpecificModel < ApplicationRecord
       puts "SPECIFIC MODEL - MODEL : USER_ARRAY IS EMPTY(General Info didn't have any searches), but we do have genres to search by"
       #They did not search for anything in General Info and user array never got populated, 
       #therefore they are looking for everyone in the profession.
-      SpecificModel.all.find_each do |user_object|
+      SpecificModel.all.find_each do |user_object| 
         checkboxes.each do |key, checkbox_genre|
           if user_object[:genre].to_s.include? key.to_s
             @genre_checked_array.push(user_object)
@@ -44,6 +46,11 @@ class SpecificModel < ApplicationRecord
       puts "SPECIFIC MODEL - MODEL : GENRE ELSE, User Array has a few entries."
       @user_array.each do |user_object|
         checkboxes.each do |key, checkbox_genre|
+          puts "First user, then the search key"
+          @user_genre_str = String.new
+          @key_str = String.new
+          @user_genre_str = user_object[:genre]
+          @key_str = key.to_s
           if user_object[:genre].to_s.include? key.to_s
             @genre_checked_array.push(user_object)
             break
@@ -51,9 +58,6 @@ class SpecificModel < ApplicationRecord
         end
       end
     end
-    
-    puts "After genre check, the size is..."
-    puts @genre_checked_array.size
     
     #First check that we even have any params worth searching
     if params_arg[:height_feet].to_s != '' || params_arg[:height_inch].to_s != '' || params_arg[:dress_size].to_s != '' || params_arg[:hair_color].to_s != ''  || params_arg[:skin_color].to_s != ''  || params_arg[:shoot_nudes].to_s != ''  || params_arg[:piercings].to_s != ''  || params_arg[:experience].to_s != '' 
@@ -80,14 +84,42 @@ class SpecificModel < ApplicationRecord
         end
       else
         puts "FINAL STEP - We DO NOT have specific params to search by, and we DO NOT have genres... Return everything in the table..."
-        SpecificModel.all.find_each do |user_object|
-          @return_array.push(user_object[:user_key]) 
+        if (checkboxes.nil? || params_arg.nil?)
+          SpecificModel.all.find_each do |user_object|
+            @return_array.push(user_object[:user_key]) 
+          end
         end
       end
     end
+   
+   #Ranking users for how closely they matched the search params.
+    @return_array.each do |user_key|
+      @priority_counter = 0
+      @user = SpecificDesigner.find_by(user_key: user_key)
+      
+      if !checkboxes.nil?
+        checkboxes.each do |key, checkbox_genre|
+          if @user[:genre].to_s.include? key.to_s
+            @priority_counter = @priority_counter + 1
+          end
+        end
+      end
+
+      if @user[:experience] == params_arg[:experience]
+        @priority_counter = @priority_counter + 1
+      end
+      
+      @priority_hash.store(@user[:user_key], @priority_counter)
+    end
     
-    @users = @return_array
-    return @return_array
+    @priority_hash = @priority_hash.sort_by {|k,v| v}.reverse
+    
+    @priority_hash.each do |user_key, value|
+      @priority_return_array.push(user_key)
+    end
+    
+    @users = @priority_return_array
+    return @priority_return_array 
   end
   
   def attribute_values 

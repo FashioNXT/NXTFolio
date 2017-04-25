@@ -118,8 +118,6 @@ class SpecificPhotographer < ApplicationRecord
     @priority_hash = @priority_hash.sort_by {|k,v| v}.reverse
     
     @priority_hash.each do |user_key, value|
-      puts "VVVVVVVVVVVVVVVVVVVVV"
-      puts value
       @priority_return_array.push(user_key)
     end
     

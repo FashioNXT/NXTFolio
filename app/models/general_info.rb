@@ -15,7 +15,7 @@ class GeneralInfo < ApplicationRecord
     
     mount_uploader :profile_picture, AvatarUploader
     mount_uploader :cover_picture, CoverUploader
-    mount_uploader :gallery, GalleryUploader
+    mount_uploaders :gallery_pictures, GalleryUploader
     
     
   def self.search searchArg

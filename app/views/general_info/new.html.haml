@@ -86,6 +86,10 @@
       %br
       = f.file_field :cover_picture
       %p
+      = f.label :gallery_pictures
+      %br
+      = f.file_field :gallery_pictures, multiple: true
+      %p
       = f.submit 'Next'
         
     = button_to 'Skip', root_path, :method => 'get'

@@ -3,8 +3,14 @@
 %body
   = render :partial => "/layout/body"
   #TOPPICTURES
-    %img.Cover{:src => "http://i.imgur.com/lxUw5lC.jpg"}
-    %img.Profile{:src => "https://static.gigwise.com/artists/Image/prince200lakers.jpg"}
+    - if @general_info.cover_picture?
+      = image_tag @general_info.cover_picture.url, :class => 'Cover'
+    - else
+      %img.Cover{:src => "https://weathervanemusic.org/uploads/files/914651792900347299-gray-block.full.jpg"}
+    - if @general_info.profile_picture?
+      = image_tag @general_info.profile_picture.url, :class => 'Profile'
+    - else
+      %img.Profile{:src => "http://www.combonetwork.com/img/empty_profile.png"}
     #PROFILENAME 
       %p
         = @general_info.first_name
@@ -39,28 +45,9 @@
 
 
     #PROFILEIMAGES
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17362849_10211223581478861_2645443704418619416_n.jpg?oh=97b2a311b5af84a41cad41a1292ecdc4&oe=595821F5"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17362849_10211223581478861_2645443704418619416_n.jpg?oh=97b2a311b5af84a41cad41a1292ecdc4&oe=595821F5"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13315638_1194091397289940_213205101156682597_n.jpg?oh=8d25402c186c112d410931f252d5c558&oe=595FCA7E"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17309033_878908615582839_5805955136170506426_n.jpg?oh=0dce9795d6552fdbb7516ba290e1490a&oe=599846D2"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/10013267_10153029891010140_2773967283070369712_n.jpg?oh=703f566c47da09d0482bd09b4d0a120f&oe=59938BA1"}/
-      .gallery
-        %img{:src => "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/17155975_10210714249765323_7631817103346325952_n.jpg?oh=53c2f78e3ac184c7bddbaaf19435e7eb&oe=5993FFF2"}/
-    
+      - if @general_info.gallery_pictures?
+        - @general_info.gallery_pictures.each do |picture|
+          = image_tag picture.url, :class => 'gallery'
+      - else
+        %img.gallery{:src => "http://www.combonetwork.com/img/empty_profile.png"}
+      

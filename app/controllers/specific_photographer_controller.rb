@@ -77,7 +77,7 @@ class SpecificPhotographerController < ApplicationController
     @user_objects = SpecificPhotographer.search @checkboxes,flash[:general_queries],@experience, @params_arg
     
     @user_objects.each do |object|
-      @general_info_object = GeneralInfo.find_by(user_key: object[:user_key])
+      @general_info_object = GeneralInfo.find_by(userKey: object[:user_key])
       
       @attribute_param = object.attribute_values
       @attribute_param[:first_name] = object[:user_key]

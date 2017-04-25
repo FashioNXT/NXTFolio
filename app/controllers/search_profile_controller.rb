@@ -5,11 +5,14 @@ class SearchProfileController < ApplicationController
   end
    
   def show
+    @users = Array.new
     if flash[:user_keys] == "ALL"
       puts "Users = GeneralInfo.all"
       @users = GeneralInfo.all
     elsif !(flash[:user_keys].empty?)
-      @users = GeneralInfo.where(userKey: flash[:user_keys])
+      flash[:user_keys].each do |user_key|
+        @users.push(GeneralInfo.find_by(userKey: user_key))
+      end
     else
       flash[:notice] = "No entries matched your search."
     end
@@ -68,7 +71,7 @@ class SearchProfileController < ApplicationController
   end
   
   def search_designer
-    
+    # This controller function supports the view search_profile/search_designer
   end
   
   def search_specific_designer
@@ -89,7 +92,7 @@ class SearchProfileController < ApplicationController
   end
   
   def search_model
-    
+    # This controller function supports the view search_profile/search_model
   end
   
   def search_specific_model

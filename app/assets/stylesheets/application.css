@@ -93,7 +93,7 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 
 #PROFILEINFO {max-width: 1200px; min-height: 100%; margin: auto;}
 
-#PROFILENAME {position: absolute;  top: 45%; left: 25%; width: 50%; height: 60px; color: 111111; margin: auto; text-align: justify;}
+#PROFILENAME {position: absolute;  top: 45%; left: 25%; width: 50%; height: 60px; color: 111111; margin: auto; text-align: justify; text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;}
 #PROFILENAME p{ text-align: center; font-size: 4em; vertical-align: middle; }
 
 #PROFILETEXT {background-color: white; float: left; width: 400px; height: 100%; color: #111111; margin: auto; text-align: justify;}
@@ -106,8 +106,8 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 
 #PROFILEIMAGES {bottom: 0; overflow: scroll; background-color: white; position: relative; float: left; margin-left: 20px; max-width: 65%; height: 100%;}
 
-.gallery { margin: 20px; float: left; width: 200px; }
-.gallery img { width: 100%; height: auto;  }
+.gallery { margin: 20px; float: left; width: 200px; height: 200px; }
+.gallery img { width: 150px; height: 150px;  }
 
 #SEARCHMAINDIV {background-color: white; margin: auto; height: 100%; max-width: 1000px;}
 #SEARCHMAINDIV h1{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white; text-align: center;}

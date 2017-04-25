@@ -94,7 +94,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture, :cover_picture)
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
    
   def edit
@@ -107,7 +107,13 @@ class GeneralInfoController < ApplicationController
    
   def update
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-     
+    
+    puts "IN UPDATE FUNCTION, GALLERY PICS"
+    puts params[:general_info][:gallery_pictures].to_s
+    
+    puts general_info_update_param[:first_name] + general_info_update_param[:gallery_pictures].to_s
+    puts @general_info.first_name
+    
     if @general_info.update_attributes(general_info_update_param)
       redirect_to '/show_profile'
     else
@@ -116,7 +122,7 @@ class GeneralInfoController < ApplicationController
   end
   
   def general_info_update_param
-     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture)
+     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
   
   def edit_profession
