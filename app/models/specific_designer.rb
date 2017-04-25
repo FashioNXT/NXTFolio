@@ -66,8 +66,8 @@ class SpecificDesigner < ApplicationRecord
       else
         puts "FINAL STEP - We have experience to search by, but no genre matches previously. Search entire model and check for the params"
         SpecificDesigner.all.find_each do |user_object|
-          if SpecificDesigner.where("user_key ILIKE ?", user_object[:user_key])
-            @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
+          if params_arg[:experience] == user_object[:experience]
+            @return_array.push(user_object[:user_key])
           end
         end
       end

@@ -9,6 +9,7 @@ class SpecificPhotographer < ApplicationRecord
     @experience_str = params_arg[:experiece]
     
     puts "SPECIFIC PHOTOGRAPHER - MODEL"
+    puts general_info_user_keys.size
     # Search based on the user keys we got from general info, store into @user_array
     if (general_info_user_keys.length > 0)
       puts "SPECIFIC PHOTOGRAPHER - MODEL -  general_info_user_keys has a few entries"
@@ -57,6 +58,7 @@ class SpecificPhotographer < ApplicationRecord
     
     #First check that we even have any params worth searching
     if !experience_arg.nil?
+      puts experience_arg.to_s
       if(@genre_checked_array.length > 0)
         puts "FINAL STEP - We have experience to search by, and we had previous genre-checked results"
         @genre_checked_array.each do |user_object|
@@ -68,17 +70,8 @@ class SpecificPhotographer < ApplicationRecord
         puts "FINAL STEP - We have experience to search by, but no genre matches previously. Search entire model and check for the params"
         SpecificPhotographer.all.find_each do |user_object|
           if params_arg[:experience] == user_object[:experience]
-            puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
-            puts params_arg[:experience]
-            puts user_object[:experience]
             @return_array.push(user_object[:user_key])
           end
-          #if SpecificPhotographer.where("experience ILIKE ?", params_arg[:experiece])
-          #  puts "KLDSJSDLJDKJSLDJKLSDJLKSJDLKSJDLSJDKJSDLJKLSDJLKDJLDKSJLKSD"
-          #  puts params_arg[:experience]
-          #  puts user_object[:experience]
-          #  @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
-          #end
         end
       end
     else
