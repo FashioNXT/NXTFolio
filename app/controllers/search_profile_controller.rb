@@ -6,6 +6,7 @@ class SearchProfileController < ApplicationController
    
   def show
     @users = Array.new
+    flash[:user_keys] = flash[:user_keys]
     if flash[:user_keys] == "ALL"
       puts "Users = GeneralInfo.all"
       @users = GeneralInfo.all
@@ -43,11 +44,12 @@ class SearchProfileController < ApplicationController
     
     #Search for users based on the general info search params. Not by profession though.
     if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == '' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == ''
-      @general_queries = GeneralInfo.all
+      #@general_queries = GeneralInfo.all
     else
       @general_queries = GeneralInfo.search @search_params
     end
     
+    @general_queries = GeneralInfo.search @search_params
     puts "This is the profession id: #{@search_params[:profession]}"
     
     #Get the user keys
@@ -86,9 +88,8 @@ class SearchProfileController < ApplicationController
     # puts "SpecificDesigner Search "
     @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @params_arg
     
-    # puts "SpecificDesigner Search returned #{@user_keys.length} users"
     if @user_keys.empty?
-      @user_keys = get_user_keys SpecificDesigner.all
+      #@user_keys = get_user_keys SpecificDesigner.all
     end
     
     flash[:user_keys] = @user_keys
@@ -108,7 +109,7 @@ class SearchProfileController < ApplicationController
     @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
     
     if @user_keys.empty?
-      @user_keys = get_user_keys SpecificModel.all
+      #@user_keys = get_user_keys SpecificModel.all
     end
     
     flash[:user_keys] = @user_keys
@@ -123,7 +124,7 @@ class SearchProfileController < ApplicationController
     @user_keys = SpecificPhotographer.search @checkboxes,flash[:user_keys],@experience, @params_arg
     
     if @user_keys.empty?
-      @user_keys = get_user_keys SpecificPhotographer.all
+      #@user_keys = get_user_keys SpecificPhotographer.all
     end
     flash[:user_keys] = @user_keys
     redirect_to :action => 'show'

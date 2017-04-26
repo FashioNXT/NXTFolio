@@ -92,7 +92,7 @@ class SpecificDesignerController < ApplicationController
   end
    
   def delete
-    SpecificDesigner.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    SpecificDesigner.find(params[:user_key]).destroy
+    redirect_to :action => 'root_path'
   end
 end

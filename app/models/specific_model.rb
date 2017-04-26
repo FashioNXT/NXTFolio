@@ -12,17 +12,31 @@ class SpecificModel < ApplicationRecord
     
     puts "SPECIFIC MODEL - MODEL"
     # Search based on the user keys we got from general info, store into @user_array
-    if (general_info_user_keys.length > 0)
+    if (!general_info_user_keys.nil? && general_info_user_keys.length > 0)
       puts "SPECIFIC MODEL - MODEL -  general_info_user_keys has a few entries"
       general_info_user_keys.each do |user_key_element|
         puts user_key_element.to_s
         if SpecificModel.exists?(user_key: user_key_element)
           @user_array.push(SpecificModel.find_by(user_key: user_key_element))
         end
+        
+        if !(@user_array.length > 0)
+          return @priority_return_array
+        end     
       end
     else
       puts "SPECIFIC MODEL - MODEL - ELSE, this means nothing came through general_info_user_keys"
-        @user_array = SpecificModel.all
+      @user_array = SpecificModel.all
+    end
+    
+    puts params_arg.values.all? {|x| !x.nil?}
+     #If it was an empty search, go ahead and return @user if there was one.
+    if (checkboxes.nil? && params_arg.values.all? {|x| !x.nil?} && @user_array.length > 0)
+      @user_array.each do |user_object|
+        @priority_return_array.push(user_object[:user_key])
+      end
+      
+      return @priority_return_array
     end
     
     # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 
@@ -84,11 +98,11 @@ class SpecificModel < ApplicationRecord
         end
       else
         puts "FINAL STEP - We DO NOT have specific params to search by, and we DO NOT have genres... Return everything in the table..."
-        if (general_info_user_keys.length > 0 && (checkboxes.nil? || params_arg.nil?))
+        #if (general_info_user_keys.length > 0 && (checkboxes.nil? || params_arg.nil?))
           SpecificModel.all.find_each do |user_object|
             @return_array.push(user_object[:user_key]) 
           end
-        end
+        #end
       end
     end
    

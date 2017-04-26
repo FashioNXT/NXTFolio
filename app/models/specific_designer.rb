@@ -12,17 +12,29 @@ def self.search checkboxes, general_info_user_keys, experience_arg, params_arg
     
     puts "SPECIFIC DESIGNER - MODEL"
     # Search based on the user keys we got from general info, store into @user_array
-    if (general_info_user_keys.length > 0)
+    if (!general_info_user_keys.nil? && general_info_user_keys.length > 0)
       puts "SPECIFIC DESIGNER - MODEL -  general_info_user_keys has a few entries"
       general_info_user_keys.each do |user_key_element|
         puts user_key_element.to_s
         if SpecificDesigner.exists?(user_key: user_key_element)
           @user_array.push(SpecificDesigner.find_by(user_key: user_key_element))
         end
+        if !(@user_array.length > 0)
+          return @priority_return_array
+        end   
       end
     else
       puts "SPECIFIC DESIGNER - MODEL - ELSE, this means nothing came through general_info_user_keys"
         @user_array = SpecificDesigner.all
+    end
+    
+    #If it was an empty search, go ahead and return @user if there was one.
+    if (checkboxes.nil? && params_arg.values.all? {|x| !x.nil?} && @user_array.length > 0)
+      @user_array.each do |user_object|
+        @priority_return_array.push(user_object[:user_key])
+      end
+      
+      return @priority_return_array
     end
     
     # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 

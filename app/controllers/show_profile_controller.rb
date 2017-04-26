@@ -1,4 +1,6 @@
 class ShowProfileController < ApplicationController
+  ### Added from BCrypt 
+  ### Forces users to login before they can see actions in this controller
   
   def show_profile
     if session[:current_user_key] != nil 

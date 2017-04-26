@@ -96,7 +96,7 @@ class SpecificModelController < ApplicationController
   end
   
   def delete
-    SpecificModel.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    SpecificModel.find(params[:user_key]).destroy
+    redirect_to :action => 'root_path'
   end   
 end

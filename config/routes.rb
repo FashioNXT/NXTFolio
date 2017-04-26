@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
+  get 'login_info/delete' => 'login_info#delete', :as => 'login_info/delete'
   
   #get 'specific_designer/search' => 'specific_designer#search', :as => 'specific_designer/search'
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'

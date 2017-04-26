@@ -35,16 +35,19 @@
             = @profile_type.upcase + " SPECIFICS"
         %p
         - if (@profile_info != nil)
-          - @profile_info.each do |info|
-            - info_array = info[1].split(":")
-            - if(info_array[1] != nil)
-              %br
-              %b
-                = info_array[0] + ":"
-              = info_array[1]
+          %p
+            - @profile_info.each do |info|
+              - info_array = info[1].split(":")
+              - if(info_array[1] != nil)
+                %br
+                %b
+                  = info_array[0] + ":"
+                = info_array[1]
 
 
     #PROFILEIMAGES
+      %h2 
+        %b FEATURED GALLERY
       - if @general_info.gallery_pictures?
         - @general_info.gallery_pictures.each do |picture|
           = image_tag picture.url, :class => 'gallery'

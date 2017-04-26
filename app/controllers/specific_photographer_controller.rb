@@ -61,8 +61,8 @@ class SpecificPhotographerController < ApplicationController
   end
    
   def delete
-    SpecificPhotographer.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    SpecificPhotographer.find(params[:user_key]).destroy
+    redirect_to :action => 'root_path'
   end    
   
   def search

@@ -149,8 +149,7 @@ class GeneralInfoController < ApplicationController
   end 
   
   def delete
-    GeneralInfo.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    GeneralInfo.find(params[:userKey]).destroy
   end
   
   def search

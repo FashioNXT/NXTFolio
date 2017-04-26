@@ -15,7 +15,7 @@
  */
 
 /* STANDARD TAG REDEFINITIONS */
-BODY{ color: #111111; font-family: Helvetica; font-size: 10pt; background-color: #cecece; margin: 0; padding: 0; }
+BODY{ color: #111111; font-family: Helvetica; font-size: 10pt; background-color: #e0e0e0; margin: 0; padding: 0; }
 TD { font-size: 10pt; }
 p { font-size: 10pt; margin-bottom: 7px; margin-top: 0; }
 a{ color: black; text-decoration: none; cursor: pointer; }
@@ -93,16 +93,16 @@ h2{ margin: 0; padding: 24px 0 7px 40px; font-family: Helvetica; font-weight: no
 
 #PROFILEINFO {max-width: 1200px; min-height: 100%; margin: auto;}
 
-#PROFILENAME {position: absolute;  top: 45%; left: 25%; width: 50%; height: 60px; color: 111111; margin: auto; text-align: justify; text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;}
+#PROFILENAME { position: absolute;  top: 45%; left: 25%; width: 50%; height: 60px; color: 111111; margin: auto; text-align: justify; text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;}
 #PROFILENAME p{ text-align: center; font-size: 4em; vertical-align: middle; }
 
 #PROFILETEXT {background-color: white; float: left; width: 400px; height: 100%; color: #111111; margin: auto; text-align: justify;}
 #PROFILETEXT h2{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white; padding-left: 10%}
-#PROFILETEXT p{padding-left: 2%; padding-right: 2%;}
+#PROFILETEXT p{padding-left: 10px; padding-right: 10px;}
 
-#EDITLINKS {position: absolute; width: 300px; height: 50px;}
-#EDITLINKS a{border-bottom: 1px solid grey; color: black; background-color: #e6e6e6; padding: 1% 1% 1% 1%; border-radius: 2px; transition: all 0.5s; margin-top: 1%;}
-#EDITLINKS a:hover{color: grey; background-color: white; text-decoration: none;}
+#EDITLINKS {position: absolute; width: 500px; height: 20px; right: 7%; top: 52%; text-align: right;}
+#EDITLINKS a{font-size: 10px; border-bottom: 1px solid grey; color: black; background-color: white; padding: 1% 1% 1% 1%; border-radius: 2px; transition: all 0.5s; margin-top: 1%;}
+#EDITLINKS a:hover{color: grey; background-color: #e6e6e6; text-decoration: none;}
 
 #PROFILEIMAGES {text-align: center; bottom: 0; overflow: scroll; background-color: white; position: relative; float: left; margin-left: 20px; width: 65%; height: 100%;}
 #PROFILEIMAGES h2{font-family: helvetica; font-size:2.5em; padding-top: 1%; background-color: #9DE89F; color: white;}

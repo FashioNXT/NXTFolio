@@ -15,14 +15,26 @@
       %p
         = @general_info.first_name
         = @general_info.last_name
+    #EDITLINKS
+      %a{:href => "/login_info/edit"} Edit Login Info
+      %a{:href => "/general_info/edit"} Edit General Info
+      - if (@profile_type != nil)
+        - if @profile_type.upcase == "MODEL"
+          %a{:href => "/specific_model/edit"} Edit Model Info
+        - elsif @profile_type.upcase == "DESIGNER"
+          %a{:href => "/specific_designer/edit"} Edit Designer Info
+        - elsif @profile_type.upcase == "PHOTOGRAPHER"
+          %a{:href => "/specific_photographer/edit"} Edit Photographer Info
+      %a{:href => "/general_info/edit_profession"} Edit Occupation
+      %a{:href => "/general_info/delete"} Delete Account
   #PROFILEINFO
     #PROFILETEXT 
       %h2 
         %b GENERAL INFO
       %p
-        #EDITLINKS
-          %a{:href => "/login_info/edit"} Edit Login Info
-          %a{:href => "/general_info/edit"} Edit General Info
+        // #EDITLINKS
+        //   %a{:href => "/login_info/edit"} Edit Login Info
+        //   %a{:href => "/general_info/edit"} Edit General Info
         %br
         - @general_info_values.each do |info|
           - info_array = info[1].split(":")
@@ -37,17 +49,18 @@
           %b
             = @profile_type.upcase + " SPECIFICS"
         %p
-        #EDITLINKS
-          - if (@profile_type != nil)
-            %a{:href => "/general_info/edit_profession"} Edit Occupation
-            - if @profile_type.upcase == "MODEL"
-              %a{:href => "/specific_model/edit"} Edit Model Info
-            - elsif @profile_type.upcase == "DESIGNER"
-              %a{:href => "/specific_designer/edit"} Edit Designer Info
-            - elsif @profile_type.upcase == "PHOTOGRAPHER"
-              %a{:href => "/specific_photographer/edit"} Edit Photographer Info
-            %br
-          - if (@profile_info != nil)
+        // #EDITLINKS
+        //   - if (@profile_type != nil)
+        //     %a{:href => "/general_info/edit_profession"} Edit Occupation
+        //     - if @profile_type.upcase == "MODEL"
+        //       %a{:href => "/specific_model/edit"} Edit Model Info
+        //     - elsif @profile_type.upcase == "DESIGNER"
+        //       %a{:href => "/specific_designer/edit"} Edit Designer Info
+        //     - elsif @profile_type.upcase == "PHOTOGRAPHER"
+        //       %a{:href => "/specific_photographer/edit"} Edit Photographer Info
+        //    %br
+        - if (@profile_info != nil)
+          %p
             - @profile_info.each do |info|
               - info_array = info[1].split(":")
               - if(info_array[1] != nil)
@@ -60,8 +73,8 @@
     #PROFILEIMAGES
       %h2 
         %b FEATURED GALLERY
-      %p These images are your currently featured images for your profile.
-      %p If you would like to upload a new set of images, go to the "edit general images" link.
+      %p This gallery showcases the currently featured images for your profile.
+      %p If you would like to upload a new set of images, go to the "edit general info" link.
       - if @general_info.gallery_pictures?
         - @general_info.gallery_pictures.each do |picture|
           = image_tag picture.url, :class => 'gallery'

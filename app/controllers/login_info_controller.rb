@@ -1,4 +1,5 @@
 class LoginInfoController < ApplicationController
+  # before_filter :authorize
   
   #Variable that holds a params/object with all the attributes filled in
   def list
@@ -77,8 +78,8 @@ class LoginInfoController < ApplicationController
   end
    
   def delete
-    LoginInfo.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    # LoginInfo.find(params[:userKey]).destroy
+    LoginInfo.remove
   end
   
   def login
