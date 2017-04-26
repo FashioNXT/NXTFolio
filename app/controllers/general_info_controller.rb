@@ -108,12 +108,6 @@ class GeneralInfoController < ApplicationController
   def update
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
-    puts "IN UPDATE FUNCTION, GALLERY PICS"
-    puts params[:general_info][:gallery_pictures].to_s
-    
-    puts general_info_update_param[:first_name] + general_info_update_param[:gallery_pictures].to_s
-    puts @general_info.first_name
-    
     if @general_info.update_attributes(general_info_update_param)
       redirect_to '/show_profile'
     else

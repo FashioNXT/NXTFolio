@@ -1,18 +1,18 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
   
-  def self.remove
-    if LoginInfo.exists?
-      LoginInfo.find(params[:userKey]).destroy
-      GeneralInfo.find(params[:userKey]).destroy
+  # def self.remove
+  #   if LoginInfo.exists?
+  #     LoginInfo.find(session[:current_user_key]).destroy
+  #     GeneralInfo.find(session[:current_user_key]).destroy
       
-      if SpecificDesigner.exists?
-        SpecificDesigner.find(params[:userKey]).destroy
-      elsif SpecificModel.exists?
-        SpecificModel.find(params[:userKey]).destroy
-      elsif SpecificPhotographer.exists?
-        SpecificPhotographer.find(params[:userKey]).destroy
-      end
-    end
-  end
+  #     if SpecificDesigner.exists?
+  #       SpecificDesigner.find(session[:current_user_key]).destroy
+  #     elsif SpecificModel.exists?
+  #       SpecificModel.find(session[:current_user_key]).destroy
+  #     elsif SpecificPhotographer.exists?
+  #       SpecificPhotographer.find(session[:current_user_key]).destroy
+  #     end
+  #   end
+  # end
 end
