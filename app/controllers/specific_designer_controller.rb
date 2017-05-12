@@ -7,10 +7,11 @@ class SpecificDesignerController < ApplicationController
     @specific_designer = SpecificDesigner.find(params[:id])
   end
   
+  # Associated with the view used for search_redirect
   def search
-    
   end
   
+  # Displays the correct specific profile search when selected during SpecificDesigner search
   def search_redirect
     @checkboxes = params[:checkboxes]
     @experience = params[:checkboxes]
@@ -27,21 +28,22 @@ class SpecificDesignerController < ApplicationController
       @attribute_param[:gender] = @general_info_object[:gender]
       @attribute_param[:state] = @general_info_object[:state]
       @attribute_param[:profession] = @general_info_object[:profession]
-      
     end
     
     redirect_to search_profile_show_path
   end
   
   def prep_show 
-   
   end
   
+  # Associated with the view used for create
   def new
     @specific_designer = SpecificDesigner.new
   end
    
+  # Create is called upon for the 3rd part of profile creation
   def create
+    # Creates a SpecificDesigner object
     @specific_designer = SpecificDesigner.new(specific_designer_params)
     @genre_str
     if !params[:specific_designer][:allgenres].nil?
@@ -50,25 +52,29 @@ class SpecificDesignerController < ApplicationController
       end
     else
     end
-      
-    puts session[:current_user_key]
+    
+    # Sets genre for the SpecificDesigner object
     @specific_designer.genre = @genre_str
+    # Assigns user_key to be the session key of the current user
     @specific_designer.user_key = session[:current_user_key]
 
-    
-     if @specific_designer.save!
-       puts "Saved and returning to root"
-       redirect_to root_path
-     else
-       puts "Error saving, returning to new"
-       render :action=> 'new'                  # Render the new page again
-     end
+    # If SpecificDesigner object saved correctly to database, displays home page
+    # Else displays the SpecificDesigner new view
+    if @specific_designer.save!
+     redirect_to root_path
+    else
+     render :action=> 'new'
+ end
   end
   
+  # Params used to create the SpecificDesigner object
   def specific_designer_params
     params.require(:specific_designer).permit(:genre, {:allgenres => []}, :influencers, :specialties, :compensation, :experience)  #passing into create with these keys.
   end
-   
+  
+  # Allows user to edit the params of the SpecificDesigner object
+  # Displays information pulled from database that matches the session key of the current user
+  # Associated with the view used for update
   def edit
     if SpecificDesigner.exists?(:user_key => session[:current_user_key])
       @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
@@ -77,6 +83,7 @@ class SpecificDesignerController < ApplicationController
     end
   end
    
+  # Saves the edit of the SpecificDesigner object to the database
   def update
     @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
     
@@ -87,10 +94,12 @@ class SpecificDesignerController < ApplicationController
     end
   end
   
+  # Params used to edit the SpecificDesigner object
   def specific_designer_param
     params.require(:specific_designer).permit(:genre, :influencers, :specialties, :compensation, :experience)  
   end
    
+  # Not implemented
   def delete
     SpecificDesigner.find(params[:user_key]).destroy
     redirect_to :action => 'root_path'

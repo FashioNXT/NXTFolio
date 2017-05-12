@@ -1,6 +1,5 @@
 class SpecificPhotographer < ApplicationRecord
-    #belongs_to :general_info
-    attr_accessor :allgenres
+  attr_accessor :allgenres
     
   def self.search checkboxes, general_info_user_keys, experience_arg, params_arg
     @user_array = Array.new
@@ -10,12 +9,10 @@ class SpecificPhotographer < ApplicationRecord
     @priority_hash = Hash.new
     @priority_return_array = Array.new
     
-    puts "SPECIFIC PHOTOGRAPHER - MODEL"
-    # Search based on the user keys we got from general info, store into @user_array
+    # Search based on the user keys retrieved from GeneralInfo, store into @user_array
     if (!general_info_user_keys.nil? && general_info_user_keys.length > 0)
-      puts "SPECIFIC PHOTOGRAPHER - MODEL -  general_info_user_keys has a few entries"
+      # Gets here if general_info_user_keys has entries
       general_info_user_keys.each do |user_key_element|
-        puts user_key_element.to_s
         if SpecificPhotographer.exists?(user_key: user_key_element)
           @user_array.push(SpecificPhotographer.find_by(user_key: user_key_element))
         end
@@ -25,12 +22,11 @@ class SpecificPhotographer < ApplicationRecord
         end      
       end
     else
-      puts "SPECIFIC PHOTOGRAPHER - MODEL - ELSE, this means nothing came through general_info_user_keys"
-        @user_array = SpecificPhotographer.all
-        #return @priority_return_array
+      # Gets here if nothing came through general_info_user_keys
+      @user_array = SpecificPhotographer.all
     end
     
-    #If it was an empty search, go ahead and return @user if there was one.
+    # If it was an empty search, go ahead and return @user if there was one
     if (checkboxes.nil? && params_arg.values.all? {|x| !x.nil?} && @user_array.length > 0)
       @user_array.each do |user_object|
         @priority_return_array.push(user_object[:user_key])
@@ -39,15 +35,15 @@ class SpecificPhotographer < ApplicationRecord
       return @priority_return_array
     end
     
-    # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 
-    # If there are no genres , loop through @user_array, push the keys into @genre_checked_array
+    # Genre requires a slightly different search
+    # For every user in user_array, check if A genre matches ANY genre
+    # If there are no genres, loop through @user_array & push the keys into @genre_checked_array
     if checkboxes.nil?
-      puts "SPECIFIC PHOTOGRAPHER - MODEL : GENRES ARE EMPTY"
+      # Gets here if genre is empty
       #Leave genre checked hash empty as we are not searching for genres.
     elsif !(@user_array.length > 0)
-      puts "SPECIFIC PHOTOGRAPHER - MODEL : USER_ARRAY IS EMPTY(General Info didn't have any searches), but we do have genres to search by"
-      #They did not search for anything in General Info and user array never got populated, 
-      #therefore they are looking for everyone in the profession.
+      # They did not search for anything in GeneralInfo and user_array never got populated, 
+      # Therefore they are looking for everyone in the profession, using genres
       SpecificPhotographer.all.find_each do |user_object| 
         checkboxes.each do |key, checkbox_genre|
           if user_object[:genre].to_s.include? key.to_s
@@ -57,10 +53,9 @@ class SpecificPhotographer < ApplicationRecord
         end
       end
     else
-      puts "SPECIFIC PHOTOGRAPHER - MODEL : GENRE ELSE, User Array has a few entries."
+      # Gets here if user_array has entries
       @user_array.each do |user_object|
         checkboxes.each do |key, checkbox_genre|
-          puts "First user, then the search key"
           @user_genre_str = String.new
           @key_str = String.new
           @user_genre_str = user_object[:genre]
@@ -73,20 +68,18 @@ class SpecificPhotographer < ApplicationRecord
       end
     end
     
-    puts "After genre check, the size is..."
-    puts @genre_checked_array.size
-    
-    #First check that we even have any params worth searching
+    # 1st check that there are any params worth searching
     if params_arg[:experience] != ''
       if(@genre_checked_array.length > 0)
-        puts "FINAL STEP - We have experience to search by, and we had previous genre-checked results"
+        # Can search by experience & previous genre-checked results
         @genre_checked_array.each do |user_object|
           if SpecificPhotographer.where("user_key ILIKE ? AND experience ILIKE ?)" , user_object[:user_key], @experiece_arg)
             @return_array.push(user_object[:user_key])
           end
         end
       else
-        puts "FINAL STEP - We have experience to search by, but no genre matches previously. Search entire model and check for the params"
+        # Can search by experience but have no previous genre-checked results
+        # Search entire model and check for the params
         SpecificPhotographer.all.find_each do |user_object|
           if params_arg[:experience] == user_object[:experience]
             @return_array.push(user_object[:user_key])
@@ -95,12 +88,14 @@ class SpecificPhotographer < ApplicationRecord
       end
     else
       if(@genre_checked_array.length > 0)
-        puts "FINAL STEP - We DO NOT have experience to search by, but we had genre-checks. Return them."
+        # Have no experience to search by but have genre-checks
+        # Return genre-checked results
         @genre_checked_array.each do |user_object|
           @return_array.push(user_object[:user_key])
         end
       else
-        puts "FINAL STEP - We DO NOT have experience to search by, and we DO NOT have genres... Return everything in the table..."
+        # Have no experience to search by and no genre-checked results
+        # Return everything in the table
         if (checkboxes.nil? || params_arg.nil?)
           SpecificPhotographer.all.find_each do |user_object|
             @return_array.push(user_object[:user_key]) 
@@ -109,7 +104,7 @@ class SpecificPhotographer < ApplicationRecord
       end
     end
     
-    #Ranking users for how closely they matched the search params.
+    #Ranks users for how closely they matched the search params.
     @return_array.each do |user_key|
       @priority_counter = 0
       @user = SpecificPhotographer.find_by(user_key: user_key)
@@ -138,6 +133,7 @@ class SpecificPhotographer < ApplicationRecord
     return @priority_return_array
   end
   
+  # Sets appearance of profile view attributes
   def attribute_values 
     @attribute_values = Hash.new
     @attribute_values[:influencers] = "Influencers: " + self.influencers.to_s

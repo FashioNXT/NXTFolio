@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
-  #get 'general_info/search' => 'general_info#search', :as => 'general_info/search'
-  #get 'general_info/search_redirect' => 'general_info#search_redirect', :as => 'general_info/search_redirect'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
   get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'
@@ -17,23 +15,16 @@ Rails.application.routes.draw do
   get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
-  # get 'login_info/delete' => 'login_info#delete', :as => 'login_info/delete'
   
-  #get 'specific_designer/search' => 'specific_designer#search', :as => 'specific_designer/search'
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
-  #get 'specific_designer/search_redirect' => 'specific_designer#search_redirect', :as => 'specific_designer/search_redirect'
   get 'specific_designer/edit' => 'specific_designer#edit', :as => 'specific_designer/edit'
   post 'specific_designer/update' => 'specific_designer#update', :as => 'specific_designer/update'
   
-  #get 'specific_model/search' => 'specific_model#search', :as => 'specific_model/search'
   get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
-  #get 'specific_model/search_redirect' => 'specific_model#search_redirect', :as => 'specific_model/search_redirect'
   get 'specific_model/edit' => 'specific_model#edit', :as => 'specific_model/edit'
   post 'specific_model/update' => 'specific_model#update', :as => 'specific_model/update'
   
-  #get 'specific_photographer/search' => 'specific_photographer#search', :as => 'specific_photographer/search'
   get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
-  #get 'specific_photographer/search_redirect' => 'specific_photographer#search_redirect', :as => 'specific_photographer/search_redirect'
   get 'specific_photographer/edit' => 'specific_photographer#edit', :as => 'specific_photographer/edit'
   post 'specific_photographer/update' => 'specific_photographer#update', :as => 'specific_photographer/update'
   

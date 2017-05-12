@@ -7,10 +7,11 @@ class SpecificModelController < ApplicationController
     @specific_model = SpecificModel.find(params[:id])
   end
   
+  # Associated with the view used for search_redirect
   def search
-    
   end
   
+  # Displays the correct specific profile search when selected during SpecificModel search
   def search_redirect
     @params_arg = params
     @checkboxes = params[:checkboxes]
@@ -29,23 +30,18 @@ class SpecificModelController < ApplicationController
       @attribute_param[:state] = @general_info_object[:state]
       @attribute_param[:profession] = @general_info_object[:profession]
       
-      puts @attribute_param[:first_name]
-      puts @attribute_param[:last_name]
-      puts @attribute_param[:gender]
-      puts @attribute_param[:state]
-      puts @attribute_param[:profession]
       @attribute_param_array.push(@attribute_param)
     end
     
-    #flash[:attribute_param_array] = @attribute_param_array
-    puts @attribute_param_array.size
     redirect_to search_model_show_path
   end
    
+  # Associated with the view used for create
   def new
     @specific_model = SpecificModel.new
   end
    
+  # Create is called upon for the 3rd part of profile creation
   def create
     @specific_model = SpecificModel.new(specific_model_param)
     @genre_str = ""
@@ -56,23 +52,28 @@ class SpecificModelController < ApplicationController
     else
     end
     
-    #puts @genre_str
+    # Sets genre for the SpecificModel object
     @specific_model.genre = @genre_str
+    # Assigns user_key to be the session key of the current user
     @specific_model.user_key = session[:current_user_key] 
     
+    # If SpecificModel object saved correctly to database, displays home page
+    # Else displays the SpecificModel new view
     if @specific_model.save!
-      puts "Saved and returning to root"
       redirect_to root_path
     else
-      puts "Error saving, returning to new"
       render :action => 'new'
     end
   end
   
+  # Params used to create the SpecificModel object
   def specific_model_params
     params.require(:specific_models).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, {:allgenres => []})
   end
    
+  # Allows user to edit the params of the SpecificModel object
+  # Displays information pulled from database that matches the session key of the current user
+  # Associated with the view used for update
   def edit
     if SpecificModel.exists?(:user_key => session[:current_user_key])
       @specific_model = SpecificModel.find_by(user_key: session[:current_user_key])
@@ -81,6 +82,7 @@ class SpecificModelController < ApplicationController
     end
   end
    
+  # Saves the edit of the SpecificModel object to the database
   def update
     @specific_model = SpecificModel.find_by(user_key: session[:current_user_key])
     
@@ -90,11 +92,12 @@ class SpecificModelController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+  # Params used to edit the SpecificModel object
   def specific_model_param
     params.require(:specific_model).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, {:allgenres => []})
   end
   
+  # Not implemented
   def delete
     SpecificModel.find(params[:user_key]).destroy
     redirect_to :action => 'root_path'

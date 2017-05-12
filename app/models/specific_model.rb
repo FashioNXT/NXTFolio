@@ -1,19 +1,17 @@
 class SpecificModel < ApplicationRecord
-  #belongs_to :general_info
   attr_accessor :allgenres
   
-  
-  def self.search general_info_user_keys, checkboxes, params_arg    #params_arg would be the params that returned from the specific model search. DOES NOT INCLUDE GENRE
+  #params_arg are the params returned from the SpecificModel search but DOES NOT INCLUDE GENRE
+  def self.search general_info_user_keys, checkboxes, params_arg
     @user_array = Array.new
     @genre_checked_array = Array.new
     @return_array = Array.new
     @priority_hash = Hash.new
     @priority_return_array = Array.new
     
-    puts "SPECIFIC MODEL - MODEL"
-    # Search based on the user keys we got from general info, store into @user_array
+    # Search based on the user keys we got from GeneralInfo, store into @user_array
     if (!general_info_user_keys.nil? && general_info_user_keys.length > 0)
-      puts "SPECIFIC MODEL - MODEL -  general_info_user_keys has a few entries"
+      # Gets here if general_info_user_keys has entries
       general_info_user_keys.each do |user_key_element|
         puts user_key_element.to_s
         if SpecificModel.exists?(user_key: user_key_element)
@@ -25,12 +23,11 @@ class SpecificModel < ApplicationRecord
         end     
       end
     else
-      puts "SPECIFIC MODEL - MODEL - ELSE, this means nothing came through general_info_user_keys"
+      # Gets here if nothing came through general_info_user_keys
       @user_array = SpecificModel.all
     end
     
-    puts params_arg.values.all? {|x| !x.nil?}
-     #If it was an empty search, go ahead and return @user if there was one.
+    # If it was an empty search, go ahead and return @user if there was one
     if (checkboxes.nil? && params_arg.values.all? {|x| !x.nil?} && @user_array.length > 0)
       @user_array.each do |user_object|
         @priority_return_array.push(user_object[:user_key])
@@ -39,15 +36,15 @@ class SpecificModel < ApplicationRecord
       return @priority_return_array
     end
     
-    # Genre requires a bit of a different search. For every user in user_array, check if A genre matches ANY genre. 
-    # If there are no genres , loop through @user_array, push the keys into @genre_checked_array
+    # Genre requires a slightly different search. 
+    # For every user in user_array, check if A genre matches ANY genre 
+    # If there are no genres, loop through @user_array & push the keys into @genre_checked_array
     if checkboxes.nil?
-      puts "SPECIFIC MODEL - MODEL : GENRES ARE EMPTY"
-      #Leave genre checked hash empty as we are not searching for genres.
+      # Gets here if genre is empty
+      # Leave genre checked hash empty as we are not searching for genres.
     elsif !(@user_array.length > 0)
-      puts "SPECIFIC MODEL - MODEL : USER_ARRAY IS EMPTY(General Info didn't have any searches), but we do have genres to search by"
-      #They did not search for anything in General Info and user array never got populated, 
-      #therefore they are looking for everyone in the profession.
+      #They did not search for anything in GeneralInfo and user array never got populated, 
+      # Therefore they are looking for everyone in the profession, using genres
       SpecificModel.all.find_each do |user_object| 
         checkboxes.each do |key, checkbox_genre|
           if user_object[:genre].to_s.include? key.to_s
@@ -57,10 +54,9 @@ class SpecificModel < ApplicationRecord
         end
       end
     else
-      puts "SPECIFIC MODEL - MODEL : GENRE ELSE, User Array has a few entries."
+      # Gets here if user_array has entries
       @user_array.each do |user_object|
         checkboxes.each do |key, checkbox_genre|
-          puts "First user, then the search key"
           @user_genre_str = String.new
           @key_str = String.new
           @user_genre_str = user_object[:genre]
@@ -73,40 +69,41 @@ class SpecificModel < ApplicationRecord
       end
     end
     
-    #First check that we even have any params worth searching
+    # 1st check that there are any params worth searching
     if params_arg[:height_feet].to_s != '' || params_arg[:height_inch].to_s != '' || params_arg[:dress_size].to_s != '' || params_arg[:hair_color].to_s != ''  || params_arg[:skin_color].to_s != ''  || params_arg[:shoot_nudes].to_s != ''  || params_arg[:piercings].to_s != ''  || params_arg[:experience].to_s != '' 
       if(@genre_checked_array.length > 0)
-        puts "FINAL STEP - We have specific params to search by, and we had previous genre-checked results"
+        # Can search by specific params & previous genre-checked results
         @genre_checked_array.each do |user_object|
           if SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ? OR dress_size ILIKE ? OR hair_color ILIKE ? OR skin_color ILIKE ? OR shoot_nudes ILIKE ? OR tattoos ILIKE ? OR piercings ILIKE ? OR experience ILIKE ?)" , user_object[:user_key], params_arg[:height_feet], params_arg[:height_inches], params_arg[:dress_size], params_arg[:hair_color], params_arg[:skin_color], params_arg[:shoot_nudes], params_arg[:tattoos], params_arg[:piercings], params_arg[:experience])
             @return_array.push(user_object[:user_key])
           end
         end
       else
-        puts "FINAL STEP - We have params to search by, but no genre matches previously. Search entire model and check for the params"
+        # Can search by experience but have no previous genre-checked results
+        # Search entire model and check for the params
         SpecificModel.all.find_each do |user_object|
           if SpecificModel.where("user_key ILIKE ? AND (height_feet ILIKE ? OR height_inch ILIKE ? OR dress_size ILIKE ? OR hair_color ILIKE ? OR skin_color ILIKE ? OR shoot_nudes ILIKE ? OR tattoos ILIKE ? OR piercings ILIKE ? OR experience ILIKE ?)" , user_object[:user_key], params_arg[:height_feet], params_arg[:height_inches], params_arg[:dress_size], params_arg[:hair_color], params_arg[:skin_color], params_arg[:shoot_nudes], params_arg[:tattoos], params_arg[:piercings], params_arg[:experience])
-            @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
+            @return_array.push(user_object[:user_key])   #Might need to find by instead... worse in efficiency to do that though
           end
         end
       end
     else
       if(@genre_checked_array.length > 0)
-        puts "FINAL STEP - We DO NOT have specific params to search by, but we had genre-checks. Return them."
+        # Have no specific params to search by but have genre-checks
+        # Return genre-checked results
         @genre_checked_array.each do |user_object|
           @return_array.push(user_object[:user_key])
         end
       else
-        puts "FINAL STEP - We DO NOT have specific params to search by, and we DO NOT have genres... Return everything in the table..."
-        #if (general_info_user_keys.length > 0 && (checkboxes.nil? || params_arg.nil?))
-          SpecificModel.all.find_each do |user_object|
-            @return_array.push(user_object[:user_key]) 
-          end
-        #end
+        # Have no specific params to search by and no genre-checked results
+        # Return everything in the table
+        SpecificModel.all.find_each do |user_object|
+          @return_array.push(user_object[:user_key]) 
+        end
       end
     end
    
-   #Ranking users for how closely they matched the search params.
+   # Ranks users by how closely they matched the search params
     @return_array.each do |user_key|
       @priority_counter = 0
       @user = SpecificModel.find_by(user_key: user_key)
@@ -164,6 +161,7 @@ class SpecificModel < ApplicationRecord
     return @priority_return_array 
   end
   
+  # Sets appearance of profile view attributes
   def attribute_values 
     @attribute_values = Hash.new
     @attribute_values[:height] = "Height: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."

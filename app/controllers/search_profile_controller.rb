@@ -1,14 +1,14 @@
 class SearchProfileController < ApplicationController
-  #Variable that holds a params/object with all the attributes filled in
+  # Variable that holds a params/object with all the attributes filled in
   def list
     @search_profiles = SearchProfile.all
   end
    
+  # Associated with the view that displays all search results
   def show
     @users = Array.new
     flash[:user_keys] = flash[:user_keys]
     if flash[:user_keys] == "ALL"
-      puts "Users = GeneralInfo.all"
       @users = GeneralInfo.all
     elsif !(flash[:user_keys].empty?)
       flash[:user_keys].each do |user_key|
@@ -18,31 +18,28 @@ class SearchProfileController < ApplicationController
       flash[:notice] = "No entries matched your search."
     end
   end
-   
+  
+  # Not implemented (not needed for this controller, can be deleted)
   def create
   end
   
-  def get_user_keys(array)
-    puts "IN GET USER KEYS"
+  def get_user_keys array
     @return_array = Array.new
     array.each do |element,index|
-      puts "#{element[:userKey]} is part of the array"
       @return_array.push(element[:userKey])
     end
     
-    puts "HEY! THIS IS THE ARRAYS SIZE:" + @return_array.length.to_s
     return @return_array
   end
   
+  # Empty function needed for rendering a view
   def search
-    #What is this function? It's like an empty function that is needed to render stuff.
   end
   
   def search_general
-    #@general_info = GeneralInfo.new(general_info_search_params)
     @search_params = params.except("utf8").except("button")
     
-    #Search for users based on the general info search params. Not by profession though.
+    #Search for users based on the GeneralInfo search params excluding profession
     if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == '' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == ''
       #@general_queries = GeneralInfo.all
     else
@@ -50,19 +47,16 @@ class SearchProfileController < ApplicationController
     end
     
     @general_queries = GeneralInfo.search @search_params
-    puts "This is the profession id: #{@search_params[:profession]}"
     
     #Get the user keys
     @user_keys = get_user_keys @general_queries
     
     flash[:user_keys] = @user_keys
-    
 
-    #Pass which ever users were in the resulting @user_keys to the next tier of searching.
+    # Pass which ever users were in the resulting @user_keys to the next tier of searching.
     if @search_params[:profession] == "0"
       if flash[:user_keys].empty?
         flash[:user_keys] = "ALL"
-        puts "user_keys = ALL"
       end
       redirect_to :action => 'show'
     elsif @search_params[:profession] == "1"
@@ -76,8 +70,8 @@ class SearchProfileController < ApplicationController
     end
   end
   
+  # Associated with the view for search_profile/search_designer
   def search_designer
-    # This controller function supports the view search_profile/search_designer
   end
   
   def search_specific_designer
@@ -85,7 +79,6 @@ class SearchProfileController < ApplicationController
     @experience = params[:checkboxes]
     @params_arg = params
     
-    # puts "SpecificDesigner Search "
     @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @params_arg
     
     if @user_keys.empty?
@@ -96,16 +89,14 @@ class SearchProfileController < ApplicationController
     redirect_to :action => 'show'
   end
   
+  # Associated with the view for search_profile/search_model
   def search_model
-    # This controller function supports the view search_profile/search_model
   end
   
   def search_specific_model
     @params_arg = params
     @checkboxes = params[:checkboxes]
     
-    # puts "SpecificModel Search "
-    #@user_objects = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
     @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
     
     if @user_keys.empty?
@@ -135,8 +126,8 @@ class SearchProfileController < ApplicationController
     params.require(:search_profile).permit(:email, :password, :password_confirmation)
   end
   
-  def show_profile 
-    
+  # Associated with the view that displays after a profile is selected from the search results list
+  def show_profile
     if GeneralInfo.exists?(:userKey => params[:id])
       @general_info = GeneralInfo.find_by(userKey: params[:id])
       @general_info_attributes = GeneralInfo.attribute_names
@@ -172,14 +163,13 @@ class SearchProfileController < ApplicationController
         @profile_type = "Error"
       end
     else
-      #SHOULD SHOW BLANK STUFF!!!!
+      #SHOULD DISPLAY BLANK STUFF!!!!
       @general_info = GeneralInfo.new
       @general_info_values = Hash.new
-      
     end
   end
   
-  
+  # The 4 methods below are not implemented
   def edit
     @search_profile = SearchProfile.find(params[:id])
   end
@@ -202,8 +192,4 @@ class SearchProfileController < ApplicationController
     SearchProfile.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
-  
-  # def login
-    
-  # end
 end

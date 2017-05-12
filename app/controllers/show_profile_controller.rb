@@ -1,7 +1,5 @@
 class ShowProfileController < ApplicationController
-  ### Added from BCrypt 
-  ### Forces users to login before they can see actions in this controller
-  
+  # Associated with the view that displays after a profile is selected from the search results list
   def show_profile
     if session[:current_user_key] != nil 
       @error = session[:current_user_key].to_s
@@ -48,11 +46,7 @@ class ShowProfileController < ApplicationController
         
       end
     else
-      puts "No profile!"
       redirect_to "/login_info/login"
     end
   end
-  
-  # showOthers aka show the profiles from search
-  
 end
