@@ -1,0 +1,35 @@
+<!--/ LAYOUT HEADER FILE
+-->
+<head>
+  <div id="HEADER">
+    <title>FashionLinks</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= link_to image_tag('Small-White-FashioNXTLogo.png'), "/" %>
+    <!--/= image_tag "FashionNextLogoBlack.png"
+    -->
+    <ul>
+      <li>
+        <a href="/login_info/login" id="loginLogoutButtonID"></a>
+      </li>
+      <li>
+        <a href="/login_info/new" id="signUpButtonID">Sign Up</a>
+      </li>
+      <li>
+        <a href="/search_profile/search">Search</a>
+      </li>
+      <li>
+        <a href="/show_profile">My Profile</a>
+        <!--/%li
+        -->
+        <!--/  %a{:href => "http://wallup.net/wp-content/uploads/2014/10/animal/Black_Dog_Puppies_Best.jpg"} PUPPy!!!!!
+        -->
+        <!--/%li
+        -->
+        <!--/  %a{:href => root_path} Testing If Ya Want!!
+        -->
+      </li>
+    </ul>
+  </div>
+</head>

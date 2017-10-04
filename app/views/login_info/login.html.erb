@@ -1,0 +1,28 @@
+<%= render :partial => "/layout/header" %>
+<body>
+  <%= render :partial => "/layout/body" %>
+  <div id="LOGINFORM">
+    <h1>
+      <b>LOGIN</b>
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+    </h1>
+    <%= form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f| %>
+      <p></p>
+      <%= f.label :email, "Email" %>
+      <br/>
+      <%= f.text_field :email %>
+      <p></p>
+      <%= f.label :password, "Password" %>
+      <br/>
+      <%= f.password_field :password %>
+      <p class="button"></p>
+      <%= f.submit "Login" %>
+    <% end %>
+    <p>
+      Don't have an account? 
+      <a href="/login_info/new">Sign up here!</a>
+    </p>
+  </div>
+</body>
