@@ -17,3 +17,5 @@
 .byebug_history
 .idea/
 TAMU-PROR-MatchMyFashion.iml
+
+.DS_Store
