@@ -1,0 +1,28 @@
+<%= render :partial => "/layout/header" %>
+<body>
+<%= render :partial => "/layout/body" %>
+<div id="LOGINFORM">
+  <h1>
+    <b>SIGN UP</b>
+    <div class="notice">
+      <%= flash[:notice] %>
+    </div>
+  </h1>
+  <%= form_for @login_info, :url => '/login_info' do |f| %>
+      <p></p>
+      <%= f.label :email %>
+      <br/>
+      <%= f.text_field :email %>
+      <p></p>
+      <%= f.label :password %>
+      <br/>
+      <%= f.password_field :password %>
+      <p></p>
+      <%= f.label :password_confirmation %>
+      <br/>
+      <%= f.password_field :password_confirmation %>
+      <p class="button"></p>
+      <%= f.submit "Submit" %>
+  <% end %>
+</div>
+</body>

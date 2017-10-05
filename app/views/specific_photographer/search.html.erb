@@ -1,0 +1,76 @@
+<%= render :partial => "/layout/header" %>
+<body>
+<%= render :partial => "/layout/body" %>
+<div id="SPECIFICFORM">
+  <h1>
+    <b>SEARCH FOR PHOTOGRAPHER PROFILE</b>
+  </h1>
+  <%= form_tag(search_profile_specific_photographer, :method=>'get') do %>
+      <p>
+        <b>
+          <%= label_tag "Genre" %>
+        </b>
+        <br/>
+        <%= label_tag "Acting" %>
+        <%= check_box_tag 'checkboxes[]', "Acting" %>
+        <%= label_tag "Art" %>
+        <%= check_box_tag 'checkboxes[]', "Art" %>
+        <%= label_tag "Cosplay" %>
+        <%= check_box_tag 'checkboxes[]', "Cosplay" %>
+        <%= label_tag "Dance" %>
+        <%= check_box_tag 'checkboxes[]', "Dance" %>
+        <%= label_tag "Editorial" %>
+        <%= check_box_tag 'checkboxes[]', "Editorial" %>
+        <%= label_tag "Erotic" %>
+        <%= check_box_tag 'checkboxes[]', "Erotic" %>
+        <%= label_tag "Fashion" %>
+        <%= check_box_tag  'checkboxes[]', "Fashion" %>
+        <br/>
+        <%= label_tag "Fetish" %>
+        <%= check_box_tag 'checkboxes[]', "Fetish" %>
+        <%= label_tag "Fitness" %>
+        <%= check_box_tag 'checkboxes[]', "Fitness" %>
+        <%= label_tag "Glamour" %>
+        <%= check_box_tag 'checkboxes[]', "Glamour" %>
+        <%= label_tag "Hair/Makeup" %>
+        <%= check_box_tag 'checkboxes[]', "Makeup" %>
+        <%= label_tag "Lifestyle" %>
+        <%= check_box_tag 'checkboxes[]', "Lifestyle" %>
+        <%= label_tag "Lingerie" %>
+        <%= check_box_tag 'checkboxes[]', "Lingerie" %>
+        <br/>
+        <%= label_tag "Parts Modeling" %>
+        <%= check_box_tag 'checkboxes[]', "Parts Modeling" %>
+        <%= label_tag "Performance Artist" %>
+        <%= check_box_tag 'checkboxes[]', "Performance Artist" %>
+        <%= label_tag "Pinup" %>
+        <%= check_box_tag 'checkboxes[]', "Pinup" %>
+        <%= label_tag "Promotional Modeling" %>
+        <%= check_box_tag 'checkboxes[]', "Promotional Modeling" %>
+        <%= label_tag "Maternal" %>
+        <%= check_box_tag 'checkboxes[]', "Maternal" %>
+        <br/>
+        <%= label_tag "Runway" %>
+        <%= check_box_tag 'checkboxes[]', "Runway" %>
+        <%= label_tag "Spokesperson/Host" %>
+        <%= check_box_tag 'checkboxes[]', "Spokesperson/Host" %>
+        <%= label_tag "Sports" %>
+        <%= check_box_tag 'checkboxes[]', "Sports" %>
+        <%= label_tag "Stunt" %>
+        <%= check_box_tag 'checkboxes[]', "Stunt" %>
+        <%= label_tag "Swimwear" %>
+        <%= check_box_tag 'checkboxes[]', "Swimwear" %>
+        <%= label_tag "Underwater" %>
+        <%= check_box_tag 'checkboxes[]', "Underwater" %>
+      </p>
+      <b>
+        <%= label_tag "Experience" %>
+        <br/>
+        <%= select_tag :experience, options_for_select([["0-2 years"],["3-6 years"],["7-10 years"],["11+ years"]]) %>
+      </b>
+      <p>
+        <%= button_tag 'Submit' %>
+      </p>
+  <% end %>
+</div>
+</body>

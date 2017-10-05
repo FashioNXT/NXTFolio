@@ -1,0 +1,58 @@
+<!--/= render :partial => "/layout/header"
+-->
+<!--/%body
+  <%= render :partial => "/layout/body" %>
+  <div id="SPECIFICFORM">
+    <h1></h1>
+  </div>
+-->
+<!--/      %b SEARCH FOR FASHION PROFILES
+  <%= form_tag(search_profile_search_general_path, :method => 'get') do %>
+    <p></p>
+  <% end %>
+-->
+<!--        First Name
+  <br/>
+-->
+<!--//      %p
+  Last Name
+  <br/>
+-->
+<!--        %br/
+-->
+<!--/        = text_field_tag "gender"
+  <!--/    %p
+  -->
+-->
+<!--/        State
+  <br/>
+-->
+<!--        = text_field_tag "state"
+  <p></p>
+-->
+<!--/        City
+  <br/>
+  <%= text_field_tag "city" %>
+-->
+<!-- /     %p
+-->
+<!--///        Compensation
+  <!--/      %br/
+    <%= select_tag "compensation", options_for_select([[''], ['Any', 'Any'], ['Assignment Based', 'Assignment Based'], ['Pay Only', 'Pay Only']]) %>
+-->
+<!--    %p
+-->
+-->
+<!--        Profession
+-->
+<!--br/
+  <%= select_tag "specific_profile_id", options_for_select([['Any', 0], ['Designer', 1], ['Model', 2], ['Photographer', 3]]) %>
+-->
+<!--/      %p
+-->
+<!--//        = button_tag 'Submit'
+  <!--/Priority:
+  -->
+<!--/%br/
+-->
+-->
