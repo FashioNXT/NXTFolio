@@ -1,8 +1,0 @@
-- if @general_infos.blank?
-  %p There are not any general infos currently in the system.
-- else
-  %p These are the current general infos in our system
-  %ul#generalinfos
-    - @general_infos.each do |c|
-      %li= link_to c.first_name, {:action => 'show', :id => c.id}
-%p= link_to "Add new Profile", {:action => 'new' }
