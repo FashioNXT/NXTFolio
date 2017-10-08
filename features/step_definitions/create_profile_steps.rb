@@ -24,9 +24,5 @@ Then(/^I should see a message that says "(.*?)"$/) do |message|
 end
 
 Then(/^I should be on the general info page$/) do
-  visit general_info_new_path
-end
-
-Then(/^I should be on the login page$/) do
-  visit login_info_login_path 
+  visit '/general_info/new'
 end

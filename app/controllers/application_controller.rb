@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   
   # Used to confirm the session key of the current user
   def index
-    puts "Session key"
     puts session[:current_user_key].to_s
   end
 end

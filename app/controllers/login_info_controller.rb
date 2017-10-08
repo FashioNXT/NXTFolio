@@ -89,7 +89,6 @@ class LoginInfoController < ApplicationController
   def login_submit
     @login_info = LoginInfo.new(login_info_param)
     if LoginInfo.exists?(:email => @login_info[:email])
-      puts "correct email"
       @login_user = LoginInfo.find_by(email: @login_info[:email])
       if @login_user[:password] == @login_info[:password]
         #login
