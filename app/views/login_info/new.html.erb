@@ -1,6 +1,8 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
+<section id="login_section" class="container content-section text-center">
 <div id="LOGINFORM">
   <h1>
     <b>SIGN UP</b>
@@ -22,7 +24,8 @@
       <br/>
       <%= f.password_field :password_confirmation %>
       <p class="button"></p>
-      <%= f.submit "Submit" %>
+      <%= f.submit "Submit" , :class => 'btn btn-default'  %>
   <% end %>
 </div>
+</section>
 </body>
