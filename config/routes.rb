@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'template/create'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
