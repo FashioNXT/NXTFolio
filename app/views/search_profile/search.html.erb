@@ -1,7 +1,10 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
-<div id="SPECIFICFORM">
+
+<section id="search_section" class="container content-section text-center">
+  <div id="SPECIFICFORM">
   <h1>
     <b>SEARCH FOR FASHION PROFILES</b>
   </h1>
@@ -42,7 +45,7 @@
         <%= select_tag "profession", options_for_select([['Any', '0'], ['Designer', '1'], ['Model', '2'], ['Photographer', '3']]) %>
       </p>
       <p>
-        <%= button_tag 'Submit' %>
+        <%= button_tag 'Submit' , :class => 'btn btn-default' %>
       </p>
   <% end %>
   <!--/Priority:
@@ -54,6 +57,7 @@
   <!--/  ['Important', '2'],['Standard','3']], '3'))                   |
   -->
 </div>
+</section>
 <!--/%p
 -->
 <!--/  Describe your problem:
@@ -71,3 +75,4 @@
 <!--/  = file_field_tag "attachment"
 -->
 </body>
+<%= render :partial => "/layout/footer" %>
