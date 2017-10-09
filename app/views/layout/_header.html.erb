@@ -1,35 +1,34 @@
 <!--/ LAYOUT HEADER FILE
 -->
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <div id="HEADER">
-    <title>FashionLinks</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= link_to image_tag('Small-White-FashioNXTLogo.png'), "/" %>
-    <!--/= image_tag "FashionNextLogoBlack.png"
-    -->
-    <ul>
-      <li>
-        <a href="/login_info/login" id="loginLogoutButtonID"></a>
-      </li>
-      <li>
-        <a href="/login_info/new" id="signUpButtonID">Sign Up</a>
-      </li>
-      <li>
-        <a href="/search_profile/search">Search</a>
-      </li>
-      <li>
-        <a href="/show_profile">My Profile</a>
-        <!--/%li
-        -->
-        <!--/  %a{:href => "http://wallup.net/wp-content/uploads/2014/10/animal/Black_Dog_Puppies_Best.jpg"} PUPPy!!!!!
-        -->
-        <!--/%li
-        -->
-        <!--/  %a{:href => root_path} Testing If Ya Want!!
-        -->
-      </li>
-    </ul>
-  </div>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title href="/">FashionNXT - Your one stop shop for fashion</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="<%= asset_path 'bootstrap.css' %>" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Theme CSS -->
+  <link href="<%= asset_path 'grayscale.scss' %>" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
 </head>
