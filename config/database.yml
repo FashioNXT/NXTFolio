@@ -25,9 +25,11 @@ default: &default
   username: shiller
   password: password
 
+
 development:
   <<: *default
   database: workspace_development
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
