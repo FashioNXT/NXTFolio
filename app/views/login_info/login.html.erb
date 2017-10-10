@@ -1,9 +1,11 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
-  <div id="LOGINFORM">
+<br>
+<section id="login_section" class="container content-section text-center">
+  <div class="section" id="LOGINFORM">
     <h1>
-      <b>LOGIN</b>
       <div class="notice">
         <%= flash[:notice] %>
       </div>
@@ -18,11 +20,14 @@
       <br/>
       <%= f.password_field :password %>
       <p class="button"></p>
-      <%= f.submit "Login" %>
+      <%= f.submit "Login", :class => 'btn btn-default' %>
     <% end %>
     <p>
-      Don't have an account? 
+      Don't have an account?
       <a href="/login_info/new">Sign up here!</a>
     </p>
   </div>
+
+</section>
+<%= render :partial => "/layout/javascripts" %>
 </body>
