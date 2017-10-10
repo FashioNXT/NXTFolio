@@ -1,7 +1,9 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
-  <div id="SPECIFICFORM">
+  <section  id="specificForm" class="container content-section text-center">
+    <div id="SPECIFICFORM">
     <h1>
       <b>DESIGNER INFORMATION</b>
     </h1>
@@ -83,4 +85,6 @@
     <% end %>
     <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
   </div>
+  </section>
 </body>
+<%= render :partial => "/layout/footer" %>

@@ -2,6 +2,8 @@
 <body>
 <%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
+
+<section  id="show_profile_section" class="container content-section text-center">
 <div id="TOPPICTURES">
   <% if @general_info.cover_picture? %>
       <%= image_tag @general_info.cover_picture.url, :class => 'Cover' %>
@@ -119,4 +121,6 @@
     <% end %>
   </div>
 </div>
+</section>
 </body>
+<%= render :partial => "/layout/footer" %>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,9 +36,11 @@
       <script src="assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
-
+<%= render :partial => "/layout/header" %>
   <body data-spy="scroll" data-offset="0" data-target="#nav">
+  <%= render :partial => "/layout/navigation" %>
 
+  <section id="profile" class="container content-section text-center">
 	<div id="section-topbar">
 		<div id="topbar-inner">
 			<div class="container">
@@ -373,19 +375,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-   
-    <script src="../../assets/javascripts/jquery.min.js"></script>
-    <script src="../../assets/javascripts/popper.min.js"></script>
-    <script src="../../assets/javascripts/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="../../assets/javascripts/jquery.easing.min.js"></script>
-    <script src="../../assets/javascripts/scrollreveal.min.js"></script>
-    <script src="../../assets/javascripts/jquery.magnific-popup.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../../assets/javascripts/creative.min.js"></script>
-
-    <script src="../../assets/javascripts/bootstrap.js"></script>
+  </section>
   </body>
-</html>
+
+<%= render :partial => "/layout/footer" %>

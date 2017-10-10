@@ -1,6 +1,8 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
+<section id="loginForm" class="container content-section text-center">
   <div id="LOGINFORM">
     <h1>
       <b>EDIT LOGIN INFORMATION</b>
@@ -26,4 +28,6 @@
     <% end %>
     <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
   </div>
+</section>
 </body>
+<%= render :partial => "/layout/footer" %>

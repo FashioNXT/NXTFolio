@@ -1,6 +1,9 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
+<section  id="specificForm" class="container content-section text-center">
+
   <div id="SPECIFICFORM">
     <h1>
       <b>MODEL PROFILE INFORMATION</b>
@@ -128,4 +131,6 @@
       <%= f.submit "Submit" %>
     <% end %>
   </div>
+</section>
 </body>
+<%= render :partial => "/layout/footer" %>
