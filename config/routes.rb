@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'template/create'
-
+  #get 'template/create'
+  #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   resources :specific_model
   resources :specific_photographer
   resources :search_profile
+  resources :template
   
   root 'application#index'
 end
