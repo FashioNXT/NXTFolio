@@ -1,6 +1,8 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
+<section id="specificForm" class="container content-section text-center">
   <div id="SPECIFICFORM">
     <h1>
       <b>SEARCH FOR DESIGNER PROFILE</b>
@@ -73,5 +75,7 @@
       </p>
     <% end %>
   </div>
+</section>
 <%= render :partial => "/layout/javascripts" %>
 </body>
+<%= render :partial => "/layout/footer" %>

@@ -1,6 +1,8 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
   <%= render :partial => "/layout/body" %>
+<section id="generalForm" class="container content-section text-center">
   <div id="GENERALFORM">
     <div id="NOTICE">
       <%= notice %>
@@ -86,5 +88,7 @@
     <% end %>
     <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
   </div>
+</section>
 <%= render :partial => "/layout/javascripts" %>
 </body>
+<%= render :partial => "/layout/footer" %>
