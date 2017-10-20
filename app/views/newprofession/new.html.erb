@@ -1,0 +1,35 @@
+<%= render :partial => "/layout/header" %>
+<body>
+<%= render :partial => "/layout/navigation" %>
+<%= render :partial => "/layout/body" %>
+<body>
+<section  id="show_profile_section" class="container content-section text-center">
+<div class="container">
+
+  <div class="page-header">
+    <h1>Add Professional</h1>
+    <p class="lead">Add template for the new professional.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+
+
+      <%= form_tag("/template") do %>
+          <div class="form-group" id="prof_form_group">
+            <label for="text">Professional name:</label>
+            <input type="text" class="form-control" id="p_name" name="prof_name">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="button" class="btn btn-default" onclick="addFields()">Add field</button>
+      <% end %>
+
+    </div>
+  </div>
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
+

@@ -1,0 +1,2 @@
+module NewprofessionHelper
+end
