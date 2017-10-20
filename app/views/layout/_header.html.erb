@@ -36,6 +36,16 @@
       background-color: lightgray;
     <% end %>
     }
+
+    @media (min-width: 768px) {
+      .navbar-custom {
+      <% if @landing %>
+        background: transparent;
+      <% else %>
+        background: rgba(0, 0, 0, 0.6);
+      <% end %>
+      }
+    }
   </style>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
