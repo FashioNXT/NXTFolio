@@ -20,31 +20,31 @@
           <form class="" method="post" action="#">
 
             <div class="form-group">
-              <label for="email" class="cols-sm-2 control-label">Your Email</label>
+              <%= f.label :email, :class => 'cols-sm-2 control-label' %>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Enter your email' %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="cols-sm-2 control-label">Password</label>
+              <%= f.label :password, :class => 'cols-sm-2 control-label'%>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                  <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+              <%= f.label :password_confirmation, :class => 'cols-sm-2 control-label'%>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                  <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'confirm', :placeholder => 'Confirm your Password' %>
                 </div>
               </div>
             </div>
@@ -57,7 +57,6 @@
       </div>
     </div>
 
-      
   <% end %>
 </div>
 </section>

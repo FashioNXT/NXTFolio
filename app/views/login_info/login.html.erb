@@ -14,14 +14,14 @@
       </h1>
     </div>
     <%= form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f| %>
-      <!-- <p></p>
+      <!--  <p></p>
       <%= f.label :email, "Email" %>
       <br/>
       <%= f.text_field :email %>
       <p></p>
       <%= f.label :password, "Password" %>
       <br/>
-      <%= f.password_field :password %> -->
+      <%= f.password_field :password %>  -->
 
       <div class="container">
         <div class="row main">
@@ -29,21 +29,21 @@
             <form class="" method="post" action="#">
 
               <div class="form-group">
-                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                <%= f.label :email, "Your Email", :class => 'cols-sm-2 control-label' %>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                    <%= f.text_field :email, :class => 'form-control', :id => 'email', :placeholder => 'Enter your Email' %>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="password" class="cols-sm-2 control-label">Password</label>
+                <%= f.label :password, "Password", :class => 'cols-sm-2 control-label' %>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                    <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
                   </div>
                 </div>
               </div>
