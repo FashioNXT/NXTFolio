@@ -3,14 +3,15 @@ class TemplateController < ApplicationController
     flash[:notice] = "successfully created."
     type = params[:prof_name]
     attributes1 = params.select { |key, value| key.to_s.match(/^field_*/) }
-    keys = params[:attribute]
-    puts "printing atteributes", field
-    keys.each_with_index do |key, value|
-      puts "printing key",key
-      puts "printing value",value
+    field_name_arr = params[:field_name]
+    field_type_arr = params[:field_type]
+
+    #puts "printing attributes", params[:field_name]
+    field_name_arr.each_with_index do |field_name, index|
+      puts "printing key",field_name
+      puts "printing value",field_type_arr[index]
     end
-    puts "data-type", type
-    puts "data-attributes1", attributes1
+
     professional = Template.create(prof_name: type, attributes: attributes1)
     #params = ActionController::Parameters.new(prof_name: type, attributes: attributes1)
     #Template.new(params.permit(:prof_name,:attributes))
