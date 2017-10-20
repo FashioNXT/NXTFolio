@@ -1,127 +1,316 @@
 <%= render :partial => "/layout/header" %>
 <body>
 <%= render :partial => "/layout/navigation" %>
-<%= render :partial => "/layout/body" %>
 
-<section  id="show_profile_section" class="container content-section text-center">
-<div id="TOPPICTURES">
-  <% if @general_info.cover_picture? %>
-      <%= image_tag @general_info.cover_picture.url, :class => 'Cover' %>
-  <% else %>
-      <img class="Cover" src="https://weathervanemusic.org/uploads/files/914651792900347299-gray-block.full.jpg"/>
-  <% end %>
-  <% if @general_info.profile_picture? %>
-      <%= image_tag @general_info.profile_picture.url, :class => 'Profile' %>
-  <% else %>
-      <img class="Profile" src="http://www.combonetwork.com/img/empty_profile.png"/>
-  <% end %>
-  <div id="PROFILENAME">
-    <p>
-      <%= @general_info.first_name %>
-      <%= @general_info.last_name %>
-    </p>
+
+  <div id="headerwrap">
+    <div class="container">
+      <div class="row centered">
+        <div class="col-lg-12">
+          <h1>William T. Kelvin</h1>
+          <h3><a href="#"><i class="icon-phone"></i></a> +55 8933-2383  | <a href="#"><i class="icon-envelope"></i></a> william@blacktie.co | <a href="#"><i class="icon-map-marker"></i></a> London, England. </h3>
+        </div><!--/.col-lg-12 -->
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div><!--/.#headerwrap -->
+
+
+  <section id="about" name="about"></section>
+  <div id="intro">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>ABOUT DESIGNER</h5>
+        </div>
+        <div class="col-lg-6">
+          <p>I'm web designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like branding, icon design or web development.</p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>SOCIAL LINKS</sm></p>
+          <p>
+            <a href="#"><i class="icon-dribbble"></i></a>
+            <a href="#"><i class="icon-twitter"></i></a>
+            <a href="#"><i class="icon-facebook"></i></a>
+            <a href="#"><i class="icon-linkedin"></i></a>
+            <a href="#"><i class="icon-apple"></i></a>
+
+          </p>
+          <br>
+
+        </div>
+
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div><!--/ #intro -->
+
+
+  <section id="resume" name="resume"></section>
+  <!--EDUCATION DESCRIPTION -->
+  <div class="container desc">
+    <div class="row">
+
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>EDUCATION</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Master of Web Design</t><br/>
+            St. Patrick University <br/>
+            <i>3 Years Course</i>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>GRADUATING IN MAY 2014</sm><br/>
+          <imp><sm>IN PROGRESS</sm></imp>
+          </p>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3">
+          <p><t>Degree of Web Developer</t><br/>
+            Hastings University <br/>
+            <i>2 Years Course</i>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>JUNE 2012</sm></p>
+        </div>
+
+    </div><!--/.row -->
+    <br>
+    <hr>
+  </div><!--/.container -->
+
+
+  <!--WORK DESCRIPTION -->
+  <div class="container desc">
+    <div class="row">
+
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>WORK</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Front-end Developer</t><br/>
+            Black Tie Corp. <br/>
+          </p>
+          <p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>AUGUST 2012 - CURRENT</sm></p>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3">
+          <p><t>Web Designer - Intern</t><br/>
+            Onassis Ltd. <br/>
+          </p>
+          <p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>JUNE 2010 - JULY 2012</sm></p>
+        </div>
+    </div><!--/.row -->
+    <br>
+    <hr>
+  </div><!--/.container -->
+
+
+  <!--AWARDS DESCRIPTION -->
+  <div class="container desc">
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>AWARDS</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Best Web Design</t><br/>
+            Black Tie Site <br/>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>NOVEMBER 2013</sm></p>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3">
+          <p><t>Designer of the Year</t><br/>
+            Awwwards Site
+          </p>
+          <p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>2013</sm></p>
+        </div>
+
+    </div><!--/.row -->
+    <br>
+  </div><!--/.container -->
+
+  <!--MORE DESCRIPTION -->
+  <div class="container desc">
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>MORE</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Influencers</t><br/>
+            Black Tie Site <br/>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>NOVEMBER 2013</sm></p>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3">
+          <p><t>Designer of the Year</t><br/>
+            Awwwards Site
+          </p>
+          <p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>2013</sm></p>
+        </div>
+
+    </div><!--/.row -->
+    <br>
+  </div><!--/.container -->
+
+  <section class="p-0" id="portfolio">
+      <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '1.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '1.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '2.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '2.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '3.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '3.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '4.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '4.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '5.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '5.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="<%= asset_path '6.jpg' %>">
+              <img class="img-fluid" src="<%= asset_path '6.jpg' %>" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section id="contact" name="contact"></section>
+  <!--FOOTER DESCRIPTION -->
+  <div id="footwrap">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-2 col-lg-offset-1">
+          <h5>CONTACT</h5>
+        </div>
+        <div class="col-lg-6">
+          <p><t>Email</t><br/>
+            william@blacktie.co <br/>
+          </p>
+          <p><t>Adress</t><br/>
+            Some Ave. 987 <br/>
+            Postal 23892 <br/>
+            London, England. <br/>
+          </p>
+          <p><t>Phone</t><br/>
+            +55 8933-2383 <br/>
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p><sm>SOCIAL LINKS</sm></p>
+          <p>
+            <a href="#"><i class="icon-dribbble"></i></a>
+            <a href="#"><i class="icon-twitter"></i></a>
+            <a href="#"><i class="icon-facebook"></i></a>
+            <a href="#"><i class="icon-linkedin"></i></a>
+            <a href="#"><i class="icon-apple"></i></a>
+
+          </p>
+        </div>
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div><!--/ #footer -->
+
+  <div id="c">
+    <div class="container">
+      <p>Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
+
+    </div>
   </div>
-  <div id="EDITLINKS">
-    <a href="/login_info/edit">Edit Login Info</a>
-    <a href="/general_info/edit">Edit General Info</a>
-    <% if (@profile_type != nil) %>
-        <% if @profile_type.upcase == "MODEL" %>
-            <a href="/specific_model/edit">Edit Model Info</a>
-        <% elsif @profile_type.upcase == "DESIGNER" %>
-            <a href="/specific_designer/edit">Edit Designer Info</a>
-        <% elsif @profile_type.upcase == "PHOTOGRAPHER" %>
-            <a href="/specific_photographer/edit">Edit Photographer Info</a>
-        <% end %>
-    <% end %>
-    <a href="/general_info/edit_profession">Edit Occupation</a>
-    <!--/ %a{:href => "/login_info/delete"} Delete Account
-    -->
-  </div>
-</div>
-<div id="PROFILEINFO">
-  <div id="PROFILETEXT">
-    <h2>
-      <b>GENERAL INFO</b>
-    </h2>
-    <p>
-      <!--/ #EDITLINKS
-      -->
-      <!--/   %a{:href => "/login_info/edit"} Edit Login Info
-      -->
-      <!--/   %a{:href => "/general_info/edit"} Edit General Info
-      -->
-      <br/>
-      <% @general_info_values.each do |info| %>
-          <% info_array = info[1].split(":") %>
-          <% if(info_array[1] != nil) %>
-              <br/>
-              <b>
-                <%= info_array[0] + ":" %>
-              </b>
-              <%= info_array[1] %>
-          <% end %>
-      <% end %>
-    </p>
-    <br/>
-    <% if (@profile_type != nil) %>
-        <h2>
-          <b>
-            <%= @profile_type.upcase + " SPECIFICS" %>
-          </b>
-        </h2>
-        <p></p>
-        <!--/ #EDITLINKS
-        -->
-        <!--/   - if (@profile_type != nil)
-        -->
-        <!--/     %a{:href => "/general_info/edit_profession"} Edit Occupation
-        -->
-        <!--/     - if @profile_type.upcase == "MODEL"
-        -->
-        <!--/       %a{:href => "/specific_model/edit"} Edit Model Info
-        -->
-        <!--/     - elsif @profile_type.upcase == "DESIGNER"
-        -->
-        <!--/       %a{:href => "/specific_designer/edit"} Edit Designer Info
-        -->
-        <!--/     - elsif @profile_type.upcase == "PHOTOGRAPHER"
-        -->
-        <!--/       %a{:href => "/specific_photographer/edit"} Edit Photographer Info
-        -->
-        <!--/    %br
-        -->
-        <% if (@profile_info != nil) %>
-            <p>
-              <% @profile_info.each do |info| %>
-                  <% info_array = info[1].split(":") %>
-                  <% if(info_array[1] != nil) %>
-                      <br/>
-                      <b>
-                        <%= info_array[0] + ":" %>
-                      </b>
-                      <%= info_array[1] %>
-                  <% end %>
-              <% end %>
-            </p>
-        <% end %>
-    <% end %>
-  </div>
-  <div id="PROFILEIMAGES">
-    <h2>
-      <b>FEATURED GALLERY</b>
-    </h2>
-    <p>This gallery showcases the currently featured images for your profile.</p>
-    <p>If you would like to upload a new set of images, go to the "edit general info" link.</p>
-    <% if @general_info.gallery_pictures? %>
-        <% @general_info.gallery_pictures.each do |picture| %>
-            <%= image_tag picture.url, :class => 'gallery' %>
-        <% end %>
-    <% else %>
-        <img class="gallery" src="http://www.combonetwork.com/img/empty_profile.png"/>
-    <% end %>
-  </div>
-</div>
-</section>
-<%= render :partial => "/layout/javascripts" %>
+<%= render :partial => "/layout/profile_javascripts" %>
 </body>
 <%= render :partial => "/layout/footer" %>
