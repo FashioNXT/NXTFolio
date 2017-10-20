@@ -5,16 +5,16 @@ class TemplateController < ApplicationController
     #attributes1 = params.select { |key, value| key.to_s.match(/^field_*/) }
     field_name_arr = params[:field_name]
     field_type_arr = params[:field_type]
-    attributes1 = []
+    attributes_json = []
     #puts "printing attributes", params[:field_name]
     field_name_arr.each_with_index do |field_name, index|
       puts "printing key",field_name
       puts "printing value",field_type_arr[index]
-      attributes1 << [field_name: field_name, field_type: field_type_arr[index]]
+      attributes_json << [field_name, field_type_arr[index]]
     end
-    #attributes1 = {params[:field_name] => field_name, params[:field_type] => field_type}
-    puts "attributes1 ", attributes1
-    professional = Template.create(prof_name: type, attributes: attributes1)
+    attributes_json = attributes_json.to_json
+    puts "attributes1 ", attributes_json
+    professional = Template.create(prof_name: type, attributes: attributes_json)
     #params = ActionController::Parameters.new(prof_name: type, attributes: attributes1)
     #Template.new(params.permit(:prof_name,:attributes))
     professionals = Template.all
