@@ -40,8 +40,7 @@
                 <label for="gender" class="cols-sm-2 control-label">Gender</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-venus-mars fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter the Gender"/>
+                    <%= select_tag "gender", options_for_select([['Any', 'Any'], ['Male', 'Male'], ['Female', 'Female']]), :class => 'form-control' %>
                   </div>
                 </div>
               </div>
