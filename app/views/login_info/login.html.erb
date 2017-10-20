@@ -6,23 +6,58 @@
 <br>
 <section id="login_section" class="container content-section text-center">
   <div class="section" id="LOGINFORM">
-    <h1>
-      <div class="notice">
-        <%= flash[:notice] %>
-      </div>
-    </h1>
+    <div class="container">
+      <h1>
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
+      </h1>
+    </div>
     <%= form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f| %>
-      <p></p>
+      <!-- <p></p>
       <%= f.label :email, "Email" %>
       <br/>
       <%= f.text_field :email %>
       <p></p>
       <%= f.label :password, "Password" %>
       <br/>
-      <%= f.password_field :password %>
-      <p class="button"></p>
-      <%= f.submit "Login", :class => 'btn btn-default' %>
+      <%= f.password_field :password %> -->
+
+      <div class="container">
+        <div class="row main">
+          <div class="main-center">
+            <form class="" method="post" action="#">
+
+              <div class="form-group">
+                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="cols-sm-2 control-label">Password</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                  </div>
+                </div>
+              </div>
+
+              <p class="button"></p>
+              <%= f.submit "Login", :class => 'btn btn-default' %>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+
     <% end %>
+    <br>
     <p>
       Don't have an account?
       <a href="/login_info/new">Sign up here!</a>
@@ -31,5 +66,6 @@
 
 </section>
 <%= render :partial => "/layout/javascripts" %>
+<%= render :partial => "/layout/footer" %>
 </body>
 <%= render :partial => "/layout/footer" %>
