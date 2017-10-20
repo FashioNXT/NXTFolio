@@ -15,7 +15,6 @@ class TemplateController < ApplicationController
     #params = ActionController::Parameters.new(prof_name: type, attributes: attributes1)
     #Template.new(params.permit(:prof_name,:attributes))
     professionals = Template.all
-    flash[:success] = "New profession successfully created."
   end
 
   # Params used to create the LoginInfo object
