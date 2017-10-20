@@ -22,12 +22,18 @@
         <li>
           <a class="page-scroll" href="/search_profile/search">Search</a>
         </li>
-        <li>
-          <a class="page-scroll" href="/login_info/new" id="signUpButtonID">Sign Up</a>
-        </li>
-        <li>
-          <a class="page-scroll" href="/login_info/login" id="loginLogoutButtonID">Login</a>
-        </li>
+        <% if session[:current_user_key] %>
+          <li>
+            <a class="page-scroll" href="/login_info/logout" id="logoutButtonID">Logout</a>
+          </li>
+        <% else %>
+          <li>
+            <a class="page-scroll" href="/login_info/new" id="signUpButtonID">Sign Up</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="/login_info/login" id="loginLogoutButtonID">Login</a>
+          </li>
+        <% end %>
         <!--<li>-->
         <!--<a class="page-scroll" href="#postJob">Post Job</a>-->
         <!--</li>-->
