@@ -20,7 +20,7 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter the First Name"/>
+                    <%= text_field_tag :first_name, "", class: 'form-control', placeholder: 'Enter the First Name' %>
                   </div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter the Last Name"/>
+                    <%= text_field_tag :last_name, "", class: 'form-control', placeholder: 'Enter the Last Name' %>
                   </div>
                 </div>
               </div>
@@ -39,7 +39,8 @@
                 <label for="gender" class="cols-sm-2 control-label">Gender</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
-                    <%= select_tag "gender", options_for_select([['Any', 'Any'], ['Male', 'Male'], ['Female', 'Female']]), :class => 'form-control' %>
+                    <span class="input-group-addon"><i class="fa fa-venus-mars fa" aria-hidden="true"></i></span>
+                    <%= text_field_tag :gender, "", class: 'form-control', placeholder: 'Enter the Gender' %>
                   </div>
                 </div>
               </div>
@@ -49,7 +50,7 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter the State"/>
+                    <%= text_field_tag :state, "", class: 'form-control', placeholder: 'Enter the State' %>
                   </div>
                 </div>
               </div>
@@ -59,7 +60,7 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter the City"/>
+                    <%= text_field_tag :city, "", class: 'form-control', placeholder: 'Enter the City' %>
                   </div>
                 </div>
               </div>
@@ -94,31 +95,6 @@
       <% end %>
     </div>
   </div>
-  <!-- <p>
-        First Name
-        <br/>
-        <%= text_field_tag "first_name" %>
-      </p>
-      <p>
-        Last Name
-        <br/>
-        <%= text_field_tag "last_name" %>
-      </p>
-      <p>
-        Gender
-        <br/>
-        <%= text_field_tag "gender" %>
-      </p>
-      <p>
-        State
-        <br/>
-        <%= text_field_tag "state" %>
-      </p>
-      <p>
-        City
-        <br/>
-        <%= text_field_tag "city" %>
-      </p> -->
   <!--/Priority:
   -->
   <!--/%br/
