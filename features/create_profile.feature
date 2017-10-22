@@ -20,12 +20,7 @@ Scenario: When a user attempts to create a profile, account creation fails
   Then I should see a message that says "Invalid Password! Please try again."
   And I should be on the login page
   
-Scenario: When a user creates an account, the general information page is submitted
 
-  Given I have signed up for an account
-  When I fill in all fields for general information
-  And I select "Designer" or "Model" or "Photographer"
-  Then I should see the designer page or model page or photographer page
 #   When I fill in "first_name" text field with "Nabil"
 #   And I fill in "last_name" text field with "Chris"
 #   And I fill in "birth_month" text field with "Apr"
