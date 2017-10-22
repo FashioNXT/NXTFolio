@@ -6,9 +6,5 @@ class CreateTemplates < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-
-    change_table :templates do |t|
-      t.rename :attribute, :prof_attribute
-    end
   end
 end
