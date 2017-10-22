@@ -1,6 +1,8 @@
 <%= render :partial => "/layout/header" %>
 <body>
+<%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
+<section id="searchMainIV" class="container content-section text-center">
 <div id="SEARCHMAINDIV">
   <h1>
     <b>
@@ -45,6 +47,7 @@
   <% end %>
   </p>
 </div>
+</section>
 <%= render :partial => "/layout/javascripts" %>
 </body>
-
+<%= render :partial => "/layout/footer" %>

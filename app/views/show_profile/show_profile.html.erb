@@ -2,122 +2,121 @@
 <body>
 <%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
-<div id="TOPPICTURES">
-  <% if @general_info.cover_picture? %>
-      <%= image_tag @general_info.cover_picture.url, :class => 'Cover' %>
-  <% else %>
-      <img class="Cover" src="https://weathervanemusic.org/uploads/files/914651792900347299-gray-block.full.jpg"/>
-  <% end %>
-  <% if @general_info.profile_picture? %>
-      <%= image_tag @general_info.profile_picture.url, :class => 'Profile' %>
-  <% else %>
-      <img class="Profile" src="http://www.combonetwork.com/img/empty_profile.png"/>
-  <% end %>
-  <div id="PROFILENAME">
-    <p>
-      <%= @general_info.first_name %>
-      <%= @general_info.last_name %>
-    </p>
+<br>
+<section id="show_profile_section" class="container content-section">
+  <div class="section" id="">
+    <div class="container target">
+      <div class="row">
+        <div class="col-sm-10">
+          <h1 class="">Joseph Doe</h1>
+          <button type="button" class="btn btn-info">Send me a message</button>
+          <br>
+        </div>
+        <div class="col-sm-2">
+          <a href="/show_profile/" class="pull-right">
+            <img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/400/400/fashion/9/cc/">
+          </a>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3">
+          <!--left col-->
+          <ul class="list-group">
+            <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span>
+              Yesterday
+            </li>
+            <li class="list-group-item text-right">
+              <span class="pull-left"><strong class="">Real name</strong></span> Joseph Doe</li>
+            <li class="list-group-item text-right">
+              <span class="pull-left"><strong class="">Role: </strong></span>Photographer
+            </li>
+          </ul>
+          <div class="panel panel-default">
+            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
+            </div>
+            <div class="panel-body"><a href="http://bootply.com" class="">my-website.com</a>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Social Media</div>
+            <div class="panel-body"><i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i>
+              <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>
+              <i class="fa fa-google-plus fa-2x"></i>
+            </div>
+          </div>
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9" style="" contenteditable="false">
+          <div class="panel panel-default">
+            <div class="panel-heading">Joseph Doe's Bio</div>
+            <div class="panel-body">A long description about me.</div>
+          </div>
+          <div class="panel panel-default target">
+            <div class="panel-heading" contenteditable="false">My Work</div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="thumbnail">
+                    <img alt="300x200" src="http://lorempixel.com/600/400/people">
+                    <!--<div class="caption">-->
+                      <!--<h3>-->
+                        <!--Rover-->
+                      <!--</h3>-->
+                      <!--<p>-->
+                        <!--Cocker Spaniel who loves treats.-->
+                      <!--</p>-->
+                      <!--<p>-->
+
+                      <!--</p>-->
+                    <!--</div>-->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="thumbnail">
+                    <img alt="300x200" src="http://lorempixel.com/600/400/fashion">
+                    <!--<div class="caption">-->
+                      <!--<h3>-->
+                        <!--Marmaduke-->
+                      <!--</h3>-->
+                      <!--<p>-->
+                        <!--Is just another friendly dog.-->
+                      <!--</p>-->
+                      <!--<p>-->
+
+                      <!--</p>-->
+                    <!--</div>-->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="thumbnail">
+                    <img alt="300x200" src="http://lorempixel.com/600/400/fashion">
+                    <!--<div class="caption">-->
+                      <!--<h3>-->
+                        <!--Rocky-->
+                      <!--</h3>-->
+                      <!--<p>-->
+                        <!--Loves catnip and naps. Not fond of children.-->
+                      <!--</p>-->
+                      <!--<p>-->
+
+                      <!--</p>-->
+                    <!--</div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="push"></div>
+      </div>
+    </div>
+
   </div>
-  <div id="EDITLINKS">
-    <a href="/login_info/edit">Edit Login Info</a>
-    <a href="/general_info/edit">Edit General Info</a>
-    <% if (@profile_type != nil) %>
-        <% if @profile_type.upcase == "MODEL" %>
-            <a href="/specific_model/edit">Edit Model Info</a>
-        <% elsif @profile_type.upcase == "DESIGNER" %>
-            <a href="/specific_designer/edit">Edit Designer Info</a>
-        <% elsif @profile_type.upcase == "PHOTOGRAPHER" %>
-            <a href="/specific_photographer/edit">Edit Photographer Info</a>
-        <% end %>
-    <% end %>
-    <a href="/general_info/edit_profession">Edit Occupation</a>
-    <!--/ %a{:href => "/login_info/delete"} Delete Account
-    -->
-  </div>
-</div>
-<div id="PROFILEINFO">
-  <div id="PROFILETEXT">
-    <h2>
-      <b>GENERAL INFO</b>
-    </h2>
-    <p>
-      <!--/ #EDITLINKS
-      -->
-      <!--/   %a{:href => "/login_info/edit"} Edit Login Info
-      -->
-      <!--/   %a{:href => "/general_info/edit"} Edit General Info
-      -->
-      <br/>
-      <% @general_info_values.each do |info| %>
-          <% info_array = info[1].split(":") %>
-          <% if(info_array[1] != nil) %>
-              <br/>
-              <b>
-                <%= info_array[0] + ":" %>
-              </b>
-              <%= info_array[1] %>
-          <% end %>
-      <% end %>
-    </p>
-    <br/>
-    <% if (@profile_type != nil) %>
-        <h2>
-          <b>
-            <%= @profile_type.upcase + " SPECIFICS" %>
-          </b>
-        </h2>
-        <p></p>
-        <!--/ #EDITLINKS
-        -->
-        <!--/   - if (@profile_type != nil)
-        -->
-        <!--/     %a{:href => "/general_info/edit_profession"} Edit Occupation
-        -->
-        <!--/     - if @profile_type.upcase == "MODEL"
-        -->
-        <!--/       %a{:href => "/specific_model/edit"} Edit Model Info
-        -->
-        <!--/     - elsif @profile_type.upcase == "DESIGNER"
-        -->
-        <!--/       %a{:href => "/specific_designer/edit"} Edit Designer Info
-        -->
-        <!--/     - elsif @profile_type.upcase == "PHOTOGRAPHER"
-        -->
-        <!--/       %a{:href => "/specific_photographer/edit"} Edit Photographer Info
-        -->
-        <!--/    %br
-        -->
-        <% if (@profile_info != nil) %>
-            <p>
-              <% @profile_info.each do |info| %>
-                  <% info_array = info[1].split(":") %>
-                  <% if(info_array[1] != nil) %>
-                      <br/>
-                      <b>
-                        <%= info_array[0] + ":" %>
-                      </b>
-                      <%= info_array[1] %>
-                  <% end %>
-              <% end %>
-            </p>
-        <% end %>
-    <% end %>
-  </div>
-  <div id="PROFILEIMAGES">
-    <h2>
-      <b>FEATURED GALLERY</b>
-    </h2>
-    <p>This gallery showcases the currently featured images for your profile.</p>
-    <p>If you would like to upload a new set of images, go to the "edit general info" link.</p>
-    <% if @general_info.gallery_pictures? %>
-        <% @general_info.gallery_pictures.each do |picture| %>
-            <%= image_tag picture.url, :class => 'gallery' %>
-        <% end %>
-    <% else %>
-        <img class="gallery" src="http://www.combonetwork.com/img/empty_profile.png"/>
-    <% end %>
-  </div>
-</div>
+</section>
 <%= render :partial => "/layout/javascripts" %>
 </body>
+<%= render :partial => "/layout/footer" %>

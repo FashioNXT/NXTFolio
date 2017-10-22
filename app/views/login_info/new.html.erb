@@ -4,29 +4,63 @@
 <%= render :partial => "/layout/body" %>
 <section id="login_section" class="container content-section text-center">
 <div id="LOGINFORM">
-  <h1>
-    <b>SIGN UP</b>
-    <div class="notice">
-      <%= flash[:notice] %>
-    </div>
-  </h1>
+  <div class="container">
+    <h1>
+      <b>SIGN UP</b>
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+    </h1>
+  </div>
   <%= form_for @login_info, :url => '/login_info' do |f| %>
-      <p></p>
-      <%= f.label :email %>
-      <br/>
-      <%= f.text_field :email %>
-      <p></p>
-      <%= f.label :password %>
-      <br/>
-      <%= f.password_field :password %>
-      <p></p>
-      <%= f.label :password_confirmation %>
-      <br/>
-      <%= f.password_field :password_confirmation %>
-      <p class="button"></p>
-      <%= f.submit "Submit" , :class => 'btn btn-default'  %>
+
+    <div class="container">
+      <div class="row main">
+        <div class="main-center">
+          <form class="" method="post" action="#">
+
+            <div class="form-group">
+              <%= f.label :email, :class => 'cols-sm-2 control-label' %>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Enter your email' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, :class => 'cols-sm-2 control-label'%>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, :class => 'cols-sm-2 control-label'%>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'confirm', :placeholder => 'Confirm your Password' %>
+                </div>
+              </div>
+            </div>
+
+            <p class="button"></p>
+            <%= f.submit "Submit" , :class => 'btn btn-default'  %>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 </div>
 </section>
 <%= render :partial => "/layout/javascripts" %>
+<%= render :partial => "/layout/footer" %>
 </body>
+<%= render :partial => "/layout/footer" %>
