@@ -9,6 +9,6 @@ function addFields() {
     '  <option value="text">Text</option>' +
     '  <option value="number">Number</option>' +
     '</select>'
-    
+
     form_element.appendChild(new_field);
 }
