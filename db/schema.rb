@@ -49,18 +49,6 @@ ActiveRecord::Schema.define(version: 20171020020337) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "new_professions", force: :cascade do |t|
-    t.string   "profession"
-    t.json     "new_fields"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "newprofessions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "specific_designers", force: :cascade do |t|
     t.text     "genre"
     t.text     "influencers"

@@ -51,7 +51,6 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
-  resources :newprofession
   
   root 'application#index'
 end
