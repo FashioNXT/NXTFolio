@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<%= render :partial => "/layout/header" %>
+
+<html lang="en">
+  <head>
+    <script src="<%= asset_path 'application.js' %>"></script>
+  </head>
+
+  <body>
+  <%= render :partial => "/layout/navigation" %>
+  <%= render :partial => "/layout/body" %>
+  <br> <br> <br> <br>
+  <br>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Add a new Profession</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+
+        <%= form_tag("/template") do %>
+              <div class="form-group" id="prof_form_group">
+                <label for="text">Profession name:</label>
+                <input type="text" class="form-control" id="p_name" name="prof_name">
+              </div>
+              <button type="submit" class="btn btn-default" onclick = "alert('New Profession created!')">Submit</button>
+              <button type="button" class="btn btn-default" onclick="addFields()">Add field</button>
+              <button type="button" class="btn btn-default" onclick="removeFields()">Remove field</button>
+        <% end %>
+
+        </div>
+      </div>
+
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
+
