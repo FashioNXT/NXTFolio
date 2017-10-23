@@ -14,15 +14,15 @@ end
 
 When(/^I log in$/) do
   visit 'login_info/login'
-  fill_in "Email", :with => @login_info.email
-  fill_in "Password", :with => @login_info.password
+  fill_in "email", :with => @login_info.email
+  fill_in "password", :with => @login_info.password
   click_button "Login"
 end
 
 When(/^I try to log in$/) do
   visit 'login_info/login'
-  fill_in "Email", :with => nil
-  fill_in "Password", :with => nil
+  fill_in "email", :with => nil
+  fill_in "password", :with => nil
   click_button "Login"
 end
 
