@@ -9,7 +9,7 @@ Feature: Login to Application
 Scenario: When correct login information is entered a user logs in successfully
 
   Given I am a valid user
-  When I log in 
+  When I log in
   Then I should see "Logged In!"
   And I should be on the Match My Fashion home page
   
