@@ -72,4 +72,4 @@ gem "factory_girl_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
 gem 'mini_magick'
-ruby '2.3.4'
+ruby '2.4.1'

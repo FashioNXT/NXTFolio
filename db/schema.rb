@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20171022194739) do
   end
 
   create_table "templates", force: :cascade do |t|
-    t.string   "prof_name"
+    t.string   "type"
     t.json     "prof_attribute"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
