@@ -39,6 +39,7 @@ class GeneralInfoController < ApplicationController
    
   # Associated with the view used for create
   def new
+    @templates = Template.uniq.pluck(:prof_name).sort
     @general_info = GeneralInfo.new
   end
   
