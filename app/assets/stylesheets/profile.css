@@ -27,11 +27,6 @@ header.masthead {
     background-size: cover;
 }
 
-header.masthead img {
-    display: block;
-    margin: 0 auto 20px;
-}
-
 header.masthead h1 {
     font-size: 80px;
     color: white;
@@ -236,19 +231,21 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/*.profile-img-container {*/
-    /*width: 256px;*/
-    /*height: 256px;*/
-    /*border: 2px solid white;*/
-    /*-webkit-border-radius: 50px;*/
-    /*-moz-border-radius: 50px;*/
-    /*border-radius: 50%;*/
-    /*overflow:hidden;*/
-/*}*/
+.profile-img-container {
+    width: 300px;
+    height: 300px;
+    border: 2px solid white;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+}
 
-/*.profile-img {*/
-    /*display: block;*/
-    /*margin: 0 auto;*/
-    /*height: auto;*/
-    /*width: 100%;*/
-/*}*/
+.profile-img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+}
