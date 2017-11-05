@@ -72,7 +72,7 @@ class GeneralInfoController < ApplicationController
      redirect_to '/show_profile'
     else
      render :action=> 'new'
- end
+    end
   end
 
   # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
