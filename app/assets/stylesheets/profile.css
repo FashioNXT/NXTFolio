@@ -7,24 +7,9 @@
 */
 
 header.masthead {
-    background: url(http://blacktie.co/demo/kelvin/assets/img/header-bg.jpg) no-repeat center top;
     padding-top: 120px;
     padding-bottom: 50px;
     text-align: center;
-    background-attachment: relative;
-    background-position: center center;
-    min-height: 500px;
-    width: 100%;
-
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 header.masthead h1 {
