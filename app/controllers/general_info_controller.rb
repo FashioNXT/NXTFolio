@@ -39,9 +39,42 @@ class GeneralInfoController < ApplicationController
    
   # Associated with the view used for create
   def new
+    @templates = Template.uniq.pluck(:prof_name).sort
+    @templates.unshift('Designer')
+    @templates.unshift('Model')
+    @templates.unshift('Photographer')
     @general_info = GeneralInfo.new
   end
-  
+ 
+
+  def profession_specific
+    last_template_id = GeneralInfo.last.template_id
+    template = Template.find(last_template_id)
+    $prof_name = template.prof_name
+    @some = eval(template.prof_attribute)
+  end
+
+  # POST request action for profession_specifi, called when profession_specific form is submitted     
+  def profession_specific_create
+    field_name_arr = params[:field_name]
+    field_value_arr = params[:field_value]
+    attributes_json = {}
+    if (field_name_arr != nil)
+      field_name_arr.each_with_index do |field_name, index|
+        attributes_json[field_name] = field_value_arr[index]
+      end
+    end
+    attributes_json = attributes_json.to_json
+    ginfo_last = GeneralInfo.last # this would be last entry in general_info i.e. the one created by previous (general_info/new) page
+    ginfo_last.specific_profile = attributes_json
+    ginfo_last.save
+    if ginfo_last.save!
+     redirect_to '/show_profile'
+    else
+     render :action=> 'new'
+    end
+  end
+
   # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
   def create
     # Check to see if the required params are filled in
@@ -67,18 +100,28 @@ class GeneralInfoController < ApplicationController
       
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
-    @general_info.userKey = session[:current_user_key] 
-    
+    @general_info.userKey = session[:current_user_key]
+    $template_name = params[:general_info][:specific_profile_id]
     # Save GeneralInfo object to database & redirect to specific profile view
     # Else display GeneralInfo view if save fails
+    $redirect_path = general_info_profession_specific_path
+    if $template_name == "Designer"
+        $redirect_path = new_specific_designer_path
+        @general_info.specific_profile_id = 1
+    elsif $template_name == "Model"
+        $redirect_path = new_specific_model_path
+        @general_info.specific_profile_id = 2
+    elsif $template_name == "Photographer"
+        $redirect_path = new_specific_photographer_path
+        @general_info.specific_profile_id = 3
+    else
+        template_id1 = Template.find_by(prof_name: $template_name).id
+        @general_info.template_id = template_id1
+    end
+
+
     if @general_info.save!
-      if @general_info[:specific_profile_id] == 1
-        redirect_to new_specific_designer_path 
-      elsif @general_info[:specific_profile_id] == 2
-        redirect_to new_specific_model_path 
-      elsif @general_info[:specific_profile_id] == 3
-        redirect_to new_specific_photographer_path 
-      end
+        redirect_to $redirect_path
     else
       render :action => 'new'
     end
