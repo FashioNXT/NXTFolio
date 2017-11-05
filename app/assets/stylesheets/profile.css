@@ -8,8 +8,7 @@
 
 header.masthead {
   background: url(http://blacktie.co/demo/kelvin/assets/img/header-bg.jpg) no-repeat center top;
-  margin-top: 60px;
-  padding-top: 100px;
+  padding-top: 120px;
   padding-bottom: 50px;
   text-align:center;
   background-attachment: relative;
@@ -58,8 +57,8 @@ header.masthead {
   transition: all ease 0.5s;
   opacity: 0;
   background: rgba(34, 34, 34, 0.7); }
-#portfolio .portfolio-item .portfolio-link .caption:hover {
-  opacity: 1; }
+/*#portfolio .portfolio-item .portfolio-link .caption:hover {
+  opacity: 1;*/ }
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
   font-size: 20px;
   position: absolute;
@@ -123,8 +122,8 @@ header.masthead {
 
 #intro {
   background: #2f2f2f;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 15px;
   color: white;
 } 
 
@@ -186,8 +185,8 @@ h1, h2, h3, h4, h5, h6 {
         text-transform: uppercase; }
       .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
         font-size: 18px; }
-  .portfolio-box:hover .portfolio-box-caption {
-    opacity: 1; }
+  /*.portfolio-box:hover .portfolio-box-caption {
+    opacity: 1;*/ }
   .portfolio-box:focus {
     outline: none; }
   @media (min-width: 768px) {
