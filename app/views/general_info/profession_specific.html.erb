@@ -1,0 +1,36 @@
+<%= render :partial => "/layout/header" %>
+<body>
+<%= render :partial => "/layout/navigation" %>
+  <%= render :partial => "/layout/body" %>
+<section id="generalForm" class="container content-section text-center">
+  <div id="GENERALFORM">
+    <div id="NOTICE">
+      <%= notice %>
+    </div>
+    <h1>
+      <b><%= $prof_name%></b>
+    </h1>
+    <div class="main-center"><span class="input-group-addon">
+    <%= form_tag("/general_info/profession_specific") do %>
+        <div class="form-group" id="prof_form_group">
+        <h5>
+        <% @some.each do |key,value|-%>
+            <%= key %><br>
+            <input type="hidden" name='field_name[]' value='<%= key %>'>
+            <% if value == "text" %>
+                <input type="text" id='<%= key%>' class="form-control" name='field_value[]'><br> 
+            <% else value == "Number" %>
+                <input type="number" id='<%= key%>' class = "form-control" name="field_value[]"><br> 
+            <% end %>
+        <% end %>
+        <h5>
+        <button type="submit" class="btn btn-default">Submit</button>
+    <% end -%>
+    </div></span>
+    </div>
+    </div>
+
+</section>
+<%= render :partial => "/layout/javascripts" %>
+</body>
+<%= render :partial => "/layout/footer" %>
