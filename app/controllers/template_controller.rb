@@ -11,6 +11,8 @@ class TemplateController < ApplicationController
     end
     attributes_json = attributes_json.to_json
     professional = Template.create(prof_name: type, prof_attribute: attributes_json)
+    redirect_to root_path
+    
   end
 
   # Associated with x`the view used for create

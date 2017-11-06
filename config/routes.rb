@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
   get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'
   post 'general_info/update_profession' => 'general_info#update_profession', :as => 'general_info/update_profession'
+  get 'general_info/profession_specific' => 'general_info#profession_specific', :as => 'general_info/profession_specific'
+  post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
   
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'

@@ -36,7 +36,7 @@ class ShowProfileController < ApplicationController
             #stuff
           end
         else
-          puts "Unknown profile type! Profile type given: " + @general_info.specific_profile_id
+          puts "Unknown profile type! Profile type given: "
           @profile_type = "Error"
         end
       else

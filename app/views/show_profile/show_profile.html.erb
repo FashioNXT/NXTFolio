@@ -3,13 +3,20 @@
 <%= render :partial => "/layout/navigation" %>
   
   <!-- Header -->
-  <header class="masthead">
+  <header class="masthead"
+          style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; background-size: cover;">
     <div class="container">
       <div class="row centered">
-        <img class="img-fluid" src="<%= asset_path 'profile.png' %>" alt="">
+        <div class="profile-img-container">
+          <% if @general_info.profile_picture.url %>
+              <img class="profile-img" src="<%= @general_info.profile_picture.url %>" alt="">
+          <% else %>
+              <img class="profile-img" src="<%= asset_path 'profile.png' %>" alt="">
+          <% end %>
+        </div>
         <div class="col-lg-12">
-          <h1>William T. Kelvin</h1>
-          <h3><a href="#"><i class="icon-phone"></i></a> +55 8933-2383  | <a href="#"><i class="icon-envelope"></i></a> william@blacktie.co | <a href="#"><i class="icon-map-marker"></i></a> London, England. </h3>
+          <h1><%= @general_info.first_name + ' ' + @general_info.last_name %></h1>
+          <h3><i class="fa fa-phone"></i></a> 234 (567) 8910  | <i class="fa fa-map-marker"></i></a> <%= @general_info_values[:location] %>. </h3>
         </div><!--/.col-lg-12 -->
       </div>
     </div>
@@ -21,27 +28,19 @@
       <div class="row">
         
         <div class="col-lg-2 col-lg-offset-1">
-          <h5>ABOUT DESIGNER</h5>
+          <h5>ABOUT</h5>
         </div>
         <div class="col-lg-6">
-          <p>location: xxx</p>
-          <p>location: xxx</p>
-          <p>location: xxx</p>
+          <p>I'm a designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like branding, icon design or web development.</p>
         </div>
         <div class="col-lg-3">
           <p><sm>SOCIAL LINKS</sm></p>
           <p>
-            <a href="#"><i class="icon-dribbble"></i></a>
-            <a href="#"><i class="icon-twitter"></i></a>
-            <a href="#"><i class="icon-facebook"></i></a>
-            <a href="#"><i class="icon-linkedin"></i></a>
-            <a href="#"><i class="icon-apple"></i></a>
-
+            <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+            <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
           </p>
           <br>
-          
         </div>
-        
       </div><!--/.row -->
     </div><!--/.container -->
   </div><!--/ #intro -->
@@ -53,227 +52,28 @@
         <br>
           <div class="gal" id="portfolio">
             <div class="row">
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
+              <p>
+                <% @general_info.gallery_pictures.each do |pic| %>
+                  <div class="portfolio-item">
+                    <a class="portfolio-link" href="#" data-toggle="modal">
+                      <div class="caption">
+                        <div class="caption-content">
+                          <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                      </div>
+                      <img class="img-fluid" src="<%= pic.url %>" alt="">
+                    </a>
                   </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/mWpE3Q/2.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/mysOxk/3.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="https://preview.ibb.co/mWpE3Q/2.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/mysOxk/3.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                 <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                 <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-               </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-               </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-               </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/mysOxk/3.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/mysOxk/3.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-                </a>
-              </div>
-              <div class="portfolio-item">
-                <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-                  <div class="caption">
-                    <div class="caption-content">
-                      <i class="fa fa-search-plus fa-3x"></i>
-                    </div>
-                  </div>
-                  <img src="https://preview.ibb.co/mWpE3Q/2.jpg" alt="">
-                </a>
-              </div>
+                <% end %>
+              </p>
             </div>
           </div>
         <!-- </div> -->
       </div>
     </div>
   </div>
-
   <div id="c">
     <%= render :partial => "/layout/footer" %>
   </div>
-
-
 <%= render :partial => "/layout/profile_javascripts" %>
 </body>
