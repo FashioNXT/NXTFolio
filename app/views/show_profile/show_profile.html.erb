@@ -4,7 +4,11 @@
   
   <!-- Header -->
   <header class="masthead"
-          style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; background-size: cover;">
+          <% if @general_info.cover_picture.url %>
+            style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; background-size: cover;">
+          <% else %>
+            style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)); background-size: cover;">
+          <% end %>
     <div class="container">
       <div class="row centered">
         <div class="profile-img-container">
