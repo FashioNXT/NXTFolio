@@ -11,8 +11,9 @@
   </h1>
   <p>
     <%= flash[:notice] %>
+    <div class="container">
     <% @users.each do |info| %>
-      <div id="SEARCHDISPLAYDIV">
+      <div id="SEARCHDISPLAYDIV" class="col-md-4">
         <% if info.profile_picture? %>
             <%= link_to image_tag(info.profile_picture.url), search_profile_show_profile_path(info.userKey) %>
         <% else %>
@@ -45,6 +46,7 @@
         </div>
       </div>
   <% end %>
+  </div>
   </p>
 </div>
 </section>
