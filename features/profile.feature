@@ -11,7 +11,7 @@ Feature: See a Profile
     Given I am a valid user
     When I log in
     Then I should be on the Match My Fashion home page
-    When I go to the profile page
+    When I press and go to my profile
     Then I should see my first name
 
 
