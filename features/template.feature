@@ -1,4 +1,4 @@
-# Login Feature
+# Template feature
 
 Feature: Scenario Template:
 
@@ -9,6 +9,5 @@ Feature: Scenario Template:
 Scenario: Administrator wants to access new Template webpage to add new Professions
 
   Given I am on the home page
-  #When I want to add new profession
-  Then I should be on the Template page
+  Then I should be able to visit Template page
   And I should see a message "ADD A NEW PROFESSION"

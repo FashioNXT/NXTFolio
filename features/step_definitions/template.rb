@@ -4,19 +4,7 @@ Given(/^I am on the home page$/) do
     visit root_path
 end
 
-
-
-=begin
-When(/^I want to add new profession$/) do
-    @login_info = LoginInfo.create!({
-      :email => "hellofriend@gmail.com",
-      :password => "password",
-      :password_confirmation => "password"
-    })
-end
-=end
-
-Then(/^I should be on the Template page$/) do
+Then(/^I should be able to visit Template page$/) do
   visit '/template'
 end
 
