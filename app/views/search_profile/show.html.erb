@@ -16,9 +16,9 @@
       <div id="SEARCHDISPLAYDIV" class="col-md-4">
         <div class="search-img-block">
           <% if info.profile_picture? %>
-              <%= link_to image_tag(info.profile_picture.url, :class => 'search-img'), search_profile_show_profile_path(info.userKey)%>
+              <%= link_to image_tag(info.profile_picture.url, :class => 'search-img'), show_profile_show_profile_path(:user_key => info.userKey)%>
           <% else %>
-              <%= link_to image_tag("http://www.combonetwork.com/img/empty_profile.png"), search_profile_show_profile_path(info.userKey) %>
+              <%= link_to image_tag("http://www.combonetwork.com/img/empty_profile.png"), show_profile_show_profile_path(:user_key => info.userKey) %>
           <% end %>
         </div>
         <div id="SEARCHDISPLAYTEXT">
