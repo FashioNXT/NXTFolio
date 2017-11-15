@@ -25,7 +25,7 @@
           <!--/name gender state profession
           -->
           <h2>
-            <%= link_to "#{info.first_name} #{info.last_name}", search_profile_show_profile_path(info.userKey) %>
+            <%= link_to "#{info.first_name} #{info.last_name}", show_profile_show_profile_path(:user_key => info.userKey) %>
             <h3></h3>
             <!--/ %br
             -->
