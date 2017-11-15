@@ -2,7 +2,7 @@ class ShowProfileController < ApplicationController
   # Associated with the view that displays after a profile is selected from the search results list
   def show_profile
     if session[:current_user_key] != nil or params[:user_key] != nil
-      user_key_current = session[:current_user_key] || params[:user_key]
+      user_key_current = params[:user_key] || session[:current_user_key]
       @error = user_key_current.to_s
       puts "sessions current_user_key" + user_key_current.to_s
 
