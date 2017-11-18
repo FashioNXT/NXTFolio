@@ -12,6 +12,7 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+
   end
 
   def self.from_omniauth(auth)
@@ -22,4 +23,5 @@ class User < ApplicationRecord
       user.image = auth.info.image # assuming the user model has an image
     end
   end
+
 end

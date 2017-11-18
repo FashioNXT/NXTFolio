@@ -53,6 +53,10 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
-  
+
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
   root 'application#index'
 end
