@@ -6,6 +6,16 @@ Given(/^I am a valid user$/) do
       :password => "password",
       :password_confirmation => "password"
     })
+   @general_info = GeneralInfo.create!({
+      :first_name => "Ive",
+      :last_name => "Yi",
+      :month_ofbirth => "January",
+      :day_ofbirth => "23",
+      :year_ofbirth => "1990",
+      :country => "United States",
+      :state => "TX",
+      :city => "College Station",
+    })
 end
 
 Given(/^I am an invalid user$/) do

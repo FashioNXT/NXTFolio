@@ -156,7 +156,7 @@
                     <label for="profession" class="cols-sm-2 control-label">Profession</label>
                     <div class="cols-sm-10">
                       <div class="input-group">
-                        <%= f.select :specific_profile_id, options_for_select([["Designer", "1"],["Model", "2"],["Photographer", "3"]]),{},{ :class => 'form-control' } %>
+                        <%= f.select :specific_profile_id, options_for_select(@templates),{},{ :class => 'form-control' } %>
                       </div>
                     </div>
                   </div>

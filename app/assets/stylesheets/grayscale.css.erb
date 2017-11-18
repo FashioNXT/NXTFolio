@@ -61,7 +61,7 @@ a:focus {
   padding: 100px 0;
   text-align: center;
   color: white;
-  background: url(<%= asset_path 'header.jpg' %>) no-repeat bottom center scroll;
+  background: url(<%= asset_path 'header.jpg' %>) no-repeat top center scroll;
   background-color: black;
   box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
   -webkit-background-size: cover;
@@ -272,4 +272,25 @@ body {
 
 .table-new-profile {
   align: center;
+} 
+
+/*search show css*/
+.search-img-block{
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search-img{
+  max-height: 100%;  
+  max-width: 100%; 
+  width: auto;
+  height: auto;
+  position: absolute;  
+  top: 0;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  margin: auto;
 }
