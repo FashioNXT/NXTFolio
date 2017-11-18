@@ -42,6 +42,7 @@ class ShowProfileController < ApplicationController
         end
       else
         #SHOULD SHOW BLANK STUFF!!!!
+        puts "hihihih"
         @general_info = GeneralInfo.new
         @general_info_values = Hash.new
         
