@@ -91,6 +91,16 @@ class GeneralInfoController < ApplicationController
     if params[:general_info][:city] == ""
       error_statement += "City, "
     end
+    if params[:general_info][:month_ofbirth] == ""
+      error_statement += "Month Of Birth, "
+    end
+    if params[:general_info][:day_ofbirth] == ""
+      error_statement += "Day of Birth, "
+    end
+    if params[:general_info][:year_ofbirth] == ""
+      error_statement += "Year of Birth, "
+    end
+
     if error_statement.length > 0
       error_statement = error_statement[0, error_statement.length-2]
       error_statement += " are required."
