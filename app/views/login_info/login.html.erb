@@ -1,6 +1,7 @@
 <%= render :partial => "/layout/header" %>
 <body>
 
+
 <%= render :partial => "/layout/navigation" %>
 <%= render :partial => "/layout/body" %>
 <br>
@@ -39,10 +40,20 @@
                 </div>
               </div>
 
-              <p class="button"></p>
-              <%= f.submit "Login", :class => 'btn btn-default' %>
+
+              <!--Facebook login button-->
+              <% unless current_user %>
+                  <p class="button"></p>
+                  <%= f.submit "Login", :class => 'btn btn-default' %>
+                  <p class="button"></p>
+                  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path  %>
+              <% else %>
+                  <p class="button"></p>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% end %>
               
             </form>
+
           </div>
         </div>
       </div>

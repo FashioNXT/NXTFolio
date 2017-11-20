@@ -72,4 +72,6 @@ gem "factory_girl_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
 gem 'mini_magick'
+gem 'devise'
+gem 'omniauth-facebook'
 ruby '2.4.1'
