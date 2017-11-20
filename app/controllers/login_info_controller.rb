@@ -113,6 +113,7 @@ class LoginInfoController < ApplicationController
   def logout
     session[:current_user_key] = nil
     flash[:notice] = "Logged Out!"
-    redirect_to root_path
+    $current_user = nil #for facebook login usecase
+    redirect_to destroy_user_session_path
   end
 end
