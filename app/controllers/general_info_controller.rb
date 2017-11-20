@@ -44,8 +44,6 @@ class GeneralInfoController < ApplicationController
     @templates.unshift('Model')
     @templates.unshift('Photographer')
     @general_info = GeneralInfo.new
-    @general_info.first_name = 'e'
-    @general_info.last_name = 'e'
   end
  
 
