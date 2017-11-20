@@ -40,13 +40,13 @@ class SearchProfileController < ApplicationController
     @search_params = params.except("utf8").except("button")
     
     #Search for users based on the GeneralInfo search params excluding profession
-    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == '' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == ''
-      #@general_queries = GeneralInfo.all
+    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == 'Any'
+      @general_queries = GeneralInfo.all
     else
       @general_queries = GeneralInfo.search @search_params
     end
     
-    @general_queries = GeneralInfo.search @search_params
+    #@general_queries = GeneralInfo.search @search_params
     
     #Get the user keys
     @user_keys = get_user_keys @general_queries
@@ -56,7 +56,7 @@ class SearchProfileController < ApplicationController
     # Pass which ever users were in the resulting @user_keys to the next tier of searching.
     if @search_params[:profession] == "0"
       if flash[:user_keys].empty?
-        flash[:user_keys] = "ALL"
+        #flash[:user_keys] = "ALL"
       end
       redirect_to :action => 'show'
     elsif @search_params[:profession] == "1"

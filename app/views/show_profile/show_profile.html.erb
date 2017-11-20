@@ -19,7 +19,12 @@
           <% end %>
         </div>
         <div class="col-lg-12">
-          <h1><%= @general_info.first_name + ' ' + @general_info.last_name %></h1>
+          <% if @general_info && @general_info.first_name %>
+            <h1><%= @general_info.first_name %>
+          <% end %>
+          <% if @general_info && @general_info.last_name %>
+            <%= @general_info.last_name %></h1>
+          <% end %>
           <h3><i class="fa fa-phone"></i></a> 234 (567) 8910  | <i class="fa fa-map-marker"></i></a> <%= @general_info_values[:location] %>. </h3>
         </div><!--/.col-lg-12 -->
       </div>
