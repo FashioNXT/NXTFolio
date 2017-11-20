@@ -47,7 +47,6 @@
                   <%= f.submit "Login", :class => 'btn btn-default' %>
                   <p class="button"></p>
                   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path  %>
-
               <% else %>
                   <p class="button"></p>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
