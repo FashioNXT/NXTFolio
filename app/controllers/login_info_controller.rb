@@ -93,7 +93,7 @@ class LoginInfoController < ApplicationController
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey]
-        puts "is_admin??????? ", @login_user[:is_admin]
+        
         if @login_user[:is_admin] != nil
           session[:is_admin] = true
         end
