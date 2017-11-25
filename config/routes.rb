@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get 'search_profile/search_specific_model' => 'search_profile#search_specific_model', :as => 'search_profile/search_specific_model'
   get 'search_profile/search_specific_photographer' => 'search_profile#search_specific_photographer', :as => 'search_profile/search_specific_photographer'
   get 'search_profile/show_profile/:id' => 'search_profile#show_profile', :as => 'search_profile/show_profile'
+  get 'add_profession' => 'template#index', :as => 'template'
   post '/' => 'general_info#index', :as => 'general_info_index_post'
   resources :general_info
   resources :login_info
