@@ -92,7 +92,11 @@ class LoginInfoController < ApplicationController
       @login_user = LoginInfo.find_by(email: @login_info[:email])
       if @login_user[:password] == @login_info[:password]
         #login
-        session[:current_user_key] = @login_user[:userKey] 
+        session[:current_user_key] = @login_user[:userKey]
+        
+        if @login_user[:is_admin] != nil
+          session[:is_admin] = true
+        end
         flash[:notice] = "Logged In!"
         redirect_to root_path
       else
@@ -112,6 +116,7 @@ class LoginInfoController < ApplicationController
   # Removes the session key of the current user
   def logout
     session[:current_user_key] = nil
+    session[:is_admin] = false
     flash[:notice] = "Logged Out!"
     $current_user = nil #for facebook login usecase
     redirect_to destroy_user_session_path
