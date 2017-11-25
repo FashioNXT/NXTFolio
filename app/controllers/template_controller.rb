@@ -20,7 +20,7 @@ class TemplateController < ApplicationController
   end
   
   def index
-    if session[:is_admin] == false
+    if session[:is_admin] != true
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
   end 
