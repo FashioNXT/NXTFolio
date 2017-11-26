@@ -16,6 +16,12 @@
         <li class="hidden">
           <a href="#page-top"></a>
         </li>
+
+        <% if session[:current_user_key] && session[:is_admin] == true %>
+            <li>
+              <a class="page-scroll" href="/add_profession/" rel="stylesheet">Add Profession</a>
+            </li>
+        <% end %>
         <li>
           <a class="page-scroll" href="/show_profile/" rel="stylesheet">My Profile</a>
         </li>

@@ -20,6 +20,9 @@ class TemplateController < ApplicationController
   end
   
   def index
+    if session[:is_admin] != true
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
   end 
   # Params used to create the LoginInfo object
   private
