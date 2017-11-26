@@ -10,23 +10,52 @@
         <%= flash[:notice] %>
       </div>
     </h1>
-    <%= form_for @login_info, :action => 'update', :url => login_info_update_path do |f| %>
-      <p></p>
-      <%= f.label :email %>
-      <br/>
-      <%= f.text_field :email %>
-      <p></p>
-      <%= f.label :password %>
-      <br/>
-      <%= f.password_field :password %>
-      <p></p>
-      <%= f.label :password_confirmation %>
-      <br/>
-      <%= f.password_field :password_confirmation %>
-      <p class="button"></p>
-      <%= f.submit "Commit" %>
-    <% end %>
-    <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
+
+
+    <div class="container">
+      <div class="row main">
+        <div class="main-center">
+          <%= form_for @login_info, :action => 'update', :url => login_info_update_path do |f| %>
+            <form class="" method="post" action="#">
+              <div class="form-group">
+                <%= f.label :email, :class => 'cols-sm-2 control-label' %>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                    <%= f.text_field :email, :class => 'form-control', :placeholder => 'Enter your email' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password, :class => 'cols-sm-2 control-label'%>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation, :class => 'cols-sm-2 control-label'%>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'confirm', :placeholder => 'Confirm your Password' %>
+                  </div>
+                </div>
+              </div>
+
+              <p class="button"></p>
+              <%= f.submit "Submit" , :class => 'btn btn-default'%>
+            </form>
+          <% end %>
+          <br>
+          <%= button_to 'Cancel', '/show_profile', :method => 'get', :class => 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <%= render :partial => "/layout/javascripts" %>
