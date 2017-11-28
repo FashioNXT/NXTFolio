@@ -11,6 +11,10 @@ class ShowProfileController < ApplicationController
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
         
+        if session[:current_user_key] != nil and params[:user_key] == nil
+          @login_user_true = session[:current_user_key]
+        end
+
         case @general_info.specific_profile_id
         when 1
           @profile_type = "Designer"
