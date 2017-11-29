@@ -8,72 +8,156 @@
     <h1>
       <b>MODEL PROFILE INFORMATION</b>
     </h1>
-    <%= form_for @specific_model, :url => '/specific_model' do |f| %>
-      <p></p>
-      <%= f.label :height_feet %>
-      <br/>
-      <%= f.number_field :height_feet, :in => 0..12, :step => 1.0 %>
-      <p></p>
-      <%= f.label :height_inches %>
-      <br/>
-      <%= f.number_field :height_inches, :in => 0..11, :step => 0.25 %>
-      <p></p>
-      <%= f.label :bust %>
-      <br/>
-      <%= f.number_field :bust %>
-      <p></p>
-      <%= f.label :waist %>
-      <br/>
-      <%= f.number_field :waist %>
-      <p></p>
-      <%= f.label :hips %>
-      <br/>
-      <%= f.number_field :hips %>
-      <p></p>
-      <%= f.label :cups %>
-      <br/>
-      <%= f.select :cups, options_for_select([["AA", "AA"],["A","A"],["B","B"],["C","C"],["D","D"],["DD/E","DD/E"],["DDD/F","DDD/F"],["DDDD/G","DDDD/G"],["H","H"],["I","I"],["J","J"],["K","K"],["L","L"],["M","M"],["N","N"],["O","O"]]) %>
-      <p></p>
-      <%= f.label :shoe_size %>
-      <br/>
-      <%= f.select :shoe_size, options_for_select([["1", "1"],["1.5","1.5"],["2","2"],["2.5","2.5"],["3","3"],["3.5","3.5"],["4","4"],["4.5","4.5"],["5","5"],["5.5","5.5"],["6","6"],["6.5","6.5"],["7","7"],["7.5","7.5"],["8","8"],["8.5","8.5"],["9","9"],["9.5","9.5"],["10","10"],["10.5","10.5"],["11","11"],["11.5","11.5"],["12","12"],["12.5","12.5"],["13","13"],["13.5","13.5"],["14","14"],["14.5","14.5"],["15","15"]]) %>
-      <p></p>
-      <%= f.label :dress_size %>
-      <br/>
-      <%= f.number_field :dress_size %>
-      <p></p>
-      <%= f.label :hair_color %>
-      <br/>
-      <%= f.select :hair_color, options_for_select([["Red","Red"],["Auburn","Auburn"],["Platinum blonde","Platinum blonde"],["Light ash blonde","Light ash blonde"],["Golden blonde","Golden blonde"],["Light golden brown","Light golden brown"],["Light brown","Light brown"],["Medium  brown","Medium brown"],["Dark brown","Dark brown"],["Natural black","Natural black"],["Jet black","Jet black"]]) %>
-      <p></p>
-      <%= f.label :eye_color %>
-      <br/>
-      <%= f.select :eye_color, options_for_select([["Gray","Gray"],["Dark blue","Dark blue"],["Light blue","Light blue"],["Hazel","Hazel"],["Green","Green"],["Honey","Honey"],["Brown","Brown"]]) %>
-      <p></p>
-      <%= f.label :ethnicity %>
-      <br/>
-      <%= f.select :ethnicity, options_for_select([["Non-Hispanic","Non-Hispanic"],["Hispanic","Hispanic"]]) %>
-      <p></p>
-      <%= f.label :skin_color %>
-      <br/>
-      <%= f.select :skin_color, options_for_select([["Very light or white","Very light or white"],["Light","Light"],["Light intermediate","Light intermediate"],["Dark intermediate","Dark intermediate"],["Dark or brown","Dark or brown"],["Very dark or black","Very dark or black"]]) %>
-      <p></p>
-      <%= f.label :shoot_nudes %>
-      <br/>
-      <%= f.select :shoot_nudes, options_for_select([["No","No"],["Yes","Yes"],["Partial","Partial"]]) %>
-      <p></p>
-      <%= f.label :tattoos %>
-      <br/>
-      <%= f.select :tattoos, options_for_select([["No","No"],["Yes","Yes"]]) %>
-      <p></p>
-      <%= f.label :piercings %>
-      <br/>
-      <%= f.select :piercings, options_for_select([["No","No"],["Yes","Yes"]]) %>
-      <p></p>
-      <%= f.label :experience %>
-      <br/>
-      <%= f.select :experience, options_for_select([["0-2 years","0-2 years"],["3-6 years","3-6 years"],["7-10 years","7-10 years"],["11+ years","11+ years"]]) %>
-      <p></p>
+    <div class="container">
+      <div class="row main">
+        <div class="main-center">
+            <%= form_for @specific_model, :url => '/specific_model' do |f| %>
+            <form class="" method="post" action="#">
+    
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Feet Height</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :height_feet, :in => 0...12, :step => 1.0, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Inches Height</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :height_inches, :in => 0...11, :step => 0.25, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Bust</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :bust, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Waist</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :waist, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Hips</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :hips, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Cups</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :cups, options_for_select([["AA", "AA"],["A","A"],["B","B"],["C","C"],["D","D"],["DD/E","DD/E"],["DDD/F","DDD/F"],["DDDD/G","DDDD/G"],["H","H"],["I","I"],["J","J"],["K","K"],["L","L"],["M","M"],["N","N"],["O","O"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Shoe Size</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :shoe_size, options_for_select([["1", "1"],["1.5","1.5"],["2","2"],["2.5","2.5"],["3","3"],["3.5","3.5"],["4","4"],["4.5","4.5"],["5","5"],["5.5","5.5"],["6","6"],["6.5","6.5"],["7","7"],["7.5","7.5"],["8","8"],["8.5","8.5"],["9","9"],["9.5","9.5"],["10","10"],["10.5","10.5"],["11","11"],["11.5","11.5"],["12","12"],["12.5","12.5"],["13","13"],["13.5","13.5"],["14","14"],["14.5","14.5"],["15","15"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Dress Size</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.number_field :dress_size, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Hair Color</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :hair_color, options_for_select([["Red","Red"],["Auburn","Auburn"],["Platinum blonde","Platinum blonde"],["Light ash blonde","Light ash blonde"],["Golden blonde","Golden blonde"],["Light golden brown","Light golden brown"],["Light brown","Light brown"],["Medium  brown","Medium brown"],["Dark brown","Dark brown"],["Natural black","Natural black"],["Jet black","Jet black"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Eye Color</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :eye_color, options_for_select([["Gray","Gray"],["Dark blue","Dark blue"],["Light blue","Light blue"],["Hazel","Hazel"],["Green","Green"],["Honey","Honey"],["Brown","Brown"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Ethnicity</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :ethnicity, options_for_select([["Non-Hispanic","Non-Hispanic"],["Hispanic","Hispanic"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Skin Color</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :skin_color, options_for_select([["Very light or white","Very light or white"],["Light","Light"],["Light intermediate","Light intermediate"],["Dark intermediate","Dark intermediate"],["Dark or brown","Dark or brown"],["Very dark or black","Very dark or black"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Shoot Nudes</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :shoot_nudes, options_for_select([["No","No"],["Yes","Yes"],["Partial","Partial"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Tattoos</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :tattoos, options_for_select([["No","No"],["Yes","Yes"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Piercings</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :piercings, options_for_select([["No","No"],["Yes","Yes"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group">
+               <label for="profession" class="cols-sm-2 control-label">Experience</label>
+               <div class="cols-sm-10">
+                  <div class="input-group">
+                     <%= f.select :experience, options_for_select([["0-2 years","0-2 years"],["3-6 years","3-6 years"],["7-10 years","7-10 years"],["11+ years","11+ years"]]), {}, :class => 'form-control'%>
+                  </div>
+               </div>
+            </div>
+            
       <%= f.label "Genres (Select all that apply):" %>
       <br/>
       <%= f.label "Acting"  %>

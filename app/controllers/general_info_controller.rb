@@ -85,12 +85,6 @@ class GeneralInfoController < ApplicationController
     if params[:general_info][:last_name] == ""
       error_statement += "Last Name, "
     end
-    if params[:general_info][:state] == ""
-      error_statement += "State, "
-    end
-    if params[:general_info][:city] == ""
-      error_statement += "City, "
-    end
     if params[:general_info][:month_ofbirth] == ""
       error_statement += "Month Of Birth, "
     end
@@ -99,6 +93,15 @@ class GeneralInfoController < ApplicationController
     end
     if params[:general_info][:year_ofbirth] == ""
       error_statement += "Year of Birth, "
+    end
+    if params[:general_info][:country] == ""
+      error_statement += "Country, "
+    end
+    if params[:general_info][:state] == ""
+      error_statement += "State, "
+    end
+    if params[:general_info][:city] == ""
+      error_statement += "City, "
     end
 
     if error_statement.length > 0
@@ -139,7 +142,7 @@ class GeneralInfoController < ApplicationController
   
   # Params used to create the GeneralInfo object
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
   
   # Allows user to edit the general_info_params of the GeneralInfo object
@@ -166,7 +169,7 @@ class GeneralInfoController < ApplicationController
   
   # Params used to edit the GeneralInfo object
   def general_info_update_param
-     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture, :gallery_pictures => [])
+     params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
   
   # Allows user to edit the profession of the GeneralInfo object

@@ -25,10 +25,31 @@
           <% if @general_info && @general_info.last_name %>
             <%= @general_info.last_name %></h1>
           <% end %>
-          <h3><i class="fa fa-phone"></i></a> 234 (567) 8910  | <i class="fa fa-map-marker"></i></a> <%= @general_info_values[:location] %>. </h3>
+          <h3><i class="fa fa-map-marker"></i> <%= @general_info_values[:location] %> </h3>
         </div><!--/.col-lg-12 -->
       </div>
     </div>
+
+    <% if @login_user_true %>
+      <div class="row right">
+        <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
+          <a href="/login_info/edit" class="btn btn-info">Edit Login Info</a>
+          <a href="/general_info/edit" class="btn btn-info">Edit General Info</a>
+          <% if (@profile_type != nil) %>
+              <% if @profile_type.upcase == "MODEL" %>
+                  <a href="/specific_model/edit" class="btn btn-info">Edit Model Info</a>
+              <% elsif @profile_type.upcase == "DESIGNER" %>
+                  <a href="/specific_designer/edit" class="btn btn-info">Edit Designer Info</a>
+              <% elsif @profile_type.upcase == "PHOTOGRAPHER" %>
+                  <a href="/specific_photographer/edit" class="btn btn-info">Edit Photographer Info</a>
+              <% end %>
+          <% end %><!-- 
+          <a href="/general_info/edit_profession" class="btn btn-info">Edit Occupation</a> -->
+          <!--/ %a{:href => "/login_info/delete"} Delete Account
+          -->
+        </div>
+      </div>
+    <%  end %>
   </header>
 
   <section id="about" name="about"></section>
@@ -37,10 +58,11 @@
       <div class="row">
         
         <div class="col-lg-2 col-lg-offset-1">
+        <% if @general_info && @general_info.bio != "" %>
           <h5>ABOUT</h5>
         </div>
         <div class="col-lg-6">
-          <p>I'm a designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like branding, icon design or web development.</p>
+            <p><%= @general_info.bio %></p>
         </div>
         <div class="col-lg-3">
           <p><sm>SOCIAL LINKS</sm></p>
@@ -50,6 +72,17 @@
           </p>
           <br>
         </div>
+        <% else %>
+          <p><sm>SOCIAL LINKS</sm></p>
+        </div>
+        <div class="col-lg-6">
+          <p>
+            <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+            <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+          </p>
+        </div>
+        <% end %>
+        
       </div><!--/.row -->
     </div><!--/.container -->
   </div><!--/ #intro -->
