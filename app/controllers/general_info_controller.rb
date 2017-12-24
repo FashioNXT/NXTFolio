@@ -159,7 +159,10 @@ class GeneralInfoController < ApplicationController
   # Saves the edit of the GeneralInfo object to the database
   def update
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-    
+
+    galleryPict=@general_info[:gallery_pictures]
+    general_info_update_param[:gallery_pictures]=galleryPict+(general_info_update_param[:gallery_pictures])
+
     if @general_info.update_attributes(general_info_update_param)
       redirect_to '/show_profile'
     else

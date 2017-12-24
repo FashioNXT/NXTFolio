@@ -18,7 +18,73 @@ class GeneralInfo < ApplicationRecord
     # (2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
     # Takes in an array corresponding to certain aspects of general info.
     # joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
-    return GeneralInfo.where("first_name ILIKE ? OR last_name ILIKE ? OR gender ILIKE ? OR state ILIKE ? OR city ILIKE ? OR compensation ILIKE ?", searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation])
+
+   # "first_name ILIKE ? AND last_name ILIKE ? AND gender ILIKE ? AND state ILIKE ? AND city ILIKE ? AND compensation ILIKE ?",
+
+        #searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation]
+
+    query=""
+
+    if searchArg[:first_name].present?
+      searchArg[:first_name]="%"+searchArg[:first_name]+"%"
+    else
+      searchArg[:first_name]="%"
+    end
+
+
+    if searchArg[:last_name].present?
+      searchArg[:last_name]="%"+searchArg[:last_name]+"%"
+    else
+      searchArg[:last_name]="%"
+    end
+
+
+    if searchArg[:gender].present?
+      if searchArg[:gender]=='any' or searchArg[:gender]=='Any'
+        searchArg[:gender]="%"
+      else
+        searchArg[:gender]="%"+searchArg[:gender]+"%"
+      end
+    else
+      searchArg[:gender]="%"
+    end
+
+
+    if searchArg[:state].present?
+      searchArg[:state]="%"+searchArg[:state]+"%"
+    else
+      searchArg[:state]="%"
+    end
+
+
+    if searchArg[:city].present?
+      searchArg[:city]="%"+searchArg[:city]+"%"
+    else
+      searchArg[:city]="%"
+    end
+
+    if searchArg[:compensation].present?
+      if searchArg[:compensation]=='any' or searchArg[:compensation]=='Any'
+        searchArg[:compensation]="%"
+      else
+        searchArg[:compensation]="%"+searchArg[:compensation]+"%"
+      end
+    else
+      searchArg[:compensation]="%"
+    end
+
+    return GeneralInfo.where("first_name ILIKE ?
+                              AND last_name ILIKE ?
+                              AND gender ILIKE ?
+                              AND state ILIKE ?
+                              AND city ILIKE ?
+                              AND compensation ILIKE ?",
+                              searchArg[:first_name],
+                              searchArg[:last_name],
+                              searchArg[:gender],
+                              searchArg[:state],
+                              searchArg[:city],
+                              searchArg[:compensation])
   end
   
   # Sets appearance of profile view attributes
