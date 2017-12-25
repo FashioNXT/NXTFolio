@@ -22,6 +22,8 @@
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                     <%= text_field_tag "first_name", nil, class: 'form-control', placeholder: "Enter the First Name"%>
+                    <%= select_tag "first_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -32,6 +34,7 @@
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                     <%= text_field_tag "last_name", nil, class: 'form-control', placeholder: "Enter the Last Name"%>
+                    <%= select_tag "last_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
                   </div>
                 </div>
               </div>
@@ -46,11 +49,20 @@
               </div>
 
               <div class="form-group">
+                <label for="country" class="cols-sm-2 control-label">Country</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                    <%= select_tag "country", options_for_select([["",""],["United States", "United States"]]),:class => 'form-control' %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="state" class="cols-sm-2 control-label">State</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "state", nil, class: 'form-control', placeholder: "Enter the state name"%>
+                    <%= select_tag "state", options_for_select(CS.states(:us)),include_blank:true,:class => 'form-control'%>
                   </div>
                 </div>
               </div>
@@ -61,9 +73,24 @@
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
                     <%= text_field_tag "city", nil, class: 'form-control', placeholder: "Enter the city name"%>
+                    <%= select_tag "city_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+
                   </div>
                 </div>
               </div>
+
+
+              <!--<div class="form-group">-->
+                <!--<label for="state" class="cols-sm-2 control-label">State</label>-->
+                <!--<div class="cols-sm-10">-->
+                  <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>-->
+                    <!--<%= text_field_tag "state", nil, class: 'form-control', placeholder: "Enter the state name"%>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+
 
               <div class="form-group">
                 <label for="compensation" class="cols-sm-2 control-label">Compensation</label>

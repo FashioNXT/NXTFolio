@@ -40,7 +40,7 @@ class SearchProfileController < ApplicationController
     @search_params = params.except("utf8").except("button")
     
     #Search for users based on the GeneralInfo search params excluding profession
-    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:city] == '' && @search_params[:compensation] == 'Any'
+    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:country]=='' && @search_params[:city] == '' && @search_params[:compensation] == 'Any'
       @general_queries = GeneralInfo.all
     else
       @general_queries = GeneralInfo.search @search_params

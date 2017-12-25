@@ -26,14 +26,36 @@ class GeneralInfo < ApplicationRecord
     query=""
 
     if searchArg[:first_name].present?
-      searchArg[:first_name]="%"+searchArg[:first_name]+"%"
+      if searchArg[:first_name_regex]=='Contains'
+        searchArg[:first_name]="%"+searchArg[:first_name]+"%"
+      else if searchArg[:first_name_regex]=='Starts With'
+             searchArg[:first_name]=searchArg[:first_name]+"%"
+      else if searchArg[:first_name_regex]=='Ends With'
+             searchArg[:first_name]="%"+searchArg[:first_name]
+           else if searchArg[:first_name_regex]=='Exactly Matches'
+                  searchArg[:first_name]=searchArg[:first_name]
+                  end
+           end
+           end
+      end
     else
       searchArg[:first_name]="%"
     end
 
 
     if searchArg[:last_name].present?
-      searchArg[:last_name]="%"+searchArg[:last_name]+"%"
+      if searchArg[:last_name_regex]=='Contains'
+        searchArg[:last_name]="%"+searchArg[:last_name]+"%"
+      else if searchArg[:last_name_regex]=='Starts With'
+        searchArg[:last_name]=searchArg[:last_name]+"%"
+      else if searchArg[:last_name_regex]=='Ends With'
+        searchArg[:last_name]="%"+searchArg[:last_name]
+           else if searchArg[:last_name_regex]=='Exactly Matches'
+                  searchArg[:last_name]=searchArg[:last_name]
+                end
+           end
+           end
+      end
     else
       searchArg[:last_name]="%"
     end
@@ -43,25 +65,38 @@ class GeneralInfo < ApplicationRecord
       if searchArg[:gender]=='any' or searchArg[:gender]=='Any'
         searchArg[:gender]="%"
       else
-        searchArg[:gender]="%"+searchArg[:gender]+"%"
+        searchArg[:gender]=searchArg[:gender]
       end
     else
       searchArg[:gender]="%"
     end
 
 
-    if searchArg[:state].present?
-      searchArg[:state]="%"+searchArg[:state]+"%"
+    if searchArg[:state].present? and searchArg[:state]!=''
+      searchArg[:state]=searchArg[:state]
     else
       searchArg[:state]="%"
     end
 
 
-    if searchArg[:city].present?
-      searchArg[:city]="%"+searchArg[:city]+"%"
+    if searchArg[:city].present? and searchArg[:city]!=''
+      if searchArg[:city_regex]=='Contains'
+        searchArg[:city]="%"+searchArg[:city]+"%"
+      else if searchArg[:city_regex]=='Starts With'
+             searchArg[:city]=searchArg[:city]+"%"
+      else if searchArg[:city_regex]=='Ends With'
+                  searchArg[:city]="%"+searchArg[:city]
+           else if searchArg[:city_regex]=='Exactly Matches'
+                  searchArg[:city]=searchArg[:city]
+                end
+           end
+           end
+      end
     else
       searchArg[:city]="%"
     end
+
+
 
     if searchArg[:compensation].present?
       if searchArg[:compensation]=='any' or searchArg[:compensation]=='Any'
