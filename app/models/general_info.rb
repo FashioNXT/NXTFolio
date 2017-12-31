@@ -1,18 +1,24 @@
 class GeneralInfo < ApplicationRecord
+    has_one :login_info
     validates_presence_of :first_name
     validates_presence_of :last_name
+    validates_presence_of :phone
     validates_presence_of :month_ofbirth
     validates_presence_of :day_ofbirth
     validates_presence_of :year_ofbirth
     validates_presence_of :country
     validates_presence_of :state
     validates_presence_of :city
-    
+
+    validates :phone, numericality: true
+
     mount_uploader :profile_picture, AvatarUploader
     mount_uploader :cover_picture, CoverUploader
     mount_uploaders :gallery_pictures, GalleryUploader
+
+
     
-    
+
   def self.search searchArg
     # http://stackoverflow.com/questions/35414443/search-through-another-model
     # (2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
@@ -96,6 +102,12 @@ class GeneralInfo < ApplicationRecord
       searchArg[:city]="%"
     end
 
+    if searchArg[:phone].present? and searchArg[:phone]!=''
+      searchArg[:phone]=searchArg[:phone]
+    else
+      searchArg[:phone]="%"
+    end
+
 
 
     if searchArg[:compensation].present?
@@ -108,14 +120,22 @@ class GeneralInfo < ApplicationRecord
       searchArg[:compensation]="%"
     end
 
+    if searchArg[:genres].present?
+      if searchArg[:genres].contains('All') or searchArg[:genres]==nil or searchArg[:genres].empty?
+        searchArg[:genres]="%"
+      end
+    end
+
     return GeneralInfo.where("first_name ILIKE ?
                               AND last_name ILIKE ?
+                              AND phone ILIKE?
                               AND gender ILIKE ?
                               AND state ILIKE ?
                               AND city ILIKE ?
                               AND compensation ILIKE ?",
                               searchArg[:first_name],
                               searchArg[:last_name],
+                              searchArg[:phone],
                               searchArg[:gender],
                               searchArg[:state],
                               searchArg[:city],
@@ -126,6 +146,7 @@ class GeneralInfo < ApplicationRecord
   def attribute_values 
     @attribute_values = Hash.new
     @attribute_values[:name] = "Name: " + self.first_name.to_s + " " + self.last_name.to_s
+    @attribute_values[:phone]= "Phone: "+self.phone.to_s
     @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s  
     @attribute_values[:gender] = "Gender: " + self.gender.to_s
     @attribute_values[:location] = "Location: " + self.city.to_s + ", " + self.state.to_s + ", " + self.country.to_s

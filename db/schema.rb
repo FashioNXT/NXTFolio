@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171125205853) do
     t.string   "userKey"
     t.string   "first_name"
     t.string   "last_name"
+    t.string  "phone"
     t.integer  "month_ofbirth"
     t.integer  "day_ofbirth"
     t.integer  "year_ofbirth"

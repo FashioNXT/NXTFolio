@@ -56,7 +56,7 @@
   <div id="intro">
     <div class="container">
       <div class="row">
-        
+
         <div class="col-lg-2 col-lg-offset-1">
         <% if @general_info && @general_info.bio != "" %>
           <h5>ABOUT</h5>
@@ -67,8 +67,14 @@
         <div class="col-lg-3">
           <p><sm>SOCIAL LINKS</sm></p>
           <p>
+            <% if @general_info && @general_info.facebook_link != "" %>
             <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+            <% end %>
+
+            <% if @general_info && @general_info.linkedIn_link != "" %>
             <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+            <%end%>
+
           </p>
           <br>
         </div>
@@ -77,13 +83,66 @@
         </div>
         <div class="col-lg-6">
           <p>
-            <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
-            <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+            <% if @general_info && @general_info.facebook_link != "" %>
+              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+            <% end %>
+
+            <% if @general_info && @general_info.linkedIn_link != "" %>
+              <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+            <%end%>
           </p>
         </div>
         <% end %>
-        
+
       </div><!--/.row -->
+
+
+    <div class="row">
+
+      <div class="col-lg-2 col-lg-offset-1">
+        <% if @general_info && @general_info.bio =="*##*!(@dummy" %>
+          <h5>ABOUT</h5>
+          </div>
+          <div class="col-lg-6">
+            <p><%= @general_info.bio %></p>
+          </div>
+          <div class="col-lg-3">
+            <p><sm>SOCIAL LINKS</sm></p>
+            <p>
+              <% if @general_info && @general_info.facebook_link == "28231hsh292$" %>
+                <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+              <% end %>
+
+              <% if @general_info && @general_info.linkedIn_link == "238jsdsajhdask" %>
+                <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+              <%end%>
+
+            </p>
+            <br>
+          </div>
+        <% else %>
+          <p><sm>CONTACT INFORMATION</sm></p>
+          </div>
+          <div class="col-lg-6">
+            <p>
+              <% if @login_info && @login_info.email != "" %>
+                <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+              <% end %>
+
+              <% if @general_info && @general_info.phone != "" %>
+                <%= @general_info.phone %>
+              <%end%>
+            </p>
+          </div>
+        <% end %>
+
+
+
+
+       </div>
+
+
+
     </div><!--/.container -->
   </div><!--/ #intro -->
 

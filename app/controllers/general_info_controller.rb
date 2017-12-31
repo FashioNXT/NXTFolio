@@ -82,6 +82,9 @@ class GeneralInfoController < ApplicationController
     if params[:general_info][:first_name] == ""
       error_statement += "First Name, "
     end
+    if params[:general_info][:phone] == ""
+      error_statement += "Phone Number, "
+    end
     if params[:general_info][:last_name] == ""
       error_statement += "Last Name, "
     end

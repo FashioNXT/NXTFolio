@@ -16,11 +16,12 @@ class LoginInfoController < ApplicationController
   # Create is called upon for the 1st part of profile creation
   def create
     @login_info = LoginInfo.new(login_info_params)
+
     if LoginInfo.exists?(:email => @login_info[:email])
       flash[:notice] = "Email already exists."
       redirect_to new_login_info_path and return
     end
-    
+
     # Checks for mismatched & unentered passwords before saving LoginInfo object to database
     if @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
       if @login_info[:password] == login_info_params[:password_confirmation]

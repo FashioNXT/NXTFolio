@@ -39,6 +39,9 @@ Rails.application.routes.draw do
   get 'search_profile/search' => 'search_profile#search', :as => 'search_profile/search'
   get 'search_profile/search_general' => 'search_profile#search_general', :as => 'search_profile/search_general'
   get 'search_profile/search_designer' => 'search_profile#search_designer', :as => 'search_profile/search_designer'
+
+  get 'search_profile/search_login' => 'search_profile#search_login', :as => 'search_profile/search_login'
+
   get 'search_profile/search_model' => 'search_profile#search_model', :as => 'search_profile/search_model'
   get 'search_profile/search_photographer' => 'search_profile#search_photographer', :as => 'search_profile/search_photographer'
   get 'search_profile/search_specific_designer' => 'search_profile#search_specific_designer', :as => 'search_profile/search_specific_designer'

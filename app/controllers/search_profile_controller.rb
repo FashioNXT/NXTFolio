@@ -73,7 +73,27 @@ class SearchProfileController < ApplicationController
   # Associated with the view for search_profile/search_designer
   def search_designer
   end
-  
+
+  def search_login
+    @search_params = params.except("utf8").except("button")
+
+    if @search_params[:email] == ''
+      @general_queries = LoginInfo.all
+    else
+      @general_queries = LoginInfo.search @search_params
+    end
+
+    #@general_queries = GeneralInfo.search @search_params
+
+    #Get the user keys
+    @user_keys = get_user_keys @general_queries
+
+    flash[:user_keys] = @user_keys
+
+    # Pass which ever users were in the resulting @user_keys to the next tier of searching.
+    redirect_to :action => 'show'
+  end
+
   def search_specific_designer
     @checkboxes = params[:checkboxes]
     @experience = params[:checkboxes]
