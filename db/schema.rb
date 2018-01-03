@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125205853) do
+ActiveRecord::Schema.define(version: 20180103070721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20171125205853) do
     t.string   "userKey"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "phone"
     t.integer  "month_ofbirth"
     t.integer  "day_ofbirth"
     t.integer  "year_ofbirth"
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171125205853) do
     t.string   "gallery_pictures",                  array: true
     t.integer  "template_id"
     t.json     "specific_profile"
+    t.string   "phone"
   end
 
   create_table "login_infos", force: :cascade do |t|
