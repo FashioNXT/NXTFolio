@@ -37,7 +37,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <%= f.text_field :phone, class: 'form-control', placeholder: '', type: "number"%>
+              <%= f.text_field :phone, class: 'form-control', placeholder: '' %>
             </div>
           </div>
         </div>
@@ -181,6 +181,7 @@
     <% end %>
     <br>
     <%= button_to 'Cancel', '/show_profile', :method => 'get', :class => "btn btn-default"%>
+  </div>
   </div>
 </section>
 <%= render :partial => "/layout/javascripts" %>

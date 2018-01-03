@@ -17,7 +17,7 @@ class GeneralInfo < ApplicationRecord
     mount_uploaders :gallery_pictures, GalleryUploader
 
 
-    
+    attr_accessible :phone
 
   def self.search searchArg
     # http://stackoverflow.com/questions/35414443/search-through-another-model
