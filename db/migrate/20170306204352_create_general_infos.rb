@@ -13,6 +13,7 @@ class CreateGeneralInfos < ActiveRecord::Migration[5.0]
       t.string :country
       t.string :state
       t.string :city
+      t.string :phone
       
       t.string :compensation
       t.string :facebook_link
