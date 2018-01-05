@@ -30,4 +30,25 @@ perl_cb:
 #
 # column: value
 
+java_cb:
+      userKey : '2'
+      first_name: 'Aniket'
+      last_name: 'Panse'
+      month_ofbirth: '01'
+      day_ofbirth: '12'
+      year_ofbirth: '1990'
+      gender: 'male'
+      country: 'us'
+      state: 'tx'
+      city: 'College Station'
+      compensation: 'any'
+#      facebook_link
+#      linkedIn_link
+#      instagram_link
+#      personalWebsite_link
+      bio: 'Hello World'
+     # created_at: '1000-01-01 00:00:00'
+      specific_profile_id: '2'
+      template_id: '2'
+      phone: 828
 
