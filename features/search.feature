@@ -8,23 +8,11 @@ Feature: Search a Profile
 
   Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
 
-    Given I am on the Match My Fashion home page
-    When I sign up for an account
-    Then I should see a message that says "Account Created!"
-    And I should be on the general info page
-    When I fill in "general_info_first_name" with "Avinash"
-    When I fill in "general_info_last_name" with "Saxena"
-    When I select "Jan" from "general_info_month_ofbirth"
-    When I select "01" from "general_info_day_ofbirth"
-    When I select "2000" from "general_info_year_ofbirth"
-    When I select "Male" from "general_info_gender"
-    When I select "United States" from "general_info_country"
-    When I select "TX" from "general_info_state"
-    When I fill in "general_info_city" with "College Station"
-    And press "Next"
-    Then I should be on the designer information page
-    And press "Submit"
+    Given I am a valid user
     When I click on search button and search by email id
+    Then I should see "No matches"
+    When I click on search button and search by fields
+    Then I should see "No matches"
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
@@ -41,8 +29,7 @@ Feature: Search a Profile
 #    And I select "Designer" or "Model" or "Photographer"
 #    Then I should see the designer page or model page or photographer page
   Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
-    Given I am on the Match My Fashion home page
-    When I sign up for an account
-    Then I should see a message that says "Account Created!"
-    And I should be on the general info page
+    Given I am a valid user
+    When I click on search button and search by fields
+    Then I should see "No matches"
 
