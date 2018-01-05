@@ -77,7 +77,7 @@ class SearchProfileController < ApplicationController
   def search_login
     @search_params = params.except("utf8").except("button")
 
-    if @search_params[:email] == ''
+    if @search_params==nil or @search_params[:email]==nil or @search_params[:email] == ''
       @general_queries = LoginInfo.all
     else
       @general_queries = LoginInfo.search @search_params
