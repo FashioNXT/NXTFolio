@@ -15,6 +15,7 @@ Given(/^I am a valid user$/) do
       :country => "United States",
       :state => "TX",
       :city => "College Station",
+      :phone => 82711
     })
 end
 
@@ -34,6 +35,7 @@ Given(/^I am a valid admin user$/) do
         :country => "United States",
         :state => "TX",
         :city => "College Station",
+        :phone => 8271
     })
 end
 

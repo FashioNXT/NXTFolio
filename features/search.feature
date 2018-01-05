@@ -19,7 +19,7 @@ Feature: Search a Profile
     When I select "2000" from "general_info_year_ofbirth"
     When I select "Male" from "general_info_gender"
     When I select "United States" from "general_info_country"
-    When I select "Texas" from "general_info_state"
+    When I select "TX" from "general_info_state"
     When I fill in "general_info_city" with "College Station"
 #    And press "Next"
 #    Then I should be on the designer information page

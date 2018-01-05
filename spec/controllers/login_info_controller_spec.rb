@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe LoginInfoController, type: :controller do
-  # still need update
-  
+  # still need updatedo
+
   describe "GET #new" do
     it "should create new LoginInfo" do
       @login_info = LoginInfo.new
