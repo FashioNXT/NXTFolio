@@ -44,8 +44,10 @@
             <%end%>
             <br/>
           </h2>
+          <%if info!=nil%>
           <%= info.city + ", " + info.state %>
-          <br/>
+          <%end%>
+            <br/>
           <!--/= link_to "Profile", search_profile_show_profile_path(info.userKey)
           -->
           <br>
