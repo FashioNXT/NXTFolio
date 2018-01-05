@@ -21,10 +21,10 @@ Feature: Search a Profile
     When I select "United States" from "general_info_country"
     When I select "TX" from "general_info_state"
     When I fill in "general_info_city" with "College Station"
-#    And press "Next"
-#    Then I should be on the designer information page
-#    And press "Submit"
-   # When I go to search page
+    And press "Next"
+    Then I should be on the designer information page
+    And press "Submit"
+    When I click on search button and search by email id
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
@@ -40,3 +40,9 @@ Feature: Search a Profile
 #    When I fill in all fields for general information
 #    And I select "Designer" or "Model" or "Photographer"
 #    Then I should see the designer page or model page or photographer page
+  Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
+    Given I am on the Match My Fashion home page
+    When I sign up for an account
+    Then I should see a message that says "Account Created!"
+    And I should be on the general info page
+
