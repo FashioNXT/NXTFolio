@@ -25,8 +25,9 @@ before_install:
   -  sudo apt-get update
   -  sudo apt-get install postgresql-common
   -  sudo apt-get install postgresql-9.5 libpq-dev
-  -  sudo -u postgres createuser shiller -s
-  -  sudo -u postgres psql postgres=# \password shiller
+  
+before_script:
+  -  sudo -u postgres createuser shiller -s -p createpassword password
   -  sudo rake db:setup
   -  sudo rake db:migrate
   -  rails server
