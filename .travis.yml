@@ -28,6 +28,6 @@ before_install:
   
 before_script:
   -  sudo -u postgres createuser shiller
-  -  sudo rake db:setup
-  -  sudo rake db:migrate
+  -  sudo rails db:setup
+  -  sudo rails db:migrate
   -  rails server
