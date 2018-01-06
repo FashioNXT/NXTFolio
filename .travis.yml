@@ -32,4 +32,4 @@ before_script:
   -  rails db:create
   -  rails db:migrate
   -  rails test
-  -  rails cucumber
+  -  bundle exec rake cucumber
