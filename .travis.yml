@@ -6,7 +6,6 @@ language: ruby
 
 
 before_install:
-  - rm Gemfile.lock
   - sudo apt-get update
 
 before_install:
