@@ -68,12 +68,7 @@ group :development, :test do
 end
 
 gem "rails-controller-testing"
-
-group :test do
-  gem "rspec"
-  gem 'factory_girl_rails',  "~> 4.0", :require => false
-end
-
+gem "factory_girl_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
 gem 'mini_magick'
