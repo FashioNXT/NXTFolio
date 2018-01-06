@@ -35,4 +35,3 @@ before_script:
 script:
   - bin/rake db:migrate RAILS_ENV=test
   - bin/rake test
-  - bin/rake cucumber
