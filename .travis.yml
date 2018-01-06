@@ -1,4 +1,10 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=fe7c323ce09e4094746b1fc88593f9f9315130a1446cc7b20c3ad1a2ada92108
 language: ruby
+
+
+
 before_install:
   - sudo apt-get update
 
@@ -32,6 +38,16 @@ before_script:
   -  rails db:create
   -  rails db:migrate
   
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  
 script:
   - bin/rake db:migrate RAILS_ENV=test
   - bin/rake test
+
+script:
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
