@@ -27,8 +27,7 @@ before_install:
   -  sudo apt-get install postgresql-9.5 libpq-dev
   
 before_script:
-  -  sudo -u postgres createuser shiller -s
-  -  sudo -u postgres psql --command '\password password'
+  -  sudo -u postgres bash -c "psql -c \"CREATE USER shiller WITH PASSWORD 'password';\""
   -  bundle exec rake db:create
   -  bundle exec rake db:migrate
   -  rails server
