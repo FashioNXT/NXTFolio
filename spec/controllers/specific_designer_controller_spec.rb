@@ -34,12 +34,12 @@ RSpec.describe SpecificDesignerController, type: :controller do
     it "renders the edit template" do
       get :edit
       # expect(response).to render_template("new")
-      expect(response).to redirect_to "/specific_designer/new"
+      expect(response).to_not redirect_to 'new'
     end
 
     it "does not render a different template" do
       get :edit
-      expect(response).to_not render_template "specific_designer/edit"
+      expect(response).to render_template "specific_designer/edit"
     end
     
     it "should get SpecificDesigner" do
