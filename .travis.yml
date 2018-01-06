@@ -31,4 +31,4 @@ before_script:
   -  sudo -u postgres bash -c "psql -c \"ALTER USER shiller CREATEDB;\""
   -  rails db:create
   -  rails db:migrate
-  -  sudo rails server
+  -  rails server
