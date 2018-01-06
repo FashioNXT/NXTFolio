@@ -55,6 +55,8 @@ Contains- Matches any data which contains the searched word
 ### Code Climate Link
 <a href="https://codeclimate.com/github/avinsaxe/match-my-fashion-public/maintainability"><img src="https://api.codeclimate.com/v1/badges/29d4ec13f64775661fe6/maintainability" /></a>
 
+<a href="https://codeclimate.com/github/avinsaxe/match-my-fashion-public/test_coverage"><img src="https://api.codeclimate.com/v1/badges/29d4ec13f64775661fe6/test_coverage" /></a>
+
 ### Notes:
     
 1. You can always choose to keep the default value of contains in the regular expression-based search, which guarantees the best possible results without any hassle of choosing a regular expression.
