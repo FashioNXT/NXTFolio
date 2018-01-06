@@ -52,6 +52,9 @@ Contains- Matches any data which contains the searched word
 3. Exactly Matches- Matches any data that exactly matches the searched word
 4.  Improved search criteria: Added email id in the search criteria. Email id is also regular expression based
 
+### Code Climate Link
+<a href="https://codeclimate.com/github/avinsaxe/match-my-fashion-public/maintainability"><img src="https://api.codeclimate.com/v1/badges/29d4ec13f64775661fe6/maintainability" /></a>
+
 ### Notes:
     
 1. You can always choose to keep the default value of contains in the regular expression-based search, which guarantees the best possible results without any hassle of choosing a regular expression.
