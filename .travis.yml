@@ -28,7 +28,7 @@ before_install:
   
 before_script:
   -  sudo -u postgres createuser shiller -s
-  -  sudo -u postgres psql --command '\password shiller'
+  -  sudo -u postgres psql --command '\password password'
   -  bundle exec rake db:create
   -  bundle exec rake db:migrate
   -  rails server
