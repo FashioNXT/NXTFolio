@@ -1,6 +1,11 @@
 language: ruby
+
+before_install:
+  - sudo apt-get update
+
+install:
  -rvm install 2.4.1
  -rvm use 2.4.1
  -gem install bundler
  -bundle install
- 
+ -rake db:setup
