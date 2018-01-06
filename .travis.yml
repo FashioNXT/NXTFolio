@@ -28,6 +28,7 @@ before_install:
   
 before_script:
   -  sudo -u postgres bash -c "psql -c \"CREATE USER shiller WITH PASSWORD 'password';\""
+  -  sudo -u postgres bash -c "psql -c \"ALTER USER shiller CREATEDB;\""
   -  rails db:create
   -  rails db:migrate
   -  sudo rails server
