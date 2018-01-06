@@ -28,6 +28,6 @@ before_install:
   
 before_script:
   -  sudo -u postgres bash -c "psql -c \"CREATE USER shiller WITH PASSWORD 'password';\""
-  -  bundle exec rake db:create
-  -  bundle exec rake db:migrate
-  -  rails server
+  -  sudo bundle exec rake db:create
+  -  sudo bundle exec rake db:migrate
+  -  sudo rails server
