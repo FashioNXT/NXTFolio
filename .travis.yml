@@ -37,6 +37,7 @@ before_script:
   -  sudo -u postgres bash -c "psql -c \"ALTER USER shiller CREATEDB;\""
   -  rails db:create
   -  rails db:migrate
+  -  gem install cucumber
   
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -48,6 +49,7 @@ script:
 
 script:
   - bundle exec rspec
+  - bundle exec cucumber 
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
