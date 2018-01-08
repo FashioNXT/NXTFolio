@@ -1,5 +1,15 @@
 # FASHIONXT
 
+### DEMO
+[https://mysterious-caverns-94886.herokuapp.com/](https://mysterious-caverns-94886.herokuapp.com/)
+
+Click on the above link, and open the demo app. The Facebook login feature will not work, as a result of privacy reasons, I took down the app developers account for it.
+Get Facebook Login to function:
+1. Create Facebook developers acccount  [https://developers.facebook.com/](https://developers.facebook.com/)
+2. Create a facebook login app 
+3. Use the API key of Facebook app, in the source code. You can find the required details in the document.
+4. Start serving Facebook login easily
+
 ### How to start a local server:
 
 1. git clone the repository to your local machine  
