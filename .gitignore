@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-/tags/
+/tags
 
 # Ignore Byebug command history file.
 .byebug_history
