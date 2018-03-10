@@ -97,25 +97,21 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "city", nil, class: 'form-control', placeholder: "Enter the city name"%>
-                    <%= select_tag "city_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+                    <%= text_field_tag "city", nil, class: 'form-control', placeholder: "College Station"%>
 
                   </div>
                 </div>
               </div>
 
-
-              <!--<div class="form-group">-->
-                <!--<label for="state" class="cols-sm-2 control-label">State</label>-->
-                <!--<div class="cols-sm-10">-->
-                  <!--<div class="input-group">-->
-                    <!--<span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>-->
-                    <!--<%= text_field_tag "state", nil, class: 'form-control', placeholder: "Enter the state name"%>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-
-
+              <div class="form-group">
+                <label for="distance" class="cols-sm-2 control-label">Distance</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                    <%= text_field_tag "distance", nil, class: 'form-control', placeholder: "20 miles"%>
+                  </div>
+                </div>
+              </div>
 
               <div class="form-group">
                 <label for="compensation" class="cols-sm-2 control-label">Compensation</label>

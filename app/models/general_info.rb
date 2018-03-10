@@ -39,9 +39,14 @@ class GeneralInfo < ApplicationRecord
       city = searchArg[:city]
     end
 
+    distance = 20
+    if searchArg[:distance].present? and searchArg[:distance] != ''
+      distance = Integer(searchArg[:distance])
+    end
+
     if country != nil and state != nil and city != nil
       location_string = [country, state, city].compact.join(", ")
-      query = GeneralInfo.near(location_string)
+      query = GeneralInfo.near(location_string, distance)
     else
       query = GeneralInfo.all
     end
