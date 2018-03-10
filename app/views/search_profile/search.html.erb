@@ -74,30 +74,11 @@
               </div>
 
               <div class="form-group">
-                <label for="country" class="cols-sm-2 control-label">Country</label>
+                <label for="location" class="cols-sm-2 control-label">Location</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= select_tag "country", options_for_select([["",""],["United States", "United States"]]),:class => 'form-control' %>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="state" class="cols-sm-2 control-label">State</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= select_tag "state", options_for_select(CS.states(:us)),include_blank:true,:class => 'form-control'%>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="city" class="cols-sm-2 control-label">City</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "city", nil, class: 'form-control', placeholder: "College Station"%>
+                    <%= text_field_tag "location", nil, class: 'form-control', placeholder: "College Station, TX, US"%>
 
                   </div>
                 </div>

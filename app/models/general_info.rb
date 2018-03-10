@@ -24,19 +24,9 @@ class GeneralInfo < ApplicationRecord
     end
 
   def self.search searchArg
-    country = nil
-    if searchArg[:country].present? and searchArg[:country] != ''
-      country = searchArg[:country]
-    end
-
-    state = nil
-    if searchArg[:state].present? and searchArg[:state]!=''
-      state = searchArg[:state]
-    end
-    
-    city = nil
-    if searchArg[:city].present? and searchArg[:city]!=''
-      city = searchArg[:city]
+    location = nil
+    if searchArg[:location].present? and searchArg[:location] != ''
+      location = searchArg[:location]
     end
 
     distance = 20
@@ -44,9 +34,8 @@ class GeneralInfo < ApplicationRecord
       distance = Integer(searchArg[:distance])
     end
 
-    if country != nil and state != nil and city != nil
-      location_string = [country, state, city].compact.join(", ")
-      query = GeneralInfo.near(location_string, distance)
+    if location != nil
+      query = GeneralInfo.near(location, distance)
     else
       query = GeneralInfo.all
     end
