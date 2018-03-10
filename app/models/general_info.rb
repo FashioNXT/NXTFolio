@@ -16,8 +16,6 @@ class GeneralInfo < ApplicationRecord
     mount_uploader :cover_picture, CoverUploader
     mount_uploaders :gallery_pictures, GalleryUploader
 
-    attr_accessor :phone
-
     geocoded_by :address
     after_validation :geocode
 
