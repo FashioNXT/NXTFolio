@@ -20,126 +20,61 @@ class GeneralInfo < ApplicationRecord
     attr_accessor :phone
 
   def self.search searchArg
-    # http://stackoverflow.com/questions/35414443/search-through-another-model
-    # (2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
-    # Takes in an array corresponding to certain aspects of general info.
-    # joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
-
-   # "first_name ILIKE ? AND last_name ILIKE ? AND gender ILIKE ? AND state ILIKE ? AND city ILIKE ? AND compensation ILIKE ?",
-
-        #searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation]
-
-    query=""
+    query = GeneralInfo.all
 
     if searchArg[:first_name].present?
-      if searchArg[:first_name_regex]=='Contains'
-        searchArg[:first_name]="%"+searchArg[:first_name]+"%"
-      else if searchArg[:first_name_regex]=='Starts With'
-             searchArg[:first_name]=searchArg[:first_name]+"%"
-      else if searchArg[:first_name_regex]=='Ends With'
-             searchArg[:first_name]="%"+searchArg[:first_name]
-           else if searchArg[:first_name_regex]=='Exactly Matches'
-                  searchArg[:first_name]=searchArg[:first_name]
-                  end
-           end
-           end
+      if searchArg[:first_name_regex] == 'Contains'
+        searchArg[:first_name] = "%" + searchArg[:first_name] + "%"
+      elsif searchArg[:first_name_regex] == 'Starts With'
+        searchArg[:first_name] = searchArg[:first_name] + "%"
+      elsif searchArg[:first_name_regex] == 'Ends With'
+        searchArg[:first_name] = "%" + searchArg[:first_name]
+      elsif searchArg[:first_name_regex] == 'Exactly Matches'
+        searchArg[:first_name] = searchArg[:first_name]
       end
-    else
-      searchArg[:first_name]="%"
+      query = query.where("first_name ILIKE ?", searchArg[:first_name])
     end
-
 
     if searchArg[:last_name].present?
       if searchArg[:last_name_regex]=='Contains'
         searchArg[:last_name]="%"+searchArg[:last_name]+"%"
-      else if searchArg[:last_name_regex]=='Starts With'
+      elsif searchArg[:last_name_regex]=='Starts With'
         searchArg[:last_name]=searchArg[:last_name]+"%"
-      else if searchArg[:last_name_regex]=='Ends With'
+      elsif searchArg[:last_name_regex]=='Ends With'
         searchArg[:last_name]="%"+searchArg[:last_name]
-           else if searchArg[:last_name_regex]=='Exactly Matches'
-                  searchArg[:last_name]=searchArg[:last_name]
-                end
-           end
-           end
+      elsif searchArg[:last_name_regex]=='Exactly Matches'
+        searchArg[:last_name]=searchArg[:last_name]
       end
-    else
-      searchArg[:last_name]="%"
+      query = query.where("last_name ILIKE ?", searchArg[:last_name])
     end
 
-
-    if searchArg[:gender].present?
-      if searchArg[:gender]=='any' or searchArg[:gender]=='Any'
-        searchArg[:gender]="%"
-      else
-        searchArg[:gender]=searchArg[:gender]
-      end
-    else
-      searchArg[:gender]="%"
+    if searchArg[:gender].present? and searchArg[:gender] != 'Any'
+      query = query.where("gender ILIKE ?", searchArg[:gender])
     end
-
 
     if searchArg[:state].present? and searchArg[:state]!=''
-      searchArg[:state]=searchArg[:state]
-    else
-      searchArg[:state]="%"
+      query = query.where("state ILIKE ?", searchArg[:state])
     end
-
 
     if searchArg[:city].present? and searchArg[:city]!=''
       if searchArg[:city_regex]=='Contains'
         searchArg[:city]="%"+searchArg[:city]+"%"
-      else if searchArg[:city_regex]=='Starts With'
-             searchArg[:city]=searchArg[:city]+"%"
-      else if searchArg[:city_regex]=='Ends With'
-                  searchArg[:city]="%"+searchArg[:city]
-           else if searchArg[:city_regex]=='Exactly Matches'
-                  searchArg[:city]=searchArg[:city]
-                end
-           end
-           end
+      elsif searchArg[:city_regex]=='Starts With'
+        searchArg[:city]=searchArg[:city]+"%"
+      elsif searchArg[:city_regex]=='Ends With'
+        searchArg[:city]="%"+searchArg[:city]
+      elsif searchArg[:city_regex]=='Exactly Matches'
+        searchArg[:city]=searchArg[:city]
       end
-    else
-      searchArg[:city]="%"
+      query = query.where("city ILIKE ?", searchArg[:city])
     end
 
-    if searchArg[:phone].present? and searchArg[:phone]!=''
-      searchArg[:phone]=searchArg[:phone]
-    else
-      searchArg[:phone]="%"
+    if searchArg[:compensation].present? and searchArg[:compensation] != 'Any'
+      searchArg[:compensation]="%"+searchArg[:compensation]+"%"
+      query = query.where("compensation ILIKE ?", searchArg[:compensation])
     end
 
-
-
-    if searchArg[:compensation].present?
-      if searchArg[:compensation]=='any' or searchArg[:compensation]=='Any'
-        searchArg[:compensation]="%"
-      else
-        searchArg[:compensation]="%"+searchArg[:compensation]+"%"
-      end
-    else
-      searchArg[:compensation]="%"
-    end
-
-    if searchArg[:genres].present?
-      if searchArg[:genres].contains('All') or searchArg[:genres]==nil or searchArg[:genres].empty?
-        searchArg[:genres]="%"
-      end
-    end
-
-    return GeneralInfo.where("first_name ILIKE ?
-                              AND last_name ILIKE ?
-                              AND phone ILIKE?
-                              AND gender ILIKE ?
-                              AND state ILIKE ?
-                              AND city ILIKE ?
-                              AND compensation ILIKE ?",
-                              searchArg[:first_name],
-                              searchArg[:last_name],
-                              searchArg[:phone],
-                              searchArg[:gender],
-                              searchArg[:state],
-                              searchArg[:city],
-                              searchArg[:compensation])
+    return query
   end
   
   # Sets appearance of profile view attributes
