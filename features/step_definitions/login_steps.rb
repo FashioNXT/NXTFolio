@@ -1,5 +1,9 @@
 # Login Step Definitions
 
+Given(/^I am not logged in$/) do
+  visit "/login_info/logout"
+end
+
 Given(/^I am a valid user$/) do
    @login_info = LoginInfo.create!({
       :email => "hellofriend@gmail.com",
@@ -69,10 +73,3 @@ Then(/^I should see "(.*?)"$/) do |field_name|
   end
 end
 
-Then(/^I should be on the Match My Fashion home page$/) do
-  visit root_url
-end
-
-Then(/^I should be on the login page$/) do
-  visit login_info_login_path 
-end

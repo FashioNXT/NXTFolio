@@ -25,10 +25,6 @@ Then(/^I should see a message that says "(.*?)"$/) do |message|
   end
 end
 
-Then(/^I should be on the general info page$/) do
-  visit '/general_info/new'
-end
-
 Then(/^I should be on the designer information page$/) do
   visit '/specific_designer/new'
 end

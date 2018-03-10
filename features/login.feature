@@ -11,18 +11,23 @@ Scenario: When correct login information is entered a user logs in successfully
   Given I am a valid user
   When I log in
   Then I should see "Logged In!"
-  And I should be on the Match My Fashion home page
+  And I should be on the home page
   
 Scenario: When incorrect password is entered, a user cannot log in
 
-  Given I am an invalid user
-  When I try to log in
+  Given I am not logged in
+  And I am on the home page
+  When I follow "Login"
+  And I fill in "email" with "hellofriend@gmail.com"
+  And I fill in "password" with "notmypassword"
+  And I press "Login"
   Then I should see "Incorrect Password"
-  And I should be on the login page
   
 Scenario: When incorrect email is entered, a user cannot log in
 
-  Given I am an invalid user
-  When I try to log in
+  Given I am not logged in
+  And I am on the home page
+  When I follow "Login"
+  And I fill in "email" with "test"
+  And I press "Login"
   Then I should see "Incorrect Email"
-  And I should be on the login page
