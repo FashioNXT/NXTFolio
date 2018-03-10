@@ -24,7 +24,27 @@ class GeneralInfo < ApplicationRecord
     end
 
   def self.search searchArg
-    query = GeneralInfo.all
+    country = nil
+    if searchArg[:country].present? and searchArg[:country] != ''
+      country = searchArg[:country]
+    end
+
+    state = nil
+    if searchArg[:state].present? and searchArg[:state]!=''
+      state = searchArg[:state]
+    end
+    
+    city = nil
+    if searchArg[:city].present? and searchArg[:city]!=''
+      city = searchArg[:city]
+    end
+
+    if country != nil and state != nil and city != nil
+      location_string = [country, state, city].compact.join(", ")
+      query = GeneralInfo.near(location_string)
+    else
+      query = GeneralInfo.all
+    end
 
     if searchArg[:first_name].present?
       if searchArg[:first_name_regex] == 'Contains'
@@ -56,22 +76,6 @@ class GeneralInfo < ApplicationRecord
       query = query.where("gender ILIKE ?", searchArg[:gender])
     end
 
-    if searchArg[:state].present? and searchArg[:state]!=''
-      query = query.where("state ILIKE ?", searchArg[:state])
-    end
-
-    if searchArg[:city].present? and searchArg[:city]!=''
-      if searchArg[:city_regex]=='Contains'
-        searchArg[:city]="%"+searchArg[:city]+"%"
-      elsif searchArg[:city_regex]=='Starts With'
-        searchArg[:city]=searchArg[:city]+"%"
-      elsif searchArg[:city_regex]=='Ends With'
-        searchArg[:city]="%"+searchArg[:city]
-      elsif searchArg[:city_regex]=='Exactly Matches'
-        searchArg[:city]=searchArg[:city]
-      end
-      query = query.where("city ILIKE ?", searchArg[:city])
-    end
 
     if searchArg[:compensation].present? and searchArg[:compensation] != 'Any'
       searchArg[:compensation]="%"+searchArg[:compensation]+"%"
