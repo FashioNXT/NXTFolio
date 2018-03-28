@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
+  <%= form_tag("/admin/create", method: "post") do %>
+    <%= label_tag(:job_name, "Enter Job Name:") %>
+    <%= text_field_tag(:job_name) %>
+    <%= submit_tag("Create") %>
+  <% end %>
+</html>

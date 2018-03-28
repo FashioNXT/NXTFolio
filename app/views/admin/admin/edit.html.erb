@@ -1,0 +1,12 @@
+<html lang="en">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
+  <%= form_tag("/admin/edit", method: "post") do %>  
+    <%= label_tag(:job_name, "Select the job you want to edit, then add or delete an attribute via the text box:") %>
+    <%= select_tag :job_name, options_for_select(@jobs) %>
+    <%= select_tag :attr_action, options_for_select(['Add', 'Remove']) %>
+    <%= text_field_tag(:attr_name) %>
+    <%= submit_tag("Edit") %>
+  <% end %>
+</html>

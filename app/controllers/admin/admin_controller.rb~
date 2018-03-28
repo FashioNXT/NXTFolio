@@ -1,0 +1,50 @@
+module Admin
+  class AdminController < ApplicationController
+    # Probably some code here for if you have permission, but otherwise just links to other pages are here.
+    # Maybe all the other pages could get consolidated here and seperated under tabs.
+    
+    def create
+
+      @potentialJob = params[:job_name].to_s
+      
+      
+      if(@potentialJob != nil && @potentialJob != "")
+        @potentialJob = @potentialJob.parameterize(separator: '_').upcase_first
+        if(GeneralInfo.check_Job?(@potentialJob) == false)
+	  GeneralInfo.create_Job(@potentialJob)
+          flash[:notice] = @potentialJob + " has been created."
+	else
+          flash[:notice] = params[:job_name] + " already exists."
+	end 
+      elsif(params[:job_name] == "")
+        flash[:notice] = "Please enter a non-empty value."
+      end
+      
+     # else
+      # Probably fetching page
+
+      
+    end
+
+    #def edit
+      #if(params[:job_name] != nil)
+        # We're making a job
+	#if(GeneralInfo.check_Job?(params[:job_name]))
+          	  
+      #else
+        # Probably fetching page
+    #end
+
+    def delete
+      if(params[:job_name] != nil)
+         @potentialJob = params[:job_name].to_s.parameterize(separator: '_').upcase_first
+        if(GeneralInfo.check_Job?(@potentialJob)
+	  GeneralInfo.delete_Job(@potentialJob)
+	end
+      #else
+        # Probably fetching page
+      end
+	
+    end
+  end
+end

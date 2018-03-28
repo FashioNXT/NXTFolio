@@ -9,6 +9,9 @@ class GeneralInfo < ApplicationRecord
     validates_presence_of :country
     validates_presence_of :state
     validates_presence_of :city
+    validates_presence_of :job_name
+    serialize :job_attr, Hash
+    
 
     validates :phone, numericality: true
 
@@ -156,6 +159,85 @@ class GeneralInfo < ApplicationRecord
     @attribute_values[:instagram_link] = "Instagram: " + self.instagram_link.to_s
     @attribute_values[:personalWebsite_link] = "Personal website: " + self.personalWebsite_link.to_s
     @attribute_values[:bio] = "Biography: " + self.bio.to_s
+    @attribute_values[:job_name] = self.job_name.to_s
+    @attribute_values[:job_attr] = self.job_attr
     @attribute_values
+  end
+
+  # Create/Define Jobs by dynamically creating classes
+
+  @@Job_List = Array.new
+
+  # Need code to populate job based off of existing database (For server reboots)
+
+  def self.see_Jobs
+    @@Job_List
+  end
+
+  def self.check_Job?(jobName)
+    @@Job_List.include?(jobName)
+  end
+
+  def self.delete_Job(jobName)
+    if (self.check_Job?(jobName))
+      @@Job_List.delete(jobName)
+
+      # Code here to edit the database entries
+    end
+  end
+  
+  def self.create_Job (className)
+
+    # Code to validate the job name has chars only will go here
+    
+    if(self.check_Job?(className.to_sym) == false)
+      @@Job_List.push(className.upcase_first)
+      # Create entry in Job File List
+      
+      Object.const_set(className.upcase_first, Class.new { 
+
+        @@job_Attr = Array.new  #  Could change to hash so we set data type with Attr name
+        @@plain_Name = self.class.to_s.titleize
+
+        def self.display_Name()
+          self.class.to_s.titleize
+        end
+
+  
+        def self.initialize()
+        
+        end
+   
+        def self.add_Attr(attr_Name)
+          # If Name not in hash already
+          if(@@job_Attr.include?(attr_Name) == false)
+            @@job_Attr.push(attr_Name)
+          end
+          # Else Error, name already exists
+        end
+    
+        def self.edit_Attr(attr_Name, new_Name)
+          indexLoc = @@job_Attr.find_index(attr_Name)
+
+          if(indexLoc)
+            @@job_Attr[indexLoc] = new_Name
+            # Code to run through database and edit all existing entries 
+          end
+        end
+  
+        def self.delete_Attr(attr_Name)
+          indexLoc = @@job_Attr.find_index(attr_Name)
+  
+          if(indexLoc)
+            @@job_Attr.delete_at(indexLoc)
+            # Code to shift all attributes into place in database
+          end
+        end
+    
+        def self.view_Attr()
+          @@job_Attr
+        end
+      })
+    end
   end
 end

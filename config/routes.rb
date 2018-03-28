@@ -12,7 +12,17 @@ Rails.application.routes.draw do
   post 'general_info/update_profession' => 'general_info#update_profession', :as => 'general_info/update_profession'
   get 'general_info/profession_specific' => 'general_info#profession_specific', :as => 'general_info/profession_specific'
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
-  
+
+  namespace :admin do
+    get '/' => 'admin#index'
+    get '/create' => 'admin#create'
+    post '/create' => 'admin#create'
+    get '/edit' => 'admin#edit'
+    post '/edit' => 'admin#edit'
+    get '/delete' => 'admin#delete'
+    post '/delete' => 'admin#delete'
+  end
+
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
