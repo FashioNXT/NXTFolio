@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20180326030707) do
     t.string   "phone"
     t.text     "job_attr"
     t.string   "job_name"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "login_infos", force: :cascade do |t|

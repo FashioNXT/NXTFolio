@@ -74,48 +74,25 @@
               </div>
 
               <div class="form-group">
-                <label for="country" class="cols-sm-2 control-label">Country</label>
+                <label for="location" class="cols-sm-2 control-label">Location</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= select_tag "country", options_for_select([["",""],["United States", "United States"]]),:class => 'form-control' %>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="state" class="cols-sm-2 control-label">State</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= select_tag "state", options_for_select(CS.states(:us)),include_blank:true,:class => 'form-control'%>
+                    <%= text_field_tag "location", nil, class: 'form-control', placeholder: "College Station, TX, US"%>
+
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="city" class="cols-sm-2 control-label">City</label>
+                <label for="distance" class="cols-sm-2 control-label">Distance</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "city", nil, class: 'form-control', placeholder: "Enter the city name"%>
-                    <%= select_tag "city_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
-
+                    <%= text_field_tag "distance", nil, class: 'form-control', placeholder: "20 miles"%>
                   </div>
                 </div>
               </div>
-
-
-              <!--<div class="form-group">-->
-                <!--<label for="state" class="cols-sm-2 control-label">State</label>-->
-                <!--<div class="cols-sm-10">-->
-                  <!--<div class="input-group">-->
-                    <!--<span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>-->
-                    <!--<%= text_field_tag "state", nil, class: 'form-control', placeholder: "Enter the state name"%>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-
-
 
               <div class="form-group">
                 <label for="compensation" class="cols-sm-2 control-label">Compensation</label>
