@@ -129,8 +129,34 @@ class SpecificPhotographer < ApplicationRecord
     @priority_hash.each do |user_key, value|
       @priority_return_array.push(user_key)
     end
+
+    @final_return = []
+
+    puts "----"
+    puts params_arg.inspect
+
+    if params_arg.length > 0
+      GeneralInfo.all.find_each do |user_object|
+        if user_object[:specific_profile_id] == 3
+          puts user_object.inspect
+
+          incl = true
+          params_arg.each do |param_key, param_val|
+            if user_object[param_key] != param_val
+              incl = false
+            end
+          end
+
+          if incl
+            @final_return.push(user_object[:userKey])
+          end
+        end
+      end
+    else
+      return @priority_return_array
+    end
     
-    return @priority_return_array
+    return @final_return
   end
   
   # Sets appearance of profile view attributes

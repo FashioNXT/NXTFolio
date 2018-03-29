@@ -74,6 +74,10 @@ class SearchProfileController < ApplicationController
   def search_designer
   end
 
+  def search_photographer
+    puts "SDH"
+  end
+
   def search_login
     @search_params = params.except("utf8").except("button")
 
@@ -98,8 +102,18 @@ class SearchProfileController < ApplicationController
     @checkboxes = params[:checkboxes]
     @experience = params[:checkboxes]
     @params_arg = params
+
+    @search_params = Hash.new
+
+    params.each do |key, val|
+      if val != "" && val != "Contains" && val != "Any" && key != "utf8" && key != "controller" && key != "action"
+        @search_params[key] = val
+      end
+    end
+
+    puts @search_params
     
-    @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @params_arg
+    @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificDesigner.all
@@ -116,8 +130,16 @@ class SearchProfileController < ApplicationController
   def search_specific_model
     @params_arg = params
     @checkboxes = params[:checkboxes]
+
+    @search_params = Hash.new
+
+    params.each do |key, val|
+      if val != "" && val != "Contains" && val != "Any" && key != "utf8" && key != "controller" && key != "action"
+        @search_params[key] = val
+      end
+    end
     
-    @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @params_arg
+    @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificModel.all
@@ -132,7 +154,15 @@ class SearchProfileController < ApplicationController
     @experience = params[:experience]
     @params_arg = params
     
-    @user_keys = SpecificPhotographer.search @checkboxes,flash[:user_keys],@experience, @params_arg
+    @search_params = Hash.new
+
+    params.each do |key, val|
+      if val != "" && val != "Contains" && val != "Any" && key != "utf8" && key != "controller" && key != "action"
+        @search_params[key] = val
+      end
+    end
+    
+    @user_keys = SpecificPhotographer.search @checkboxes,flash[:user_keys],@experience, @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificPhotographer.all
