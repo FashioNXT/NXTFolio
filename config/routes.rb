@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
 
   namespace :admin do
-    get '/' => 'admin#index'
+    get '/' => 'admin#landing'
     get '/create' => 'admin#create'
     post '/create' => 'admin#create'
     get '/edit' => 'admin#edit'

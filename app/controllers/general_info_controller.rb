@@ -117,6 +117,7 @@ class GeneralInfoController < ApplicationController
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key]
+  
     $template_name = params[:general_info][:specific_profile_id]
     # Save GeneralInfo object to database & redirect to specific profile view
     # Else display GeneralInfo view if save fails
@@ -145,7 +146,7 @@ class GeneralInfoController < ApplicationController
   
   # Params used to create the GeneralInfo object
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
   
   # Allows user to edit the general_info_params of the GeneralInfo object

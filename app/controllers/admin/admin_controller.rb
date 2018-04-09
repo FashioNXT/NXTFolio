@@ -2,6 +2,10 @@ module Admin
   class AdminController < ApplicationController
     # Probably some code here for if you have permission, but otherwise just links to other pages are here.
     # Maybe all the other pages could get consolidated here and seperated under tabs.
+
+    def landing
+      GeneralInfo.load_Job_File
+    end
     
     def create
 
@@ -12,6 +16,7 @@ module Admin
         @potentialJob = @potentialJob.parameterize(separator: '_').upcase_first
         if(GeneralInfo.check_Job?(@potentialJob) == false)
 	  GeneralInfo.create_Job(@potentialJob)
+          init = @potentialJob.constantize.new
           flash[:notice] = @potentialJob.titleize + " has been created."
 	else
           flash[:notice] = params[:job_name].titleize + " already exists."
@@ -43,7 +48,7 @@ module Admin
         if(GeneralInfo.check_Job?(@job))
           if(@action == 'Add')
             @job_Obj.add_Attr(@attr)
-            flash[:notice] = "Attribute " + @attr + " added to " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+            flash[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
           elsif(@action == 'Remove')
             @job_Obj.delete_Attr(@attr)
             flash[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
@@ -67,6 +72,8 @@ module Admin
         if(GeneralInfo.check_Job?(@potentialJob))
 	   GeneralInfo.delete_Job(@potentialJob)
            flash[:notice] = params[:job_name].titleize + " has been deleted."
+
+           GeneralInfo.delete_Job_From_File(params[:job_name])
 	end
       #else
         # Probably fetching page
