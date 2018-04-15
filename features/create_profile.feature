@@ -9,16 +9,19 @@ Feature: Create a Profile
 Scenario: When a user attempts to create a profile, account creation is successful
   
   Given I am on the Match My Fashion home page
-  When I sign up for an account
+  When I follow "Sign Up"
+  Then I should be on the sign up page
+  When I fill in "login_info_email" with "hellowfriend@gmail.com"
+  And I fill in "password" with "password"
+  And I fill in "confirm" with "password"
+  And I press "Submit"
   Then I should see a message that says "Account Created!"
-  And I should be on the general info page
   
 Scenario: When a user attempts to create a profile, account creation fails
   
   Given I am on the Match My Fashion home page
   When I sign up for an account
   Then I should see a message that says "Invalid Password! Please try again."
-  And I should be on the login page
   
 
 #   When I fill in "first_name" text field with "Nabil"
