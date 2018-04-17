@@ -116,7 +116,7 @@ class GeneralInfo < ApplicationRecord
     @@Job_List
   end
 
-  def self.see_types
+  def self.see_Types
     @@AcceptableAttrTypes
   end
   
