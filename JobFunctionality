@@ -1,0 +1,49 @@
+Two related database fields for the job aspect
+[:job_name] is the string form of the class for that users profession.
+    Use [:job_name].to_sym to use it. For example [:job_name].to_sym.view_Attr()
+    
+[:job_attr] is a hash, where each of the values from [:job_name].to_sym.view_attr is a key, and the 
+    user's input for the job's attributes is a value. Value can be of any data type.
+
+
+All of the new GeneralInfo class methods.
+
+GeneralInfo.see_Jobs
+    Outputs an array with the name of every job class currently available.
+    
+GeneralInfo.check_Job?(jobName)
+    Checks if jobName is an existing job.
+    
+GeneralInfo.delete_Job(jobName)
+    Removes a job from the list of available jobs. Does NOT currently rewrite 
+    existing database entries with that job.
+
+GeneralInfo.delete_Job_From_File(job_Name)
+GeneralInfo.load_Job_File()
+    The jobs and their attributes are saved to a file in order to reload them 
+    between server restarts. These functions just write delete jobs from that
+    file and and recreates the classes based on what's saved there.
+    
+GeneralInfo.create_Job (jobName, writeToFile = true)
+    Creates a class from string className that has the methods listed below. If writeToFile 
+    is false, it will not write this class to the file mentioned above (In order to prevent 
+    the file from rewriting the its contents to itself whenever it's loaded).
+    
+    
+    All of the following edit any database entries containing this job to reflect the 
+    correct information
+    jobName.add_Attr(attr_Name)
+        Adds an attribute attr_Name to the job.
+
+    jobName.edit_Attr(attr_Name, new_Name)
+        Changes the name of an attribute named attr_Name to new_Name.
+          
+    jobName.delete_Attr(attr_Name)
+        Removes an attribute from the job.
+        
+    jobName.view_Attr()
+        Outputs an array of the job's available attributes.
+    
+    jobName.update_File()
+        Updates the job file to reflect the current state of the job and its attributes.
+ 

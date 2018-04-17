@@ -81,8 +81,31 @@ class SpecificDesigner < ApplicationRecord
         end
       end
     end
-    
-    return @return_array
+
+    @final_return = []
+
+    if params_arg.length > 0
+      GeneralInfo.all.find_each do |user_object|
+        if user_object[:specific_profile_id] == 1
+          puts user_object.inspect
+
+          incl = true
+          params_arg.each do |param_key, param_val|
+            if user_object[param_key] != param_val
+              incl = false
+            end
+          end
+
+          if incl
+            @final_return.push(user_object[:userKey])
+          end
+        end
+      end
+    else
+      return @return_array
+    end
+
+    return @final_return
   end
   
   # Sets appearance of profile view attributes

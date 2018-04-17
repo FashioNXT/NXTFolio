@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20180326030707) do
     t.string   "phone"
     t.text     "job_attr"
     t.string   "job_name"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "login_infos", force: :cascade do |t|
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 20180326030707) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "user_key"
+    t.string   "state"
   end
 
   create_table "templates", force: :cascade do |t|

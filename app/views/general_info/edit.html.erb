@@ -92,7 +92,7 @@
           <label for="state" class="cols-sm-2 control-label">State*</label>
           <div class="cols-sm-10">
             <div class="input-group">
-              <%= f.select :state, options_for_select(CS.states(:us)),{},{ :class => 'form-control' } %>
+              <%= f.select :state, options_for_select(CS.states(:us), f.object.state),{},{ :class => 'form-control' } %>
             </div>
           </div>
         </div>

@@ -15,5 +15,7 @@ Feature: Search by location
     And I select "TX" from "state"
     And I fill in "city" with "College Station"
     And I press "Submit"
-    Then I should be on the search results page
+    Then I should see "Search Results"
+    And I should see "College Station, Texas"
+    And I should see "Ive Yi"
     

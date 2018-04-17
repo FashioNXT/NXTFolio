@@ -8,5 +8,5 @@ Feature: Add a new Profession Template
     Given I am a valid admin user
     When I log in
     Then I should see "Logged In!"
-    And I should be on the Match My Fashion home page
+    And I should be on the home page
     And I should see "Add Profession"

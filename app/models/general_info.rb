@@ -19,130 +19,69 @@ class GeneralInfo < ApplicationRecord
     mount_uploader :cover_picture, CoverUploader
     mount_uploaders :gallery_pictures, GalleryUploader
 
+    geocoded_by :address
+    after_validation :geocode
 
     attr_accessor :phone
     
-  def self.search searchArg
-    # http://stackoverflow.com/questions/35414443/search-through-another-model
-    # (2.2) -http://guides.rubyonrails.org/active_record_querying.html#array-conditions 
-    # Takes in an array corresponding to certain aspects of general info.
-    # joins(:pacient).where("id ILIKE ? OR pacients.name ILIKE ?", "%{search}%", "%{search}%")
-
-   # "first_name ILIKE ? AND last_name ILIKE ? AND gender ILIKE ? AND state ILIKE ? AND city ILIKE ? AND compensation ILIKE ?",
-
-        #searchArg[:first_name], searchArg[:last_name], searchArg[:gender], searchArg[:state], searchArg[:city], searchArg[:compensation]
-
-    query=""
-
-    if searchArg[:first_name].present?
-      if searchArg[:first_name_regex]=='Contains'
-        searchArg[:first_name]="%"+searchArg[:first_name]+"%"
-      else if searchArg[:first_name_regex]=='Starts With'
-             searchArg[:first_name]=searchArg[:first_name]+"%"
-      else if searchArg[:first_name_regex]=='Ends With'
-             searchArg[:first_name]="%"+searchArg[:first_name]
-           else if searchArg[:first_name_regex]=='Exactly Matches'
-                  searchArg[:first_name]=searchArg[:first_name]
-                  end
-           end
-           end
-      end
-    else
-      searchArg[:first_name]="%"
+    def address
+      [city, state, country].compact.join(", ")
     end
 
+  def self.search searchArg
+    location = nil
+    if searchArg[:location].present? and searchArg[:location] != ''
+      location = searchArg[:location]
+    end
+
+    distance = 20
+    if searchArg[:distance].present? and searchArg[:distance] != ''
+      distance = Integer(searchArg[:distance])
+    end
+
+    if location != nil
+      query = GeneralInfo.near(location, distance)
+    else
+      query = GeneralInfo.all
+    end
+
+    if searchArg[:first_name].present?
+      if searchArg[:first_name_regex] == 'Contains'
+        searchArg[:first_name] = "%" + searchArg[:first_name] + "%"
+      elsif searchArg[:first_name_regex] == 'Starts With'
+        searchArg[:first_name] = searchArg[:first_name] + "%"
+      elsif searchArg[:first_name_regex] == 'Ends With'
+        searchArg[:first_name] = "%" + searchArg[:first_name]
+      elsif searchArg[:first_name_regex] == 'Exactly Matches'
+        searchArg[:first_name] = searchArg[:first_name]
+      end
+      query = query.where("first_name ILIKE ?", searchArg[:first_name])
+    end
 
     if searchArg[:last_name].present?
       if searchArg[:last_name_regex]=='Contains'
         searchArg[:last_name]="%"+searchArg[:last_name]+"%"
-      else if searchArg[:last_name_regex]=='Starts With'
+      elsif searchArg[:last_name_regex]=='Starts With'
         searchArg[:last_name]=searchArg[:last_name]+"%"
-      else if searchArg[:last_name_regex]=='Ends With'
+      elsif searchArg[:last_name_regex]=='Ends With'
         searchArg[:last_name]="%"+searchArg[:last_name]
-           else if searchArg[:last_name_regex]=='Exactly Matches'
-                  searchArg[:last_name]=searchArg[:last_name]
-                end
-           end
-           end
+      elsif searchArg[:last_name_regex]=='Exactly Matches'
+        searchArg[:last_name]=searchArg[:last_name]
       end
-    else
-      searchArg[:last_name]="%"
+      query = query.where("last_name ILIKE ?", searchArg[:last_name])
+    end
+
+    if searchArg[:gender].present? and searchArg[:gender] != 'Any'
+      query = query.where("gender ILIKE ?", searchArg[:gender])
     end
 
 
-    if searchArg[:gender].present?
-      if searchArg[:gender]=='any' or searchArg[:gender]=='Any'
-        searchArg[:gender]="%"
-      else
-        searchArg[:gender]=searchArg[:gender]
-      end
-    else
-      searchArg[:gender]="%"
+    if searchArg[:compensation].present? and searchArg[:compensation] != 'Any'
+      searchArg[:compensation]="%"+searchArg[:compensation]+"%"
+      query = query.where("compensation ILIKE ?", searchArg[:compensation])
     end
 
-
-    if searchArg[:state].present? and searchArg[:state]!=''
-      searchArg[:state]=searchArg[:state]
-    else
-      searchArg[:state]="%"
-    end
-
-
-    if searchArg[:city].present? and searchArg[:city]!=''
-      if searchArg[:city_regex]=='Contains'
-        searchArg[:city]="%"+searchArg[:city]+"%"
-      else if searchArg[:city_regex]=='Starts With'
-             searchArg[:city]=searchArg[:city]+"%"
-      else if searchArg[:city_regex]=='Ends With'
-                  searchArg[:city]="%"+searchArg[:city]
-           else if searchArg[:city_regex]=='Exactly Matches'
-                  searchArg[:city]=searchArg[:city]
-                end
-           end
-           end
-      end
-    else
-      searchArg[:city]="%"
-    end
-
-    if searchArg[:phone].present? and searchArg[:phone]!=''
-      searchArg[:phone]=searchArg[:phone]
-    else
-      searchArg[:phone]="%"
-    end
-
-
-
-    if searchArg[:compensation].present?
-      if searchArg[:compensation]=='any' or searchArg[:compensation]=='Any'
-        searchArg[:compensation]="%"
-      else
-        searchArg[:compensation]="%"+searchArg[:compensation]+"%"
-      end
-    else
-      searchArg[:compensation]="%"
-    end
-
-    if searchArg[:genres].present?
-      if searchArg[:genres].contains('All') or searchArg[:genres]==nil or searchArg[:genres].empty?
-        searchArg[:genres]="%"
-      end
-    end
-
-    return GeneralInfo.where("first_name ILIKE ?
-                              AND last_name ILIKE ?
-                              AND phone ILIKE?
-                              AND gender ILIKE ?
-                              AND state ILIKE ?
-                              AND city ILIKE ?
-                              AND compensation ILIKE ?",
-                              searchArg[:first_name],
-                              searchArg[:last_name],
-                              searchArg[:phone],
-                              searchArg[:gender],
-                              searchArg[:state],
-                              searchArg[:city],
-                              searchArg[:compensation])
+    return query
   end
   
   # Sets appearance of profile view attributes
@@ -166,15 +105,21 @@ class GeneralInfo < ApplicationRecord
 
   # Create/Define Jobs by dynamically creating classes
 
+  @@AcceptableAttrTypes = ["Integer", "Float", "String"]
+  
   @@Job_List = Array.new
-  @@job_Attr = Hash.new
-
+  @@Job_Attr = Hash.new
+  @@Attr_Type = Hash.new
   # Need code to populate job based off of existing database (For server reboots)
 
   def self.see_Jobs
     @@Job_List
   end
 
+  def self.see_types
+    @@AcceptableAttrTypes
+  end
+  
   def self.check_Job?(jobName)
     @@Job_List.include?(jobName)
   end
@@ -201,13 +146,18 @@ class GeneralInfo < ApplicationRecord
     
     if(File.exists?("jobList.dat"))
       File.readlines("jobList.dat").each do |line|
-        classMatch = line.match(/^\w+/)
-        eachMatch = line.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match}
+        classMatch = line.match(/^([A-Z]\w*)/)
+        eachAttrMatch = line.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
+        eachTypeMatch = line.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match}
+        eachAttrMatch = eachAttrMatch.flatten
+        eachTypeMatch = eachTypeMatch.flatten
         if(classMatch.to_s != nil && classMatch.to_s != "")
           self.create_Job(classMatch.to_s, false)
-          if(eachMatch != nil && eachMatch.size > 0)
-            eachMatch.each do |x|
-              classMatch.to_s.constantize.add_Attr(x.to_s.chop)
+          if(eachAttrMatch != nil && eachAttrMatch.size > 0)
+            x = 0
+            while (x < eachAttrMatch.size)
+              classMatch.to_s.constantize.add_Attr(eachAttrMatch[x].to_s.chop, eachAttrMatch[x].to_s.chop)
+              x = x + 1
             end
           end
         end
@@ -221,7 +171,9 @@ class GeneralInfo < ApplicationRecord
     
     if(self.check_Job?(className.upcase_first) == false)
       @@Job_List.push(className.upcase_first)
-      @@job_Attr[className.upcase_first] = Array.new
+      @@Job_Attr[className.upcase_first] = Array.new
+      @@Attr_Type[className.upcase_first] = Array.new
+
       # Create entry in Job File List
       
       creator = Object.const_set(className.upcase_first, Class.new { 
@@ -240,38 +192,43 @@ class GeneralInfo < ApplicationRecord
 
        # end
    
-        def self.add_Attr(attr_Name)
+        def self.add_Attr(attr_Name, attr_Type = "String")
           # If Name not in hash already
-          if(@@job_Attr[self.name].include?(attr_Name) == false)
-            @@job_Attr[self.name].push(attr_Name)
+          if(@@Job_Attr[self.name].include?(attr_Name) == false)
+            @@Job_Attr[self.name].push(attr_Name)
+            @@Attr_Type[self.name].push(attr_Type)
             self.update_File
           end
           # Else Error, name already exists
         end
 
-        def add_Attr(attr_Name)
-           self.add_Attr(attr_Name)
+        def add_Attr(attr_Name, attr_Type = "String")
+           self.add_Attr(attr_Name, attr_Type)
         end
     
-        def self.edit_Attr(attr_Name, new_Name)
-          indexLoc = @@job_Attr[self.name].find_index(attr_Name)
+        def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
+          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
 
           if(indexLoc)
-            @@job_Attr[self.name][indexLoc] = new_Name
+            @@Job_Attr[self.name][indexLoc] = new_Name
+            if(new_type != nil)
+              @@Attr_Type[self.name] = new_Type
+            end
             self.update_File
             # Code to run through database and edit all existing entries 
           end
         end
 
-        def edit_Attr(attr_Name, new_Name)
-           self.edit_Attr(attr_Name, new_Name)
+        def edit_Attr(attr_Name, new_Name, new_Type = nil)
+           self.edit_Attr(attr_Name, new_Name, new_Type)
         end
         
         def self.delete_Attr(attr_Name)
-          indexLoc = @@job_Attr[self.name].find_index(attr_Name)
+          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
   
           if(indexLoc)
-            @@job_Attr[self.name].delete_at(indexLoc)
+            @@Job_Attr[self.name].delete_at(indexLoc)
+            @@Attr_Type[self.name].delete_at(indexLoc)
             self.update_File
             # Code to shift all attributes into place in database
           end
@@ -282,16 +239,39 @@ class GeneralInfo < ApplicationRecord
         end
     
         def self.view_Attr()
-          @@job_Attr[self.name]
+          @@Job_Attr[self.name]
         end
 
         def view_Attr()
           self.view_Attr()
         end
 
+        def self.view_Attr_Type(attr_Name)
+          indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
+
+          if(indexLoc)
+            @@Attr_Type[self.name][indexLoc]
+          else
+            nil
+          end
+        end
+
+        def view_Attr_Type(attr_Name)
+          self.view_Attr_Type(attr_Name)
+        end
+        
         def self.update_File()
           self_Name = self.display_Name
-          new_line = self.display_Name + " " + ("'#{self.view_Attr.join("','")}'")
+          attr_Body = '\''
+          x = 0
+          while(x < @@Job_Attr[self.name].size)
+            attr_Body = attr_Body + @@Job_Attr[self.name][x] +'%'+ @@Attr_Type[self.name][x] +'\''
+            x = x + 1
+          end
+          if(attr_Body == '\'')
+            attr_Body = '\'\''
+          end
+          new_line = self.display_Name + " " + attr_Body
           file_cont = File.read ("jobList.dat")
           new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
           File.open("jobList.dat", "w") {|file| file.puts new_cont}

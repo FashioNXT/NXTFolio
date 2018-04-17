@@ -32,4 +32,3 @@ Feature: Search a Profile
     Given I am a valid user
     When I click on search button and search by fields
     Then I should see "No matches"
-
