@@ -105,15 +105,21 @@ class GeneralInfo < ApplicationRecord
 
   # Create/Define Jobs by dynamically creating classes
 
+  @@AcceptableAttrTypes = ["Integer", "Float", "String"]
+  
   @@Job_List = Array.new
-  @@job_Attr = Hash.new
-
+  @@Job_Attr = Hash.new
+  @@Attr_Type = Hash.new
   # Need code to populate job based off of existing database (For server reboots)
 
   def self.see_Jobs
     @@Job_List
   end
 
+  def self.see_types
+    @@AcceptableAttrTypes
+  end
+  
   def self.check_Job?(jobName)
     @@Job_List.include?(jobName)
   end
@@ -140,13 +146,18 @@ class GeneralInfo < ApplicationRecord
     
     if(File.exists?("jobList.dat"))
       File.readlines("jobList.dat").each do |line|
-        classMatch = line.match(/^\w+/)
-        eachMatch = line.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match}
+        classMatch = line.match(/^([A-Z]\w*)/)
+        eachAttrMatch = line.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
+        eachTypeMatch = line.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match}
+        eachAttrMatch = eachAttrMatch.flatten
+        eachTypeMatch = eachTypeMatch.flatten
         if(classMatch.to_s != nil && classMatch.to_s != "")
           self.create_Job(classMatch.to_s, false)
-          if(eachMatch != nil && eachMatch.size > 0)
-            eachMatch.each do |x|
-              classMatch.to_s.constantize.add_Attr(x.to_s.chop)
+          if(eachAttrMatch != nil && eachAttrMatch.size > 0)
+            x = 0
+            while (x < eachAttrMatch.size)
+              classMatch.to_s.constantize.add_Attr(eachAttrMatch[x].to_s.chop, eachAttrMatch[x].to_s.chop)
+              x = x + 1
             end
           end
         end
@@ -160,7 +171,9 @@ class GeneralInfo < ApplicationRecord
     
     if(self.check_Job?(className.upcase_first) == false)
       @@Job_List.push(className.upcase_first)
-      @@job_Attr[className.upcase_first] = Array.new
+      @@Job_Attr[className.upcase_first] = Array.new
+      @@Attr_Type[className.upcase_first] = Array.new
+
       # Create entry in Job File List
       
       creator = Object.const_set(className.upcase_first, Class.new { 
@@ -179,38 +192,43 @@ class GeneralInfo < ApplicationRecord
 
        # end
    
-        def self.add_Attr(attr_Name)
+        def self.add_Attr(attr_Name, attr_Type = "String")
           # If Name not in hash already
-          if(@@job_Attr[self.name].include?(attr_Name) == false)
-            @@job_Attr[self.name].push(attr_Name)
+          if(@@Job_Attr[self.name].include?(attr_Name) == false)
+            @@Job_Attr[self.name].push(attr_Name)
+            @@Attr_Type[self.name].push(attr_Type)
             self.update_File
           end
           # Else Error, name already exists
         end
 
-        def add_Attr(attr_Name)
-           self.add_Attr(attr_Name)
+        def add_Attr(attr_Name, attr_Type = "String")
+           self.add_Attr(attr_Name, attr_Type)
         end
     
-        def self.edit_Attr(attr_Name, new_Name)
-          indexLoc = @@job_Attr[self.name].find_index(attr_Name)
+        def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
+          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
 
           if(indexLoc)
-            @@job_Attr[self.name][indexLoc] = new_Name
+            @@Job_Attr[self.name][indexLoc] = new_Name
+            if(new_type != nil)
+              @@Attr_Type[self.name] = new_Type
+            end
             self.update_File
             # Code to run through database and edit all existing entries 
           end
         end
 
-        def edit_Attr(attr_Name, new_Name)
-           self.edit_Attr(attr_Name, new_Name)
+        def edit_Attr(attr_Name, new_Name, new_Type = nil)
+           self.edit_Attr(attr_Name, new_Name, new_Type)
         end
         
         def self.delete_Attr(attr_Name)
-          indexLoc = @@job_Attr[self.name].find_index(attr_Name)
+          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
   
           if(indexLoc)
-            @@job_Attr[self.name].delete_at(indexLoc)
+            @@Job_Attr[self.name].delete_at(indexLoc)
+            @@Attr_Type[self.name].delete_at(indexLoc)
             self.update_File
             # Code to shift all attributes into place in database
           end
@@ -221,16 +239,39 @@ class GeneralInfo < ApplicationRecord
         end
     
         def self.view_Attr()
-          @@job_Attr[self.name]
+          @@Job_Attr[self.name]
         end
 
         def view_Attr()
           self.view_Attr()
         end
 
+        def self.view_Attr_Type(attr_Name)
+          indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
+
+          if(indexLoc)
+            @@Attr_Type[self.name][indexLoc]
+          else
+            nil
+          end
+        end
+
+        def view_Attr_Type(attr_Name)
+          self.view_Attr_Type(attr_Name)
+        end
+        
         def self.update_File()
           self_Name = self.display_Name
-          new_line = self.display_Name + " " + ("'#{self.view_Attr.join("','")}'")
+          attr_Body = '\''
+          x = 0
+          while(x < @@Job_Attr[self.name].size)
+            attr_Body = attr_Body + @@Job_Attr[self.name][x] +'%'+ @@Attr_Type[self.name][x] +'\''
+            x = x + 1
+          end
+          if(attr_Body == '\'')
+            attr_Body = '\'\''
+          end
+          new_line = self.display_Name + " " + attr_Body
           file_cont = File.read ("jobList.dat")
           new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
           File.open("jobList.dat", "w") {|file| file.puts new_cont}
