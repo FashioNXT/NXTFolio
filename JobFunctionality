@@ -1,8 +1,8 @@
 Two related database fields for the job aspect
 [:job_name] is the string form of the class for that users profession.
-    Use [:job_name].to_sym to use it. For example [:job_name].to_sym.view_Attr()
+    Use [:job_name].to_sym to use it. For example [:job_name].to_s.constantize.view_Attr()
     
-[:job_attr] is a hash, where each of the values from [:job_name].to_sym.view_attr is a key, and the 
+[:job_attr] is a hash, where each of the values from [:job_name].to_s.constantize.view_attr is a key, and the 
     user's input for the job's attributes is a value. Value can be of any data type.
 
 
@@ -10,6 +10,10 @@ All of the new GeneralInfo class methods.
 
 GeneralInfo.see_Jobs
     Outputs an array with the name of every job class currently available.
+    
+GeneralInfo.see_Types
+    Outputs an array of the valid types an attribute can have. Viewable in the 
+    model as @@AcceptableAttrTypes
     
 GeneralInfo.check_Job?(jobName)
     Checks if jobName is an existing job.
@@ -21,7 +25,7 @@ GeneralInfo.delete_Job(jobName)
 GeneralInfo.delete_Job_From_File(job_Name)
 GeneralInfo.load_Job_File()
     The jobs and their attributes are saved to a file in order to reload them 
-    between server restarts. These functions just write delete jobs from that
+    between server restarts. These functions just write/delete jobs from that
     file and and recreates the classes based on what's saved there.
     
 GeneralInfo.create_Job (jobName, writeToFile = true)
@@ -32,17 +36,21 @@ GeneralInfo.create_Job (jobName, writeToFile = true)
     
     All of the following edit any database entries containing this job to reflect the 
     correct information
-    jobName.add_Attr(attr_Name)
-        Adds an attribute attr_Name to the job.
+    jobName.add_Attr(attr_Name, attr_Type = "String")
+        Adds an attribute attr_Name to the job of type attr_Type.
 
-    jobName.edit_Attr(attr_Name, new_Name)
-        Changes the name of an attribute named attr_Name to new_Name.
+    jobName.edit_Attr(attr_Name, new_Name, new_Type = nil)
+        Changes the name of an attribute named attr_Name to new_Name. If new_Type is left set
+        to nil, the type of the attribute will stay at its current value.
           
     jobName.delete_Attr(attr_Name)
         Removes an attribute from the job.
         
     jobName.view_Attr()
         Outputs an array of the job's available attributes.
+    
+    jobName.view_Attr_Type(attr_Name)
+        Outputs the type of an attribute attr_Name in string form. Returns nil if it doesn't exist.
     
     jobName.update_File()
         Updates the job file to reflect the current state of the job and its attributes.
