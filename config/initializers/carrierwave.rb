@@ -3,8 +3,8 @@ CarrierWave.configure do |config|
   config.ignore_processing_errors = false
   config.ignore_download_errors = false
 
-
-  if ENV['S3_KEY'] and ENV['S3_SECRET']
+  if ENV.has_key? 'S3_KEY' and ENV.has_key? 'S3_SECRET'
+    print("USING AWS\n")
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
