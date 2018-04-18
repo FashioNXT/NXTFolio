@@ -9,7 +9,7 @@ class GeneralInfo < ApplicationRecord
     validates_presence_of :country
     validates_presence_of :state
     validates_presence_of :city
-    validates_presence_of :job_name
+    #validates_presence_of :job_name
     serialize :job_attr, Hash
     
 
