@@ -113,7 +113,7 @@ class SearchProfileController < ApplicationController
 
     puts @search_params
     
-    @user_keys = SpecificDesigner.search @checkboxes, flash[:user_keys], @experience, @search_params
+    @user_keys = SpecificDesigner.search flash[:user_keys], @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificDesigner.all
@@ -139,7 +139,7 @@ class SearchProfileController < ApplicationController
       end
     end
     
-    @user_keys = SpecificModel.search flash[:user_keys], @checkboxes, @search_params
+    @user_keys = SpecificModel.search flash[:user_keys], @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificModel.all
@@ -162,7 +162,7 @@ class SearchProfileController < ApplicationController
       end
     end
     
-    @user_keys = SpecificPhotographer.search @checkboxes,flash[:user_keys],@experience, @search_params
+    @user_keys = SpecificPhotographer.search flash[:user_keys], @search_params
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificPhotographer.all

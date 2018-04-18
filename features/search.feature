@@ -14,6 +14,13 @@ Feature: Search a Profile
     When I click on search button and search by fields
     Then I should see "No matches"
 
+  Scenario: When I go to the search page to search by model, I can see the search results
+    Given I am a valid user
+    When I select model
+    And I click on the search button
+    And I click on the search button
+    Then I should see "No matches"
+
 
 #  Scenario: When a user attempts to create a profile, account creation fails
 #

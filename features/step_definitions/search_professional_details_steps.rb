@@ -1,7 +1,7 @@
 # Search Professional Details Step Definitions
 
 When(/^I click on search button and search by profession/) do
-
+  
 end
 
 Then(/I should see "No matches"/) do
@@ -9,7 +9,7 @@ Then(/I should see "No matches"/) do
 end
 
 When(/^I click on search button and search by tags/) do
-
+  
 end
 
 When(/^I click on search button/) do

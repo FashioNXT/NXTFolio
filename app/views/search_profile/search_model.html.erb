@@ -75,24 +75,31 @@
         <div class="input-group">
       <p>
         <b>
-          <%= label_tag "Height (in feet)" %>
+          <%= label_tag "Max Height (in feet)" %>
         </b>
         <br/>
-        <%= number_field_tag :height_feet, :in => 0..12, :step => 1.0 %>
+        <%= number_field_tag :max_height, :in => 0..12, :step => 1.0 %>
       </p>
       <p>
         <b>
-          <%= label_tag "Height (in inches)" %>
+          <%= label_tag "Min Height (in feet)" %>
         </b>
         <br/>
-        <%= number_field_tag :height_inches, :in => 0..12, :step => 1.0 %>
+        <%= number_field_tag :min_height, :in => 0..12, :step => 1.0 %>
       </p>
       <p>
         <b>
-          <%= label_tag "Dress size" %>
+          <%= label_tag "Max Dress Size" %>
         </b>
         <br/>
-        <%= number_field_tag :dress_size %>
+        <%= number_field_tag :max_dress_size %>
+      </p>
+      <p>
+        <b>
+          <%= label_tag "Min Dress Size" %>
+        </b>
+        <br/>
+        <%= number_field_tag :min_dress_size %>
       </p>
       <p>
         <b>
