@@ -12,6 +12,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['S3_SECRET'],
     }
     config.fog_directory = 'fashionnxt-test'
+    config.storage = :fog
   else
     print("USING FS\n")
     config.storage = :file
