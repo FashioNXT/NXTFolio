@@ -13,6 +13,7 @@ CarrierWave.configure do |config|
     }
     config.fog_directory = 'fashionnxt-test'
   else
+    print("USING FS\n")
     config.storage = :file
   end
 
