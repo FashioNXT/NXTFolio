@@ -126,7 +126,7 @@
           <div class="col-lg-6">
             <p>
               <% if @login_info && @login_info.email != "" %>
-                <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+                <a href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope-o"></i></a>
               <% end %>
 
               <% if @general_info && @general_info.phone != "" %>

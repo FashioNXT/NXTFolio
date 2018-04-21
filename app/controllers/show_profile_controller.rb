@@ -10,6 +10,7 @@ class ShowProfileController < ApplicationController
         @general_info = GeneralInfo.find_by(userKey: user_key_current)
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
+        @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
         
         if session[:current_user_key] != nil and params[:user_key] == nil
           @login_user_true = session[:current_user_key]
