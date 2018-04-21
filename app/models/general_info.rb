@@ -21,8 +21,6 @@ class GeneralInfo < ApplicationRecord
 
     geocoded_by :address
     after_validation :geocode
-
-    attr_accessor :phone
     
     def address
       [city, state, country].compact.join(", ")
