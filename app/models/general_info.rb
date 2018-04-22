@@ -116,7 +116,7 @@ class GeneralInfo < ApplicationRecord
     @@Job_List
   end
 
-  def self.see_types
+  def self.see_Types
     @@AcceptableAttrTypes
   end
   
@@ -246,13 +246,17 @@ class GeneralInfo < ApplicationRecord
           self.view_Attr()
         end
 
-        def self.view_Attr_Type(attr_Name)
-          indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
-
-          if(indexLoc)
-            @@Attr_Type[self.name][indexLoc]
+        def self.view_Attr_Type(attr_Name = nil)
+          if (attr_Name == nil)
+            @@Attr_Type[self.name]
           else
-            nil
+            indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
+
+            if(indexLoc)
+              @@Attr_Type[self.name][indexLoc]
+            else
+              nil
+            end
           end
         end
 
