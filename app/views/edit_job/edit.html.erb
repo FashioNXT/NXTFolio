@@ -1,0 +1,27 @@
+<%= render :partial => "/layout/header" %>
+<body>
+<%= render :partial => "/layout/navigation" %>
+  <%= render :partial => "/layout/body" %>
+<section  id="specificForm" class="container content-section text-center">
+
+  <div id="SPECIFICFORM">
+    <h1>
+      <b><%=@job_title%></b>
+    </h1>
+    <%= form_for @holder, :action => 'update', :url => specific_photographer_update_path do |f| %>
+      <%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
+	<% @attr_titles.each_with_index do |attrName, i|%>
+	  <%= f2.label attrName %>
+          </br>
+	  <%= f2.text_field (":" + i.to_s).to_sym %>
+	  </br>
+        <% end %>
+      <% end %>   
+      <%= f.submit "Submit" %>
+    <% end %>
+    <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
+  </div>
+</section>
+<%= render :partial => "/layout/javascripts" %>
+</body>
+<%= render :partial => "/layout/footer" %>

@@ -17,8 +17,23 @@ header.masthead h1 {
     color: white;
 }
 
+header.masthead h2 {
+    font-size: 60px;
+    color: white;
+}
+
 header.masthead h3 {
     font-size: 20px;
+    color: white;
+}
+
+header.masthead h4 {
+    font-size: 20px;
+    color: white;
+}
+
+header.masthead h5 {
+    font-size: 40px;
     color: white;
 }
 
@@ -128,8 +143,19 @@ header.masthead h3 {
     color: white;
 }
 
-#intro h5, p {
+#intro h4 {
     color: white;
+    font-size: 30px;
+}
+
+#intro h5 {
+    color: white;
+    font-size: 30px;
+}
+
+#intro , p {
+    color: white;
+    
 }
 
 #intro i {
