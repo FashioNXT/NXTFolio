@@ -4,6 +4,7 @@ Two related database fields for the job aspect
     
 [:job_attr] is a hash, where each of the values from [:job_name].to_s.constantize.view_attr is a key, and the 
     user's input for the job's attributes is a value. Value can be of any data type.
+    ## BEING CHANGED to the key is of the form :0, :1, :2, etc, and will work like an array.
 
 
 All of the new GeneralInfo class methods.
