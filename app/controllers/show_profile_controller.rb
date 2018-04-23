@@ -16,6 +16,16 @@ class ShowProfileController < ApplicationController
           @login_user_true = session[:current_user_key]
         end
 
+
+	@job_title = @general_info[:job_name]
+	if (@job_title == "" || @job_title == nil)
+	  @job_title = "Photographer"
+	end
+	@attr_titles = @job_title.constantize.view_Attr()
+	@attr_types = @job_title.constantize.view_Attr_Type()
+	@attr_contents = @general_info[:job_attr]
+	
+
         case @general_info.specific_profile_id
         when 1
           @profile_type = "Designer"

@@ -46,9 +46,11 @@ module Admin
         @attr = params[:attr_name]
 
         if(GeneralInfo.check_Job?(@job))
-          if(@action == 'Add')
+          if(@action == 'Add' && @job_Obj.view_Attr().include?(@attr) == false)
             @job_Obj.add_Attr(@attr)
             flash[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+            query = GeneralInfo.where("job_name = ?", @job_Obj.name)
+            query.update_all job_attr: {@job_Obj.view_Attr().find_index(@attr) => "Default"}
           elsif(@action == 'Remove')
             @job_Obj.delete_Attr(@attr)
             flash[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect

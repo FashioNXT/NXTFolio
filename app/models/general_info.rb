@@ -196,7 +196,8 @@ class GeneralInfo < ApplicationRecord
             @@Job_Attr[self.name].push(attr_Name)
             @@Attr_Type[self.name].push(attr_Type)
             self.update_File
-          end
+	  end
+          
           # Else Error, name already exists
         end
 
@@ -244,13 +245,17 @@ class GeneralInfo < ApplicationRecord
           self.view_Attr()
         end
 
-        def self.view_Attr_Type(attr_Name)
-          indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
-
-          if(indexLoc)
-            @@Attr_Type[self.name][indexLoc]
+        def self.view_Attr_Type(attr_Name = nil)
+          if (attr_Name == nil)
+            @@Attr_Type[self.name]
           else
-            nil
+            indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
+
+            if(indexLoc)
+              @@Attr_Type[self.name][indexLoc]
+            else
+              nil
+            end
           end
         end
 

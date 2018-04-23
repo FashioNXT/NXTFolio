@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post '/delete' => 'admin#delete'
   end
 
+  get 'edit_job' => 'edit_job#edit'
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
