@@ -51,6 +51,9 @@ GeneralInfo.create_Job (jobName, writeToFile = true)
     
     jobName.view_Attr_Type(attr_Name)
         Outputs the type of an attribute attr_Name in string form. Returns nil if it doesn't exist.
+
+    jobName.view_Attr_Type()
+        Same as jobName.view_Attr()
     
     jobName.update_File()
         Updates the job file to reflect the current state of the job and its attributes.
