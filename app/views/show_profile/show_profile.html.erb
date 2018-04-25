@@ -36,15 +36,8 @@
         <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
           <a href="/login_info/edit" class="btn btn-info">Edit Login Info</a>
           <a href="/general_info/edit" class="btn btn-info">Edit General Info</a>
-          <% if (@profile_type != nil) %>
-              <% if @profile_type.upcase == "MODEL" %>
-                  <a href="/specific_model/edit" class="btn btn-info">Edit Model Info</a>
-              <% elsif @profile_type.upcase == "DESIGNER" %>
-                  <a href="/specific_designer/edit" class="btn btn-info">Edit Designer Info</a>
-              <% elsif @profile_type.upcase == "PHOTOGRAPHER" %>
-                  <a href="/specific_photographer/edit" class="btn btn-info">Edit Photographer Info</a>
-              <% end %>
-          <% end %><!-- 
+          <a href="/edit_job" class="btn btn-info"><%= "Edit "+ @job_title + " Info" %></a>
+          <!-- 
           <a href="/general_info/edit_profession" class="btn btn-info">Edit Occupation</a> -->
           <!--/ %a{:href => "/login_info/delete"} Delete Account
           -->
@@ -67,8 +60,12 @@
 	</br>
 	<div class="col-lg-12 col-lg-offset-1">
 	  <% @attr_titles.each_with_index do |title, index| %>
-	    <p><%= title %></p>
-	    <p><%= @attr_contents[(":" + index.to_s).to_sym] %></p>
+	    <p><font size = "4"><%= title + ":"%></font></p>
+	    <% if@attr_contents[(index)] == nil %>
+	      <p><%= "    Not Specified" %></p>
+	    <% else %>
+	      <p><%= "    " + @attr_contents[(index)] %></p>
+	    <% end %>
 	    </br>
 	  <% end %>
   	</div>

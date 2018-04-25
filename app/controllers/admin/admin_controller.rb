@@ -49,11 +49,31 @@ module Admin
           if(@action == 'Add' && @job_Obj.view_Attr().include?(@attr) == false)
             @job_Obj.add_Attr(@attr)
             flash[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
-            query = GeneralInfo.where("job_name = ?", @job_Obj.name)
-            query.update_all job_attr: {@job_Obj.view_Attr().find_index(@attr) => "Default"}
-          elsif(@action == 'Remove')
-            @job_Obj.delete_Attr(@attr)
+            x = @job_Obj.view_Attr().find_index(@attr)
+	    GeneralInfo.find_each do |user|
+	        if(user[:job_name] == @job_Obj.name)
+                    newAttr = user[:job_attr]
+		    newAttr[x] = "Default"
+	            user.update_attribute(:job_attr, newAttr)
+		end
+	    end
+          elsif(@action == 'Remove' && @job_Obj.view_Attr().include?(@attr))
+            origLoc = @job_Obj.view_Attr().find_index(@attr)
+	    @job_Obj.delete_Attr(@attr)
             flash[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+	    attrLength = @job_Obj.view_Attr().length
+	    GeneralInfo.find_each do |user|
+	    	if(user[:job_name] == @job_Obj.name)
+		    x = origLoc
+		    newAttr = user[:job_attr]
+            	    while (x < attrLength)
+		    	newAttr[x] = newAttr[x + 1]
+                    	x += 1
+                    end
+		    newAttr.delete(attrLength)
+                    user.update_attribute(:job_attr, newAttr)
+            	end
+	    end
           end
           
         else
