@@ -25,7 +25,7 @@
           <% if @general_info && @general_info.last_name %>
             <%= @general_info.last_name %></h1>
           <% end %>
-	  <h2><%= @job_title%></h2>
+	  <h2><%= @profile_type %></h2>
           <h3><i class="fa fa-map-marker"></i> <%= @general_info_values[:location] %> </h3>
         </div><!--/.col-lg-12 -->
       </div>
@@ -47,8 +47,10 @@
   </header>
 
   <section id="about" name="about"></section>
+  
   <div id="intro">
     <div class="container">
+<<<<<<< HEAD
       <div class="col-lg-12">
         <h5>ABOUT</h5>
       </div>
@@ -69,24 +71,72 @@
         <div class="col-lg-6 col-lg-offset-1">
           <p><sm>SOCIAL LINKS</sm></p>
 	  <p>
+=======
+
+      <div class="row">
+	<h4>ABOUT</h4>
+        <% if @general_info %>
+          
+        <div class="col-lg-12">
+          <p><%= @general_info.bio %></p>
+          <br>
+        </div> 
+        <div class = "col-lg-12">
+	  <% @attribute_titles.each_with_index do |attr, index|%>
+	    <p> <%= attr %> </p>
+	    <p> <%= @attribute_contents[index] %> </p>
+            <br>
+	  <% end %>
+	</div>
+
+	<div>
+          <p><sm>SOCIAL LINKS</sm></p>
+        </div>
+
+        <div class="col-lg-12">
+          <p>
+>>>>>>> newProfileView
             <% if @general_info && @general_info.facebook_link != "" %>
-            <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
             <% end %>
 
             <% if @general_info && @general_info.linkedIn_link != "" %>
-            <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+              <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
             <%end%>
-
           </p>
+<<<<<<< HEAD
           <br>
         </div> 
       </div><!--/.row -->
 
 
+=======
+        </div>
+        <% end %>
+
+        
+        <p>CONTACT INFORMATION</p>
+         
+        <div class="col-lg-12">
+          <p>
+            <% if @login_info && @login_info.email != "" %>
+              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+            <% end %>
+
+            <% if @general_info && @general_info.phone != "" %>
+              <%= @general_info.phone %>
+            <%end%>
+          </p>
+        </div>
+      </div><!--/.row -->
+
+<!--
+>>>>>>> newProfileView
       <div class="row">
         <div class="col-lg-2 col-lg-offset-1">
           <% if @general_info && @general_info.bio =="*##*!(@dummy" %>
             <h5>ABOUT</h5>
+<<<<<<< HEAD
             </div>
             <div class="col-lg-6">
               <p><%= @general_info.bio %></p>
@@ -97,11 +147,24 @@
                 <% if @general_info && @general_info.facebook_link == "28231hsh292$" %>
                   <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
                 <% end %>
+=======
+          </div>
+          <div class="col-lg-6">
+            <p><%= @general_info.bio %></p>
+          </div>
+          <div class="col-lg-3">
+            <p><sm>SOCIAL LINKS</sm></p>
+            <p>
+              <% if @general_info && @general_info.facebook_link == "28231hsh292$" %>
+                <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+              <% end %>
+>>>>>>> newProfileView
 
                 <% if @general_info && @general_info.linkedIn_link == "238jsdsajhdask" %>
                   <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
                 <%end%>
 
+<<<<<<< HEAD
               </p>
               <br>
             </div>
@@ -126,6 +189,16 @@
 
       </div>
 
+=======
+            </p>
+            <br>
+          </div>
+        <% else %>
+-->
+	  
+        <!--<% end %>-->
+       </div>
+>>>>>>> newProfileView
     </div><!--/.container -->
   </div><!--/ #intro -->
 

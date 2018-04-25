@@ -32,10 +32,6 @@ header.masthead h4 {
     color: white;
 }
 
-header.masthead h5 {
-    font-size: 40px;
-    color: white;
-}
 
 .centered {
     text-align: center;
@@ -148,14 +144,8 @@ header.masthead h5 {
     font-size: 30px;
 }
 
-#intro h5 {
-    color: white;
-    font-size: 30px;
-}
-
 #intro , p {
     color: white;
-    
 }
 
 #intro i {

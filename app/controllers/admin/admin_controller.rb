@@ -3,9 +3,10 @@ module Admin
     # Probably some code here for if you have permission, but otherwise just links to other pages are here.
     # Maybe all the other pages could get consolidated here and seperated under tabs.
 
-    def landing
-      GeneralInfo.load_Job_File
-    end
+   # No longer needed- Job file is loaded in initializer
+   # def landing
+   #   GeneralInfo.load_Job_File
+   # end
     
     def create
 
@@ -26,7 +27,7 @@ module Admin
       end
       
      # else
-      # Probably fetching page
+     # Probably fetching page
 
       
     end
