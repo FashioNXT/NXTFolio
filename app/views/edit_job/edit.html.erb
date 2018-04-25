@@ -13,11 +13,7 @@
 	<% @attr_titles.each_with_index do |attrName, i|%>
 	  <%= f2.label attrName %>
           </br>
-<<<<<<< HEAD
 	  <%= f2.text_field (i).to_s %>
-=======
-	  <%= f2.text_field (":" + i.to_s).to_sym %>
->>>>>>> bobby-gould
 	  </br>
         <% end %>
       <% end %>   
