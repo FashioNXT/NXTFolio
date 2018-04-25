@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     get '/delete' => 'admin#delete'
     post '/delete' => 'admin#delete'
   end
-
   
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'

@@ -82,7 +82,6 @@ class EditJobController < ApplicationController
     end
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-      @general_info[:job_attr] = {}  # DO NOT DELETE - Form helper does not like the keys being integers, must be set to empty then rebuilt by controller in patch request
       @general_info_attributes = GeneralInfo.attribute_names
       @general_info_values = @general_info.attribute_values
       @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
@@ -104,6 +103,7 @@ class EditJobController < ApplicationController
    
   # Saves the edit of the SpecificDesigner object to the database
   def update
+<<<<<<< HEAD
     @holder = params[:general_info].to_hash
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
@@ -115,6 +115,11 @@ class EditJobController < ApplicationController
      # @general_info[:job_attr] = edit_job_update_param[:job_attr]
     #end
     if @general_info.update_attribute(:job_attr, @convert)
+=======
+    @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
+    
+    if @specific_designer.update_attributes(specific_designer_param)
+>>>>>>> bobby-gould
       redirect_to '/show_profile'
     else
       render :action => 'edit'
