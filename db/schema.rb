@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20180326030707) do
     t.integer  "template_id"
     t.json     "specific_profile"
     t.string   "phone"
-    t.text     "job_attr"
-    t.string   "job_name"
     t.float    "latitude"
     t.float    "longitude"
+    t.text     "job_attr"
+    t.string   "job_name"
   end
 
   create_table "login_infos", force: :cascade do |t|

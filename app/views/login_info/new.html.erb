@@ -19,8 +19,10 @@
         <div class="main-center">
           <form class="" method="post" action="#">
 
+			
+
+
             <div class="form-group">
-              <%= f.label :email, :class => 'cols-sm-2 control-label' %>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -29,9 +31,11 @@
               </div>
             </div>
 
+
+
+
             <div class="form-group">
-              <%= f.label :password, :class => 'cols-sm-2 control-label'%>
-              <div class="cols-sm-10">
+                            <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                   <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
@@ -40,17 +44,17 @@
             </div>
 
             <div class="form-group">
-              <%= f.label :password_confirmation, :class => 'cols-sm-2 control-label'%>
-              <div class="cols-sm-10">
+                            <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                   <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'confirm', :placeholder => 'Confirm your Password' %>
                 </div>
               </div>
             </div>
-
+			
+		
             <p class="button"></p>
-            <%= f.submit "Submit" , :class => 'btn btn-default'  %>
+            <%= f.submit "Create my Account" , :class => 'btn btn-default'  %>
 
           </form>
         </div>
