@@ -82,7 +82,7 @@ class EditJobController < ApplicationController
     end
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-      @general_info.update_attribute(:job_name, "Photographer")
+      #@general_info.update_attribute(:job_name, "Photographer")
       @general_info[:job_attr] = {}
       @general_info_attributes = GeneralInfo.attribute_names
       @general_info_values = @general_info.attribute_values
