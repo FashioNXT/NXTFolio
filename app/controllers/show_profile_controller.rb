@@ -17,11 +17,19 @@ class ShowProfileController < ApplicationController
           @login_user_true = session[:current_user_key]
         end
 
+        @job_title = @general_info[:job_name]
+        if (@job_title == "" || @job_title == nil)
+          @job_title = "Photographer"
+        end
+        @attr_titles = @job_title.constantize.view_Attr()
+        @attr_types = @job_title.constantize.view_Attr_Type()
+        @attr_contents = @general_info[:job_attr]
+
         @profile_type = @general_info_values[:job_name]
         @attribute_titles = @profile_type.constantize.view_Attr()
         @attribute_types = @profile_type.constantize.view_Attr_Type()
         @attribute_contents = @general_info_values[:job_attr]
-        
+
         # Start of messy profile selection
        # case @general_info.specific_profile_id
        # when 1
