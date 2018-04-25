@@ -34,6 +34,8 @@ Get Facebook Login to function:
 9. The local server will start on the following link
     
     [http://localhost:3000](http://localhost:3000)
+10. If you wish to use the S3 image backend, please set the S3_SECRET and S3_KEY environment variables:
+    ```S3_SECRET=x S3_KEY=y rails server```  where ```x``` and ```y``` are replaced by your account details from Amazon Web Services
    
    
     
