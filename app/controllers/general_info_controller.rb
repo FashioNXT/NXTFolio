@@ -39,6 +39,7 @@ class GeneralInfoController < ApplicationController
    
   # Associated with the view used for create
   def new
+    @possible_Jobs = GeneralInfo.see_Jobs
     @templates = Template.uniq.pluck(:prof_name).sort
     @templates.unshift('Designer')
     @templates.unshift('Model')
@@ -155,6 +156,7 @@ class GeneralInfoController < ApplicationController
   # Displays information pulled from database that matches the session key of the current user
   # Associated with the view used for update
   def edit
+    @possible_Jobs = GeneralInfo.see_Jobs
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     else
@@ -164,6 +166,7 @@ class GeneralInfoController < ApplicationController
    
   # Saves the edit of the GeneralInfo object to the database
   def update
+    @possible_Jobs = GeneralInfo.see_Jobs
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     galleryPict = []
     if @general_info!=nil and @general_info[:gallery_pictures].present?
