@@ -1,7 +1,0 @@
-module admin
-  class AdminController < ApplicationController
-    # Probably some code here for if you have permission, but otherwise just links to other pages are here.
-    # Maybe all the other pages could get consolidated here and seperated under tabs.
-
-  end
-end
