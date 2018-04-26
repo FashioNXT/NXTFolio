@@ -53,7 +53,9 @@
 								<li><a href="gallery.html">Galleries</a></li>
 							</ul>-->
 						</li>
-						<li><a href="/show_profile">My Profile</a></li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
 						<!--<li><a href="site-map.html">Site Map</a></li>-->
 						<!--<li><a href="organization.html">Organization</a></li>-->
 						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
@@ -61,8 +63,13 @@
 				</div>
 				<div class="login-header-block">
 					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>
+						Log out</a>
+						<% else %>
 						<a class="btn color-1 size-2 hover-2" href="/login_info/login" ><i class="fa fa-user"></i>
 						Log in</a>
+						<% end %>
 					</div>	
 				</div>
 			</div>
@@ -77,7 +84,9 @@
 				<h1>Welcome to FashioNTWRK</h1>
 				<p>Your #1 social network for connecting to people in the fashion industry. </p>
 				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
-				<a class="btn color-1 size-1 hover-6" href="/login_info/new"><i class="fa fa-lock"></i>sign up now</a>
+				<% if not session[:current_user_key] %>
+					<a class="btn color-1 size-1 hover-6" href="/login_info/new"><i class="fa fa-lock"></i>sign up now</a>
+				<% end %>
 			</div>	
 		</div>
 		<!--<div class="container-fluid cd-main-content custom-container">
