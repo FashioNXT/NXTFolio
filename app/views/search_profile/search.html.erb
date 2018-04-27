@@ -107,7 +107,7 @@
                 <label for="profession" class="cols-sm-2 control-label">Profession</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
-                    <%= select_tag "profession", options_for_select([['Any', '0'], ['Designer', '1'], ['Model', '2'], ['Photographer', '3']]), :class => 'form-control' %>
+                    <%= select_tag "job_type", options_for_select(@possible_Jobs), :class => 'form-control' %>
                   </div>
                   <br />
                   <div class="form-group ">

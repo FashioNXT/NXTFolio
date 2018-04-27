@@ -3,12 +3,30 @@ module Admin
     # Probably some code here for if you have permission, but otherwise just links to other pages are here.
     # Maybe all the other pages could get consolidated here and seperated under tabs.
 
-   # No longer needed- Job file is loaded in initializer
-   # def landing
-   #   GeneralInfo.load_Job_File
-   # end
+    
+    def landing
+      #GeneralInfo.load_Job_File #No longer needed- Job file is loaded in initializer
+      @hasPermission = false 
+      if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
+	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @hasPermission = general_info.is_admin
+      end
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end
+
+    end
     
     def create
+
+      @hasPermission = false
+      if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
+	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @hasPermission = general_info.is_admin
+      end
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end 
 
       @potentialJob = params[:job_name].to_s
       
@@ -33,6 +51,15 @@ module Admin
     end
 
     def edit
+
+      @hasPermission = false
+      if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
+	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @hasPermission = general_info.is_admin
+      end
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end
 
       @jobs = Array.new
 
@@ -86,6 +113,15 @@ module Admin
       end
     end
     def delete
+
+      @hasPermission = false
+      if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
+	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @hasPermission = general_info.is_admin
+      end
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end
 
       @jobs = Array.new
       

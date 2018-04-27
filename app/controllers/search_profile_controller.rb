@@ -34,13 +34,20 @@ class SearchProfileController < ApplicationController
   
   # Empty function needed for rendering a view
   def search
+    
+    @possible_Jobs = Array.new
+    @possible_Jobs[0] = 'Any'
+    @possible_Jobs = @possible_Jobs + GeneralInfo.see_Jobs
   end
   
   def search_general
+    @possible_Jobs = Array.new
+    @possible_Jobs[0] = 'Any'
+    @possible_Jobs = @possible_Jobs + GeneralInfo.see_Jobs
     @search_params = params.except("utf8").except("button")
     
     #Search for users based on the GeneralInfo search params excluding profession
-    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:country]=='' && @search_params[:city] == '' && @search_params[:compensation] == 'Any'
+    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:country]=='' && @search_params[:city] == '' && @search_params[:compensation] == 'Any' && @search_params[:job_type] == 'Any'
       @general_queries = GeneralInfo.all
     else
       @general_queries = GeneralInfo.search @search_params
@@ -52,22 +59,23 @@ class SearchProfileController < ApplicationController
     @user_keys = get_user_keys @general_queries
     
     flash[:user_keys] = @user_keys
+    redirect_to :action => 'show'
 
     # Pass which ever users were in the resulting @user_keys to the next tier of searching.
-    if @search_params[:profession] == "0"
-      if flash[:user_keys].empty?
+    #if @search_params[:profession] == "0"
+    #  if flash[:user_keys].empty?
         #flash[:user_keys] = "ALL"
-      end
-      redirect_to :action => 'show'
-    elsif @search_params[:profession] == "1"
-      redirect_to :action => 'search_designer'
-    elsif @search_params[:profession] == "2"
-      redirect_to :action => 'search_model'
-    elsif @search_params[:profession] == "3"
-      redirect_to :action => 'search_photographer'
-    else
-      redirect_to :action => 'show'
-    end
+    #  end
+    #  redirect_to :action => 'show'
+    #elsif @search_params[:profession] == "1"
+    #  redirect_to :action => 'search_designer'
+    #elsif @search_params[:profession] == "2"
+    #  redirect_to :action => 'search_model'
+    #elsif @search_params[:profession] == "3"
+    #  redirect_to :action => 'search_photographer'
+    #else
+    #  redirect_to :action => 'show'
+    #end
   end
   
   # Associated with the view for search_profile/search_designer

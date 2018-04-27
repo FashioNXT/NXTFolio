@@ -120,28 +120,16 @@ class GeneralInfoController < ApplicationController
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key]
-  
-    $template_name = params[:general_info][:specific_profile_id]
-    # Save GeneralInfo object to database & redirect to specific profile view
-    # Else display GeneralInfo view if save fails
-    $redirect_path = general_info_profession_specific_path
-    if $template_name == "Designer"
-        $redirect_path = new_specific_designer_path
-        @general_info.specific_profile_id = 1
-    elsif $template_name == "Model"
-        $redirect_path = new_specific_model_path
-        @general_info.specific_profile_id = 2
-    elsif $template_name == "Photographer"
-        $redirect_path = new_specific_photographer_path
-        @general_info.specific_profile_id = 3
+    @general_info.is_admin = false
+
+    if(GeneralInfo.any?)
+      @general_info.is_admin = false
     else
-        template_id1 = Template.find_by(prof_name: $template_name).id
-        @general_info.template_id = template_id1
+      @general_info.is_admin = true
     end
 
-
     if @general_info.save!
-        redirect_to $redirect_path
+        redirect_to "/edit_job"
     else
       render :action => 'new'
     end
