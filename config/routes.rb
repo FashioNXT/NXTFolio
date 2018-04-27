@@ -28,11 +28,14 @@ Rails.application.routes.draw do
   patch 'edit_job/update' => 'edit_job#update'
   post 'edit_job/update' => 'edit_job#update'
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
-  get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
+  # get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
-  get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  # get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
+  
+  post 'login' => 'login_info#login', :as => 'login'
+  get  'logout' => 'login_info#logout', :as => 'logout'
   
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_designer/edit' => 'specific_designer#edit', :as => 'specific_designer/edit'

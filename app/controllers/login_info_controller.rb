@@ -98,14 +98,15 @@ class LoginInfoController < ApplicationController
         if @login_user[:is_admin] != nil
           session[:is_admin] = true
         end
-        flash[:notice] = "Logged In!"
+        flash[:success] = "You Have Successfully Logged In! Welcome Back!";
         redirect_to root_path
       else
-        flash[:notice] = "Incorrect Password"
+        flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
       end
     else
-      flash[:notice] = "Incorrect Email"
-      redirect_to login_info_login_path
+      flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
+      # redirect_to login_info_login_path
+      redirect_to root_path
     end
   end
   
@@ -118,8 +119,9 @@ class LoginInfoController < ApplicationController
   def logout
     session[:current_user_key] = nil
     session[:is_admin] = false
-    flash[:notice] = "Logged Out!"
+    flash[:success] = "You Have Successfully Logged Out! Hope To See You Soon!"
     $current_user = nil #for facebook login usecase
-    redirect_to destroy_user_session_path
+    # redirect_to destroy_user_session_path
+    redirect_to root_path
   end
 end

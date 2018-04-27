@@ -295,22 +295,48 @@ $(function() {
 
 	});
 	
-	//
+	// $(document).ready(function()  {
+	// 	var login_state = localStorage.getItem("login open");
+	// 	if ( login_state == undefined) {
+	// 		localStorage.setItem("login open", "false");
+	// 	}
+	// 	else if (login_state == "true")
+	// 		$(".large-popup.login").slideToggle();
+	// })
 
 	$(".login_block .btn-login").on("click",function(){
+		// var login_state = localStorage.getItem("login open")
+		// if (login_state == "false")
+		// 	login_state = "true";
+		// else
+		// 	login_state = "false"
+		// localStorage.setItem("login open", login_state);
+		// console.log (localStorage.getItem("login open"));
 		$(".large-popup.login").slideToggle();
 		return false;
 	});
 
+	// $(".be-popup-sign-button").on("click", function() {
+	//     var login_state = localStorage.getItem("login open")
+	// 	if (login_state == "false")
+	// 		login_state = "true";
+	// 	else
+	// 		login_state = "false"
+	// 	localStorage.setItem("login open", login_state);
+	// 	console.log (localStorage.getItem("login open"));
+	// })
+		
 	$(".be-signup-link").on("click", function(){
 		$(".large-popup.login").slideDown();
 		return false;
 	});
 	$(".large-popup.login .close-button").on("click", function(){
 		$(".large-popup.login").slideUp();
+		localStorage.setItem("login_open", "false");
 	});
-
+	
 	$(".be-register").on("click",function(){
+		
 		$(".large-popup.register").slideDown();
 		return false;
 	});

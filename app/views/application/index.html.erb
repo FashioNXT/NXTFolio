@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>FashioNXT</title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-		
-	</head>
-	<body >
+<head>
+	<title>FashioNXT</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+	
+</head>
+<body >
 
 	<!-- THE LOADER -->
 
-<div class="be-loader">
+	<div class="be-loader">
     	<div class="spinner">
 			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
 			<p class="circle">
@@ -32,6 +32,7 @@
     </div>
 	<!-- THE HEADER -->
 	<header>
+		
 		<div class="container-fluid custom-container">
 			<div class="row no_row row-header">
 				<div class="brand-be">
@@ -64,28 +65,51 @@
 				<div class="login-header-block">
 					<div class="login_block">
 						<% if session[:current_user_key] %>
-						<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>
-						Log out</a>
+						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+						<!--<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>-->
+						<!--Log out</a>-->
 						<% else %>
-						<a class="btn color-1 size-2 hover-2" href="/login_info/login" ><i class="fa fa-user"></i>
-						Log in</a>
+						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+						<!--<a class="btn btn-login color-1 size-2 hover-2" href="/application/login" ><i class="fa fa-user"></i>-->
+						<!--Log in</a>-->
 						<% end %>
 					</div>	
 				</div>
 			</div>
 		</div>
+		
+		
 	</header>
 		
 	<!-- MAIN CONTENT -->
+	
 	<div id="content-block">
 		<div class="head-bg">
 			<div class="head-bg-img"></div>
+			
+			<div class="large-popup-fixed"></div>
+			<% if flash[:notice] %>
+			<div class="alert-container col-md-12">
+				<div class="alert style-3 alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				    <strong><%= flash[:notice]%></strong> 
+				</div>
+			</div>
+			<% elsif flash[:success] %>
+			<div class="alert-container col-md-12">
+				<div class="alert style-3 alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				    <strong><%= flash[:success]%></strong> 
+				</div>
+			</div>
+			<% end %>
+			
 			<div class="head-bg-content">
 				<h1>Welcome to FashioNTWRK</h1>
 				<p>Your #1 social network for connecting to people in the fashion industry. </p>
 				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
 				<% if not session[:current_user_key] %>
-					<a class="btn color-1 size-1 hover-6" href="/login_info/new"><i class="fa fa-lock"></i>sign up now</a>
+					<a class="be-register btn color-1 size-1 hover-6" href=""><i class="fa fa-lock"></i>sign up now</a>
 				<% end %>
 			</div>	
 		</div>
@@ -492,8 +516,8 @@
 
 	<div class="be-fixed-filter"></div>
 	
+	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
 	<div class="large-popup login">
-		<div class="large-popup-fixed"></div>
 		<div class="container large-popup-container">
 			<div class="row">
 				<div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
@@ -502,27 +526,19 @@
 							<i class="fa fa-times close-button"></i>
 							<h5 class="large-popup-title">Log in</h5>
 						</div>
-						<form action="./" class="popup-input-search">
+						<form action="#" class="popup-input-search" method="post">
 						<div class="col-md-6">
-							<input class="input-signtype" type="email" required="" placeholder="Your email">
+							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+							<!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
 						</div>
-						<div class="col-md-6">
-							<input class="input-signtype" type="password" required="" placeholder="Password">
+						<div class="col-md-6 form-group">
+							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+							<!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
 						</div>
-						<div class="col-xs-6">
-							<div class="be-checkbox">
-							<label class="check-box">
-								    <input class="checkbox-input" type="checkbox" value=""> <span class="check-box-sign"></span>
-								</label>
-								<span class="large-popup-text">
-									Stay signed in
-								</span>
-							</div>
-							
-							<a href="blog-detail-2.html" class="link-large-popup">Forgot password?</a>
-						</div>
+						<div class="col-xs-6"></div>
 						<div class="col-xs-6 for-signin">
-							<input type="submit" class="be-popup-sign-button" value="SIGN IN">
+							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+							<!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
 						</div>
 						</form>
 					</div>
@@ -530,6 +546,7 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 	<div class="large-popup register">
 		<div class="large-popup-fixed"></div>
 		<div class="container large-popup-container">
@@ -541,24 +558,7 @@
 							<h5 class="large-popup-title">Register</h5>
 						</div>
 						<form action="./" class="popup-input-search">
-						<div class="col-md-6">
-							<input class="input-signtype" type="text" required="" placeholder="First Name">
-						</div>
-						<div class="col-md-6">
-							<input class="input-signtype" type="text" required="" placeholder="Last Name">
-						</div>
-						<div class="col-md-6">
-							<div class="be-custom-select-block">
-							<select class="be-custom-select">
-								<option value="" disabled selected>
-									Country
-								</option>
-								<option value="">USA</option>
-								<option value="">Canada</option>
-								<option value="">England</option>
-							</select>
-							</div>
-						</div>
+						
 						<div class="col-md-6">
 							<input class="input-signtype" type="text" required="" placeholder="Email">
 						</div>
@@ -568,77 +568,7 @@
 						<div class="col-md-6">
 							<input class="input-signtype" type="text" required="" placeholder="Repeat Password">
 						</div>
-						<div class="col-md-12 be-date-block">
-							<span class="large-popup-text">
-								Date of birth
-							</span>
-							<div class="be-custom-select-block mounth">
-								<select class="be-custom-select">
-									<option value="" disabled selected>
-										Mounth
-									</option>
-									<option value="">January</option>	
-									<option value="">February</option>	
-									<option value="">March</option>	
-									<option value="">April</option>	
-									<option value="">May</option>	
-									<option value="">June</option>	
-									<option value="">July</option>	
-									<option value="">August</option>	
-									<option value="">September</option>	
-									<option value="">October</option>	
-									<option value="">November</option>	
-									<option value="">December</option>
-								</select>
-							</div>
-							<div class="be-custom-select-block">
-								<select class="be-custom-select">
-									<option value="" disabled selected>
-										Day
-									</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">3</option>
-									<option value="">4</option>
-									<option value="">5</option>
-									<option value="">6</option>
-									<option value="">7</option>
-									<option value="">8</option>
-									<option value="">9</option>
-									<option value="">10</option>
-									<option value="">11</option>
-									<option value="">12</option>
-									<option value="">13</option>
-									<option value="">14</option>
-									<option value="">15</option>
-									<option value="">16</option>
-									<option value="">17</option>
-									<option value="">18</option>
-									<option value="">19</option>
-									<option value="">20</option>
-									<option value="">21</option>
-									<option value="">22</option>
-									<option value="">23</option>
-									<option value="">24</option>
-									<option value="">25</option>
-									<option value="">26</option>
-									<option value="">27</option>
-									<option value="">28</option>
-									<option value="">29</option>
-									<option value="">30</option>
-								</select>
-							</div>
-							<div class="be-custom-select-block">
-								<select class="be-custom-select">
-									<option value="" disabled selected>
-										Year
-									</option>
-									<option value="">1996</option>
-									<option value="">1997</option>
-									<option value="">1998</option>
-								</select>
-							</div>
-						</div>
+						
 						<div class="col-md-6">
 							<div class="be-checkbox">
 								<label class="check-box">
@@ -646,14 +576,6 @@
 								</label>
 								<span class="large-popup-text">
 									I have read and agree to the <a class="be-popup-terms" href="blog-detail-2.html">Terms of Use</a> and <a class="be-popup-terms" href="blog-detail-2.html">Privacy Policy</a>.
-								</span>
-							</div>
-							<div class="be-checkbox">
-								<label class="check-box">
-								    <input class="checkbox-input" type="checkbox" value="" > <span class="check-box-sign"></span>
-								</label>
-								<span class="large-popup-text">
-									Send me notifications
 								</span>
 							</div>
 						</div>
@@ -666,23 +588,23 @@
 			</div>
 		</div>
 	</div>
-	<div class="theme-config">
-	    <div class="main-color">
-	        <div class="title">Main Color:</div>
-	        <div class="colours-wrapper">
-	            <div class="entry color1 m-color active" data-colour="style/stylesheet.css"></div>   
-	            <div class="entry color3 m-color"  data-colour="style/style-green.css"></div>
-	            <div class="entry color6 m-color"  data-colour="style/style-orange.css"></div>
-	            <div class="entry color8 m-color"  data-colour="style/style-red.css"></div>  
-	            <div class="title">Second Color:</div>  
-	            <div class="entry s-color  active color10"  data-colour="style/stylesheet.css"></div>
-	            <div class="entry s-color color11"  data-colour="style/style-oranges.css"></div> 
-	            <div class="entry s-color color12"  data-colour="style/style-greens.css"></div>
-	            <div class="entry s-color color13"  data-colour="style/style-reds.css"></div>
-	        </div>
-	    </div>
-	   <div class="open"><img src="<%= asset_path "icon-134.png"%>" alt=""></div>
-	</div>
+	<!--<div class="theme-config">-->
+	<!--    <div class="main-color">-->
+	<!--        <div class="title">Main Color:</div>-->
+	<!--        <div class="colours-wrapper">-->
+	<!--            <div class="entry color1 m-color active" data-colour="style/stylesheet.css"></div>   -->
+	<!--            <div class="entry color3 m-color"  data-colour="style/style-green.css"></div>-->
+	<!--            <div class="entry color6 m-color"  data-colour="style/style-orange.css"></div>-->
+	<!--            <div class="entry color8 m-color"  data-colour="style/style-red.css"></div>  -->
+	<!--            <div class="title">Second Color:</div>  -->
+	<!--            <div class="entry s-color  active color10"  data-colour="style/stylesheet.css"></div>-->
+	<!--            <div class="entry s-color color11"  data-colour="style/style-oranges.css"></div> -->
+	<!--            <div class="entry s-color color12"  data-colour="style/style-greens.css"></div>-->
+	<!--            <div class="entry s-color color13"  data-colour="style/style-reds.css"></div>-->
+	<!--        </div>-->
+	<!--    </div>-->
+	<!--   <div class="open"><img src="<%= asset_path "icon-134.png"%>" alt=""></div>-->
+	<!--</div>-->
 	<!-- SCRIPTS	 -->
 	<script src="<%= asset_path "jquery.min.js"%>"></script>
 	<script src="<%= asset_path "jquery-ui.js"%>"></script>
