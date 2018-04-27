@@ -12,13 +12,20 @@ class ShowProfileController < ApplicationController
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
         @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
+	#@adminMaker = GeneralInfo.make_admin(params[:user])
         using_default = false
         
         if session[:current_user_key] == user_key_current
           @login_user_true = session[:current_user_key]
         end
-
-        #if()
+	
+	@can_Add_Admin = false
+        if(session[:current_user_key] != user_key_current && session[:current_user_key] != nil)
+          if(session[:current_user_key] != user_key_current && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin)
+            @can_Add_Admin = true
+            @addUser = user_key_current
+          end
+        end
 
         @job_title = @general_info[:job_name]
         if (@job_title == "" || @job_title == nil)

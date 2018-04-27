@@ -17,6 +17,20 @@ class GeneralInfoController < ApplicationController
     return @return_array
   end
   
+  def make_admin
+    if(session[:current_user_key] != params[:user] && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin) 
+      @user_entry = GeneralInfo.find_by(userKey: params[:user])
+      if(@user_entry)
+        @user_entry.update_attribute(:is_admin, true)  
+        redirect_to "/show_profile?user_key="+ params[:user].to_s
+      else
+	redirect_to root_path
+      end           
+    else
+     redirect_to root_path
+    end
+  end
+
   # Displays the correct specific profile search when selected during GeneralInfo search
   def search_redirect
     @objects = params.except("utf8")

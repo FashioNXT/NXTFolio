@@ -31,6 +31,12 @@
       </div>
     </div>
 
+          <% if(@can_Add_Admin) %>
+            <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
+              <a href= "general_info/make_admin/<%= @addUser  %>" class="btn btn-info">Make Administrator</a>
+            </div>
+          <% end %>
+
     <% if @login_user_true %>
       <div class="row right">
         <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
