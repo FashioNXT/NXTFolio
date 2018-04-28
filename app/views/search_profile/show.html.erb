@@ -33,15 +33,8 @@
               <h3></h3>
             <!--/ %br
             -->
-            <%if info!=nil%>
-            <% if info.specific_profile_id == 1 %>
-                <%= "Designer" %>
-            <% elsif info.specific_profile_id == 2 %>
-                <%= "Model" %>
-            <% elsif info.specific_profile_id == 3 %>
-                <%= "Photographer" %>
-            <% end %>
-            <%end%>
+            <%= info.job_name %>
+            
             <br/>
           </h2>
           <%if info!=nil%>

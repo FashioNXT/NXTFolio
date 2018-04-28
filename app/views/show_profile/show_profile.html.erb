@@ -31,13 +31,21 @@
       </div>
     </div>
 
-          <% if(@can_Add_Admin) %>
-            <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
+          <% if(@is_Admin && !@on_Own) %>
+	  <div class="row right">
+            <div class="col-lg-11 admin-btn" align="right">
               <a href= "general_info/make_admin/<%= @addUser  %>" class="btn btn-info">Make Administrator</a>
             </div>
+	  </div>
+          <% elsif (@on_Own && @is_Admin)%>
+          <div class="row right">
+	    <div class="col-lg-11 admin-btn" align="right">
+              <a href= "/admin" class="btn btn-info">Go to Admin Page</a>
+	    </div>
+	  </div>
           <% end %>
 
-    <% if @login_user_true %>
+    <% if @on_Own %>
       <div class="row right">
         <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
           <a href="/login_info/edit" class="btn btn-info">Edit Login Info</a>
@@ -96,7 +104,7 @@
         <div class="col-lg-12">
           <p>
             <% if @login_info && @login_info.email != "" %>
-              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+              <a href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope-o"></i></a>
             <% end %>
 
             <% if @general_info && @general_info.phone != "" %>
