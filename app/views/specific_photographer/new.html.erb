@@ -9,31 +9,46 @@
       <b>PHOTOGRAPHER INFORMATION</b>
     </h1>
     <%= form_for @specific_photographer, :action => 'create', :url => '/specific_photographer' do |f| %>
-      <p></p>
-      <b>
-        <%= f.label :compensation  %>
-      </b>
-      <br/>
-      <%= f.select :compensation, options_for_select(["Any","Assignment Based", "Pay Only"]) %>
-      <p></p>
-      <b>
-        <%= f.label :experience %>
-      </b>
-      <br/>
-      <%= f.select :experience, options_for_select(["0-2 years","3-6 years", "7-10 years", "11+ years"]) %>
-      <p></p>
-      <b>
-        <%= f.label :influencers %>
-      </b>
-      <br/>
-      <%= f.text_area :influencers %>
-      <p></p>
-      <b>
-        <%= f.label :specialties %>
-      </b>
-      <br/>
-      <%= f.text_area :specialties %>
-      <p></p>
+      
+
+
+
+            
+	<div class="form-group">
+                  
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-calendar"> Select Years of Experience<style="font-size:20px" aria-hidden="true"></i></span>
+                      <%= f.select :experience, options_for_select(["0-2 years","3-6 years", "7-10 years", "11+ years"]),{},{ :class => 'form-control', placeholder: 'Select years of Experience' } %>
+                    </div>
+                  </div>
+                </div>
+
+
+	 
+      
+
+		<div class="form-group">
+                  
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-paragraph" style="font-size:20px" aria-hidden="true"></i></span>
+                      <%= f.text_area :influencers, :placeholder=> 'Influencers', :class => 'form-control' %>
+                    </div>
+                  </div>
+                </div>
+
+	 	<div class="form-group">
+                  
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-paragraph" style="font-size:20px" aria-hidden="true"></i></span>
+                      <%= f.text_area :specialties, :placeholder=> 'specialties', :class => 'form-control' %>
+                    </div>
+                  </div>
+                </div>
+
+	<p></p>
       <b>
         <%= f.label "Genres (Select all that apply):" %>
       </b>

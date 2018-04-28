@@ -8,6 +8,7 @@
   <div class="section" id="LOGINFORM">
     <div class="container">
       <h1>
+	   <b>ENTER YOUR LOGIN CREDENTIALS</b>
         <div class="notice">
           <%= flash[:notice] %>
         </div>
@@ -20,7 +21,7 @@
             <form class="" method="post" action="#">
 
               <div class="form-group">
-                <%= f.label :email, "Your Email", :class => 'cols-sm-2 control-label' %>
+                
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -30,7 +31,7 @@
               </div>
 
               <div class="form-group">
-                <%= f.label :password, "Password", :class => 'cols-sm-2 control-label' %>
+                
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
