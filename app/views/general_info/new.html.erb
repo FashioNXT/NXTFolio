@@ -202,15 +202,6 @@
                   </div>
                 </div>
 			
-			<div class="form-group">
-                  
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-					<span class="input-group-addon"><i class="material-icons"> Select your Profession<style="font-size:20px" aria-hidden="true"></i></span>
-                      <%= f.select :specific_profile_id, options_for_select(@templates),{},{ :class => 'form-control' } %>
-                    </div>
-                  </div>
-                </div>
                 <%= f.submit 'proceed to Profession details page', :class => 'btn btn-default' %>
             <% end %>
             <br>

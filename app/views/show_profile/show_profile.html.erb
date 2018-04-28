@@ -25,13 +25,27 @@
           <% if @general_info && @general_info.last_name %>
             <%= @general_info.last_name %></h1>
           <% end %>
-	  <h2><%= @profile_type %></h2>
+	  <h2><%= @job_title %></h2>
           <h3><i class="fa fa-map-marker"></i> <%= @general_info_values[:location] %> </h3>
         </div><!--/.col-lg-12 -->
       </div>
     </div>
 
-    <% if @login_user_true %>
+          <% if(@is_Admin && !@on_Own) %>
+	  <div class="row right">
+            <div class="col-lg-11 admin-btn" align="right">
+              <a href= "general_info/make_admin/<%= @addUser  %>" class="btn btn-info">Make Administrator</a>
+            </div>
+	  </div>
+          <% elsif (@on_Own && @is_Admin)%>
+          <div class="row right">
+	    <div class="col-lg-11 admin-btn" align="right">
+              <a href= "/admin" class="btn btn-info">Go to Admin Page</a>
+	    </div>
+	  </div>
+          <% end %>
+
+    <% if @on_Own %>
       <div class="row right">
         <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
           <a href="/login_info/edit" class="btn btn-info">Edit Login Info</a>
@@ -89,8 +103,8 @@
          
         <div class="col-lg-12">
           <p>
-            <% if @login_info && @login_info.email != "" %>
-              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
+	    <% if @login_info && @login_info.email != "" %>
+              <a href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope-o"></i></a>
             <% end %>
 
             <% if @general_info && @general_info.phone != "" %>

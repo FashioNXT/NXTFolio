@@ -1,18 +1,27 @@
-<body>
+<%= render :partial => "/layout/profile_header" %>
+<body data-spy="scroll" data-offset="0" data-target="#nav">
+<%= render :partial => "/layout/navigation" %>
+
 <section id="adminPanel" class="container text-center">
   <div id="ADMINPANEL">
     <h1>
-      <b>GENERAL INFORMATION</b>
+      <b>Job Management Page</b>
     </h1>
-   
+    
+    <p><br></p>
     <a href="/admin/create" class="btn btn-info">Create Job</a>
-    <br>
+    <p><br></p>
     <a href="/admin/edit" class="btn btn-info">Edit Job</a>
-    <br>
+    <p><br></p>
     <a href="/admin/delete" class="btn btn-info">Delete Job</a>
 
     
   </div>
  </section>
 
+
+<div id="c">
+    <%= render :partial => "/layout/footer" %>
+  </div>
+<%= render :partial => "/layout/profile_javascripts" %>
 </body>

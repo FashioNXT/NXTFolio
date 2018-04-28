@@ -1,4 +1,4 @@
-<html lang="en">
+
   <% flash.each do |key, value| %>
     <%= content_tag :div, value, class: "flash #{key}" %>
   <% end %>
@@ -6,4 +6,10 @@
     <%= select_tag :job_name, options_for_select(@jobs) %>
     <%= submit_tag("Delete") %>
   <% end %>
-</html>
+
+
+<div id="c">
+    <%= render :partial => "/layout/footer" %>
+  </div>
+<%= render :partial => "/layout/profile_javascripts" %>
+

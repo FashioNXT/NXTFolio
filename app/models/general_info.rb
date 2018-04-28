@@ -79,6 +79,10 @@ class GeneralInfo < ApplicationRecord
       query = query.where("compensation ILIKE ?", searchArg[:compensation])
     end
 
+    if searchArg[:job_type].present? and searchArg[:job_type] != 'Any'
+      query = query.where("job_name ILIKE ?", searchArg[:job_type])
+    end
+
     return query
   end
   
