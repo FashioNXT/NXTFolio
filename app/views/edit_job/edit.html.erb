@@ -5,21 +5,30 @@
 <section  id="specificForm" class="container content-section text-center">
 
   <div id="SPECIFICFORM">
-    <h1>
-      <b><%=@job_title%></b>
-    </h1>
-    <%= form_for @general_info, :action => 'update', :url => edit_job_update_path do |f| %>
-      <%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
-	<% @attr_titles.each_with_index do |attrName, i|%>
-	  <%= f2.label attrName %>
-          </br>
-	  <%= f2.text_field (i).to_s %>
-	  </br>
+    <% if !GeneralInfo.check_Job?(@job_title) %>
+      <h1>
+        <b>Your job field no longer exists!</b>
+      </h1>
+      <p>Please select the "Edit General Info" button from your profile page.</p>
+      </br>
+      <p>If you believe you're seeing this in error, please contact an administrator.</p>   
+    <% else %>   
+      <h1>
+        <b><%=@job_title%></b>
+      </h1>
+      <%= form_for @general_info, :action => 'update', :url => edit_job_update_path do |f| %>
+        <%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
+	  <% @attr_titles.each_with_index do |attrName, i|%>
+	    <%= f2.label attrName %>
+            </br>
+	    <%= f2.text_field (i).to_s %>
+	    <p></p>
+          <% end %>
         <% end %>
-      <% end %>   
-      <%= f.submit "Submit" %>
-    <% end %>
-    <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
+        <%= f.submit "Submit" %>
+      <% end %>
+      <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
+    <% end %> 
   </div>
 </section>
 <%= render :partial => "/layout/javascripts" %>

@@ -53,7 +53,9 @@
 								<li><a href="gallery.html">Galleries</a></li>
 							</ul>-->
 						</li>
-						<li><a href="/show_profile">My Profile</a></li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
 						<!--<li><a href="site-map.html">Site Map</a></li>-->
 						<!--<li><a href="organization.html">Organization</a></li>-->
 						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
@@ -61,8 +63,13 @@
 				</div>
 				<div class="login-header-block">
 					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>
+						Log out</a>
+						<% else %>
 						<a class="btn color-1 size-2 hover-2" href="/login_info/login" ><i class="fa fa-user"></i>
 						Log in</a>
+						<% end %>
 					</div>	
 				</div>
 			</div>
@@ -77,10 +84,12 @@
 				<h1>Welcome to FashioNTWRK</h1>
 				<p>Your #1 social network for connecting to people in the fashion industry. </p>
 				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
-				<a class="btn color-1 size-1 hover-6" href="/login_info/new"><i class="fa fa-lock"></i>sign up now</a>
+				<% if not session[:current_user_key] %>
+					<a class="btn color-1 size-1 hover-6" href="/login_info/new"><i class="fa fa-lock"></i>sign up now</a>
+				<% end %>
 			</div>	
 		</div>
-		<div class="container-fluid cd-main-content custom-container">
+		<!--<div class="container-fluid cd-main-content custom-container">
 			<div class="row">
 				<div class="col-md-2 left-feild">
 					<form action="./" class="input-search">
@@ -136,10 +145,10 @@
 					</div>				
 				</div>
 			</div>
-		</div>		
+		</div>-->
 		<div class="container-fluid custom-container">
 			<div class="row">
-				
+				<!--
 				<div class="col-md-2 left-feild">
 					<div class="be-vidget">
 						<h3 class="letf-menu-article">
@@ -349,33 +358,28 @@
 							</ul>
 						</div>
 					</div>
+				</div>-->
+				<div class="col-md-10">
+					<h2>Latest User Changes</h2>
 				</div>
 
 				<div class="col-md-10">
 					<div id="container-mix"  class="row _post-container_">
 						<div class="category-1 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/94ef8361843303.Y3JvcCwxMDAyLDc4NCwwLDEy.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">The kitsch destruction of our world</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
+							<% @users.each do |info| %>
+								<div class="be-post">
+									<a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
+									<% if info.profile_picture? %>
+									<img src="<%= info.profile_picture.url %>" alt="omg">
+									<% else %>
+									<img src="http://www.combonetwork.com/img/empty_profile.png">
+									<% end %>
+									</a>
+									<a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %></a>
 								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
+							<% end %>
 						</div>
-						<div class="category-2 mix custom-column-5">
+						<!--<div class="category-2 mix custom-column-5">
 							<div class="be-post">
 								<a href="page2.html" class="be-img-block">
 								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/fba1be63895793.Y3JvcCw3ODcsNjE2LDU3Myw3MQ.jpg" alt="omg">
@@ -396,293 +400,7 @@
 									<span><i class="fa fa-comment-o"></i> 20</span>
 								</div>
 							</div>
-						</div>
-						<div class="category-3 mix custom-column-5">
-							<div class="be-post">
-								<a href="page3.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/82e53160726763.Y3JvcCwxNDAzLDEwOTgsMCw5Mw.jpg" alt="omg">
-								</a>
-								<a href="page3.html" class="be-post-title">Colors of Ramadan</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="https://mir-s3-cdn-cf.behance.net/projects/404/d03e2756977635.Y3JvcCwxMDI2LDgwMyw1NSww.jpg" alt="" class="ava-author">
-									<span>by <a href="page3.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-4 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/8f5e7c64328569.Y3JvcCwxMjM5LDk3MCw4Miww.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Leaving Home - L'Officiel Ukraine</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="https://mir-s3-cdn-cf.behance.net/projects/404/67cc7763996443.Y3JvcCw0OTEsMzg0LDQ0MSw3ODI.jpg" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-5 mix custom-column-5">
-							<div class="be-post">
-								<a href="page2.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/27968d62256765.Y3JvcCwxNDAzLDEwOTgsMCw2Mg.jpg" alt="omg">
-								</a>
-								<a href="page2.html" class="be-post-title">Drive Your World</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="https://mir-s3-cdn-cf.behance.net/projects/404/5d641d63670753.Y3JvcCw1MDUsMzk1LDM5NSwyNDg.jpg" alt="" class="ava-author">
-									<span>by <a href="page2.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-6 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/99c10663685891.Y3JvcCwxNTM2LDEyMDIsNzQzLDE2Ng.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Fran Ewald for The Diaries Project</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-5 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/bccbf062785319.Y3JvcCw4MjEsNjQyLDAsNA.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">raindrops monochrome</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-3 mix custom-column-5">
-							<div class="be-post">
-								<a href="page3.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/988d2b61595487.Y3JvcCwxNDAzLDEwOTgsMCw1NDQ.jpg" alt="omg">
-								</a>
-								<a href="page3.html" class="be-post-title">Racing Queensland</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page3.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-2 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/d6121b63384985.Y3JvcCw4NjUsNjc3LDE2OCww.png" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">NAHA Finalist Hairstylist of the Year Allen Ruiz</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-4 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/03c96c63330153.Y3JvcCw1NjYsNDQzLDgzNSw0Mjc.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">tomorrow</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-6 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/a7177763249597.Y3JvcCwyMjk5LDE4MDAsMzM1LDE0Nw.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Tropicalia</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-2 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/4186dd62402631.5a8ef4ea1a8cd.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Face</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="assets/img/a6.png" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-1 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/2700e646683191.Y3JvcCw5MTcsNzE4LDYzOCw0MjU.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Stay Ahead Series</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-3 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/ade88b62080893.Y3JvcCwxNDAzLDEwOTgsMCw0MzM.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Faber-Castell / Psychological Problems</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
-						<div class="category-1 mix custom-column-5">
-							<div class="be-post">
-								<a href="page1.html" class="be-img-block">
-								<img src="https://mir-s3-cdn-cf.behance.net/projects/404/40572561991201.Y3JvcCwxNDAzLDEwOTgsMCwyMjg.jpg" alt="omg">
-								</a>
-								<a href="page1.html" class="be-post-title">Garry Simpson - Bridges - Intelligent Life Magazine</a>
-								<span>
-									<a href="blog-detail-2.html" class="be-post-tag">Interaction Design</a>, 
-									<a href="blog-detail-2.html" class="be-post-tag">UI/UX</a>,  
-									<a href="blog-detail-2.html" class="be-post-tag">Web Design</a>
-								</span>
-								<div class="author-post">
-									<img src="<%= asset_path "a1.png"%>" alt="" class="ava-author">
-									<span>by <a href="page1.html">Hoang Nguyen</a></span>
-								</div>
-								<div class="info-block">
-									<span><i class="fa fa-thumbs-o-up"></i> 360</span>
-									<span><i class="fa fa-eye"></i> 789</span>
-									<span><i class="fa fa-comment-o"></i> 20</span>
-								</div>
-							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 

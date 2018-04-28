@@ -4,5 +4,6 @@ class ApplicationController < ActionController::Base
   # Used to confirm the session key of the current user
   def index
     @landing = true
+    @users = GeneralInfo.order(updated_at: :desc).limit(20)
   end
 end
