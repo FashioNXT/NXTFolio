@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>FashioNXT</title>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -547,6 +547,7 @@
 		</div>
 	</div>
 	<% end %>
+	<%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
 	<div class="large-popup register">
 		<div class="large-popup-fixed"></div>
 		<div class="container large-popup-container">
@@ -557,30 +558,23 @@
 							<i class="fa fa-times close-button"></i>
 							<h5 class="large-popup-title">Register</h5>
 						</div>
-						<form action="./" class="popup-input-search">
+						<form action="./" class="popup-input-search" method="post">
 						
 						<div class="col-md-6">
-							<input class="input-signtype" type="text" required="" placeholder="Email">
+							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
+							<!--<input class="input-signtype" type="text" required="" placeholder="Email">-->
 						</div>
 						<div class="col-md-6">
-							<input class="input-signtype" type="text" required="" placeholder="Password">
+							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Password', :required => '' %>
+							<!--<input class="input-signtype" type="text" required="" placeholder="Password">-->
 						</div>
 						<div class="col-md-6">
-							<input class="input-signtype" type="text" required="" placeholder="Repeat Password">
-						</div>
-						
-						<div class="col-md-6">
-							<div class="be-checkbox">
-								<label class="check-box">
-								    <input class="checkbox-input" type="checkbox" required="" value="" > <span class="check-box-sign"></span>
-								</label>
-								<span class="large-popup-text">
-									I have read and agree to the <a class="be-popup-terms" href="blog-detail-2.html">Terms of Use</a> and <a class="be-popup-terms" href="blog-detail-2.html">Privacy Policy</a>.
-								</span>
-							</div>
+							<!--<input id="password_confirmation" class="input-signtype" type="text" required="" placeholder="Repeat Password">-->
+                  			<%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'confirm', :placeholder => 'Repeat Password', :required => '' %>
 						</div>
 						<div class="col-md-6 for-signin">
-							<input type="submit" class="be-popup-sign-button" value="SIGN IN">
+							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+							<!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
 						</div>
 						</form>
 					</div>
@@ -588,6 +582,7 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 	<!--<div class="theme-config">-->
 	<!--    <div class="main-color">-->
 	<!--        <div class="title">Main Color:</div>-->
