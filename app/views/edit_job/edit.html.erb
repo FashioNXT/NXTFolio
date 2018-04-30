@@ -21,7 +21,7 @@
 	  <% @attr_titles.each_with_index do |attrName, i|%>
 	    <%= f2.label attrName %>
             </br>
-	    <%= f2.text_field (i).to_s %>
+	    <%= f2.text_field (i).to_s , :input_html => { :value => @attr_contents[i] } %>
 	    <p></p>
           <% end %>
         <% end %>
