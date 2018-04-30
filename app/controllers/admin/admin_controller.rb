@@ -36,12 +36,12 @@ module Admin
         if(GeneralInfo.check_Job?(@potentialJob) == false)
 	  GeneralInfo.create_Job(@potentialJob)
           init = @potentialJob.constantize.new
-          flash[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
+          flash.now[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	else
-          flash[:notice] = params[:job_name].titleize + " already exists.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
+          flash.now[:notice] = params[:job_name].titleize + " already exists.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	end 
       elsif(params[:job_name] == "")
-        flash[:notice] = "Please enter a non-empty value."
+        flash.now[:notice] = "Please enter a non-empty value."
       end
       
      # else
@@ -76,7 +76,7 @@ module Admin
         if(GeneralInfo.check_Job?(@job))
           if(@action == 'Add' && @job_Obj.view_Attr().include?(@attr) == false)
             @job_Obj.add_Attr(@attr)
-            flash[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+            flash.now[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
             x = @job_Obj.view_Attr().find_index(@attr)
 	    GeneralInfo.find_each do |user|
 	        if(user[:job_name] == @job_Obj.name)
@@ -88,7 +88,7 @@ module Admin
           elsif(@action == 'Remove' && @job_Obj.view_Attr().include?(@attr))
             origLoc = @job_Obj.view_Attr().find_index(@attr)
 	    @job_Obj.delete_Attr(@attr)
-            flash[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+            flash.now[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
 	    attrLength = @job_Obj.view_Attr().length
 	    GeneralInfo.find_each do |user|
 	    	if(user[:job_name] == @job_Obj.name)
@@ -103,17 +103,18 @@ module Admin
             	end
 	    end
           else
-            flash[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+            flash.now[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
           end
           
         else
-          flash[:notice] = "Job " + @job.titleize + " not found."
+          flash.now[:notice] = "Job " + @job.titleize + " not found."
         end
          	  
       else
-        flash[:notice] = "Error: One or more empty fields"
+        flash.now[:notice] = "Error: One or more empty fields"
       end
     end
+
     def delete
 
       @hasPermission = false
@@ -132,7 +133,7 @@ module Admin
          @potentialJob = params[:job_name].to_s.parameterize(separator: '_').upcase_first
         if(GeneralInfo.check_Job?(@potentialJob))
 	   GeneralInfo.delete_Job(@potentialJob)
-           flash[:notice] = params[:job_name].titleize + " has been deleted."
+           flash.now[:notice] = params[:job_name].titleize + " has been deleted."
 
            #GeneralInfo.delete_Job_From_File(params[:job_name])
 	end
