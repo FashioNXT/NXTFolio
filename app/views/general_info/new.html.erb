@@ -100,9 +100,10 @@
 						<div class="creative_filds_block">
 							<ul class="ul nav">
 								<li class="edit-ln"><a href="#basic-information">Basic Information</a></li>
+								<li class="edit-ln"><a href="#address-info">Contact Information</a></li>
+								<li class="edit-ln"><a href="#profession-info">Proffesion Information</a></li>
 								<li class="edit-ln"><a href="#on-the-web">On The Web</a></li>
 								<li class="edit-ln"><a href="#about-me">About Me</a></li>
-								<li class="edit-ln"><a href="#web-references">Web References</a></li>
 							</ul>
 						</div>	
 					</div>
@@ -120,10 +121,16 @@
 									<label class="custom-file-label" for="customFile">Upload Profile Picture</label>
 						            <input type="file" id="file" class="custom-file-input">
 								</div>
-								
+							</div>
+							<div class="be-large-post-align">
+								<div class="be-change-ava">
+									<label class="custom-file-label" for="customFile">Upload Profile Picture</label>
+						            <input type="file" id="file" class="custom-file-input">
+								</div>
 							</div>
 							<div class="be-large-post-align">
 								<div class="row">
+									<!--name-->
 									<div class="input-col col-xs-12 col-sm-6">
 										<div class="form-group fg_icon focus-2">
 											<div class="form-label">First Name</div>
@@ -138,326 +145,123 @@
 											<%= form.text_field :last_name, :class =>'form-input', :required => '', :type => 'text'%>
 										</div>								
 									</div>
-									<div class="input-col col-xs-12 col-sm-6">
-										<div class="form-label">Occupation</div>
-										<!--not sure if value is binding the text - we should check!-->
-										<div class="be-drop-down icon-none" value="<%=:job_name%>">
-											<span class="be-dropdown-content"> SELECT... </span>
-											<ul class="drop-down-list">
-												<%@possible_Jobs.each do |job| %>
-													<li><a><%=job%></a></li>
-												<%end%>
-											</ul>
+									<!--birthday-->
+									<div class="input-col col-xs-12 col-sm-4">
+										<div class="form-label">Birthday</div>
+										<div class="form-group focus-2">
+											<div>
+												<!--<div class="input-group">-->
+												  <span class="input-group-addon"><i class="fa fa-calendar" style="font-size:20px" aria-hidden="true"></i></span>
+							                      <%= form.select :month_ofbirth, options_for_select([["MONTH*",""],["Jan","01"],["Feb","02"],["Mar","03"],["Apr","04"],["May","05"],["Jun","06"],["Jul","07"],["Aug","08"],["Sep","09"],["Oct","10"],["Nov","11"],["Dec","12"]]),{},{ :class => 'form-control', :placeholder => 'Month of Birth' } %>
+							                    <!--</div>-->
+											</div>
 										</div>
 									</div>
+									<div class="input-col col-xs-12 col-sm-4">
+										<div class="form-group focus-2">
+											<div class="form-label trasparent-label">Birthday</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-calendar" style="font-size:20px" aria-hidden="true"></i></span>
+							                    <%= form.select :day_ofbirth, options_for_select([["DAY*",""],["01","01"],["02","02"],["03","03"],["04","04"],["05","05"],["06","06"],["07","07"],["08","08"],["09","09"],["10","10"],["11","11"],["12","12"],["13","13"],["14","14"],["15","15"],["16","16"],["17","17"],["18","18"],["19","19"],["20","20"],["21","21"],["22","22"],["23","23"],["24","24"],["25","25"],["26","26"],["27","27"],["28","28"],["29","29"],["30","30"],["31","31"]]),{},{ :class => 'form-control' } %>
+											</div>
+										</div>
+									</div>
+									<div class="input-col col-xs-12 col-sm-4">
+										<div class="form-group focus-2">
+											<div class="form-label trasparent-label">Birthday</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-calendar" style="font-size:20px" aria-hidden="true"></i></span>
+							                    <%= form.select :year_ofbirth, options_for_select([["YEAR*",""],["2017","2017"],["2016","2016"],["2015","2015"],["2014","2014"],["2013","2013"],["2012","2012"],["2011","2011"],["2010","2010"],["2009","2009"],["2008","2008"],["2007","2007"],["2006","2006"],["2005","2005"],["2004","2004"],["2003","2003"],["2002","2002"],["2001","2001"],["2000","2000"],["1999","1999"],["1998","1998"],["1997","1997"],["1996","1996"],["1995","1995"],["1994","1994"],["1993","1993"],["1992","1992"],["1991","1991"],["1990","1990"],["1989","1989"],["1988","1988"],["1987","1987"],["1986","1986"],["1985","1985"],["1984","1984"],["1983","1983"],["1982","1982"],["1981","1981"],["1980","1980"],["1979","1979"],["1978","1978"],["1977","1977"],["1976","1976"],["1975","1975"],["1974","1974"],["1973","1973"],["1972","1972"],["1971","1971"],["1970","1970"]]),{},{ :class => 'form-control' } %>
+						                    </div>
+										</div>
+									</div>
+									<!--gender-->
+									<div class="input-col col-xs-12 col-md-6">
+										<div class="form-group focus-2">
+											<div class="form-label">Gender</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-user" style="font-size:20px" aria-hidden="true"></i></span>
+	                      						<%= form.select :gender, options_for_select([["SELECT*",""],['Male', 'Male'], ['Female', 'Female']]),{},{ :class => 'form-control' }%>
+											</div>
+										</div>								
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sec"  data-sec="address-info">
+						<div class="be-large-post">
+							<div class="info-block style-2">
+								<div class="be-large-post-align"><h3 class="info-block-label">Contact Information</h3></div>
+							</div>
+							<div class="be-large-post-align">
+								<div class="row">
+									<!--country-->
+									<div class="input-col col-xs-12 col-md-6">
+										<div class="form-group focus-2">
+											<div class="form-label">Country</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-globe" style="font-size:20px" aria-hidden="true"></i></span>
+	                      						<%= form.select :country, options_for_select(CS.countries),{},{ :class => 'form-control' } %>
+	                      					</div>
+										</div>								
+									</div>
+									<!--state-->
+									<div class="input-col col-xs-12 col-md-6">
+										<div class="form-group focus-2">
+											<div class="form-label">State</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-map-marker" style="font-size:20px" aria-hidden="true"></i></span>
+	                      						<%= form.select :state, options_for_select(CS.states(:us)),{},{ :class => 'form-control' } %>
+	                      					</div>
+										</div>								
+									</div>
+									<!--city-->
+									<div class="input-col col-xs-12 col-sm-6">
+										<div class="form-group focus-2">
+											<div class="form-label">City</div>									
+											<input class="form-input" type="text" value="Enter the city of your residence/occupation">
+										</div>								
+									</div>
+									<!--phone-->
 									<div class="input-col col-xs-12 col-md-6">
 										<div class="form-group focus-2">
 											<div class="form-label">Phone Number</div>									
 												<!--<input id="phone-number" class="form-input" type="number" placeholder="Enter a 10-digit phone number" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$">-->
                     							<%= form.text_field :phone, :class => 'form-input', :placeholder => 'Enter a valid phone number', :type => 'number', :required => ''%>
-											</div>								
-									</div>
-									<div class="input-col col-xs-12 col-sm-6">
-										<div class="form-label">Country</div>
-										<div class="be-drop-down icon-none" value="<%=:job_name%>">
-											<span class="be-dropdown-content" > SELECT... </span>
-											<ul class="drop-down-list">
-												<li value="AF"><a>Afghanistan</a></li>
-												<li value="AX"><a>Åland Islands</a></li>
-												<li value="AL"><a>Albania</a></li>
-												<li value="DZ"><a>Algeria</a></li>
-												<li value="AS"><a>American Samoa</a></li>
-												<li value="AD"><a>Andorra</a></li>
-												<li value="AO"><a>Angola</a></li>
-												<li value="AI"><a>Anguilla</a></li>
-												<li value="AQ"><a>Antarctica</a></li>
-												<li value="AG"><a>Antigua and Barbuda</a></li>
-												<li value="AR"><a>Argentina</a></li>
-												<li value="AM"><a>Armenia</a></li>
-												<li value="AW"><a>Aruba</a></li>
-												<li value="AU"><a>Australia</a></li>
-												<li value="AT"><a>Austria</a></li>
-												<li value="AZ"><a>Azerbaijan</a></li>
-												<li value="BS"><a>Bahamas</a></li>
-												<li value="BH"><a>Bahrain</a></li>
-												<li value="BD"><a>Bangladesh</a></li>
-												<li value="BB"><a>Barbados</a></li>
-												<li value="BY"><a>Belarus</a></li>
-												<li value="BE"><a>Belgium</a></li>
-												<li value="BZ"><a>Belize</a></li>
-												<li value="BJ"><a>Benin</a></li>
-												<li value="BM"><a>Bermuda</a></li>
-												<li value="BT"><a>Bhutan</a></li>
-												<li value="BO"><a>Bolivia, Plurinational State of</a></li>
-												<li value="BQ"><a>Bonaire, Sint Eustatius and Saba</a></li>
-												<li value="BA"><a>Bosnia and Herzegovina</a></li>
-												<li value="BW"><a>Botswana</a></li>
-												<li value="BV"><a>Bouvet Island</a></li>
-												<li value="BR"><a>Brazil</a></li>
-												<li value="IO"><a>British Indian Ocean Territory</a></li>
-												<li value="BN"><a>Brunei Darussalam</a></li>
-												<li value="BG"><a>Bulgaria</a></li>
-												<li value="BF"><a>Burkina Faso</a></li>
-												<li value="BI"><a>Burundi</a></li>
-												<li value="KH"><a>Cambodia</a></li>
-												<li value="CM"><a>Cameroon</a></li>
-												<li value="CA"><a>Canada</a></li>
-												<li value="CV"><a>Cape Verde</a></li>
-												<li value="KY"><a>Cayman Islands</a></li>
-												<li value="CF"><a>Central African Republic</a></li>
-												<li value="TD"><a>Chad</a></li>
-												<li value="CL"><a>Chile</a></li>
-												<li value="CN"><a>China</a></li>
-												<li value="CX"><a>Christmas Island</a></li>
-												<li value="CC"><a>Cocos (Keeling) Islands</a></li>
-												<li value="CO"><a>Colombia</a></li>
-												<li value="KM"><a>Comoros</a></li>
-												<li value="CG"><a>Congo</a></li>
-												<li value="CD"><a>Congo, the Democratic Republic of the</a></li>
-												<li value="CK"><a>Cook Islands</a></li>
-												<li value="CR"><a>Costa Rica</a></li>
-												<li value="CI"><a>Côte d'Ivoire</a></li>
-												<li value="HR"><a>Croatia</a></li>
-												<li value="CU"><a>Cuba</a></li>
-												<li value="CW"><a>Curaçao</a></li>
-												<li value="CY"><a>Cyprus</a></li>
-												<li value="CZ"><a>Czech Republic</a></li>
-												<li value="DK"><a>Denmark</a></li>
-												<li value="DJ"><a>Djibouti</a></li>
-												<li value="DM"><a>Dominica</a></li>
-												<li value="DO"><a>Dominican Republic</a></li>
-												<li value="EC"><a>Ecuador</a></li>
-												<li value="EG"><a>Egypt</a></li>
-												<li value="SV"><a>El Salvador</a></li>
-												<li value="GQ"><a>Equatorial Guinea</a></li>
-												<li value="ER"><a>Eritrea</a></li>
-												<li value="EE"><a>Estonia</a></li>
-												<li value="ET"><a>Ethiopia</a></li>
-												<li value="FK"><a>Falkland Islands (Malvinas)</a></li>
-												<li value="FO"><a>Faroe Islands</a></li>
-												<li value="FJ"><a>Fiji</a></li>
-												<li value="FI"><a>Finland</a></li>
-												<li value="FR"><a>France</a></li>
-												<li value="GF"><a>French Guiana</a></li>
-												<li value="PF"><a>French Polynesia</a></li>
-												<li value="TF"><a>French Southern Territories</a></li>
-												<li value="GA"><a>Gabon</a></li>
-												<li value="GM"><a>Gambia</a></li>
-												<li value="GE"><a>Georgia</a></li>
-												<li value="DE"><a>Germany</a></li>
-												<li value="GH"><a>Ghana</a></li>
-												<li value="GI"><a>Gibraltar</a></li>
-												<li value="GR"><a>Greece</a></li>
-												<li value="GL"><a>Greenland</a></li>
-												<li value="GD"><a>Grenada</a></li>
-												<li value="GP"><a>Guadeloupe</a></li>
-												<li value="GU"><a>Guam</a></li>
-												<li value="GT"><a>Guatemala</a></li>
-												<li value="GG"><a>Guernsey</a></li>
-												<li value="GN"><a>Guinea</a></li>
-												<li value="GW"><a>Guinea-Bissau</a></li>
-												<li value="GY"><a>Guyana</a></li>
-												<li value="HT"><a>Haiti</a></li>
-												<li value="HM"><a>Heard Island and McDonald Islands</a></li>
-												<li value="VA"><a>Holy See (Vatican City State)</a></li>
-												<li value="HN"><a>Honduras</a></li>
-												<li value="HK"><a>Hong Kong</a></li>
-												<li value="HU"><a>Hungary</a></li>
-												<li value="IS"><a>Iceland</a></li>
-												<li value="IN"><a>India</a></li>
-												<li value="ID"><a>Indonesia</a></li>
-												<li value="IR"><a>Iran, Islamic Republic of</a></li>
-												<li value="IQ"><a>Iraq</a></li>
-												<li value="IE"><a>Ireland</a></li>
-												<li value="IM"><a>Isle of Man</a></li>
-												<li value="IL"><a>Israel</a></li>
-												<li value="IT"><a>Italy</a></li>
-												<li value="JM"><a>Jamaica</a></li>
-												<li value="JP"><a>Japan</a></li>
-												<li value="JE"><a>Jersey</a></li>
-												<li value="JO"><a>Jordan</a></li>
-												<li value="KZ"><a>Kazakhstan</a></li>
-												<li value="KE"><a>Kenya</a></li>
-												<li value="KI"><a>Kiribati</a></li>
-												<li value="KP"><a>Korea, Democratic People's Republic of</a></li>
-												<li value="KR"><a>Korea, Republic of</a></li>
-												<li value="KW"><a>Kuwait</a></li>
-												<li value="KG"><a>Kyrgyzstan</a></li>
-												<li value="LA"><a>Lao People's Democratic Republic</a></li>
-												<li value="LV"><a>Latvia</a></li>
-												<li value="LB"><a>Lebanon</a></li>
-												<li value="LS"><a>Lesotho</a></li>
-												<li value="LR"><a>Liberia</a></li>
-												<li value="LY"><a>Libya</a></li>
-												<li value="LI"><a>Liechtenstein</a></li>
-												<li value="LT"><a>Lithuania</a></li>
-												<li value="LU"><a>Luxembourg</a></li>
-												<li value="MO"><a>Macao</a></li>
-												<li value="MK"><a>Macedonia, the former Yugoslav Republic of</a></li>
-												<li value="MG"><a>Madagascar</a></li>
-												<li value="MW"><a>Malawi</a></li>
-												<li value="MY"><a>Malaysia</a></li>
-												<li value="MV"><a>Maldives</a></li>
-												<li value="ML"><a>Mali</a></li>
-												<li value="MT"><a>Malta</a></li>
-												<li value="MH"><a>Marshall Islands</a></li>
-												<li value="MQ"><a>Martinique</a></li>
-												<li value="MR"><a>Mauritania</a></li>
-												<li value="MU"><a>Mauritius</a></li>
-												<li value="YT"><a>Mayotte</a></li>
-												<li value="MX"><a>Mexico</a></li>
-												<li value="FM"><a>Micronesia, Federated States of</a></li>
-												<li value="MD"><a>Moldova, Republic of</a></li>
-												<li value="MC"><a>Monaco</a></li>
-												<li value="MN"><a>Mongolia</a></li>
-												<li value="ME"><a>Montenegro</a></li>
-												<li value="MS"><a>Montserrat</a></li>
-												<li value="MA"><a>Morocco</a></li>
-												<li value="MZ"><a>Mozambique</a></li>
-												<li value="MM"><a>Myanmar</a></li>
-												<li value="NA"><a>Namibia</a></li>
-												<li value="NR"><a>Nauru</a></li>
-												<li value="NP"><a>Nepal</a></li>
-												<li value="NL"><a>Netherlands</a></li>
-												<li value="NC"><a>New Caledonia</a></li>
-												<li value="NZ"><a>New Zealand</a></li>
-												<li value="NI"><a>Nicaragua</a></li>
-												<li value="NE"><a>Niger</a></li>
-												<li value="NG"><a>Nigeria</a></li>
-												<li value="NU"><a>Niue</a></li>
-												<li value="NF"><a>Norfolk Island</a></li>
-												<li value="MP"><a>Northern Mariana Islands</a></li>
-												<li value="NO"><a>Norway</a></li>
-												<li value="OM"><a>Oman</a></li>
-												<li value="PK"><a>Pakistan</a></li>
-												<li value="PW"><a>Palau</a></li>
-												<li value="PS"><a>Palestinian Territory, Occupied</a></li>
-												<li value="PA"><a>Panama</a></li>
-												<li value="PG"><a>Papua New Guinea</a></li>
-												<li value="PY"><a>Paraguay</a></li>
-												<li value="PE"><a>Peru</a></li>
-												<li value="PH"><a>Philippines</a></li>
-												<li value="PN"><a>Pitcairn</a></li>
-												<li value="PL"><a>Poland</a></li>
-												<li value="PT"><a>Portugal</a></li>
-												<li value="PR"><a>Puerto Rico</a></li>
-												<li value="QA"><a>Qatar</a></li>
-												<li value="RE"><a>Réunion</a></li>
-												<li value="RO"><a>Romania</a></li>
-												<li value="RU"><a>Russian Federation</a></li>
-												<li value="RW"><a>Rwanda</a></li>
-												<li value="BL"><a>Saint Barthélemy</a></li>
-												<li value="SH"><a>Saint Helena, Ascension and Tristan da Cunha</a></li>
-												<li value="KN"><a>Saint Kitts and Nevis</a></li>
-												<li value="LC"><a>Saint Lucia</a></li>
-												<li value="MF"><a>Saint Martin (French part)</a></li>
-												<li value="PM"><a>Saint Pierre and Miquelon</a></li>
-												<li value="VC"><a>Saint Vincent and the Grenadines</a></li>
-												<li value="WS"><a>Samoa</a></li>
-												<li value="SM"><a>San Marino</a></li>
-												<li value="ST"><a>Sao Tome and Principe</a></li>
-												<li value="SA"><a>Saudi Arabia</a></li>
-												<li value="SN"><a>Senegal</a></li>
-												<li value="RS"><a>Serbia</a></li>
-												<li value="SC"><a>Seychelles</a></li>
-												<li value="SL"><a>Sierra Leone</a></li>
-												<li value="SG"><a>Singapore</a></li>
-												<li value="SX"><a>Sint Maarten (Dutch part)</a></li>
-												<li value="SK"><a>Slovakia</a></li>
-												<li value="SI"><a>Slovenia</a></li>
-												<li value="SB"><a>Solomon Islands</a></li>
-												<li value="SO"><a>Somalia</a></li>
-												<li value="ZA"><a>South Africa</a></li>
-												<li value="GS"><a>South Georgia and the South Sandwich Islands</a></li>
-												<li value="SS"><a>South Sudan</a></li>
-												<li value="ES"><a>Spain</a></li>
-												<li value="LK"><a>Sri Lanka</a></li>
-												<li value="SD"><a>Sudan</a></li>
-												<li value="SR"><a>Suriname</a></li>
-												<li value="SJ"><a>Svalbard and Jan Mayen</a></li>
-												<li value="SZ"><a>Swaziland</a></li>
-												<li value="SE"><a>Sweden</a></li>
-												<li value="CH"><a>Switzerland</a></li>
-												<li value="SY"><a>Syrian Arab Republic</a></li>
-												<li value="TW"><a>Taiwan, Province of China</a></li>
-												<li value="TJ"><a>Tajikistan</a></li>
-												<li value="TZ"><a>Tanzania, United Republic of</a></li>
-												<li value="TH"><a>Thailand</a></li>
-												<li value="TL"><a>Timor-Leste</a></li>
-												<li value="TG"><a>Togo</a></li>
-												<li value="TK"><a>Tokelau</a></li>
-												<li value="TO"><a>Tonga</a></li>
-												<li value="TT"><a>Trinidad and Tobago</a></li>
-												<li value="TN"><a>Tunisia</a></li>
-												<li value="TR"><a>Turkey</a></li>
-												<li value="TM"><a>Turkmenistan</a></li>
-												<li value="TC"><a>Turks and Caicos Islands</a></li>
-												<li value="TV"><a>Tuvalu</a></li>
-												<li value="UG"><a>Uganda</a></li>
-												<li value="UA"><a>Ukraine</a></li>
-												<li value="AE"><a>United Arab Emirates</a></li>
-												<li value="GB"><a>United Kingdom</a></li>
-												<li value="US"><a>United States</a></li>
-												<li value="UM"><a>United States Minor Outlying Islands</a></li>
-												<li value="UY"><a>Uruguay</a></li>
-												<li value="UZ"><a>Uzbekistan</a></li>
-												<li value="VU"><a>Vanuatu</a></li>
-												<li value="VE"><a>Venezuela, Bolivarian Republic of</a></li>
-												<li value="VN"><a>Viet Nam</a></li>
-												<li value="VG"><a>Virgin Islands, British</a></li>
-												<li value="VI"><a>Virgin Islands, U.S.</a></li>
-												<li value="WF"><a>Wallis and Futuna</a></li>
-												<li value="EH"><a>Western Sahara</a></li>
-												<li value="YE"><a>Yemen</a></li>
-												<li value="ZM"><a>Zambia</a></li>
-												<li value="ZW"><a>Zimbabwe</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="input-col col-xs-12 col-sm-6">
-										<div class="form-group focus-2">
-											<div class="form-label">City</div>									
-											<input class="form-input" type="text" value="Barnsley">
 										</div>								
-									</div>
-									<div class="input-col col-xs-12">
-										<div class="form-group focus-2">
-											<div class="form-label">Website URL</div>									
-											<input class="form-input" type="text" value="http:// www.phoenix.cool">
-										</div>								
-									</div>								
+									</div>																
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="sec"  data-sec="edit-password">
+					<div class="sec"  data-sec="profession-info">
 						<div class="be-large-post">
 							<div class="info-block style-2">
-								<div class="be-large-post-align"><h3 class="info-block-label">Password</h3></div>
+								<div class="be-large-post-align"><h3 class="info-block-label">Proffesion Information</h3></div>
 							</div>
 							<div class="be-large-post-align">
 								<div class="row">
-									<div class="input-col col-xs-12 col-sm-4">
+									<!--occupation-->
+									<div class="input-col col-xs-12 col-md-6">
 										<div class="form-group focus-2">
-											<div class="form-label">Old Password</div>									
-											<input class="form-input" type="password" placeholder="">
+											<div class="form-label">Occupation</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-user" style="font-size:20px" aria-hidden="true"></i></span>
+	                      						<%= form.select :job_name, options_for_select(@possible_Jobs),{},{ :class => 'form-control' } %>
+											</div>
 										</div>								
 									</div>
-									<div class="input-col col-xs-12 col-sm-4">
+									<!--compensation-->
+									<div class="input-col col-xs-12 col-md-6">
 										<div class="form-group focus-2">
-											<div class="form-label">New Password</div>									
-											<input class="form-input" type="password" placeholder="">
+											<div class="form-label">Compensation Type</div>
+											<div>
+												<span class="input-group-addon"><i class="fa fa-dollar" style="font-size:20px" aria-hidden="true"></i></span>
+	                      						<%= form.select :compensation, options_for_select([["SELECT", "Select type of Compensation"],["Assignment Based","Assignment Based"],["Paid Only","Paid Only"]]),{},{ :class => 'form-control' }%>
+											</div>
 										</div>								
 									</div>
-									<div class="input-col col-xs-12 col-sm-4">
-										<div class="form-group focus-2">
-											<div class="form-label">Repeat Password</div>									
-											<input class="form-input" type="password" placeholder="">
-										</div>								
-									</div>
-									<div class="col-xs-12">
-										<a class="btn color-1 size-2 hover-1 btn-right">change password</a>
-									</div>																
 								</div>
 							</div>
 						</div>
@@ -471,46 +275,31 @@
 								<div class="social-input form-group focus-2">
 									<div class="s_icon">
 										<div class="social-bars"><i class="fa fa-bars"></i></div>
-										<a class="social-btn color-1" href="blog-detail-2.html"><i class="fa fa-facebook"></i></a>
+										<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
 									</div>
 									<div class="s_input">
-										<input class="form-input" type="text" value="http:// facebook.com/taylor">
+										<!--<input class="form-input" type="text" value="http:// facebook.com/taylor">-->
+										<%= form.text_field :facebook_link, :placeholder=> 'Enter your Facebook profile link', :class => 'form-input', :type => 'text'%>
 									</div>
 								</div>
 								<div class="social-input form-group focus-2">
 									<div class="s_icon">
 										<div class="social-bars"><i class="fa fa-bars"></i></div>
-										<a class="social-btn color-2" href="blog-detail-2.html"><i class="fa fa-twitter"></i></a>
+										<a class="social-btn color-5"><i class="fa fa-linkedin"></i></a>
 									</div>
 									<div class="s_input">
-										<input class="form-input" type="text" value="http:// twitter.com/taylor">
+										<!--<input class="form-input" type="text" value="http:// twitter.com/taylor">-->
+										<%= form.text_field :linkedIn_link, :placeholder=> 'Enter your LinkedIn profile', :class => 'form-input' %>
 									</div>
 								</div>
 								<div class="social-input form-group focus-2">
 									<div class="s_icon">
 										<div class="social-bars"><i class="fa fa-bars"></i></div>
-										<a class="social-btn color-3" href="blog-detail-2.html"><i class="fa fa-google-plus"></i></a>
+										<a class="social-btn color-3"><i class="fa fa-globe"></i></a>
 									</div>
 									<div class="s_input">
-										<input class="form-input" type="text" value="http:// googleplus.com/taylor">
-									</div>
-								</div>
-								<div class="social-input form-group focus-2">
-									<div class="s_icon">
-										<div class="social-bars"><i class="fa fa-bars"></i></div>
-										<a class="social-btn color-4" href="blog-detail-2.html"><i class="fa fa-pinterest-p"></i></a>
-									</div>
-									<div class="s_input">
-										<input class="form-input" type="text" value="http:// pinterest.com/taylor">
-									</div>
-								</div>
-								<div class="social-input form-group focus-2">
-									<div class="s_icon">
-										<div class="social-bars"><i class="fa fa-bars"></i></div>
-										<a class="social-btn color-5" href="blog-detail-2.html"><i class="fa fa-instagram"></i></a>
-									</div>
-									<div class="s_input">
-										<input class="form-input" type="text" value="http:// instagram.com/taylor">
+										<!--<input class="form-input" type="text" value="http:// googleplus.com/taylor">-->
+										<%= form.text_field :personalWebsite_link, :placeholder=> 'Enter your personal website link', :class => 'form-input' %>
 									</div>
 								</div>																													
 							</div>
@@ -526,45 +315,13 @@
 								<div class="row">
 									<div class="input-col col-xs-12">
 										<div class="form-group focus-2">
-											<div class="form-label">Section Title</div>									
-											<input class="form-input" type="text" placeholder="About Me">
-										</div>								
-									</div>
-									<div class="input-col col-xs-12">
-										<div class="form-group focus-2">
-											<div class="form-label">Description</div>
-											<textarea class="form-input" required="" placeholder="Something about you"></textarea>
+											<div class="form-label">Write about yourself. Tell us what makes you unique and different, what are your hobbies and skills, and etc.</div>
+											<!--<textarea class="form-input" required="" placeholder="Something about you"></textarea>-->
+											<%= form.text_area :bio, :placeholder=> 'Something about you', :class => 'form-input' %>
 										</div>
 									</div>
 								</div>
 							</div>						
-						</div>
-					</div>
-	
-					<div class=" sec" data-sec="web-references">
-						<div class="be-large-post">
-							<div class="info-block style-2">
-								<div class="be-large-post-align"><h3 class="info-block-label">Web References</h3></div>
-							</div>
-							<div class="be-large-post-align">
-								<div class="row">
-									<div class="input-col col-xs-12 col-sm-5">
-										<div class="form-group focus-2">
-											<div class="form-label">Link Title</div>									
-											<input class="form-input" type="text" placeholder="Enter title">
-										</div>								
-									</div>
-									<div class="input-col col-xs-12 col-sm-5">
-										<div class="form-group focus-2">
-											<div class="form-label">Link descriprion</div>									
-											<input class="form-input" type="text" placeholder="Enter descriprion">
-										</div>								
-									</div>
-									<div class="col-xs-12 col-sm-2">								
-										<a href="blog-detail-2.html" class="btn full btn-input color-1 size-4 hover-1">add</a>
-									</div>
-								</div>							
-							</div>
 						</div>
 					</div>
 				</div>	
