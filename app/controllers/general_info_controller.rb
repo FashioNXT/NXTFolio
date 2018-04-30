@@ -53,8 +53,7 @@ class GeneralInfoController < ApplicationController
    
   # Associated with the view used for create
   def new
-    # @possible_Jobs = GeneralInfo.see_Jobs
-    @possible_Jobs = ["Model", "Photographer","Designer"]
+    @possible_Jobs = GeneralInfo.see_Jobs
     @templates = Template.uniq.pluck(:prof_name).sort
     @templates.unshift('Designer')
     @templates.unshift('Model')

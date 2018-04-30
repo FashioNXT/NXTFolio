@@ -1,36 +1,199 @@
-<%= render :partial => "/layout/header" %>
-<body>
-<%= render :partial => "/layout/navigation" %>
-  <%= render :partial => "/layout/body" %>
-<section  id="specificForm" class="container content-section text-center">
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FashioNXT</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		
+	</head>
+	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+	
 
-  <div id="SPECIFICFORM">
-    <% if !GeneralInfo.check_Job?(@job_title) %>
-      <h1>
-        <b>Your job field no longer exists!</b>
-      </h1>
-      <p>Please select the "Edit General Info" button from your profile page.</p>
-      </br>
-      <p>If you believe you're seeing this in error, please contact an administrator.</p>   
-    <% else %>   
-      <h1>
-        <b><%=@job_title%></b>
-      </h1>
-      <%= form_for @general_info, :action => 'update', :url => edit_job_update_path do |f| %>
-        <%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
-	  <% @attr_titles.each_with_index do |attrName, i|%>
-	    <%= f2.label attrName %>
-            </br>
-	    <%= f2.text_field (i).to_s %>
-	    <p></p>
-          <% end %>
-        <% end %>
-        <%= f.submit "Submit" %>
-      <% end %>
-      <%= button_to 'Cancel', '/show_profile', :method => 'get' %>
-    <% end %> 
-  </div>
-</section>
-<%= render :partial => "/layout/javascripts" %>
-</body>
-<%= render :partial => "/layout/footer" %>
+	<!-- THE LOADER -->
+
+	<div class="be-loader">
+    	<div class="spinner">
+			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+			<p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+			</p>
+		</div>
+    </div>
+	<!-- THE HEADER -->
+	<header>
+		
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+					</a>
+				</div>
+				<div class="header-menu-block">
+					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+					<ul class="header-menu" id="one">
+						<!--<li><a href="activity.html">Activity</a></li>-->
+						<li><a href="/search_profile/search">Search</a>
+							<!--<ul>
+								<li><a href="search.html">Explore</a></li>
+								<li><a href="people.html">People</a></li>
+								<li><a href="gallery.html">Galleries</a></li>
+							</ul>-->
+						</li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
+						<!--<li><a href="site-map.html">Site Map</a></li>-->
+						<!--<li><a href="organization.html">Organization</a></li>-->
+						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
+					</ul>
+				</div>
+				<div class="login-header-block">
+					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+						<!--<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>-->
+						<!--Log out</a>-->
+						<% else %>
+						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+						<!--<a class="btn btn-login color-1 size-2 hover-2" href="/application/login" ><i class="fa fa-user"></i>-->
+						<!--Log in</a>-->
+						<% end %>
+					</div>	
+				</div>
+			</div>
+		</div>
+		
+		
+	</header>
+	
+	
+	<!-- MAIN CONTENT -->
+	<div id="content-block">
+		<div class="container be-detail-container">
+			<div class="row">
+				<div class="col-xs-12 col-md-3 left-feild">
+					<div class="be-vidget back-block">
+						<a class="btn full color-1 size-1 hover-1" href="/"><i class="fa fa-chevron-left"></i>SAVE AND RETURN</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-md-9 _editor-content_">
+					<div class="sec"  data-sec="basic-information">
+						<div class="be-large-post">
+							<div class="info-block style-2">
+								<div class="be-large-post-align ">
+								  <h3 class="info-block-label"><%=@job_title%></h3>
+								</div>
+							</div>
+							<div class="be-large-post-align">
+								<div class="row">
+								  	<% if !GeneralInfo.check_Job?(@job_title) %>
+	    							  	<h1>
+	                      					<b>Your job field no longer exists!</b>
+	                    			  	</h1>
+	                    			  	<p>Please select the "Edit General Info" button from your profile page.</p>
+	                    				</br>
+	                    				<p>If you believe you're seeing this in error, please contact an administrator.</p>
+									<% else %>
+										<%= form_for @general_info, :action => 'update', :url => edit_job_update_path do |f| %>
+											<%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
+												<% @attr_titles.each_with_index do |attrName, i|%>
+												<div class="input-col col-xs-12 col-sm-6">
+													<div class="form-group fg_icon focus-2">
+														<div class="form-label"><%= f2.label attrName %></div>
+														<%= f2.text_field (i).to_s, :class =>'form-input', :required => '', :type => 'text'%>
+													</div>							
+												</div>
+											  	<% end %>
+											<% end %>
+											<div class="col-xs-12 col-sm-6">
+												<%= f.submit "SAVE", :class => 'btn full color-1 size-1 hover-1' %>
+											</div>
+										<% end %>
+										<div class="col-xs-12 col-sm-6">
+												<%= button_to 'SKIP THIS STEP', '/show_profile', :method => 'get', :class => 'btn full color-2 size-1 hover-1' %>
+											</div>
+									<% end %> 
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+				
+			</div>
+		</div>
+	</div>
+	<footer>	
+		<div class="footer-main">
+			<div class="container-fluid custom-container">
+				<div class="row">	
+					<div class="col-md-3 col-xl-4">
+						<div class="footer-block">
+							<h1 class="footer-title">About Us</h1>
+							<p>FashioNXT creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+							<ul class="soc_buttons">
+								<li><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
+								<li><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-xl-2">
+						<div class="footer-block">
+							<h1 class="footer-title">Some Links</h1>
+							<div class="row footer-list-footer">
+							<div class="col-md-6">
+							<ul class="link-list">
+								<li><a href="http://fashionxt.com/">About Us</a></li>
+								<li><a href="contact-us.html">Help</a></li>
+								<li><a href="contact-us.html">Contacts</a></li>
+								<li><a href="activity.html">Job</a></li>
+								<li><a href="activity.html">Projets</a></li>
+							</ul></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container-fluid custom-container">
+				<div class="col-md-12 footer-end clearfix">
+					<div class="left">
+						<span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
+						<span class="created">Created with LOVE by <span class="white"><a href=""> ThatSoftwareEngineeringGroup</a></span></span>
+					</div>
+				</div>			
+			</div>
+		</div>		
+	</footer>
+
+	<div class="be-fixed-filter"></div>
+	<!-- SCRIPT	-->
+	<script src="<%= asset_path "jquery.min.js"%>"></script>
+	<script src="<%= asset_path "jquery-ui.js"%>"></script>
+	<script src="<%= asset_path "bootstrap.min.js"%>"></script>		
+	<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+	<script src="<%= asset_path "global.js"%>"></script>
+	</body>
+</html>
