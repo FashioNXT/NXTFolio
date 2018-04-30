@@ -140,7 +140,7 @@ class GeneralInfo < ApplicationRecord
         jobString = jobString + job + '\''
       end
       $redis.set('jobList', jobString)
-      $redis.del(job)
+      $redis.del(jobName)
 
       # Code here to edit the database entries
     end
