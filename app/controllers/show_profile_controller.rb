@@ -12,6 +12,9 @@ class ShowProfileController < ApplicationController
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
         @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
+        if(LoginInfo.find_by(userKey: @general_info.userKey))
+          @email = LoginInfo.find_by(userKey: @general_info.userKey).email
+        end
 	#@adminMaker = GeneralInfo.make_admin(params[:user])
         using_default = false
         
