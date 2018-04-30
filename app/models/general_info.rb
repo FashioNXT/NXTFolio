@@ -116,7 +116,7 @@ class GeneralInfo < ApplicationRecord
 
   def self.see_Jobs
     jobList = @@Job_List
-    jobList = jobList.delete('Admin')
+    jobList.delete('Admin')
     jobList
   end
 
