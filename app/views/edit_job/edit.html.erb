@@ -5,7 +5,7 @@
 <section  id="specificForm" class="container content-section text-center">
 
   <div id="SPECIFICFORM">
-    <% if !GeneralInfo.check_Job?(@job_title) %>
+    <% if !GeneralInfo.check_Job?(@job_title) && @job_title != 'Admin'%>
       <h1>
         <b>Your job field no longer exists!</b>
       </h1>
