@@ -82,6 +82,9 @@ class EditJobController < ApplicationController
     end
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      if(@general_info)
+        @attr_contents = @general_info[:job_attr]
+      end
       @general_info[:job_attr] = {}  # DO NOT DELETE - Form helper does not like the keys being integers, must be set to empty then rebuilt by controller in patch request
       @general_info_attributes = GeneralInfo.attribute_names
       @general_info_values = @general_info.attribute_values
@@ -99,7 +102,6 @@ class EditJobController < ApplicationController
       else
         @attr_titles = @job_title.constantize.view_Attr()
         @attr_types = @job_title.constantize.view_Attr_Type()
-        @attr_contents = @general_info[:job_attr]
       end
       @holder = GeneralInfo.new
     else
