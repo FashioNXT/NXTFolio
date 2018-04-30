@@ -1,6 +1,6 @@
 
   
-  <%= content_tag :div, flash[:notice], class: "notice" %>
+  <%= content_tag :div, flash.now[:notice], class: "notice" %>
   
   <%= form_tag("/admin/delete", method: "post") do %>  
     <%= select_tag :job_name, options_for_select(@jobs) %>

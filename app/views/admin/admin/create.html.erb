@@ -1,5 +1,5 @@
 
-  <%= content_tag :div, flash[:notice], class: "notice" %>
+  <%= content_tag :div, flash.now[:notice], class: "notice" %>
 
   <%= form_tag("/admin/create", method: "post") do %>
     <%= label_tag(:job_name, "Enter Job Name:") %>
