@@ -91,7 +91,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-3 left-feild">
 					<div class="be-vidget back-block">
-						<a class="btn full color-1 size-1 hover-1" href="author.html"><i class="fa fa-chevron-left"></i>back to profile</a>
+						<a class="btn full color-1 size-1 hover-1" href="/"><i class="fa fa-chevron-left"></i>SAVE AND RETURN</a>
 					</div>
 					<div class="be-vidget hidden-xs hidden-sm" id="scrollspy">
 						<h3 class="letf-menu-article">
@@ -108,18 +108,17 @@
 					</div>
 	
 				</div>
-				<form class="col-xs-12 col-md-9 _editor-content_">
+				<%= form_for GeneralInfo.new, url: {action: "create"} do |form| %>
+				<div class="col-xs-12 col-md-9 _editor-content_">
 					<div class="sec"  data-sec="basic-information">
 						<div class="be-large-post">
 							<div class="info-block style-2">
 								<div class="be-large-post-align "><h3 class="info-block-label">Basic Information</h3></div>
 							</div>
 							<div class="be-large-post-align">
-								<div class="be-change-ava custom-file">
-									<!--<label class="custom-file">-->
-							            <input type="file" id="file" class="custom-file-input">
-							            <label class="custom-file-label" for="customFile">Choose file</label>
-					          		<!--</label>-->
+								<div class="be-change-ava">
+									<label class="custom-file-label" for="customFile">Upload Profile Picture</label>
+						            <input type="file" id="file" class="custom-file-input">
 								</div>
 								
 							</div>
@@ -128,37 +127,290 @@
 									<div class="input-col col-xs-12 col-sm-6">
 										<div class="form-group fg_icon focus-2">
 											<div class="form-label">First Name</div>
-											<input class="form-input" type="text" value="Taylor">
+											<%= form.text_field :first_name, :class =>'form-input', :required => '', :type => 'text'%>
+											<!--<input class="form-input" type="text" value="Taylor">-->
 										</div>							
 									</div>
 									<div class="input-col col-xs-12 col-sm-6">
 										<div class="form-group focus-2">
 											<div class="form-label">Last Name</div>									
-											<input class="form-input" type="text" value="Leight">
-										</div>								
-									</div>
-									<div class="input-col col-xs-12">
-										<div class="form-group focus-2">
-											<div class="form-label">Occupation</div>									
-											<input class="form-input" type="text" value="UI/UX, Web Design, Art Direction">
-										</div>								
-									</div>
-									<div class="input-col col-xs-12">
-										<div class="form-group focus-2">
-											<div class="form-label">Company</div>									
-											<input class="form-input" type="text" placeholder="">
+											<!--<input class="form-input" type="text" value="Leight">-->
+											<%= form.text_field :last_name, :class =>'form-input', :required => '', :type => 'text'%>
 										</div>								
 									</div>
 									<div class="input-col col-xs-12 col-sm-6">
-										<div class="form-label">Country</div>
-										<div class="be-drop-down icon-none">
-											<span class="be-dropdown-content"> United Kingdom </span>
+										<div class="form-label">Occupation</div>
+										<!--not sure if value is binding the text - we should check!-->
+										<div class="be-drop-down icon-none" value="<%=:job_name%>">
+											<span class="be-dropdown-content"> SELECT... </span>
 											<ul class="drop-down-list">
-												<li><a>USA</a></li>
-												<li><a>India</a></li>
-												<li><a>Mexica</a></li>
-												<li><a>Russia</a></li>
-												<li><a>Italy</a></li>
+												<%@possible_Jobs.each do |job| %>
+													<li><a><%=job%></a></li>
+												<%end%>
+											</ul>
+										</div>
+									</div>
+									<div class="input-col col-xs-12 col-md-6">
+										<div class="form-group focus-2">
+											<div class="form-label">Phone Number</div>									
+												<!--<input id="phone-number" class="form-input" type="number" placeholder="Enter a 10-digit phone number" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$">-->
+                    							<%= form.text_field :phone, :class => 'form-input', :placeholder => 'Enter a valid phone number', :type => 'number', :required => ''%>
+											</div>								
+									</div>
+									<div class="input-col col-xs-12 col-sm-6">
+										<div class="form-label">Country</div>
+										<div class="be-drop-down icon-none" value="<%=:job_name%>">
+											<span class="be-dropdown-content" > SELECT... </span>
+											<ul class="drop-down-list">
+												<li value="AF"><a>Afghanistan</a></li>
+												<li value="AX"><a>Åland Islands</a></li>
+												<li value="AL"><a>Albania</a></li>
+												<li value="DZ"><a>Algeria</a></li>
+												<li value="AS"><a>American Samoa</a></li>
+												<li value="AD"><a>Andorra</a></li>
+												<li value="AO"><a>Angola</a></li>
+												<li value="AI"><a>Anguilla</a></li>
+												<li value="AQ"><a>Antarctica</a></li>
+												<li value="AG"><a>Antigua and Barbuda</a></li>
+												<li value="AR"><a>Argentina</a></li>
+												<li value="AM"><a>Armenia</a></li>
+												<li value="AW"><a>Aruba</a></li>
+												<li value="AU"><a>Australia</a></li>
+												<li value="AT"><a>Austria</a></li>
+												<li value="AZ"><a>Azerbaijan</a></li>
+												<li value="BS"><a>Bahamas</a></li>
+												<li value="BH"><a>Bahrain</a></li>
+												<li value="BD"><a>Bangladesh</a></li>
+												<li value="BB"><a>Barbados</a></li>
+												<li value="BY"><a>Belarus</a></li>
+												<li value="BE"><a>Belgium</a></li>
+												<li value="BZ"><a>Belize</a></li>
+												<li value="BJ"><a>Benin</a></li>
+												<li value="BM"><a>Bermuda</a></li>
+												<li value="BT"><a>Bhutan</a></li>
+												<li value="BO"><a>Bolivia, Plurinational State of</a></li>
+												<li value="BQ"><a>Bonaire, Sint Eustatius and Saba</a></li>
+												<li value="BA"><a>Bosnia and Herzegovina</a></li>
+												<li value="BW"><a>Botswana</a></li>
+												<li value="BV"><a>Bouvet Island</a></li>
+												<li value="BR"><a>Brazil</a></li>
+												<li value="IO"><a>British Indian Ocean Territory</a></li>
+												<li value="BN"><a>Brunei Darussalam</a></li>
+												<li value="BG"><a>Bulgaria</a></li>
+												<li value="BF"><a>Burkina Faso</a></li>
+												<li value="BI"><a>Burundi</a></li>
+												<li value="KH"><a>Cambodia</a></li>
+												<li value="CM"><a>Cameroon</a></li>
+												<li value="CA"><a>Canada</a></li>
+												<li value="CV"><a>Cape Verde</a></li>
+												<li value="KY"><a>Cayman Islands</a></li>
+												<li value="CF"><a>Central African Republic</a></li>
+												<li value="TD"><a>Chad</a></li>
+												<li value="CL"><a>Chile</a></li>
+												<li value="CN"><a>China</a></li>
+												<li value="CX"><a>Christmas Island</a></li>
+												<li value="CC"><a>Cocos (Keeling) Islands</a></li>
+												<li value="CO"><a>Colombia</a></li>
+												<li value="KM"><a>Comoros</a></li>
+												<li value="CG"><a>Congo</a></li>
+												<li value="CD"><a>Congo, the Democratic Republic of the</a></li>
+												<li value="CK"><a>Cook Islands</a></li>
+												<li value="CR"><a>Costa Rica</a></li>
+												<li value="CI"><a>Côte d'Ivoire</a></li>
+												<li value="HR"><a>Croatia</a></li>
+												<li value="CU"><a>Cuba</a></li>
+												<li value="CW"><a>Curaçao</a></li>
+												<li value="CY"><a>Cyprus</a></li>
+												<li value="CZ"><a>Czech Republic</a></li>
+												<li value="DK"><a>Denmark</a></li>
+												<li value="DJ"><a>Djibouti</a></li>
+												<li value="DM"><a>Dominica</a></li>
+												<li value="DO"><a>Dominican Republic</a></li>
+												<li value="EC"><a>Ecuador</a></li>
+												<li value="EG"><a>Egypt</a></li>
+												<li value="SV"><a>El Salvador</a></li>
+												<li value="GQ"><a>Equatorial Guinea</a></li>
+												<li value="ER"><a>Eritrea</a></li>
+												<li value="EE"><a>Estonia</a></li>
+												<li value="ET"><a>Ethiopia</a></li>
+												<li value="FK"><a>Falkland Islands (Malvinas)</a></li>
+												<li value="FO"><a>Faroe Islands</a></li>
+												<li value="FJ"><a>Fiji</a></li>
+												<li value="FI"><a>Finland</a></li>
+												<li value="FR"><a>France</a></li>
+												<li value="GF"><a>French Guiana</a></li>
+												<li value="PF"><a>French Polynesia</a></li>
+												<li value="TF"><a>French Southern Territories</a></li>
+												<li value="GA"><a>Gabon</a></li>
+												<li value="GM"><a>Gambia</a></li>
+												<li value="GE"><a>Georgia</a></li>
+												<li value="DE"><a>Germany</a></li>
+												<li value="GH"><a>Ghana</a></li>
+												<li value="GI"><a>Gibraltar</a></li>
+												<li value="GR"><a>Greece</a></li>
+												<li value="GL"><a>Greenland</a></li>
+												<li value="GD"><a>Grenada</a></li>
+												<li value="GP"><a>Guadeloupe</a></li>
+												<li value="GU"><a>Guam</a></li>
+												<li value="GT"><a>Guatemala</a></li>
+												<li value="GG"><a>Guernsey</a></li>
+												<li value="GN"><a>Guinea</a></li>
+												<li value="GW"><a>Guinea-Bissau</a></li>
+												<li value="GY"><a>Guyana</a></li>
+												<li value="HT"><a>Haiti</a></li>
+												<li value="HM"><a>Heard Island and McDonald Islands</a></li>
+												<li value="VA"><a>Holy See (Vatican City State)</a></li>
+												<li value="HN"><a>Honduras</a></li>
+												<li value="HK"><a>Hong Kong</a></li>
+												<li value="HU"><a>Hungary</a></li>
+												<li value="IS"><a>Iceland</a></li>
+												<li value="IN"><a>India</a></li>
+												<li value="ID"><a>Indonesia</a></li>
+												<li value="IR"><a>Iran, Islamic Republic of</a></li>
+												<li value="IQ"><a>Iraq</a></li>
+												<li value="IE"><a>Ireland</a></li>
+												<li value="IM"><a>Isle of Man</a></li>
+												<li value="IL"><a>Israel</a></li>
+												<li value="IT"><a>Italy</a></li>
+												<li value="JM"><a>Jamaica</a></li>
+												<li value="JP"><a>Japan</a></li>
+												<li value="JE"><a>Jersey</a></li>
+												<li value="JO"><a>Jordan</a></li>
+												<li value="KZ"><a>Kazakhstan</a></li>
+												<li value="KE"><a>Kenya</a></li>
+												<li value="KI"><a>Kiribati</a></li>
+												<li value="KP"><a>Korea, Democratic People's Republic of</a></li>
+												<li value="KR"><a>Korea, Republic of</a></li>
+												<li value="KW"><a>Kuwait</a></li>
+												<li value="KG"><a>Kyrgyzstan</a></li>
+												<li value="LA"><a>Lao People's Democratic Republic</a></li>
+												<li value="LV"><a>Latvia</a></li>
+												<li value="LB"><a>Lebanon</a></li>
+												<li value="LS"><a>Lesotho</a></li>
+												<li value="LR"><a>Liberia</a></li>
+												<li value="LY"><a>Libya</a></li>
+												<li value="LI"><a>Liechtenstein</a></li>
+												<li value="LT"><a>Lithuania</a></li>
+												<li value="LU"><a>Luxembourg</a></li>
+												<li value="MO"><a>Macao</a></li>
+												<li value="MK"><a>Macedonia, the former Yugoslav Republic of</a></li>
+												<li value="MG"><a>Madagascar</a></li>
+												<li value="MW"><a>Malawi</a></li>
+												<li value="MY"><a>Malaysia</a></li>
+												<li value="MV"><a>Maldives</a></li>
+												<li value="ML"><a>Mali</a></li>
+												<li value="MT"><a>Malta</a></li>
+												<li value="MH"><a>Marshall Islands</a></li>
+												<li value="MQ"><a>Martinique</a></li>
+												<li value="MR"><a>Mauritania</a></li>
+												<li value="MU"><a>Mauritius</a></li>
+												<li value="YT"><a>Mayotte</a></li>
+												<li value="MX"><a>Mexico</a></li>
+												<li value="FM"><a>Micronesia, Federated States of</a></li>
+												<li value="MD"><a>Moldova, Republic of</a></li>
+												<li value="MC"><a>Monaco</a></li>
+												<li value="MN"><a>Mongolia</a></li>
+												<li value="ME"><a>Montenegro</a></li>
+												<li value="MS"><a>Montserrat</a></li>
+												<li value="MA"><a>Morocco</a></li>
+												<li value="MZ"><a>Mozambique</a></li>
+												<li value="MM"><a>Myanmar</a></li>
+												<li value="NA"><a>Namibia</a></li>
+												<li value="NR"><a>Nauru</a></li>
+												<li value="NP"><a>Nepal</a></li>
+												<li value="NL"><a>Netherlands</a></li>
+												<li value="NC"><a>New Caledonia</a></li>
+												<li value="NZ"><a>New Zealand</a></li>
+												<li value="NI"><a>Nicaragua</a></li>
+												<li value="NE"><a>Niger</a></li>
+												<li value="NG"><a>Nigeria</a></li>
+												<li value="NU"><a>Niue</a></li>
+												<li value="NF"><a>Norfolk Island</a></li>
+												<li value="MP"><a>Northern Mariana Islands</a></li>
+												<li value="NO"><a>Norway</a></li>
+												<li value="OM"><a>Oman</a></li>
+												<li value="PK"><a>Pakistan</a></li>
+												<li value="PW"><a>Palau</a></li>
+												<li value="PS"><a>Palestinian Territory, Occupied</a></li>
+												<li value="PA"><a>Panama</a></li>
+												<li value="PG"><a>Papua New Guinea</a></li>
+												<li value="PY"><a>Paraguay</a></li>
+												<li value="PE"><a>Peru</a></li>
+												<li value="PH"><a>Philippines</a></li>
+												<li value="PN"><a>Pitcairn</a></li>
+												<li value="PL"><a>Poland</a></li>
+												<li value="PT"><a>Portugal</a></li>
+												<li value="PR"><a>Puerto Rico</a></li>
+												<li value="QA"><a>Qatar</a></li>
+												<li value="RE"><a>Réunion</a></li>
+												<li value="RO"><a>Romania</a></li>
+												<li value="RU"><a>Russian Federation</a></li>
+												<li value="RW"><a>Rwanda</a></li>
+												<li value="BL"><a>Saint Barthélemy</a></li>
+												<li value="SH"><a>Saint Helena, Ascension and Tristan da Cunha</a></li>
+												<li value="KN"><a>Saint Kitts and Nevis</a></li>
+												<li value="LC"><a>Saint Lucia</a></li>
+												<li value="MF"><a>Saint Martin (French part)</a></li>
+												<li value="PM"><a>Saint Pierre and Miquelon</a></li>
+												<li value="VC"><a>Saint Vincent and the Grenadines</a></li>
+												<li value="WS"><a>Samoa</a></li>
+												<li value="SM"><a>San Marino</a></li>
+												<li value="ST"><a>Sao Tome and Principe</a></li>
+												<li value="SA"><a>Saudi Arabia</a></li>
+												<li value="SN"><a>Senegal</a></li>
+												<li value="RS"><a>Serbia</a></li>
+												<li value="SC"><a>Seychelles</a></li>
+												<li value="SL"><a>Sierra Leone</a></li>
+												<li value="SG"><a>Singapore</a></li>
+												<li value="SX"><a>Sint Maarten (Dutch part)</a></li>
+												<li value="SK"><a>Slovakia</a></li>
+												<li value="SI"><a>Slovenia</a></li>
+												<li value="SB"><a>Solomon Islands</a></li>
+												<li value="SO"><a>Somalia</a></li>
+												<li value="ZA"><a>South Africa</a></li>
+												<li value="GS"><a>South Georgia and the South Sandwich Islands</a></li>
+												<li value="SS"><a>South Sudan</a></li>
+												<li value="ES"><a>Spain</a></li>
+												<li value="LK"><a>Sri Lanka</a></li>
+												<li value="SD"><a>Sudan</a></li>
+												<li value="SR"><a>Suriname</a></li>
+												<li value="SJ"><a>Svalbard and Jan Mayen</a></li>
+												<li value="SZ"><a>Swaziland</a></li>
+												<li value="SE"><a>Sweden</a></li>
+												<li value="CH"><a>Switzerland</a></li>
+												<li value="SY"><a>Syrian Arab Republic</a></li>
+												<li value="TW"><a>Taiwan, Province of China</a></li>
+												<li value="TJ"><a>Tajikistan</a></li>
+												<li value="TZ"><a>Tanzania, United Republic of</a></li>
+												<li value="TH"><a>Thailand</a></li>
+												<li value="TL"><a>Timor-Leste</a></li>
+												<li value="TG"><a>Togo</a></li>
+												<li value="TK"><a>Tokelau</a></li>
+												<li value="TO"><a>Tonga</a></li>
+												<li value="TT"><a>Trinidad and Tobago</a></li>
+												<li value="TN"><a>Tunisia</a></li>
+												<li value="TR"><a>Turkey</a></li>
+												<li value="TM"><a>Turkmenistan</a></li>
+												<li value="TC"><a>Turks and Caicos Islands</a></li>
+												<li value="TV"><a>Tuvalu</a></li>
+												<li value="UG"><a>Uganda</a></li>
+												<li value="UA"><a>Ukraine</a></li>
+												<li value="AE"><a>United Arab Emirates</a></li>
+												<li value="GB"><a>United Kingdom</a></li>
+												<li value="US"><a>United States</a></li>
+												<li value="UM"><a>United States Minor Outlying Islands</a></li>
+												<li value="UY"><a>Uruguay</a></li>
+												<li value="UZ"><a>Uzbekistan</a></li>
+												<li value="VU"><a>Vanuatu</a></li>
+												<li value="VE"><a>Venezuela, Bolivarian Republic of</a></li>
+												<li value="VN"><a>Viet Nam</a></li>
+												<li value="VG"><a>Virgin Islands, British</a></li>
+												<li value="VI"><a>Virgin Islands, U.S.</a></li>
+												<li value="WF"><a>Wallis and Futuna</a></li>
+												<li value="EH"><a>Western Sahara</a></li>
+												<li value="YE"><a>Yemen</a></li>
+												<li value="ZM"><a>Zambia</a></li>
+												<li value="ZW"><a>Zimbabwe</a></li>
 											</ul>
 										</div>
 									</div>
@@ -315,7 +567,8 @@
 							</div>
 						</div>
 					</div>
-				</form>				
+				</div>	
+				<% end %>
 			</div>
 		</div>
 	</div>
