@@ -170,7 +170,7 @@ class GeneralInfo < ApplicationRecord
         end
       end
     else # Job Redis is empty/ never been used. Initialize Admin role
-      $redis.set('jobList', 'Admin')
+      $redis.set('jobList', '\'Admin\'')
       $redis.set('Admin', '')
       self.create_Job('Admin', false)
     end
