@@ -138,7 +138,11 @@ class GeneralInfoController < ApplicationController
 
     if(GeneralInfo.any?)
       @general_info.is_admin = false
+      if(@general_info.job_name == 'Admin' || @general_info.job_name == 'admin')
+        @general_info.job_name = 'Photographer'
+      end
     else
+      @general_info.job_name = 'Admin'
       @general_info.is_admin = true
     end
 

@@ -92,10 +92,15 @@ class EditJobController < ApplicationController
       if (@job_title == "" || @job_title == nil)
         @job_title = "Photographer"
       end
-      @attr_titles = @job_title.constantize.view_Attr()
-      @attr_types = @job_title.constantize.view_Attr_Type()
-      @attr_contents = @general_info[:job_attr]
-      
+      if (@job_title == 'Admin')
+        @attr_titles = Array.new
+        @attr_types = Array.new
+        @attr_contents = Array.new  
+      else
+        @attr_titles = @job_title.constantize.view_Attr()
+        @attr_types = @job_title.constantize.view_Attr_Type()
+        @attr_contents = @general_info[:job_attr]
+      end
       @holder = GeneralInfo.new
     else
       redirect_to '/'and return
