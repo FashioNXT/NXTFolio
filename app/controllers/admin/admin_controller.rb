@@ -36,9 +36,9 @@ module Admin
         if(GeneralInfo.check_Job?(@potentialJob) == false)
 	  GeneralInfo.create_Job(@potentialJob)
           init = @potentialJob.constantize.new
-          flash[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs 
+          flash[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	else
-          flash[:notice] = params[:job_name].titleize + " already exists."
+          flash[:notice] = params[:job_name].titleize + " already exists.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	end 
       elsif(params[:job_name] == "")
         flash[:notice] = "Please enter a non-empty value."
