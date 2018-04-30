@@ -102,6 +102,8 @@ module Admin
                     user.update_attribute(:job_attr, newAttr)
             	end
 	    end
+          else
+            flash[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
           end
           
         else
@@ -132,7 +134,7 @@ module Admin
 	   GeneralInfo.delete_Job(@potentialJob)
            flash[:notice] = params[:job_name].titleize + " has been deleted."
 
-           GeneralInfo.delete_Job_From_File(params[:job_name])
+           #GeneralInfo.delete_Job_From_File(params[:job_name])
 	end
       #else
         # Probably fetching page

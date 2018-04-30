@@ -175,7 +175,7 @@ class GeneralInfo < ApplicationRecord
       self.create_Job('Admin', false)
     end
     
-    @@Job_List = jobArray  
+    #@@Job_List = jobArray  
 
   end
 
