@@ -36,7 +36,7 @@ module Admin
         if(GeneralInfo.check_Job?(@potentialJob) == false)
 	  GeneralInfo.create_Job(@potentialJob)
           init = @potentialJob.constantize.new
-          flash[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.view_Jobs 
+          flash[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs 
 	else
           flash[:notice] = params[:job_name].titleize + " already exists."
 	end 
