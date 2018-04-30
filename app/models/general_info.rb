@@ -115,7 +115,9 @@ class GeneralInfo < ApplicationRecord
   # Need code to populate job based off of existing database (For server reboots)
 
   def self.see_Jobs
-    @@Job_List
+    jobList = @@Job_List
+    jobList = jobList.delete('Admin')
+    jobList
   end
 
   def self.see_Types
@@ -123,59 +125,70 @@ class GeneralInfo < ApplicationRecord
   end
   
   def self.check_Job?(jobName)
-    @@Job_List.include?(jobName)
+    if(jobName == 'Admin')
+      false
+    else
+      @@Job_List.include?(jobName)
+    end
   end
 
   def self.delete_Job(jobName)
     if (self.check_Job?(jobName))
       @@Job_List.delete(jobName)
-      
+      jobString = '\''
+      @@Job_List.each do |job|
+        jobString = jobString + job + '\''
+      end
+      $redis.set('jobList', jobString)
+      $redis.del(job)
+
       # Code here to edit the database entries
     end
   end
 
-  def self.delete_Job_From_File(job_Name)
-    if(File.exists?("jobList.dat"))
-      File.readlines("jobList.dat").each do |line|
-        file_cont = File.read ("jobList.dat")
-        new_cont = file_cont.gsub(/^(#{Regexp.escape(job_Name)}).*/, "")
-        File.open("jobList.dat", "w") {|file| file.puts new_cont}
-      end
-    end
-  end
   
   def self.load_Job_File()
-    
-    if(File.exists?("jobList.dat"))
-      File.readlines("jobList.dat").each do |line|
-        classMatch = line.match(/^([A-Z]\w*)/)
-        eachAttrMatch = line.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
-        eachTypeMatch = line.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match}
-        eachAttrMatch = eachAttrMatch.flatten
-        eachTypeMatch = eachTypeMatch.flatten
-        if(classMatch.to_s != nil && classMatch.to_s != "")
-          self.create_Job(classMatch.to_s, false)
+    jobString = $redis.get('jobList')
+    jobArray = Array.new
+    if(jobString != nil && jobString != "")
+      jobArray = jobString.scan(/\w+/)
+      jobArray.each do |job|
+        attrString = $redis.get(job)
+        if(attrString != nil) # If there's a redis for this job  
+          eachAttrMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
+	  eachTypeMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match} # Not really implemented yet, just a copy of the attribute name
+          eachAttrMatch = eachAttrMatch.flatten
+          eachTypeMatch = eachTypeMatch.flatten
+          
+          self.create_Job(job, false)
           if(eachAttrMatch != nil && eachAttrMatch.size > 0)
-            x = 0
-            while (x < eachAttrMatch.size)
-              classMatch.to_s.constantize.add_Attr(eachAttrMatch[x].to_s.chop, eachAttrMatch[x].to_s.chop)
-              x = x + 1
+            eachAttrMatch.each do |attr|
+              job.constantize.add_Attr(attr.to_s.chop, "String", false) # Add the types you get from TypeMatch to further specialize this
             end
+            job.constantize.update_File()
           end
         end
       end
+    else # Job Redis is empty/ never been used. Initialize Admin role
+      $redis.set('jobList', 'Admin')
+      $redis.set('Admin', '')
+      self.create_Job('Admin', false)
     end
+    
+    @@Job_List = jobArray  
+
   end
 
   def self.create_Job (className, writeToFile = true)
 
     # Code to validate the job name has chars only will go here
     
-    if(self.check_Job?(className.upcase_first) == false)
+    if(self.check_Job?(className.upcase_first) == false && className != 'Admin' && className != 'admin')
       @@Job_List.push(className.upcase_first)
       @@Job_Attr[className.upcase_first] = Array.new
       @@Attr_Type[className.upcase_first] = Array.new
 
+      
       # Create entry in Job File List
       
       creator = Object.const_set(className.upcase_first, Class.new { 
@@ -194,19 +207,21 @@ class GeneralInfo < ApplicationRecord
 
        # end
    
-        def self.add_Attr(attr_Name, attr_Type = "String")
+        def self.add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
           # If Name not in hash already
           if(@@Job_Attr[self.name].include?(attr_Name) == false)
             @@Job_Attr[self.name].push(attr_Name)
             @@Attr_Type[self.name].push(attr_Type)
-            self.update_File
+            if(writeToRedis) 
+              self.update_File
+            end
 	  end
           
           # Else Error, name already exists
         end
 
-        def add_Attr(attr_Name, attr_Type = "String")
-           self.add_Attr(attr_Name, attr_Type)
+        def add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
+           self.add_Attr(attr_Name, attr_Type, writeToRedis)
         end
     
         def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
@@ -233,7 +248,7 @@ class GeneralInfo < ApplicationRecord
             @@Job_Attr[self.name].delete_at(indexLoc)
             @@Attr_Type[self.name].delete_at(indexLoc)
             self.update_File
-            # Code to shift all attributes into place in database
+            # Code to shift all attributes into place in database is in Admin controller
           end
         end
 
@@ -268,20 +283,21 @@ class GeneralInfo < ApplicationRecord
         end
         
         def self.update_File()
-          self_Name = self.display_Name
+          self_Name = self.name
           attr_Body = '\''
           x = 0
           while(x < @@Job_Attr[self.name].size)
-            attr_Body = attr_Body + @@Job_Attr[self.name][x] +'%'+ @@Attr_Type[self.name][x] +'\''
+            attr_Body = attr_Body + @@Job_Attr[self.name][x] + '%' + @@Attr_Type[self.name][x] + '\''
             x = x + 1
           end
           if(attr_Body == '\'')
             attr_Body = '\'\''
           end
-          new_line = self.display_Name + " " + attr_Body
-          file_cont = File.read ("jobList.dat")
-          new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
-          File.open("jobList.dat", "w") {|file| file.puts new_cont}
+    #      new_line = self.display_Name + " " + attr_Body
+    #      file_cont = File.read ("jobList.dat")
+    #      new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
+    #      File.open("jobList.dat", "w") {|file| file.puts new_cont}
+          $redis.set(self.name, attr_Body)
         end
 
         def update_File()
@@ -291,16 +307,15 @@ class GeneralInfo < ApplicationRecord
       })
 
       if(writeToFile)
-        if(File.exists?("jobList.dat") == false)
-          jobFile = File.open("jobList.dat", "w+") do |line|
-            line.puts creator.display_Name + " " + ("'#{creator.view_Attr.join("','")}'")
-          end
-        else
-          jobFile = File.open("jobList.dat", "a") do |line|
-            line.puts creator.display_Name + " " + ("'#{creator.view_Attr.join("','")}'")
-          end
+        jobString = '\''
+        @@Job_List.each do |job|
+          jobString = jobString + job + '\''
         end
+        jobString = jobString + className.upcase_first + '\''
+        $redis.set('jobList', jobString)
+        $redis.set(className.upcase_first, '')     
       end
     end
   end
 end
+
