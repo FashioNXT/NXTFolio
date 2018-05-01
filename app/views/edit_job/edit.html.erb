@@ -87,18 +87,18 @@
 	<div id="content-block">
 		<div class="container be-detail-container">
 			<div class="row">
-				<div class="col-xs-12 col-md-3 left-feild">
-					<div class="be-vidget back-block">
-						<a class="btn full color-1 size-1 hover-1" href="/"><i class="fa fa-chevron-left"></i>SAVE AND RETURN</a>
-					</div>
-				</div>
-				
-				<div class="col-xs-12 col-md-9 _editor-content_">
+				<div class="col-xs-12 col-sm-12 _editor-content_">
 					<div class="sec"  data-sec="basic-information">
 						<div class="be-large-post">
 							<div class="info-block style-2">
 								<div class="be-large-post-align ">
-								  <h3 class="info-block-label"><%=@job_title%></h3>
+									<h3 class="info-block-label">
+									<% if GeneralInfo.check_Job?(@job_title) %>
+								  		<%=@job_title%>
+								  	<% else %>
+								  		Oops! Something Went Wrong!
+								  	<% end %>
+								  	</h3>
 								</div>
 							</div>
 							<div class="be-large-post-align">
@@ -107,9 +107,12 @@
 	    							  	<h1>
 	                      					<b>Your job field no longer exists!</b>
 	                    			  	</h1>
+	                    			  	</br>
 	                    			  	<p>Please select the "Edit General Info" button from your profile page.</p>
-	                    				</br>
 	                    				<p>If you believe you're seeing this in error, please contact an administrator.</p>
+	                    				<div class="col-xs-12 col-sm-4">
+												<%= button_to 'Continue To Profile', '/show_profile', :method => 'get', :class => 'btn full color-2 size-1 hover-1' %>
+										</div>
 									<% else %>
 										<%= form_for @general_info, :action => 'update', :url => edit_job_update_path do |f| %>
 											<%= f.fields_for :job_attr, OpenStruct.new(f.object.job_attr || {}) do |f2| %>
@@ -128,7 +131,7 @@
 										<% end %>
 										<div class="col-xs-12 col-sm-6">
 												<%= button_to 'SKIP THIS STEP', '/show_profile', :method => 'get', :class => 'btn full color-2 size-1 hover-1' %>
-											</div>
+										</div>
 									<% end %> 
 								</div>
 							</div>
