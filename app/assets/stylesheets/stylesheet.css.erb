@@ -283,7 +283,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
   .header-menu > li > ul li:hover > a { color: #FFF; }
   .header-menu > li > ul { position: absolute; top: 100%; left: 0; 
     color: #262626; text-align: left; background: #FFF; width: 100%;
-    min-width: 150px; padding-top: 0px; font-size: 16px;
+    min-width: 200px; padding-top: 0px; font-size: 16px;
      opacity: 0; 
       -webkit-transition: all ease-out 0.5s;
        transition: all ease-out 0.5s; 
@@ -604,7 +604,7 @@ form.input-search { position: relative; margin-bottom: 50px; }
 */
 .be-post { border: 1px solid #edeff2; border-radius: 2px; width: 100%; margin-bottom: 30px !important; }
 
-.be-img-block { overflow: hidden; display: block; }
+.be-img-block { overflow: hidden; display: block; max-height: 250px;}
 
 .be-post .be-img-block { margin-bottom: 15px; position: relative; }
 
@@ -3723,7 +3723,9 @@ body .login-user-down:hover {
 }  
 
 .profile-img {
-  width: 35%;
+  <!--width: 35%;-->
+  max-width: 200px;
+  max-height: 240px
 }
 
 .job_title-style {

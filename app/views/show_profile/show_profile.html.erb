@@ -57,7 +57,9 @@
 								<li><a href="/general_info/edit">Edit Profile</a>
 									<ul>
 										<li><a href="/general_info/edit">Edit Profile</a></li>
-										<li><a href="/edit_job">Edit Proffesion Information</a></li>
+										<% if @attribute_titles%>
+											<li><a href="/edit_job">Edit <%=@job_title%> Info</a></li>
+										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if(@is_Admin && !@on_Own) %>
 											<li><a href="general_info/make_admin/<%= @addUser  %>">Make Administrator</a></li>
@@ -70,15 +72,15 @@
 						<% end %>
 					</ul>
 				</div>
-				<!--<div class="login-header-block">-->
-				<!--	<div class="login_block">-->
-				<!--		<% if session[:current_user_key] %>-->
-				<!--		<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>-->
-				<!--		<% else %>-->
-				<!--		<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>-->
-				<!--		<% end %>-->
-				<!--	</div>	-->
-				<!--</div>-->
+				<div class="login-header-block">
+					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+						<% else %>
+						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+						<% end %>
+					</div>	
+				</div>
 			</div>
 		</div>
 		
