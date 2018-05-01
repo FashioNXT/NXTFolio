@@ -1,153 +1,306 @@
-<%= render :partial => "/layout/header" %>
-<body>
-<%= render :partial => "/layout/navigation" %>
-<%= render :partial => "/layout/body" %>
 
-<section id="search_section" class="container content-section text-center">
-  <div id="SPECIFICFORM">
-    <br>
-    <div class="container">
-      <h1>
-        <b>SEARCH FOR FASHION PROFILES</b>
-      </h1>
-      <%= form_tag(search_profile_search_login_path, :method => 'get') do %>
-        <div class="row main">
-          <div class="main-center">
-            <form class="" method="post" action="#">
-              <div class="form-group">
-                <label for="first_name" class="cols-sm-2 control-label">Email Id</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "email", nil, class: 'form-control', placeholder: "Enter email id"%>
-                    <%= select_tag "email_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group ">
-                <!-- <a href="http://deepak646.blogspot.in" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a> -->
-                <%= button_tag 'Search' , :class => 'btn btn-default' %>
-              </div>
-            </form>
-          </div>
-        </div>
-        <%end%>
-      <br>
-      <h2>OR</h2>
 
-      <%= form_tag(search_profile_search_general_path, :method => 'get') do %>
-        <div class="row main">
-          <div class="main-center">
-            <form class="" method="post" action="#">
-              <div class="form-group">
-                <label for="first_name" class="cols-sm-2 control-label">First Name</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "first_name", nil, class: 'form-control', placeholder: "Enter the First Name"%>
-                    <%= select_tag "first_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
-                    </p>
-                  </div>
-                </div>
-              </div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FashioNXT</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		
+	</head>
+	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+	
 
-              <div class="form-group">
-                <label for="last_name" class="cols-sm-2 control-label">Last Name</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "last_name", nil, class: 'form-control', placeholder: "Enter the Last Name"%>
-                    <%= select_tag "last_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
-                  </div>
-                </div>
-              </div>
+	<!-- THE LOADER -->
 
-              <div class="form-group">
-                <label for="gender" class="cols-sm-2 control-label">Gender</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <%= select_tag "gender", options_for_select([['Any', 'Any'], ['Male', 'Male'], ['Female', 'Female']]), :class => 'form-control' %>
-                  </div>
-                </div>
-              </div>
+	<div class="be-loader">
+    	<div class="spinner">
+			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+			<p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+			</p>
+		</div>
+    </div>
+	<!-- THE HEADER -->
+	<header>
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+					</a>
+				</div>
+				
+				<!--navbar options-->
+				
+				<div class="header-menu-block">
+					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+					<ul class="header-menu" id="one">
+						<!--<li><a href="activity.html">Activity</a></li>-->
+						<li><a href="/search_profile/search">Search</a>
+						</li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
+					</ul>
+				</div>
+				
+				<!--login/logout buttons on the navbar-->
+				
+				<div class="login-header-block">
+					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+						<% else %>
+						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+						<% end %>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	
+	<!-- MAIN CONTENT -->
+	<div id="content-block">
+		<div class="container be-detail-container">
+			<div class="row">
+				<div class="col-xs-12 col-md-3 left-feild">
+					<div class="be-vidget hidden-xs hidden-sm" id="scrollspy">
+						<h3 class="letf-menu-article">
+							Select Search
+						</h3>
+						<div class="creative_filds_block">
+							<ul class="ul nav">
+								<li class="edit-ln"><a href="#search-by-mail">Search by Email</a></li>
+								<li class="edit-ln"><a href="#advanced-search">Advanced Search</a></li>
+							</ul>
+						</div>	
+					</div>
+	
+				</div>
+					<div class="col-xs-12 col-md-9 _editor-content_">
+					  <%= form_tag(search_profile_search_login_path, :method => 'get') do %>
+						<div class="sec"  data-sec="search-by-mail">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align "><h3 class="info-block-label">Search By Email</h3></div>
+								</div>
+								<div class="be-large-post-align">
+									<div class="row">
+										<!--email-->
+										<div class="input-col col-xs-12 col-sm-8 col-sm-offset-2">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										<%= text_field_tag "email", nil, class: 'form-control', placeholder: "Enter email id"%>
+        										<%= select_tag "email_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>
+										</div>
+										<div class="input-col col-xs-12 col-sm-12">
+											<div class="form-group fg_icon focus-2">
+												<div class="form-group ">
+								          <%= button_tag 'Search' , :class => 'btn btn-block color-2 size-1 hover-3' %>
+        						    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% end %>
+						
+						<%= form_tag(search_profile_search_general_path, :method => 'get') do %>
+						<div class="sec"  data-sec="advanced-search">
+							<div class="be-large-post">
+								<div class="info-block style-2">
+									<div class="be-large-post-align"><h3 class="info-block-label">Advanced Search</h3></div>
+								</div>
+								<div class="be-large-post-align">
+									<div class="row">	
+									  <!--first name-->
+									  <div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">First Name</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										<%= text_field_tag "first_name", nil, class: 'form-control', placeholder: "Enter the First Name"%>
+										        <%= select_tag "first_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--lastname-->
+										<div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+											    <div class="form-label  ">Last Name</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										  <%= text_field_tag "last_name", nil, class: 'form-control', placeholder: "Enter the Last Name"%>
+			                        <%= select_tag "last_name_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--Gender-->
+										<div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">Gender</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										  <%= select_tag "gender", options_for_select([['Any', 'Any'], ['Male', 'Male'], ['Female', 'Female']]), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--location-->
+										<div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">Location</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										<%= text_field_tag "location", nil, class: 'form-control', placeholder: "College Station, TX, US"%></p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--distance-->
+										<div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">Distance</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										  <%= text_field_tag "distance", nil, class: 'form-control', placeholder: "20 miles"%>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--compensation-->
+										<div class="input-col col-xs-12 col-sm-6">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">Compensation</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										  <%= select_tag "compensation", options_for_select([['Any', 'Any'], ['Assignment Based', 'Assignment Based'], ['Pay Only', 'Pay Only']]), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>							
+										</div>
+										<!--profession-->
+										<div class="input-col col-xs-12 col-sm-8 col-sm-offset-2">
+											<div class="form-group fg_icon focus-2">
+												<!--<div class="cols-sm-10">-->
+												  <div class="form-label  ">Proffesion</div>
+        									<div class="input-group">
+        										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        										<%= select_tag "job_type", options_for_select(@possible_Jobs), :class => 'form-control' %>
+        										</p>
+        									</div>
+        								<!--</div>-->
+											</div>
+										</div>
+										<!--submit button-->
+										<div class="input-col col-xs-12 col-sm-12">
+											<div class="form-group fg_icon focus-2">
+												<div class="form-group ">
+								          <%= button_tag 'Search' , :class => 'btn btn-block color-2 size-1 hover-3' %>
+        						    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% end %>
+					</div>
+			</div>
+		</div>
+	</div>
+	<footer>	
+		<div class="footer-main">
+			<div class="container-fluid custom-container">
+				<div class="row">	
+					<div class="col-md-3 col-xl-4">
+						<div class="footer-block">
+							<h1 class="footer-title">About Us</h1>
+							<p>FashioNXT creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+							<ul class="soc_buttons">
+								<li><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
+								<li><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-xl-2">
+						<div class="footer-block">
+							<h1 class="footer-title">Some Links</h1>
+							<div class="row footer-list-footer">
+							<div class="col-md-6">
+							<ul class="link-list">
+								<li><a href="http://fashionxt.com/">About Us</a></li>
+								<li><a href="contact-us.html">Help</a></li>
+								<li><a href="contact-us.html">Contacts</a></li>
+								<li><a href="activity.html">Job</a></li>
+								<li><a href="activity.html">Projets</a></li>
+							</ul></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container-fluid custom-container">
+				<div class="col-md-12 footer-end clearfix">
+					<div class="left">
+						<span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
+						<span class="created">Created with LOVE by <span class="white"><a href=""> ThatSoftwareEngineeringGroup</a></span></span>
+					</div>
+				</div>			
+			</div>
+		</div>		
+	</footer>
 
-              <div class="form-group">
-                <label for="location" class="cols-sm-2 control-label">Location</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "location", nil, class: 'form-control', placeholder: "College Station, TX, US"%>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="distance" class="cols-sm-2 control-label">Distance</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                    <%= text_field_tag "distance", nil, class: 'form-control', placeholder: "20 miles"%>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="compensation" class="cols-sm-2 control-label">Compensation</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <%= select_tag "compensation", options_for_select([['Any', 'Any'], ['Assignment Based', 'Assignment Based'], ['Pay Only', 'Pay Only']]), :class => 'form-control' %>
-                     </p>  
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="profession" class="cols-sm-2 control-label">Profession</label>
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <%= select_tag "job_type", options_for_select(@possible_Jobs), :class => 'form-control' %>
-                  </div>
-                  <br />
-                  <div class="form-group ">
-                    <%= button_tag 'Search' , :class => 'btn btn-default' %>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      <% end %>
-
-          </div>
-  </div>
-  <!--/Priority:
-  -->
-  <!--/%br/
-  -->
-  <!--/= select_tag("priority", options_for_select([['Critical', '1'], |
-  -->
-  <!--/  ['Important', '2'],['Standard','3']], '3'))                   |
-  -->
-</div>
-</section>
-<!--/%p
--->
-<!--/  Describe your problem:
--->
-<!--/  %br/
--->
-<!--/  = text_area_tag "description", "", :size=>"50x20"
--->
-<!--/%p
--->
-<!--/  Add an attachment:
--->
-<!--/  %br/
--->
-<!--/  = file_field_tag "attachment"
--->
-</body>
-<%= render :partial => "/layout/javascripts" %>
-<%= render :partial => "/layout/footer" %>
+	<div class="be-fixed-filter"></div>
+	<!-- SCRIPT	-->
+	<script src="<%= asset_path "jquery.min.js"%>"></script>
+	<script src="<%= asset_path "jquery-ui.js"%>"></script>
+	<script src="<%= asset_path "bootstrap.min.js"%>"></script>		
+	<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+	<script src="<%= asset_path "global.js"%>"></script>
+	</body>
+</html>
