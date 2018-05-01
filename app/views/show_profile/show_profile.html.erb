@@ -44,6 +44,7 @@
 						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
 					</a>
 				</div>
+				
 				<div class="header-menu-block">
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
@@ -52,18 +53,32 @@
 						</li>
 						<% if session[:current_user_key] %>
 							<li><a href="/show_profile">My Profile</a></li>
+							<% if @on_Own %>
+								<li><a href="/general_info/edit">Edit Profile</a>
+									<ul>
+										<li><a href="/general_info/edit">Edit Profile</a></li>
+										<li><a href="/edit_job">Edit Proffesion Information</a></li>
+										<li><a href="/login_info/edit">Change Password</a></li>
+										<% if(@is_Admin && !@on_Own) %>
+											<li><a href="general_info/make_admin/<%= @addUser  %>">Make Administrator</a></li>
+										<% elsif (@on_Own && @is_Admin)%>
+											<li><a href="/admin">Admin Dashboard</a></li>
+										<% end %>
+									</ul>
+								</li>
+							<% end %>
 						<% end %>
 					</ul>
 				</div>
-				<div class="login-header-block">
-					<div class="login_block">
-						<% if session[:current_user_key] %>
-						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-						<% else %>
-						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<% end %>
-					</div>	
-				</div>
+				<!--<div class="login-header-block">-->
+				<!--	<div class="login_block">-->
+				<!--		<% if session[:current_user_key] %>-->
+				<!--		<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>-->
+				<!--		<% else %>-->
+				<!--		<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>-->
+				<!--		<% end %>-->
+				<!--	</div>	-->
+				<!--</div>-->
 			</div>
 		</div>
 		
