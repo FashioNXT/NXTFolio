@@ -131,13 +131,25 @@ class SearchProfileController < ApplicationController
       end
     end
 
+    if @search_params.key?("country") && @search_params.key?("state") && @search_params.key?("city")
+      country = @search_params.delete("country")
+      state = @search_params.delete("state")
+      city = @search_params.delete("city")
+      @location = [city, state, country].compact.join(", ")
+      if @search_params.key?("distance")
+        begin
+          @distance = Integer(@search_params.delete("distance"))
+        rescue ArgumentError
+          @distance = 20
+        end
+      else
+        @distance = 20
+      end
+    end
+
     puts @search_params
     
-    @user_keys = SpecificJob.search flash[:user_keys], @search_params, @job
-    
-    if @user_keys.empty?
-      #@user_keys = get_user_keys SpecificDesigner.all
-    end
+    @user_keys = SpecificJob.search flash[:user_keys], @search_params, @job, @location, @distance
     
     flash[:user_keys] = @user_keys
     redirect_to :action => 'show'
@@ -151,7 +163,7 @@ class SearchProfileController < ApplicationController
     @params_arg = params
     @checkboxes = params[:checkboxes]
 
-    @search_params = Hash.new
+    @earch_params = Hash.new
 
     params.each do |key, val|
       if val != "" && val != "Contains" && val != "Any" && key != "utf8" && key != "controller" && key != "action"

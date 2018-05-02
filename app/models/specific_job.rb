@@ -1,7 +1,7 @@
 class SpecificJob < ApplicationRecord
   attr_accessor :allgenres
     
-  def self.search general_info_user_keys, params_arg, job
+  def self.search general_info_user_keys, params_arg, job, location, distance
     @final_return = []
 
     if params_arg.length > 0
@@ -56,8 +56,13 @@ class SpecificJob < ApplicationRecord
           end
         end
     else
-      GeneralInfo.all.find_each do |user_object|
-        if user_object[:job_name] == job
+      query = GeneralInfo.all
+      unless location.nil?
+        query = GeneralInfo.near(location, distance)
+      end
+      query.find_each do |user_object|
+	puts user_object[:job_name]
+        if job == "" or user_object[:job_name] == job
           @final_return.push(user_object[:userKey])
         end
       end
