@@ -23,6 +23,7 @@ class SpecificJob < ApplicationRecord
                   incl = false
                 end
               end
+              i = i + 1
             end
           end
 
