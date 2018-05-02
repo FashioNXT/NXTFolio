@@ -117,10 +117,10 @@
 							</div>
 							<div class="be-user-social">
 								<% if @general_info && @general_info.facebook_link != "" %>							
-									<a class="social-btn color-1" href="//<%= @general_info.facebook_link%>"><i class="fa fa-facebook"></i></a>
+									<a class="social-btn color-1" href="//<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
 								<% end %>
 								<% if @general_info && @general_info.linkedIn_link != "" %>
-									<a class="social-btn color-6" href="//<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
+									<a class="social-btn color-6" href="//<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
 								<% end %>
 								<% if @login_info && @login_info.email != "" %>
 									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
@@ -130,7 +130,7 @@
 								<% end %>
 							</div>
 							<% if @general_info && @general_info.personalWebsite_link != "" %>
-								<a class="be-user-site" href="//<%= @general_info.personalWebsite_link %>"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
+								<a class="be-user-site" href="//<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
 							<% end %>
 						</div>
 					</div>										
