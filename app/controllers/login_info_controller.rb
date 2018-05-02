@@ -19,7 +19,7 @@ class LoginInfoController < ApplicationController
 
     if LoginInfo.exists?(:email => @login_info[:email])
       flash[:notice] = "Email already exists."
-      redirect_to new_login_info_path and return
+      redirect_to root_path and return
     end
 
     # Checks for mismatched & unentered passwords before saving LoginInfo object to database
@@ -33,15 +33,15 @@ class LoginInfoController < ApplicationController
           redirect_to new_general_info_path
         else
           flash[:notice] = "Failed Saving!"
-          redirect_to new_login_info_path
+          redirect_to root_path
         end
       else
         flash[:notice] = "Passwords don't match! Please try again."
-        redirect_to new_login_info_path
+        redirect_to root_path
       end
     else
       flash[:notice] = "Enter your password! Please try again."
-      redirect_to new_login_info_path
+      redirect_to root_path
     end
   end
   

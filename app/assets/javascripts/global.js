@@ -22,7 +22,16 @@
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 
 $(function() {
-
+	// $('#phone-number').change(function(e) {
+	// 	console.log ($('#phone-number').val());
+	//     // if (!$('#phone-number').val().validity.valid)
+	//     var phone_number = new RegExp('/^\d{10}$/');
+	//     var input = $('#phone-number').val();
+	//     if (input.match(phone_number)) {
+ //           console.log('Great, you entered an E-Mail-address');
+ //       }
+	//     	// e.preventDefault();
+	// });
 	"use strict";
 
 	/*================*/
@@ -285,6 +294,8 @@ $(function() {
 	$(".drop-down-list li").on("click", function(){
 		var new_value = $(this).find("a").text();
 		$(this).parent().parent().find(".be-dropdown-content").text(new_value);
+		$(this).parent().stop().slideUp();
+		$(this).parent().parent().removeClass('be-dropdown-active');
 			return false;
 	});
 
