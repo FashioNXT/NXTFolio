@@ -53,7 +53,6 @@ class GeneralInfoController < ApplicationController
    
   # Associated with the view used for create
   def new
-    GeneralInfo.load_Job_File()
     @possible_Jobs = GeneralInfo.see_Jobs
     @templates = Template.uniq.pluck(:prof_name).sort
     @templates.unshift('Designer')
@@ -93,7 +92,6 @@ class GeneralInfoController < ApplicationController
 
   # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
   def create
-    GeneralInfo.load_Job_File()
     @possible_Jobs = GeneralInfo.see_Jobs
     # Check to see if the required params are filled in
     error_statement = ""
