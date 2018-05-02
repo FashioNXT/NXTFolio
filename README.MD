@@ -34,8 +34,15 @@ Get Facebook Login to function:
 9. The local server will start on the following link
     
     [http://localhost:3000](http://localhost:3000)
-10. If you wish to use the S3 image backend, please set the S3_SECRET and S3_KEY environment variables:
+
+### Using AWS S3 as Image Backend
+
+If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket called 'fashionnxt-test'. You will then need to set S3_SECRET and S3_KEY so that Rails can find that bucket. For local environments: 
     ```S3_SECRET=x S3_KEY=y rails server```  where ```x``` and ```y``` are replaced by your account details from Amazon Web Services
+
+For deployed Heroku environments: (assuming the site is already deployed)
+
+```heroku config:set S3_SECRET=x``` and then ```heroku config:set S3_KEY=y```
    
    
     
@@ -44,7 +51,6 @@ Get Facebook Login to function:
 1. Home page
 2. Login/Signup, Search
 3. My Profile
-4. Facebook Login is supported.
 5. Admin user has been added, with privilege for using the admin APIs. This is only available to the single admin user, added by the developer. Contact admin for help
 
 ### To get started
@@ -63,11 +69,6 @@ Contains- Matches any data which contains the searched word
 2. Ends With- Matches any data which ends with the searched word
 3. Exactly Matches- Matches any data that exactly matches the searched word
 4.  Improved search criteria: Added email id in the search criteria. Email id is also regular expression based
-
-### Code Climate Link
-<a href="https://codeclimate.com/github/avinsaxe/match-my-fashion-public/maintainability"><img src="https://api.codeclimate.com/v1/badges/29d4ec13f64775661fe6/maintainability" /></a>
-
-<a href="https://codeclimate.com/github/avinsaxe/match-my-fashion-public/test_coverage"><img src="https://api.codeclimate.com/v1/badges/29d4ec13f64775661fe6/test_coverage" /></a>
 
 ### Notes:
     
