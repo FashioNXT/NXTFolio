@@ -155,6 +155,37 @@
 	</footer>
 
 	<div class="be-fixed-filter"></div>
+	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+	<div class="large-popup login">
+		<div class="container large-popup-container">
+			<div class="row">
+				<div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
+					<div class="row">
+						<div class="col-md-12">
+							<i class="fa fa-times close-button"></i>
+							<h5 class="large-popup-title">Log in</h5>
+						</div>
+						<form action="#" class="popup-input-search" method="post">
+						<div class="col-md-6">
+							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+							<!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
+						</div>
+						<div class="col-md-6 form-group">
+							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+							<!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
+						</div>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-6 for-signin">
+							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+							<!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
 	<!-- SCRIPT	-->
 	<script src="<%= asset_path "jquery.min.js"%>"></script>
 	<script src="<%= asset_path "jquery-ui.js"%>"></script>

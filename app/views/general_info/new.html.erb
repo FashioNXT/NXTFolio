@@ -106,7 +106,7 @@
 					</div>
 	
 				</div>
-				<%= form_for GeneralInfo.new, url: {action: "create"} do |form| %>
+				<%= form_for GeneralInfo.new, url: {action: "create"}, :id => 'general_info_form' do |form| %>
 					<div class="col-xs-12 col-md-9 _editor-content_">
 						<div class="sec"  data-sec="basic-information">
 							<div class="be-large-post">
@@ -174,7 +174,7 @@
 											</div>
 										</div>
 										<!--gender-->
-										<div class="input-col col-xs-12 col-md-6">
+										<div class="input-col col-xs-12 col-md-6 col-md-offset-3">
 											<div class="form-group focus-2">
 												<div class="form-label">Gender</div>
 												<div>
@@ -319,13 +319,15 @@
 												<%= form.text_area :bio, :placeholder=> 'Something about you', :class => 'form-input' %>
 											</div>
 										</div>
-										<div class="input-col col-xs-12 col-sm-4">
+										<!--The Skip button is here - commented for now-->
+										<!--<div class="input-col col-xs-12 col-sm-4">-->
+										<!--	<div class="be-vidget back-block">-->
+												<!--<a class="btn full color-1 size-1 hover-1" href="/" method="get"><i class="fa fa-chevron-left"></i>SAVE AND RETURN</a>-->
+										<!--	</div>-->
+										<!--</div>-->
+										<div class="input-col col-xs-12 col-sm-12">
 											<div class="be-vidget back-block">
-												<a class="btn full color-1 size-1 hover-1" href="/" method="get"><i class="fa fa-chevron-left"></i>SAVE AND RETURN</a>
-											</div>
-										</div>
-										<div class="input-col col-xs-12 col-sm-8">
-											<div class="be-vidget back-block">
+												
 												<%= form.submit 'SAVE AND CONTINUE TO PROFESSION DETAIL PAGE', :class => 'btn full color-1 size-1 hover-1' %>
 												<!--<a class="btn full color-1 size-1 hover-1" href="/edit_job_path" method="get"> <i class="fa fa-chevron-right"></i></a>-->
 											</div>
