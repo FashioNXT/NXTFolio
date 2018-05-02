@@ -1,4 +1,4 @@
-class SpecificDesigner < ApplicationRecord
+class SpecificJob < ApplicationRecord
   attr_accessor :allgenres
     
   def self.search general_info_user_keys, params_arg, job
@@ -15,10 +15,17 @@ class SpecificDesigner < ApplicationRecord
         params_arg.each do |arg, val|
           i = 0
           job.constantize.view_Attr().each do |title|
+            puts title + " " + arg
             if title == arg
               if val != user_object[:job_attr][i]
                 incl = false
               end
+            end
+          end
+
+          if user_object.as_json.key? arg
+            if user_object[arg] != val
+              incl = false
             end
           end
         end

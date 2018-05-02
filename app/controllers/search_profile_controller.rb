@@ -87,8 +87,6 @@ class SearchProfileController < ApplicationController
   def search_designer
     @attr_titles = flash[:titles]
     @job_title = flash[:job_title]
-
-    flash[:job_title] = flash[:job_title]
   end
 
   def search_photographer
@@ -121,7 +119,7 @@ class SearchProfileController < ApplicationController
     @experience = params[:checkboxes]
     @params_arg = params
 
-    @job = flash[:job_title]
+    @job = params[:job_name]
 
     puts @job
 
@@ -135,7 +133,7 @@ class SearchProfileController < ApplicationController
 
     puts @search_params
     
-    @user_keys = SpecificDesigner.search flash[:user_keys], @search_params, @job
+    @user_keys = SpecificJob.search flash[:user_keys], @search_params, @job
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificDesigner.all
