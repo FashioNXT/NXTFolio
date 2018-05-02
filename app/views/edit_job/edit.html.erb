@@ -120,7 +120,7 @@
 												<div class="input-col col-xs-12 col-sm-6">
 													<div class="form-group fg_icon focus-2">
 														<div class="form-label"><%= f2.label attrName %></div>
-														<%= f2.text_field (i).to_s, :class =>'form-input', :required => '', :type => 'text'%>
+														<%= f2.text_field (i).to_s, :class =>'form-input', :required => '', :type => 'text', :value => @attr_contents[i] %>
 													</div>							
 												</div>
 											  	<% end %>
