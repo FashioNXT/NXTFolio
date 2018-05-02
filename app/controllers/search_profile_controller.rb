@@ -64,7 +64,7 @@ class SearchProfileController < ApplicationController
 
     flash[:titles] = @attr_titles
     flash[:job_title] = @job_title
-    redirect_to :action => 'search_designer'
+    redirect_to :action => 'search_job'
 
     # Pass which ever users were in the resulting @user_keys to the next tier of searching.
     #if @search_params[:profession] == "0"
@@ -83,8 +83,8 @@ class SearchProfileController < ApplicationController
     #end
   end
   
-  # Associated with the view for search_profile/search_designer
-  def search_designer
+  # Associated with the view for search_profile/search_job
+  def search_job
     @attr_titles = flash[:titles]
     @job_title = flash[:job_title]
   end
