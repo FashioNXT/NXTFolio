@@ -45,21 +45,26 @@ class SearchProfileController < ApplicationController
     @possible_Jobs[0] = 'Any'
     @possible_Jobs = @possible_Jobs + GeneralInfo.see_Jobs
     @search_params = params.except("utf8").except("button")
-    
-    #Search for users based on the GeneralInfo search params excluding profession
-    if @search_params[:first_name] == '' && @search_params[:last_name] == '' && @search_params[:gender] == 'Any' && @search_params[:state] == '' && @search_params[:country]=='' && @search_params[:city] == '' && @search_params[:compensation] == 'Any' && @search_params[:job_type] == 'Any'
-      @general_queries = GeneralInfo.all
-    else
-      @general_queries = GeneralInfo.search @search_params
+
+    @job_title = @search_params[:job_type]
+    puts @job_title
+    if @job_title == "Any"
+      @attr_titles = []
+    else 
+      if (@job_title == "" || @job_title == nil)
+        @job_title = "Photographer"
+      end
+
+      @attr_titles = @job_title.constantize.view_Attr()
+      @attr_types = @job_title.constantize.view_Attr_Type()
+
+      puts @attr_titles.inspect
+
     end
-    
-    #@general_queries = GeneralInfo.search @search_params
-    
-    #Get the user keys
-    @user_keys = get_user_keys @general_queries
-    
-    flash[:user_keys] = @user_keys
-    redirect_to :action => 'show'
+
+    flash[:titles] = @attr_titles
+    flash[:job_title] = @job_title
+    redirect_to :action => 'search_designer'
 
     # Pass which ever users were in the resulting @user_keys to the next tier of searching.
     #if @search_params[:profession] == "0"
@@ -80,10 +85,15 @@ class SearchProfileController < ApplicationController
   
   # Associated with the view for search_profile/search_designer
   def search_designer
+    @attr_titles = flash[:titles]
+    @job_title = flash[:job_title]
+
+    flash[:job_title] = flash[:job_title]
   end
 
   def search_photographer
-    puts "SDH"
+
+    redirect_to :action => 'show'
   end
 
   def search_login
@@ -106,10 +116,14 @@ class SearchProfileController < ApplicationController
     redirect_to :action => 'show'
   end
 
-  def search_specific_designer
+  def search_specific
     @checkboxes = params[:checkboxes]
     @experience = params[:checkboxes]
     @params_arg = params
+
+    @job = flash[:job_title]
+
+    puts @job
 
     @search_params = Hash.new
 
@@ -121,7 +135,7 @@ class SearchProfileController < ApplicationController
 
     puts @search_params
     
-    @user_keys = SpecificDesigner.search flash[:user_keys], @search_params
+    @user_keys = SpecificDesigner.search flash[:user_keys], @search_params, @job
     
     if @user_keys.empty?
       #@user_keys = get_user_keys SpecificDesigner.all

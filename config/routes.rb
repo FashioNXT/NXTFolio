@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
   get 'search_profile/search_model' => 'search_profile#search_model', :as => 'search_profile/search_model'
   get 'search_profile/search_photographer' => 'search_profile#search_photographer', :as => 'search_profile/search_photographer'
-  get 'search_profile/search_specific_designer' => 'search_profile#search_specific_designer', :as => 'search_profile/search_specific_designer'
+  get 'search_profile/search_specific' => 'search_profile#search_specific', :as => 'search_profile/search_specific'
   get 'search_profile/search_specific_model' => 'search_profile#search_specific_model', :as => 'search_profile/search_specific_model'
   get 'search_profile/search_specific_photographer' => 'search_profile#search_specific_photographer', :as => 'search_profile/search_specific_photographer'
   get 'search_profile/show_profile/:id' => 'search_profile#show_profile', :as => 'search_profile/show_profile'
