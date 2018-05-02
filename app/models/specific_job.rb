@@ -14,11 +14,14 @@ class SpecificJob < ApplicationRecord
         incl = true
         params_arg.each do |arg, val|
           i = 0
-          job.constantize.view_Attr().each do |title|
-            puts title + " " + arg
-            if title == arg
-              if val != user_object[:job_attr][i]
-                incl = false
+
+          if job != "Any" && job
+            job.constantize.view_Attr().each do |title|
+              puts title + " " + arg
+              if title == arg
+                if val != user_object[:job_attr][i]
+                  incl = false
+                end
               end
             end
           end
