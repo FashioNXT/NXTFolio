@@ -145,8 +145,6 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
                 <%= text_field_tag "city", nil, class: 'form-control', placeholder: "Enter the city name"%>
-                <%= select_tag "city_regex", options_for_select([['Contains', 'Contains'], ['Starts With', 'Starts With'], ['Ends With', 'Ends With'], ['Exactly Matches','Exactly Matches']]), :class => 'form-control' %>
-
               </div>
             </div>
           </div>
@@ -343,4 +341,3 @@
   <script src="<%= asset_path "global.js"%>"></script>
   </body>
 </html>
->>>>>>> saturdaynight-fever
