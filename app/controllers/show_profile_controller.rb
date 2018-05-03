@@ -11,20 +11,26 @@ class ShowProfileController < ApplicationController
         @general_info = GeneralInfo.find_by(userKey: user_key_current)
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
-        @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
+        @login_info = LoginInfo.find_by(userKey: user_key_current)
+        if(LoginInfo.find_by(userKey: @general_info.userKey))
+          @email = LoginInfo.find_by(userKey: @general_info.userKey).email
+        end
 	#@adminMaker = GeneralInfo.make_admin(params[:user])
         using_default = false
         
-        if session[:current_user_key] == user_key_current
+        if session[:current_user_key] != nil and params[:user_key] == nil
           @login_user_true = session[:current_user_key]
         end
+
+	@on_Own = false
+	if session[:current_user_key] == user_key_current
+          @on_Own = true
+        end
 	
-	@can_Add_Admin = false
-        if(session[:current_user_key] != user_key_current && session[:current_user_key] != nil)
-          if(session[:current_user_key] != user_key_current && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin)
-            @can_Add_Admin = true
-            @addUser = user_key_current
-          end
+	@is_Admin = false
+        if(GeneralInfo.find_by(userKey: session[:current_user_key]) != nil)
+          @is_Admin = GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin
+          @addUser = user_key_current
         end
 
         @job_title = @general_info[:job_name]
@@ -80,7 +86,7 @@ class ShowProfileController < ApplicationController
         # End of Messy Profile Selection
       else
         #SHOULD SHOW BLANK STUFF!!!!
-        @job_title = "No Job"
+        @job_title = "No Profile Selected"
         @general_info = GeneralInfo.new
         @general_info_values = Hash.new
         @attribute_titles = Hash.new

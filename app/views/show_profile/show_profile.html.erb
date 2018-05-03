@@ -1,186 +1,265 @@
-<%= render :partial => "/layout/profile_header" %>
-<body data-spy="scroll" data-offset="0" data-target="#nav">
-<%= render :partial => "/layout/navigation" %>
-  
-  <!-- Header -->
-  <header class="masthead"
-          <% if @general_info.cover_picture.url %>
-            style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; background-size: cover;">
-          <% else %>
-            style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)); background-size: cover;">
-          <% end %>
-    <div class="container">
-      <div class="row centered">
-        <div class="profile-img-container">
-          <% if @general_info.profile_picture.url %>
-              <img class="profile-img" src="<%= @general_info.profile_picture.url %>" alt="">
-          <% else %>
-              <img class="profile-img" src="<%= asset_path 'profile.png' %>" alt="">
-          <% end %>
-        </div>
-        <div class="col-lg-12">
-          <% if @general_info && @general_info.first_name %>
-            <h1><%= @general_info.first_name %>
-          <% end %>
-          <% if @general_info && @general_info.last_name %>
-            <%= @general_info.last_name %></h1>
-          <% end %>
-	  <h2><%= @job_title %></h2>
-          <h3><i class="fa fa-map-marker"></i> <%= @general_info_values[:location] %> </h3>
-        </div><!--/.col-lg-12 -->
-      </div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FashioNXT</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		
+	</head>
+	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+	
+
+	<!-- THE LOADER -->
+
+	<div class="be-loader">
+    	<div class="spinner">
+			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+			<p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+			</p>
+		</div>
     </div>
-
-          <% if(@can_Add_Admin) %>
-            <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
-              <a href= "general_info/make_admin/<%= @addUser  %>" class="btn btn-info">Make Administrator</a>
-            </div>
-          <% end %>
-
-    <% if @login_user_true %>
-      <div class="row right">
-        <div class="col-lg-5 col-lg-offset-7 col-xs-12 edit-btn" align="right">
-          <a href="/login_info/edit" class="btn btn-info">Edit Login Info</a>
-          <a href="/general_info/edit" class="btn btn-info">Edit General Info</a>
-          <a href="/edit_job" class="btn btn-info"><%= "Edit "+ @job_title + " Info" %></a>
-          <!-- 
-          <a href="/general_info/edit_profession" class="btn btn-info">Edit Occupation</a> -->
-          <!--/ %a{:href => "/login_info/delete"} Delete Account
-          -->
-        </div>
-      </div>
-    <%  end %>
-  </header>
-
-  <section id="about" name="about"></section>
-  
-  <div id="intro">
-    <div class="container">
-
-      <div class="row">
-	<h4>ABOUT</h4>
-        <% if @general_info %>
-          
-        <div class="col-lg-12">
-          <p><%= @general_info.bio %></p>
-          <br>
-        </div> 
-        <div class = "col-lg-12">
-	  <% @attribute_titles.each_with_index do |attr, index|%>
-	    <p> <%= attr %> </p>
-	    <p> <%= @attribute_contents[index] %> </p>
-            <br>
-	  <% end %>
+	<!-- THE HEADER -->
+	<header>
+		
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+					</a>
+				</div>
+				
+				<div class="header-menu-block">
+					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+					<ul class="header-menu" id="one">
+						<!--<li><a href="activity.html">Activity</a></li>-->
+						<li><a href="/search_profile/search">Search</a>
+						</li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+							<% if @on_Own %>
+								<li><a href="/general_info/edit">Edit Profile</a>
+									<ul>
+										<li><a href="/general_info/edit">Edit Profile</a></li>
+										<% if @attribute_titles%>
+											<li><a href="/edit_job">Edit <%=@job_title%> Info</a></li>
+										<% end %>
+										<li><a href="/login_info/edit">Change Password</a></li>
+										<% if(@is_Admin && !@on_Own) %>
+											<li><a href="general_info/make_admin/<%= @addUser  %>">Make Administrator</a></li>
+										<% elsif (@on_Own && @is_Admin)%>
+											<li><a href="/admin">Admin Dashboard</a></li>
+										<% end %>
+									</ul>
+								</li>
+							<% end %>
+						<% end %>
+					</ul>
+				</div>
+				<div class="login-header-block">
+					<div class="login_block">
+						<% if session[:current_user_key] %>
+						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+						<% else %>
+						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+						<% end %>
+					</div>	
+				</div>
+			</div>
+		</div>
+		
+		
+	</header>
+	
+	
+	<!-- MAIN CONTENT -->
+	<div id="content-block"
+		<% if @general_info.cover_picture.url %>
+			style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; margin-bottom:0px; background-size: cover;">
+		<% else %>
+			>
+		<% end %>
+		<div class="container be-detail-container">
+			<div class="row profile-row">
+				<div class="col-xs-12 col-md-6 left-feild">
+					<div class="be-user-block style-3">
+						<div class="be-user-detail">
+							<% if @general_info.profile_picture.url %>
+								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" alt="">
+							<% else %>
+								<img class="profile-img" src="<%= asset_path 'profile.png' %>" alt="">
+							<% end %>
+							<!--<img src="img/ava_10.jpg" alt=""> -->
+							<% if @general_info && @general_info.first_name && @general_info.last_name %>
+								<p class="be-use-name"><%= @general_info.first_name %> <%= @general_info.last_name %></p>
+							<% end %>
+							<div class="be-user-info">
+								<%= @general_info_values[:location] %>
+							</div>
+							<div class="be-text-tags style-1 job_title-style">
+								<a><%= @job_title %></a>
+							</div>
+							<div class="be-user-social">
+								<% if @general_info && @general_info.facebook_link != "" %>							
+									<a class="social-btn color-1" href="http://<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
+								<% end %>
+								<% if @general_info && @general_info.linkedIn_link != "" %>
+									<a class="social-btn color-6" href="http://<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
+								<% end %>
+								<% if @login_info && @login_info.email != "" %>
+									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
+								<% end %>
+								<% if @general_info && @general_info.phone != "" %>
+									<a class="social-btn color-2" href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
+								<% end %>
+							</div>
+							<% if @general_info && @general_info.personalWebsite_link != "" %>
+								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
+							<% end %>
+						</div>
+					</div>										
+				</div>
+				<div class="col-xs-12 col-md-6 left-feild">
+					<div class="be-desc-block">
+				  		<% if @general_info && @general_info.bio != "" %>
+							<div class="be-desc-author">
+								<div class="be-desc-label">About Me</div>
+								<div class="clearfix"></div>
+								<div class="be-desc-text">
+									<!--Add Bio HERE-->
+									<%= @general_info.bio %>
+								</div>
+							</div>
+						<% end %>
+					</div>
+					<div class="be-desc-block">
+						<% if @general_info%>
+							<div class="be-desc-author">
+								<div class="be-desc-label">More Details on Profession</div>
+								<div class="clearfix"></div>
+								<div class="be-desc-text  scrollable-description">
+								  <!--profession details here-->
+								  	<% @attribute_titles.each_with_index do |attr, index|%>
+										<!--<div class="input-col col-xs-12 col-sm-6">-->
+											<div class="form-group fg_icon focus-2">
+												<div class="form-label"><%= attr %></div>
+												<input class="form-input disabled-input" type="text" value="<%= @attribute_contents[index] %>" disabled>
+											</div>							
+										<!--</div>-->
+									<% end %>
+								  	
+								</div>
+							</div>
+						<% end %>
+					</div>
+			  	</div>
+			</div>
+		</div>
 	</div>
+	
+	<!-- MAIN CONTENT END -->
+	<footer>	
+		<div class="footer-main">
+			<div class="container-fluid custom-container">
+				<div class="row">	
+					<div class="col-md-3 col-xl-4">
+						<div class="footer-block">
+							<h1 class="footer-title">About Us</h1>
+							<p>FashioNXT creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+							<ul class="soc_buttons">
+								<li><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
+								<li><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-xl-2">
+						<div class="footer-block">
+							<h1 class="footer-title">Some Links</h1>
+							<div class="row footer-list-footer">
+							<div class="col-md-6">
+							<ul class="link-list">
+								<li><a href="http://fashionxt.com/">About Us</a></li>
+								<li><a href="contact-us.html">Help</a></li>
+								<li><a href="contact-us.html">Contacts</a></li>
+								<li><a href="activity.html">Job</a></li>
+								<li><a href="activity.html">Projets</a></li>
+							</ul></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container-fluid custom-container">
+				<div class="col-md-12 footer-end clearfix">
+					<div class="left">
+						<span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
+						<span class="created">Created with LOVE by <span class="white"><a href=""> ThatSoftwareEngineeringGroup</a></span></span>
+					</div>
+				</div>			
+			</div>
+		</div>		
+	</footer>
 
-	<div>
-          <p><sm>SOCIAL LINKS</sm></p>
-        </div>
-
-        <div class="col-lg-12">
-          <p>
-            <% if @general_info && @general_info.facebook_link != "" %>
-              <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
-            <% end %>
-
-            <% if @general_info && @general_info.linkedIn_link != "" %>
-              <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
-            <%end%>
-          </p>
-        </div>
-        <% end %>
-
-        
-        <p>CONTACT INFORMATION</p>
-         
-        <div class="col-lg-12">
-          <p>
-            <% if @login_info %>
-              <a href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope-o"></i></a>
-            <% end %>
-
-            <% if @general_info && @general_info.phone != "" %>
-              <a href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
-            <%end%>
-          </p>
-        </div>
-      </div><!--/.row -->
-
-<!--
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <% if @general_info && @general_info.bio =="*##*!(@dummy" %>
-            <h5>ABOUT</h5>
-          </div>
-          <div class="col-lg-6">
-            <p><%= @general_info.bio %></p>
-          </div>
-          <div class="col-lg-3">
-            <p><sm>SOCIAL LINKS</sm></p>
-            <p>
-              <% if @general_info && @general_info.facebook_link == "28231hsh292$" %>
-                <a href="<%= @general_info.facebook_link %>"><i class="fa fa-facebook"></i></a>
-              <% end %>
-
-                <% if @general_info && @general_info.linkedIn_link == "238jsdsajhdask" %>
-                  <a href="<%= @general_info.linkedIn_link %>"><i class="fa fa-linkedin"></i></a>
-                <%end%>
-
-              </p>
-              <br>
-            </div>
-          <% else %>
-            <p><sm>CONTACT INFORMATION</sm></p>
-        </div>
-          <div class="col-lg-6">
-            <p>
-              <% if @login_info && @login_info.email != "" %>
-                <a href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope-o"></i></a>
-              <% end %>
-
-              <% if @general_info && @general_info.phone != "" %>
-                <%= @general_info.phone %>
-              <%end%>
-            </p>
-          </div>
-          <% end %>
-
-
-        </div>
-
-      </div>
-
-    </div><!--/.container -->
-  </div><!--/ #intro -->
-
-  <div id="gallery">
-    <div class="container">
-      <div class="col-md-12">
-        <!-- <div class="row"> -->
-        <br>
-          <div class="gal" id="portfolio">
-            <div class="row">
-                <% @general_info.gallery_pictures.each do |pic| %>
-                  <div class="portfolio-item">
-                    <a class="portfolio-link" href="#" data-toggle="modal">
-                      <div class="caption">
-                        <div class="caption-content">
-                          <i class="fa fa-search-plus fa-3x"></i>
-                        </div>
-                      </div>
-                      <img class="img-fluid" src="<%= pic.url %>" alt="">
-                    </a>
-                  </div>
-                <% end %>
-              </p>
-            </div>
-          </div>
-        <!-- </div> -->
-      </div>
-    </div>
-  </div>
-  <div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
-<%= render :partial => "/layout/profile_javascripts" %>
-</body>
+	<div class="be-fixed-filter"></div>
+	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+	<div class="large-popup login">
+		<div class="container large-popup-container">
+			<div class="row">
+				<div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
+					<div class="row">
+						<div class="col-md-12">
+							<i class="fa fa-times close-button"></i>
+							<h5 class="large-popup-title">Log in</h5>
+						</div>
+						<form action="#" class="popup-input-search" method="post">
+						<div class="col-md-6">
+							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+							<!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
+						</div>
+						<div class="col-md-6 form-group">
+							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+							<!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
+						</div>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-6 for-signin">
+							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+							<!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<!-- SCRIPT	-->
+	<script src="<%= asset_path "jquery.min.js"%>"></script>
+	<script src="<%= asset_path "jquery-ui.js"%>"></script>
+	<script src="<%= asset_path "bootstrap.min.js"%>"></script>		
+	<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+	<script src="<%= asset_path "global.js"%>"></script>
+	</body>
+</html>

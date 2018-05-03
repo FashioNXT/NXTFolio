@@ -92,7 +92,6 @@ class GeneralInfoController < ApplicationController
 
   # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
   def create
-
     @possible_Jobs = GeneralInfo.see_Jobs
     # Check to see if the required params are filled in
     error_statement = ""
@@ -138,7 +137,11 @@ class GeneralInfoController < ApplicationController
 
     if(GeneralInfo.any?)
       @general_info.is_admin = false
+      if(@general_info.job_name == 'Admin' || @general_info.job_name == 'admin')
+        @general_info.job_name = 'Photographer'
+      end
     else
+      @general_info.job_name = 'Admin'
       @general_info.is_admin = true
     end
 

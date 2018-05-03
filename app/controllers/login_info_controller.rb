@@ -19,7 +19,7 @@ class LoginInfoController < ApplicationController
 
     if LoginInfo.exists?(:email => @login_info[:email])
       flash[:notice] = "Email already exists."
-      redirect_to new_login_info_path and return
+      redirect_to root_path and return
     end
 
     # Checks for mismatched & unentered passwords before saving LoginInfo object to database
@@ -33,15 +33,15 @@ class LoginInfoController < ApplicationController
           redirect_to new_general_info_path
         else
           flash[:notice] = "Failed Saving!"
-          redirect_to new_login_info_path
+          redirect_to root_path
         end
       else
         flash[:notice] = "Passwords don't match! Please try again."
-        redirect_to new_login_info_path
+        redirect_to root_path
       end
     else
       flash[:notice] = "Enter your password! Please try again."
-      redirect_to new_login_info_path
+      redirect_to root_path
     end
   end
   
@@ -98,14 +98,15 @@ class LoginInfoController < ApplicationController
         if @login_user[:is_admin] != nil
           session[:is_admin] = true
         end
-        flash[:notice] = "Logged In!"
+        flash[:success] = "You Have Successfully Logged In! Welcome Back!";
         redirect_to root_path
       else
-        flash[:notice] = "Incorrect Password"
+        flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
       end
     else
-      flash[:notice] = "Incorrect Email"
-      redirect_to login_info_login_path
+      flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
+      # redirect_to login_info_login_path
+      redirect_to root_path
     end
   end
   
@@ -118,8 +119,9 @@ class LoginInfoController < ApplicationController
   def logout
     session[:current_user_key] = nil
     session[:is_admin] = false
-    flash[:notice] = "Logged Out!"
+    flash[:success] = "You Have Successfully Logged Out! Hope To See You Soon!"
     $current_user = nil #for facebook login usecase
-    redirect_to destroy_user_session_path
+    # redirect_to destroy_user_session_path
+    redirect_to root_path
   end
 end

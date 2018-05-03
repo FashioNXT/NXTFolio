@@ -22,7 +22,16 @@
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 
 $(function() {
-
+	// $('#phone-number').change(function(e) {
+	// 	console.log ($('#phone-number').val());
+	//     // if (!$('#phone-number').val().validity.valid)
+	//     var phone_number = new RegExp('/^\d{10}$/');
+	//     var input = $('#phone-number').val();
+	//     if (input.match(phone_number)) {
+ //           console.log('Great, you entered an E-Mail-address');
+ //       }
+	//     	// e.preventDefault();
+	// });
 	"use strict";
 
 	/*================*/
@@ -285,6 +294,8 @@ $(function() {
 	$(".drop-down-list li").on("click", function(){
 		var new_value = $(this).find("a").text();
 		$(this).parent().parent().find(".be-dropdown-content").text(new_value);
+		$(this).parent().stop().slideUp();
+		$(this).parent().parent().removeClass('be-dropdown-active');
 			return false;
 	});
 
@@ -295,22 +306,48 @@ $(function() {
 
 	});
 	
-	//
+	// $(document).ready(function()  {
+	// 	var login_state = localStorage.getItem("login open");
+	// 	if ( login_state == undefined) {
+	// 		localStorage.setItem("login open", "false");
+	// 	}
+	// 	else if (login_state == "true")
+	// 		$(".large-popup.login").slideToggle();
+	// })
 
 	$(".login_block .btn-login").on("click",function(){
+		// var login_state = localStorage.getItem("login open")
+		// if (login_state == "false")
+		// 	login_state = "true";
+		// else
+		// 	login_state = "false"
+		// localStorage.setItem("login open", login_state);
+		// console.log (localStorage.getItem("login open"));
 		$(".large-popup.login").slideToggle();
 		return false;
 	});
 
+	// $(".be-popup-sign-button").on("click", function() {
+	//     var login_state = localStorage.getItem("login open")
+	// 	if (login_state == "false")
+	// 		login_state = "true";
+	// 	else
+	// 		login_state = "false"
+	// 	localStorage.setItem("login open", login_state);
+	// 	console.log (localStorage.getItem("login open"));
+	// })
+		
 	$(".be-signup-link").on("click", function(){
 		$(".large-popup.login").slideDown();
 		return false;
 	});
 	$(".large-popup.login .close-button").on("click", function(){
 		$(".large-popup.login").slideUp();
+		localStorage.setItem("login_open", "false");
 	});
-
+	
 	$(".be-register").on("click",function(){
+		
 		$(".large-popup.register").slideDown();
 		return false;
 	});

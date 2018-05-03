@@ -1,32 +1,38 @@
-class SpecificDesigner < ApplicationRecord
+class SpecificJob < ApplicationRecord
   attr_accessor :allgenres
     
-  def self.search general_info_user_keys, params_arg
+  def self.search general_info_user_keys, params_arg, job, location, distance
     @final_return = []
 
     if params_arg.length > 0
       GeneralInfo.all.find_each do |user_object|
+        puts "here"
+        puts user_object.inspect
+        puts "here"
+        puts params_arg.inspect
 
-        if user_object[:specific_profile_id] == 1
-          spec_object = SpecificDesigner.find_by(user_key: user_object["userKey"])
+        incl = true
+        params_arg.each do |arg, val|
+          i = 0
 
-          incl = true
-          params_arg.each do |param_key, param_val|
-            if param_key == "checkboxes"
-              next
+          if job != "Any" && job
+            job.constantize.view_Attr().each do |title|
+              puts title + " " + arg
+              if title == arg
+                if val != user_object[:job_attr][i]
+                  incl = false
+                end
+              end
+              i = i + 1
             end
+          end
 
-            chk_val = user_object[param_key]
-
-            if chk_val == nil
-              puts param_key
-              chk_val = spec_object[param_key]
-            end
-
-            if chk_val != param_val
+          if user_object.as_json.key? arg
+            if user_object[arg] != val
               incl = false
             end
           end
+        end
 
           # GENRE CHECKING
 
@@ -50,10 +56,14 @@ class SpecificDesigner < ApplicationRecord
             @final_return.push(user_object[:userKey])
           end
         end
-      end
     else
-      GeneralInfo.all.find_each do |user_object|
-        if user_object[:specific_profile_id] == 1
+      query = GeneralInfo.all
+      unless location.nil?
+        query = GeneralInfo.near(location, distance)
+      end
+      query.find_each do |user_object|
+	puts user_object[:job_name]
+        if job == "" or user_object[:job_name] == job
           @final_return.push(user_object[:userKey])
         end
       end
