@@ -4,7 +4,7 @@ CarrierWave.configure do |config|
   config.ignore_download_errors = false
 
   if ENV.has_key? 'S3_KEY' and ENV.has_key? 'S3_SECRET'
-    print("USING AWS\n")
+    puts "Image Host: AWS"
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
@@ -14,7 +14,7 @@ CarrierWave.configure do |config|
     config.fog_directory = 'fashionnxt-test'
     config.storage = :fog
   else
-    print("USING FS\n")
+    puts "Image Host: local filesystem"
     config.storage = :file
   end
 
