@@ -22,3 +22,4 @@ TAMU-PROR-MatchMyFashion.iml
 .DS_Store
 coverage
 public/uploads/
+local_redis/
