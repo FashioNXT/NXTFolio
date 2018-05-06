@@ -44,7 +44,11 @@ For deployed Heroku environments: (assuming the site is already deployed)
 
 ```heroku config:set S3_SECRET=x``` and then ```heroku config:set S3_KEY=y```
    
-   
+### Geocoding
+
+For searching by location, a Google Geocoding API key will be required. This must be set as an environment variable (see Using AWS S3... above) with the name "GOOGLE_KEY".
+
+Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo" to populate the gecoded fields. For Heroku environments, prepend the previous command with "heroku run".
     
 ### What will you see on the web app?
 

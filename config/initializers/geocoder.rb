@@ -1,22 +1,13 @@
+if ENV.has_key? "GOOGLE_KEY"
+	puts "Geocoding: Enabled"
+	google_api_key = ENV["GOOGLE_KEY"]
+else
+	puts "Geocoding: Disabled"
+	google_api_key = nil
+end
+
 Geocoder.configure(
-  # Geocoding options
-  timeout: 15,                 # geocoding service timeout (secs)
-  # lookup: :google,            # name of geocoding service (symbol)
-  # ip_lookup: :freegeoip,      # name of IP address geocoding service (symbol)
-  # language: :en,              # ISO-639 language code
-  use_https: true,           # use HTTPS for lookup requests? (if supported)
-  # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
-  # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
-  api_key: "AIzaSyCu4vfyNsozHjSO0xHT9ugnFjvHkQ3vmfc",               # API key for geocoding service
-  # cache: nil,                 # cache object (must respond to #[], #[]=, and #del)
-  # cache_prefix: 'geocoder:',  # prefix (string) to use for all cache keys
-
-  # Exceptions that should not be rescued by default
-  # (if you want to implement custom error handling);
-  # supports SocketError and Timeout::Error
-  # always_raise: [],
-
-  # Calculation options
-  # units: :mi,                 # :km for kilometers or :mi for miles
-  # distances: :linear          # :spherical or :linear
+	timeout: 15,
+	use_https: true,
+	api_key: google_api_key
 )

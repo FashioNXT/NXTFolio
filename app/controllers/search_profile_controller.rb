@@ -146,7 +146,9 @@ class SearchProfileController < ApplicationController
         @distance = 20
       end
     end
-
+    
+    puts @location
+    puts @distance
     puts @search_params
     
     @user_keys = SpecificJob.search flash[:user_keys], @search_params, @job, @location, @distance
