@@ -102,10 +102,10 @@ GEM
     erubis (2.7.0)
     excon (0.62.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -315,7 +315,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
-  factory_girl_rails (~> 4.0)
+  factory_bot_rails (~> 4.0)
   fog-aws
   geocoder
   haml
@@ -345,4 +345,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
