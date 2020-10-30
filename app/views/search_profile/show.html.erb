@@ -94,7 +94,7 @@
 									<% if info.profile_picture? %>
 									<img src="<%= info.profile_picture.url %>" alt="omg">
 									<% else %>
-									<img class="profile-img" src="<%= asset_path 'profile.png' %>" alt="">
+                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" alt="">
 									<% end %>
 									</a>
 									<a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
