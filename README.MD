@@ -1,7 +1,8 @@
 # FASHIONXT
 
 ### DEMO
-[https://mysterious-caverns-94886.herokuapp.com/](https://mysterious-caverns-94886.herokuapp.com/)
+https://tranquil-citadel-33236.herokuapp.com/
+
 
 Click on the above link, and open the demo app. The Facebook login feature will not work, as a result of privacy reasons, I took down the app developers account for it.
 Get Facebook Login to function:

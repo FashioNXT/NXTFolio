@@ -32,7 +32,7 @@ class LoginInfoController < ApplicationController
           flash[:notice] = "Account Created!"
           redirect_to new_general_info_path
         else
-          flash[:notice] = "Failed Saving!"
+          flash[:notice] = "Failed Saving beause Email/Password format is not valid !"
           redirect_to root_path
         end
       else
