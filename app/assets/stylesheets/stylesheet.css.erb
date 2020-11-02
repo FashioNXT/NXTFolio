@@ -355,7 +355,8 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 */
 .head-bg { background: #000; position: relative; padding: 10px; margin-bottom: 50px; }
 
-.head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "bg.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
+# .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "bg.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
+.head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
 .head-bg-content { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: middle; width: 5000px; }
 
@@ -715,7 +716,11 @@ footer { background: #222835; }
 
 .footer_slider .swiper-slide img:hover { opacity: 1.0; }
 
-footer p a { color: #0d58c8; text-decoration: underline; }
+footer p a { color: #95afbd; text-decoration: underline; }
+
+footer p a:active { color: #95afbd; background-color: transparent; text-decoration: none;}
+
+footer p a:visited { color: #95afbd; background-color: transparent; text-decoration: none;}
 
 footer p a:hover { color: #fff; text-decoration: none; }
 
@@ -723,7 +728,7 @@ footer p a:hover { color: #fff; text-decoration: none; }
 
 .footer-title { color: #FFF; font-size: 14px; font-family: 'Conv_helveticaneuecyr-bold'; margin-bottom: 20px; }
 
-footer p { line-height: 20px; color: #5d6372; font-size: 13px; margin-bottom: 20px; }
+footer p { line-height: 20px; color: #b5b4b1; font-size: 13px; margin-bottom: 20px; }
 
 .soc_buttons > li { color: #FFF; background: transparent; font-size: 15px; border-radius: 3px; text-align: center; width: 35px; height: 35px; display: inline-block; cursor: pointer; position: relative; margin-right: 5px; margin-bottom: 5px; border: 1px solid #414856; }
 
@@ -731,7 +736,11 @@ footer p { line-height: 20px; color: #5d6372; font-size: 13px; margin-bottom: 20
 
 .soc_buttons .fa { position: absolute; top: 50%; left: 50%; -webkit-transform: translateY(-50%) translateX(-50%); -ms-transform: translateY(-50%) translateX(-50%); transform: translateY(-50%) translateX(-50%); }
 
-ul.soc_buttons > li:hover { background: #0d58c8; border: 1px solid #0d58c8; }
+ul.soc_buttons > li#fb:hover { background: #0d58c8; border: 2px solid #0d58c8; }
+ul.soc_buttons > li#twitter:hover { background: #1DA1F2; border: 2px solid #0d58c8; }
+ul.soc_buttons > li#pinterest:hover { background: #E60023; border: 2px solid #0d58c8; }
+ul.soc_buttons > li#insta:hover { background: #833AB4; border: 2px solid #0d58c8; }
+ul.soc_buttons > li#linkedin:hover { background: #2867B2; border: 2px solid #0d58c8; }
 
 .soc_buttons.light > li { background: #f6f6f7; border: 1px solid #edeff2; }
 
@@ -777,7 +786,7 @@ a.heshtag { text-decoration: underline; }
 
 ul.link-list li { background: url(<%= asset_path "list_marker.png"%>); padding-left: 15px; background-repeat: no-repeat; background-position: 0 50%; margin-bottom: 10px; }
 
-ul.link-list li > a { font-size: 12px; line-height: 18px; font-weight: 400; color: #6b7180; }
+ul.link-list li > a { font-size: 12px; line-height: 18px; font-weight: 400; color: #95afbd; }
 
 ul.link-list li > a:hover { color: #FFF !important; }
 
@@ -2360,7 +2369,8 @@ transition: all ease-out 0.3s;}
 }
 @media screen and (min-width: 993px){
   .header-menu ul{border-radius: 0 0 5px 5px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);}
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    float: right}
 
 }
 
@@ -3741,4 +3751,32 @@ body .login-user-down:hover {
   background: #fffffff0;
   padding: 10px;
   margin-bottom: 35px !important;
+}
+
+//Homepage Login section
+
+.homepage-login-btn-section{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-self: center;
+    justify-content: space-between;
+}
+.homepage-login-btn-section .btn{
+    padding: 15px 30px;
+    
+}
+header .header-menu{
+    display: flex !important;
+    flex-direction: row-reverse;
+}
+# header .row-header .header-menu-block{
+#     position: static;
+# }
+
+header .row-header .header-menu-block{
+    position: static !important;
+    left: 0;
+    transform: none;
+    max-width: 100%;
 }
