@@ -103,7 +103,7 @@
 							<% if @general_info.profile_picture.url %>
 								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" alt="">
 							<% else %>
-								<img class="profile-img" src="<%= asset_path 'profile.png' %>" alt="">
+                                <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" alt="">
 							<% end %>
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							<% if @general_info && @general_info.first_name && @general_info.last_name %>
