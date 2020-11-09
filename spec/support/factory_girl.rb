@@ -1,20 +1,20 @@
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 
 # RSpec without Rails
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
-    FactoryGirl.find_definitions
+      FactoryBot.find_definitions
   end
 end
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :login_info do
     email   "me@me.com"
-    password "pass123"
+    password "Apple12345*"
   end
 end
 

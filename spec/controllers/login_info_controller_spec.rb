@@ -19,7 +19,7 @@ RSpec.describe LoginInfoController, type: :controller do
   
   describe "POST #create" do 
     it 'should create LoginInfo' do
-      post :create, :login_info => { :email => "me@me.com", :password => "pass123" }
+      post :create, :login_info => { :email => "me@me.com", :password => "Apple12345*" }
       expect(response).to redirect_to new_login_info_path
     end
     it 'should not create LoginInfo' do
@@ -81,11 +81,11 @@ RSpec.describe LoginInfoController, type: :controller do
   
   describe "POST #login_submit" do 
     before(:each) do
-      @login_info = FactoryGirl.create(:login_info)
+      @login_info = FactoryBot.create(:login_info)
     end
     
     let(:attr) do 
-      { :email => 'me@me.com', :password => 'pass123' }
+      { :email => 'me@me.com', :password => 'Apple12345*' }
     end
     
     before(:each) do

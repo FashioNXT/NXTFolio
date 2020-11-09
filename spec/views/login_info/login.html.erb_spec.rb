@@ -4,7 +4,7 @@ RSpec.describe 'login_info/login', :type => :view do
   it 'renders the login template for login' do
     assign(:login_info, LoginInfo.create!({
       :email => "hellofriend@gmail.com",
-      :password => "password"
+      :password => "Apple12345*"
     }))
     #render
 
