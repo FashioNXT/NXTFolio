@@ -7,8 +7,8 @@ end
 Given(/^I am a valid user$/) do
    @login_info = LoginInfo.create!({
       :email => "hellofriend@gmail.com",
-      :password => "password",
-      :password_confirmation => "password"
+      :password => "Apple12345*",
+      :password_confirmation => "Apple12345*"
     })
    @general_info = GeneralInfo.create!({
       :first_name => "Ive",
@@ -26,8 +26,8 @@ end
 Given(/^I am a valid admin user$/) do
   @login_info = LoginInfo.create!({
         :email => "admin@gmail.com",
-        :password => "password",
-        :password_confirmation => "password",
+        :password => "Apple12345*",
+        :password_confirmation => "Apple12345*",
         :is_admin => "true"
     })
   @general_info = GeneralInfo.create!({

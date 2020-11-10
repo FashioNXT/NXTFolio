@@ -23,3 +23,6 @@ TAMU-PROR-MatchMyFashion.iml
 coverage
 public/uploads/
 local_redis/
+
+# Ignore application configuration
+/config/application.yml
