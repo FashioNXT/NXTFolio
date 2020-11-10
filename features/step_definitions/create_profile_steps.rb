@@ -9,8 +9,8 @@ end
 When(/^I sign up for an account$/) do
     @login_info = LoginInfo.create!({
       :email => "hellofriend@gmail.com",
-      :password => "password",
-      :password_confirmation => "password"
+      :password => "Apple12345*",
+      :password_confirmation => "Apple12345*"
     })
 end
 

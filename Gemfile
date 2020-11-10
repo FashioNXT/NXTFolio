@@ -8,7 +8,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '0.21.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -31,7 +31,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'fog-aws'
-
+gem 'fog'
+gem 'figaro'
+gem 'mini_magick'
 gem 'redis'
 
 group :development, :test do

@@ -95,7 +95,7 @@ header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: #2
 
 header .custom-container { position: relative; }
 
-header .row-header .brand-be { margin-top: 16.5px; float: left; }
+header .row-header .brand-be { margin-top: 16.5px; float: center; }
 
 header .row-header .header-menu-block { position: absolute;
     top: 0px; left: 50%; -webkit-transform: translateX(-50%);
@@ -124,7 +124,7 @@ img.be_logo { text-align: left; }
 /*login-block*/
 .login-header-block { margin-top: 17.5px; float: right; }
 
-.login_block { text-align: right; }
+.login_block { text-align: center; }
 
 .login_block .btn-login { margin-right: 0px; margin-bottom: 0px; }
 
@@ -355,7 +355,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 */
 .head-bg { background: #000; position: relative; padding: 10px; margin-bottom: 50px; }
 
-# .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "bg.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
+#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
 .head-bg-content { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: middle; width: 5000px; }
@@ -3770,9 +3770,9 @@ header .header-menu{
     display: flex !important;
     flex-direction: row-reverse;
 }
-# header .row-header .header-menu-block{
-#     position: static;
-# }
+header .row-header .header-menu-block{
+    position: static;
+}
 
 header .row-header .header-menu-block{
     position: static !important;

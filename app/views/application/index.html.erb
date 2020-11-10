@@ -97,7 +97,7 @@
 				<p>Your #1 social network for connecting to people in the fashion industry. </p>
 				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
 				<div class="homepage-login-btn-section">
-					
+					<div class="login_block">
 						<% if session[:current_user_key] %>
 						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
 						<!--<a class="btn color-1 size-2 hover-2 homepage-login-btn" href="/login_info/logout" ><i class="fa fa-user"></i>-->
@@ -110,8 +110,7 @@
 						<% if not session[:current_user_key] %>
 							<a class="be-register btn color-1 size-1 hover-6" href=""><i class="fa fa-lock"></i>sign up now</a>
 						<% end %>
-					
-					
+					</div>
 				</div>
 				
 			</div>	

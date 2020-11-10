@@ -4,8 +4,8 @@ RSpec.describe 'login_info/new', :type => :view do
   it 'renders the new template for sign up' do
     assign(:login_info, LoginInfo.create!({
       :email => "hellofriend@gmail.com",
-      :password => "password",
-      :password_confirmation => "password"
+      :password => "Apple12345*",
+      :password_confirmation => "Apple12345*"
     }))
 
     render
