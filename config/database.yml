@@ -23,10 +23,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
-  username: beaverthing
-  password: ubuntu
+  username: postgres
+  password: mohit
 
-  # host: localhost
+  #host: localhost
 
 
 development:
