@@ -8,7 +8,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '0.21.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -31,7 +31,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'fog-aws'
-
+gem 'fog'
+gem 'figaro'
+gem 'mini_magick'
 gem 'redis'
 
 group :development, :test do
@@ -51,7 +53,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "bcrypt", '~> 3.1.16', platforms: [:ruby, :x64_mingw, :mingw]
+gem "bcrypt", '~> 3.1.7'
 
 group :test, :development do
   gem 'cucumber-rails', :require => false
@@ -72,4 +74,4 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'city-state'
 gem 'geocoder'
-ruby '2.4.10'
+ruby '2.4.1'
