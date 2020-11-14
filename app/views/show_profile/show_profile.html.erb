@@ -58,12 +58,12 @@
 									<ul>
 										<li><a href="/general_info/edit">Edit Profile</a></li>
 										<% if @attribute_titles%>
-											<li><a href="/edit_job">Edit <%=@job_title%> Info</a></li>
+											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title%> Info</a></li>
 										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
-										<% if(@is_Admin && !@on_Own) %>
-											<li><a href="general_info/make_admin/<%= @addUser  %>">Make Administrator</a></li>
-										<% elsif (@on_Own && @is_Admin)%>
+										<% if !@is_Admin %>
+											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
+										<% elsif @is_Admin%>
 											<li><a href="/admin">Admin Dashboard</a></li>
 										<% end %>
 									</ul>

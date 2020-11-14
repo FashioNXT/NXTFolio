@@ -12,7 +12,7 @@ class ShowProfileController < ApplicationController
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
         @login_info = LoginInfo.find_by(userKey: user_key_current)
-        if(LoginInfo.find_by(userKey: @general_info.userKey))
+        if LoginInfo.find_by(userKey: @general_info.userKey)
           @email = LoginInfo.find_by(userKey: @general_info.userKey).email
         end
 	#@adminMaker = GeneralInfo.make_admin(params[:user])
@@ -28,7 +28,7 @@ class ShowProfileController < ApplicationController
         end
 	
 	@is_Admin = false
-        if(GeneralInfo.find_by(userKey: session[:current_user_key]) != nil)
+        if GeneralInfo.find_by(userKey: session[:current_user_key]) != nil
           @is_Admin = GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin
           @addUser = user_key_current
         end
