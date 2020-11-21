@@ -40,7 +40,8 @@ Rails.application.routes.draw do
   post 'login' => 'login_info#login', :as => 'login'
   get  'logout' => 'login_info#logout', :as => 'logout'
   # post 'create' => 'login_info#create', :as => 'create'
-  
+
+
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_designer/edit' => 'specific_designer#edit', :as => 'specific_designer/edit'
   post 'specific_designer/update' => 'specific_designer#update', :as => 'specific_designer/update'
