@@ -18,13 +18,15 @@ class GeneralInfoController < ApplicationController
   end
   
   def make_admin
-    if session[:current_user_key] != params[:user] && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin
+    if !(session[:current_user_key] != params[:user] && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin)
       @user_entry = GeneralInfo.find_by(userKey: params[:user])
       if @user_entry
-        @user_entry.update_attribute(:is_admin, true)  
+        @user_entry.update_attribute(:is_admin, true)
+        @user_entry.update_attribute(:job_name,'Admin')
         redirect_to "/show_profile?user_key="+ params[:user].to_s
       else
-	redirect_to root_path
+        puts @user_entry.inspect
+	      redirect_to root_path
       end           
     else
      redirect_to root_path
@@ -135,7 +137,7 @@ class GeneralInfoController < ApplicationController
     @general_info.userKey = session[:current_user_key]
     @general_info.is_admin = false
 
-    $template_name = params[:general_info][:specific_profile_id]
+    $template_name = params[:general_info][:job_name]
 
     if GeneralInfo.any?
       @general_info.is_admin = false
@@ -147,13 +149,18 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
 
-    if @general_info.save!
+    puts @general_info.save.inspect
+    if @general_info.save
       if $template_name == "Designer"
+        @general_info.specific_profile_id = 1
         redirect_to "/specific_designer/edit"
       elsif $template_name == "Model"
+        @general_info.specific_profile_id = 2
         redirect_to "/specific_model/edit"
       elsif $template_name == "Photographer"
+        @general_info.specific_profile_id = 3
         redirect_to "/specific_photographer/edit"
+      end
     else
       render :action => 'new'
     end

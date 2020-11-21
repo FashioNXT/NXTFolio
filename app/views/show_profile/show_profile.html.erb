@@ -57,7 +57,7 @@
 								<li><a href="/general_info/edit">Edit Profile</a>
 									<ul>
 										<li><a href="/general_info/edit">Edit Profile</a></li>
-										<% if @attribute_titles%>
+										<% if @attribute_titles && !@is_Admin %>
 											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title%> Info</a></li>
 										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
