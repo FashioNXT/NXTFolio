@@ -201,10 +201,12 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+
     net-ssh (6.1.0)
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -221,6 +223,7 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     pg (0.21.0)
+
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
       middleware
@@ -330,8 +333,10 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
+
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     warden (1.2.9)
@@ -349,9 +354,10 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.16)
   byebug
   carrierwave
   city-state
@@ -388,7 +394,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.10p364
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
