@@ -149,7 +149,7 @@ img.be_logo { text-align: left; }
 .fa-angle-down { display: none; }
 
 /*login-block*/
-.login-header-block { margin-top: 17.5px; float: right; }
+.login-header-block { margin-top: 10.5px; align: center; margin-bottom: 10.5px; padding-bottom: 15px;}
 
 .login_block { text-align: center; }
 
@@ -158,7 +158,7 @@ img.be_logo { text-align: left; }
 .login_block a:hover { color: #262626; }
 
 /*login user page*/
-.page-login .login-header-block { margin-top: 15px; }
+.page-login .login-header-block { margin-top: 12px; }
 
 .page-login .login_block .be-drop-down { margin-top: 1.5px; float: right; }
 
@@ -1518,7 +1518,7 @@ display: inline-block; float: none; margin: 0 10px;}
 /*buttons*/
 .btn { display: inline-block; font-size: 12px; line-height: 12px; font-weight: 400; color: #fff; text-transform: uppercase; margin-bottom: 10px; margin-right: 27px; border-radius: 3px; }
 
-.btn.color-1 { background: #0d58c8; border: 1px solid #0d58c8; }
+.btn.color-1 { background: #222835; border: 1px solid #222835; }
 
 .btn.color-1 .fa { color: #8ba1dd; }
 
@@ -1560,9 +1560,9 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .btn.hover-1:hover, .btn.hover-1.active { background: transparent; border: 1px solid #0d58c8; color: #0d58c8; }
 
-.btn.hover-1:hover .fa, .btn.hover-1.active .fa { color: #0d58c8; }
+.btn.hover-1:hover .fa, .btn.hover-1.active .fa { color: #fff; }
 
-.btn.hover-2:hover, .btn.hover-2.active { background: transparent; border: 1px solid #0d58c8; color: #fff; }
+.btn.hover-2:hover, .btn.hover-2.active { background: transparent; border: 1px solid black; color: black; font-weight: bold; }
 
 .btn.hover-3:hover, .btn.hover-3.active { background: transparent; border: 1px solid #383b43; color: #383b43; }
 
@@ -1570,7 +1570,7 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .btn.hover-5:hover, .btn.hover-5.active { background: #7a8192; border: 1px solid #7a8192; color: #fff; }
 
-.btn.hover-6:hover, .btn.hover-6.active { background: transparent; border: 1px solid #7a8192; color: #fff; }
+.btn.hover-6:hover, .btn.hover-6.active { background: transparent; border: 1px solid black; color: black; font-weight: bold; }
 
 .btn.hover-7:hover, .btn.hover-7.active { background: transparent; border: 1px solid #edeff2; color: #7a8192; }
 
@@ -3798,7 +3798,7 @@ header .header-menu{
     flex-direction: row-reverse;
 }
 header .row-header .header-menu-block{
-    position: static;
+    position: relative;
 }
 
 header .row-header .header-menu-block{
@@ -3806,4 +3806,8 @@ header .row-header .header-menu-block{
     left: 0;
     transform: none;
     max-width: 100%;
+}
+.row-header {
+    display: flex;
+    flex-direction: row;
 }

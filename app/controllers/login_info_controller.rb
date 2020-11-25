@@ -122,6 +122,6 @@ class LoginInfoController < ApplicationController
     flash[:success] = "You Have Successfully Logged Out! Hope To See You Soon!"
     $current_user = nil #for facebook login usecase
     # redirect_to destroy_user_session_path
-    redirect_to root_path
+    redirect_to destroy_user_session_path
   end
 end

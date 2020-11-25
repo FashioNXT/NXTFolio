@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe 'search_profile/search', :type => :view do
-  it 'renders the search view' do
+  it 'renders search' do
 
     render
 

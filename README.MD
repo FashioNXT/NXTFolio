@@ -14,7 +14,7 @@ Get Facebook Login to function:
 ### How to start a local server:
 
 1. git clone the repository to your local machine  
-    ```git clone https://github.tamu.edu/avinsaxe/match-my-fashion_old.git```
+    ```https://github.com/codecreators07/match-my-fashion-public-CodeCreators```
 2. Once the files are downloaded, follow the standard procedure of installing ruby on rails. 
    Click [here](https://gorails.com/setup/ubuntu/17.10)
 3. It is recommended to use ```rvm``` over ```rbenv```. 
@@ -38,12 +38,12 @@ Get Facebook Login to function:
 
 ### Using AWS S3 as Image Backend
 
-If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket called 'fashionnxt-test'. You will then need to set S3_SECRET and S3_KEY so that Rails can find that bucket. For local environments: 
-    ```S3_SECRET=x S3_KEY=y rails server```  where ```x``` and ```y``` are replaced by your account details from Amazon Web Services
+If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
+    ```AWS_SECRET_KEY=x AWS_ACCESS_KEY=y rails server```  where ```x``` and ```y``` are replaced by your account details from Amazon Web Services
 
 For deployed Heroku environments: (assuming the site is already deployed)
 
-```heroku config:set S3_SECRET=x``` and then ```heroku config:set S3_KEY=y```
+```heroku config:set AWS_SECRET_KEY=x``` and then ```heroku config:set AWS_ACCESS_KEY=y```
    
 ### Geocoding
 

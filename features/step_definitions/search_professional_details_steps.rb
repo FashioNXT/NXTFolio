@@ -16,15 +16,17 @@ When(/^I click on search button/) do
 
 end
 
-Given I am a valid user
+Given (/^I am a valid user$/) do
   When I click on search button and search by profession
   Then I should see "No matches"
   When I click on search button and search by tags
   Then I should see "No matches"
-
-  Given I am an invalid user
+ end
+  
+Given(/^I am an invalid user$/) do
   When I click on search butt
   Then I should be on the login page
+end
 
 When(/^I click on search button and search by email id$/) do
   visit 'search_profile/search'

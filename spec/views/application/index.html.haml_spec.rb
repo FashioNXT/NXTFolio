@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe 'application/index', :type => :view do
-  it 'renders the index view' do
+  it 'renders index' do
 
     render
 

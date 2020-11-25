@@ -72,15 +72,19 @@
 						<% end %>
 					</ul>
 				</div>
-				<div class="login-header-block">
-					<div class="login_block">
-						<% if session[:current_user_key] %>
-						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-						<% else %>
-						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<% end %>
-					</div>	
-				</div>
+    
+                <!--Logout Button Begin -->
+                <div class="login-header-block">
+                    <div class="login_block">
+                        <% if session[:current_user_key] %>
+                        <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+                        <% else %>
+                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+                        <% end %>
+                    </div>
+                </div>
+                <!--Logout Button End-->
+    
 			</div>
 		</div>
 		
@@ -133,7 +137,7 @@
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
 							<% end %>
 						</div>
-					</div>										
+					</div>
 				</div>
 				<div class="col-xs-12 col-md-6 left-feild">
 					<div class="be-desc-block">
@@ -171,7 +175,27 @@
 			  	</div>
 			</div>
 		</div>
-	</div>
+        <div class="container-fluid custom-container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div id="container-mix"  class="row _post-container_">
+                        <div class="be-post">
+                            <div class="be-desc-label">Gallery Pictures</div>
+                            <% @general_info.gallery_pictures.each do |pic| %>
+                                <div class="category-1 mix custom-column-5">
+                                    <div class="profile-img-container">
+                                    <a class="be-img-block profile-img img-thumbnail">
+                                        <img src="<%= pic.url %>" alt="omg">
+                                    </a>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	
 	<!-- MAIN CONTENT END -->
 	<footer>	
@@ -181,13 +205,13 @@
 					<div class="col-md-3 col-xl-4">
 						<div class="footer-block">
 							<h1 class="footer-title">About Us</h1>
-							<p>FashioNXT creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+							<p><a href="https://fashionxt.com/">FashioNXT</a> creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
 							<ul class="soc_buttons">
-								<li><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
-								<li><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
-								<li><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
+                                    <li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
+                                    <li id="twitter"><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
+                                    <li id="pinterest"><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
+                                    <li id="insta"><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
+                                    <li id="linkedin"><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -197,11 +221,10 @@
 							<div class="row footer-list-footer">
 							<div class="col-md-6">
 							<ul class="link-list">
-								<li><a href="http://fashionxt.com/">About Us</a></li>
-								<li><a href="contact-us.html">Help</a></li>
-								<li><a href="contact-us.html">Contacts</a></li>
-								<li><a href="activity.html">Job</a></li>
-								<li><a href="activity.html">Projets</a></li>
+                                <li><a href="https://fashionxt.com/agency/">About Us</a></li>
+                                <li><a href="https://fashionxt.com/contact/">Help</a></li>
+                                <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
+                                <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
 							</ul></div>
 							</div>
 						</div>
@@ -213,8 +236,8 @@
 			<div class="container-fluid custom-container">
 				<div class="col-md-12 footer-end clearfix">
 					<div class="left">
-						<span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
-						<span class="created">Created with LOVE by <span class="white"><a href=""> ThatSoftwareEngineeringGroup</a></span></span>
+                        <span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> &nbsp FashioNXT</a></span></span>
+                        <span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
 					</div>
 				</div>			
 			</div>

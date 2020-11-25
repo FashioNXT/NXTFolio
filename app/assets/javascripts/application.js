@@ -19,12 +19,15 @@ $( document ).ready(function() {
     $("#Photographer1").hide();
     $("#Agent1").hide();
     $("#Designer1").hide();
+    $("#Everyone1").hide();
     $("#Model").click(function () {
         $("#Model1").show();
         $("#Photographer1").hide();
         $("#Agent1").hide();
         $("#Designer1").hide();
+        $("#Everyone1").hide();
         $("#Designer").removeClass("active");
+        $("#Everyone").removeClass("active");
         $("#Agent").removeClass("active");
         $("#Photographer").removeClass("active");
         $("#Model").addClass("active");
@@ -33,21 +36,25 @@ $( document ).ready(function() {
         $("#Model1").hide();
         $("#Model").removeClass("active");
         $("#Designer").removeClass("active");
+        $("#Everyone").removeClass("active");
         $("#Agent").removeClass("active");
         $("#Photographer").addClass("active");
         $("#Photographer1").show();
         $("#Agent1").hide();
         $("#Designer1").hide();
+        $("#Everyone1").hide();
     });
     $("#Agent").click(function () {
         $("#Model1").hide();
         $("#Model").removeClass("active");
         $("#Designer").removeClass("active");
+        $("#Everyone").removeClass("active");
         $("#Photographer").removeClass("active");
         $("#Agent").addClass("active");
         $("#Photographer1").hide();
         $("#Agent1").show();
         $("#Designer1").hide();
+        $("#Everyone1").hide();
     });
     $("#Designer").click(function () {
         $("#Model1").hide();
@@ -55,8 +62,22 @@ $( document ).ready(function() {
         $("#Photographer").removeClass("active");
         $("#Agent").removeClass("active");
         $("#Designer").addClass("active");
+        $("#Everyone").removeClass("active");
         $("#Photographer1").hide();
         $("#Agent1").hide();
+        $("#Everyone1").hide();
         $("#Designer1").show();
+    });
+    $("#Everyone").click(function () {
+        $("#Model1").hide();
+        $("#Model").removeClass("active");
+        $("#Photographer").removeClass("active");
+        $("#Agent").removeClass("active");
+        $("#Designer").removeClass("active");
+        $("#Photographer1").hide();
+        $("#Everyone").addClass("active");
+        $("#Agent1").hide();
+        $("#Designer1").hide();
+        $("#Everyone1").show();
     });
 });
