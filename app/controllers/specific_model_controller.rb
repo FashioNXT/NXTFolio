@@ -60,7 +60,7 @@ class SpecificModelController < ApplicationController
     # If SpecificModel object saved correctly to database, displays home page
     # Else displays the SpecificModel new view
     if @specific_model.save!
-      redirect_to root_path
+      redirect_to '/show_profile'
     else
       render :action => 'new'
     end

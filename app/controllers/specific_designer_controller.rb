@@ -61,7 +61,7 @@ class SpecificDesignerController < ApplicationController
     # If SpecificDesigner object saved correctly to database, displays home page
     # Else displays the SpecificDesigner new view
     if @specific_designer.save!
-     redirect_to root_path
+     redirect_to '/show_profile'
     else
      render :action=> 'new'
  end

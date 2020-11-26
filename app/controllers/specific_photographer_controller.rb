@@ -26,8 +26,8 @@ class SpecificPhotographerController < ApplicationController
     @specific_photographer.user_key = session[:current_user_key] 
 
     if @specific_photographer.save!
-      puts "Saved and returning to root"
-      redirect_to root_path
+      puts "Saved and returning the profile"
+      redirect_to '/show_profile'
     else
       puts "Error saving, returning to new"
       render :action => 'new'
