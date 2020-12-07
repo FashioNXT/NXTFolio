@@ -159,11 +159,11 @@
 								<div class="clearfix"></div>
 								<div class="be-desc-text  scrollable-description">
 								  <!--profession details here-->
-								  	<% @attribute_titles.each_with_index do |attr, index|%>
+								  	<% @profile_info.each do |attr, index|%>
 										<!--<div class="input-col col-xs-12 col-sm-6">-->
 											<div class="form-group fg_icon focus-2">
-												<div class="form-label"><%= attr %></div>
-												<input class="form-input disabled-input" type="text" value="<%= @attribute_contents[index] %>" disabled>
+												<div class="form-label"><%=index%></div>
+<!--												<input class="form-input disabled-input" type="text" value="<%#=index%>" disabled>-->
 											</div>							
 										<!--</div>-->
 									<% end %>

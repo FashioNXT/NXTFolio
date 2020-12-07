@@ -149,16 +149,15 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
 
-    puts @general_info.save.inspect
     if @general_info.save
       if $template_name == "Designer"
-        @general_info.specific_profile_id = 1
+        @general_info.update_attribute(:specific_profile_id,1)
         redirect_to "/specific_designer/edit"
       elsif $template_name == "Model"
-        @general_info.specific_profile_id = 2
+        @general_info.update_attribute(:specific_profile_id,2)
         redirect_to "/specific_model/edit"
       elsif $template_name == "Photographer"
-        @general_info.specific_profile_id = 3
+        @general_info.update_attribute(:specific_profile_id,3)
         redirect_to "/specific_photographer/edit"
       end
     else
