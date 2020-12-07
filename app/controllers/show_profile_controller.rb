@@ -62,7 +62,7 @@ class ShowProfileController < ApplicationController
             @specific_designer = SpecificDesigner.find_by(user_key: user_key_current)
             @profile_info = @specific_designer.attribute_values
           else
-            @profile_info = null
+            @profile_info = nil
           end
         when 2
           @profile_type = "Model"
@@ -70,7 +70,7 @@ class ShowProfileController < ApplicationController
             @specific_model = SpecificModel.find_by(user_key: user_key_current)
             @profile_info = @specific_model.attribute_values
           else
-            @profile_info = null
+            @profile_info = nil
           end
         when 3
           @profile_type = "Photographer"
@@ -78,7 +78,7 @@ class ShowProfileController < ApplicationController
             @specific_photographer = SpecificPhotographer.find_by(user_key: user_key_current)
             @profile_info = @specific_photographer.attribute_values
           else
-            @profile_info = null
+            @profile_info = nil
           end
         else
           puts "Unknown profile type! Profile type given: "
