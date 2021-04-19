@@ -1,0 +1,53 @@
+	<!-- THE HEADER -->
+	<header>
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				
+				<!-- This is for the clickable icon on the left up corner in the landing page-->
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo" src="<%= asset_path "new_logo.png"%>" alt="logo">					
+						<!-- if useless, we can delete it
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+						-->
+					</a>
+				</div>
+				
+				<div class="header-menu-block">
+					
+
+					<!-- <button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button> -->
+
+					<ul class="header-menu" id="one" style=>
+						
+						<!-- <li><a href="/search_profile/search">Search</a></li> -->
+						
+						<!--<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
+						-->
+					</ul>
+
+
+				</div>
+				<!--Logout Button Begin -->
+				<div class="login-header-block">
+						<div class="login_block">
+							<div class="login_block_rightup">
+								<% if session[:current_user_key] %>
+									<%= link_to 'My Profile', show_profile_show_profile_path, :class => "btn color-1 size-2 hover-2" %>
+									<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+								<% else %>
+									<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+									<a class="btn be-register color-1 size-2 hover-2" href=""><i class="fa fa-lock"></i>sign up now</a>
+								<% end %>
+							</div>
+						</div>
+				</div>
+				<!--Logout Button End-->  
+			</div>
+		</div>
+
+	</header>

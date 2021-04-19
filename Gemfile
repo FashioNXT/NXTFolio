@@ -69,7 +69,8 @@ gem "rails-controller-testing"
 gem "factory_bot_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
-gem 'devise'
+# Fix the problem of "You are using an old OmniAuth version"
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'omniauth-facebook'
 gem 'city-state'
 gem 'geocoder'

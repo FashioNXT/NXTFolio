@@ -1,0 +1,9 @@
+#custom_but_style {
+	color: white;
+}
+
+#home-container {
+	background-color: white;
+	background: contain;
+	width: 100%;
+}

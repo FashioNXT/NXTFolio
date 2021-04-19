@@ -13,13 +13,12 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-        <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
-
+    <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+		<link rel="stylesheet" href="custom.css">
 	</head>
-	<body >
 
+	<body>
 	<!-- THE LOADER -->
-
 	<div class="be-loader">
     	<div class="spinner">
 			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
@@ -31,59 +30,11 @@
 			</p>
 		</div>
     </div>
+
 	<!-- THE HEADER -->
-	<header>
-
-		<div class="container-fluid custom-container">
-			<div class="row no_row row-header">
-				<div class="brand-be">
-					<a href="/">
-						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
-						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
-					</a>
-				</div>
-				<div class="header-menu-block">
-					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
-					<ul class="header-menu" id="one" style=>
-						<!--<li><a href="activity.html">Activity</a></li>-->
-						<li><a href="/search_profile/search">Search</a>
-							<!--<ul>
-								<li><a href="search.html">Explore</a></li>
-								<li><a href="people.html">People</a></li>
-								<li><a href="gallery.html">Galleries</a></li>
-							</ul>-->
-						</li>
-						<% if session[:current_user_key] %>
-							<li><a href="/show_profile">My Profile</a></li>
-						<% end %>
-						<!--<li><a href="site-map.html">Site Map</a></li>-->
-						<!--<li><a href="organization.html">Organization</a></li>-->
-						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
-					</ul>
-				</div>
-    
-                <!--Logout Button Begin -->
-                <div class="login-header-block">
-                    <div class="login_block">
-                        <% if session[:current_user_key] %>
-                        <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-                        <% else %>
-                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-                        <% end %>
-                    </div>
-                </div>
-                <!--Logout Button End-->
-    
-			</div>
-		</div>
-
-
-	</header>
+	<%= render 'shared/header' %>
 
 	<!-- MAIN CONTENT -->
-
 	<div id="content-block">
 		<div class="head-bg">
 			<div class="head-bg-img"></div>
@@ -105,23 +56,33 @@
 			</div>
 			<% end %>
 
-			<div class="head-bg-content">
-				<h1>Welcome to FashioNTWRK</h1>
-				<p>Your #1 social network for connecting to people in the fashion industry. </p>
-				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
+			<div class=head-bg-content>
 				<div class="homepage-login-btn-section">
-					<div class="login_block">
+					<div class="landing_search_button">
+						<%= link_to 'What Are You Looking For?', search_profile_search_path, :id => "custom_but_style" %>
+					</div>
+				</div>
+				<div class="login_block">
+					
+					<div class="register_howitworks">
+						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
+						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
+					</div>
+					
+					<!-- 
+					<div class="login_signupnow">
 						<% if not session[:current_user_key] %>
-						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<!--<a class="btn btn-login color-1 size-2 hover-2 homepage-login-btn" href="/application/login" ><i class="fa fa-user"></i>-->
-						<!--Log in</a>-->
+							<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-1 hover-2" %>
 						<% end %>
 						<% if not session[:current_user_key] %>
 							<a class="be-register btn color-1 size-1 hover-6" href=""><i class="fa fa-lock"></i>sign up now</a>
 						<% end %>
 					</div>
+					-->
+
 				</div>
 
+				</div>
 			</div>
 		</div>
     <div class="info-block style-3">
@@ -254,10 +215,10 @@
 							<div class="row footer-list-footer">
 							<div class="col-md-6">
 							<ul class="link-list">
-                                <li><a href="https://fashionxt.com/agency/">About Us</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Help</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
-                                <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
+								<li><a href="https://fashionxt.com/agency/">About Us</a></li>
+								<li><a href="https://fashionxt.com/contact/">Help</a></li>
+								<li><a href="https://fashionxt.com/contact/">Contacts</a></li>
+								<li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
 							</ul></div>
 							<!--<div class="col-md-6">-->
 							<!--<ul class="link-list">-->
