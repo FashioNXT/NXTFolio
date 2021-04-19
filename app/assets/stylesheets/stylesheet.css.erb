@@ -118,7 +118,7 @@ a:focus { outline: none; outline-offset: 0px; color: inherit; }
 */
 header * { -webkit-backface-visibility: hidden; }
 
-header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: #222835; position: fixed; top: 0; line-height: 0; z-index: 1000; }
+header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: white; position: fixed; top: 0; line-height: 0; z-index: 1000; }
 
 header .custom-container { position: relative; }
 
@@ -149,13 +149,17 @@ img.be_logo { text-align: left; }
 .fa-angle-down { display: none; }
 
 /*login-block*/
-.login-header-block { margin-top: 10.5px; align: center; margin-bottom: 10.5px; padding-bottom: 15px;}
+.login-header-block { margin-top: 10.5px; align: center; margin-bottom: 10.5px; padding-bottom: 15px; width: 500px;}
 
-.login_block { text-align: center; }
+.login_block { text-align: center; margin-top: 10px;}
 
-.login_block .btn-login { margin-right: 0px; margin-bottom: 0px; }
+.login_block .btn-login { margin-right: 27px; margin-bottom: 10px; }
 
 .login_block a:hover { color: #262626; }
+
+.login_block .login_signupnow { position:absolute; left:30px; }
+
+.login_block .login_block_rightup { display: inline-block; }
 
 /*login user page*/
 .page-login .login-header-block { margin-top: 12px; }
@@ -382,7 +386,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 */
 .head-bg { background: #000; position: relative; padding: 10px; margin-bottom: 50px; }
 
-#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
+#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
 .head-bg-content { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: middle; width: 5000px; }
@@ -2656,10 +2660,12 @@ transition: all ease-out 0.3s;}
 
 .logo-c {
   display: none;
-  -webkit-filter: invert(100%);
+  -webkit-filter: invert(0%);
 }
 .logo-c.active {
   display: block;
+  height: 35px;
+  width: 50%;
 }
 
 #spinner-img {
@@ -3782,7 +3788,6 @@ body .login-user-down:hover {
 
 //Homepage Login section
 
-.homepage-login-btn-section{
     display: flex;
     flex-direction: row;
     width: 50%;
@@ -3810,4 +3815,26 @@ header .row-header .header-menu-block{
 .row-header {
     display: flex;
     flex-direction: row;
+}
+
+#custom_but_style {
+    font-size: 30px;
+	color: #C4C4C4;
+    padding: 
+}
+
+.landing_search_button {
+    margin: auto;
+    padding: 20px 0;
+    width: 500px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    border: 1px gray solid;
+    border-radius: 1px;
+}
+
+a.register-but-below-search-but{
+    color: white;
+    margin: 200px 80px;
 }
