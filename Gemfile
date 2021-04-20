@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.7.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.21.0'
 # Use Puma as the app server
@@ -74,7 +74,7 @@ gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'omniauth-facebook'
 gem 'city-state'
 gem 'geocoder'
-ruby '2.4.1'
+ruby '2.5.8'
 
 # Fix the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'

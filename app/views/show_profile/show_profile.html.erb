@@ -13,6 +13,11 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<style>
+			.big{
+				font-size: 25px;
+			}
+		</style>
 		
 	</head>
 	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
@@ -105,17 +110,23 @@
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
-								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" alt="">
+								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" alt="">
 							<% end %>
+								<p style="font-size: 14px;padding-top: 0px; text-align: right; margin-right: 20px">INSPIRED BY:  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;INSPIRATION TO:</p>
+								<p style="font-size: :20px">&emsp;</p>
+
+								<span style="font-size: 14px; margin-top:10px; text-align: left; margin-left: 160px"><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></span>
+								
+								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
+								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
+								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
+								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
+								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
+							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
-							<% if @general_info && @general_info.first_name && @general_info.last_name %>
-								<p class="be-use-name"><%= @general_info.first_name %> <%= @general_info.last_name %></p>
-							<% end %>
-							<div class="be-user-info">
-								<%= @general_info_values[:location] %>
-							</div>
+							
 							<div class="be-text-tags style-1 job_title-style">
 								<a><%= @job_title %></a>
 							</div>
