@@ -13,6 +13,8 @@ Feature: See a Profile
     Then I should be on the home page
     When I press and go to my profile
     Then I should see my first name
+    When I press and go to edit profile
+    Then I should be on the edit page
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
