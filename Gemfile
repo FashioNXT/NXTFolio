@@ -81,6 +81,7 @@ gem 'simplecov-rcov'
 # Fix the problem of "You are using an old OmniAuth version"
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'city-state'
 gem 'geocoder'
 ruby '2.4.1'

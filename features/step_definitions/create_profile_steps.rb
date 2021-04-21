@@ -4,7 +4,9 @@ Given(/^I am on the Match My Fashion home page$/) do
     visit root_path
 end
 
-
+Given(/^I am on the profile page$/) do
+  visit '/show_profile'
+end
 
 When(/^I sign up for an account$/) do
     @login_info = LoginInfo.create!({

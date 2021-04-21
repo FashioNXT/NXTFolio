@@ -7,12 +7,14 @@ Feature: See a Profile
 
   Scenario: When a user creates a profile, and I go to the profile page, I can see my profile informations
 
-    Given I am on the home page
+    Given I am on the profile page
     Given I am a valid user
-    When I log in
-    Then I should be on the home page
-    When I press and go to my profile
-    Then I should see my first name
+#    When I log in
+#    Then I should be on the home page
+#    When I press and go to my profile
+#    Then I should be on the profile page
+    When I press and go to edit profile
+    Then I should be on the edit page
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
