@@ -3811,3 +3811,94 @@ header .row-header .header-menu-block{
     display: flex;
     flex-direction: row;
 }
+
+# gallery picture style
+
+.gallery_body {
+  background: white;
+  padding: 10px;
+  margin-bottom: 35px !important;
+}
+
+.col-md-3 {
+  padding: 0;
+}
+
+.photo {
+  text-align: center;
+  position: relative;
+}
+
+.photo,
+.photo-hover,
+.photo-hover .mask,
+.photo-img,
+.photo-info {
+  width: 200px;
+  height: 230px;
+}
+
+.photo-img,
+.photo-hover,
+.photo-hover .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.photo-type-line .photo-hover {
+  z-index: 100;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.photo-type-line .photo-info {
+  z-index: 10;
+  color: #fff;
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+.photo-type-line .photo-info .headline {
+  font-size: 20px;
+}
+
+.photo-type-line .photo-info .line {
+  height: 1px;
+  width: 0;
+  margin: 15px auto;
+  background: #ffffff;
+  -webkit-transition: all 500ms ease-out;
+  -moz-transition: all 500ms ease-out;
+  -o-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+}
+
+.photo-type-line .photo-hover .mask {
+  background: #000;
+  filter: alpha(opacity = 50);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.photo-type-line .photo-hover:hover .line {
+  width: 40%;
+}
+
+.photo-type-line .photo-hover:hover {
+  opacity: 1;
+}
+
+.photo-img {
+  background: #7a548f;
+  z-index: 0;
+}
+
+# gallery end
