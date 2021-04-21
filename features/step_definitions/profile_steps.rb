@@ -4,6 +4,10 @@ Then(/^I should see my first name$/) do
     page.has_content?(@general_info.first_name)
 end
 
+Then(/^I should see my last name$/) do
+  page.has_content?(@general_info.last_name)
+end
+
 Then(/^I should see my gender$/) do
   page.has_content?(@general_info.gender)
 end
