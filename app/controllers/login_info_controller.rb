@@ -3,16 +3,16 @@ class LoginInfoController < ApplicationController
   def list
     @login_infos = LoginInfo.all
   end
-   
+
   def show
     @login_info = LoginInfo.find(params[:id])
   end
-   
+
   # Associated with the view used for create
   def new
     @login_info = LoginInfo.new
   end
-   
+
   # Create is called upon for the 1st part of profile creation
   def create
     @login_info = LoginInfo.new(login_info_params)
@@ -26,9 +26,9 @@ class LoginInfoController < ApplicationController
     if @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
       if @login_info[:password] == login_info_params[:password_confirmation]
         @login_info.userKey = SecureRandom.hex(10)
-        
+
         if @login_info.save
-          session[:current_user_key] = @login_info.userKey 
+          session[:current_user_key] = @login_info.userKey
           flash[:notice] = "Account Created!"
           redirect_to new_general_info_path
         else
@@ -44,12 +44,12 @@ class LoginInfoController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   # Params used to create the LoginInfo object
   def login_info_params
     params.require(:login_info).permit(:email, :password, :password_confirmation)
   end
-  
+
   # Allows user to edit the login_info_params of the LoginInfo object
   # Displays information pulled from database that matches the session key of the current user
   # Associated with the view used for update
@@ -58,11 +58,11 @@ class LoginInfoController < ApplicationController
       @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
     end
   end
-  
+
   # Saves the edit of the LoginInfo object to the database
   def update
     @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
-    
+
     if login_info_params[:password] == login_info_params[:password_confirmation]
       if @login_info.update_attributes(login_info_params)
         redirect_to '/show_profile'
@@ -78,12 +78,13 @@ class LoginInfoController < ApplicationController
   # Not implemented   
   def delete
   end
-  
+
   # Associated with the view used for login_submit
   def login
     @login_info = LoginInfo.new
+    #render :template => :'new/login'
   end
-  
+
   # Checks the email & password input against existing LoginInfo objects in database
   # Sets the session key of the current user if match found
   # Else displays error message
@@ -94,7 +95,7 @@ class LoginInfoController < ApplicationController
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey]
-        
+
         if @login_user[:is_admin] != nil
           session[:is_admin] = true
         end
@@ -109,12 +110,12 @@ class LoginInfoController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   # Params used to find the LoginInfo object in the database
   def login_info_param
-     params.require(:login_info).permit(:email, :password)
+    params.require(:login_info).permit(:email, :password)
   end
-  
+
   # Removes the session key of the current user
   def logout
     session[:current_user_key] = nil
