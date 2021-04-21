@@ -17,6 +17,8 @@ module NavigationHelpers
       '/login_info/new'
     when /^the login page$/
       '/login_info/login'
+    when /^login$/
+      '/login_info/login'
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."
     end

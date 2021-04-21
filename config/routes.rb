@@ -36,8 +36,9 @@ Rails.application.routes.draw do
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
-  
-  post 'login' => 'login_info#login', :as => 'login'
+
+
+  get 'login' => 'login_info#login', :as => 'login'
   get  'logout' => 'login_info#logout', :as => 'logout'
   # post 'create' => 'login_info#create', :as => 'create'
 
