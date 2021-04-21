@@ -187,19 +187,32 @@
 			</div>
 		</div>
         <div class="container-fluid custom-container">
-            <div class="row">
+            <div class="row profile-row">
                 <div class="col-md-10 col-md-offset-1">
                     <div id="container-mix"  class="row _post-container_">
+						<% if @on_Own %>
+							<div class="be-desc-label"><a href="/general_info/edit">Add Project</a></div>
+						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
                             <% @general_info.gallery_pictures.each do |pic| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <div class="profile-img-container">
+								<div class="col-md-3">
+									<div class="photo photo-type-line">
+									<a class="photo-hover">
+										<div class="photo-info">
+										<div class="headline">Lorem Ipsum</div>
+										<div class="line"></div>
+										<div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div>
+										</div>
+										<div class="mask"></div>
+									</a>
+									<div class="profile-img-container">
                                     <a class="be-img-block profile-img img-thumbnail">
                                         <img src="<%= pic.url %>" alt="omg">
                                     </a>
                                     </div>
-                                </div>
+									</div>
+								</div>
                             <% end %>
                         </div>
                     </div>
