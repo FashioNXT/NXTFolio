@@ -9,6 +9,10 @@ module NavigationHelpers
       '/'
     when /^the general info page$/
       '/general_info/new'
+    when /^the profile page$/
+      '/show_profile'
+    when /^the edit page$/
+      '/general_info/edit'
     when /^the sign up page$/
       '/login_info/new'
     when /^the login page$/
