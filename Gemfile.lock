@@ -351,6 +351,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2021.1)
+      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     warden (1.2.9)
@@ -417,7 +419,7 @@ DEPENDENCIES
   webdrivers (~> 4.0)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.5p335
 
 BUNDLED WITH
    2.2.16
