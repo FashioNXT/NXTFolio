@@ -7,3 +7,7 @@ end
 When(/^I press and go to my profile$/) do
   visit '/show_profile'
 end
+
+When(/^I press and go to edit profile$/) do
+  visit '/general_info/edit'
+end
