@@ -4,4 +4,5 @@
 #require_relative 'config/application'
 require File.expand_path('../config/application', __FILE__)
 
-Rails.application.load_tasks
+# Rails.application.load_tasks
+Blog::Application.load_tasks
