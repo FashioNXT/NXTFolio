@@ -252,8 +252,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   #config.omniauth :facebook, "338865583190444", "326a642bf693161f768750d1c511c576", callback_url: "http://fashion-links.herokuapp.com/users/auth/facebook/callback"
-  config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'], scope: 'public_profile,email'
+  #For Development:
+  #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'], scope: 'public_profile,email'
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], scope: 'userinfo.email,userinfo.profile'
+  #For Production:
+  config.omniauth :facebook, '458489938781377', 'baec9d28bc18bddb4c8e457fceb2d4a4', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
