@@ -256,9 +256,11 @@ Devise.setup do |config|
   #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'], callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback", :scope => 'public_profile,email', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}
   config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
   #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], scope: 'userinfo.email,userinfo.profile'
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://localhost:3000.com/users/auth/facebook/callback" }
+
   #For Production:
   #config.omniauth :facebook, '458489938781377', 'baec9d28bc18bddb4c8e457fceb2d4a4', scope: 'public_profile,email', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
-  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}} }
+  #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback" }
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
