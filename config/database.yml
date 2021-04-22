@@ -89,8 +89,10 @@ test: &test
 production:
   <<: *default
   database: workspace_production
-  username: workspace
-  password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>
+  username: beaverthing
+  password: ubuntu
+  #username: workspace
+  #password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>
 
 cucumber:
   <<: *test
