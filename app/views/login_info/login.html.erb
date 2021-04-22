@@ -84,10 +84,11 @@
           <a href="<%= user_facebook_omniauth_authorize_path%>", class="btn color-1 size-1 hover-1" ,id='facebook' ><i class="fa fa-facebook"></i>
             Facebook
           </a>
-          <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
+          <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
           <a href="<%= user_google_oauth2_omniauth_authorize_path%>", class="btn color-1 size-1 hover-1", id='google' ><i class="fa fa-google"></i>
             Google
           </a>
+          <%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
         </div>
       </div>
     </div>
