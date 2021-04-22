@@ -15,7 +15,11 @@ AWS_BUCKET: "AWS_BUCKET"
 AWS_REGION: "us-east-2"
 gmail_username: 'fashioNTWRKtesting@gmail.com'
 gmail_password: 'test123#'
+#development:
 facebook_client_id: '529985925072978'
 facebook_client_secret: 'd76f6eaaa6d11b8a0bd7c1d17849ddae'
 google_client_id: '334277817273-j2jeoq27e9lmijpeiqbruseq94i64dh6.apps.googleusercontent.com'
 google_client_secret: 'dgdnNbSSYUJnIaYvg7aBWJLf'
+#production:
+#facebook_client_id: '458489938781377'
+#facebook_client_secret: 'baec9d28bc18bddb4c8e457fceb2d4a4'
