@@ -256,7 +256,7 @@ Devise.setup do |config|
   #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'], scope: 'public_profile,email'
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], scope: 'userinfo.email,userinfo.profile'
   #For Production:
-  config.omniauth :facebook, '458489938781377', 'baec9d28bc18bddb4c8e457fceb2d4a4', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :facebook, '458489938781377', 'baec9d28bc18bddb4c8e457fceb2d4a4', scope: 'public_profile,email', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
