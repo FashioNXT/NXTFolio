@@ -35,15 +35,15 @@ class LoginInfoController < ApplicationController
           redirect_to new_general_info_path
         else
           flash[:notice] = "Failed Saving beause Email/Password format is not valid !"
-          redirect_to root_path
+          redirect_to login_info_login_path
         end
       else
         flash[:notice] = "Passwords don't match! Please try again."
-        redirect_to root_path
+        redirect_to login_info_login_path
       end
     else
       flash[:notice] = "Enter your password! Please try again."
-      redirect_to root_path
+      redirect_to login_info_login_path
     end
   end
 
@@ -109,7 +109,7 @@ class LoginInfoController < ApplicationController
     else
       flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
       # redirect_to login_info_login_path
-      redirect_to root_path
+      redirect_to login_info_login_path
     end
   end
 
