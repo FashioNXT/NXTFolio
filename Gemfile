@@ -78,13 +78,17 @@ gem "rails-controller-testing"
 gem "factory_bot_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
+
 # Fix the problem of "You are using an old OmniAuth version"
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'omniauth', '~>2.0'
+gem "omniauth-rails_csrf_protection", '~> 1.0' #works for omniauth 2.0
+#gem 'devise'
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'city-state'
 gem 'geocoder'
-ruby '2.4.1'
+ruby '2.4.5' #ruby '2.4.1'
 
 # Fix the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'

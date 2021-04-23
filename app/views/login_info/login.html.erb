@@ -78,15 +78,14 @@
 
     <div class="head-bg-content">
 
-      <h1>Sign in/up Via</h1>
+      <h1>Sign in/up Via test</h1>
       <div class="homepage-login-btn-section">
         <div class="login_block">
-          <a href="<%= user_facebook_omniauth_authorize_path%>", class="btn color-1 size-1 hover-1" ,id='facebook' ><i class="fa fa-facebook"></i>
-            Facebook
-          </a>
-          <a href="<%= user_google_oauth2_omniauth_authorize_path%>", class="btn color-1 size-1 hover-1", id='google' ><i class="fa fa-google"></i>
-            Google
-          </a>
+          <div>
+            <%= button_to "Facebook", user_facebook_omniauth_authorize_path, method: :post, class: "btn color-1 size-1 hover-1" %>
+            <br>
+            <%= button_to 'Google', user_google_oauth2_omniauth_authorize_path, class: "btn color-1 size-1 hover-1" %>
+          </div>
         </div>
       </div>
     </div>
