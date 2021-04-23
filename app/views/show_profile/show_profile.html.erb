@@ -114,16 +114,16 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-								<p style="font-size: 14px;padding-top: 0px; text-align: right; margin-right: 20px">INSPIRED BY:  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;INSPIRATION TO:</p>
+								<p style="font-size: 14px/40px;padding-top: 0px; text-align: right; margin-right: 20px">INSPIRED BY:  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;INSPIRATION TO:</p>
 								<p style="font-size: :20px">&emsp;</p>
 
-								<span style="font-size: 14px; margin-top:10px; text-align: left; margin-left: 160px"><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></span>
+								<span style="font-size: 16px/40px; margin-top:10px; text-align: left; margin-left: 160px"><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></span>
 								
-								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
-								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
-								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
-								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
-								<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							
@@ -131,28 +131,28 @@
 								<a><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
-								<% if @general_info && @general_info.facebook_link != "" %>							
+								<!--% if @general_info && @general_info.facebook_link != "" %-->							
 									<a class="social-btn color-1" href="http://<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
-								<% end %>
-								<% if @general_info && @general_info.linkedIn_link != "" %>
+								<!--% end %-->
+								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
 									<a class="social-btn color-6" href="http://<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
-								<% end %>
-								<% if @login_info && @login_info.email != "" %>
+								<!--% end %-->
+								<!--% if @login_info && @login_info.email != "" %-->
 									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
-								<% end %>
-								<% if @general_info && @general_info.phone != "" %>
+								<!--% end %-->
+								<!--% if @general_info && @general_info.phone != "" %-->
 									<a class="social-btn color-2" href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
-								<% end %>
+								<!--% end %-->
 							</div>
-							<% if @general_info && @general_info.personalWebsite_link != "" %>
+							<!--% if @general_info && @general_info.personalWebsite_link != "" %-->
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
-							<% end %>
+							<!--% end %-->
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-6 left-feild">
 					<div class="be-desc-block">
-				  		<% if @general_info && @general_info.bio != "" %>
+				  		<!--% if @general_info && @general_info.bio != "" %-->
 							<div class="be-desc-author">
 								<div class="be-desc-label">About Me</div>
 								<div class="clearfix"></div>
@@ -161,10 +161,10 @@
 									<%= @general_info.bio %>
 								</div>
 							</div>
-						<% end %>
+						<!--% end %-->
 					</div>
 					<div class="be-desc-block">
-						<% if @general_info && @profile_info%>
+						<!--% if @general_info && @profile_info%-->
 							<div class="be-desc-author">
 								<div class="be-desc-label">More Details on Profession</div>
 								<div class="clearfix"></div>
@@ -181,7 +181,7 @@
 								  	
 								</div>
 							</div>
-						<% end %>
+						<!--% end %-->
 					</div>
 			  	</div>
 			</div>
