@@ -161,7 +161,7 @@ class GeneralInfoController < ApplicationController
 
     if @general_info.save!
       # Send Verification Email upon successful sign-up
-      UserMailer.welcome_email(@general_info,current_user).deliver_now! #need to fix this!
+      UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
       session.delete(:current_login_user)
       # Redirect to specific profession edit page
       if $template_name == "Designer"
