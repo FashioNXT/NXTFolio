@@ -25,4 +25,5 @@ google_client_secret: 'dgdnNbSSYUJnIaYvg7aBWJLf'
 #facebook_client_secret: 'baec9d28bc18bddb4c8e457fceb2d4a4'
 
 #For UserMailer production:
-domain_url: 'damp-atoll-07859.herokuapp.com'
+#domain_url: 'damp-atoll-07859.herokuapp.com'
+domain_url: 'fashionnxt.herokuapp.com'
