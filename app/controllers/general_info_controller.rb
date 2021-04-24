@@ -208,12 +208,11 @@ class GeneralInfoController < ApplicationController
 
     if general_info_update_param[:gallery_pictures].present?
       galleryPict= galleryPict + general_info_update_param[:gallery_pictures]
+      @general_info.update_attribute(:gallery_pictures, galleryPict)
+    else
+      @general_info.update_attributes!(general_info_update_param)
     end
-    general_info_update_param[:gallery_pictures] = galleryPict
-    
-    @general_info.update_attributes!(general_info_update_param)
 
-    @general_info.update_attribute(:gallery_pictures, galleryPict)
     redirect_to '/show_profile'
   end
 

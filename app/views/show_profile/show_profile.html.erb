@@ -170,7 +170,7 @@
 								<div class="clearfix"></div>
 								<div class="be-desc-text  scrollable-description">
 								  <!--profession details here-->
-								  	<% @profile_info.each do |attr, index|%>
+								  	<% @profile_info.present? and @profile_info.each do |attr, index|%>
 										<!--<div class="input-col col-xs-12 col-sm-6">-->
 											<div class="form-group fg_icon focus-2">
 												<div class="form-label"><%=index%></div>
