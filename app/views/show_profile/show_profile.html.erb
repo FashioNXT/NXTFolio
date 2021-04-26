@@ -114,10 +114,17 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-								<p style="font-size: 14px/40px;padding-top: 0px; text-align: right; margin-right: 20px">INSPIRED BY:  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;INSPIRATION TO:</p>
-								<p style="font-size: :20px">&emsp;</p>
+							<div class = "show-page-front">
+								INSPIRED BY: 
+								<span>INSPIRATION TO:</span>
+							</div>
 
-								<span style="font-size: 16px/40px; margin-top:10px; text-align: left; margin-left: 160px"><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></span>
+							
+								<p >&emsp;</p>
+
+
+
+								<p style="font-size: 12px/30px; margin-top:10px; text-align: left; margin-left: 287px" ><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></p>
 								
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
@@ -201,9 +208,12 @@
 									<a class="photo-hover">
 										<div class="photo-info">
 										<div class="headline">Lorem Ipsum</div>
-										<div class="line"></div>
-										<div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div>
+										<!--div class="line"></div-->
+										<!--div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div-->
 										</div>
+										<ul class="cleanfloat">
+  								    	<li>&#9733;&#9733;&#9733;&#9733;&#9733;</li>
+   										</ul>
 										<div class="mask"></div>
 									</a>
 									<div class="profile-img-container">
