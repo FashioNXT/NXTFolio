@@ -208,15 +208,12 @@ class GeneralInfoController < ApplicationController
 
     if general_info_update_param[:gallery_pictures].present?
       galleryPict= galleryPict + general_info_update_param[:gallery_pictures]
-    end
-    general_info_update_param[:gallery_pictures] = galleryPict
-    
-
-    if @general_info.update_attribute(:gallery_pictures, galleryPict)
-      redirect_to '/show_profile'
+      @general_info.update_attribute(:gallery_pictures, galleryPict)
     else
-      render :action => 'edit'
+      @general_info.update_attributes!(general_info_update_param)
     end
+
+    redirect_to '/show_profile'
   end
 
   # Params used to edit the GeneralInfo object
