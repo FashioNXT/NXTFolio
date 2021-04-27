@@ -73,3 +73,10 @@ end
 Then (/^I should redirect to the linkedin page$/) do 
     visit 'https://www.linkedin.com/company/fashionxt/'
 end
+
+When (/^I click on member's picture$/) do
+    visit root_path
+end
+Then (/^I should redirect to member's personal profile page$/) do 
+    visit root_path
+end
