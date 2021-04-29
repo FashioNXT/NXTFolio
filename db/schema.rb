@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210428031835) do
+ActiveRecord::Schema.define(version: 20210428194856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20210428031835) do
     t.integer  "GeneralInfo_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "gallery"
   end
 
   create_table "general_infos", force: :cascade do |t|

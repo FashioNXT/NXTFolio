@@ -1,0 +1,30 @@
+<h2>Upload Project</h2>
+
+<%= form_for Gallery.new, url: {action: "create"}, :id => 'gallery_form' do |f| %>
+	<!-- Check for errors -->
+	<% if @gallery.errors.any? %>
+		<% @gallery.errors.full_messages.each do |msg| %>
+		<!-- Show errors -->
+		<div class="alert alert-danger"><%= msg %></div>
+		<% end %>
+	<% end %>
+
+	<div class="form-group">
+		<%= f.label :gallery_title %>
+		<%= f.text_field :gallery_title, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :gallery_description %>
+		<%= f.text_area :gallery_description, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :gallery_picture %>
+		<%= f.file_field :gallery_picture, multiple: true, accept: 'image/png,image/jpeg',:class => 'custom-file-input', :type => 'file' %>
+	</div>
+	<br>
+
+	<%= f.submit "Submit", class: 'btn btn-primary' %>
+	<%= link_to "Cancel", root_path, class: 'btn btn-default' %>
+<% end %>

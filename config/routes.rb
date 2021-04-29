@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  get 'gallery/new'
+  get 'galleries/new'
 
-  get 'gallery/create'
+#  get 'galleries/create'
 
-  get 'gallery/destroy'
+  get 'galleries/destroy'
 
-  get 'gallery/index'
+  get 'galleries/index'
+
+  post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
+
+  post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
 
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
@@ -88,7 +92,7 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
-  resources :gallery
+  resources :galleries
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
