@@ -88,16 +88,16 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'city-state'
 gem 'geocoder'
-<<<<<<< HEAD
+#<<<<<<< HEAD
 #<<<<<<< HEAD
 ruby '2.4.1' #ruby '2.4.1'
 #=======
 #ruby '2.4.5'
 ruby '2.4.1'
 #>>>>>>> 9cda19548847a105e64e16b8dc9f96c6ae21e716
-=======
+#=======
 ruby '2.4.1' #ruby '2.4.1'
->>>>>>> d7aab7ded0628ce60f3aeab9a3e25ea58695a04f
+#>>>>>>> d7aab7ded0628ce60f3aeab9a3e25ea58695a04f
 
 # Fix the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'

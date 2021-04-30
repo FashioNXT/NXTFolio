@@ -212,31 +212,37 @@
 											<div class="headline"> <%= gallery.gallery_title %> </div>
 											<div class="line"></div>
 											<div class="desc"> <%= gallery.gallery_description %> </div>
+
+
 											</div>
+
 											<div class="mask"></div>
 										</a>
+
 										<div class="profile-img-container">
 										<a class="be-img-block profile-img img-thumbnail">
 											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
 										</a>
-										</div>
-										</div>
-<<<<<<< HEAD
-										<ul>
+										<ul class= "rating" >
+											<% form_id = "gallery_#{gallery.id}_rating" %>
+											<%= form_for gallery.gallery_description.last || gallery.gallery_description.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
+            										<%= f.hidden_field :gallery_id%>
+           											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
+          									 <% end %>
 											<% (1..5).each do |i| %>
-  								    			<li class="rating_star" data-stars="<%= i %>" data-picture-id="<%= @general_info.specific_profile_id %>" id="<%= "#{@general_info.specific_profile_id}_#{i}" %>" > &#9733; <li>
+  								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
   								    		<% end %>
+  								    		
+  								    			
+  								    		
    										</ul>
-
+										</div>
+											<%= gallery.gallery_totalRate %>
+										</div>
+										
 										<div class="mask"></div>
 									</a>
-									<div class="profile-img-container">
-                                    <a class="be-img-block profile-img img-thumbnail">
-                                        <img src="<%= pic.url %>" alt="omg">
-                                    </a>
-                                    </div>
-=======
->>>>>>> d7aab7ded0628ce60f3aeab9a3e25ea58695a04f
+									
 									</div>
 								<% end %>
 							<% end %>
