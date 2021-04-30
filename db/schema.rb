@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427172826) do
+ActiveRecord::Schema.define(version: 20210428194856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "galleries", force: :cascade do |t|
+    t.string   "gallery_title"
+    t.text     "gallery_description"
+    t.string   "gallery_picture",                  array: true
+    t.float    "gallery_totalRate"
+    t.integer  "gallery_totalRator"
+    t.integer  "GeneralInfo_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "gallery"
+  end
 
   create_table "general_infos", force: :cascade do |t|
     t.string   "userKey"

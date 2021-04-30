@@ -8,6 +8,7 @@ class ShowProfileController < ApplicationController
       puts "sessions current_user_key" + user_key_current.to_s
 
       if GeneralInfo.exists?(:userKey => user_key_current)
+        @gallery = Gallery.all
         @general_info = GeneralInfo.find_by(userKey: user_key_current)
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values

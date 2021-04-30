@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'galleries/new'
+
+#  get 'galleries/create'
+
+  get 'galleries/destroy'
+
+  get 'galleries/index'
+
+  get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
+
+  post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
+
+  post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
+
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -80,6 +94,7 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
+  resources :galleries
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
