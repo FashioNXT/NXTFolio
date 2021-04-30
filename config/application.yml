@@ -13,8 +13,6 @@ AWS_ACCESS_KEY: "AWS_ACCESS_KEY"
 AWS_SECRET_KEY: "vni+AWS_SECRET_KEY"
 AWS_BUCKET: "AWS_BUCKET"
 AWS_REGION: "us-east-2"
-gmail_username: 'fashioNTWRKtesting@gmail.com'
-gmail_password: 'test123#'
 #development&production:
 facebook_client_id: '529985925072978'
 facebook_client_secret: 'd76f6eaaa6d11b8a0bd7c1d17849ddae'
@@ -27,3 +25,6 @@ google_client_secret: 'dgdnNbSSYUJnIaYvg7aBWJLf'
 #For UserMailer production:
 #domain_url: 'damp-atoll-07859.herokuapp.com'
 domain_url: 'fashionnxt.herokuapp.com'
+#For UserMailer:
+gmail_username: 'fashioNTWRKtesting@gmail.com'
+gmail_password: 'test123#'

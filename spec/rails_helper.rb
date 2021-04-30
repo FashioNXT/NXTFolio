@@ -1,3 +1,4 @@
+#spec/rails_helper.rb
 Capybara.default_driver = :selenium
 require 'webdrivers'
 
@@ -58,4 +59,24 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include Rails.application.routes.url_helpers
 end
+
+#For OmniAuth integration test
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                     :provider => 'google_oauth2',
+                                                                     :uid => '123545',
+                                                                     :info => {
+                                                                       :email =>'infinite1@gmail.com',
+                                                                       :name=> 'TestName',
+                                                                     }
+                                                                   })
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+                                                                :provider => 'facebook',
+                                                                :uid => '123545',
+                                                                :info => {
+                                                                  :email =>'infiniteFB@gmail.com',
+                                                                  :name => 'TestName',
+                                                                }
+                                                              })

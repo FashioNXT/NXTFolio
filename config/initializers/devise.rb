@@ -258,8 +258,8 @@ Devise.setup do |config|
   #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://localhost:3000.com/users/auth/facebook/callback" }
 
   #For Production (Heroku deployment):
-  config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://fashionnxt.herokuapp.comusers/auth/facebook/callback"
-  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://fashionnxt.herokuapp.comusers/auth/google_oauth2/callback" }
+  config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://fashionnxt.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://fashionnxt.herokuapp.com/users/auth/google_oauth2/callback" }
 
   #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
   #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/google_oauth2/callback" }
