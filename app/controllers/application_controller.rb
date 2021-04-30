@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
       session[:current_user_key] = userKey
       super #redirect to where the user came from
     else
+      @user[:password]+="#1a" #for password requirement
       session[:current_login_user]=@user
       new_general_info_path
     end
