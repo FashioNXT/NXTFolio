@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+#for duplicate initialization error, try commenting require "support/factory_girl.rb" in rails_helper.rb
 feature 'Sign up with Google' do
 
   before do
