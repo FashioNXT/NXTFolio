@@ -1,4 +1,5 @@
 class GeneralInfo < ApplicationRecord
+    has_many :gallery
     has_one :login_info
     validates_presence_of :first_name
     validates_presence_of :last_name

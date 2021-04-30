@@ -53,7 +53,6 @@
 				<div class="header-menu-block">
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
-						<!--<li><a href="activity.html">Activity</a></li>-->
 						<li><a href="/search_profile/search">Search</a>
 						</li>
 						<% if session[:current_user_key] %>
@@ -63,7 +62,7 @@
 									<ul>
 										<li><a href="/general_info/edit">Edit Profile</a></li>
 										<% if @attribute_titles && !@is_Admin %>
-											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title%> Info</a></li>
+											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title %> Info</a></li>
 										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if !@is_Admin %>
@@ -200,19 +199,29 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div id="container-mix"  class="row _post-container_">
 						<% if @on_Own %>
-							<div class="be-desc-label"><a href="/general_info/edit">Add Project</a></div>
+							<div class="be-desc-label"><a href="/galleries/new">Add Project</a></div>
 						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
-                            <% @general_info.gallery_pictures.each do |pic| %>
-								<div class="col-md-3">
-									<div class="photo photo-type-line">
-									<a class="photo-hover">
-										<div class="photo-info">
-										<div class="headline">Lorem Ipsum</div>
-										<!--div class="line"></div-->
-										<!--div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div-->
+							<% @gallery.present? and @gallery.each do |gallery| %>
+								<% if gallery.GeneralInfo_id == @general_info.id %>
+									<div class="col-md-3">
+										<div class="photo photo-type-line">
+										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+											<div class="photo-info">
+											<div class="headline"> <%= gallery.gallery_title %> </div>
+											<div class="line"></div>
+											<div class="desc"> <%= gallery.gallery_description %> </div>
+											</div>
+											<div class="mask"></div>
+										</a>
+										<div class="profile-img-container">
+										<a class="be-img-block profile-img img-thumbnail">
+											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+										</a>
 										</div>
+										</div>
+<<<<<<< HEAD
 										<ul>
 											<% (1..5).each do |i| %>
   								    			<li class="rating_star" data-stars="<%= i %>" data-picture-id="<%= @general_info.specific_profile_id %>" id="<%= "#{@general_info.specific_profile_id}_#{i}" %>" > &#9733; <li>
@@ -226,9 +235,11 @@
                                         <img src="<%= pic.url %>" alt="omg">
                                     </a>
                                     </div>
+=======
+>>>>>>> d7aab7ded0628ce60f3aeab9a3e25ea58695a04f
 									</div>
-								</div>
-                            <% end %>
+								<% end %>
+							<% end %>
                         </div>
                     </div>
                 </div>
