@@ -201,27 +201,6 @@
 						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
-<<<<<<< HEAD
-                            <% @general_info.gallery_pictures.each do |pic| %>
-								<div class="col-md-3">
-									<div class="photo photo-type-line">
-									<a class="photo-hover">
-										<div class="photo-info">
-										<div class="headline">Lorem Ipsum</div>
-										<!--div class="line"></div-->
-										<!--div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div-->
-										</div>
-										<ul class="cleanfloat">
-  								    	<li>&#9733;&#9733;&#9733;&#9733;&#9733;</li>
-   										</ul>
-										<div class="mask"></div>
-									</a>
-									<div class="profile-img-container">
-                                    <a class="be-img-block profile-img img-thumbnail">
-                                        <img src="<%= pic.url %>" alt="omg">
-                                    </a>
-                                    </div>
-=======
 							<% if @gallery.present? and @gallery.GeneralInfo_id == @general_info.id %>
 								<% @gallery.id each do |gallery| %>
 									<div class="col-md-3">
@@ -240,7 +219,6 @@
 										</a>
 										</div>
 										</div>
->>>>>>> 4/28- create page
 									</div>
 								<% end %>
 							<% else %>

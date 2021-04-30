@@ -23,6 +23,10 @@ class GalleriesController < ApplicationController
   def index
   end
 
+  def show
+    @gallery = Gallery.find(params[:project_key])
+  end
+
   private
     def gallery_params
       params.require(:gallery).permit(:gallery, :gallery_title, :gallery_description, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_picture => [])

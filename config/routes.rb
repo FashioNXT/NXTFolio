@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'galleries/index'
 
+  get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
+
   post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
 
   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
