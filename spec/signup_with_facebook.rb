@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+#clean test database before running test
 feature 'Sign up with Facebook' do
 
   before do
