@@ -770,3 +770,20 @@ $('.s-color').on('click', function() {
 
 
 });
+
+$(function(){
+    $('.rating_star').click(function(){
+        var star = $(this);
+        var picture_id = $(this).attr('data-picture-id');
+        var stars = $(this).attr('data-stars');
+
+        for(i=1; i<=5; i++){
+            if(i <= stars){
+                $('#' + picture_id + '_' + i).addClass('on');
+            } else {
+                $('#' + picture_id + '_' + i).removeClass('on');
+            }
+        }
+    });
+
+});

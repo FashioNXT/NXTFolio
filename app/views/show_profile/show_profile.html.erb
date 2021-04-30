@@ -130,6 +130,8 @@
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.specific_profile %></p>
+
 								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
@@ -211,9 +213,12 @@
 										<!--div class="line"></div-->
 										<!--div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a placerat ipsum. Proin pulvinar sapien ac scelerisque vestibulum. </div-->
 										</div>
-										<ul class="cleanfloat">
-  								    	<li>&#9733;&#9733;&#9733;&#9733;&#9733;</li>
+										<ul>
+											<% (1..5).each do |i| %>
+  								    			<li class="rating_star" data-stars="<%= i %>" data-picture-id="<%= @general_info.specific_profile_id %>" id="<%= "#{@general_info.specific_profile_id}_#{i}" %>" > &#9733; <li>
+  								    		<% end %>
    										</ul>
+
 										<div class="mask"></div>
 									</a>
 									<div class="profile-img-container">
