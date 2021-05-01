@@ -1,5 +1,6 @@
 class Gallery < ApplicationRecord
-#    belongs_to :general_info
+#It is weired that I need to block the line below to make the function work.
+#    belongs_to :general_info   
     validates_presence_of :gallery_title
     validates_presence_of :gallery_description
     validates_presence_of :gallery_picture
