@@ -1,4 +1,3 @@
-search_engine/search.html.erb
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,40 +83,40 @@ search_engine/search.html.erb
   <% end %>
 
   <div class="head-bg-content">
-  <!-- Display Search Result -->
-  <% if @final_users.present?%>
-    <div class="divider"><span></span><span>Search Results</span><span></span></div>
-  <% end %>
-  <div class="container-fluid custom-container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <% @final_users.present? and @final_users.each do |info| %>
-          <div class="category-1 mix custom-column-5">
-            <a class="be-img-block">
-              <div class="photo photo-type-line">
-                <% if info.profile_picture? %>
-                  <img src="<%= info.profile_picture.url %>" alt="omg">
-                <% else %>
-                  <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                <% end %>
-                <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
-                  <div class="photo-info">
-                    <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
-                    <div class="line"></div>
-                    <div class="desc"> <%= info.city %> </div>
-                    <div class="desc"> <%= info.state %> </div>
-                    <div class="line"></div>
-                    <div class="desc"> <%= info.bio %> </div>
-                  </div>
-                  <div class="mask"></div>
-                </a>
-              </div>
-            </a>
-          </div>
-        <% end %>
+    <!-- Display Search Result -->
+    <% if @final_users.present?%>
+      <div class="divider"><span></span><span>Search Results</span><span></span></div>
+    <% end %>
+    <div class="container-fluid custom-container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <% @final_users.present? and @final_users.each do |info| %>
+            <div class="category-1 mix custom-column-5">
+              <a class="be-img-block">
+                <div class="photo photo-type-line">
+                  <% if info.profile_picture? %>
+                    <img src="<%= info.profile_picture.url %>" alt="omg">
+                  <% else %>
+                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                  <% end %>
+                  <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+                    <div class="photo-info">
+                      <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+                      <div class="line"></div>
+                      <div class="desc"> <%= info.city %> </div>
+                      <div class="desc"> <%= info.state %> </div>
+                      <div class="line"></div>
+                      <div class="desc"> <%= info.bio %> </div>
+                    </div>
+                    <div class="mask"></div>
+                  </a>
+                </div>
+              </a>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
 </div>

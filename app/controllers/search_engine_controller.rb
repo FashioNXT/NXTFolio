@@ -1,10 +1,18 @@
 class SearchEngineController < ApplicationController
 
     def show
-
+        if session[:current_user_key]
+            current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+            @username = current_user[:first_name]
+        end
     end
 
     def search
+        if session[:current_user_key]
+            current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+            @username = current_user[:first_name]
+        end
+
         @params_args = params #parameters passed from view
         country = "United States" # change country to industry later (need to modify filterBy as well)
         state = @params_args[:State]
