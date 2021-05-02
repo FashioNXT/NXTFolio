@@ -1,0 +1,167 @@
+search_engine/search.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FashioNXT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "search_engine.css"%>">
+</head>
+<body>
+<!-- HEADER -->
+<%= render 'shared/header' %>
+
+<!-- CONTENT -->
+<div class="s008" id='head-bg-img'>
+  <%= form_tag(search_engine_search_path, :method=>'get') do %>
+    <div class="inner-form">
+      <div class="basic-search">
+        <div class="input-field">
+          <input name="Keyword" id="search" type="text" placeholder="Type Keywords" />
+          <div class="icon-wrap">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+              <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="advance-search">
+        <span class="desc">Advanced Search</span>
+        <div class="row">
+          <div class="input-field">
+            <div class="input-select">
+              <select name="Industry" data-trigger="" name="choices-single-defaul">
+                <option placeholder="" value="">INDUSTRY</option>
+                <option>Creators</option>
+                <option>Services</option>
+                <option>Makers</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-field">
+            <div class="input-select">
+              <select name="Profession" data-trigger="" name="choices-single-defaul">
+                <option placeholder="" value="">PROFESSION</option>
+                <option>Model</option>
+                <option>Photographer</option>
+                <option>Designer</option>
+                <option>Agent</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-field">
+            <div class="input-select">
+              <select name="State" data-trigger="" name="choices-single-defaul">
+                <option placeholder="" value="">STATE</option>
+                <%= options_for_select(CS.states(:us)) %>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row third">
+          <div class="input-field">
+            <div class="result-count">
+              <span>108 </span>results</div>
+            <div class="group-btn">
+              <button class="btn-delete" id="delete">Reset</button>
+              <button class="btn-search">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="head-bg-content">
+  <!-- Display Search Result -->
+  <% if @final_users.present?%>
+    <div class="divider"><span></span><span>Search Results</span><span></span></div>
+  <% end %>
+  <div class="container-fluid custom-container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <% @final_users.present? and @final_users.each do |info| %>
+          <div class="category-1 mix custom-column-5">
+            <a class="be-img-block">
+              <div class="photo photo-type-line">
+                <% if info.profile_picture? %>
+                  <img src="<%= info.profile_picture.url %>" alt="omg">
+                <% else %>
+                  <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                <% end %>
+                <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+                  <div class="photo-info">
+                    <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+                    <div class="line"></div>
+                    <div class="desc"> <%= info.city %> </div>
+                    <div class="desc"> <%= info.state %> </div>
+                    <div class="line"></div>
+                    <div class="desc"> <%= info.bio %> </div>
+                  </div>
+                  <div class="mask"></div>
+                </a>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+<!-- FOOTER -->
+<!--<%= render 'shared/footer' %>-->
+
+<script src="js/extention/choices.js"></script>
+<script>
+    const customSelects = document.querySelectorAll("select");
+    const deleteBtn = document.getElementById('delete')
+    const choices = new Choices('select',
+        {
+            searchEnabled: false,
+            removeItemButton: true,
+            itemSelectText: '',
+        });
+    for (let i = 0; i < customSelects.length; i++)
+    {
+        customSelects[i].addEventListener('addItem', function(event)
+        {
+            if (event.detail.value)
+            {
+                let parent = this.parentNode.parentNode
+                parent.classList.add('valid')
+                parent.classList.remove('invalid')
+            }
+            else
+            {
+                let parent = this.parentNode.parentNode
+                parent.classList.add('invalid')
+                parent.classList.remove('valid')
+            }
+        }, false);
+    }
+    deleteBtn.addEventListener("click", function(e)
+    {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+            deleteAll[i].click();
+        }
+    });
+
+</script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

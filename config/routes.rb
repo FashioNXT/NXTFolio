@@ -87,6 +87,10 @@ Rails.application.routes.draw do
   get 'search_profile/show_profile/:id' => 'search_profile#show_profile', :as => 'search_profile/show_profile'
   get 'add_profession' => 'template#index', :as => 'template'
   post '/' => 'general_info#index', :as => 'general_info_index_post'
+
+  get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
+  get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
+
   resources :general_info
   resources :login_info
   resources :specific_designer

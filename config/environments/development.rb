@@ -57,6 +57,8 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  Rails.application.config.assets.precompile += %w( search_engine.css )
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
