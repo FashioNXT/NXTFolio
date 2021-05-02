@@ -9,9 +9,9 @@
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
-AWS_ACCESS_KEY: 'AKIAXWAOGZVWGPYHS2FK'
-AWS_SECRET_KEY: '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'
-AWS_BUCKET: 'fasionnxtspring2021'
+AWS_ACCESS_KEY: ''
+AWS_SECRET_KEY: ''
+AWS_BUCKET: ''
 AWS_REGION: "us-east-2"
 #development&production:
 facebook_client_id: '529985925072978'

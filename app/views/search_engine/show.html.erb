@@ -14,14 +14,14 @@
       <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
       <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
       <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
-      <link rel="stylesheet" href="<%= asset_path "search_engine.css"%>">
+      
     </head>
     <body>
       <!-- HEADER -->
       <%= render 'shared/header' %>
 
       <!-- CONTENT -->
-      <div class="s008" style="background-image: url('/assets/images/bg.jpb');">
+      <div class="s008" id='head-bg-img'>
         <form>
           <div class="inner-form">
             <div class="basic-search">
@@ -131,9 +131,6 @@
           </div>
         </form>
       </div>
-
-      <!-- FOOTER -->
-      <%= render 'shared/footer' %>
 
       <script src="js/extention/choices.js"></script>
       <script>
