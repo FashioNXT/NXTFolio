@@ -84,8 +84,9 @@
 
   <div class="head-bg-content">
     <!-- Display Search Result -->
-    <% if @final_users.present?%>
-      <div class="divider"><span></span><span>Search Results</span><span></span></div>
+    <div class="divider"><span></span><span>Search Results</span><span></span></div>
+    <% if @final_users.none? %>
+    No matching profiles
     <% end %>
     <div class="container-fluid custom-container">
       <div class="row">
