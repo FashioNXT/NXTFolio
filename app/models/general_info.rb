@@ -319,10 +319,10 @@ class GeneralInfo < ApplicationRecord
     end
   end
 
-  def self.filterBy country, state, profession
+  def self.filterBy state, profession
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
-    @filteredUsers = @filteredUsers.where(country: country) #United States
+    # @filteredUsers = @filteredUsers.where(country: country) #United States
     @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
 
     #@filteredUsers.each do |user|

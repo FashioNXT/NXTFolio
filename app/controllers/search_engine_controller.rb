@@ -17,7 +17,7 @@ class SearchEngineController < ApplicationController
         country = "United States" # change country to industry later (need to modify filterBy as well)
         state = @params_args[:State]
         profession = @params_args[:Profession]
-        @filtered_users = GeneralInfo.filterBy country, state, profession
+        @filtered_users = GeneralInfo.filterBy state, profession
 
         #puts "Filtered users are: "
         #@filtered_users.each do |user|
