@@ -199,21 +199,13 @@ class GeneralInfoController < ApplicationController
 
   # Saves the edit of the GeneralInfo object to the database
   def update
-    @possible_Jobs = GeneralInfo.see_Jobs
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-    galleryPict = []
-    if @general_info!=nil and @general_info[:gallery_pictures].present?
-      galleryPict = @general_info[:gallery_pictures]
-    end
-
-    if general_info_update_param[:gallery_pictures].present?
-      galleryPict= galleryPict + general_info_update_param[:gallery_pictures]
-      @general_info.update_attribute(:gallery_pictures, galleryPict)
+    
+    if @general_info.update_attributes!(general_info_update_param)
+      redirect_to '/show_profile'
     else
-      @general_info.update_attributes!(general_info_update_param)
+      render :action => 'edit'
     end
-
-    redirect_to '/show_profile'
   end
 
   # Params used to edit the GeneralInfo object

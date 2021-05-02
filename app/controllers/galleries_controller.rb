@@ -3,15 +3,16 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.new
   end
 
+  #create the project, use params to sent the foreign key to gallery database
   def create
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    params[:gallery][:GeneralInfo_id] = @general_info.id
     @gallery = Gallery.new(gallery_params)
-    @gallery.update_attribute(:GeneralInfo_id, @general_info.id);
-
+    
     if @gallery.save
       flash[:notice] = "Project Created"
 
-      redirect_to root_path
+      redirect_to '/show_profile'
     else
       render 'new'
     end

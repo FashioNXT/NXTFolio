@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   resources :search_profile
   resources :template
   resources :galleries
+  resources :search_engine
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session

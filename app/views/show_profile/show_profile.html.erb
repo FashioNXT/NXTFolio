@@ -76,7 +76,7 @@
 						<% end %>
 					</ul>
 				</div>
-    
+
                 <!--Logout Button Begin -->
                 <div class="login-header-block">
                     <div class="login_block">
@@ -229,7 +229,10 @@
             										<%= f.hidden_field :gallery_id%>
            											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
           									 <% end %>
+<<<<<<< HEAD
 										<ul>
+=======
+>>>>>>> 7abb618c3475965741b3c2148e382fe189b13682
 											<% (1..5).each do |i| %>
   								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
   								    		<% end %>
@@ -244,10 +247,14 @@
 										
 										<div class="mask"></div>
 									</a>
+<<<<<<< HEAD
 									</div>
 										
 											<%= gallery.gallery_totalRate %>
 										</div>
+=======
+									
+>>>>>>> 7abb618c3475965741b3c2148e382fe189b13682
 									</div>
 								<% end %>
 							<% end %>
