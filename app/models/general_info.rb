@@ -1,31 +1,31 @@
 class GeneralInfo < ApplicationRecord
-    has_many :gallery
-    has_one :login_info
-    validates_presence_of :first_name
-    validates_presence_of :last_name
-    validates_presence_of :phone
-    validates_presence_of :month_ofbirth
-    validates_presence_of :day_ofbirth
-    validates_presence_of :year_ofbirth
-    validates_presence_of :country
-    validates_presence_of :state
-    validates_presence_of :city
-    #validates_presence_of :job_name
-    serialize :job_attr, Hash
-    
+  has_many :gallery
+  has_one :login_info
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :phone
+  validates_presence_of :month_ofbirth
+  validates_presence_of :day_ofbirth
+  validates_presence_of :year_ofbirth
+  validates_presence_of :country
+  validates_presence_of :state
+  validates_presence_of :city
+  #validates_presence_of :job_name
+  serialize :job_attr, Hash
 
-    validates :phone, numericality: true
 
-    mount_uploader :profile_picture, AvatarUploader
-    mount_uploader :cover_picture, CoverUploader
-    mount_uploaders :gallery_pictures, GalleryUploader
+  validates :phone, numericality: true
 
-    geocoded_by :address
-    after_validation :geocode
-    
-    def address
-      [city, state, country].compact.join(", ")
-    end
+  mount_uploader :profile_picture, AvatarUploader
+  mount_uploader :cover_picture, CoverUploader
+  mount_uploaders :gallery_pictures, GalleryUploader
+
+  geocoded_by :address
+  after_validation :geocode
+
+  def address
+    [city, state, country].compact.join(", ")
+  end
 
   def self.search searchArg
     location = nil
@@ -86,16 +86,16 @@ class GeneralInfo < ApplicationRecord
 
     return query
   end
-  
+
   # Sets appearance of profile view attributes
-  def attribute_values 
+  def attribute_values
     @attribute_values = Hash.new
     @attribute_values[:name] = "Name: " + self.first_name.to_s + " " + self.last_name.to_s
     @attribute_values[:phone]= "Phone: "+self.phone.to_s
-    @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s  
+    @attribute_values[:birthday] = "Birthday: " + self.month_ofbirth.to_s + " / " + self.day_ofbirth.to_s + " / " + self.year_ofbirth.to_s
     @attribute_values[:gender] = "Gender: " + self.gender.to_s
     @attribute_values[:location] = "Location: " + self.city.to_s + ", " + self.state.to_s + ", " + self.country.to_s
-    @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s 
+    @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s
     @attribute_values[:facebook_link] = "Facebook: " + self.facebook_link.to_s
     @attribute_values[:linkedIn_link] = "LinkedIn: " + self.linkedIn_link.to_s
     @attribute_values[:instagram_link] = "Instagram: " + self.instagram_link.to_s
@@ -109,7 +109,7 @@ class GeneralInfo < ApplicationRecord
   # Create/Define Jobs by dynamically creating classes
 
   @@AcceptableAttrTypes = ["Integer", "Float", "String"]
-  
+
   @@Job_List = Array.new
   @@Job_Attr = Hash.new
   @@Attr_Type = Hash.new
@@ -124,7 +124,7 @@ class GeneralInfo < ApplicationRecord
   def self.see_Types
     @@AcceptableAttrTypes
   end
-  
+
   def self.check_Job?(jobName)
     if(jobName == 'Admin')
       false
@@ -147,7 +147,7 @@ class GeneralInfo < ApplicationRecord
     end
   end
 
-  
+
   def self.load_Job_File()
     jobString = $redis.get('jobList')
     jobArray = Array.new
@@ -157,10 +157,10 @@ class GeneralInfo < ApplicationRecord
         attrString = $redis.get(job)
         if(attrString != nil) # If there's a redis for this job  
           eachAttrMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
-	  eachTypeMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match} # Not really implemented yet, just a copy of the attribute name
+          eachTypeMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match} # Not really implemented yet, just a copy of the attribute name
           eachAttrMatch = eachAttrMatch.flatten
           eachTypeMatch = eachTypeMatch.flatten
-          
+
           self.create_Job(job, false)
           if(eachAttrMatch != nil && eachAttrMatch.size > 0)
             eachAttrMatch.each do |attr|
@@ -175,7 +175,7 @@ class GeneralInfo < ApplicationRecord
       $redis.set('Admin', '')
       self.create_Job('Admin', false)
     end
-    
+
     #@@Job_List = jobArray  
 
   end
@@ -183,19 +183,19 @@ class GeneralInfo < ApplicationRecord
   def self.create_Job (className, writeToFile = true)
 
     # Code to validate the job name has chars only will go here
-    
+
     if(self.check_Job?(className.upcase_first) == false && className != 'Admin' && className != 'admin')
       @@Job_List.push(className.upcase_first)
       @@Job_Attr[className.upcase_first] = Array.new
       @@Attr_Type[className.upcase_first] = Array.new
 
-      
-      # Create entry in Job File List
-      
-      creator = Object.const_set(className.upcase_first, Class.new { 
 
-       
-        
+      # Create entry in Job File List
+
+      creator = Object.const_set(className.upcase_first, Class.new {
+
+
+
         def self.display_Name()
           self.name
         end
@@ -203,28 +203,28 @@ class GeneralInfo < ApplicationRecord
         def display_Name()
           self.display_Name()
         end
-  
-       # def initialize()
 
-       # end
-   
+        # def initialize()
+
+        # end
+
         def self.add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
           # If Name not in hash already
           if(@@Job_Attr[self.name].include?(attr_Name) == false)
             @@Job_Attr[self.name].push(attr_Name)
             @@Attr_Type[self.name].push(attr_Type)
-            if(writeToRedis) 
+            if(writeToRedis)
               self.update_File
             end
-	  end
-          
+          end
+
           # Else Error, name already exists
         end
 
         def add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
-           self.add_Attr(attr_Name, attr_Type, writeToRedis)
+          self.add_Attr(attr_Name, attr_Type, writeToRedis)
         end
-    
+
         def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
           indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
 
@@ -239,12 +239,12 @@ class GeneralInfo < ApplicationRecord
         end
 
         def edit_Attr(attr_Name, new_Name, new_Type = nil)
-           self.edit_Attr(attr_Name, new_Name, new_Type)
+          self.edit_Attr(attr_Name, new_Name, new_Type)
         end
-        
+
         def self.delete_Attr(attr_Name)
           indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
-  
+
           if(indexLoc)
             @@Job_Attr[self.name].delete_at(indexLoc)
             @@Attr_Type[self.name].delete_at(indexLoc)
@@ -256,7 +256,7 @@ class GeneralInfo < ApplicationRecord
         def delete_Attr(attr_Name)
           self.delete_Attr(attr_Name)
         end
-    
+
         def self.view_Attr()
           @@Job_Attr[self.name]
         end
@@ -282,7 +282,7 @@ class GeneralInfo < ApplicationRecord
         def view_Attr_Type(attr_Name)
           self.view_Attr_Type(attr_Name)
         end
-        
+
         def self.update_File()
           self_Name = self.name
           attr_Body = '\''
@@ -294,17 +294,17 @@ class GeneralInfo < ApplicationRecord
           if(attr_Body == '\'')
             attr_Body = '\'\''
           end
-    #      new_line = self.display_Name + " " + attr_Body
-    #      file_cont = File.read ("jobList.dat")
-    #      new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
-    #      File.open("jobList.dat", "w") {|file| file.puts new_cont}
+          #      new_line = self.display_Name + " " + attr_Body
+          #      file_cont = File.read ("jobList.dat")
+          #      new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
+          #      File.open("jobList.dat", "w") {|file| file.puts new_cont}
           $redis.set(self.name, attr_Body)
         end
 
         def update_File()
           self.update_File()
         end
-        
+
       })
 
       if(writeToFile)
@@ -314,16 +314,16 @@ class GeneralInfo < ApplicationRecord
         end
         jobString = jobString + className.upcase_first + '\''
         $redis.set('jobList', jobString)
-        $redis.set(className.upcase_first, '')     
+        $redis.set(className.upcase_first, '')
       end
     end
   end
 
-  def self.filterBy country, state, profession
-    #filter by profession
-    @filteredUsers = GeneralInfo.where(job_name: profession)
-    @filteredUsers = @filteredUsers.where(country: country)
-    @filteredUsers = @filteredUsers.where(state: state)
+  def self.filterBy state, profession
+    #filter by profession, country, state
+    @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+    # @filteredUsers = @filteredUsers.where(country: country) #United States
+    @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
 
     #@filteredUsers.each do |user|
     #  puts "users are: #{user[:first_name]}"
