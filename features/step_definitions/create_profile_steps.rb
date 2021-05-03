@@ -4,7 +4,9 @@ Given(/^I am on the Match My Fashion home page$/) do
     visit root_path
 end
 
-
+Given(/^I am on the profile page$/) do
+  visit '/show_profile'
+end
 
 When(/^I sign up for an account$/) do
     @login_info = LoginInfo.create!({
@@ -39,9 +41,9 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
+#When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+#  fill_in(field, :with => value)
+#end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)

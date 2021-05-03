@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.7.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.21.0'
 # Use Puma as the app server
@@ -39,6 +39,15 @@ gem 'redis'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+
+  gem 'rspec-rails', '~> 3.5'
+
+  gem 'capybara', '~> 3.32', '>= 3.32.2'
+  gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7' 
 end
 
 group :development do
@@ -55,25 +64,34 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bcrypt", '~> 3.1.7'
 
-group :test, :development do
-  gem 'cucumber-rails', :require => false
-  # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner'
-end
+# group :test, :development do
+#   gem 'cucumber-rails', :require => false
+#   # database_cleaner is not required, but highly recommended
+#   gem 'database_cleaner'
+# end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.5'
-end
+# group :development, :test do
+#   gem 'rspec-rails', '~> 3.5'
+# end
 
 gem "rails-controller-testing"
 gem "factory_bot_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
-gem 'devise'
+
+# Fix the problem of "You are using an old OmniAuth version"
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'omniauth', '~>2.0'
+gem "omniauth-rails_csrf_protection", '~> 1.0' #works for omniauth 2.0
+#gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'city-state'
 gem 'geocoder'
-ruby '2.4.1'
+
+ruby '2.4.1' #ruby '2.4.1'
 
 # Fix the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
+gem 'webdrivers', '~> 4.0', require: false

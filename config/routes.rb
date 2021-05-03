@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'galleries/new'
+
+#  get 'galleries/create'
+
+  get 'galleries/destroy'
+
+  get 'galleries/index'
+
+  get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
+
+  post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
+
+  post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
+
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -30,14 +44,15 @@ Rails.application.routes.draw do
   patch 'edit_job/update' => 'edit_job#update'
   post 'edit_job/update' => 'edit_job#update'
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
-  # get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
+  get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
   # get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
-  
-  post 'login' => 'login_info#login', :as => 'login'
+
+
+  get 'login' => 'login_info#login', :as => 'login'
   get  'logout' => 'login_info#logout', :as => 'logout'
   # post 'create' => 'login_info#create', :as => 'create'
 
@@ -79,6 +94,8 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
+  resources :galleries
+  resources :search_engine
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session

@@ -1,72 +1,246 @@
-<%= render :partial => "/layout/header" %>
-<body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FashioNXT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
 
-<%= render :partial => "/layout/navigation" %>
-<%= render :partial => "/layout/body" %>
-<br>
-<section id="login_section" class="container content-section text-center">
-  <div class="section" id="LOGINFORM">
-    <div class="container">
-      <h1>
-	   <b>ENTER YOUR LOGIN CREDENTIALS</b>
-        <div class="notice">
-          <%= flash[:notice] %>
-        </div>
-      </h1>
-    </div>
-    <%= form_for @login_info, :action => 'login_submit', :url => login_info_login_submit_path do |f| %>
-      <div class="container">
-        <div class="row main">
-          <div class="main-center">
-            <form class="" method="post" action="#">
+</head>
+<div >
 
-              <div class="form-group">
-                
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                    <%= f.text_field :email, :class => 'form-control', :id => 'email', :placeholder => 'Enter your Email' %>
-                  </div>
-                </div>
-              </div>
+<!-- THE LOADER -->
 
-              <div class="form-group">
-                
-                <div class="cols-sm-10">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
-                  </div>
-                </div>
-              </div>
-
-
-              <!--Facebook login button-->
-              <% unless current_user %>
-                  <p class="button"></p>
-                  <%= f.submit "Login", :class => 'btn btn-default' %>
-                  <p class="button"></p>
-                  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path  %>
-              <% else %>
-                  <p class="button"></p>
-                  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              <% end %>
-              
-            </form>
-
-          </div>
-        </div>
-      </div>
-
-    <% end %>
-    <br>
-    <p>
-      Don't have an account?
-      <a href="/login_info/new">Sign up here!</a>
+<div class="be-loader">
+  <div class="spinner">
+    <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+    <p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
     </p>
   </div>
+</div>
 
-</section>
-<%= render :partial => "/layout/javascripts" %>
+<!-- THE HEADER -->
+
+<header>
+
+  <div class="container-fluid custom-container">
+    <div class="row no_row row-header">
+      <div class="brand-be">
+        <a href="/">
+          <img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+          <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+          <img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+          <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+</header>
+
+<!-- MAIN CONTENT -->
+
+<div id="content-block">
+  <div class="head-bg">
+    <div class="head-bg-img"></div>
+
+    <div class="large-popup-fixed"></div>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+        <div class="alert style-3 alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= flash[:notice]%></strong>
+        </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+        <div class="alert style-3 alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong><%= flash[:success]%></strong>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="head-bg-content">
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <h1>Sign In/Up via</h1>
+            <div class ="row-fluid">
+              <div class = "span2">
+                <%= button_to user_facebook_omniauth_authorize_path, method: :post, class: "btn color-1 size-1 hover-1" do %>
+                  <i class = "fa fa-facebook"></i>Facebook
+                <%end %>
+              </div>
+              <br>
+              <div class = "span2">
+                <%= button_to user_google_oauth2_omniauth_authorize_path, class: "btn color-1 size-1 hover-1" do %>
+                  <i class = "fa fa-google"></i>Google
+                <%end %>
+              </div>
+            </div>
+        </div>
+
+        <!-- Log In -->
+        <div class="col-md-4">
+          <h1>Log In</h1>
+          <div class="row-fluid">
+              <%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+                  <form action="#" class="popup-input-search" method="post">
+                    <div class="span3">
+                      <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+                    </div>
+                    <br>
+                    <div class="span3">
+                      <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+                    </div>
+                    <br>
+                    <div class="span3 for-signin">
+                      <%= form.submit "SIGN IN", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
+                    </div>
+                  </form>
+              <% end %>
+          </div>
+        </div>
+
+         <!--Sign up-->
+        <div class="col-md-4">
+          <h1>Sign Up</h1>
+          <div class="row-fluid">
+            <%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
+                <form action="./" class="popup-input-search" method="post">
+                  <div class = "span5">
+                    <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
+                  </div>
+                  <br>
+                  <div class = "span5">
+                    <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Password', :required => '' %>
+                  </div>
+                  <div class="span5">
+                    <p style="color:white;">(Should contain one uppercase, one lowercase, one special character, and one digit)</p>
+                  </div>
+                  <div class="span5">
+                    <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'confirm', :placeholder => 'Repeat Password', :required => '' %>
+                  </div>
+                  <br>
+                  <div class="span5 for-signin">
+                    <%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
+                  </div>
+                </form>
+            <% end %>
+          </div>
+        </div> <!-- end of Sign up-->
+      </div>
+   </div> <!-- bg head content -->
+  </div>
+</div>
+
+  <!-- THE FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <div class="container-fluid custom-container">
+        <div class="row">
+          <div class="col-md-3 col-xl-4">
+            <div class="footer-block">
+              <h1 class="footer-title">About Us</h1>
+              <p><a href="https://fashionxt.com/">FashioNXT</a> creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
+              <ul class="soc_buttons">
+                <li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
+                <li id="twitter"><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
+                <li id="pinterest"><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
+                <li id="insta"><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
+                <li id="linkedin"><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-2">
+            <div class="footer-block">
+              <h1 class="footer-title">Useful Links</h1>
+              <div class="row footer-list-footer">
+                <div class="col-md-6">
+                  <ul class="link-list">
+                    <li><a href="https://fashionxt.com/agency/">About Us</a></li>
+                    <li><a href="https://fashionxt.com/contact/">Help</a></li>
+                    <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
+                    <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
+                  </ul></div>
+                <!--<div class="col-md-6">-->
+                <!--<ul class="link-list">-->
+                <!--	<li><a href="activity.html">New Works</a></li>-->
+                <!--	<li><a href="author.html">Popular Authors</a></li>-->
+                <!--	<li><a href="author.html">New Authors</a></li>-->
+                <!--	<li><a href="people.html">Career</a></li>-->
+                <!--	<li><a href="faq">FAQ</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+          <!--	<div class="footer-block">-->
+          <!--		<h1 class="footer-title">Subscribe On Our News</h1>-->
+          <!--		<form action="./" class="subscribe-form">-->
+          <!--			<input type="text" placeholder="Yout Name" required>-->
+          <!--			<div class="submit-block">-->
+          <!--				<i class="fa fa-envelope-o"></i>-->
+          <!--				<input type="submit" value="">-->
+          <!--			</div>-->
+          <!--		</form>-->
+          <!--		<div class="soc-activity">-->
+          <!--			<div class="soc_ico_triangle">-->
+          <!--				<i class="fa fa-twitter"></i>-->
+          <!--			</div>-->
+          <!--			<div class="message-soc">-->
+          <!--				<div class="date">16h ago</div>-->
+          <!--				<a href="blog-detail-2.html" class="account">@faq</a> vestibulum accumsan est <a href="blog-detail-2.html" class="heshtag">blog-detail-2.htmlmalesuada</a> sem auctor, eu aliquet nisi ornare leo sit amet varius egestas.-->
+          <!--			</div>-->
+          <!--		</div>-->
+          <!--	</div>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container-fluid custom-container">
+        <div class="col-md-12 footer-end clearfix">
+          <div class="left">
+            <span class="copy">© 2020. All rights reserved. &nbsp <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
+            <span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
+          </div>
+          <!--<div class="right">-->
+          <!--	<a class="btn color-7 size-2 hover-9">About Us</a>-->
+          <!--	<a class="btn color-7 size-2 hover-9">Help</a>-->
+          <!--	<a class="btn color-7 size-2 hover-9">Privacy Policy</a>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS	 -->
+  <script src="<%= asset_path "jquery.min.js"%>"></script>
+  <script src="<%= asset_path "jquery-ui.js"%>"></script>
+  <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+  <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+  <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+  <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+  <script src="<%= asset_path "global.js"%>"></script>
+  <script src="<%= asset_path "application.js"%>"></script>
+
+</div>
 </body>
-<%= render :partial => "/layout/footer" %>
+</html>

@@ -1,4 +1,5 @@
 class GeneralInfo < ApplicationRecord
+    has_many :gallery
     has_one :login_info
     validates_presence_of :first_name
     validates_presence_of :last_name
@@ -317,5 +318,19 @@ class GeneralInfo < ApplicationRecord
       end
     end
   end
+
+  def self.filterBy country, state, profession
+    #filter by profession
+    @filteredUsers = GeneralInfo.where(job_name: profession)
+    @filteredUsers = @filteredUsers.where(country: country)
+    @filteredUsers = @filteredUsers.where(state: state)
+
+    #@filteredUsers.each do |user|
+    #  puts "users are: #{user[:first_name]}"
+    #end
+
+    return @filteredUsers
+  end
+
 end
 

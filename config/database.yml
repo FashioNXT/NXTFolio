@@ -26,7 +26,7 @@ default: &default
   username: beaverthing
   password: ubuntu
 
-  #host: localhost
+  host: localhost
 
 
 development:
@@ -91,6 +91,18 @@ production:
   database: workspace_production
   username: workspace
   password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
+
+cucumber:
+  <<: *test
+
+cucumber:
+  <<: *test
+
+cucumber:
+  <<: *test
 
 cucumber:
   <<: *test

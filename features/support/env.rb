@@ -5,6 +5,12 @@
 # files.
 
 require 'cucumber/rails'
+require 'webdrivers'
+# frozen_string_literal: true
+
+# frozen_string_literal: true
+
+# frozen_string_literal: true
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -40,13 +46,13 @@ end
 # See the DatabaseCleaner documentation for details. Example:
 #
 #   Before('@no-txn,@selenium,@culerity,@celerity,@javascript') do
-#     # { :except => [:widgets] } may not do what you expect here
+#     # { except: [:widgets] } may not do what you expect here
 #     # as Cucumber::Rails::Database.javascript_strategy overrides
 #     # this setting.
 #     DatabaseCleaner.strategy = :truncation
 #   end
 #
-#   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript') do
+#   Before('not @no-txn', 'not @selenium', 'not @culerity', 'not @celerity', 'not @javascript') do
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
@@ -55,4 +61,3 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-

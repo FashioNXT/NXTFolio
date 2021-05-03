@@ -9,9 +9,15 @@ module NavigationHelpers
       '/'
     when /^the general info page$/
       '/general_info/new'
+    when /^the profile page$/
+      '/show_profile'
+    when /^the edit page$/
+      '/general_info/edit'
     when /^the sign up page$/
       '/login_info/new'
     when /^the login page$/
+      '/login_info/login'
+    when /^login$/
       '/login_info/login'
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."

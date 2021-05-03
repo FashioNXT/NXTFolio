@@ -8,6 +8,7 @@ class ShowProfileController < ApplicationController
       puts "sessions current_user_key" + user_key_current.to_s
 
       if GeneralInfo.exists?(:userKey => user_key_current)
+        @gallery = Gallery.all
         @general_info = GeneralInfo.find_by(userKey: user_key_current)
         @general_info_attributes = GeneralInfo.attribute_names
         @general_info_values = @general_info.attribute_values
@@ -15,19 +16,21 @@ class ShowProfileController < ApplicationController
         if LoginInfo.find_by(userKey: @general_info.userKey)
           @email = LoginInfo.find_by(userKey: @general_info.userKey).email
         end
-	#@adminMaker = GeneralInfo.make_admin(params[:user])
+        #@adminMaker = GeneralInfo.make_admin(params[:user])
         using_default = false
-        
+
         if session[:current_user_key] != nil and params[:user_key] == nil
           @login_user_true = session[:current_user_key]
         end
 
-	@on_Own = false
-	if session[:current_user_key] == user_key_current
+        @username = @general_info[:first_name]
+
+        @on_Own = false
+        if session[:current_user_key] == user_key_current
           @on_Own = true
-  end
-	
-	@is_Admin = false
+        end
+
+        @is_Admin = false
         if GeneralInfo.find_by(userKey: session[:current_user_key]) != nil
           @is_Admin = GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin
           @addUser = user_key_current
@@ -38,26 +41,26 @@ class ShowProfileController < ApplicationController
           @job_title = "Photographer"
           using_default = true
         end
-        
-        if (GeneralInfo.check_Job?(@job_title)&& !using_default)
-            #@attr_titles = @job_title.constantize.view_Attr()
-            #@attr_types = @job_title.constantize.view_Attr_Type()
-            #@attr_contents = @general_info[:job_attr]
 
-            #@profile_type = @job_title #@general_info_values[:job_name]
-            @attribute_titles = @job_title.constantize.view_Attr()
-            @attribute_types = @job_title.constantize.view_Attr_Type()
-            @attribute_contents = @general_info_values[:job_attr]
+        if (GeneralInfo.check_Job?(@job_title)&& !using_default)
+          #@attr_titles = @job_title.constantize.view_Attr()
+          #@attr_types = @job_title.constantize.view_Attr_Type()
+          #@attr_contents = @general_info[:job_attr]
+
+          #@profile_type = @job_title #@general_info_values[:job_name]
+          @attribute_titles = @job_title.constantize.view_Attr()
+          @attribute_types = @job_title.constantize.view_Attr_Type()
+          @attribute_contents = @general_info_values[:job_attr]
         else
-            @attribute_titles = Hash.new
-            @attribute_types = Array.new
-            @attribute_contents = Hash.new
+          @attribute_titles = Hash.new
+          @attribute_types = Array.new
+          @attribute_contents = Hash.new
         end
         puts @general_info.inspect
         # Start of messy profile selection
         case @general_info.specific_profile_id
         when 1
-           @profile_type = "Designer"
+          @profile_type = "Designer"
           if SpecificDesigner.exists?(:user_key => user_key_current)
             @specific_designer = SpecificDesigner.find_by(user_key: user_key_current)
             @profile_info = @specific_designer.attribute_values

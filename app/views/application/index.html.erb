@@ -13,13 +13,11 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-        <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
-
+    	<link rel="stylesheet" href="<%= asset_path "profile.css"%>">
 	</head>
-	<body >
 
+	<body>
 	<!-- THE LOADER -->
-
 	<div class="be-loader">
     	<div class="spinner">
 			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
@@ -31,59 +29,11 @@
 			</p>
 		</div>
     </div>
+
 	<!-- THE HEADER -->
-	<header>
-
-		<div class="container-fluid custom-container">
-			<div class="row no_row row-header">
-				<div class="brand-be">
-					<a href="/">
-						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
-						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
-					</a>
-				</div>
-				<div class="header-menu-block">
-					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
-					<ul class="header-menu" id="one" style=>
-						<!--<li><a href="activity.html">Activity</a></li>-->
-						<li><a href="/search_profile/search">Search</a>
-							<!--<ul>
-								<li><a href="search.html">Explore</a></li>
-								<li><a href="people.html">People</a></li>
-								<li><a href="gallery.html">Galleries</a></li>
-							</ul>-->
-						</li>
-						<% if session[:current_user_key] %>
-							<li><a href="/show_profile">My Profile</a></li>
-						<% end %>
-						<!--<li><a href="site-map.html">Site Map</a></li>-->
-						<!--<li><a href="organization.html">Organization</a></li>-->
-						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
-					</ul>
-				</div>
-    
-                <!--Logout Button Begin -->
-                <div class="login-header-block">
-                    <div class="login_block">
-                        <% if session[:current_user_key] %>
-                        <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-                        <% else %>
-                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-                        <% end %>
-                    </div>
-                </div>
-                <!--Logout Button End-->
-    
-			</div>
-		</div>
-
-
-	</header>
+	<%= render 'shared/header' %>
 
 	<!-- MAIN CONTENT -->
-
 	<div id="content-block">
 		<div class="head-bg">
 			<div class="head-bg-img"></div>
@@ -105,131 +55,178 @@
 			</div>
 			<% end %>
 
-			<div class="head-bg-content">
-				<h1>Welcome to FashioNTWRK</h1>
-				<p>Your #1 social network for connecting to people in the fashion industry. </p>
-				<!--<a class="btn color-1 size-1 hover-1" ><i class="fa fa-facebook"></i>sign up via facebook</a>-->
+			<div class=head-bg-content>
 				<div class="homepage-login-btn-section">
-					<div class="login_block">
-						<% if not session[:current_user_key] %>
-						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<!--<a class="btn btn-login color-1 size-2 hover-2 homepage-login-btn" href="/application/login" ><i class="fa fa-user"></i>-->
-						<!--Log in</a>-->
-						<% end %>
-						<% if not session[:current_user_key] %>
-							<a class="be-register btn color-1 size-1 hover-6" href=""><i class="fa fa-lock"></i>sign up now</a>
-						<% end %>
+					<div class="landing_search_button">
+						<%= link_to 'What Are You Looking For?', search_profile_search_path, :id => "custom_but_style" %>
+					</div>
+				</div>
+				<div class="login_block">
+					
+					<div class="register_howitworks">
+						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
+						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
 					</div>
 				</div>
 
+				</div>
 			</div>
 		</div>
-    <div class="info-block style-3">
-      <div class="btn-group">
-            <div class="be-large-post-align ">
-            <h3 class="info-block-label">Recent Activities</h3>
-            </div>
-            <button id="Model">Model</button>
-            <button id="Photographer">Photographer</button>
-            <button id="Designer">Designer</button>
-            <button id="Agent">Agent</button>
-            <button id="Everyone">Everyone</button>
-      </div>
-   </div>
-        
-		<div class="container-fluid custom-container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div id="container-mix"  class="row _post-container_">
-                       
-                        <div class="be-post" id="Model1">
-                            <% @users.present? and @users.each do |info| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <% if info.attribute_values[:job_name]=="Model" %>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
-                                    <% if info.profile_picture? %>
-                                    <img src="<%= info.profile_picture.url %>" alt="omg">
-                                    <% else %>
-                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                                    <% end %>
-                                    </a>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
-                                    <% end %>
-                                </div>
-                            <% end %>
-						</div>
 
-                        <div class="be-post" id="Photographer1">
-                            <% @users.present? and @users.each do |info| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <% if info.attribute_values[:job_name]=="Photographer" %>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
-                                    <% if info.profile_picture? %>
-                                    <img src="<%= info.profile_picture.url %>" alt="omg">
-                                    <% else %>
-                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                                    <% end %>
-                                    </a>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        </div>
-                    
-                        <div class="be-post" id="Agent1">
-                            <% @users.present? and @users.each do |info| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <% if info.attribute_values[:job_name]=="Agent" %>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
-                                    <% if info.profile_picture? %>
-                                    <img src="<%= info.profile_picture.url %>" alt="omg">
-                                    <% else %>
-                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                                    <% end %>
-                                    </a>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        </div>
-                    
-                        <div class="be-post" id="Designer1">
-                          <% @users.present? and @users.each do |info| %>
-                            <div class="category-1 mix custom-column-5">
-                                <% if info.attribute_values[:job_name]=="Designer" %>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
-                                <% if info.profile_picture? %>
-                                    <img src="<%= info.profile_picture.url %>" alt="omg">
-                                <% else %>
-                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                                <% end %>
-                                </a>
-                                <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
-                                <% end %>
-                            </div>
-                           <% end %>
-                        </div>
-                    
-                        <div class="be-post" id="Everyone1">
-                              <% @users.present? and @users.each do |info| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <div class="be-post">
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-img-block">
-                                    <% if info.profile_picture? %>
-                                    <img src="<%= info.profile_picture.url %>" alt="omg">
-                                    <% else %>
-                                    <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>"
-                                    <% end %>
-                                    </a>
-                                    <a href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>" class="be-post-title"><%= info.first_name %> <%= info.last_name %><br><%= info.attribute_values[:job_name] %><br><%=info.city + ", " + info.state%></a>
-                                    </div>
-                                </div>
-                              <% end %>
-                         </div>
+    <%= render 'layout/category' %>
+        
+    <div class="container-fluid custom-container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div id="container-mix"  class="row _post-container_">
+            
+            <div class="be-post" id="Model1">
+              <% @users.present? and @users.each do |info| %>
+                <div class="category-1 mix custom-column-5">
+                  <% if info.attribute_values[:job_name]=="Model" %>
+                  	<a class="be-img-block">
+					  <div class="photo photo-type-line">
+                  		<% if info.profile_picture? %>
+                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% else %>
+                  			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                  		<% end %>
+							<a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+								<div class="photo-info">
+									<div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.city %> </div>
+										<div class="desc"> <%= info.state %> </div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.bio %> </div>
+								</div>
+								<div class="mask"></div>
+							</a>
+					  </div>
+                  	</a>
+                  <% end %>
                 </div>
+              <% end %>
             </div>
+
+            <div class="be-post" id="Photographer1">
+              <% @users.present? and @users.each do |info| %>
+                <div class="category-1 mix custom-column-5">
+                  <% if info.attribute_values[:job_name]=="Photographer" %>
+                  <a class="be-img-block">
+					  <div class="photo photo-type-line">
+                  		<% if info.profile_picture? %>
+                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% else %>
+                  			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                  		<% end %>
+							<a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+								<div class="photo-info">
+									<div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.city %> </div>
+										<div class="desc"> <%= info.state %> </div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.bio %> </div>
+								</div>
+								<div class="mask"></div>
+							</a>
+					  </div>
+                  	</a>
+				   <% end %>
+                </div>
+              <% end %>
+            </div>
+          
+            <div class="be-post" id="Agent1">
+              <% @users.present? and @users.each do |info| %>
+                <div class="category-1 mix custom-column-5">
+                  <% if info.attribute_values[:job_name]=="Agent" %>
+                  <a class="be-img-block">
+					  <div class="photo photo-type-line">
+                  		<% if info.profile_picture? %>
+                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+                  		<% else %>
+                  			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                  		<% end %>
+							<a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+								<div class="photo-info">
+									<div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.city %> </div>
+										<div class="desc"> <%= info.state %> </div>
+									<div class="line"></div>
+										<div class="desc"> <%= info.bio %> </div>
+								</div>
+								<div class="mask"></div>
+							</a>
+					  </div>
+                  	</a>
+				   <% end %>
+                </div>
+              <% end %>
+            </div>
+          
+            <div class="be-post" id="Designer1">
+              <% @users.present? and @users.each do |info| %>
+              <div class="category-1 mix custom-column-5">
+                <% if info.attribute_values[:job_name]=="Designer" %>
+				<a class="be-img-block">
+				<div class="photo photo-type-line">
+					<% if info.profile_picture? %>
+						<img src="<%= info.profile_picture.url %>" alt="omg">
+					<% else %>
+						<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+					<% end %>
+					  <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+						  <div class="photo-info">
+							  <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+							  <div class="line"></div>
+								  <div class="desc"> <%= info.city %> </div>
+								  <div class="desc"> <%= info.state %> </div>
+							  <div class="line"></div>
+								  <div class="desc"> <%= info.bio %> </div>
+						  </div>
+						  <div class="mask"></div>
+					  </a>
+				</div>
+				</a>
+			 <% end %>
+              </div>
+              <% end %>
+            </div>
+          
+            <div class="be-post" id="Everyone1">
+              <% @users.present? and @users.each do |info| %>
+                <div class="category-1 mix custom-column-5">
+				<a class="be-img-block">
+				<div class="photo photo-type-line">
+					<% if info.profile_picture? %>
+						<img src="<%= info.profile_picture.url %>" alt="omg">
+					<% else %>
+						<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+					<% end %>
+					  <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+						  <div class="photo-info">
+							  <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+							  <div class="line"></div>
+								  <div class="desc"> <%= info.city %> </div>
+								  <div class="desc"> <%= info.state %> </div>
+							  <div class="line"></div>
+								  <div class="desc"> <%= info.bio %> </div>
+						  </div>
+						  <div class="mask"></div>
+					  </a>
+				</div>
+				</a>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-	</div>
+      </div>
+    </div>
+
 	<!-- THE FOOTER -->
 	<footer>
 		<div class="footer-main">
@@ -254,44 +251,14 @@
 							<div class="row footer-list-footer">
 							<div class="col-md-6">
 							<ul class="link-list">
-                                <li><a href="https://fashionxt.com/agency/">About Us</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Help</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
-                                <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
+								<li><a href="https://fashionxt.com/agency/">About Us</a></li>
+								<li><a href="https://fashionxt.com/contact/">Help</a></li>
+								<li><a href="https://fashionxt.com/contact/">Contacts</a></li>
+								<li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
 							</ul></div>
-							<!--<div class="col-md-6">-->
-							<!--<ul class="link-list">-->
-							<!--	<li><a href="activity.html">New Works</a></li>-->
-							<!--	<li><a href="author.html">Popular Authors</a></li>-->
-							<!--	<li><a href="author.html">New Authors</a></li>-->
-							<!--	<li><a href="people.html">Career</a></li>-->
-							<!--	<li><a href="faq">FAQ</a></li>-->
-							<!--</ul>-->
-							<!--</div>-->
 							</div>
 						</div>
 					</div>
-					<!--<div class="col-md-3">-->
-					<!--	<div class="footer-block">-->
-					<!--		<h1 class="footer-title">Subscribe On Our News</h1>-->
-					<!--		<form action="./" class="subscribe-form">-->
-					<!--			<input type="text" placeholder="Yout Name" required>-->
-					<!--			<div class="submit-block">-->
-					<!--				<i class="fa fa-envelope-o"></i>-->
-					<!--				<input type="submit" value="">-->
-					<!--			</div>-->
-					<!--		</form>-->
-					<!--		<div class="soc-activity">-->
-					<!--			<div class="soc_ico_triangle">-->
-					<!--				<i class="fa fa-twitter"></i>-->
-					<!--			</div>-->
-					<!--			<div class="message-soc">-->
-					<!--				<div class="date">16h ago</div>-->
-					<!--				<a href="blog-detail-2.html" class="account">@faq</a> vestibulum accumsan est <a href="blog-detail-2.html" class="heshtag">blog-detail-2.htmlmalesuada</a> sem auctor, eu aliquet nisi ornare leo sit amet varius egestas.-->
-					<!--			</div>-->
-					<!--		</div>-->
-					<!--	</div>-->
-					<!--</div>-->
 				</div>
 			</div>
 		</div>
@@ -302,11 +269,6 @@
 						<span class="copy">© 2020. All rights reserved. &nbsp <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
 						<span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
 					</div>
-					<!--<div class="right">-->
-					<!--	<a class="btn color-7 size-2 hover-9">About Us</a>-->
-					<!--	<a class="btn color-7 size-2 hover-9">Help</a>-->
-					<!--	<a class="btn color-7 size-2 hover-9">Privacy Policy</a>-->
-					<!--</div>-->
 				</div>
 			</div>
 		</div>
@@ -392,6 +354,6 @@
 	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
 	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
 	<script src="<%= asset_path "global.js"%>"></script>
-  <script src="<%= asset_path "application.js"%>"></script>
+  	<script src="<%= asset_path "application.js"%>"></script>
 	</body>
 </html>

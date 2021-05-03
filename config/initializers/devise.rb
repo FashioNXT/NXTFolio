@@ -251,7 +251,18 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "338865583190444", "326a642bf693161f768750d1c511c576", callback_url: "http://fashion-links.herokuapp.com/users/auth/facebook/callback"
+  #config.omniauth :facebook, "338865583190444", "326a642bf693161f768750d1c511c576", callback_url: "http://fashion-links.herokuapp.com/users/auth/facebook/callback"
+  #For Development:
+  #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://localhost:3000.com/users/auth/facebook/callback"
+  #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], scope: 'userinfo.email,userinfo.profile'
+  #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://localhost:3000.com/users/auth/facebook/callback" }
+
+  #For Production (Heroku deployment):
+  config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://fashionnxt.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://fashionnxt.herokuapp.com/users/auth/google_oauth2/callback" }
+
+  #config.omniauth :facebook, ENV['facebook_client_id'], ENV['facebook_client_secret'],  scope: 'public_profile,email', callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/facebook/callback"
+  #config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { scope: 'userinfo.email,userinfo.profile,https://www.google.com/m8/feeds', access_type: 'offline', approval_prompt: '', client_options: {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}, callback_url: "https://damp-atoll-07859.herokuapp.com/users/auth/google_oauth2/callback" }
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

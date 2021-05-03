@@ -25,4 +25,4 @@ public/uploads/
 local_redis/
 
 # Ignore application configuration
-#/config/application.yml
+/config/application.yml

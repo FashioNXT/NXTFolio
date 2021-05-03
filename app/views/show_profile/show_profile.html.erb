@@ -13,6 +13,11 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<style>
+			.big{
+				font-size: 25px;
+			}
+		</style>
 		
 	</head>
 	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
@@ -38,7 +43,7 @@
 			<div class="row no_row row-header">
 				<div class="brand-be">
 					<a href="/">
-						<img class="logo-c active be_logo"  src="<%= asset_path "logo.png"%>" alt="logo">
+						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
 						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
 						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
 						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
@@ -48,7 +53,6 @@
 				<div class="header-menu-block">
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
-						<!--<li><a href="activity.html">Activity</a></li>-->
 						<li><a href="/search_profile/search">Search</a>
 						</li>
 						<% if session[:current_user_key] %>
@@ -58,7 +62,7 @@
 									<ul>
 										<li><a href="/general_info/edit">Edit Profile</a></li>
 										<% if @attribute_titles && !@is_Admin %>
-											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title%> Info</a></li>
+											<li><a href="/specific_<%=@job_title.downcase%>/edit">Edit <%=@job_title %> Info</a></li>
 										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if !@is_Admin %>
@@ -72,7 +76,7 @@
 						<% end %>
 					</ul>
 				</div>
-    
+
                 <!--Logout Button Begin -->
                 <div class="login-header-block">
                     <div class="login_block">
@@ -105,43 +109,58 @@
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
-								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" alt="">
+								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% else %>
-                                <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" alt="">
+                                <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-							<!--<img src="img/ava_10.jpg" alt=""> -->
-							<% if @general_info && @general_info.first_name && @general_info.last_name %>
-								<p class="be-use-name"><%= @general_info.first_name %> <%= @general_info.last_name %></p>
-							<% end %>
-							<div class="be-user-info">
-								<%= @general_info_values[:location] %>
+							<div class = "show-page-front">
+								INSPIRED BY: 
+								<span>INSPIRATION TO:</span>
 							</div>
+
+							
+								<p >&emsp;</p>
+
+
+
+								<p style="font-size: 12px/30px; margin-top:10px; text-align: left; margin-left: 287px" ><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></p>
+								
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.specific_profile %></p>
+
+								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
+							
+							<!--<img src="img/ava_10.jpg" alt=""> -->
+							
 							<div class="be-text-tags style-1 job_title-style">
 								<a><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
-								<% if @general_info && @general_info.facebook_link != "" %>							
+								<!--% if @general_info && @general_info.facebook_link != "" %-->							
 									<a class="social-btn color-1" href="http://<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
-								<% end %>
-								<% if @general_info && @general_info.linkedIn_link != "" %>
+								<!--% end %-->
+								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
 									<a class="social-btn color-6" href="http://<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
-								<% end %>
-								<% if @login_info && @login_info.email != "" %>
+								<!--% end %-->
+								<!--% if @login_info && @login_info.email != "" %-->
 									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
-								<% end %>
-								<% if @general_info && @general_info.phone != "" %>
+								<!--% end %-->
+								<!--% if @general_info && @general_info.phone != "" %-->
 									<a class="social-btn color-2" href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
-								<% end %>
+								<!--% end %-->
 							</div>
-							<% if @general_info && @general_info.personalWebsite_link != "" %>
+							<!--% if @general_info && @general_info.personalWebsite_link != "" %-->
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
-							<% end %>
+							<!--% end %-->
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-6 left-feild">
 					<div class="be-desc-block">
-				  		<% if @general_info && @general_info.bio != "" %>
+				  		<!--% if @general_info && @general_info.bio != "" %-->
 							<div class="be-desc-author">
 								<div class="be-desc-label">About Me</div>
 								<div class="clearfix"></div>
@@ -150,16 +169,16 @@
 									<%= @general_info.bio %>
 								</div>
 							</div>
-						<% end %>
+						<!--% end %-->
 					</div>
 					<div class="be-desc-block">
-						<% if @general_info && @profile_info%>
+						<!--% if @general_info && @profile_info%-->
 							<div class="be-desc-author">
 								<div class="be-desc-label">More Details on Profession</div>
 								<div class="clearfix"></div>
 								<div class="be-desc-text  scrollable-description">
 								  <!--profession details here-->
-								  	<% @profile_info.each do |attr, index|%>
+								  	<% @profile_info.present? and @profile_info.each do |attr, index|%>
 										<!--<div class="input-col col-xs-12 col-sm-6">-->
 											<div class="form-group fg_icon focus-2">
 												<div class="form-label"><%=index%></div>
@@ -170,26 +189,68 @@
 								  	
 								</div>
 							</div>
-						<% end %>
+						<!--% end %-->
 					</div>
 			  	</div>
 			</div>
 		</div>
         <div class="container-fluid custom-container">
-            <div class="row">
+            <div class="row profile-row">
                 <div class="col-md-10 col-md-offset-1">
                     <div id="container-mix"  class="row _post-container_">
+						<% if @on_Own %>
+							<div class="be-desc-label"><a href="/galleries/new">Add Project</a></div>
+						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
-                            <% @general_info.gallery_pictures.each do |pic| %>
-                                <div class="category-1 mix custom-column-5">
-                                    <div class="profile-img-container">
-                                    <a class="be-img-block profile-img img-thumbnail">
-                                        <img src="<%= pic.url %>" alt="omg">
-                                    </a>
-                                    </div>
-                                </div>
-                            <% end %>
+							<% @gallery.present? and @gallery.each do |gallery| %>
+								<% if gallery.GeneralInfo_id == @general_info.id %>
+									<div class="col-md-3">
+										<div class="photo photo-type-line">
+										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+											<div class="photo-info">
+											<div class="headline"> <%= gallery.gallery_title %> </div>
+											<div class="line"></div>
+											<div class="desc"> <%= gallery.gallery_description %> </div>
+
+
+											</div>
+
+											<div class="mask"></div>
+										</a>
+
+										<div class="profile-img-container">
+										<a class="be-img-block profile-img img-thumbnail">
+											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+										</a>
+										<ul class= "rating" >
+											<% form_id = "gallery_#{gallery.id}_rating" %>
+											<%= form_for gallery.gallery_title.last || gallery.gallery_title.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
+            										<%= f.hidden_field :gallery_id%>
+           											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
+          									 <% end %>
+										<ul>
+											<% (1..5).each do |i| %>
+  								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
+  								    		<% end %>
+  								    		
+  								    			<li class = "rating_star">
+  								    			<%= link_to 'submit', :confirm => 'Are you sure?' %>
+
+  								    			</li>
+  								    		
+   										</ul>
+										
+										
+										<div class="mask"></div>
+									</a>
+									</div>
+										
+											<%= gallery.gallery_totalRate %>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
                         </div>
                     </div>
                 </div>

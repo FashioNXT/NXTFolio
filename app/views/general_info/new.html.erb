@@ -47,32 +47,19 @@
 				<div class="header-menu-block">
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
-						<!--<li><a href="activity.html">Activity</a></li>-->
 						<li><a href="/search_profile/search">Search</a>
-							<!--<ul>
-								<li><a href="search.html">Explore</a></li>
-								<li><a href="people.html">People</a></li>
-								<li><a href="gallery.html">Galleries</a></li>
-							</ul>-->
 						</li>
 						<% if session[:current_user_key] %>
 							<li><a href="/show_profile">My Profile</a></li>
 						<% end %>
-						<!--<li><a href="site-map.html">Site Map</a></li>-->
-						<!--<li><a href="organization.html">Organization</a></li>-->
-						<!--<li id="ad-work-li"><a id="add-work-btn" class="btn color-1" href="work.html">Add Work </a></li>-->
 					</ul>
 				</div>
 				<div class="login-header-block">
 					<div class="login_block">
 						<% if session[:current_user_key] %>
 						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-						<!--<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>-->
-						<!--Log out</a>-->
 						<% else %>
 						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<!--<a class="btn btn-login color-1 size-2 hover-2" href="/application/login" ><i class="fa fa-user"></i>-->
-						<!--Log in</a>-->
 						<% end %>
 					</div>	
 				</div>
@@ -124,13 +111,6 @@
 							            <%= form.file_field :cover_picture, accept: 'image/png,image/jpeg',:class => 'custom-file-input', :type => 'file' %>
 									</div>
 								</div>
-        
-                                <div class="be-large-post-align">
-                                    <div class="be-change-ava col-xs-12 col-sm-6">
-                                        <label class="custom-file-label" for="customFile">Upload Gallery Picture</label>
-                                        <%= form.file_field :gallery_pictures, multiple: true, accept: 'image/png,image/jpeg',:class => 'custom-file-input', :type => 'file' %>
-                                </div>
-                                </div>
                                 
                                 <div class="be-large-post-align">
                                     <div class="be-change-ava col-xs-12 col-sm-6">
@@ -151,7 +131,7 @@
 										<div class="input-col col-xs-12 col-sm-6">
 											<div class="form-group fg_icon focus-2">
 												<div class="form-label">First Name</div>
-												<%= form.text_field :first_name, :class =>'form-input', :required => '', :type => 'text', :placeholder => 'required*'%>
+                        <%= form.text_field :first_name, id: "first_name", :class =>'form-input', :required => '', :type => 'text', :placeholder => 'required*'%>
 												<!--<input class="form-input" type="text" value="Taylor">-->
 											</div>							
 										</div>
@@ -159,7 +139,7 @@
 											<div class="form-group focus-2">
 												<div class="form-label">Last Name</div>									
 												<!--<input class="form-input" type="text" value="Leight">-->
-												<%= form.text_field :last_name, :class =>'form-input', :required => '', :type => 'text', :placeholder => 'required*'%>
+                        <%= form.text_field :last_name, id: "last_name", :class =>'form-input', :required => '', :type => 'text', :placeholder => 'required*'%>
 											</div>								
 										</div>
 										<!--birthday-->
@@ -236,8 +216,8 @@
 										<!--city-->
 										<div class="input-col col-xs-12 col-sm-6">
 											<div class="form-group focus-2">
-												<div class="form-label">City</div>		
-												<%= form.text_field :city, :class => 'form-input', :placeholder => 'required*' %>
+												<div class="form-label">City</div>
+                        <%= form.text_field :city, id:"city", :class => 'form-input', :placeholder => 'required*' %>
 												<!--<input class="form-input" type="text" value="">-->
 											</div>								
 										</div>
@@ -246,7 +226,7 @@
 											<div class="form-group focus-2">
 												<div class="form-label">Phone Number</div>									
 													<!--<input id="phone-number" class="form-input" type="number" placeholder="Enter a 10-digit phone number" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$">-->
-	                    							<%= form.text_field :phone, :class => 'form-input', :placeholder => 'Enter a valid phone number*', :type => 'number', :required => ''%>
+                          <%= form.text_field :phone, id:"phone", :class => 'form-input', :placeholder => 'Enter a valid phone number*', :type => 'number', :required => ''%>
 											</div>								
 										</div>																
 									</div>

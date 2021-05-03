@@ -80,4 +80,8 @@ $( document ).ready(function() {
         $("#Designer1").hide();
         $("#Everyone1").show();
     });
+    
 });
+
+
+
