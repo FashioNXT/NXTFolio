@@ -1,7 +1,7 @@
 # FASHIONXT
 
 ### DEMO
-https://tranquil-citadel-33236.herokuapp.com/
+https://fashionnxt.herokuapp.com/
 
 
 Click on the above link, and open the demo app. The Facebook login feature will not work, as a result of privacy reasons, I took down the app developers account for it.
@@ -36,6 +36,51 @@ Get Facebook Login to function:
     
     [http://localhost:3000](http://localhost:3000)
 
+If there is any problem about pg database. Try the steps below:
+
+1. Install postgres
+
+    ```brew update```
+
+    ```brew install postgres```
+
+2. open another terminal to run PG server
+
+    ```postgres -D /usr/local/var/postgres```
+
+3. Open PG console (Open one more terminal to run the code below)
+
+    ```psql postgres```
+
+4. Create admin user (more details in /config/database.yml)
+
+    ```create user beaverthing;```
+
+    ```create password beaverthing;```
+
+type in password(ubuntu) twice
+
+5. Create database follow the previous team’s setting
+
+    ```create database workspace_development;```
+    
+    ```create database workspace_test;```
+
+    ```create database workspace_production;```
+
+PG console setting completed. You can close the console here.
+
+6. Generate table with database
+
+    ```bin/rails db:migrate RAILS_ENV=development```
+
+7. Start the rails server
+
+    ```rails server``` 
+
+8. The local server will start on the following link
+
+    [http://localhost:3000](http://localhost:3000)
 ### Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
