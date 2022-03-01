@@ -205,7 +205,7 @@
                             <div class="be-desc-label">Gallery Pictures</div>
 							<% @gallery.present? and @gallery.each do |gallery| %>
 								<% if gallery.GeneralInfo_id == @general_info.id %>
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="photo photo-type-line">
 										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
 											<div class="photo-info">
