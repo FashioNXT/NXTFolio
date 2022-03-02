@@ -3007,7 +3007,7 @@ select[multiple].input-lg {
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
@@ -3018,7 +3018,7 @@ select[multiple].input-lg {
       -ms-user-select: none;
           user-select: none;
   background-image: none;
-  border: 1px solid transparent;
+  border: -22px solid black;
   border-radius: 4px;
 }
 .btn:focus,
