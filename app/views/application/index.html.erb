@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
@@ -57,15 +58,36 @@
 
 			<div class=head-bg-content>
 				<div class="homepage-login-btn-section">
-					<div class="landing_search_button">
-						<%= link_to 'What Are You Looking For?', search_engine_show_path, :id => "custom_but_style" %>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-md-2">
+							</div>
+							<div class="col-md-6">
+								<div id="custom-search-input">
+									<div class="input-group col-md-12">
+										<input type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
+										<span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+													<%= link_to search_engine_show_path do %>
+                            <i class="glyphicon glyphicon-search"></i>
+														<% end %>
+                        </button>
+                    </span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+
+
 				</div>
 				<div class="login_block">
 					
 					<div class="register_howitworks">
-						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business>></a>
-						<a class=" color-1 size-1 register-but-below-search-but" href="">How It Works>></a>
+						<a class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business</a>
+						<a class="register-but-below-search-but">|</a>
+						<a class="color-1 size-1 register-but-below-search-but" href="">How It Works</a>
 					</div>
 				</div>
 
