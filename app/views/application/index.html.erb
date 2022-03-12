@@ -57,6 +57,7 @@
 			<% end %>
 
 			<div class=head-bg-content>
+				<%= form_tag(search_engine_show_path, :method=>'get') do %>
 				<div class="homepage-login-btn-section">
 
 					<div class="container">
@@ -66,9 +67,9 @@
 							<div class="col-md-6">
 								<div id="custom-search-input">
 									<div class="input-group col-md-12">
-										<input type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
+										<input name="Initkey" type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
 										<span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
+                        <button class="btn btn-info btn-lg" type="submit">
 													<%= link_to search_engine_show_path do %>
                             <i class="glyphicon glyphicon-search"></i>
 														<% end %>
@@ -78,6 +79,7 @@
 								</div>
 							</div>
 						</div>
+						<% end %>
 					</div>
 
 
@@ -103,24 +105,24 @@
           <div id="container-mix"  class="row _post-container_">
             
             <div class="be-post" id="Model1">
-              <% @users.present? and @users.each do |info| %>
-                <div class="category-1 mix custom-column-5">
-                  <% if info.attribute_values[:job_name]=="Model" %>
+              <% @users.present? and @users.each do |modinfo| %>
+								<div class="col-md-4">
+                  <% if modinfo.attribute_values[:job_name]=="Model" %>
                   	<a class="be-img-block">
-					  <div class="photo photo-type-line">
-                  		<% if info.profile_picture? %>
-                  			<img src="<%= info.profile_picture.url %>" alt="omg">
+					            <div class="photo photo-type-line">
+                  		<% if modinfo.profile_picture? %>
+                  			<img src="<%= modinfo.profile_picture.url %>" alt="omg">
                   		<% else %>
                   			<img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
                   		<% end %>
-							<a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+							<a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>">
 								<div class="photo-info">
-									<div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+									<div class="headline"><%= modinfo.first_name %> <%= modinfo.last_name %></div>
 									<div class="line"></div>
-										<div class="desc"> <%= info.city %> </div>
-										<div class="desc"> <%= info.state %> </div>
+										<div class="desc"> <%= modinfo.city %> </div>
+										<div class="desc"> <%= modinfo.state %> </div>
 									<div class="line"></div>
-										<div class="desc"> <%= info.bio %> </div>
+										<div class="desc"> <%= modinfo.bio %> </div>
 								</div>
 								<div class="mask"></div>
 							</a>
@@ -135,8 +137,9 @@
               <% @users.present? and @users.each do |info| %>
                 <div class="col-md-4">
                   <% if info.attribute_values[:job_name]=="Photographer" %>
+
                   <a class="be-img-block">
-					  <div class="photo photo-type-line">
+					  				<div class="photo photo-type-line">
                   		<% if info.profile_picture? %>
                   			<img src="<%= info.profile_picture.url %>" alt="omg">
                   		<% else %>
@@ -162,7 +165,7 @@
           
             <div class="be-post" id="Agent1">
               <% @users.present? and @users.each do |info| %>
-                <div class="category-1 mix custom-column-5">
+								<div class="col-md-4">
                   <% if info.attribute_values[:job_name]=="Agent" %>
                   <a class="be-img-block">
 					  <div class="photo photo-type-line">
@@ -191,7 +194,7 @@
           
             <div class="be-post" id="Designer1">
               <% @users.present? and @users.each do |info| %>
-              <div class="category-1 mix custom-column-5">
+								<div class="col-md-4">
                 <% if info.attribute_values[:job_name]=="Designer" %>
 				<a class="be-img-block">
 				<div class="photo photo-type-line">
@@ -220,7 +223,7 @@
           
             <div class="be-post" id="Everyone1">
               <% @users.present? and @users.each do |info| %>
-                <div class="category-1 mix custom-column-5">
+								<div class="col-md-4">
 				<a class="be-img-block">
 				<div class="photo photo-type-line">
 					<% if info.profile_picture? %>

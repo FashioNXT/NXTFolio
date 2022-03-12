@@ -824,6 +824,11 @@ legend {
     font-family: 'Roboto', sans-serif;
 }
 
+.s009 {
+    height: 100px;
+    width: 200px;
+}
+
 .s008 form {
     width: 100%;
     max-width: 790px;
@@ -1152,6 +1157,7 @@ legend {
     width: 75%; 						/* divider width */
     margin: 40px auto;					/* spacing above/below */
 }
+
 .divider span { display: table-cell; position: relative; }
 .divider span:first-child, .divider span:last-child {
     width: 50%;

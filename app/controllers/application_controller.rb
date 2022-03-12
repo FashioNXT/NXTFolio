@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     #To display DB, delete this later!
     @login_infos = LoginInfo.all
     @general_infos = GeneralInfo.all
+
   end
 
   # Enables redirection to general_info new page after sign in
