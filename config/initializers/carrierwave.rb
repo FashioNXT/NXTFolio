@@ -1,5 +1,5 @@
-require_relative 'config/initializers/carrierwave'
-require_relative 'config/initializers/database'
+#require_relative 'config/initializers/carrierwave'
+#require_relative 'config/initializers/database'
 
 
 
