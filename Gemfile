@@ -80,7 +80,7 @@ gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
 
 # Fix the problem of "You are using an old OmniAuth version"
-gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
 gem 'omniauth', '~>2.0'
 gem "omniauth-rails_csrf_protection", '~> 1.0' #works for omniauth 2.0
 #gem 'devise'
