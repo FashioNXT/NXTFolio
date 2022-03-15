@@ -1,0 +1,39 @@
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.16/ext/mri
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/bin/ruby -I /Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/lib/ruby/site_ruby/2.4.0 -r ./siteconf20220314-35496-91m5s9.rb extconf.rb
+creating Makefile
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.16/ext/mri
+make "DESTDIR=" clean
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.16/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+bcrypt_ext.c:17:25: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+            NIL_P(input) ? 0 : RSTRING_LEN(input));
+                               ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:980:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:976:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bcrypt_ext.c:17:25: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+            NIL_P(input) ? 0 : RSTRING_LEN(input));
+                               ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:981:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+2 warnings generated.
+compiling crypt_blowfish.c
+gcc  -D__SKIP_GNU  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -c -o x86.o x86.S
+compiling crypt_gensalt.c
+compiling wrapper.c
+wrapper.c:182:60: warning: declaration of 'struct crypt_data' will not be visible outside of this function [-Wvisibility]
+char *crypt_r(const char *key, const char *setting, struct crypt_data *data)
+                                                           ^
+1 warning generated.
+linking shared-object bcrypt_ext.bundle
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.16/ext/mri
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bcrypt_ext.bundle ./.gem.20220314-35496-zkfxby

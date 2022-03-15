@@ -1,0 +1,15 @@
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/bin/ruby -I /Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/lib/ruby/site_ruby/2.4.0 -r ./siteconf20220314-35496-j2yn37.rb extconf.rb
+creating Makefile
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20220314-35496-10ksh6o

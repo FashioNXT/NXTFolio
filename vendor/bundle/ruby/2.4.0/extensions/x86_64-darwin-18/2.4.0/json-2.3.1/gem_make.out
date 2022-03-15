@@ -1,0 +1,13 @@
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/json-2.3.1/ext/json
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/bin/ruby -I /Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/lib/ruby/site_ruby/2.4.0 -r ./siteconf20220314-35496-1wio0y1.rb extconf.rb
+creating Makefile
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/json-2.3.1/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/json-2.3.1/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/json-2.3.1/ext/json
+make "DESTDIR=" install

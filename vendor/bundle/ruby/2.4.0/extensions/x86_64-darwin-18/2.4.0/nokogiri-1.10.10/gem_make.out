@@ -1,0 +1,1699 @@
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ext/nokogiri
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/bin/ruby -I /Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/lib/ruby/site_ruby/2.4.0 -r ./siteconf20220314-35496-goww8u.rb extconf.rb
+checking if the C compiler accepts  -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libxml2... yes
+checking if the C compiler accepts -Wno-error=unused-command-line-argument-hard-error-in-future... no
+Building nokogiri using packaged libraries.
+Using mini_portile version 2.4.0
+checking for iconv.h... yes
+checking for gzdopen() in -lz... yes
+checking for iconv using --with-opt-* flags... yes
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxml2-2.9.10
+with the following patches applied:
+	- 0001-Revert-Do-not-URI-escape-in-server-side-includes.patch
+	- 0002-Remove-script-macro-support.patch
+	- 0003-Update-entities-to-remove-handling-of-ssi.patch
+	- 0004-libxml2.la-is-in-top_builddir.patch
+	- 0005-Fix-infinite-loop-in-xmlStringLenDecodeEntities.patch
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+
+Note, however, that nokogiri is not fully compatible with arbitrary
+versions of libxml2 provided by OS/package vendors.
+************************************************************************
+Extracting libxml2-2.9.10.tar.gz into tmp/x86_64-apple-darwin18.7.0/ports/libxml2/2.9.10... OK
+Running git apply with /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/patches/libxml2/0001-Revert-Do-not-URI-escape-in-server-side-includes.patch... OK
+Running git apply with /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/patches/libxml2/0002-Remove-script-macro-support.patch... OK
+Running git apply with /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/patches/libxml2/0003-Update-entities-to-remove-handling-of-ssi.patch... OK
+Running git apply with /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/patches/libxml2/0004-libxml2.la-is-in-top_builddir.patch... OK
+Running git apply with /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/patches/libxml2/0005-Fix-infinite-loop-in-xmlStringLenDecodeEntities.patch... OK
+Running 'configure' for libxml2 2.9.10... OK
+Running 'compile' for libxml2 2.9.10... OK
+Running 'install' for libxml2 2.9.10... OK
+Activating libxml2 2.9.10 (from /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ports/x86_64-apple-darwin18.7.0/libxml2/2.9.10)...
+************************************************************************
+IMPORTANT NOTICE:
+
+Building Nokogiri with a packaged version of libxslt-1.1.34.
+
+Team Nokogiri will keep on doing their best to provide security
+updates in a timely manner, but if this is a concern for you and want
+to use the system library instead; abort this installation process and
+reinstall nokogiri as follows:
+
+    gem install nokogiri -- --use-system-libraries
+        [--with-xml2-config=/path/to/xml2-config]
+        [--with-xslt-config=/path/to/xslt-config]
+
+If you are using Bundler, tell it to use the option:
+
+    bundle config build.nokogiri --use-system-libraries
+    bundle install
+************************************************************************
+Extracting libxslt-1.1.34.tar.gz into tmp/x86_64-apple-darwin18.7.0/ports/libxslt/1.1.34... OK
+Running 'configure' for libxslt 1.1.34... OK
+Running 'compile' for libxslt 1.1.34... OK
+Running 'install' for libxslt 1.1.34... OK
+Activating libxslt 1.1.34 (from /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ports/x86_64-apple-darwin18.7.0/libxslt/1.1.34)...
+checking for -llzma... yes
+checking for xmlParseDoc() in libxml/parser.h... yes
+checking for xsltParseStylesheetDoc() in libxslt/xslt.h... yes
+checking for exsltFuncRegister() in libexslt/exslt.h... yes
+checking for xmlHasFeature()... yes
+checking for xmlFirstElementChild()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetParserStructuredErrors()... yes
+checking for xmlRelaxNGSetValidStructuredErrors()... yes
+checking for xmlSchemaSetValidStructuredErrors()... yes
+checking for xmlSchemaSetParserStructuredErrors()... yes
+creating Makefile
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ext/nokogiri
+make "DESTDIR=" clean
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ext/nokogiri
+make "DESTDIR="
+compiling html_document.c
+html_document.c:169:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_encoding_found = rb_intern("encoding_found");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+html_document.c:169:23: note: '{' token is here
+  id_encoding_found = rb_intern("encoding_found");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+html_document.c:169:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_encoding_found = rb_intern("encoding_found");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+html_document.c:169:23: note: ')' token is here
+  id_encoding_found = rb_intern("encoding_found");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling html_element_description.c
+compiling html_entity_lookup.c
+html_entity_lookup.c:16:39: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  klass = rb_const_get(mNokogiriHtml, rb_intern("EntityDescription"));
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+html_entity_lookup.c:16:39: note: '{' token is here
+  klass = rb_const_get(mNokogiriHtml, rb_intern("EntityDescription"));
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+html_entity_lookup.c:16:39: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  klass = rb_const_get(mNokogiriHtml, rb_intern("EntityDescription"));
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+html_entity_lookup.c:16:39: note: ')' token is here
+  klass = rb_const_get(mNokogiriHtml, rb_intern("EntityDescription"));
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling html_sax_parser_context.c
+compiling html_sax_push_parser.c
+compiling nokogiri.c
+nokogiri.c:79:17: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+                rb_intern("LIBXML_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:79:17: note: '{' token is here
+                rb_intern("LIBXML_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:79:17: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+                rb_intern("LIBXML_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:79:17: note: ')' token is here
+                rb_intern("LIBXML_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:83:17: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+                rb_intern("LIBXML_PARSER_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:83:17: note: '{' token is here
+                rb_intern("LIBXML_PARSER_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:83:17: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+                rb_intern("LIBXML_PARSER_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:83:17: note: ')' token is here
+                rb_intern("LIBXML_PARSER_VERSION"),
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:88:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_USE_PACKAGED_LIBRARIES"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:88:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_USE_PACKAGED_LIBRARIES"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:88:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_USE_PACKAGED_LIBRARIES"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:88:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_USE_PACKAGED_LIBRARIES"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:89:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:89:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:89:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:89:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:90:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:90:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:90:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:90:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATH"), NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATH));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:91:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:91:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:91:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:91:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXML2_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXML2_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:92:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:92:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:92:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:92:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("NOKOGIRI_LIBXSLT_PATCHES"), rb_str_split(NOKOGIRI_STR_NEW2(NOKOGIRI_LIBXSLT_PATCHES), " "));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+nokogiri.c:102:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("LIBXML_ICONV_ENABLED"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+nokogiri.c:102:27: note: '{' token is here
+  rb_const_set(mNokogiri, rb_intern("LIBXML_ICONV_ENABLED"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+nokogiri.c:102:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(mNokogiri, rb_intern("LIBXML_ICONV_ENABLED"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+nokogiri.c:102:27: note: ')' token is here
+  rb_const_set(mNokogiri, rb_intern("LIBXML_ICONV_ENABLED"), Qtrue);
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+16 warnings generated.
+compiling xml_attr.c
+compiling xml_attribute_decl.c
+compiling xml_cdata.c
+xml_cdata.c:29:23: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    content_str_len = RSTRING_LEN(content);
+                    ~ ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:980:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:976:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xml_cdata.c:29:23: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    content_str_len = RSTRING_LEN(content);
+                    ~ ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:981:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+2 warnings generated.
+compiling xml_comment.c
+xml_comment.c:68:17: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  document_id = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_comment.c:68:17: note: '{' token is here
+  document_id = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_comment.c:68:17: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  document_id = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_comment.c:68:17: note: ')' token is here
+  document_id = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling xml_document.c
+xml_document.c:478:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  ret = rb_funcall(block, rb_intern("call"), 2, node, parent);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_document.c:478:27: note: '{' token is here
+  ret = rb_funcall(block, rb_intern("call"), 2, node, parent);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_document.c:478:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  ret = rb_funcall(block, rb_intern("call"), 2, node, parent);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_document.c:478:27: note: ')' token is here
+  ret = rb_funcall(block, rb_intern("call"), 2, node, parent);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_document.c:515:46: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_cStringIO = rb_const_get_at(rb_cObject, rb_intern("StringIO"));
+                                             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_document.c:515:46: note: '{' token is here
+  rb_cStringIO = rb_const_get_at(rb_cObject, rb_intern("StringIO"));
+                                             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_document.c:515:46: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_cStringIO = rb_const_get_at(rb_cObject, rb_intern("StringIO"));
+                                             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_document.c:515:46: note: ')' token is here
+  rb_cStringIO = rb_const_get_at(rb_cObject, rb_intern("StringIO"));
+                                             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_document.c:550:25: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  return rb_funcall(io, rb_intern("string"), 0);
+                        ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_document.c:550:25: note: '{' token is here
+  return rb_funcall(io, rb_intern("string"), 0);
+                        ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_document.c:550:25: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  return rb_funcall(io, rb_intern("string"), 0);
+                        ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_document.c:550:25: note: ')' token is here
+  return rb_funcall(io, rb_intern("string"), 0);
+                        ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+6 warnings generated.
+compiling xml_document_fragment.c
+compiling xml_dtd.c
+xml_dtd.c:6:44: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  VALUE klass = rb_const_get(mNokogiriXml, rb_intern("Notation"));
+                                           ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_dtd.c:6:44: note: '{' token is here
+  VALUE klass = rb_const_get(mNokogiriXml, rb_intern("Notation"));
+                                           ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_dtd.c:6:44: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  VALUE klass = rb_const_get(mNokogiriXml, rb_intern("Notation"));
+                                           ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_dtd.c:6:44: note: ')' token is here
+  VALUE klass = rb_const_get(mNokogiriXml, rb_intern("Notation"));
+                                           ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling xml_element_content.c
+compiling xml_element_decl.c
+xml_element_decl.c:68:17: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_document = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_element_decl.c:68:17: note: '{' token is here
+  id_document = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_element_decl.c:68:17: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_document = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_element_decl.c:68:17: note: ')' token is here
+  id_document = rb_intern("document");
+                ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling xml_encoding_handler.c
+compiling xml_entity_decl.c
+xml_entity_decl.c:98:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_GENERAL"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:98:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_GENERAL"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:98:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_GENERAL"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:98:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_GENERAL"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_entity_decl.c:100:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_PARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:100:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_PARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:100:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_PARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:100:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_PARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_entity_decl.c:102:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_UNPARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:102:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_UNPARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:102:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_UNPARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:102:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_GENERAL_UNPARSED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_entity_decl.c:104:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:104:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:104:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:104:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_entity_decl.c:106:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:106:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:106:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:106:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("EXTERNAL_PARAMETER"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_entity_decl.c:108:40: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PREDEFINED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_entity_decl.c:108:40: note: '{' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PREDEFINED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_entity_decl.c:108:40: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PREDEFINED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_entity_decl.c:108:40: note: ')' token is here
+  rb_const_set(cNokogiriXmlEntityDecl, rb_intern("INTERNAL_PREDEFINED"),
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+12 warnings generated.
+compiling xml_entity_reference.c
+compiling xml_io.c
+xml_io.c:59:13: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_read = rb_intern("read");
+            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_io.c:59:13: note: '{' token is here
+  id_read = rb_intern("read");
+            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_io.c:59:13: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_read = rb_intern("read");
+            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_io.c:59:13: note: ')' token is here
+  id_read = rb_intern("read");
+            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_io.c:60:14: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_write = rb_intern("write");
+             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_io.c:60:14: note: '{' token is here
+  id_write = rb_intern("write");
+             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_io.c:60:14: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_write = rb_intern("write");
+             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_io.c:60:14: note: ')' token is here
+  id_write = rb_intern("write");
+             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling xml_libxml2_hacks.c
+compiling xml_namespace.c
+compiling xml_node.c
+xml_node.c:304:15: warning: passing 'const xmlChar *' (aka 'const unsigned char *') to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+      xmlFree(reparentee->ns->prefix);
+              ^~~~~~~~~~~~~~~~~~~~~~
+xml_node.c:1749:19: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate      = rb_intern("decorate");
+                  ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_node.c:1749:19: note: '{' token is here
+  decorate      = rb_intern("decorate");
+                  ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_node.c:1749:19: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate      = rb_intern("decorate");
+                  ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_node.c:1749:19: note: ')' token is here
+  decorate      = rb_intern("decorate");
+                  ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_node.c:1750:19: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate_bang = rb_intern("decorate!");
+                  ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_node.c:1750:19: note: '{' token is here
+  decorate_bang = rb_intern("decorate!");
+                  ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_node.c:1750:19: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate_bang = rb_intern("decorate!");
+                  ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_node.c:1750:19: note: ')' token is here
+  decorate_bang = rb_intern("decorate!");
+                  ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+5 warnings generated.
+compiling xml_node_set.c
+xml_node_set.c:358:24: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      rb_funcall(node, rb_intern("unlink"), 0); /* modifies the C struct out from under the object */
+                       ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_node_set.c:358:24: note: '{' token is here
+      rb_funcall(node, rb_intern("unlink"), 0); /* modifies the C struct out from under the object */
+                       ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_node_set.c:358:24: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      rb_funcall(node, rb_intern("unlink"), 0); /* modifies the C struct out from under the object */
+                       ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_node_set.c:358:24: note: ')' token is here
+      rb_funcall(node, rb_intern("unlink"), 0); /* modifies the C struct out from under the object */
+                       ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_node_set.c:485:14: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate = rb_intern("decorate");
+             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_node_set.c:485:14: note: '{' token is here
+  decorate = rb_intern("decorate");
+             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_node_set.c:485:14: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  decorate = rb_intern("decorate");
+             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_node_set.c:485:14: note: ')' token is here
+  decorate = rb_intern("decorate");
+             ^~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling xml_processing_instruction.c
+compiling xml_reader.c
+xml_reader.c:450:33: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  error_list = rb_funcall(self, rb_intern("errors"), 0);
+                                ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_reader.c:450:33: note: '{' token is here
+  error_list = rb_funcall(self, rb_intern("errors"), 0);
+                                ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_reader.c:450:33: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  error_list = rb_funcall(self, rb_intern("errors"), 0);
+                                ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_reader.c:450:33: note: ')' token is here
+  error_list = rb_funcall(self, rb_intern("errors"), 0);
+                                ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling xml_relax_ng.c
+compiling xml_sax_parser.c
+xml_sax_parser.c:296:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_document = rb_intern("start_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:296:23: note: '{' token is here
+  id_start_document = rb_intern("start_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:296:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_document = rb_intern("start_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:296:23: note: ')' token is here
+  id_start_document = rb_intern("start_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:297:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_document   = rb_intern("end_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:297:23: note: '{' token is here
+  id_end_document   = rb_intern("end_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:297:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_document   = rb_intern("end_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:297:23: note: ')' token is here
+  id_end_document   = rb_intern("end_document");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:298:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_element  = rb_intern("start_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:298:23: note: '{' token is here
+  id_start_element  = rb_intern("start_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:298:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_element  = rb_intern("start_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:298:23: note: ')' token is here
+  id_start_element  = rb_intern("start_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:299:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_element    = rb_intern("end_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:299:23: note: '{' token is here
+  id_end_element    = rb_intern("end_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:299:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_element    = rb_intern("end_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:299:23: note: ')' token is here
+  id_end_element    = rb_intern("end_element");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:300:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_comment        = rb_intern("comment");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:300:23: note: '{' token is here
+  id_comment        = rb_intern("comment");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:300:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_comment        = rb_intern("comment");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:300:23: note: ')' token is here
+  id_comment        = rb_intern("comment");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:301:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_characters     = rb_intern("characters");
+                      ^~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:301:23: note: '{' token is here
+  id_characters     = rb_intern("characters");
+                      ^~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:301:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_characters     = rb_intern("characters");
+                      ^~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:301:23: note: ')' token is here
+  id_characters     = rb_intern("characters");
+                      ^~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:302:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_xmldecl        = rb_intern("xmldecl");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:302:23: note: '{' token is here
+  id_xmldecl        = rb_intern("xmldecl");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:302:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_xmldecl        = rb_intern("xmldecl");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:302:23: note: ')' token is here
+  id_xmldecl        = rb_intern("xmldecl");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:303:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_error          = rb_intern("error");
+                      ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:303:23: note: '{' token is here
+  id_error          = rb_intern("error");
+                      ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:303:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_error          = rb_intern("error");
+                      ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:303:23: note: ')' token is here
+  id_error          = rb_intern("error");
+                      ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:304:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_warning        = rb_intern("warning");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:304:23: note: '{' token is here
+  id_warning        = rb_intern("warning");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:304:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_warning        = rb_intern("warning");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:304:23: note: ')' token is here
+  id_warning        = rb_intern("warning");
+                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:305:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_cdata_block    = rb_intern("cdata_block");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:305:23: note: '{' token is here
+  id_cdata_block    = rb_intern("cdata_block");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:305:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_cdata_block    = rb_intern("cdata_block");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:305:23: note: ')' token is here
+  id_cdata_block    = rb_intern("cdata_block");
+                      ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:306:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_cAttribute     = rb_intern("Attribute");
+                      ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:306:23: note: '{' token is here
+  id_cAttribute     = rb_intern("Attribute");
+                      ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:306:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_cAttribute     = rb_intern("Attribute");
+                      ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:306:23: note: ')' token is here
+  id_cAttribute     = rb_intern("Attribute");
+                      ^~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:307:32: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_element_namespace = rb_intern("start_element_namespace");
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:307:32: note: '{' token is here
+  id_start_element_namespace = rb_intern("start_element_namespace");
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:307:32: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_start_element_namespace = rb_intern("start_element_namespace");
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:307:32: note: ')' token is here
+  id_start_element_namespace = rb_intern("start_element_namespace");
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:308:30: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_element_namespace = rb_intern("end_element_namespace");
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:308:30: note: '{' token is here
+  id_end_element_namespace = rb_intern("end_element_namespace");
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:308:30: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_end_element_namespace = rb_intern("end_element_namespace");
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:308:30: note: ')' token is here
+  id_end_element_namespace = rb_intern("end_element_namespace");
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_sax_parser.c:309:31: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_processing_instruction = rb_intern("processing_instruction");
+                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_sax_parser.c:309:31: note: '{' token is here
+  id_processing_instruction = rb_intern("processing_instruction");
+                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_sax_parser.c:309:31: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  id_processing_instruction = rb_intern("processing_instruction");
+                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_sax_parser.c:309:31: note: ')' token is here
+  id_processing_instruction = rb_intern("processing_instruction");
+                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+28 warnings generated.
+compiling xml_sax_parser_context.c
+compiling xml_sax_push_parser.c
+compiling xml_schema.c
+compiling xml_syntax_error.c
+xml_syntax_error.c:22:46: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE xpath = rb_const_get(mNokogiriXml, rb_intern("XPath"));
+                                             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_syntax_error.c:22:46: note: '{' token is here
+    VALUE xpath = rb_const_get(mNokogiriXml, rb_intern("XPath"));
+                                             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_syntax_error.c:22:46: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE xpath = rb_const_get(mNokogiriXml, rb_intern("XPath"));
+                                             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_syntax_error.c:22:46: note: ')' token is here
+    VALUE xpath = rb_const_get(mNokogiriXml, rb_intern("XPath"));
+                                             ^~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_syntax_error.c:23:33: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    klass = rb_const_get(xpath, rb_intern("SyntaxError"));
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_syntax_error.c:23:33: note: '{' token is here
+    klass = rb_const_get(xpath, rb_intern("SyntaxError"));
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_syntax_error.c:23:33: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    klass = rb_const_get(xpath, rb_intern("SyntaxError"));
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_syntax_error.c:23:33: note: ')' token is here
+    klass = rb_const_get(xpath, rb_intern("SyntaxError"));
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling xml_text.c
+compiling xml_xpath_context.c
+xml_xpath_context.c:95:33: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  result = rb_funcall2(handler, rb_intern((const char*)function_name), nargs, argv);
+                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_xpath_context.c:95:33: note: '{' token is here
+  result = rb_funcall2(handler, rb_intern((const char*)function_name), nargs, argv);
+                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_xpath_context.c:95:33: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  result = rb_funcall2(handler, rb_intern((const char*)function_name), nargs, argv);
+                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_xpath_context.c:95:33: note: ')' token is here
+  result = rb_funcall2(handler, rb_intern((const char*)function_name), nargs, argv);
+                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xml_xpath_context.c:165:35: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  if(rb_respond_to(xpath_handler, rb_intern((const char *)name)))
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xml_xpath_context.c:165:35: note: '{' token is here
+  if(rb_respond_to(xpath_handler, rb_intern((const char *)name)))
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xml_xpath_context.c:165:35: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  if(rb_respond_to(xpath_handler, rb_intern((const char *)name)))
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xml_xpath_context.c:165:35: note: ')' token is here
+  if(rb_respond_to(xpath_handler, rb_intern((const char *)name)))
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling xslt_stylesheet.c
+xslt_stylesheet.c:148:39: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      paramobj = rb_funcall(paramobj, rb_intern("to_a"), 0);
+                                      ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xslt_stylesheet.c:148:39: note: '{' token is here
+      paramobj = rb_funcall(paramobj, rb_intern("to_a"), 0);
+                                      ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xslt_stylesheet.c:148:39: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      paramobj = rb_funcall(paramobj, rb_intern("to_a"), 0);
+                                      ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xslt_stylesheet.c:148:39: note: ')' token is here
+      paramobj = rb_funcall(paramobj, rb_intern("to_a"), 0);
+                                      ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xslt_stylesheet.c:149:39: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      paramobj = rb_funcall(paramobj, rb_intern("flatten"), 0);
+                                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xslt_stylesheet.c:149:39: note: '{' token is here
+      paramobj = rb_funcall(paramobj, rb_intern("flatten"), 0);
+                                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xslt_stylesheet.c:149:39: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+      paramobj = rb_funcall(paramobj, rb_intern("flatten"), 0);
+                                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xslt_stylesheet.c:149:39: note: ')' token is here
+      paramobj = rb_funcall(paramobj, rb_intern("flatten"), 0);
+                                      ^~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xslt_stylesheet.c:176:58: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    parse_error_occurred = (Qfalse == rb_funcall(errstr, rb_intern("empty?"), 0));
+                                                         ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xslt_stylesheet.c:176:58: note: '{' token is here
+    parse_error_occurred = (Qfalse == rb_funcall(errstr, rb_intern("empty?"), 0));
+                                                         ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xslt_stylesheet.c:176:58: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    parse_error_occurred = (Qfalse == rb_funcall(errstr, rb_intern("empty?"), 0));
+                                                         ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xslt_stylesheet.c:176:58: note: ')' token is here
+    parse_error_occurred = (Qfalse == rb_funcall(errstr, rb_intern("empty?"), 0));
+                                                         ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xslt_stylesheet.c:206:37: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE methods = rb_funcall(obj, rb_intern("instance_methods"), 1, args);
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+xslt_stylesheet.c:206:37: note: '{' token is here
+    VALUE methods = rb_funcall(obj, rb_intern("instance_methods"), 1, args);
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+xslt_stylesheet.c:206:37: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE methods = rb_funcall(obj, rb_intern("instance_methods"), 1, args);
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+xslt_stylesheet.c:206:37: note: ')' token is here
+    VALUE methods = rb_funcall(obj, rb_intern("instance_methods"), 1, args);
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+xslt_stylesheet.c:112:13: warning: unused function 'swallow_superfluous_xml_errors' [-Wunused-function]
+static void swallow_superfluous_xml_errors(void * userdata, xmlErrorPtr error, ...)
+            ^
+9 warnings generated.
+linking shared-object nokogiri/nokogiri.bundle
+Cleaning files only used during build.
+rm -rf /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ext/nokogiri/tmp/x86_64-apple-darwin18.7.0/ports
+rm -rf /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ports
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.10.10/ext/nokogiri
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 nokogiri.bundle ./.gem.20220314-35496-fj9yvt/nokogiri

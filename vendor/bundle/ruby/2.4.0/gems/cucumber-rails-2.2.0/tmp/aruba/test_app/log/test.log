@@ -1,0 +1,38 @@
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "appointments"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "when" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200821080656)[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2020-08-21 08:07:07.820199"], ["updated_at", "2020-08-21 08:07:07.820199"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/appointments/new" for 127.0.0.1 at 2020-08-21 09:07:12 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (101.3ms)
+  Rendered appointments/new.html.erb within layouts/application (110.3ms)
+Completed 200 OK in 1773ms (Views: 1720.8ms | ActiveRecord: 1.3ms)
+Started GET "/assets/application-35729bfbaf9967f119234595ed222f7ab14859f304ab0acc5451afb387f637fa.css" for 127.0.0.1 at 2020-08-21 09:07:14 +0100
+Started GET "/assets/application-971b470910006c400f0ec7274d6f22773bb29610125c0cd34bfedfdd4f367403.js" for 127.0.0.1 at 2020-08-21 09:07:14 +0100
+Started POST "/appointments" for 127.0.0.1 at 2020-08-21 09:07:16 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "appointment"=>{"name"=>"Norway's constitution", "when(1i)"=>"2015", "when(2i)"=>"2", "when(3i)"=>"20", "when(4i)"=>"15", "when(5i)"=>"10"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointment Create (0.6ms)[0m  [1m[32mINSERT INTO "appointments" ("name", "when", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Norway's constitution"], ["when", "2015-02-20 15:10:00"], ["created_at", "2020-08-21 08:07:16.054533"], ["updated_at", "2020-08-21 08:07:16.054533"]]
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:40283/appointments/1
+Completed 302 Found in 21ms (ActiveRecord: 16.5ms)
+Started GET "/appointments/1" for 127.0.0.1 at 2020-08-21 09:07:16 +0100
+Processing by AppointmentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering appointments/show.html.erb within layouts/application
+  Rendered appointments/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 7ms (Views: 1.8ms | ActiveRecord: 0.4ms)

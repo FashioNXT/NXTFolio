@@ -1,0 +1,714 @@
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/therubyracer-0.12.3/ext/v8
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/bin/ruby -I /Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/lib/ruby/site_ruby/2.4.0 -r ./siteconf20220314-35496-1tuvrd1.rb extconf.rb --with-v8-dir\=/usr/local/opt/v8@3.15
+checking for -lpthread... yes
+checking for -lobjc... yes
+checking for v8.h... yes
+checking for -lv8... yes
+creating Makefile
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" clean
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR="
+compiling accessor.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+accessor.cc:130:43: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:130:43: note: '{' token is here
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:130:43: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:130:43: note: ')' token is here
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:135:43: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, (VALUE)String(property), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:135:43: note: '{' token is here
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, (VALUE)String(property), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:135:43: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, (VALUE)String(property), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:135:43: note: ')' token is here
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, (VALUE)String(property), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:140:64: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:140:64: note: '{' token is here
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:140:64: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:140:64: note: ')' token is here
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:145:63: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:145:63: note: '{' token is here
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:145:63: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:145:63: note: ')' token is here
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, (VALUE)String(property), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:150:50: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:150:50: note: '{' token is here
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:150:50: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:150:50: note: ')' token is here
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:155:43: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:155:43: note: '{' token is here
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:155:43: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:155:43: note: ')' token is here
+    return Value(rb_funcall(accessor.get, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:160:43: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, UINT2NUM(index), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:160:43: note: '{' token is here
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, UINT2NUM(index), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:160:43: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, UINT2NUM(index), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:160:43: note: ')' token is here
+    return Value(rb_funcall(accessor.set, rb_intern("call"), 3, UINT2NUM(index), (VALUE)Value(value), (VALUE)*this));
+                                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:165:64: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:165:64: note: '{' token is here
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:165:64: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:165:64: note: ')' token is here
+    return v8::Integer::New(NUM2INT(rb_funcall(accessor.query, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                               ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:684:32: note: expanded from macro 'NUM2INT'
+#define NUM2INT(x)  RB_NUM2INT(x)
+                               ^
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:672:41: note: expanded from macro 'RB_NUM2INT'
+#define RB_NUM2INT(x) rb_num2int_inline(x)
+                                        ^
+accessor.cc:170:63: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:170:63: note: '{' token is here
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:170:63: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:170:63: note: ')' token is here
+    return v8::Boolean::New(Bool(rb_funcall(accessor.deleter, rb_intern("call"), 2, UINT2NUM(index), (VALUE)*this)));
+                                                              ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+accessor.cc:175:50: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+accessor.cc:175:50: note: '{' token is here
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+accessor.cc:175:50: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+accessor.cc:175:50: note: ')' token is here
+    return Array(rb_funcall(accessor.enumerator, rb_intern("call"), 1, (VALUE)*this));
+                                                 ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+20 warnings generated.
+compiling array.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling backref.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+backref.cc:12:12: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    _new = rb_intern("new");
+           ^~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+backref.cc:12:12: note: '{' token is here
+    _new = rb_intern("new");
+           ^~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+backref.cc:12:12: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    _new = rb_intern("new");
+           ^~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+backref.cc:12:12: note: ')' token is here
+    _new = rb_intern("new");
+           ^~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+backref.cc:13:14: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    object = rb_intern("object");
+             ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+backref.cc:13:14: note: '{' token is here
+    object = rb_intern("object");
+             ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+backref.cc:13:14: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    object = rb_intern("object");
+             ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+backref.cc:13:14: note: ')' token is here
+    object = rb_intern("object");
+             ^~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling constants.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling constraints.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling context.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling date.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling exception.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling external.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling function.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling gc.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling handles.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+handles.cc:31:27: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  return rb_funcall(code, rb_intern("call"), 0);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+handles.cc:31:27: note: '{' token is here
+  return rb_funcall(code, rb_intern("call"), 0);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+handles.cc:31:27: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+  return rb_funcall(code, rb_intern("call"), 0);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+handles.cc:31:27: note: ')' token is here
+  return rb_funcall(code, rb_intern("call"), 0);
+                          ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling heap.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling init.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+init.cc:11:20: warning: empty parentheses interpreted as a function declaration [-Wvexing-parse]
+    v8::Locker lock();
+                   ^~
+init.cc:11:20: note: remove parentheses to declare a variable
+    v8::Locker lock();
+                   ^~
+init.cc:11:16: warning: 'lock' has C-linkage specified, but returns user-defined type 'v8::Locker' which is incompatible with C [-Wreturn-type-c-linkage]
+    v8::Locker lock();
+               ^
+2 warnings generated.
+compiling invocation.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+invocation.cc:56:46: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(invocation.code, rb_intern("call"), 1, Data_Wrap_Struct(Class, 0, 0, (void*)this->args)));
+                                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+invocation.cc:56:46: note: '{' token is here
+    return Value(rb_funcall(invocation.code, rb_intern("call"), 1, Data_Wrap_Struct(Class, 0, 0, (void*)this->args)));
+                                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+invocation.cc:56:46: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return Value(rb_funcall(invocation.code, rb_intern("call"), 1, Data_Wrap_Struct(Class, 0, 0, (void*)this->args)));
+                                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+invocation.cc:56:46: note: ')' token is here
+    return Value(rb_funcall(invocation.code, rb_intern("call"), 1, Data_Wrap_Struct(Class, 0, 0, (void*)this->args)));
+                                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling locker.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+locker.cc:52:30: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+locker.cc:52:30: note: '{' token is here
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+locker.cc:52:30: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+locker.cc:52:30: note: ')' token is here
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+locker.cc:75:30: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+locker.cc:75:30: note: '{' token is here
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+locker.cc:75:30: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+locker.cc:75:30: note: ')' token is here
+     return rb_funcall(code, rb_intern("call"), 0);
+                             ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+4 warnings generated.
+compiling message.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling object.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling primitive.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling rr.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+rr.cc:8:23: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    rb_funcall(klass, rb_intern("private_class_method"), 1, rb_str_new2("new"));
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+rr.cc:8:23: note: '{' token is here
+    rb_funcall(klass, rb_intern("private_class_method"), 1, rb_str_new2("new"));
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+rr.cc:8:23: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    rb_funcall(klass, rb_intern("private_class_method"), 1, rb_str_new2("new"));
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+rr.cc:8:23: note: ')' token is here
+    rb_funcall(klass, rb_intern("private_class_method"), 1, rb_str_new2("new"));
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling script.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+script.cc:82:23: warning: implicit conversion loses integer precision: 'long' to 'useconds_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  usleep(data->timeout*1000);
+  ~~~~~~ ~~~~~~~~~~~~~^~~~~
+1 warning generated.
+compiling signature.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling stack.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling string.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+string.cc:42:38: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE string = rb_funcall(value, rb_intern("to_s"), 0);
+                                     ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+string.cc:42:38: note: '{' token is here
+    VALUE string = rb_funcall(value, rb_intern("to_s"), 0);
+                                     ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+string.cc:42:38: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    VALUE string = rb_funcall(value, rb_intern("to_s"), 0);
+                                     ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+string.cc:42:38: note: ')' token is here
+    VALUE string = rb_funcall(value, rb_intern("to_s"), 0);
+                                     ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling template.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling trycatch.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+trycatch.cc:85:29: warning: '(' and '{' tokens introducing statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return rb_funcall(code, rb_intern("call"), 1, rb_iv_get(code, "_v8_trycatch"));
+                            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:23: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                      ^
+trycatch.cc:85:29: note: '{' token is here
+    return rb_funcall(code, rb_intern("call"), 1, rb_iv_get(code, "_v8_trycatch"));
+                            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1731:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    {                                                   \
+    ^
+trycatch.cc:85:29: warning: '}' and ')' tokens terminating statement expression appear in different macro expansion contexts [-Wcompound-token-split-by-macro]
+    return rb_funcall(code, rb_intern("call"), 1, rb_iv_get(code, "_v8_trycatch"));
+                            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:24: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1736:5: note: expanded from macro 'RUBY_CONST_ID_CACHE'
+    }
+    ^
+trycatch.cc:85:29: note: ')' token is here
+    return rb_funcall(code, rb_intern("call"), 1, rb_iv_get(code, "_v8_trycatch"));
+                            ^~~~~~~~~~~~~~~~~
+/Users/tanvirmahdad/.rvm/rubies/ruby-2.4.1/include/ruby-2.4.0/ruby/ruby.h:1746:56: note: expanded from macro 'rb_intern'
+        __extension__ (RUBY_CONST_ID_CACHE((ID), (str))) : \
+                                                       ^
+2 warnings generated.
+compiling v8.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+compiling value.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+linking shared-object v8/init.bundle
+
+current directory: /Users/tanvirmahdad/tamu/SEProject/match-my-fashion-public-CodeCreators/vendor/bundle/ruby/2.4.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 init.bundle ./.gem.20220314-35496-1ri18yb/v8
