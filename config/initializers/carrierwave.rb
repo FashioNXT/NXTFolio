@@ -11,6 +11,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_KEY'],
       region: ENV["AWS_REGION"]
     }
+    config.storage = :fog
     config.fog_directory = ENV["AWS_BUCKET"]
     config.cache_dir = "#{Rails.root}/tmp/uploads"
     
