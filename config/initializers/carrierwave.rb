@@ -21,8 +21,6 @@ CarrierWave.configure do |config|
       config.root = "#{Rails.root}/tmp"
   else
     puts "Image Host: AWS"
-    config.storage = :file
-    config.enable_processing = false
-    config.root = "#{Rails.root}/tmp"
+    config.storage = :fog
   end
 end
