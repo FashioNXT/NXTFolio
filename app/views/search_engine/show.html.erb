@@ -38,7 +38,7 @@
               <div class="input-group col-md-12">
                 <input name="Keyword" id="search" type="text" class="form-control input-lg" value="<%= @searchQuery %>" />
                 <span class="input-group-btn">
-                          <button class="btn btn-info btn-lg" type="submit">
+                          <button id="show_page_button" class="btn btn-info btn-lg" type="submit">
                               <i class="glyphicon glyphicon-search"></i>
                           </button>
                       </span>
@@ -103,7 +103,6 @@
               });
           });
       </script>
-      <script src="js/extention/choices.js"></script>
       <script>
         const customSelects = document.querySelectorAll("select");
         const deleteBtn = document.getElementById('delete')
