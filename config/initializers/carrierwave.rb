@@ -1,4 +1,5 @@
-require 'carrierwave/storage/fog'
+require_relative 'config/initializers/carrierwave'
+require_relative 'config/initializers/database'
 
 
 
