@@ -3,18 +3,18 @@ class GeneralInfo < ApplicationRecord
   has_one :login_info
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :phone
-  validates_presence_of :month_ofbirth
-  validates_presence_of :day_ofbirth
-  validates_presence_of :year_ofbirth
+  validates_presence_of :company
+  validates_presence_of :industry
+  validates_presence_of :highlights
   validates_presence_of :country
   validates_presence_of :state
   validates_presence_of :city
+  validates_presence_of :emailaddr
   #validates_presence_of :job_name
   serialize :job_attr, Hash
 
 
-  validates :phone, numericality: true
+  # validates :phone, numericality: true
 
   mount_uploader :profile_picture, AvatarUploader
   mount_uploader :cover_picture, CoverUploader

@@ -10,6 +10,9 @@ class CreateGeneralInfos < ActiveRecord::Migration[5.0]
       t.integer :day_ofbirth
       t.integer :year_ofbirth
       t.string :gender
+      t.string :company
+      t.string :highlights
+      t.string :industry
       t.string :country
       t.string :state
       t.string :city

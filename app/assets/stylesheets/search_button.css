@@ -1,3 +1,15 @@
+#custom-location-input{
+    margin-bottom: 10px;
+}
+
+#custom-sec{
+    background-color: papayawhip;
+}
+
+#bckimage{
+    background: url("images/background-creative.jpg");
+}
+
 #custom-search-input{
     padding: 3px;
     border: solid 1px #E4E4E4;

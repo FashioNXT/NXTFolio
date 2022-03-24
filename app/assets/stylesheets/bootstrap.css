@@ -2719,6 +2719,16 @@ textarea.input-sm,
 select[multiple].input-sm {
   height: auto;
 }
+
+textarea {
+  resize: none;
+}
+
+#count_message {
+  background-color: silver;
+  margin-top: -20px;
+  margin-right: 5px;
+}
 .form-group-sm .form-control {
   height: 30px;
   padding: 5px 10px;

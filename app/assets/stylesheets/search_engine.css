@@ -462,7 +462,7 @@ legend {
 }
 
 .choices:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 .choices.is-disabled .choices__inner, .choices.is-disabled .choices__input {

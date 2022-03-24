@@ -63,6 +63,10 @@ class GeneralInfoController < ApplicationController
     @general_info = GeneralInfo.new
   end
 
+  def new2
+    @general_info = GeneralInfo.new
+  end
+
 
   def profession_specific
     last_template_id = GeneralInfo.last.template_id
@@ -100,20 +104,20 @@ class GeneralInfoController < ApplicationController
     if params[:general_info][:first_name] == ""
       error_statement += "First Name, "
     end
-    if params[:general_info][:phone] == ""
-      error_statement += "Phone Number, "
+    if params[:general_info][:highlights] == ""
+      error_statement += "Highlights, "
     end
     if params[:general_info][:last_name] == ""
       error_statement += "Last Name, "
     end
-    if params[:general_info][:month_ofbirth] == ""
-      error_statement += "Month Of Birth, "
+    if params[:general_info][:company] == ""
+      error_statement += "Company"
     end
-    if params[:general_info][:day_ofbirth] == ""
-      error_statement += "Day of Birth, "
+    if params[:general_info][:industry] == ""
+      error_statement += "Industry"
     end
-    if params[:general_info][:year_ofbirth] == ""
-      error_statement += "Year of Birth, "
+    if params[:general_info][:job_name] == ""
+      error_statement += "Profession"
     end
     if params[:general_info][:country] == ""
       error_statement += "Country, "
@@ -123,6 +127,9 @@ class GeneralInfoController < ApplicationController
     end
     if params[:general_info][:city] == ""
       error_statement += "City, "
+    end
+    if params[:general_info][:emailaddr] == ""
+      error_statement += "Email, "
     end
 
     if error_statement.length > 0
@@ -144,6 +151,8 @@ class GeneralInfoController < ApplicationController
 
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
+    logger.info("Hey I am here")
+    logger.debug(@general_info.inspect)
     @general_info.userKey = session[:current_user_key]
     @general_info.is_admin = false
 
@@ -161,19 +170,25 @@ class GeneralInfoController < ApplicationController
 
     if @general_info.save!
       # Send Verification Email upon successful sign-up
-      UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
-      session.delete(:current_login_user)
-      # Redirect to specific profession edit page
-      if $template_name == "Designer"
-        @general_info.update_attribute(:specific_profile_id,1)
-        redirect_to "/specific_designer/edit"
-      elsif $template_name == "Model"
-        @general_info.update_attribute(:specific_profile_id,2)
-        redirect_to "/specific_model/edit"
-      elsif $template_name == "Photographer"
-        @general_info.update_attribute(:specific_profile_id,3)
-        redirect_to "/specific_photographer/edit"
+      #UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
+      if params[:select_one]
+        session.delete(:current_login_user)
+        redirect_to "/general_info/new2"
+
+      elsif params[:select_two]
+             redirect_to "/search_engine/show"
       end
+      # Redirect to specific profession edit page
+      #if $template_name == "Designer"
+        #@general_info.update_attribute(:specific_profile_id,1)
+        #redirect_to "/specific_designer/edit"
+        #elsif $template_name == "Model"
+        #@general_info.update_attribute(:specific_profile_id,2)
+        #redirect_to "/specific_model/edit"
+        #elsif $template_name == "Photographer"
+        #@general_info.update_attribute(:specific_profile_id,3)
+        #redirect_to "/specific_photographer/edit"
+        #end
     else
 
       render :action => 'new'
@@ -182,7 +197,7 @@ class GeneralInfoController < ApplicationController
 
   # Params used to create the GeneralInfo object
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :company, :industry, :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
 
   # Allows user to edit the general_info_params of the GeneralInfo object
@@ -210,7 +225,7 @@ class GeneralInfoController < ApplicationController
 
   # Params used to edit the GeneralInfo object
   def general_info_update_param
-    params.require(:general_info).permit(:first_name, :last_name, :month_ofbirth, :day_ofbirth, :year_ofbirth, :gender, :phone, :country, :state, :city, :compensation, :facebook_link, :linkedIn_link, :instagram_link, :personalWebsite_link, :bio, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, :industry, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :cover_picture, :gallery_pictures => [])
   end
 
   # Allows user to edit the profession of the GeneralInfo object
