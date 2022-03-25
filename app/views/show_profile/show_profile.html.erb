@@ -113,30 +113,28 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-							<div class = "show-page-front">
-								INSPIRED BY: 
-								<span>INSPIRATION TO:</span>
-							</div>
+
 
 							
-								<p >&emsp;</p>
 
 
 
-								<p style="font-size: 12px/30px; margin-top:10px; text-align: left; margin-left: 287px" ><%= @general_info.first_name %>&emsp;<%= @general_info.last_name %></p>
-								
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.city %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px"><%= @general_info.state %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 0px;"><%= @general_info.country %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.phone %></p>
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 287px; margin-bottom: 20px;"><%= @general_info.specific_profile %></p>
 
-								<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;">high light:</p>
+							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
+							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
+							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ @general_info.industry %></p>
+							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
+
+							<br>
+
+
+
+							<p style="font-size: 12px/30px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;"><%= @general_info.highlights %></p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							
 							<div class="be-text-tags style-1 job_title-style">
-								<a><%= @job_title %></a>
+								<a style="font-size: 20px"><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
 								<!--% if @general_info && @general_info.facebook_link != "" %-->							
@@ -171,26 +169,20 @@
 							</div>
 						<!--% end %-->
 					</div>
+
 					<div class="be-desc-block">
-						<!--% if @general_info && @profile_info%-->
-							<div class="be-desc-author">
-								<div class="be-desc-label">More Details on Profession</div>
-								<div class="clearfix"></div>
-								<div class="be-desc-text  scrollable-description">
-								  <!--profession details here-->
-								  	<% @profile_info.present? and @profile_info.each do |attr, index|%>
-										<!--<div class="input-col col-xs-12 col-sm-6">-->
-											<div class="form-group fg_icon focus-2">
-												<div class="form-label"><%=index%></div>
-<!--												<input class="form-input disabled-input" type="text" value="<%#=index%>" disabled>-->
-											</div>							
-										<!--</div>-->
-									<% end %>
-								  	
-								</div>
+						<!--% if @general_info && @general_info.bio != "" %-->
+						<div class="be-desc-author">
+							<div class="be-desc-label">Professional Details</div>
+							<div class="clearfix"></div>
+							<div class="be-desc-text">
+								<!--Add Bio HERE-->
+								<%= @general_info.profdetails %>
 							</div>
+						</div>
 						<!--% end %-->
 					</div>
+
 			  	</div>
 			</div>
 		</div>
@@ -259,51 +251,7 @@
     </div>
 	
 	<!-- MAIN CONTENT END -->
-	<footer>	
-		<div class="footer-main">
-			<div class="container-fluid custom-container">
-				<div class="row">	
-					<div class="col-md-3 col-xl-4">
-						<div class="footer-block">
-							<h1 class="footer-title">About Us</h1>
-							<p><a href="https://fashionxt.com/">FashioNXT</a> creates innovative fashion experiences and the creative edge in lifestyle technology.</p>
-							<ul class="soc_buttons">
-                                    <li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
-                                    <li id="twitter"><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
-                                    <li id="pinterest"><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
-                                    <li id="insta"><a href="https://www.instagram.com/fashionxtonline/"><i class="fa fa-instagram"></i></a></li>
-                                    <li id="linkedin"><a href="https://www.linkedin.com/company/fashionxt/"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6 col-xl-2">
-						<div class="footer-block">
-							<h1 class="footer-title">Some Links</h1>
-							<div class="row footer-list-footer">
-							<div class="col-md-6">
-							<ul class="link-list">
-                                <li><a href="https://fashionxt.com/agency/">About Us</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Help</a></li>
-                                <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
-                                <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
-							</ul></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container-fluid custom-container">
-				<div class="col-md-12 footer-end clearfix">
-					<div class="left">
-                        <span class="copy">© 2018. All rights reserved. <span class="white"><a href="fashionxt.com"> &nbsp FashioNXT</a></span></span>
-                        <span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
-					</div>
-				</div>			
-			</div>
-		</div>		
-	</footer>
+	<%= render 'shared/footer' %>
 
 	<div class="be-fixed-filter"></div>
 	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
