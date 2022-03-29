@@ -122,7 +122,7 @@
 
 							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
 							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
-							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ @general_info.industry %></p>
+							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 18px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
 
 							<br>
