@@ -212,12 +212,27 @@ class GeneralInfoController < ApplicationController
     end
   end
 
+  def edit2
+    if GeneralInfo.exists?(:userKey => session[:current_user_key])
+      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    else
+      redirect_to :action => 'new'
+    end
+
+  end
+
   # Saves the edit of the GeneralInfo object to the database
   def update
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
     if @general_info.update_attributes!(general_info_update_param)
-      redirect_to '/show_profile'
+      if params[:select_one]
+        #session.delete(:current_login_user)
+        #redirect_to "/general_info/edit2"
+        redirect_to '/show_profile'
+      elsif params[:select_two]
+        redirect_to '/show_profile'
+      end
     else
       render :action => 'edit'
     end

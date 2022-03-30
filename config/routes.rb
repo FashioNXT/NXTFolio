@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
+  get 'general_info/edit2' => 'general_info#edit2', :as => 'general_info/edit2'
   get 'general_info/new2' => 'general_info#new2', :as => 'general_info/new2'
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
   get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'

@@ -140,7 +140,7 @@ function locationInfo() {
             addClasses = '&addClasses=' + encodeURIComponent(acC);
         }
 
-        var presel = false;
+        var presel = 'US';
         var iip = 'N';
         jQuery.each(cC, function( index, value ) {
             if (value.match("^presel-")) {
@@ -195,12 +195,15 @@ function locationInfo() {
                 }
                 else
                 {
+
                     jQuery.each(data['result'], function(key, val) {
                         var option = jQuery('<option />');
                         option.attr('value', val).text(val);
                         option.attr('country', key);
+                        console.log(presel);
                         if(presel)
                         {
+
                             if(presel.toUpperCase() ==  key)
                             {
                                 option.attr('selected', 'selected');
