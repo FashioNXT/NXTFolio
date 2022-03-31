@@ -48,7 +48,7 @@
         <div class="buttongroup-class">
           <div class="row">
             <div class="col-md-4">
-              <div class="form-group"> <label class="changedLabel">Category</label> <select name="Industry" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
+              <div class="form-group"> <label class="changedLabel">Category</label> <select id="general_info_industry" name="Industry" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
                 <option placeholder="" value="">Select</option>
                 <option>Creators</option>
                 <option>Services</option>
@@ -57,12 +57,26 @@
             </div> <!-- /.col -->
 
             <div class="col-md-4">
-              <div class="form-group"> <label class="changedLabel">Profession</label> <select name="Profession" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
+              <div class="form-group"> <label class="changedLabel">Profession</label> <select id="general_info_job_name" name="Profession" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true">
                 <option placeholder="" value="">Select</option>
+                <option>Brand Owner</option>
+                <option>Designer</option>
+                <option>Other Creator</option>
                 <option>Model</option>
                 <option>Photographer</option>
-                <option>Designer</option>
-                <option>Agents</option>
+                <option>Sales</option>
+                <option>Marketing</option>
+                <option>Retail</option>
+                <option>Visual</option>
+                <option>Content Creator</option>
+                <option>Blogger</option>
+                <option>Influencer</option>
+                <option>Forecasting</option>
+                <option>Finances</option>
+                <option>Other Service</option>
+                <option>Manufacturing</option>
+                <option>Materials</option>
+                <option>Other Makers</option>
               </select> </div> <!-- /.form-group -->
             </div> <!-- /.col -->
 
@@ -171,5 +185,6 @@
     });
 
 </script>
+<script src="<%= asset_path "professionPicker.js"%>"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
