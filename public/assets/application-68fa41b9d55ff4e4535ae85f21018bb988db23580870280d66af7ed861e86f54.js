@@ -13,22 +13,65 @@
 
 // A $( document ).ready() block.
 $( document ).ready(function() {
-    $("#Model1").show();
-    $("#Model").addClass("active");
-
+    //$("#Model1").show();
+    //$("#Model").addClass("active");
     $("#Photographer1").hide();
     $("#Agent1").hide();
     $("#Designer1").hide();
     $("#Everyone1").hide();
+    $("#Brand").click(function () {
+
+        $("#brand1").show();
+        $("#Model1").hide();
+        $("#Photographer1").hide();
+        $("#Agent1").hide();
+        $("#Designer1").hide();
+        $("#Everyone1").hide();
+        $("#othercreator1").hide();
+        $("#influencer1").hide();
+        $("#content1").hide();
+        $("#sales1").hide();
+        $("#retail1").hide();
+        $("#visual1").hide();
+        $("#blogging1").hide();
+        $("#financing1").hide();
+        $("#marketing1").hide();
+        $("#manufacturing1").hide();
+        $("#materials1").hide();
+        $("#othermakers1").hide();
+        $("#otherservices1").hide();
+        $("#Designer").removeClass("active");
+        $("#Other_creator").removeClass("active");
+        $("#Everyone").removeClass("active");
+        $("#Influencer").removeClass("active");
+        $("#Blogger").removeClass("active");
+        $("#Financing").removeClass("active");
+        $("#Sales").removeClass("active");
+        $("#Marketing").removeClass("active");
+        $("#Retial").removeClass("active");
+        $("#Visual").removeClass("active");
+        $("#Blogger").removeClass("active");
+        $("#Financing").removeClass("active");
+        $("#Manufacturing").removeClass("active");
+        $("#Materials").removeClass("active");
+        $("#Other_makers").removeClass("active");
+        $("#Other_services").removeClass("active");
+        $("#Agent").removeClass("active");
+        $("#Photographer").removeClass("active");
+        $("#Model").removeClass("active");
+        $("#Brand").addClass("active");
+    });
     $("#Model").click(function () {
         $("#Model1").show();
         $("#Photographer1").hide();
         $("#Agent1").hide();
+        $("#Brand1").hide();
         $("#Designer1").hide();
         $("#Everyone1").hide();
         $("#Designer").removeClass("active");
         $("#Everyone").removeClass("active");
         $("#Agent").removeClass("active");
+        $("#Brand").removeClass("active");
         $("#Photographer").removeClass("active");
         $("#Model").addClass("active");
     });
