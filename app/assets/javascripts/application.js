@@ -13,15 +13,50 @@
 
 // A $( document ).ready() block.
 $( document ).ready(function() {
-    //$("#Model1").show();
-    //$("#Model").addClass("active");
+    $("#Model1").show();
+    $("#Brand1").show();
+    $("#Othercreator1").show();
+    $("#Influencer1").show();
+    $("#Blogging1").show();
+    $("#Content1").show();
+    $("#Sales1").show();
+    $("#Marketing1").show();
+    $("#Retail11").show();
+    $("#Financing1").show();
+    $("#Otherservices1").show();
+    $("#Manufacturing1").show();
+    $("#Materials1").show();
+    $("#Othermakers1").show();
+    $("#Photographer1").show();
+    $("#Agent1").show();
+    $("#Designer1").show();
+    $("#Everyone1").show();
+    $("#Other_creator").addClass("active");
+    $("#Content_creator").addClass("active");
+    $("#Influencer").addClass("active");
+    $("#Sales").addClass("active");
+    $("#Marketing").addClass("active");
+    $("#Visual").addClass("active");
+    $("#Retail").addClass("active");
+    $("#Blogger").addClass("active");
+    $("#Financing").addClass("active");
+    $("#Other_services").addClass("active");
+    $("#Manufacturing").addClass("active");
+    $("#Materials").addClass("active");
+    $("#Other_makers").addClass("active");
+    $("#Designer").addClass("active");
+    $("#Everyone").addClass("active");
+    $("#Agent").addClass("active");
+    $("#Photographer").addClass("active");
+    $("#Brand").addClass("active");
+    $("#Model").addClass("active");
 
-    $("#Model1").hide();
-    $("#Photographer1").hide();
-    $("#Agent1").hide();
-    $("#Designer1").hide();
-    $("#Everyone1").hide();
-    $("#Brand1").hide();
+    //$("#Model1").hide();
+    //$("#Photographer1").hide();
+    //$("#Agent1").hide();
+    //$("#Designer1").hide();
+   //$("#Everyone1").hide();
+    //$("#Brand1").hide();
     $("#Model").click(function () {
         //console.log("Goosebump");
         $("#Model1").show();
