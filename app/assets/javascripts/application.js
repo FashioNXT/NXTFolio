@@ -28,9 +28,9 @@ $( document ).ready(function() {
     $("#Materials1").show();
     $("#Othermakers1").show();
     $("#Photographer1").show();
-    $("#Agent1").show();
+    $("#Agent1").hide();
     $("#Designer1").show();
-    $("#Everyone1").show();
+    $("#Everyone1").hide();
     $("#Other_creator").addClass("active");
     $("#Content_creator").addClass("active");
     $("#Influencer").addClass("active");
@@ -45,8 +45,8 @@ $( document ).ready(function() {
     $("#Materials").addClass("active");
     $("#Other_makers").addClass("active");
     $("#Designer").addClass("active");
-    $("#Everyone").addClass("active");
-    $("#Agent").addClass("active");
+    $("#Everyone").removeClass("active");
+    $("#Agent").removeClass("active");
     $("#Photographer").addClass("active");
     $("#Brand").addClass("active");
     $("#Model").addClass("active");

@@ -21,7 +21,7 @@ function ajaxCall() {
     }
 
 }
-
+console.log("Outer");
 function locationInfo() {
     var rootUrl = "https://geodata.solutions/api/api.php";
     //now check for set values
@@ -130,7 +130,7 @@ function locationInfo() {
     this.getCountries = function() {
         //get additional fields
         var countryClasses = jQuery('#country').attr('class');
-
+        console.log("Hey buddy");
         var cC = countryClasses.split(" ");
         cC.shift();
         var addClasses = '';
@@ -227,6 +227,7 @@ function locationInfo() {
 }
 
 jQuery(function() {
+    console.log("Inside Jquery");
     var loc = new locationInfo();
     loc.getCountries();
     jQuery(".countries").on("change", function(ev) {
