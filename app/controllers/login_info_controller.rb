@@ -105,6 +105,7 @@ class LoginInfoController < ApplicationController
         redirect_to root_path
       else
         flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
+        redirect_to login_info_login_path
       end
     else
       flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."

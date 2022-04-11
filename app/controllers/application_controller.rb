@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # Used to confirm the session key of the current user
   def index
     @landing = true
-    @users = GeneralInfo.order(updated_at: :desc).limit(20)
+    @users = GeneralInfo.order(updated_at: :desc).limit(40)
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = current_user[:first_name]
