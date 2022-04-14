@@ -1,68 +1,83 @@
-Given(/^I am a professional  create my profile$/) do
+Given(/^I am a professional and want to see the category on home page$/) do
   visit root_path
 end
 
-When(/^I clic " the home page$/) do
-  click_on "Register Your Business"
-end
-
-Then(/^I should be able to provide userto register$/) do
-  fill_in "email", :with => 'fashionxt101@gmail.com'
-  fill_in "password", :with => 'Abc123!'
-  fill_in "confirm", :with => 'Abc123!'
-end
-
-And(/^I should be redirected to the first profpage$/) do
-  click_button "commit"
-  expect(current_path).to include('general_info/new')
-end
-
-
-Given(/^I am a professional ao enter personal data$/) do
+When(/^I landed on home page$/) do
   visit root_path
-  click_on "Register Your Business"
-  fill_in "email", :with => 'fashionxt102@gmail.com'
-  fill_in "password", :with => 'Abc123!'
-  fill_in "confirm", :with => 'Abc123!'
-  click_button "commit"
-  expect(current_path).to include('general_info/new')
 end
 
-When(/^I submitted all the renal information$/) do
-  fill_in "first_name", :with => 'Test'
-  fill_in "last_name", :with => 'User'
-  fill_in "company", :with => 'Test Company'
+Then(/^I should be able to see updated category buttons in the home page$/) do
+  expect(page).to have_content("Brand Owner")
+  expect(page).to have_content("Other Creator")
+  expect(page).to have_content("Influencer")
+  expect(page).to have_content("Content Creator")
+  expect(page).to have_content("Manufacturing")
+  expect(page).to have_content("Materials")
+end
+
+Given(/^I am a professional and want to search for a profile$/) do
+  visit root_path
+end
+
+When(/^I select the category "Services"$/) do
+  click_on "search_submit"
   select 'Creators', from: 'general_info_industry'
-  select 'Designer', from: 'general_info_job_name'
-  fill_in "highlights", :with => 'highlights'
-  select 'United States', from: 'country'
-  select 'Texas', from: 'state'
-  select 'College Station', from: 'city'
-  fill_in "emailaddr", :with => 'fashionxt@gmail.com'
-  #sleep(inspection_time=80)
-  click_button('SAVE AND CONTINUE')
-  #sleep(inspection_time=80)
-  #expect(page).to have_button('SAVE and GO TO PROFILE')
+  #sleep(inspection_time=10)
 end
 
-Then(/^After save I rel detail page and provide information and submit$/) do
-
-  expect(page).to have_button('SAVE and GO TO PROFILE')
-  fill_in "specialization", :with => 'my specialization'
-  fill_in "profdetails", :with => 'ProfessionalDetails'
-  fill_in "bio", :with => 'About me'
-  fill_in "general_info_facebook_link", :with => 'My facbook profile'
-  fill_in "general_info_facebook_link", :with => 'My linkedin profile'
-  fill_in "general_info_facebook_link", :with => 'My site address'
-  select 'Salary', from: 'general_info_compensation'
-  fill_in "experience", :with => '2'
-  click_button "select_two"
-  sleep(inspection_time=20)
+Then(/^only service related profession will be populated in dropdown$/) do
+  expect(page).to have_content("Brand Owner")
 end
 
-And(/^I will be redirectile detail page$/) do
-  expect(current_path).to include('show_profile')
+Given(/^I am a professional and want to add my profile$/) do
+  visit root_path
+  click_on "Register Your Business"
+  fill_in "email", :with => 'fashionxt131@gmail.com'
+  fill_in "password", :with => 'Abc123!'
+  fill_in "confirm", :with => 'Abc123!'
+  click_button "commit"
+  expect(current_path).to include('general_info/new')
 end
+
+When(/^I select the category "Services" in add profile page$/) do
+  select 'Creators', from: 'general_info_industry'
+end
+
+Then(/^only service related profession will be populated in dropdown in add profile$/) do
+  expect(page).to have_content("Brand Owner")
+end
+
+Given(/^I am a professional and want to see autopopulation in edit profile option$/) do
+  visit root_path
+  click_on "Sign In"
+  fill_in "Your Email", :with => 'fashionxt102@gmail.com'
+  fill_in "Your Password", :with => 'Abc123!'
+  click_button "SIGN IN"
+  visit "/show_profile"
+  page.first('a', :text => 'Edit Profile').hover
+  sleep(inspection_time=2)
+  click_on "Edit Personal Info"
+  expect(current_path).to include('general_info/edit')
+end
+
+When(/^I select the category "Services" in edit profile page$/) do
+  select 'Creators', from: 'general_info_industry'
+end
+
+Then(/^only service related profession will be populated in dropdown in edit profile$/) do
+  expect(page).to have_content("Brand Owner")
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
 
