@@ -15,9 +15,12 @@
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
     	<link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+		<script src="<%= asset_path "initializer.js"%>"></script>
+
+
 	</head>
 
-	<body>
+	<br>
 	<!-- THE LOADER -->
 	<div class="be-loader">
     	<div class="spinner">
@@ -107,6 +110,7 @@
 		<%= will_paginate @users %>
 	</div>
 
+	<br></br>
 	<!-- THE FOOTER -->
 
 	<%= render 'shared/footer' %>
@@ -193,6 +197,7 @@
 	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
 	<script src="<%= asset_path "global.js"%>"></script>
 	<script src="<%= asset_path "pagination.js.coffee"%>"></script>
-  	<script src="<%= asset_path "application.js"%>"></script>
+	<script src="<%= asset_path "application.js"%>"></script>
+
 	</body>
 </html>
