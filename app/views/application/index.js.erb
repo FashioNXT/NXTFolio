@@ -1,0 +1,7 @@
+$('#homepage_contents').append('<%= j render 'layout/homepage' %>');
+<% if @users.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate(@users) %>');
+<% else %>
+$(window).off('scroll');
+$('.pagination').remove();
+<% end %>
