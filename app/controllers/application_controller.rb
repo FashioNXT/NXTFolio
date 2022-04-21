@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
       format.js
     end
 
+    @gallery = Gallery.all
+
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = current_user[:first_name]

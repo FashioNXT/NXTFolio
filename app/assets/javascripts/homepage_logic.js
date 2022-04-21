@@ -1,15 +1,10 @@
 
 
-console.log("I am under pagination");
-console.log(localStorage.getItem('buttonpressed'));
+
 
 var indicator=localStorage.getItem('buttonpressed');
 
-if(indicator=='model'){
-    console.log("Yay! that works");
-}else{
-    console.log("Need to investigate");
-}
+
 
 if(indicator=='model'){
     localStorage.setItem('buttonpressed', 'model');
