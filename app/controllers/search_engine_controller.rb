@@ -22,8 +22,8 @@ class SearchEngineController < ApplicationController
         @filtered_users = GeneralInfo.filterBy state, profession
 
         #puts "Filtered users are: "
-        #@filtered_users.each do |user|
-        #    puts user[:first_name]
+        #@filtered_users.each do |room|
+        #    puts room[:first_name]
         #end
 
         # Search Users' general info and profession detail for the keyword

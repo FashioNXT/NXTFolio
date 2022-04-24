@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  post '/dm/:id', to: 'room#create_message'
+
+  get '/dm', to: 'room#show'
+
+  get '/dm/:id', to: 'room#show'
+
   get 'galleries/new'
 
 #  get 'galleries/create'
@@ -39,7 +46,7 @@ Rails.application.routes.draw do
     post '/delete' => 'admin#delete'
   end
 
-  get '/general_info/make_admin/:user' => 'general_info#make_admin' 
+  get '/general_info/make_admin/:room' => 'general_info#make_admin'
   
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'

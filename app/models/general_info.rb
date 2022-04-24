@@ -1,5 +1,6 @@
 class GeneralInfo < ApplicationRecord
   has_many :gallery
+  has_many :messages
   has_one :login_info
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -325,8 +326,8 @@ class GeneralInfo < ApplicationRecord
     # @filteredUsers = @filteredUsers.where(country: country) #United States
     @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
 
-    #@filteredUsers.each do |user|
-    #  puts "users are: #{user[:first_name]}"
+    #@filteredUsers.each do |room|
+    #  puts "users are: #{room[:first_name]}"
     #end
 
     return @filteredUsers

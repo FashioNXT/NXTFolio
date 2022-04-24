@@ -36,7 +36,7 @@ development:
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
-  # the same name as the operating system user that initialized the database.
+  # the same name as the operating system room that initialized the database.
   #username: workspace
 
   # The password associated with the postgres role (username).
@@ -51,7 +51,7 @@ development:
   # If your server runs on a different port number, change accordingly.
   #port: 5432
 
-  # Schema search path. The server defaults to $user,public
+  # Schema search path. The server defaults to $room,public
   #schema_search_path: myapp,sharedapp,public
 
   # Minimum log levels, in increasing order:

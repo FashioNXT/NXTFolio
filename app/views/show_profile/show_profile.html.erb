@@ -6,6 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
@@ -81,9 +82,12 @@
                 <div class="login-header-block">
                     <div class="login_block">
                         <% if session[:current_user_key] %>
-                        <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+													<a href="/dm"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></a>
+													<a href="/dm"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
+													<span class="fa-layers-counter" style="background:Tomato">0</span>
+													<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
                         <% else %>
-                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+                        	<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
                         <% end %>
                     </div>
                 </div>
@@ -105,7 +109,7 @@
 		<% end %>
 		<div class="container be-detail-container">
 			<div class="row profile-row">
-				<div class="col-xs-12 col-md-6 left-feild">
+				<div class="col-xs-12 col-md-6 left-field">
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
@@ -149,6 +153,11 @@
 								<!--% if @general_info && @general_info.phone != "" %-->
 									<a class="social-btn color-2" href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
 								<!--% end %-->
+								<% if @on_Own %>
+									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
+								<% else%>
+									<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
+								<% end%>
 							</div>
 							<!--% if @general_info && @general_info.personalWebsite_link != "" %-->
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
@@ -156,7 +165,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6 left-feild">
+				<div class="col-xs-12 col-md-6 left-field">
 					<div class="be-desc-block">
 				  		<!--% if @general_info && @general_info.bio != "" %-->
 							<div class="be-desc-author">
