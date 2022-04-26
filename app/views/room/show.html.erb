@@ -159,7 +159,7 @@
                       <% else %>
                         <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
                       <% end %>
-                      <%=user[:first_name] + " " + user[:last_name]%>
+                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
                       <br>
                     </div>
                   <%else%>
@@ -169,7 +169,7 @@
                       <% else %>
                         <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
                       <% end %>
-                      <%=user[:first_name] + " " + user[:last_name]%>
+                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
                       <br>
                     </div>
                   <%end%>
@@ -180,7 +180,7 @@
                     <% else %>
                       <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
                     <% end %>
-                    <%=user[:first_name] + " " + user[:last_name]%>
+                    <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
                     <br>
                   </div>
                 <%end%>
