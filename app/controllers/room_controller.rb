@@ -10,6 +10,10 @@ class RoomController < ApplicationController
       @users = GeneralInfo.where.not(userKey: user_key_current)
       @loader = true
 
+      if @user.notification
+        @notifications_from = @user.notification_from
+      end
+
       if params[:id]
         @chatting_with = GeneralInfo.find_by(id: params[:id])
         @chatname = @chatting_with[:first_name]
@@ -23,6 +27,25 @@ class RoomController < ApplicationController
 
         @messages = Message.where(room_id: @room_id).order(created_at: :asc)
         @loader = false
+        
+        if @user.notification
+          @new_notification_from = []
+
+          @notifications_from.each do |n|
+            if n != @chatid.to_i
+              @new_notification_from.append(n)
+            end
+          end
+
+          if @new_notification_from.length() == 0
+            @user.notification = false
+          end
+          
+          @notifications_from = @new_notification_from
+          @user.notification_from = @new_notification_from
+
+          @user.save
+        end
       end
 
       if GeneralInfo.exists?(:userKey => user_key_current)
@@ -67,13 +90,17 @@ class RoomController < ApplicationController
         @room_name = get_name(@user, @chatting_with)
         @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
 
-        @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body])
+        @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
       end
 
       redirect_to @chatlink
     else
       redirect_to "/login_info/login"
     end
+  end
+
+  def show_notifications
+    
   end
 
   private

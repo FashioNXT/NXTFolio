@@ -7,6 +7,12 @@ class ShowProfileController < ApplicationController
       @error = user_key_current.to_s
       puts "sessions current_user_key" + user_key_current.to_s
 
+      @user = GeneralInfo.find_by(userKey: user_key_current)
+      
+      if @user.notification
+        @notifications_from = @user.notification_from
+      end
+
       if GeneralInfo.exists?(:userKey => user_key_current)
         @gallery = Gallery.all
         @general_info = GeneralInfo.find_by(userKey: user_key_current)

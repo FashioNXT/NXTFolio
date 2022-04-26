@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220424094448) do
+ActiveRecord::Schema.define(version: 20220425024632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(version: 20220424094448) do
     t.string   "instagram_link"
     t.string   "personalWebsite_link"
     t.text     "bio"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "specific_profile_id"
     t.string   "profile_picture"
     t.string   "cover_picture"
-    t.string   "gallery_pictures",                  array: true
+    t.string   "gallery_pictures",                                  array: true
     t.integer  "template_id"
     t.json     "specific_profile"
     t.string   "phone"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20220424094448) do
     t.string   "profdetails"
     t.string   "experience"
     t.string   "emailaddr"
+    t.boolean  "notification",         default: false
+    t.integer  "notification_from",    default: [],                 array: true
   end
 
   create_table "login_infos", force: :cascade do |t|
@@ -90,6 +92,7 @@ ActiveRecord::Schema.define(version: 20220424094448) do
     t.text     "body"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "chatting_with"
     t.index ["general_info_id"], name: "index_messages_on_general_info_id", using: :btree
     t.index ["room_id"], name: "index_messages_on_room_id", using: :btree
   end

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
     <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
     <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
     <style>
         .big{
             font-size: 25px;
@@ -100,8 +101,23 @@
         <div class="login-header-block">
           <div class="login_block">
             <% if session[:current_user_key] %>
-              <a href="/dm"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></a>
-              <a href="/dm"><i class="fa-solid fa-message fa-xl fa-fw" style="color:black"></i></a>
+              <div class="dropdown">
+              <%if @user.notification %>
+                <button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
+                <div id="myDropdown" class="dropdown-content">
+                    <% @notifications_from.each do |notification|%>
+                      <a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
+                    <% end %>
+              <% else %>
+                  <button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
+                    <div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
+                    <div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
+              <% end %>
+                </div>
+              </div>
+              <a href="/dm" class="dropbtn"><i class="fa-solid fa-message fa-xl fa-fw" style="color:black"></i></a>
               <!--<span class="fa-layers-counter" style="background:Tomato">0</span>-->
               <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
             <% else %>
@@ -135,15 +151,39 @@
           <div style="overflow-x:hidden;overflow-y:scroll;font-size:20px;height:700px;">
             <% @users.each do |user| %>
               <a href="/dm/<%=user.id %>">
-              <div>
-              <% if user.profile_picture.url %>
-                <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-               <% else %>
-                <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-              <% end %>
-              <%=user[:first_name] + " " + user[:last_name]%>
-              <br>
-              </div>
+                <% if @notifications_from %>
+                  <% if @notifications_from.include? user.id.to_i%>
+                    <div>
+                      <% if user.profile_picture.url %>
+                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
+                      <% else %>
+                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% end %>
+                      <%=user[:first_name] + " " + user[:last_name]%>
+                      <br>
+                    </div>
+                  <%else%>
+                    <div>
+                      <% if user.profile_picture.url %>
+                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% else %>
+                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% end %>
+                      <%=user[:first_name] + " " + user[:last_name]%>
+                      <br>
+                    </div>
+                  <%end%>
+                <%else%>
+                  <div>
+                    <% if user.profile_picture.url %>
+                      <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                    <% else %>
+                      <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                    <% end %>
+                    <%=user[:first_name] + " " + user[:last_name]%>
+                    <br>
+                  </div>
+                <%end%>
               </a>
             <% end %>
           </div>
@@ -224,6 +264,26 @@
   <script> 
     var element = document.getElementById("messages");
     element.scrollTop = element.scrollHeight;
+
+        /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function dropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length(); i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');s
+          }
+        }
+      }
+    }
   </script>
   </body>
 </html>
