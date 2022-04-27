@@ -1,6 +1,7 @@
 <h1>Reset Your Password?</h1>
 
-<%= form_tag @exusers, token: params[:token], url: password_reset_edit_path do |form| %>
+<%= form_for @exusers, url: password_reset_edit_path(token: params[:token]) do |form| %>
+  <%= logger.debug(@exusers.inspect) %>
   <div class="mb-3">
     <%= label_tag :password %>
     <%= password_field_tag :password, nil,  class: 'form-control', placeholder: 'password' %>

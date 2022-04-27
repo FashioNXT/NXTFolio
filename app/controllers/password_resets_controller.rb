@@ -4,16 +4,16 @@ class PasswordResetsController < ApplicationController
 
   def create
 
-    @testing=LoginInfo.all
-    @exusers=LoginInfo.find_by(email: params[:email])
+
+    exusers=LoginInfo.find_by(email: params[:email])
 
 
-    if @exusers.present?
+    if exusers.present?
       #send email
       # Need to set it as background job
       logger.info("Present Test: Hemooon")
       #logger.debug(@token.inspect)
-      ForgotMailer.reset(@exusers).deliver_now
+      ForgotMailer.reset(exusers).deliver_now
     else
       #logger.info("Not Present! Yahooo!")
     end
@@ -24,6 +24,7 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @exusers=GlobalID::Locator.locate_signed(params[:token], purpose: "password reset")
+    logger.debug(@exusers.inspect)
     if @exusers.nil?
       logger.info("Link is invalid")
       redirect_to root_path, :notice => "The Password Reset Link is Expired! Please Try Again"
@@ -34,11 +35,9 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @exusers=GlobalID::Locator.locate_signed(params[:token], purpose: "password reset")
-    logger.info("Tracking Exusers")
-    logger.debug(params[:token].inspect)
 
-    if @exusers.update(password_params)
+    @exusers=GlobalID::Locator.locate_signed(params[:token], purpose: "password reset")
+    if @exusers.update(exusers_params)
       logger.info("Yay!")
       redirect_to root_path, :notice => "Your Password has been reset Successfully!"
     else
@@ -46,8 +45,9 @@ class PasswordResetsController < ApplicationController
     end
   end
 
-  def password_params
-    params.require(:exusers).permit(:password,:password_confirmation)
+  def exusers_params
+    #params.require(@exusers).permit(:password)
+    params.require(:exusers).permit(:email, :password, :password_confirmation)
   end
 
 end
