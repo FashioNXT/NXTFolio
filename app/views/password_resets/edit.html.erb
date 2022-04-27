@@ -1,0 +1,18 @@
+<h1>Reset Your Password?</h1>
+
+<%= form_tag @exusers, token: params[:token], url: password_reset_edit_path do |form| %>
+  <div class="mb-3">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil,  class: 'form-control', placeholder: 'password' %>
+  </div>
+
+  <div class="mb-3">
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation, nil, class: 'form-control', placeholder: 'password' %>
+  </div>
+
+  <div class="mb-3">
+    <%= submit_tag "Reset NOW", class: 'btn btn-primary'%>
+  </div>
+
+<% end %>

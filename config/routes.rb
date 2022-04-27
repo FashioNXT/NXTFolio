@@ -93,6 +93,12 @@ Rails.application.routes.draw do
   get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
+  get 'password/reset', to: 'password_resets#new'
+  post 'password/reset', to: 'password_resets#create'
+  get 'password/reset/edit', to: 'password_resets#edit'
+  post 'password/reset/edit', to: 'password_resets#update'
+
+
   resources :general_info
   resources :login_info
   resources :specific_designer

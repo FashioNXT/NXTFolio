@@ -1,5 +1,10 @@
-<h1>Forgot#reset</h1>
+Hi,
 
-<p>
-  <%= @greeting %>, find me in app/views/forgot_mailer/reset.html.erb
-</p>
+Someone requested to reset their passwords with your email  If you did not initiate the request,please take necessary security action.
+
+If you initiate the request, please click the link below to reset your password. The link will expire automatically in 15 minutes:
+
+<%= link_to "Reset Password",  password_reset_edit_url(token: @token) %>
+
+Best Regards,
+The NXTFolio Team

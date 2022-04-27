@@ -1,0 +1,13 @@
+<h1>Forgot Your Password?</h1>
+
+<%= form_tag url: password_reset_path do |form| %>
+  <div class="mb-3">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, nil,  class: 'form-control', placeholder: 'example@nxtfolio.com' %>
+  </div>
+
+  <div class="mb-3">
+    <%= submit_tag "Reset Password", class: 'btn btn-primary'%>
+  </div>
+
+<% end %>

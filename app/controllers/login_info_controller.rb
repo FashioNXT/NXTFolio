@@ -94,6 +94,7 @@ class LoginInfoController < ApplicationController
     @login_info = LoginInfo.new(login_info_param)
     if LoginInfo.exists?(:email => @login_info[:email])
       @login_user = LoginInfo.find_by(email: @login_info[:email])
+
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey]
