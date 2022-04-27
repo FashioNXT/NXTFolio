@@ -26,6 +26,8 @@ if(indicator=='model'){
     $(".agentdiv").hide();
     $(".designerdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".othercreatorbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
@@ -44,6 +46,8 @@ if(indicator=='model'){
     $(".agentbutton").removeClass("active");
     $(".photographerbutton").removeClass("active");
     $(".brandbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".modelbutton").addClass("active");
 }
 
@@ -68,6 +72,8 @@ if(indicator=='brand'){
     $(".agentdiv").hide();
     $(".designerdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".othercreatorbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
@@ -86,6 +92,8 @@ if(indicator=='brand'){
     $(".agentbutton").removeClass("active");
     $(".photographerbutton").removeClass("active");
     $(".modelbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".brandbutton").addClass("active");
 
 }
@@ -110,6 +118,8 @@ if(indicator=='photographer'){
     $(".agentdiv").hide();
     $(".designerdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".othercreatorbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
@@ -128,6 +138,8 @@ if(indicator=='photographer'){
     $(".agentbutton").removeClass("active");
     $(".modelbutton").removeClass("active");
     $(".brandbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".photographerbutton").addClass("active");
 
 }if(indicator=='designer'){
@@ -151,6 +163,8 @@ if(indicator=='photographer'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".othercreatorbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
@@ -169,6 +183,8 @@ if(indicator=='photographer'){
     $(".modelbutton").removeClass("active");
     $(".brandbutton").removeClass("active");
     $(".photographerbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".designerbutton").addClass("active");
 
 }if(indicator=='othercreator'){
@@ -191,6 +207,8 @@ if(indicator=='photographer'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".contentbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
     $(".salesbutton").removeClass("active");
@@ -209,6 +227,8 @@ if(indicator=='photographer'){
     $(".brandbutton").removeClass("active");
     $(".photographerbutton").removeClass("active");
     $(".designerbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".othercreatorbutton").addClass("active");
 
 }
@@ -233,6 +253,8 @@ if(indicator=='influencer'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".contentbutton").removeClass("active");
     $(".salesbutton").removeClass("active");
     $(".marketingbutton").removeClass("active");
@@ -251,6 +273,8 @@ if(indicator=='influencer'){
     $(".photographerbutton").removeClass("active");
     $(".designerbutton").removeClass("active");
     $(".othercreatorbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".influencerbutton").addClass("active");
 
 
@@ -277,6 +301,8 @@ if(indicator=='content'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".salesbutton").removeClass("active");
     $(".marketingbutton").removeClass("active");
     $(".visualbutton").removeClass("active");
@@ -295,6 +321,8 @@ if(indicator=='content'){
     $(".designerbutton").removeClass("active");
     $(".othercreatorbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".contentbutton").addClass("active");
 
 }
@@ -321,6 +349,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".marketingbutton").removeClass("active");
     $(".visualbutton").removeClass("active");
     $(".retailbutton").removeClass("active");
@@ -339,6 +369,8 @@ if(indicator=='sales'){
     $(".othercreatorbutton").removeClass("active");
     $(".influencerbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".salesbutton").addClass("active");
 
 }if(indicator=='blogger'){
@@ -363,6 +395,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".marketingbutton").removeClass("active");
     $(".visualbutton").removeClass("active");
     $(".retailbutton").removeClass("active");
@@ -381,6 +415,8 @@ if(indicator=='sales'){
     $(".influencerbutton").removeClass("active");
     $(".contentbutton").removeClass("active");
     $(".salesbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".bloggerbutton").addClass("active");
 
 }if(indicator=='marketing'){
@@ -405,6 +441,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".visualbutton").removeClass("active");
     $(".retailbutton").removeClass("active");
     $(".financingbutton").removeClass("active");
@@ -423,6 +461,8 @@ if(indicator=='sales'){
     $(".contentbutton").removeClass("active");
     $(".salesbutton").removeClass("active");
     $(".bloggerbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".marketingbutton").addClass("active");
 
 }if(indicator=='retail'){
@@ -446,6 +486,8 @@ if(indicator=='sales'){
     $(".visualdiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".visualbutton").removeClass("active");
     $(".financingbutton").removeClass("active");
     $(".otherservicesbutton").removeClass("active");
@@ -464,6 +506,8 @@ if(indicator=='sales'){
     $(".salesbutton").removeClass("active");
     $(".bloggerbutton").removeClass("active");
     $(".marketingbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".retailbutton").addClass("active");
 
 }if(indicator=='visual'){
@@ -488,6 +532,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".financingbutton").removeClass("active");
     $(".otherservicesbutton").removeClass("active");
@@ -507,6 +553,8 @@ if(indicator=='sales'){
     $(".bloggerbutton").removeClass("active");
     $(".marketingbutton").removeClass("active");
     $(".retailbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".visualbutton").addClass("active");
 
 }if(indicator=='financing'){
@@ -531,6 +579,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".otherservicesbutton").removeClass("active");
     $(".manufacturingbutton").removeClass("active");
@@ -550,7 +600,103 @@ if(indicator=='sales'){
     $(".marketingbutton").removeClass("active");
     $(".retailbutton").removeClass("active");
     $(".visualbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".financingbutton").addClass("active");
+
+}if(indicator=='forecasting'){
+
+    localStorage.setItem('buttonpressed', 'forecasting');
+    $(".forecastingdiv").show();
+    $(".financingdiv").hide();
+    $(".visualdiv").hide();
+    $(".retaildiv").hide();
+    $(".marketingdiv").hide();
+    $(".bloggingdiv").hide();
+    $(".salesdiv").hide();
+    $(".contentdiv").hide();
+    $(".influencerdiv").hide();
+    $(".othercreatordiv").hide();
+    $(".designerdiv").hide();
+    $(".photographerdiv").hide();
+    $(".branddiv").hide();
+    $(".otherservicesdiv").hide();
+    $(".manufacturingdiv").hide();
+    $(".materialsdiv").hide();
+    $(".othermakersdiv").hide();
+    $(".modeldiv").hide();
+    $(".agentdiv").hide();
+    $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".retailbutton").removeClass("active");
+    $(".otherservicesbutton").removeClass("active");
+    $(".manufacturingbutton").removeClass("active");
+    $(".materialsbutton").removeClass("active");
+    $(".othermakersbutton").removeClass("active");
+    $(".everyonebutton").removeClass("active");
+    $(".agentbutton").removeClass("active");
+    $(".modelbutton").removeClass("active");
+    $(".brandbutton").removeClass("active");
+    $(".photographerbutton").removeClass("active");
+    $(".designerbutton").removeClass("active");
+    $(".othercreatorbutton").removeClass("active");
+    $(".influencerbutton").removeClass("active");
+    $(".contentbutton").removeClass("active");
+    $(".salesbutton").removeClass("active");
+    $(".bloggerbutton").removeClass("active");
+    $(".marketingbutton").removeClass("active");
+    $(".retailbutton").removeClass("active");
+    $(".visualbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").addClass("active");
+    $(".financingbutton").removeClass("active");
+
+}if(indicator=='stylist'){
+
+    localStorage.setItem('buttonpressed', 'stylist');
+    $(".forecastingdiv").hide();
+    $(".financingdiv").hide();
+    $(".visualdiv").hide();
+    $(".retaildiv").hide();
+    $(".marketingdiv").hide();
+    $(".bloggingdiv").hide();
+    $(".salesdiv").hide();
+    $(".contentdiv").hide();
+    $(".influencerdiv").hide();
+    $(".othercreatordiv").hide();
+    $(".designerdiv").hide();
+    $(".photographerdiv").hide();
+    $(".branddiv").hide();
+    $(".otherservicesdiv").hide();
+    $(".manufacturingdiv").hide();
+    $(".materialsdiv").hide();
+    $(".othermakersdiv").hide();
+    $(".modeldiv").hide();
+    $(".agentdiv").hide();
+    $(".everyonediv").hide();
+    $(".stylistdiv").show();
+    $(".retailbutton").removeClass("active");
+    $(".otherservicesbutton").removeClass("active");
+    $(".manufacturingbutton").removeClass("active");
+    $(".materialsbutton").removeClass("active");
+    $(".othermakersbutton").removeClass("active");
+    $(".everyonebutton").removeClass("active");
+    $(".agentbutton").removeClass("active");
+    $(".modelbutton").removeClass("active");
+    $(".brandbutton").removeClass("active");
+    $(".photographerbutton").removeClass("active");
+    $(".designerbutton").removeClass("active");
+    $(".othercreatorbutton").removeClass("active");
+    $(".influencerbutton").removeClass("active");
+    $(".contentbutton").removeClass("active");
+    $(".salesbutton").removeClass("active");
+    $(".bloggerbutton").removeClass("active");
+    $(".marketingbutton").removeClass("active");
+    $(".retailbutton").removeClass("active");
+    $(".visualbutton").removeClass("active");
+    $(".stylistbutton").addClass("active");
+    $(".forecastingbutton").removeClass("active");
+    $(".financingbutton").removeClass("active");
 
 }if(indicator=='otherservices'){
 
@@ -574,6 +720,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".manufacturingbutton").removeClass("active");
     $(".materialsbutton").removeClass("active");
@@ -593,6 +741,8 @@ if(indicator=='sales'){
     $(".retailbutton").removeClass("active");
     $(".visualbutton").removeClass("active");
     $(".financingbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".otherservicesbutton").addClass("active");
 
 }if(indicator=='manufacturing'){
@@ -617,6 +767,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".materialsbutton").removeClass("active");
     $(".othermakersbutton").removeClass("active");
@@ -636,6 +788,8 @@ if(indicator=='sales'){
     $(".visualbutton").removeClass("active");
     $(".financingbutton").removeClass("active");
     $(".otherservicesbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".manufacturingbutton").addClass("active");
 
 }if(indicator=='materials'){
@@ -659,6 +813,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".materialsbutton").addClass("active");
     $(".othermakersbutton").removeClass("active");
@@ -679,6 +835,8 @@ if(indicator=='sales'){
     $(".financingbutton").removeClass("active");
     $(".otherservicesbutton").removeClass("active");
     $(".manufacturingbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".materialsbutton").addClass("active");
 
 }if(indicator=='othermakers'){
@@ -703,6 +861,8 @@ if(indicator=='sales'){
     $(".modeldiv").hide();
     $(".agentdiv").hide();
     $(".everyonediv").hide();
+    $(".stylistdiv").hide();
+    $(".forecastingdiv").hide();
     $(".retailbutton").removeClass("active");
     $(".materialsbutton").addClass("active");
     $(".everyonebutton").removeClass("active");
@@ -723,6 +883,8 @@ if(indicator=='sales'){
     $(".otherservicesbutton").removeClass("active");
     $(".manufacturingbutton").removeClass("active");
     $(".materialsbutton").removeClass("active");
+    $(".stylistbutton").removeClass("active");
+    $(".forecastingbutton").removeClass("active");
     $(".othermakersbutton").addClass("active");
 
 }
