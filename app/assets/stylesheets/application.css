@@ -14,3 +14,45 @@
  *= require_self
  *= require bootstrap.css
  */
+/* body {
+    overflow: hidden;
+}
+.msg-form {
+    width: 100%;
+    height: 56px;
+    padding: 10px;
+}
+#single_room {
+    height: calc(100vh - 150px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+} */
+#messages {
+    height: calc(100vh - 150px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+/* #room_container {
+    height: 100vh;
+    margin-right: 0px !important;
+}
+#chatroom_container {
+    height: 100vh;
+    margin-right: 0px !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.msg-content {
+    width: 80%;
+    margin-right: 5px;
+}
+.message-box {
+    word-wrap: break-word;
+    width: fit-content;
+    max-width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #555555;
+    padding: 10px;
+} */

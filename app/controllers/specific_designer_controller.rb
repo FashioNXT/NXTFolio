@@ -55,7 +55,7 @@ class SpecificDesignerController < ApplicationController
     
     # Sets genre for the SpecificDesigner object
     @specific_designer.genre = @genre_str
-    # Assigns user_key to be the session key of the current user
+    # Assigns user_key to be the session key of the current room
     @specific_designer.user_key = session[:current_user_key]
 
     # If SpecificDesigner object saved correctly to database, displays home page
@@ -72,8 +72,8 @@ class SpecificDesignerController < ApplicationController
     params.require(:specific_designer).permit(:genre, {:allgenres => []}, :influencers, :specialties, :compensation, :experience)  #passing into create with these keys.
   end
   
-  # Allows user to edit the params of the SpecificDesigner object
-  # Displays information pulled from database that matches the session key of the current user
+  # Allows room to edit the params of the SpecificDesigner object
+  # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update
   def edit
     if SpecificDesigner.exists?(:user_key => session[:current_user_key])

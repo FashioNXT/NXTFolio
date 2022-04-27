@@ -17,6 +17,7 @@ Rails.application.config.assets.precompile += %w( grayscale.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( font-awesome.min.css )
+Rails.application.config.assets.precompile += %w( notifications.css )
 Rails.application.config.assets.precompile += %w( magnific-popup.css )
 Rails.application.config.assets.precompile += %w( profile.css )
 Rails.application.config.assets.precompile += %w( grayscale.css.erb )
@@ -52,4 +53,5 @@ Rails.application.config.assets.precompile += %w( idangerous.swiper.min.js )
 Rails.application.config.assets.precompile += %w( filters.js )
 Rails.application.config.assets.precompile += %w( global.js )
 Rails.application.config.assets.precompile += %w( jquery-2.1.4.min.js )
+
 
