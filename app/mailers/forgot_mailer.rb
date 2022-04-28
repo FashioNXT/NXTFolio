@@ -9,6 +9,6 @@ class ForgotMailer < ApplicationMailer
     @token=user.to_signed_global_id(expires_in: 15.minutes, purpose: "password reset").to_s
     #logger.info("Token Checking")
     #logger.debug(@token.inspect)
-    mail to: user.email
+    mail to: user.email, subject: 'NXTFolio: Password Reset Request', from: 'NXTFolio Team <fashiontwrktesting@gmail.com>'
   end
 end
