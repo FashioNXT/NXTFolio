@@ -223,6 +223,9 @@ class GeneralInfoController < ApplicationController
 
   # Saves the edit of the GeneralInfo object to the database
   def update
+
+    logger.info("Debugging general info edit")
+    logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
     if @general_info.update_attributes!(general_info_update_param)

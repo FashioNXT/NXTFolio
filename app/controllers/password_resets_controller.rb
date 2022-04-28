@@ -36,8 +36,12 @@ class PasswordResetsController < ApplicationController
 
   def update
 
+
     @exusers=GlobalID::Locator.locate_signed(params[:token], purpose: "password reset")
-    if @exusers.update(exusers_params)
+    logger.info("Debugging instance variables")
+    logger.debug(@exusers.inspect)
+
+    if @exusers.update_attributes!(exusers_params)
       logger.info("Yay!")
       redirect_to root_path, :notice => "Your Password has been reset Successfully!"
     else
@@ -47,7 +51,7 @@ class PasswordResetsController < ApplicationController
 
   def exusers_params
     #params.require(@exusers).permit(:password)
-    params.require(:exusers).permit(:email, :password, :password_confirmation)
+    params.require(:login_info).permit(:email, :password)
   end
 
 end
