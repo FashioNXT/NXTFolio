@@ -10,9 +10,7 @@ Rails.application.routes.draw do
 
 #  get 'galleries/create'
 
-  get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
-
-  get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
+  get 'galleries/destroy'
 
   get 'galleries/index'
 
@@ -116,7 +114,6 @@ Rails.application.routes.draw do
   resources :search_profile
   resources :template
   resources :galleries
-  resources :galleries, except: :destroy
   resources :search_engine
 
   devise_scope :user do
