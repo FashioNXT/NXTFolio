@@ -110,4 +110,12 @@ class ShowProfileController < ApplicationController
     end
     puts @attribute_titles.inspect
   end
+  def destroy
+    @gallery = Gallery.find(params[:id])
+    puts @gallery
+    #@myArr = @gallery[:gallery_picture]
+    @index = params[:id].to_i
+    @gallery.destroy
+    redirect_to '/show_profile'
+  end
 end

@@ -19,21 +19,21 @@ class GalleriesController < ApplicationController
   end
 
 
-  def destroy
+  #def destroy
     #logger.debug(@gallery_picture.inspect)
     #remove_image_at_index(params[ :gallery_picture].to_i)
-    @gallery = Gallery.find(params[:id])
-    @gallery.destroy
-    redirect_to galleries_path
-  end
+  # @gallery = Gallery.find(params[:id])
+  # @gallery.destroy
+  # redirect_to galleries_path
+  #end
 
-  def remove_file(gallery_picture)
-    File.delete(gallery_picture)
-  end
+  #def remove_file(gallery_picture)
+  # File.delete(gallery_picture)
+  #end
 
-  def set_gallery
-    @gallery = Gallery.find(params[:gallery_id])
-  end
+  #def set_gallery
+  #  @gallery = Gallery.find(params[:gallery_id])
+  #end
 
   #def remove_image_at_index(index)
   #remain_images = gallery_params # copy the array
@@ -46,7 +46,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    puts (params.inspect)
+    #puts (params.inspect)
     @gallery = Gallery.find(params[:project_key])
   end
 

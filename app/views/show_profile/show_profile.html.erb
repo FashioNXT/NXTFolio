@@ -118,7 +118,7 @@
 	<!-- MAIN CONTENT -->
 	<div id="content-block"
 		<% if @general_info.cover_picture.url %>
-			style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; margin-bottom:0px; background-size: cover;">
+		style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; margin-bottom:0px; background-size: cover;">
 		<% else %>
 			>
 		<% end %>
@@ -134,7 +134,8 @@
 							<% end %>
 
 
-							
+
+
 
 
 
@@ -219,63 +220,67 @@
 						<% end %>
                         <div class="be-post">
                             <div class="be-desc-label">Gallery Pictures</div>
-							<% @gallery.present? and @gallery.each do |gallery| %>
-								<% if gallery.GeneralInfo_id == @general_info.id %>
-									<div class="col-md-4">
-										<div class="photo photo-type-line">
-										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
-											<div class="photo-info">
-											<div class="headline"> <%= gallery.gallery_title %> </div>
-											<div class="line"></div>
-												<div class="rating"> <%= gallery.gallery_title %> </div>
+													<%# @gallery.present? and @gallery.each do |image| %>
+													<%# @gallery.gallery_picture.push(image) %>
+													<%# end %>
 
-												<div class="line"></div>
-											<div class="desc"> <%= gallery.gallery_description %> </div>
+													<% @gallery.present? and @gallery.each do |gallery| %>
+														<% if gallery.GeneralInfo_id == @general_info.id %>
+															<div class="col-md-4">
+																<%= puts (gallery.id) %>
+																<div class = "delete"> <%= link_to 'Delete', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %> </div>
+																<div class="photo photo-type-line">
+																	<div class="photo photo-type-line">
+																		<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+																			<div class="photo-info">
+																				<div class="headline"> <%= gallery.gallery_title %> </div>
+																				<div class="line"></div>
+																				<div class="rating"> <%= gallery.gallery_title %> </div>
 
+																				<div class="line"></div>
+																				<div class="desc"> <%= gallery.gallery_description %> </div>
 
-											</div>
+																			</div>
 
-											<div class="mask"></div>
-										</a>
+																			<div class="mask"></div>
+																		</a>
 
-										<div class="profile-img-container">
-										<a class="be-img-block profile-img img-thumbnail">
-											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-										</a>
-										<ul class= "rating" >
-											<% form_id = "gallery_#{gallery.id}_rating" %>
-											<%= form_for gallery.gallery_title.last || gallery.gallery_title.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
-            										<%= f.hidden_field :gallery_id%>
-           											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
-          									 <% end %>
-										<ul>
-											<% (1..5).each do |i| %>
-  								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
-  								    		<% end %>
-  								    		
-  								    			<li class = "rating_star">
-  								    			<%= link_to 'submit', :confirm => 'Are you sure?' %>
+																		<div class="profile-img-container">
+																			<a class="be-img-block profile-img img-thumbnail">
 
-  								    			</li>
-  								    		
-   										</ul>
-										
-										
-										<div class="mask"></div>
-									</a>
-									</div>
-										
-											<%= gallery.gallery_totalRate %>
+																				<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+																			</a>
+																			<ul class= "rating" >
+																				<% form_id = "gallery_#{gallery.id}_rating" %>
+																				<%= form_for gallery.gallery_title.last || gallery.gallery_title.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
+																					<%= f.hidden_field :gallery_id%>
+																					<%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
+																				<% end %>
+																				<ul>
+
+																					<% (1..5).each do |i| %>
+																						<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
+																					<% end %>
+
+																					<li class = "rating_star">
+																						<%= link_to 'submit', :confirm => 'Are you sure?' %>
+																					</li>
+																				</ul>
+																				<div class="mask"></div>
+																				</a>
+																		</div>
+																		<%= gallery.gallery_totalRate %>
+																	</div>
+																</div>
+														<% end %>
+													<% end %>
+													</div>
+												</div>
 										</div>
-									</div>
-								<% end %>
-							<% end %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+								</div>
+						</div>
+				</div>
+	</div>
 	
 	<!-- MAIN CONTENT END -->
 	<%= render 'shared/footer' %>

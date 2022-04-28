@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20220425024632) do
     t.string   "gallery"
   end
 
+  create_table "gallery_attachments", force: :cascade do |t|
+    t.integer  "gallery_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "general_infos", force: :cascade do |t|
     t.string   "userKey"
     t.string   "first_name"
@@ -105,6 +112,19 @@ ActiveRecord::Schema.define(version: 20220425024632) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_models_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "post_attachments", force: :cascade do |t|
+    t.integer  "post_id"
+    t.string   "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rooms", force: :cascade do |t|
