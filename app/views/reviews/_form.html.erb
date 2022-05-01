@@ -1,0 +1,14 @@
+<%= simple_form_for([@gallery,@gallery.reviews.build]) do |f| %>
+  <div id="rating-form">
+    <label>Add Your Rating: </label>
+  </div>
+
+  <%= f.button :submit %>
+<% end %>
+
+<script>
+  $('#rating-form').raty({
+      path: '/assets/',
+      scoreName: 'review[rating]'
+  });
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FashioNXT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+  <style>
+      .big{
+          font-size: 25px;
+      }
+  </style>
+
+</head>
+<body>
+
+<script src="<%= asset_path "jquery.min.js"%>"></script>
+<script src="<%= asset_path "jquery-ui.js"%>"></script>
+<script src="<%= asset_path "bootstrap.min.js"%>"></script>
+<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+<script src="<%= asset_path "global.js"%>"></script>
+<script src="<%= asset_path "jquery.raty.js"%>"></script>
+
+<%= render 'shared/header' %>
+
+<h1>Project Name</h1>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-10">
+      <br>
+      <br>
+      <h2><%= @gallery.gallery_title %></h2>
+      <p><%= @gallery.gallery_description %><p>
+      <br>
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-6">
+      <%= simple_form_for([@gallery,@review]) do |f| %>
+        <div id="rating-form" data-score=<%= @review.rating %>>
+          <label>Your Rating: </label>
+        </div>
+        <%= f.button :submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+</script>
+<%= render 'shared/footer' %>
+</body>
+</html>

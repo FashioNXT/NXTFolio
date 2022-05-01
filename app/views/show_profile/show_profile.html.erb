@@ -210,72 +210,79 @@
 			  	</div>
 			</div>
 		</div>
-        <div class="container-fluid custom-container">
-            <div class="row profile-row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div id="container-mix"  class="row _post-container_">
+		<div class="container-fluid custom-container">
+			<div class="row profile-row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="container-mix"  class="row _post-container_">
 						<% if @on_Own %>
 							<div class="be-desc-label"><a href="/galleries/new">Add Project</a></div>
-						<% end %>
-                        <div class="be-post">
-                            <div class="be-desc-label">Gallery Pictures</div>
-							<% @gallery.present? and @gallery.each do |gallery| %>
-								<% if gallery.GeneralInfo_id == @general_info.id %>
-									<div class="col-md-4">
-										<div class="photo photo-type-line">
-										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
-											<div class="photo-info">
-											<div class="headline"> <%= gallery.gallery_title %> </div>
-											<div class="line"></div>
-												<div class="rating"> <%= gallery.gallery_title %> </div>
+							<% end %>
+								<div class="be-post">
+									<div class="be-desc-label">Gallery Pictures</div>
+										<% @gallery.present? and @gallery.each do |gallery| %>
+										<% if gallery.GeneralInfo_id == @general_info.id %>
+											<div class="col-md-4">
+												<div class="photo photo-type-line">
+													<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+														<div class="photo-info">
+															<div class="headline"> <%= gallery.gallery_title %> </div>
+															<div class="line"></div>
+															<div class="rating"> <%= gallery.gallery_title %> </div>
+															<div class="line"></div>
+															<div class="desc"> <%= gallery.gallery_description %> </div>
+														</div>
+														<div class="mask"></div>
+													</a>
+													<div class="profile-img-container">
+														<a class="be-img-block profile-img img-thumbnail">
 
-												<div class="line"></div>
-											<div class="desc"> <%= gallery.gallery_description %> </div>
-
+														<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+													</a>
+														<div class="mask"></div>
+									     </div>
 
 											</div>
+												<br>
+												<% if gallery.reviews.blank? %>
+													<% average_review=0 %>
+													<% rating_count=0 %>
+												<% else %>
+													<% average_review=gallery.reviews.average(:rating).round(2) %>
+													<% rating_count=gallery.reviews.count %>
+												<% end %>
 
-											<div class="mask"></div>
-										</a>
+												<div class="average-review-rating" data-score='<%= average_review %>>'>
+												</div>
+												<% if gallery.reviews.blank? %>
+													<div>No rating available</div>
+													<% else %>
+													<div>Based on <%= rating_count %> ratings</div>
+													<% end %>
+												<div id="custom-project-title"><%= render gallery.reviews %></div>
+												<% if session[:current_user_key] %>
+													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
+													<% profile_user_id=gallery.GeneralInfo_id %>
+													<% if current_user.id!= profile_user_id %>
+														<% if gallery.reviews.empty? %>
+															<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
+															<% else %>
+																<% if gallery.reviews.collect(&:user_id).include?(current_user.id) %>
 
-										<div class="profile-img-container">
-										<a class="be-img-block profile-img img-thumbnail">
-											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-										</a>
-										<ul class= "rating" >
-											<% form_id = "gallery_#{gallery.id}_rating" %>
-											<%= form_for gallery.gallery_title.last || gallery.gallery_title.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
-            										<%= f.hidden_field :gallery_id%>
-           											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
-          									 <% end %>
-										<ul>
-											<% (1..5).each do |i| %>
-  								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
-  								    		<% end %>
-  								    		
-  								    			<li class = "rating_star">
-  								    			<%= link_to 'submit', :confirm => 'Are you sure?' %>
-
-  								    			</li>
-  								    		
-   										</ul>
-										
-										
-										<div class="mask"></div>
-									</a>
-									</div>
-										
-											<%= gallery.gallery_totalRate %>
+																<% else %>
+																	<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
+																<% end %>
+															<% end %>
+														<% end %>
+													<% end %>
 										</div>
-									</div>
-								<% end %>
-							<% end %>
-                        </div>
-                    </div>
-                </div>
+										<% end %>
+										<% end %>
+								  </div>
+					      </div>
+				      </div>
             </div>
-        </div>
-    </div>
+        	</div>
+    	</div>
 	
 	<!-- MAIN CONTENT END -->
 	<%= render 'shared/footer' %>
@@ -320,6 +327,7 @@
 	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
 	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
 	<script src="<%= asset_path "global.js"%>"></script>
+	<script src="<%= asset_path "jquery.raty.js"%>"></script>
 	<script> 
 		var element = document.getElementById("messages");
 		element.scrollTop = element.scrollHeight;
@@ -343,6 +351,24 @@
 			}
 		}
 		}
+	</script>
+	<script>
+		$('.review-rating').raty({
+			readOnly:true,
+			score: function() {
+				return $(this).attr('data-score');
+			},
+			path: '/assets/'
+		});
+	</script>
+	<script>
+		$('.average-review-rating').raty({
+			readOnly:true,
+			score: function() {
+				return $(this).attr('data-score');
+			},
+			path: '/assets/'
+		});
 	</script>
 	</body>
 </html>

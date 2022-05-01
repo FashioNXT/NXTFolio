@@ -113,7 +113,12 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
-  resources :galleries
+
+#halting this changes, later will check
+
+  resources :galleries do
+    resources :reviews
+  end
   resources :search_engine
 
   devise_scope :user do

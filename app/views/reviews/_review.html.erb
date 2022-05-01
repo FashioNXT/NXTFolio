@@ -1,0 +1,9 @@
+
+
+
+<% if session[:current_user_key] %>
+  <% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
+  <% if review.user_id == current_user.id %>
+    <%= link_to 'Edit Your Rating', edit_gallery_review_path(review.gallery,review)  %>
+    <% end %>
+<% end %>

@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = current_user[:first_name]
+      @user_id=current_user[:general_info_id]
     end
     #To display DB, delete this later!
     @login_infos = LoginInfo.all
