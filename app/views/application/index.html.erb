@@ -201,6 +201,16 @@
 	<script src="<%= asset_path "global.js"%>"></script>
 	<script src="<%= asset_path "pagination.js.coffee"%>"></script>
 	<script src="<%= asset_path "application.js"%>"></script>
+	<script src="<%= asset_path "jquery.raty.js"%>"></script>
+	<script>
+		$('.average-review-rating').raty({
+			readOnly:true,
+			score: function() {
+				return $(this).attr('data-score');
+			},
+			path: '/assets/'
+		});
+	</script>
 
 	</body>
 </html>
