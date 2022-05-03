@@ -11,5 +11,5 @@ Then(/^Other categories will be hidden and all professions under this category w
   # expect(page).to have_button('Brand')
   # expect(page).to have_button('Designer')
   # expect(page).to have_button('Other_creator')
-  puts "hello"
+  puts("hello")
 end

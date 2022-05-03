@@ -68,38 +68,40 @@
       </div>
       <nav class="navbar navbar-light" style="flex-flow: row nowrap; display: inline-flex; white-space: nowrap;">
         <div id = "testCreator">
-          <button type="button" id="Brand" class="btn btn-outline-dark brandbutton">Brand Owner</button>
-          <button type="button" id="Designer" class="btn btn-outline-dark designerbutton">Designer</button>
-          <button type="button" id="Other_creator" class="btn btn-outline-dark othercreatorbutton">Other Creator</button>
+          <div id ="scroll1" class = "scroll">
+            <button type="button" id="Brand" class="btn btn-outline-dark brandbutton">Brand Owner</button>
+            <button type="button" id="Designer" class="btn btn-outline-dark designerbutton">Designer</button>
+            <button type="button" id="Other_creator" class="btn btn-outline-dark othercreatorbutton">Other Creator</button>
+          </div>
         </div>
 
-        <div id="category">
+        <div id="category" style="padding-left: 10px;">
           <button class="navbar-toggler navbar-toggler-left btn btn-outline-dark"
                   id ="button1"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="#navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            >>
-            <span class="navbar-toggler-icon "></span>
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarNav"
+                  aria-controls="#navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  >>
+                  <span class="navbar-toggler-icon "></span>
           </button>
         </div>
 
-        <style>
-            div.scroll {
-                margin: 4px, 4px;
-                padding: 4px;
-                width: 1500px;
-                overflow: auto;
-                white-space: nowrap;
-            }
-        </style>
+<!--        <style>-->
+<!--            div.scroll {-->
+<!--                margin: 4px, 4px;-->
+<!--                padding: 4px;-->
+<!--                width: 1px;-->
+<!--                overflow: auto;-->
+<!--                white-space: nowrap;-->
+<!--            }-->
+<!--        </style>-->
 
-        <div id = "category">
+        <div id = "category" style="text-align: center">
           <div class="collapse width" id="navbarNav">
-            <div class="scroll">
+            <div id = "scroll2" class="scroll">
               <button type="button" id="Brand" class="btn btn-outline-dark brandbutton">Brand Owner</button>
               <button type="button" id="Designer" class="btn btn-outline-dark designerbutton">Designer</button>
               <button type="button" id="Other_creator" class="btn btn-outline-dark othercreatorbutton">Other Creator</button>
@@ -139,41 +141,38 @@
         <h2 class="info-block-label">Services</h2>
       </div>
       <!-- This is a template structure, the function should be added in application.js -->
-      <nav class="navbar navbar-light " style="flex-flow: row nowrap; display: inline-flex;">
-        <div id = "testService">
-          <button type="button" id="Model" class="btn btn-outline-dark modelbutton">Model</button>
-          <button type="button" id="Photographer" class="btn btn-outline-dark photographerbutton">Photographer</button>
-          <button type="button" id="Influencer" class="btn btn-outline-dark influencerbutton">Influencer</button>
-          <button type="button" id="Content_creator" class="btn btn-outline-dark contentbutton">Content Creator</button>
-        </div>
+      <nav class="navbar navbar-light" style="flex-flow: row nowrap; display: inline-flex; white-space: nowrap;">
 
-        <div id=category>
-          <button class="navbar-toggler btn btn-outline-dark"
-            id ="button2"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav2"
-            aria-controls="#navbarNav2"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            >>
-            <span class="navbar-toggler-icon "></span>
-          </button>
-        </div>
+          <div id = "testService">
+            <div id = "scroll1" class = "scroll" >
+              <button type="button" id="Model" class="btn btn-outline-dark modelbutton">Model</button>
+              <button type="button" id="Photographer" class="btn btn-outline-dark photographerbutton">Photographer</button>
+              <button type="button" id="Influencer" class="btn btn-outline-dark influencerbutton">Influencer</button>
+              <button type="button" id="Content_creator" class="btn btn-outline-dark contentbutton">Content Creator</button>
+            </div>
+          </div>
 
-        <style>
-          div.scroll {
-              margin: 4px, 4px;
-              padding: 4px;
-              width: 1500px;
-              overflow: auto;
-              white-space: nowrap;
-          }
-        </style>
+          <div id=category style="padding-left: 10px;">
+            <button class="navbar-toggler btn btn-outline-dark"
+              id ="button2"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav2"
+              aria-controls="#navbarNav2"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              >>
+              <span class="navbar-toggler-icon "></span>
+            </button>
+          </div>
 
-        <div id = "category">
+
+
+
+
+        <div id = "category" style="text-align: center;">
           <div class="collapse width" id="navbarNav2">
-            <div class="scroll">
+            <div id = "scroll2" class="scroll">
               <button type="button" style="display: inline-block;" id="Model" class="btn btn-outline-dark modelbutton">Model</button>
               <button type="button" style="display: inline-block;" id="Photographer" class="btn btn-outline-dark photographerbutton">Photographer</button>
               <button type="button" style="display: inline-block;" id="Influencer" class="btn btn-outline-dark influencerbutton">Influencer</button>
@@ -203,14 +202,16 @@
       <div class="be-large-post-align text-center">
         <h2 class="info-block-label">Makers</h2>
       </div>
-      <nav class="navbar navbar-light" style="flex-flow: row nowrap; display: inline-flex;">
+      <nav class="navbar navbar-light" style="flex-flow: row nowrap; display: inline-flex; white-space: nowrap;">
         <div id="testMaker">
+          <div id = "scroll1" class = "scroll">
           <button type="button" id="Manufacturing" class="btn btn-outline-dark manufacturingbutton">Manufacturing</button>
           <button type="button" id="Materials" class="btn btn-outline-dark materialsbutton">Materials</button>
           <button type="button" id="Other_makers" class="btn btn-outline-dark othermakersbutton">Other Makers</button>
+          </div>
         </div>
 
-        <div id=category>
+        <div id=category style="padding-left: 10px;">
           <button class="navbar-toggler navbar-toggler-left btn btn-outline-primary"
               id = "button3"
               type="button"
@@ -224,26 +225,73 @@
           </button>
         </div>
 
-        <style>
-            div.scroll {
-                margin: 4px, 4px;
-                padding: 4px;
-                width: 1500px;
-                overflow: auto;
-                white-space: nowrap;
-            }
-        </style>
+<!--        <style>-->
+<!--            div.scroll {-->
+<!--                margin: 4px, 4px;-->
+<!--                padding: 4px;-->
+<!--                width: 400px;-->
+<!--                overflow: auto;-->
+<!--                white-space: nowrap;-->
+<!--            }-->
+<!--        </style>-->
 
-        <div id = "category">
-          <div class="collapse width" id="navbarNav3">
+        <div id = "category" style="text-align: center;">
+          <div class="collapse width" id="navbarNav3" style="text-align: center;">
+            <div id = "scroll2" class = "scroll" style="text-align: center;">
                 <button type="button" id="Manufacturing" class="btn btn-outline-dark manufacturingbutton">Manufacturing</button>
                 <button type="button" id="Materials" class="btn btn-outline-dark materialsbutton">Materials</button>
                 <button type="button" id="Other_makers" class="btn btn-outline-dark othermakersbutton">Other Makers</button>
+            <div>
+          </div>
+        </div>
           </div>
         </div>
       </nav>
-      </div>
     </div>
+  </div>
+
+  <style>
+      /*@media screen and (min-width:350px) {*/
+      #scroll1
+      {
+          width: 25vw;
+          overflow: auto;
+          white-space: nowrap;
+      }
+      #scroll2
+      {
+          width: 75vw;
+          overflow: auto;
+          white-space: nowrap;
+      }
+      /*}*/
+
+      /*@media screen and (min-width:700px) {*/
+      /*    div.scroll {*/
+      /*        !*max-height: 700px;*!*/
+      /*        !*margin: 4px, 4px;*!*/
+      /*        !*padding: 4px;*!*/
+      /*        width: 500px;*/
+      /*        overflow: auto;*/
+      /*        white-space: nowrap;*/
+      /*        !*position: absolute;*!*/
+      /*        !*top: 50%;*!*/
+      /*        !*left: 1%;*!*/
+      /*        !*right: 1%;*!*/
+      /*        !*scroll-behavior: smooth;*!*/
+      /*        text-align: center;*/
+      /*    }*/
+
+      /*}*/
+
+      /*@media screen and (min-width:1200px) {*/
+      /*    div.scroll {*/
+      /*        width: 1000px;*/
+      /*        overflow: auto;*/
+      /*        white-space: nowrap;*/
+      /*    }*/
+      /*}*/
+  </style>
 
   <script>
       const targetDiv = document.getElementById("test2");
