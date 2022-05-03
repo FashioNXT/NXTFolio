@@ -251,20 +251,30 @@
   </div>
 
   <style>
-      /*@media screen and (min-width:350px) {*/
-      #scroll1
+      @media screen and (min-width:350px) and (max-width:400px)
       {
-          width: 25vw;
-          overflow: auto;
-          white-space: nowrap;
+        /*#testMaker*/
+        /*{*/
+        /*    width: 500px;*/
+        /*}*/
       }
+      @media screen and (min-width:400px)
+      {
+          #scroll1
+          {
+              width: 25vw;
+              overflow: auto;
+              white-space: nowrap;
+          }
+      }
+
+
       #scroll2
       {
           width: 75vw;
           overflow: auto;
           white-space: nowrap;
       }
-      /*}*/
 
       /*@media screen and (min-width:700px) {*/
       /*    div.scroll {*/
