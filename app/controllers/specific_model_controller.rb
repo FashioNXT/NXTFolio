@@ -54,7 +54,7 @@ class SpecificModelController < ApplicationController
     
     # Sets genre for the SpecificModel object
     @specific_model.genre = @genre_str
-    # Assigns user_key to be the session key of the current user
+    # Assigns user_key to be the session key of the current room
     @specific_model.user_key = session[:current_user_key] 
     
     # If SpecificModel object saved correctly to database, displays home page
@@ -71,8 +71,8 @@ class SpecificModelController < ApplicationController
     params.require(:specific_models).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, {:allgenres => []})
   end
    
-  # Allows user to edit the params of the SpecificModel object
-  # Displays information pulled from database that matches the session key of the current user
+  # Allows room to edit the params of the SpecificModel object
+  # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update
   def edit
     if SpecificModel.exists?(:user_key => session[:current_user_key])

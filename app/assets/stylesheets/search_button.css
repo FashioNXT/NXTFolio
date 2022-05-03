@@ -1,3 +1,22 @@
+#custom-project-title{
+    font-weight: 700;
+    font-size: 18px;
+    font-color: black;
+}
+
+#custom-profile-name{
+    font-size: 14px;
+    font-color: black;
+}
+
+#custom-project-title:hover {
+    text-decoration: underline;
+}
+
+#custom-profile-name:hover {
+    text-decoration: underline;
+}
+
 #custom-location-input{
     margin-bottom: 10px;
 }

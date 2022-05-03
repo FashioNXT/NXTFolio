@@ -1418,7 +1418,7 @@ window.Chart = function(context){
 	          .split("\r").join("\\'")
 	      + "');}return p.join('');");
 	   
-	    // Provide some basic currying to the user
+	    // Provide some basic currying to the room
 	    return data ? fn( data ) : fn;
 	  };
 }

@@ -140,7 +140,7 @@ class GeneralInfoController < ApplicationController
     end
 
 
-    # Add user to LoginInfo DB here to
+    # Add room to LoginInfo DB here to
     # synchronize with GeneralInfo DB
     current_user = session[:current_login_user]
     login_user = LoginInfo.new(:email => current_user["email"], :password => current_user["password"], :password_confirmation => current_user["password"])
@@ -149,7 +149,7 @@ class GeneralInfoController < ApplicationController
     login_user.save!
     session[:current_user_key] = userKey
 
-    # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
+    # Creates a GeneralInfo object & assigns userKey to be the session key of the current room
     @general_info = GeneralInfo.new(general_info_params)
     logger.info("Hey I am here")
     logger.debug(@general_info.inspect)
@@ -200,8 +200,8 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :company, :industry, :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
   end
 
-  # Allows user to edit the general_info_params of the GeneralInfo object
-  # Displays information pulled from database that matches the session key of the current user
+  # Allows room to edit the general_info_params of the GeneralInfo object
+  # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update
   def edit
     @possible_Jobs = GeneralInfo.see_Jobs
@@ -223,6 +223,9 @@ class GeneralInfoController < ApplicationController
 
   # Saves the edit of the GeneralInfo object to the database
   def update
+
+    logger.info("Debugging general info edit")
+    logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
     if @general_info.update_attributes!(general_info_update_param)
@@ -243,8 +246,8 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, :industry, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :cover_picture, :gallery_pictures => [])
   end
 
-  # Allows user to edit the profession of the GeneralInfo object
-  # Displays information pulled from database that matches the session key of the current user
+  # Allows room to edit the profession of the GeneralInfo object
+  # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update_profession
   def edit_profession
     if GeneralInfo.exists?(:userKey => session[:current_user_key])

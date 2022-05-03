@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # Used to confirm the session key of the current user
+  # Used to confirm the session key of the current room
   def index
     @landing = true
     #@users = GeneralInfo.order(updated_at: :desc).limit(40)
@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = current_user[:first_name]
+      @user_id=current_user[:general_info_id]
     end
     #To display DB, delete this later!
     @login_infos = LoginInfo.all
@@ -28,11 +29,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     @user = resource
-    if LoginInfo.exists?(:email => @user[:email]) #For existing user
+    if LoginInfo.exists?(:email => @user[:email]) #For existing room
       @login_user = LoginInfo.find_by(email: @user[:email])
       userKey = @login_user.userKey
       session[:current_user_key] = userKey
-      super #redirect to where the user came from
+      super #redirect to where the room came from
     else
       @user[:password]+="#1a" #for password requirement
       session[:current_login_user]=@user
