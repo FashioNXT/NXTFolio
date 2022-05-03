@@ -5,7 +5,6 @@ class LoginInfo < ApplicationRecord
   validate :password_requirements_are_met #not needed for FB or Google login
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates_uniqueness_of :email
-  validates :email, presence: true
 
   attr_accessor :password_confirmation
 

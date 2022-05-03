@@ -1,7 +1,5 @@
 class GeneralInfo < ApplicationRecord
   has_many :gallery
-  has_many :messages
-  has_many :reviews
   has_one :login_info
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -329,8 +327,8 @@ class GeneralInfo < ApplicationRecord
     #adding city on filter list
     @filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
 
-    #@filteredUsers.each do |room|
-    #  puts "users are: #{room[:first_name]}"
+    #@filteredUsers.each do |user|
+    #  puts "users are: #{user[:first_name]}"
     #end
 
     return @filteredUsers

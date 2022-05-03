@@ -6,7 +6,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
@@ -14,7 +13,6 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
 		<style>
 			.big{
 				font-size: 25px;
@@ -83,26 +81,9 @@
                 <div class="login-header-block">
                     <div class="login_block">
                         <% if session[:current_user_key] %>
-													<div class="dropdown">
-													<%if @user.notification %>
-														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
-														<div id="myDropdown" class="dropdown-content">
-															<% @notifications_from.each do |notification|%>
-																<a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
-															<% end %>
-													<% else %>
-														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
-														<div id="myDropdown" class="dropdown-content">
-															<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
-															<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
-															<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
-													<% end %>
-														</div>
-													</div>
-													<a href="/dm" class="dropbtn"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
-													<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+                        <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
                         <% else %>
-                        	<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
                         <% end %>
                     </div>
                 </div>
@@ -124,7 +105,7 @@
 		<% end %>
 		<div class="container be-detail-container">
 			<div class="row profile-row">
-				<div class="col-xs-12 col-md-6 left-field">
+				<div class="col-xs-12 col-md-6 left-feild">
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
@@ -168,11 +149,6 @@
 								<!--% if @general_info && @general_info.phone != "" %-->
 									<a class="social-btn color-2" href="tel:<%= @general_info.phone %>"><i class="fa fa-phone"></i></a>
 								<!--% end %-->
-								<% if @on_Own %>
-									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
-								<% else%>
-									<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
-								<% end%>
 							</div>
 							<!--% if @general_info && @general_info.personalWebsite_link != "" %-->
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
@@ -180,7 +156,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6 left-field">
+				<div class="col-xs-12 col-md-6 left-feild">
 					<div class="be-desc-block">
 				  		<!--% if @general_info && @general_info.bio != "" %-->
 							<div class="be-desc-author">
@@ -210,79 +186,72 @@
 			  	</div>
 			</div>
 		</div>
-		<div class="container-fluid custom-container">
-			<div class="row profile-row">
-				<div class="col-md-10 col-md-offset-1">
-					<div id="container-mix"  class="row _post-container_">
+        <div class="container-fluid custom-container">
+            <div class="row profile-row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div id="container-mix"  class="row _post-container_">
 						<% if @on_Own %>
 							<div class="be-desc-label"><a href="/galleries/new">Add Project</a></div>
-							<% end %>
-								<div class="be-post">
-									<div class="be-desc-label">Gallery Pictures</div>
-										<% @gallery.present? and @gallery.each do |gallery| %>
-										<% if gallery.GeneralInfo_id == @general_info.id %>
-											<div class="col-md-4">
-												<div class="photo photo-type-line">
-													<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
-														<div class="photo-info">
-															<div class="headline"> <%= gallery.gallery_title %> </div>
-															<div class="line"></div>
-															<div class="rating"> <%= gallery.gallery_title %> </div>
-															<div class="line"></div>
-															<div class="desc"> <%= gallery.gallery_description %> </div>
-														</div>
-														<div class="mask"></div>
-													</a>
-													<div class="profile-img-container">
-														<a class="be-img-block profile-img img-thumbnail">
+						<% end %>
+                        <div class="be-post">
+                            <div class="be-desc-label">Gallery Pictures</div>
+							<% @gallery.present? and @gallery.each do |gallery| %>
+								<% if gallery.GeneralInfo_id == @general_info.id %>
+									<div class="col-md-4">
+										<div class="photo photo-type-line">
+										<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+											<div class="photo-info">
+											<div class="headline"> <%= gallery.gallery_title %> </div>
+											<div class="line"></div>
+												<div class="rating"> <%= gallery.gallery_title %> </div>
 
-														<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-													</a>
-														<div class="mask"></div>
-									     </div>
+												<div class="line"></div>
+											<div class="desc"> <%= gallery.gallery_description %> </div>
+
 
 											</div>
-												<br>
-												<% if gallery.reviews.blank? %>
-													<% average_review=0 %>
-													<% rating_count=0 %>
-												<% else %>
-													<% average_review=gallery.reviews.average(:rating).round(2) %>
-													<% rating_count=gallery.reviews.count %>
-												<% end %>
 
-												<div class="average-review-rating" data-score='<%= average_review %>>'>
-												</div>
-												<% if gallery.reviews.blank? %>
-													<div>No rating available</div>
-													<% else %>
-													<div>Based on <%= rating_count %> ratings</div>
-													<% end %>
-												<div id="custom-project-title"><%= render gallery.reviews %></div>
-												<% if session[:current_user_key] %>
-													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
-													<% profile_user_id=gallery.GeneralInfo_id %>
-													<% if current_user.id!= profile_user_id %>
-														<% if gallery.reviews.empty? %>
-															<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
-															<% else %>
-																<% if gallery.reviews.collect(&:user_id).include?(current_user.id) %>
+											<div class="mask"></div>
+										</a>
 
-																<% else %>
-																	<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
-																<% end %>
-															<% end %>
-														<% end %>
-													<% end %>
+										<div class="profile-img-container">
+										<a class="be-img-block profile-img img-thumbnail">
+											<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+										</a>
+										<ul class= "rating" >
+											<% form_id = "gallery_#{gallery.id}_rating" %>
+											<%= form_for gallery.gallery_title.last || gallery.gallery_title.build, :html => {:id => "gallery_#{gallery.id}_rating" ,:class => "star_rating_form"} do |f| %>
+            										<%= f.hidden_field :gallery_id%>
+           											 <%= f.hidden_field :stars, :id=> "#{form_id}_stars" %>
+          									 <% end %>
+										<ul>
+											<% (1..5).each do |i| %>
+  								    			<li class="rating_star" data-stars="<%= i %>" data-form-id="<%= form_id %>" id="<%= "#{form_id}_#{i}" %>" > &#9733; <li>
+  								    		<% end %>
+  								    		
+  								    			<li class = "rating_star">
+  								    			<%= link_to 'submit', :confirm => 'Are you sure?' %>
+
+  								    			</li>
+  								    		
+   										</ul>
+										
+										
+										<div class="mask"></div>
+									</a>
+									</div>
+										
+											<%= gallery.gallery_totalRate %>
 										</div>
-										<% end %>
-										<% end %>
-								  </div>
-					      </div>
-				      </div>
+									</div>
+								<% end %>
+							<% end %>
+                        </div>
+                    </div>
+                </div>
             </div>
-        	</div>
-    	</div>
+        </div>
+    </div>
 	
 	<!-- MAIN CONTENT END -->
 	<%= render 'shared/footer' %>
@@ -327,48 +296,5 @@
 	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
 	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
 	<script src="<%= asset_path "global.js"%>"></script>
-	<script src="<%= asset_path "jquery.raty.js"%>"></script>
-	<script> 
-		var element = document.getElementById("messages");
-		element.scrollTop = element.scrollHeight;
-
-			/* When the user clicks on the button,
-		toggle between hiding and showing the dropdown content */
-		function dropdown() {
-		document.getElementById("myDropdown").classList.toggle("show");
-		}
-
-		// Close the dropdown menu if the user clicks outside of it
-		window.onclick = function(event) {
-		if (!event.target.matches('.dropbtn')) {
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length(); i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');s
-			}
-			}
-		}
-		}
-	</script>
-	<script>
-		$('.review-rating').raty({
-			readOnly:true,
-			score: function() {
-				return $(this).attr('data-score');
-			},
-			path: '/assets/'
-		});
-	</script>
-	<script>
-		$('.average-review-rating').raty({
-			readOnly:true,
-			score: function() {
-				return $(this).attr('data-score');
-			},
-			path: '/assets/'
-		});
-	</script>
 	</body>
 </html>

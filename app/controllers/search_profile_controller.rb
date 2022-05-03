@@ -105,7 +105,7 @@ class SearchProfileController < ApplicationController
 
     #@general_queries = GeneralInfo.search @search_params
 
-    #Get the room keys
+    #Get the user keys
     @user_keys = get_user_keys @general_queries
 
     flash[:user_keys] = @user_keys

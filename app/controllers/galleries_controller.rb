@@ -48,14 +48,6 @@ class GalleriesController < ApplicationController
   def show
     puts (params.inspect)
     @gallery = Gallery.find(params[:project_key])
-
-    logger.info("Debugging Average ")
-
-    if @gallery.reviews.blank?
-      @average_review=0
-    else
-      @average_review=@gallery.reviews.average(:rating).round(2)
-    end
   end
 
   private

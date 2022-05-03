@@ -8,12 +8,6 @@ class ShowProfileController < ApplicationController
       @error = user_key_current.to_s
       puts "sessions current_user_key" + user_key_current.to_s
 
-      @user = GeneralInfo.find_by(userKey: user_key_current)
-      
-      if @user.notification
-        @notifications_from = @user.notification_from
-      end
-
       if GeneralInfo.exists?(:userKey => user_key_current)
         @gallery = Gallery.all
         @general_info = GeneralInfo.find_by(userKey: user_key_current)
@@ -23,7 +17,7 @@ class ShowProfileController < ApplicationController
         if LoginInfo.find_by(userKey: @general_info.userKey)
           @email = LoginInfo.find_by(userKey: @general_info.userKey).email
         end
-        #@adminMaker = GeneralInfo.make_admin(params[:room])
+        #@adminMaker = GeneralInfo.make_admin(params[:user])
         using_default = false
 
         if session[:current_user_key] != nil and params[:user_key] == nil

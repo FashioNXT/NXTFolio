@@ -1,8 +1,8 @@
 module ApplicationHelper
   # 
   # def current_user
-  #   room = GeneralInfo.find_by(email: params[:sesson][:email].downcase)
-  #   session[:user_id] = room.id
+  #   user = GeneralInfo.find_by(email: params[:sesson][:email].downcase)
+  #   session[:user_id] = user.id
   #   @current_user ||= GeneralInfo.find(session[:user_id]) if session[:user_id]
   # end
 

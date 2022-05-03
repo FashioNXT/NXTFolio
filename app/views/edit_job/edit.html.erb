@@ -67,11 +67,11 @@
 					<div class="login_block">
 						<% if session[:current_user_key] %>
 						<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-						<!--<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-room"></i>-->
+						<!--<a class="btn color-1 size-2 hover-2" href="/login_info/logout" ><i class="fa fa-user"></i>-->
 						<!--Log out</a>-->
 						<% else %>
 						<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-						<!--<a class="btn btn-login color-1 size-2 hover-2" href="/application/login" ><i class="fa fa-room"></i>-->
+						<!--<a class="btn btn-login color-1 size-2 hover-2" href="/application/login" ><i class="fa fa-user"></i>-->
 						<!--Log in</a>-->
 						<% end %>
 					</div>	

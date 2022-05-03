@@ -7,7 +7,7 @@ class SpecificDesigner < ApplicationRecord
     @return_array = Array.new
     @experience_str = params_arg[:experiece]
 
-    # Search based on the room keys retrieved from GeneralInfo, store into @user_array
+    # Search based on the user keys retrieved from GeneralInfo, store into @user_array
     if (general_info_user_keys.length > 0)
       # Gets here if general_info_user_keys has entries
       general_info_user_keys.each do |user_key_element|
@@ -20,13 +20,13 @@ class SpecificDesigner < ApplicationRecord
     end
 
     # Genre requires a slightly different search
-    # For every room in user_array, check if A genre matches ANY genre
+    # For every user in user_array, check if A genre matches ANY genre
     # If there are no genres, loop through @user_array & push the keys into @genre_checked_array
     if checkboxes.nil?
       # Gets here if genre is empty
       # Leave genre checked hash empty since we're not searching for genres
     elsif !(@user_array.length > 0)
-      # They did not search for anything in GeneralInfo and room array never got populated,
+      # They did not search for anything in GeneralInfo and user array never got populated,
       # Therefore they are looking for everyone in the profession, using genres
       SpecificDesigner.all.find_each do |user_object|
         checkboxes.each do |key, checkbox_genre|

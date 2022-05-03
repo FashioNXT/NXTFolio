@@ -10,18 +10,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
 
-      redirect_to root_path #change to new_general_info_path for creating room profile
+      redirect_to root_path #change to new_general_info_path for creating user profile
     end
 
-    # check if room is in our DB or not
-    # if not, add room to our DB
+    # check if user is in our DB or not
+    # if not, add user to our DB
     # Then assign userKey
-    #if LoginInfo.exists?(:email => @room[:email])
-    #  @login_user = LoginInfo.find_by(email: @room[:email])
+    #if LoginInfo.exists?(:email => @user[:email])
+    #  @login_user = LoginInfo.find_by(email: @user[:email])
     #  userKey = @login_user.userKey
-    #else #Else, Add room to the DB
+    #else #Else, Add user to the DB
     #New User is lead to general_info new page.
-    #@login_user = LoginInfo.new(:email => @room[:email], :password => @room[:password], :password_confirmation => @room[:password])
+    #@login_user = LoginInfo.new(:email => @user[:email], :password => @user[:password], :password_confirmation => @user[:password])
     #userKey = SecureRandom.hex(10)
     #@login_user.userKey = userKey
     #if @login_user.save!
@@ -41,15 +41,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to root_path
     end
 
-    # check if room is in our DB or not
-    # if not, add room to our DB
+    # check if user is in our DB or not
+    # if not, add user to our DB
     # Then assign userKey
-    #if LoginInfo.exists?(:email => @room[:email])
-    #  @login_user = LoginInfo.find_by(email: @room[:email])
+    #if LoginInfo.exists?(:email => @user[:email])
+    #  @login_user = LoginInfo.find_by(email: @user[:email])
     #  userKey = @login_user.userKey
-    #else #Else, Add room to the DB
+    #else #Else, Add user to the DB
     #New User is lead to general_info new page.
-    #@login_user = LoginInfo.new(:email => @room[:email], :password => @room[:password], :password_confirmation => @room[:password])
+    #@login_user = LoginInfo.new(:email => @user[:email], :password => @user[:password], :password_confirmation => @user[:password])
     #userKey = SecureRandom.hex(10)
     #@login_user.userKey = userKey
     #if @login_user.save!
