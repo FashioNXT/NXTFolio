@@ -60,7 +60,10 @@
 <!--</div>-->
 
 <!--CHANGED CODE-->
-<div class="info-block style-3">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="info-block style-3" style="flex-flow: row nowrap; display: inline-flex; white-space: nowrap;">
   <div id="category">
     <div id="test">
       <div class="be-large-post-align text-center">
@@ -100,13 +103,6 @@
             </div>
           </div>
         </div>
-
-<!--        <button id="btnGroupDrop1" type="button" class="btn btn-outline-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">>></button>-->
-<!--        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">-->
-<!--          <a class="dropdown-item" id="Agent">Agent</a><br>-->
-<!--          <a class="dropdown-item" id="Everyone">Everyone</a>-->
-<!--        </div>-->
-
       </nav>
     </div>
   </div>
@@ -137,6 +133,7 @@
               <span class="navbar-toggler-icon "></span>
             </button>
           </div>
+
           <div id = "category" style="text-align: center;">
           <div class="collapse width" id="navbarNav2">
             <div id = "scroll" class="scroll">
@@ -194,113 +191,103 @@
                 <button type="button" id="Manufacturing2" class="btn btn-outline-dark manufacturingbutton">Manufacturing</button>
                 <button type="button" id="Materials2" class="btn btn-outline-dark materialsbutton">Materials</button>
                 <button type="button" id="Other_makers2" class="btn btn-outline-dark othermakersbutton">Other Makers</button>
-            <div>
+            </div>
           </div>
         </div>
 
-          </div>
-        </div>
+
+
       </nav>
     </div>
   </div>
 
   <style>
-      @media screen and (min-width:350px) and (max-width:680px)
-      {
-          #Brand
-          {
+      @media screen and (min-width:0px) and (max-width:680px) {
+          #Brand {
               display:none;
           }
-          #Designer
-          {
+          #Designer {
               display: none;
           }
-          #Other_creator
-          {
+          #Other_creator {
               display: none;
           }
           #Model{
               display: none;
           }
-          #Photographer
-          {
+          #Photographer {
               display:none;
           }
-          #Influencer
-          {
+          #Influencer {
               display: none;
           }
-          #Manufacturing
-          {
+          #Manufacturing {
               display: none;
           }
-          #Materials
-          {
+          #Materials {
               display: none;
           }
-          #Other_makers
-          {
+          #Other_makers {
               display: none;
-          }
-          #scroll
-          {
-              width: 400px;
-              overflow: auto;
-              white-space: nowrap;
           }
       }
 
-      #scroll
-       {
-           width: 75vw;
-           overflow: auto;
-           white-space: nowrap;
-       }
-      @media screen and (min-width:680px) and (max-width:1010px)
-      {
-          #Designer
-          {
+      @media screen and (min-width:680px) and (max-width:1010px) {
+          #Designer {
               display: none;
           }
-          #Other_creator
-          {
+          #Other_creator {
               display: none;
           }
-          #Photographer
-          {
+          #Photographer {
               display:none;
           }
-          #Influencer
-          {
+          #Influencer {
               display: none;
           }
-          #Materials
-          {
+          #Materials {
               display: none;
           }
-          #Other_makers
-          {
+          #Other_makers {
               display: none;
           }
 
 
       }
 
-      @media screen and (min-width:1000px) and (max-width:1380px)
-      {
-          #Other_creator
-          {
+      @media screen and (min-width:1010px) and (max-width:1380px) {
+          #Other_creator {
               display: none;
           }
-          #Influencer
-          {
+          #Influencer {
               display: none;
           }
-          #Other_makers
-          {
+          #Other_makers {
               display: none;
           }
 
+      }
+
+      .scroll{
+          width: 75vw;
+          overflow: auto;
+          white-space: nowrap;
+          scrollbar-width: thin;
+      }
+      .scroll::-webkit-scrollbar {
+          width: 5px;
+          scrollbar-width: 10px;
+      }
+      .scroll::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey;
+          border-radius: 10px;
+      }
+      .scroll::-webkit-scrollbar-thumb {
+          background: darkgrey;
+          border-radius: 10px;
+      }
+      .scroll::-webkit-scrollbar-thumb:hover {
+          background: grey;
       }
   </style>
 
