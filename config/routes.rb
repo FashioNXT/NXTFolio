@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  post '/dm/:id', to: 'room#create_message'
+
+  get '/dm', to: 'room#show'
+
+  get '/dm/:id', to: 'room#show'
+
   get 'galleries/new'
 
 #  get 'galleries/create'
@@ -39,7 +46,7 @@ Rails.application.routes.draw do
     post '/delete' => 'admin#delete'
   end
 
-  get '/general_info/make_admin/:user' => 'general_info#make_admin' 
+  get '/general_info/make_admin/:room' => 'general_info#make_admin'
   
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'
@@ -93,6 +100,12 @@ Rails.application.routes.draw do
   get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
+  get 'password/reset', to: 'password_resets#new'
+  post 'password/reset', to: 'password_resets#create'
+  get 'password/reset/edit', to: 'password_resets#edit'
+  patch 'password/reset/edit', to: 'password_resets#update'
+
+
   resources :general_info
   resources :login_info
   resources :specific_designer
@@ -100,7 +113,12 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
-  resources :galleries
+
+#halting this changes, later will check
+
+  resources :galleries do
+    resources :reviews
+  end
   resources :search_engine
 
   devise_scope :user do

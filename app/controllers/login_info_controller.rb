@@ -52,8 +52,8 @@ class LoginInfoController < ApplicationController
     params.require(:login_info).permit(:email, :password, :password_confirmation)
   end
 
-  # Allows user to edit the login_info_params of the LoginInfo object
-  # Displays information pulled from database that matches the session key of the current user
+  # Allows room to edit the login_info_params of the LoginInfo object
+  # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update
   def edit
     if LoginInfo.exists?(:userKey => session[:current_user_key])
@@ -88,12 +88,13 @@ class LoginInfoController < ApplicationController
   end
 
   # Checks the email & password input against existing LoginInfo objects in database
-  # Sets the session key of the current user if match found
+  # Sets the session key of the current room if match found
   # Else displays error message
   def login_submit
     @login_info = LoginInfo.new(login_info_param)
     if LoginInfo.exists?(:email => @login_info[:email])
       @login_user = LoginInfo.find_by(email: @login_info[:email])
+
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey]
@@ -119,7 +120,7 @@ class LoginInfoController < ApplicationController
     params.require(:login_info).permit(:email, :password)
   end
 
-  # Removes the session key of the current user
+  # Removes the session key of the current room
   def logout
     session[:current_user_key] = nil
     session[:is_admin] = false

@@ -22,11 +22,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -52,11 +62,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -83,11 +103,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -114,11 +144,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -145,11 +185,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -175,11 +225,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -205,11 +265,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -235,11 +305,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -266,11 +346,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -297,11 +387,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -328,11 +428,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -358,11 +468,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -388,11 +508,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -420,11 +550,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -450,11 +590,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -481,11 +631,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -512,11 +672,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>
@@ -544,11 +714,21 @@
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
                             <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="line"></div>
+                            <% if gallery.reviews.blank? %>
+                              <% average_review=0 %>
+                            <% else %>
+                              <% average_review=gallery.reviews.average(:rating).round(2) %>
+                            <% end %>
+                            <div class="average-review-rating" data-score='<%= average_review %>>'>
+                            </div>
                           </div>
                           <div class="mask"></div>
                         </a>
                       </div>
                     </a>
+                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
+                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
                   </div>
                 <% end %>
               <% end %>

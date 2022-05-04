@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FashioNXT</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+    <style>
+        .big{
+            font-size: 25px;
+        }
+        #messages {
+          height: calc(85vh - 150px);
+          overflow-x: hidden;
+          overflow-y: scroll;
+        }
+        .message-box {
+          word-wrap: break-word;
+          width: fit-content;
+          max-width: 40%;
+          padding: 5px;
+          border-radius: 10px;
+          margin-bottom: 10px;
+          background-color: #555555;
+          padding: 10px;
+          color: white;
+        }
+    </style>
+
+  </head>
+  <body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+
+
+  <!-- THE LOADER -->
+  <% if @loader %>
+    <div class="be-loader">
+      <div class="spinner">
+        <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+        <p class="circle">
+          <span class="ouro">
+            <span class="left"><span class="anim"></span></span>
+            <span class="right"><span class="anim"></span></span>
+          </span>
+        </p>
+      </div>
+    </div>
+  <% end %>
+  
+  <!-- THE HEADER -->
+  <header>
+
+    <div class="container-fluid custom-container">
+      <div class="row no_row row-header">
+        <div class="brand-be">
+          <a href="/">
+            <img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+            <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+            <img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+            <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+          </a>
+        </div>
+
+        <div class="header-menu-block">
+          <button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+          <ul class="header-menu" id="one">
+            <li><a href="/search_profile/search">Search</a>
+            </li>
+            <% if session[:current_user_key] %>
+              <li><a href="/show_profile">My Profile</a></li>
+              <% if @on_Own %>
+                <li><a href="/general_info/edit">Edit Profile</a>
+                  <ul>
+                    <li><a href="/general_info/edit">Edit Personal Info</a></li>
+                    <% if @attribute_titles && !@is_Admin %>
+                      <li><a href="/general_info/edit2">Edit Professional Info</a></li>
+                    <% end %>
+                    <li><a href="/login_info/edit">Change Password</a></li>
+                    <% if !@is_Admin %>
+                      <li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
+                    <% elsif @is_Admin%>
+                      <li><a href="/admin">Admin Dashboard</a></li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+        <!--Logout Button Begin -->
+        <div class="login-header-block">
+          <div class="login_block">
+            <% if session[:current_user_key] %>
+              <div class="dropdown">
+              <%if @user.notification %>
+                <button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
+                <div id="myDropdown" class="dropdown-content">
+                    <% @notifications_from.each do |notification|%>
+                      <a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
+                    <% end %>
+              <% else %>
+                  <button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
+                    <div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
+                    <div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
+              <% end %>
+                </div>
+              </div>
+              <a href="/dm" class="dropbtn"><i class="fa-solid fa-message fa-xl fa-fw" style="color:black"></i></a>
+              <!--<span class="fa-layers-counter" style="background:Tomato">0</span>-->
+              <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+            <% else %>
+              <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+            <% end %>
+          </div>
+        </div>
+        <!--Logout Button End-->
+
+      </div>
+    </div>
+
+
+  </header>
+
+
+  <!-- MAIN CONTENT -->
+  <div id="content-block"
+    <% if @general_info.cover_picture.url %>
+      style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; margin-bottom:0px; background-size: cover;">
+    <% else %>
+      >
+    <% end %>
+    <div class="container be-detail-container">
+      <div id="chatroom_container" class="row profile-row">
+        <div id="side_panel" class="col-12 col-md-4 left-field" >
+          <h1><b> <%= @username %> </b></h1>
+          <hr style="height:2px;border-width:1px;color:gray;background-color:gray">
+          <h3><b> Users</b></h3>
+          <br>
+          <div style="overflow-x:hidden;overflow-y:scroll;font-size:20px;height:700px;">
+            <% @users.each do |user| %>
+              <a href="/dm/<%=user.id %>">
+                <% if @notifications_from %>
+                  <% if @notifications_from.include? user.id.to_i%>
+                    <div>
+                      <% if user.profile_picture.url %>
+                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
+                      <% else %>
+                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% end %>
+                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
+                      <br>
+                    </div>
+                  <%else%>
+                    <div>
+                      <% if user.profile_picture.url %>
+                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% else %>
+                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                      <% end %>
+                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
+                      <br>
+                    </div>
+                  <%end%>
+                <%else%>
+                  <div>
+                    <% if user.profile_picture.url %>
+                      <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                    <% else %>
+                      <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                    <% end %>
+                    <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
+                    <br>
+                  </div>
+                <%end%>
+              </a>
+            <% end %>
+          </div>
+        </div>
+        <div id="room_container" class="col-sm-8 col-md-8 " style="height:800px;">
+          <%if @single_room %>
+            <div id="single_room">
+              <h1 class="text-center"> <img class="profile-img img-thumbnail" src="<%= @chatting_with.profile_picture.url %>" width="50px" height="50px" style="border-radius:50%;" alt=""> <b> <%= @chatname %> </b></h1>
+             
+              <div id="messages">
+                <% @messages.each do |message| %>
+                  <% if message[:general_info_id] == @user[:id] %>
+                    <div class="message-box" style="background-color: #147efb; margin-left: auto; margin-right: 0;">
+                      <%= message[:body] %>
+                    </div>
+                  <% else %>
+                    <div class="message-box">
+                      <%= message[:body] %>
+                    </div>
+                  <% end %>
+                <% end%>
+              </div>
+
+              <%= render 'layouts/new_message_form'%>
+            </div>
+          <%else %>
+            <h1 class="text-center"> <b><br> Select a user to message! </b></h1>
+            <div style="text-align: center"><i class="fa-solid fa-paper-plane fa-10x"></i></div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT END -->
+  <%= render 'shared/footer' %>
+
+  <div class="be-fixed-filter"></div>
+  <%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+    <div class="large-popup login">
+      <div class="container large-popup-container">
+        <div class="row">
+          <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
+            <div class="row">
+              <div class="col-md-12">
+                <i class="fa fa-times close-button"></i>
+                <h5 class="large-popup-title">Log in</h5>
+              </div>
+              <form action="#" class="popup-input-search" method="post">
+                <div class="col-md-6">
+                  <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+                  <!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
+                </div>
+                <div class="col-md-6 form-group">
+                  <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+                  <!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
+                </div>
+                <div class="col-xs-6"></div>
+                <div class="col-xs-6 for-signin">
+                  <%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+                  <!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <!-- SCRIPT	-->
+  <script src="<%= asset_path "jquery.min.js"%>"></script>
+  <script src="<%= asset_path "jquery-ui.js"%>"></script>
+  <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+  <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+  <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+  <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+  <script src="<%= asset_path "global.js"%>"></script>
+  <script> 
+    var element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+
+        /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function dropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length(); i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');s
+          }
+        }
+      }
+    }
+  </script>
+  </body>
+</html>

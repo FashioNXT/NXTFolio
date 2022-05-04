@@ -109,6 +109,7 @@
                       <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
                     </div>
                     <br>
+                    <%= link_to "Forgot your password?", password_reset_path %>
                     <div class="span3 for-signin">
                       <%= form.submit "SIGN IN", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
                     </div>
