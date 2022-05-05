@@ -349,7 +349,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
      opacity: 1; }
   .cmn-toggle-switch { display: none; } }
 
-@media screen and (max-width: 1199px) { .brand-be { position: absolute; left: 50%; text-align: center; -webkit-transform: translateX(-50%) !important; -ms-transform: translateX(-50%) !important; transform: translateX(-50%) !important; }
+@media screen and (max-width: 1199px) { .brand-be { position: absolute; left: 20%; text-align: center; -webkit-transform: translateX(-50%) !important; -ms-transform: translateX(-50%) !important; transform: translateX(-50%) !important; }
   .fa-angle-right { display: none; }
   header .header-menu > #ad-work-li {float: none;}
   .fa-angle-down, .fa-angle-up { display: block; position: absolute; right: 15px; top: 10px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
@@ -391,6 +391,9 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 .head-bg { background: #000; position: relative; padding: 10px; margin-bottom: 50px; }
 
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
+
+@media screen and (min-width:350px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 560px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
 .head-bg-content { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: middle; width: 5000px; }
@@ -755,7 +758,9 @@ transition: all ease-out 0.3s;}
 	07 - FOOTER
 ==================================
 */
-footer { background: #222835;}
+@media screen and (min-width:350px) and (max-width:560px) {footer { background: #222835; width: 560px;}}
+
+footer { background: #222835; }
 
 .footer_slider .swiper-slide { position: relative; }
 
@@ -5116,3 +5121,4 @@ legend {
 /*# sourceMappingURL=Searchs_008.css.map */
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
+
