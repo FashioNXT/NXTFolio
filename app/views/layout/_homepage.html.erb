@@ -20,7 +20,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -34,8 +34,8 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
                 <% end %>
               <% end %>
@@ -57,7 +57,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -71,8 +71,8 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
                 <% end %>
         </div>
@@ -80,10 +80,9 @@
 
 
         <div class="be-post othercreatordiv" id="Othercreator1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Other Creator" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -96,7 +95,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -110,21 +109,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post influencerdiv" id="Influencer1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Influencer" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -137,7 +133,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -151,21 +147,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post modeldiv" id="Model1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Model" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -178,7 +171,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -192,21 +185,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post contentdiv" id="Content1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Content Creator" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -219,7 +209,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -233,20 +223,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post salesdiv" id="Sales1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Sales" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -259,7 +246,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -273,20 +260,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post marketingdiv" id="Marketingdiv1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Marketing" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -299,7 +283,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -313,20 +297,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post retaildiv" id="Retail1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Retail" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -339,7 +320,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -353,21 +334,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post visualdiv" id="Visual1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Visual" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -380,7 +358,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <<div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -394,21 +372,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post bloggingdiv" id="Blogging1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Blogging" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -421,7 +396,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -435,21 +410,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post financingdiv" id="Financing1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Financing" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -462,7 +434,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -476,20 +448,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post otherservicesdiv" id="Otherservices1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Other Services" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -502,7 +471,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -516,20 +485,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post manufacturingdiv" id="Manufacturing1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Manufacturing" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -542,7 +508,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -556,11 +522,9 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -568,10 +532,9 @@
 
 
         <div class="be-post materialsdiv" id="Materials1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Materials" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -584,7 +547,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -598,20 +561,17 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
         <div class="be-post othermakersiv" id="Othermakers1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Other Makers" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -624,7 +584,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -638,21 +598,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post photographerdiv" id="Photographer1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Photographer" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -665,7 +622,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -679,21 +636,18 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
 
 
         <div class="be-post agentdiv" id="Agent1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Agent" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -706,7 +660,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -720,11 +674,9 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -732,10 +684,9 @@
 
 
         <div class="be-post designerdiv" id="Designer1">
-          <% @users.present? and @users.each do |modinfo| %>
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Designer" %>
-              <% @gallery.present? and @gallery.each do |gallery| %>
-                <% if gallery.GeneralInfo_id == modinfo.id %>
                   <div class="col-md-4">
                     <a class="be-img-block">
                       <div class="photo photo-type-line">
@@ -748,7 +699,7 @@
                           <div class="photo-info">
                             <div class="headline"><%= gallery.gallery_title %></div>
                             <div class="line"></div>
-                            <div class="desc"> <%= modinfo.first_name %> <%= modinfo.last_name %> </div>
+                            <div class="desc"> <%= gallery.gallery_description %> </div>
                             <div class="line"></div>
                             <% if gallery.reviews.blank? %>
                               <% average_review=0 %>
@@ -762,11 +713,9 @@
                         </a>
                       </div>
                     </a>
-                    <div id="custom-project-title"><a href="<%= galleries_show_path(:project_key => gallery.id) %>"><%= gallery.gallery_title %></a></div>
-                    <div id="custom-profile-name"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                    <div id="custom-profile-name"><%= modinfo.job_name %></div>
                   </div>
-                <% end %>
-              <% end %>
             <% end %>
           <% end %>
         </div>

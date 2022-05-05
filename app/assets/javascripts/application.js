@@ -59,6 +59,7 @@ $( document ).ready(function() {
     $(".modelbutton").on("click", function(){
         localStorage.setItem('buttonpressed', 'model');
         $(".modeldiv").show();
+        $(".alldiv").hide();
         $(".branddiv").hide();
         $(".othercreatordiv").hide();
         $(".influencerdiv").hide();
