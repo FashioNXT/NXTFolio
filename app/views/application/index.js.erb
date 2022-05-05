@@ -1,6 +1,16 @@
 $('#homepage_contents').append('<%= j render 'layout/homepage' %>');
-<% if @users.next_page %>
-$('.pagination').replaceWith('<%= j will_paginate(@users) %>');
+
+$('.average-review-rating').raty({
+
+    readOnly:true,
+    numberMax:5,
+    number:5,
+    path: '/assets/'
+});
+
+
+<% if @gallery.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate(@gallery) %>');
 <% else %>
 $(window).off('scroll');
 $('.pagination').remove();
