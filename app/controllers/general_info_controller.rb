@@ -278,6 +278,13 @@ class GeneralInfoController < ApplicationController
     GeneralInfo.find(params[:userKey]).destroy
   end
 
+
+  #for destroying Gallery
+  def destroy
+    GeneralInfo.find(params[:gallery]).destroy
+  end
+
+
   # Takes input from the search view & calls the model search functions
   def search
   end
