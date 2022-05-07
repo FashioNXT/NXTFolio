@@ -11,7 +11,6 @@ class PasswordResetsController < ApplicationController
     if exusers.present?
       #send email
       # Need to set it as background job
-      logger.info("Present Test: Hemooon")
       #logger.debug(@token.inspect)
       ForgotMailer.reset(exusers).deliver_now
     else
@@ -43,7 +42,7 @@ class PasswordResetsController < ApplicationController
 
     if @exusers.update_attributes!(exusers_params)
       logger.info("Yay!")
-      redirect_to root_path, :notice => "Your Password has been reset Successfully!"
+      redirect_to login_path, :notice => "Your Password has been reset Successfully!"
     else
       redirect_to :edit
     end

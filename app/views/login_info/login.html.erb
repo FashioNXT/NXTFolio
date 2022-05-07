@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
   <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
   <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
 
 </head>
 <div >
@@ -109,7 +110,7 @@
                       <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
                     </div>
                     <br>
-                    <%= link_to "Forgot your password?", password_reset_path %>
+                    <%= link_to "Forgot your password?", password_reset_path, :class => 'forgot' %>
                     <div class="span3 for-signin">
                       <%= form.submit "SIGN IN", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
                     </div>
