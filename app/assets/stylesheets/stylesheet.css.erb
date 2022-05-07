@@ -391,8 +391,8 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 .head-bg { background: #000; position: relative; padding: 10px; margin-bottom: 50px; }
 
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
-
-@media screen and (min-width:350px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 620px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+/*Mobile View*/
+@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 800px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
 
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
@@ -770,7 +770,8 @@ transition: all ease-out 0.3s;}
 */
 footer { background: #222835;}
 
-@media screen and (min-width:350px) and (max-width:560px) {footer { background: #222835; width: 620px;}}
+/*Mobile View*/
+@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 800px;}}
 
 .footer_slider .swiper-slide { position: relative; }
 
