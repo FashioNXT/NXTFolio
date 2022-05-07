@@ -9,7 +9,7 @@ class GalleriesController < ApplicationController
     params[:gallery][:GeneralInfo_id] = @general_info.id
     @gallery = Gallery.new(gallery_params)
     
-    if @gallery.save
+    if @gallery.save!
       flash[:notice] = "Project Created"
 
       redirect_to '/show_profile'
