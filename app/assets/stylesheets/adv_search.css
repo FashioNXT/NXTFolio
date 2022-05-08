@@ -23,6 +23,12 @@
 #advsearch {
     height: 300px;
 }
+
+/*Mobile View of pink background of advanced search*/
+#advsearch {
+    height: 500px;
+}
+
 .searchContainer {
     width: 600px;
     background-color: #BA5555;
