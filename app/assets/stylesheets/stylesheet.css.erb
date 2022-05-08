@@ -392,8 +392,8 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 
-/*Mobile View*/
-@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 562px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+/*Mobile View search engine background picture*/
+@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 650px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
 
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
@@ -658,9 +658,9 @@ form.input-search { position: relative; margin-bottom: 50px; }
 
 .be-img-block { overflow: hidden; display: block; max-height: 230px; width: 450px;}
 
-/*Mobile View*/
+/*Mobile View of each project in the homepage project gallery*/
 @media screen and (min-width: 0px) and (max-width: 560px){
-    .be-img-block { overflow: hidden; display: block; max-height: 230px; width: 530px;}
+    .be-img-block { overflow: hidden; display: block; max-height: 230px; width: 450px;}
 }
 
 .be-post .be-img-block { margin-bottom: 15px; position: relative; }
@@ -686,8 +686,9 @@ a.be-post-title:hover { color: #0D58C8; }
 .be-post > span { color: #b4b7c1; display: block; font-size: 11px; line-height: 20px; padding: 0 15px; margin-bottom: 15px; }
 
 .info-block { background: white; padding: 20px 15px; font-size: 10px; color: #b4b7c1 !important; padding-left: 200px;}
-/*Mobile view*/
-@media screen and (min-width: 0px) and (max-width: 560px) {.info-block { background: white; padding: 20px 15px; font-size: 10px; color: #b4b7c1 !important; padding-left: 100px;}}
+
+/*Mobile view of homepage project gallery*/
+@media screen and (min-width: 0px) and (max-width: 560px) {.info-block { background: white; padding: 20px 15px; font-size: 10px; color: #b4b7c1 !important; padding-left: 10px;}}
 
 .info-block-label { font-size: 28px; line-height: 18px; font-family: "Trebuchet MS", Tahoma, sans-serif; padding-bottom: 15px; color: #383b43; }
 
@@ -768,8 +769,8 @@ transition: all ease-out 0.3s;}
 */
 footer { background: #222835;}
 
-/*Mobile View*/
-@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 562px;}}
+/*Mobile View of whole footer block*/
+@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 650px;}}
 
 .footer_slider .swiper-slide { position: relative; }
 
@@ -785,7 +786,7 @@ footer p a:visited { color: #95afbd; background-color: transparent; text-decorat
 
 footer p a:hover { color: #fff; text-decoration: none; }
 
-.footer-main { padding: 46px 0; border-bottom: 1px solid #2e3542; padding-bottom: 170px;}
+.footer-main { padding: 46px 0; border-bottom: 1px solid #2e3542; padding-bottom: 220px;}
 
 .footer-title { color: #FFF; font-size: 14px; font-family: 'Conv_helveticaneuecyr-bold'; margin-bottom: 20px; }
 
@@ -1620,6 +1621,12 @@ display: inline-block; float: none; margin: 0 10px;}
 .btn.hover-10:hover .fa, .btn.hover-10.active .fa { color: #7A8192; }
 
 .btn.full { width: 100%; margin-right: 0px; }
+
+/*mobile view*/
+@media screen and (max-width: 560px)
+{
+  .btn.full { width: 650px; margin-right: 0px; }
+}
 
 .btn.btn-right { float: right; margin-right: 0px; margin-left: 20px; }
 
@@ -3422,20 +3429,8 @@ input:focus {
 #container-mix {
   padding: 0px;
 }
+
 /*Mobile View*/
-@media screen and (min-width: 0px) and (max-width: 560px){
-    #container-mix {
-        padding: 0px;
-/*        padding-left: 30px;*/
-    }
-}
-/*Tablet View*/
-@media screen and (min-width: 560px) and (max-width: 992px){
-    #container-mix {
-        padding: 0px;
-        padding-left: 50px;
-    }
-}
 
 .message-area {
     height: 150px;
@@ -3832,14 +3827,14 @@ body .login-user-down:hover {
     padding-top: 50px;
 
 }
+/*Mobile View of my profile view*/
 @media screen and (min-width:0px) and (max-width:560px) {
     .profile-row {
         background: #fffffff0;
         padding: 1px;
         margin-bottom: 5px !important;
         padding-top: 50px;
-        width: 550px;
-        padding-right: 150px;
+        width: 650px;
     }
 }
 
@@ -3932,12 +3927,12 @@ button #Model {
 
 }
 
-/*Mobile View*/
+/*Mobile View of pictures in each project*/
 @media screen and (max-width:560px)
 {
     .col-md-3 {
-        padding: 25px;
-        padding-bottom: 60px;
+        padding: 150px;
+        padding-bottom: 135px;
     }
 }
 
@@ -3955,7 +3950,7 @@ button #Model {
   height: 230px;
 }
 
-/*Mobile View*/
+/*Mobile View of the hover image of each project in homepage gallery*/
 @media screen and (min-width: 0px) and (max-width: 560px)
 {
     .photo,
@@ -3963,7 +3958,7 @@ button #Model {
     .photo-hover .mask,
     .photo-img,
     .photo-info {
-        width: 530px;
+        width: 450px;
         height: 230px;
     }
 }
@@ -4856,6 +4851,25 @@ legend {
   padding: 15px;
   font-family: 'Roboto', sans-serif;
   position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+}
+
+/*mobile view background of advanced search engine*/
+@media screen and (max-width: 560px)
+{
+    .s008 {
+        min-height: 100vh;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background: url(<%= asset_path "carouselwomen.jpg"%>);
+        background-size: cover;
+        padding: 15px;
+        font-family: 'Roboto', sans-serif;
+        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; width: 630px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+    }
 }
 
 .s008 form {
