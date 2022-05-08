@@ -355,7 +355,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
   .fa-angle-down, .fa-angle-up { display: block; position: absolute; right: 15px; top: 10px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
   header { z-index: 550; }
   .header-menu { height: auto; display: none; width: 100%; background: navajowhite; text-align: center; font-size: 26px; position: absolute; top: 70px; left: -1px; overflow: auto; padding-bottom: 15px; }
-  .header-menu ul { display: none; width: 100%; background: #FFF; text-align: center; font-size: 26px; }
+/*    .header-menu ul { display: none; width: 100%; background: #FFF; text-align: center; font-size: 26px; }*/
   .page-login .header-menu { padding-top: 60px; }
   .header-menu > li > a { font-size: 20px; }
   .header-menu > li > ul > li > a { font-size: 18px; }
@@ -374,7 +374,20 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
   body.menu-open .login_block .be-drop-down { display: inline-block; }
   header .col-xs-3:last-child { float: right; }
   .header-menu > li ul { background: #F6F6F6; margin: 0; padding: 0; }
-  .login-header-block { padding-right: 0; float: right; } }
+  .login-header-block { padding-right: 0; float: right; }
+
+
+}
+
+/*  Mobile view for Edit profile labels navigation bar*/
+@media screen and (max-width: 560px){
+    .header-menu > li a { display: inline; line-height: 42px; padding: 0 75px; text-align: left;}
+    .header-menu > li > a { font-size: 18px; text-align: left;}
+    .header-menu > li > ul > li > a { font-size: 15px; text-align: left; width: 10px; color: black;}
+    .header-menu ul {width: 0px; background: #FFF; text-align: left; font-size: 16px; white-space: nowrap; flex-flow: row nowrap; padding: 0px 0px 0px 0px;}
+    .header-menu.header-menu li {  text-align: left; text-align: left; display: inline; padding: 0px 0px 0px 0px; flex-flow: row nowrap; margin-right: -118px; width: 348px;margin-left: -20px;left: 0;}
+
+}
 
 @media screen and (max-width: 600px) { .noto-popup { left: 15px; width: auto; } }
 
@@ -1627,7 +1640,7 @@ display: inline-block; float: none; margin: 0 10px;}
 /*mobile view*/
 @media screen and (max-width: 560px)
 {
-  .btn.full { width: 650px; margin-right: 0px; }
+  .btn.full { width: 600px; margin-right: 0px; }
 }
 
 .btn.btn-right { float: right; margin-right: 0px; margin-left: 20px; }
@@ -3835,7 +3848,7 @@ body .login-user-down:hover {
         background: #fffffff0;
         padding: 1px;
         margin-bottom: 5px !important;
-        padding-top: 50px;
+        padding-top: 86px;
         width: 650px;
     }
 }
