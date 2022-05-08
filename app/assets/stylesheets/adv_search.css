@@ -71,6 +71,19 @@
 
 }
 
+@media screen and (max-width: 560px)
+{
+    .searchpagesearch {
+        width: 600px;
+        background-color: #BA5555;
+        border-radius: 25px;
+        position: relative;
+        top: 80px;
+        left: 20px;
+
+    }
+}
+
 .searchboxcontainer {
     min-height: 400px;
 }
