@@ -2,7 +2,7 @@
 	<header>
 		<div class="container-fluid custom-container">
 			<div class="row no_row row-header">
-				
+
 				<!-- This is for the clickable icon on the left up corner in the landing page-->
 				<div class="brand-be">
 					<a href="/">
@@ -37,6 +37,7 @@
 						<div class="login_block">
 							<div class="login_block_rightup">
                 <% if session[:current_user_key] %>
+									<a href="/dm" class="dropbtn"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
 									<div class="dropdown">
 										<%if GeneralInfo.find_by(userKey: session[:current_user_key]).notification %>
 											<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
@@ -54,7 +55,7 @@
 										<% end %>
 											</div>
 										</div>
-									<a href="/dm" class="dropbtn"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
+
                   <a class="btn color-1 size-2 hover-2" href="/show_profile"><%= @username %></a>
                   <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
                 <% else %>
