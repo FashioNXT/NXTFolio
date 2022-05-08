@@ -23,12 +23,6 @@
 #advsearch {
     height: 300px;
 }
-
-/*Mobile View of pink background of advanced search*/
-#advsearch {
-    height: 500px;
-}
-
 .searchContainer {
     width: 600px;
     background-color: #BA5555;
@@ -69,19 +63,6 @@
     top: 80px;
     left: 380px;
 
-}
-
-@media screen and (max-width: 560px)
-{
-    .searchpagesearch {
-        width: 600px;
-        background-color: #BA5555;
-        border-radius: 25px;
-        position: relative;
-        top: 80px;
-        left: 20px;
-
-    }
 }
 
 .searchboxcontainer {
