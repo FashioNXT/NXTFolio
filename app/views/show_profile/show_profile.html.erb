@@ -227,8 +227,6 @@
 														<div class="photo-info">
 															<div class="headline"> <%= gallery.gallery_title %> </div>
 															<div class="line"></div>
-															<div class="rating"> <%= gallery.gallery_title %> </div>
-															<div class="line"></div>
 															<div class="desc"> <%= gallery.gallery_description %> </div>
 														</div>
 														<div class="mask"></div>
@@ -274,7 +272,18 @@
 															<% end %>
 														<% end %>
 													<% end %>
+
+												<% if session[:current_user_key] %>
+													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
+													<% profile_user_id=gallery.GeneralInfo_id %>
+													<% if current_user.id==profile_user_id %>
+																<div class = "delete">
+																	<%= link_to 'Delete This Project', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+																</div>
+														<%end %>
+												<% end %>
 										</div>
+
 										<% end %>
 										<% end %>
 								  </div>

@@ -111,7 +111,7 @@
 		</div>
 
 	<div id="infinite-scrolling">
-		<%= will_paginate @users %>
+		<%= will_paginate @gallery %>
 	</div>
 
 	<br></br>
@@ -203,14 +203,13 @@
 	<script src="<%= asset_path "pagination.js.coffee"%>"></script>
 	<script src="<%= asset_path "application.js"%>"></script>
 	<script src="<%= asset_path "jquery.raty.js"%>"></script>
+	<script src="<%= asset_path "starrating.js"%>"></script>
 	<script>
-		$('.average-review-rating').raty({
-			readOnly:true,
-			score: function() {
-				return $(this).attr('data-score');
-			},
-			path: '/assets/'
-		});
+
+
+	</script>
+	<script>
+		console.log("Hey man");
 	</script>
 
 	</body>

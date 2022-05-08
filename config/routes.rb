@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
 #  get 'galleries/create'
 
-  get 'galleries/destroy'
+  get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
+  get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
 
   get 'galleries/index'
 
@@ -116,7 +117,7 @@ Rails.application.routes.draw do
 
 #halting this changes, later will check
 
-  resources :galleries do
+  resources :galleries, except: :destroy do
     resources :reviews
   end
   resources :search_engine
