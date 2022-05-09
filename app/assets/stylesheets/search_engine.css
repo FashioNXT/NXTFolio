@@ -1158,6 +1158,19 @@ legend {
     margin: 40px auto;					/* spacing above/below */
 }
 
+/*mobile view for search results label*/
+@media screen and (max-width: 560px)
+{
+    .divider {								/* minor cosmetics */
+        display: table;
+        font-size: 24px;
+        text-align: center;
+        width: 75%; 						/* divider width */
+        margin: 40px auto;					/* spacing above/below */
+        padding-top: 50px;
+    }
+}
+
 .divider span { display: table-cell; position: relative; }
 .divider span:first-child, .divider span:last-child {
     width: 50%;
