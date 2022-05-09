@@ -1,7 +1,7 @@
-# FASHIONXT
+# NXTFolio
 
 ### DEMO
-https://fashionnxt.herokuapp.com/
+https://sheltered-woodland-21494.herokuapp.com/
 
 
 Click on the above link, and open the demo app. The Facebook login feature will not work, as a result of privacy reasons, I took down the app developers account for it.
@@ -14,7 +14,7 @@ Get Facebook Login to function:
 ### How to start a local server:
 
 1. git clone the repository to your local machine  
-    ```https://github.com/codecreators07/match-my-fashion-public-CodeCreators```
+    ```https://github.com/tanvirmahdad/match-my-fashion-public-CodeCreators```
 2. Once the files are downloaded, follow the standard procedure of installing ruby on rails. 
    Click [here](https://gorails.com/setup/ubuntu/17.10)
 3. It is recommended to use ```rvm``` over ```rbenv```. 
@@ -81,6 +81,7 @@ PG console setting completed. You can close the console here.
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000)
+    
 ### Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
@@ -98,31 +99,46 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
     
 ### What will you see on the web app?
 
-1. Home page
+1. Home page with project view 
 2. Login/Signup, Search
 3. My Profile
+4. Rating/ Review feature on application
 5. Admin user has been added, with privilege for using the admin APIs. This is only available to the single admin user, added by the developer. Contact admin for help
+6. Direct Messaging (DM) and Notification feature on Profile Details page.
+7. orgot Password option in the Sign In Page.
+
 
 ### To get started
 
 1. Click on sign up and create your profile in 3 quick steps.
 2. Once your profile is created, you will be shown logged in to the account
 3. Click on my profile page, to see your profile information.
-4. If you want to edit your profile, you can click on the three main links available on edit profile page
-5. If you want to search other users, you click on search button on top of the page.
-6. Personal information like phone number, email id is displayed on everyone's profile page to connect with others.
+4. If you want to edit your profile, you can click on the three main links available on the edit profile page. You can find two options, “Edit Personal    Info” and “Edit Professional Info”.  You can edit your profile according to your preferences
+5. Social Media handles are shown in the profile details page, 
+6. You can add projects and upload up to 5 photos in the project. You can view the average project rating of your project. If you are the creator of the    project, you will be able to find a link of creating the project.
 
-### How does search feature work:
+### Home Page Features
 
-Contains- Matches any data which contains the searched word
-1. Starts With- Matches any data which starts with the searched word 
-2. Ends With- Matches any data which ends with the searched word
-3. Exactly Matches- Matches any data that exactly matches the searched word
-4.  Improved search criteria: Added email id in the search criteria. Email id is also regular expression based
+1. Home page will show the list of the projects sorted by their ratings. Most rated projects will appear first.
+2. Buttons of Home page are updated and professional can see the projects filtered by specific professions
+3. The professionals can see both the profile details and project details page link from the home page.
+4. The users can search directly from Home page Now
 
-### Notes:
+### Search Features
+
+1. The user can search from home page directly
+2. Search matching algorithm now matches Full name (Previously not supported) and email on searching professionals. They can also search by category, profession, Country, city, and state.
+
+### Rating Featues
+
+1. The user can add star ratings from the profile page now in (1 to 5 scale).
+2. To rate another professional, the user has to be signed in.
+3. One can add only one rating to a project and edit their rating after that. A professional cannot rate their own project.
+
+
+
+### Forgot Password Feature:
     
-1. You can always choose to keep the default value of contains in the regular expression-based search, which guarantees the best possible results without any hassle of choosing a regular expression.
-2. You can keep all the search fields blank for the search, and in that case, the page displays all the possible search results. Simply put, all the fields in the search are totally optional and any combination of search parameters can be utilized to improve the search results.
-3.  States and Country available in Search Page
-4.  Earlier search parameters didn’t include the country and didn’t make states available for user. Now I have included the country parameter in the search form, and included the states as a select option in the drop-down list. Now the search will support country-based search as well.
+1. The user can request a password reset  in their registered email address.
+2. A temporary link (validity: 15 minutes) has been generated for the resetting password
+3. After resetting, they will be redirected to the sign in page again.
