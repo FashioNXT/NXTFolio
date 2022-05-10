@@ -16,7 +16,7 @@
 
 // A $( document ).ready() block.
 
-
+console.log("Javascript update testing");
 
 
 
