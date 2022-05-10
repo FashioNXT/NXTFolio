@@ -1,0 +1,1 @@
+$(window).on("load",function(){$(document.getElementsByClassName("average-review-rating")).raty({readOnly:!0,numberMax:5,number:5,path:"/assets/"})});

@@ -23,6 +23,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   config.parent_controller = 'TurboDeviseController'
+  config.secret_key = '8af3f520789015ec68447627e3c57fc05e5c749be029a341ce6a97caa9cb861a3eda1d26c25cb86ec6c619b0bb81cc6e2631af2796aac70083f68c7620f22460'
 
   # ...
 
