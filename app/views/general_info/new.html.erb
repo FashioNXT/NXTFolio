@@ -111,7 +111,7 @@
 											<div class="input-col col-xs-12 col-sm-10">
 												<div class="form-group focus-2">
 													<div class="form-label">Highlights</div><label>Elevator pitch: Known brands you worked with, impressive accomplishments</label>
-													<%= form.text_area :highlights, id: "highlights", :class =>'form-input', :maxlength => '60', :rows => '3'%>
+													<%= form.text_area :highlights, id: "highlights", :class =>'form-input', :maxlength => '2000', :rows => '3'%>
 													<span class="pull-right label label-default" id="count_message"></span>
 												</div>
 											</div>
@@ -196,7 +196,7 @@
 	<script src="<%= asset_path "global.js"%>"></script>
 	<script src="<%= asset_path "location.js"%>"></script>
 	<script>
-		var text_max = 60;
+		var text_max = 2000;
 		$('#count_message').html('0 / ' + text_max );
 
 		$('#highlights').keyup(function() {
