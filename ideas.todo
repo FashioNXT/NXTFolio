@@ -1,0 +1,11 @@
+MAJOR
+- Search UI does not work properly
+- Add gallery without image shows error html page (catch error)
+
+MEDIUM
+- Sign up form does not show error when about info missing
+
+
+MINOR
+- When password does not have a correct format, be more specific of what is missing, not just say that wrong email/password format
+- Color for input fields in sign up gray?? maybe black looks better

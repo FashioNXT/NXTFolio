@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # To whitelist certain IPs
+  # config.web_console.whitelisted_ips = '198.217.28.2/0'
+  
   # UserMailer
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
