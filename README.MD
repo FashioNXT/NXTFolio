@@ -28,6 +28,8 @@ Get Facebook Login to function:
 6. Install the bundler
     
     ```gem install bundler```
+    
+    You might get an error for libv8. You can try "bundle config build.libv8 --with-system-v8"
 7. Bundle install to install all the dependencies in Gemfile
     ```bundle install```
 8. Start the rails server
@@ -44,21 +46,42 @@ If there is any problem about pg database. Try the steps below:
 
     ```brew install postgres```
 
-2. open another terminal to run PG server
+2. open PG console
+
+For Ubuntu 18:
+
+```sudo su - postgres```
+
+```psql```
+
+If that does not work, you can instead try:
+
+open another terminal to run PG server
 
     ```postgres -D /usr/local/var/postgres```
 
-3. Open PG console (Open one more terminal to run the code below)
+Open PG console (Open one more terminal to run the code below)
 
     ```psql postgres```
 
 4. Create admin user (more details in /config/database.yml)
 
     ```create user beaverthing;```
+    
+    ```\password beaverthing```
+
+type in password(ubuntu) twice
+
+If that does not work, you can also try
 
     ```create password beaverthing;```
 
-type in password(ubuntu) twice
+Make sure to give the correct roles to the user created and to create the databases with that user.
+These commands in the psql terminal might help:
+
+```GRANT ALL PRIVILEGES ON  DATABASE database_name to new_user;```
+
+```ALTER DATABASE database_name owner to new_user;```
 
 5. Create database follow the previous team’s setting
 
@@ -73,6 +96,10 @@ PG console setting completed. You can close the console here.
 6. Generate table with database
 
     ```bin/rails db:migrate RAILS_ENV=development```
+    
+    Useful to check migration status if something goes wrong:
+    
+    ```rake db:migrate:status```
 
 7. Start the rails server
 
