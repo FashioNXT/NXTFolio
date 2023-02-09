@@ -24,7 +24,7 @@ default: &default
 
 
   username: beaverthing
-  password: ubuntu
+  password: beaverthing
 
   host: localhost
 
