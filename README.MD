@@ -103,7 +103,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
     Windows uses a different line ending to linux, which is makes linux not read correctly windows files.
     Use `git clone url --config core.autocrlf=input` or `dos2unix` linux package to fix.
     
-- **error: Homebrew on Linux is not supported on ARM processors.
+- **error: Homebrew on Linux is not supported on ARM processors**
 
     Problem with M1 chip macOS - brew not available for arm64 processor. Use platform option in docker build and run commands.
     docker build --platform linux/amd64 -t ruby-ssh install/
