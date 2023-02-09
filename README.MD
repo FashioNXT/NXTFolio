@@ -26,10 +26,10 @@ Get Facebook Login to function:
 
 ## Install local server
 
-### Using Dockerfile or Ubuntu 18.04
+### Using Dockerfile (Ubuntu 18.04)
 
 This is the fastest way to getting started. 
-Dockerfile and script for automatically setting up app can be found in the `install` folder.
+The Dockerfile and script to automatically setup app can be found in the `install` folder.
 
 1. Clone the repository
 
@@ -41,11 +41,11 @@ Dockerfile and script for automatically setting up app can be found in the `inst
 
 3. Run docker container
 
-    If using windows:
+    If using Windows:
 
         docker run -d -p 8080:3000 --mount type=bind,src="%cd%",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
 
-    If using linux:
+    If using Linux:
 
         docker run -d -p 8080:3000 --mount type=bind,src="$(pwd)",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
 
@@ -62,7 +62,7 @@ Dockerfile and script for automatically setting up app can be found in the `inst
         cd /home
         cp match-my-fashion-public-CodeCreators/install/setup.sh setup.sh
 
-6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.py`)
+6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.sh`)
 
         ./setup.sh
 
@@ -73,15 +73,26 @@ Dockerfile and script for automatically setting up app can be found in the `inst
         rails server -b 0.0.0.0 -p 3000
 
 
-### Run on linux without docker (tested on Ubuntu 18.04)
+### Run on Linux without docker (tested on E2C, Ubuntu 18.04)
 
-1. Run `setup.sh` script (more details about what it does can be found in `install/setup.py`)
+1. Copy `install/setup.sh` to folder where you want to download the app
+2. Give permission to run the script
 
-        /home/setup.sh https://github.com/vibalcam/match-my-fashion-public-CodeCreators
+        sudo chmod +x setup.sh
+
+3. Run `setup.sh` script (more details about what it does can be found in `install/setup.sh`)
+
+    If you have already cloned the repo:
+
+        ./setup.sh
+
+    If you have just copied the script:
+
+        ./setup.sh https://github.com/vibalcam/match-my-fashion-public-CodeCreators
 
     If you run into trouble, try looking the script since the comments might help
 
-2. You should be set. Whenever you want to run the server just run
+4. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
 
@@ -95,27 +106,34 @@ Dockerfile and script for automatically setting up app can be found in the `inst
 ### (OLD) How to start a local server:
 
 1. git clone the repository to your local machine  
-    ```https://github.com/vibalcam/match-my-fashion-public-CodeCreators```
+    `https://github.com/vibalcam/match-my-fashion-public-CodeCreators`
 2. Once the files are downloaded, follow the standard procedure of installing ruby on rails. 
    Click [here](https://gorails.com/setup/ubuntu/17.10)
-3. It is recommended to use ```rvm``` over ```rbenv```. 
+3. It is recommended to use `rvm` over `rbenv`. 
 4. Once Ruby on Rails is installed, you have to install the dependencies available in gem file. 
    Important to note that the dependencies and other rail commands will only work, when installed rails version and ruby version matches the versions mentioned in Gemfile.
 5. To ensure same versions are installed, open  Gemfile, and check ruby version. Do the following:
    
-   ```rvm install 2.4.1```
-   
-   ```rvm use 2.4.1```   
+        rvm install 2.4.1
+        rvm use 2.4.1
+
 6. Install the bundler
     
-    ```gem install bundler```
+        gem install bundler
     
-    You might get an error for libv8. You can try "bundle config build.libv8 --with-system-v8"
+    If you run into an error for libv8, try 
+        
+        bundle config build.libv8 --with-system-v8
+
 7. Bundle install to install all the dependencies in Gemfile
-    ```bundle install```
+
+        bundle install
+
 8. Start the rails server
-    ```rails server```  
-9. The local server will start on the following link
+
+        rails server
+
+9.  The local server will start on the following link
     
     [http://localhost:3000](http://localhost:3000)
 
@@ -123,68 +141,63 @@ If there is any problem about pg database. Try the steps below:
 
 1. Install postgres
 
-    ```brew update```
-
-    ```brew install postgres```
+        brew update
+        brew install postgres
 
 2. open PG console
 
-For Ubuntu 18:
+    For Ubuntu 18:
 
-```sudo su - postgres```
+        sudo su - postgres
+        psql
 
-```psql```
+    If that does not work, open another terminal to run PG server
 
-If that does not work, you can instead try:
+        postgres -D /usr/local/var/postgres
 
-open another terminal to run PG server
+    Open PG console (Open one more terminal to run the code below)
 
-```postgres -D /usr/local/var/postgres```
-
-Open PG console (Open one more terminal to run the code below)
-
-```psql postgres```
+        psql postgres
 
 4. Create admin user (more details in /config/database.yml)
 
-    ```create user beaverthing;```
-    
-    ```\password beaverthing```
+        create user beaverthing;
+        \password beaverthing
 
-type in password(ubuntu) twice
+    type in password(beaverthing) twice
 
-If that does not work, you can also try
+    If that does not work, you can also try
 
-```create password beaverthing;```
+        create password beaverthing;
 
-Make sure to give the correct roles to the user created and to create the databases with that user.
-These commands in the psql terminal might help:
+    Make sure to give the correct roles to the user created and to create the databases with that user.
+    These commands in the psql terminal might help:
 
-```GRANT ALL PRIVILEGES ON  DATABASE database_name to new_user;```
+        GRANT ALL PRIVILEGES ON  DATABASE database_name to new_user;
 
-```ALTER DATABASE database_name owner to new_user;```
+        ALTER DATABASE database_name owner to new_user;
 
 5. Create database follow the previous team’s setting
 
-    ```create database workspace_development;```
+        create database workspace_development;
     
-    ```create database workspace_test;```
+        create database workspace_test;
 
-    ```create database workspace_production;```
+        create database workspace_production;
 
-PG console setting completed. You can close the console here.
+    PG console setting completed. You can close the console here.
 
 6. Generate table with database
 
-    ```bin/rails db:migrate RAILS_ENV=development```
+        bin/rails db:migrate RAILS_ENV=development
     
     Useful to check migration status if something goes wrong:
     
-    ```rake db:migrate:status```
+        rake db:migrate:status
 
 7. Start the rails server
 
-    ```rails server``` 
+        rails server
 
 8. The local server will start on the following link
 
