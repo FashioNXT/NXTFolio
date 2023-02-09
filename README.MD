@@ -59,16 +59,16 @@ Dockerfile and script for automatically setting up app can be found in the `inst
 
 5. Copy the setup script and cd to home
 
-        cp install/setup.sh /home/setup.sh
         cd /home
+        cp match-my-fashion-public-CodeCreators/install/setup.sh setup.sh
 
 6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.py`)
 
-        /home/setup.sh
+        ./setup.sh
 
     If you run into trouble, try looking the script since the comments might help
 
-6. You should be set. Whenever you want to run the server just run
+7. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
 
