@@ -20,9 +20,10 @@
 
 - [ ] When password does not have a correct format, be more specific of what is missing, not just say that wrong email/password format
 - [ ] Color for input fields in sign up should be black
+- [ ] Email should be auto-filled in sign up's second page 
 
 # Other
 
 - [ ] Mobile buttons should be smaller
-- [ ] Look into using iamge similarity AI
+- [ ] Look into using image similarity AI
 - [ ] Upgrade to ruby3
