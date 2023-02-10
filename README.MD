@@ -106,8 +106,16 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 - **error: Homebrew on Linux is not supported on ARM processors**
 
     Problem with M1 chip macOS - brew not available for arm64 processor. Use platform option in docker build and run commands.
-    docker build --platform linux/amd64 -t ruby-ssh install/
-    docker run -d -p 8080:3000 --platform linux/amd64 --mount type=bind,src="$(pwd)",target=/home/match-my-fashion-public-CodeCreators --name nxtfolio ruby-ssh
+    
+        docker build --platform linux/amd64 -t ruby-ssh install/
+        docker run -d -p 8080:3000 --platform linux/amd64 --mount type=bind,src="$(pwd)",target=/home/match-my-fashion-public-CodeCreators --name nxtfolio ruby-ssh
+    
+- **error: brew not found**
+
+    Make sure to run the steps which are displayed in console after installing brew.
+    
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.profile
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
 ### (OLD) How to start a local server:
