@@ -17,24 +17,31 @@
 # docker exec -it test_container bash
 # rails server -b 0.0.0.0 -p 3000
 
+echo ""
+echo "--------------------------------------"
+echo "Installing prerequisites..."
+echo "--------------------------------------"
+sleep 2
+
 # install prerequisites packages
 apt install sudo -y
 sudo apt install software-properties-common git -y
 # other non-necesary but useful
 sudo apt install nano tmux -y
+
+echo ""
+echo "--------------------------------------"
+echo "Installing rvm and ruby"
+echo "--------------------------------------"
+sleep 2
+# read -p "Press [Enter] key to continue..."
+
 # install rvm
 sudo apt-add-repository -y ppa:rael-gc/rvm
 sudo apt-get update
 sudo apt-get install rvm -y
 source /etc/profile.d/rvm.sh
 echo "source /etc/profile.d/rvm.sh" >> ~/.bashrc
-
-echo ""
-echo "--------------------------------------"
-echo "We will now install rvm and ruby"
-echo "--------------------------------------"
-sleep 2
-# read -p "Press [Enter] key to continue..."
 
 # update rvm
 command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
@@ -53,7 +60,7 @@ fi
 
 echo ""
 echo "--------------------------------------"
-echo "We will now install postgres"
+echo "Installing postgres"
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -84,7 +91,7 @@ sudo -u postgres --  psql -c "alter user beaverthing createdb;"
 
 echo ""
 echo "--------------------------------------"
-echo "We will now install brew"
+echo "Installing brew"
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -93,6 +100,8 @@ sleep 2
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.bash_profile
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bash_profile
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.profile
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 sudo apt-get install build-essential
 
@@ -119,7 +128,7 @@ bundle install
 
 echo ""
 echo "--------------------------------------"
-echo "We will now setup database"
+echo "Setting up the database..."
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -130,16 +139,16 @@ bin/rails db:create RAILS_ENV=development
 bin/rails db:migrate RAILS_ENV=development
 bin/rails db:seed RAILS_ENV=development
 
-# Start server
-# it starts in port 3000
-# if using docker with -p 8080:3000 option, you can also use localhost:8080
-echo "--------------------------------------"echo 
-echo """All setup, initializying server on port 
-
-"--------------------------------------"echo 3000 (or localhost:8080 on host if docker)"
+echo ""
+echo "--------------------------------------"
+echo "Setup finished!, starting server on port 3000 (or localhost:8080 if port mapped on docker)..."
+echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
 
+# Start server
+# it starts in port 3000
+# if using docker with -p 8080:3000 option, you can also use localhost:8080
 rails server -b 0.0.0.0 -p 3000
 
 # if every works, that's great!

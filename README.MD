@@ -73,7 +73,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
         rails server -b 0.0.0.0 -p 3000
 
 
-### Run on Linux without docker (tested on E2C, Ubuntu 18.04)
+### Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)
 
 1. Copy `install/setup.sh` to folder where you want to download the app
 2. Give permission to run the script
@@ -96,7 +96,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
         rails server -b 0.0.0.0 -p 3000
 
-#### Fixes when errors
+#### Helpful fixes
 
 - **env: ruby\r: No such file or directory**
 
