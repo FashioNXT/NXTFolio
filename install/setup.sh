@@ -128,7 +128,7 @@ bundle install
 
 echo ""
 echo "--------------------------------------"
-echo "Setting up the database..."
+echo "Setting up the tables..."
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -138,6 +138,15 @@ source /etc/profile.d/rvm.sh
 bin/rails db:create RAILS_ENV=development
 bin/rails db:migrate RAILS_ENV=development
 bin/rails db:seed RAILS_ENV=development
+
+echo ""
+echo "--------------------------------------"
+echo "Downloading other dependencies..."
+echo "--------------------------------------"
+sleep 2
+
+brew install imagemagick
+
 
 echo ""
 echo "--------------------------------------"
