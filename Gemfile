@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+#test test
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -22,7 +22,8 @@ gem 'haml'
 #Carrier Wave for uploading images
 gem 'carrierwave'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -99,9 +100,11 @@ gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'city-state'
 gem 'geocoder'
 
-ruby '2.4.1' #ruby '2.7.5'
+ruby '2.7.5' #ruby '2.7.5'
 
 # Fix the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
 gem 'webdrivers', '~> 4.0', require: false
+
+#aaaaaaaaaaaaa
