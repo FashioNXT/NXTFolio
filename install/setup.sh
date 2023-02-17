@@ -4,6 +4,8 @@
 # otherwise, it assumes the repo is already accessible in `match-my-fashion-public-CodeCreators`
 
 # docker build -t ruby-ssh .
+# or to see command output
+# docker build -t ruby-ssh . --progress plain
 
 # With ssh
 # docker run -d -p 8080:3000 -p 3001:22 --name test_container ruby-ssh
@@ -17,6 +19,7 @@
 # docker exec -it test_container bash
 # rails server -b 0.0.0.0 -p 3000
 
+# install prerequisites packages, rvm and ruby
 echo ""
 echo "--------------------------------------"
 echo "Installing prerequisites..."
@@ -24,14 +27,13 @@ echo "--------------------------------------"
 sleep 2
 
 # install prerequisites packages
-apt install sudo -y
-sudo apt install software-properties-common git -y
+apt-get update && apt-get upgrade -y && apt-get install -y git sudo curl software-properties-common gpg
 # other non-necesary but useful
-sudo apt install nano tmux -y
+apt install -y nano tmux
 
 echo ""
 echo "--------------------------------------"
-echo "Installing rvm and ruby"
+echo "Installing rvm"
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -46,8 +48,9 @@ echo "source /etc/profile.d/rvm.sh" >> ~/.bashrc
 # update rvm
 command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 rvm get stable
+
 # install ruby
-rvm install ruby-2.4.1
+rvm install ruby-3.2.0
 
 # clone repo
 # git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators
@@ -103,7 +106,7 @@ echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bash_pro
 echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.profile
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-sudo apt-get install build-essential
+sudo apt-get install -y build-essential
 
 echo ""
 echo "--------------------------------------"
@@ -112,23 +115,30 @@ echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
 
-# install gem files and dependencies
-# sudo apt install libv8-dev
 cd match-my-fashion-public-CodeCreators
-gem install bundler -v 2.3.26
-gem update --system 3.2.3
-# fixes error regarding installing libv8
-bundle config build.libv8 --with-system-v8
-# fixes error installing regarding therubyracer
-gem uninstall libv8
-brew install v8
-gem install therubyracer
+
+# install dependencies
+sudo apt-get install nodejs -y
+brew install imagemagick
+
+gem install bundler
+gem update --system
+
+# # for ruby 2.4 with therubyracer
+# sudo apt install libv8-dev
+# gem install bundler -v 2.3.26
+# gem update --system 3.2.3
+# bundle config build.libv8 --with-system-v8
+# gem uninstall libv8
+# brew install v8
+# gem install therubyracer
+
 # install all gems (and hope for the best)
 bundle install
 
 echo ""
 echo "--------------------------------------"
-echo "Setting up the tables..."
+echo "Setting up the database..."
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
@@ -138,15 +148,6 @@ source /etc/profile.d/rvm.sh
 bin/rails db:create RAILS_ENV=development
 bin/rails db:migrate RAILS_ENV=development
 bin/rails db:seed RAILS_ENV=development
-
-echo ""
-echo "--------------------------------------"
-echo "Downloading other dependencies..."
-echo "--------------------------------------"
-sleep 2
-
-brew install imagemagick
-
 
 echo ""
 echo "--------------------------------------"
