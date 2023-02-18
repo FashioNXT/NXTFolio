@@ -2,7 +2,9 @@
 
 - [(OLD) DEMO](#old-demo)
 - [Install local server](#install-local-server)
-  - [Using Dockerfile or Ubuntu 18.04](#using-dockerfile-or-ubuntu-1804)
+  - [Using Dockerfile (Ubuntu 18.04)](#using-dockerfile-ubuntu-1804)
+  - [Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)](#run-on-linux-without-docker-tested-on-aws-e2c-ubuntu-1804)
+  - [Helpful fixes](#helpful-fixes)
   - [(OLD) How to start a local server:](#old-how-to-start-a-local-server)
 - [Using AWS S3 as Image Backend](#using-aws-s3-as-image-backend)
 - [Geocoding](#geocoding)
@@ -96,7 +98,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
         rails server -b 0.0.0.0 -p 3000
 
-#### Helpful fixes
+### Helpful fixes
 
 - **env: ruby\r: No such file or directory**
 
