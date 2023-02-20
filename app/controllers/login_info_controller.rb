@@ -66,7 +66,8 @@ class LoginInfoController < ApplicationController
     @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
 
     if login_info_params[:password] == login_info_params[:password_confirmation]
-      if @login_info.update_attributes(login_info_params)
+      # if @login_info.update_attributes(login_info_params)
+      if @login_info.update(login_info_params)
         redirect_to '/show_profile'
       else
         render :action => 'edit'

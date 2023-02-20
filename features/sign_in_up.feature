@@ -9,7 +9,7 @@ Feature:
     Given I am on the landing page
     When I press "sign_in_up" button
     Then I should be directed to the "login" page
-    When I press "facebook" button
+    # When I press "facebook" button # there is no facebook button
     Then I should be directed to the "new_general_info" page
     When I fill in "first_name" text field with "Nabil"
     And I fill in "last_name" text field with "Chris"
