@@ -87,7 +87,8 @@ class SpecificDesignerController < ApplicationController
   def update
     @specific_designer = SpecificDesigner.find_by(user_key: session[:current_user_key])
     
-    if @specific_designer.update_attributes(specific_designer_param)
+    # if @specific_designer.update_attributes(specific_designer_param)
+    if @specific_designer.update(specific_designer_param)
       redirect_to '/show_profile'
     else
       render :action => 'edit'

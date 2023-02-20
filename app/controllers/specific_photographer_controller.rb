@@ -49,7 +49,8 @@ class SpecificPhotographerController < ApplicationController
   def update
     @specific_photographer = SpecificPhotographer.find_by(user_key: session[:current_user_key])
     
-    if @specific_photographer.update_attributes(specific_photographers_param)
+    # if @specific_photographer.update_attributes(specific_photographers_param)
+    if @specific_photographer.update(specific_photographers_param)
       redirect_to '/show_profile'
     else
       render :action => 'edit'
