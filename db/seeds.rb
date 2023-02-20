@@ -8,11 +8,13 @@
 
 # User.destroy_all
 LoginInfo.destroy_all
+GeneralInfo.destroy_all
+Gallery.destroy_all
 
 dir_path = "seed_files"
 fake_password = "Test1234!"
 
-filenames = ["Andrea-Piacquadio.jpg", "Anthony-Gray.jpg", "Jack-Window", "James-Lawrence.jpg", "Masha-Raymers.jpg", "Tasha-Washington.jpg"]
+filenames = ["Andrea-Piacquadio.jpg", "Anthony-Gray.jpg", "Jack-Winbow.jpg", "James-Lawrence.jpg", "Masha-Raymers.jpg", "Tasha-Washington.jpg"]
 filenames.each do |filename|
 #   puts filename
   name = filename.gsub(".jpg", "").split("-")
@@ -23,7 +25,28 @@ filenames.each do |filename|
     password: fake_password,
     password_confirmation: fake_password
   )
-  
-  puts "Creating User " + first_name + ", " + last_name
+  GeneralInfo.create!(
+    first_name: first_name,
+    last_name: last_name,
+    company: "TestInc",
+    industry: "Model",
+    highlights: "Just a test User",
+    country: "United States",
+    state: "Texas",
+    city: "College Station",
+    emailaddr: "#{first_name}.#{last_name}@example.com",
+    profile_picture: File.open(Rails.root.join("db", "seed_files" ,filename))
+  )
+ 
+  puts "Creating User " + first_name + ", " + last_name + "..."
+end
 
+puts "Creating fake galleries..."
+(1..10).each do |i| 
+    Gallery.create!(
+        gallery_title: "Test Gallery",
+        gallery_description: "Just a test gallery",
+        GeneralInfo_id: i % 6 + 1, # 6 users, so only allow ids from 1 to 
+        gallery_picture: [File.open(Rails.root.join("db", "seed_files" , "test_pic.jpg"))]
+    )
 end
