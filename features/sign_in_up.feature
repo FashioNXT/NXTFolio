@@ -7,7 +7,7 @@ Feature:
 
   Scenario: When new user attempts to create an account, account should be successfully created
     Given I am on the landing page
-    When I press "sign_in_up" button
+    When I press "login_info" button
     Then I should be directed to the "login" page
     # When I press "facebook" button # there is no facebook button
     Then I should be directed to the "new_general_info" page

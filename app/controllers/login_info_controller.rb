@@ -49,7 +49,8 @@ class LoginInfoController < ApplicationController
 
   # Params used to create the LoginInfo object
   def login_info_params
-    params.require(:login_info).permit(:email, :password, :password_confirmation)
+    # params.require(:login_info).permit(:email, :password, :password_confirmation)
+    params.require(:sign_in_up).permit(:email, :password, :password_confirmation)
   end
 
   # Allows room to edit the login_info_params of the LoginInfo object
