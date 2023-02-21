@@ -92,21 +92,24 @@ sudo -u postgres --  psql -c "alter user beaverthing createdb;"
 # sudo -u postgres --  psql -c "ALTER DATABASE workspace_development owner to beaverthing;"
 # sudo -u postgres --  psql -c "ALTER DATABASE workspace_test owner to beaverthing;"
 
-echo ""
-echo "--------------------------------------"
-echo "Installing brew"
-echo "--------------------------------------"
-sleep 2
-# read -p "Press [Enter] key to continue..."
+# echo ""
+# echo "--------------------------------------"
+# echo "Installing brew"
+# echo "--------------------------------------"
+# sleep 2
+# # read -p "Press [Enter] key to continue..."
 
-# install brew (required later)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.bash_profile
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bash_profile
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.profile
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-sudo apt-get install -y build-essential
+# # install brew (required later)
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.bash_profile
+# echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bash_profile
+# echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /root/.profile
+# echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# sudo apt-get install -y build-essential
+
+# # install brew packages for the app
+# brew install imagemagick
 
 echo ""
 echo "--------------------------------------"
@@ -118,8 +121,7 @@ sleep 2
 cd match-my-fashion-public-CodeCreators
 
 # install dependencies
-sudo apt-get install nodejs -y
-brew install imagemagick
+sudo apt-get install nodejs imagemagick -y
 
 gem install bundler
 gem update --system
@@ -159,7 +161,7 @@ sleep 2
 # Start server
 # it starts in port 3000
 # if using docker with -p 8080:3000 option, you can also use localhost:8080
-rails server -b 0.0.0.0 -p 3000
+# rails server -b 0.0.0.0 -p 3000
 
 # if every works, that's great!
 # if not, try using docker
