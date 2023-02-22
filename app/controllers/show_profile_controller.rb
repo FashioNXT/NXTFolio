@@ -114,6 +114,7 @@ class ShowProfileController < ApplicationController
   def destroy
     @gallery = Gallery.find(params[:id])
     puts @gallery
+    puts("destroy show pro running!!!")
     #@myArr = @gallery[:gallery_picture]
     @index = params[:id].to_i
     @gallery.destroy
