@@ -40,7 +40,8 @@ class PasswordResetsController < ApplicationController
     logger.info("Debugging instance variables")
     logger.debug(@exusers.inspect)
 
-    if @exusers.update_attributes!(exusers_params)
+    # if @exusers.update_attributes!(exusers_params)
+    if @exusers.update!(exusers_params)
       logger.info("Yay!")
       redirect_to login_path, :notice => "Your Password has been reset Successfully!"
     else

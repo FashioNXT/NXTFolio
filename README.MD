@@ -63,6 +63,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
         cd /home
         cp match-my-fashion-public-CodeCreators/install/setup.sh setup.sh
+        sudo chmod +x setup.sh
 
 6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.sh`)
 
@@ -73,6 +74,10 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 7. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
+    
+9. To connect to the website go to:
+
+        [http://localhost:8080](http://localhost:8080)
 
 
 ### Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)
@@ -97,6 +102,10 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 4. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
+
+5. To connect to the website go to:
+
+        [http://localhost:8080](http://localhost:8080)
 
 ### Helpful fixes
 

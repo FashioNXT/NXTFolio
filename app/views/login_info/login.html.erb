@@ -126,7 +126,8 @@
         <div class="col-md-4">
           <h1>Sign Up</h1>
           <div class="row-fluid">
-            <%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
+            <!--%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %-->
+            <%= form_for :sign_in_up, :action => 'create', :url => login_info_create_path do |form| %>
                 <form action="./" class="popup-input-search" method="post">
                   <div class = "span5">
                     <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
@@ -143,7 +144,8 @@
                   </div>
                   <br>
                   <div class="span5 for-signin">
-                    <%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
+                    <%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :id => 'sign_in_up', :type => 'submit' %>
+                    
                   </div>
                 </form>
             <% end %>
