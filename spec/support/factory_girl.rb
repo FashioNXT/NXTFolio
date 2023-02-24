@@ -11,12 +11,12 @@ RSpec.configure do |config|
   end
 end
 
-FactoryBot.define do
-  factory :login_info do
-    email   "me@me.com"
-    password "Apple12345*"
-  end
-end
+#FactoryBot.define do
+  #factory :login_info do
+    #`email   {"me@me.com"}
+    #password {"Apple12345*"}`
+  #end
+#end
 
 # Factory.define :login_info, :class => LoginInfo do |f|
 #   f.first_name "Mickey"

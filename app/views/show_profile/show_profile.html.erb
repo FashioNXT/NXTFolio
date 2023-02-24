@@ -258,6 +258,7 @@
 												<% if session[:current_user_key] %>
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 													<% profile_user_id=gallery.GeneralInfo_id %>
+													<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
 													<% if current_user.id!= profile_user_id %>
 														<% if gallery.reviews.empty? %>
 															<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>

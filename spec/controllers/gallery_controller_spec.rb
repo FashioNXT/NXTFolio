@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe GalleryController, type: :controller do
+#RSpec.describe GalleryController, type: :controller do
+RSpec.describe GalleriesController, type: :controller do
 
   describe "GET #new" do
     it "returns http success" do
