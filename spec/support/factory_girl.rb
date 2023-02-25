@@ -13,8 +13,8 @@ end
 
 FactoryBot.define do
   factory :login_info do
-    email   "me@me.com"
-    password "Apple12345*"
+    email   { "me@me.com" }
+    password { "Apple12345*" }
   end
 end
 
