@@ -22,6 +22,8 @@ class GalleriesController < ApplicationController
   def destroy
     #logger.debug(@gallery_picture.inspect)
     #remove_image_at_index(params[ :gallery_picture].to_i)
+    puts("running gallery destroy!!!")
+    #remove_file(params[ :gallery_picture])
     @gallery = Gallery.find(params[:id])
     @gallery.destroy
     redirect_to galleries_path
