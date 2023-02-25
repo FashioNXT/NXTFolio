@@ -1,4 +1,4 @@
-Capybara.default_driver = :selenium_chrome
+# Capybara.default_driver = :selenium_chrome
 
 Given(/^I am on the FashioNxt home page$/) do
     visit root_path
