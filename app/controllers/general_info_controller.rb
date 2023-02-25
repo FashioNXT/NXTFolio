@@ -56,7 +56,8 @@ class GeneralInfoController < ApplicationController
   # Associated with the view used for create
   def new
     @possible_Jobs = GeneralInfo.see_Jobs
-    @templates = Template.uniq.pluck(:prof_name).sort
+    # @templates = Template.uniq.pluck(:prof_name).sort
+    @templates = Template.pluck(:prof_name).sort
     @templates.unshift('Designer')
     @templates.unshift('Model')
     @templates.unshift('Photographer')
@@ -228,7 +229,8 @@ class GeneralInfoController < ApplicationController
     logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
-    if @general_info.update_attributes!(general_info_update_param)
+    #if @general_info.update_attributes!(general_info_update_param)
+    if @general_info.update(general_info_update_param)
       if params[:select_one]
         #session.delete(:current_login_user)
         #redirect_to "/general_info/edit2"

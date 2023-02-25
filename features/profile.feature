@@ -9,7 +9,7 @@ Feature: See a Profile
 
     Given I am on the profile page
     Given I am a valid user
-<<<<<<< HEAD
+# <<<<<<< HEAD
 #    When I log in
 #    Then I should be on the home page
 #    When I press and go to my profile
@@ -39,7 +39,7 @@ Feature: See a Profile
     Then I should see my last name
     When I press and go to edit profile
     Then I should be on the edit page
-=======
+# =======
     When I log in
     Then I should be on the home page
     When I press and go to my profile
@@ -48,4 +48,4 @@ Feature: See a Profile
     Then I should see my last name
     When I press and go to edit profile
     Then I should be on the edit page
->>>>>>> test case fix
+# >>>>>>> test case fix

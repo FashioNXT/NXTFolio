@@ -50,6 +50,7 @@ class LoginInfoController < ApplicationController
   # Params used to create the LoginInfo object
   def login_info_params
     params.require(:login_info).permit(:email, :password, :password_confirmation)
+    # params.require(:sign_in_up).permit(:email, :password, :password_confirmation)
   end
 
   # Allows room to edit the login_info_params of the LoginInfo object
@@ -66,7 +67,8 @@ class LoginInfoController < ApplicationController
     @login_info = LoginInfo.find_by(userKey: session[:current_user_key])
 
     if login_info_params[:password] == login_info_params[:password_confirmation]
-      if @login_info.update_attributes(login_info_params)
+      # if @login_info.update_attributes(login_info_params)
+      if @login_info.update(login_info_params)
         redirect_to '/show_profile'
       else
         render :action => 'edit'
