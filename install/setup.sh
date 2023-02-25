@@ -113,15 +113,29 @@ sudo -u postgres --  psql -c "alter user beaverthing createdb;"
 
 echo ""
 echo "--------------------------------------"
+echo "Install dependencies"
+echo "--------------------------------------"
+sleep 2
+# read -p "Press [Enter] key to continue..."
+
+# nodejs required to db setup and execjs
+# imagemagick required for images
+# chromium-chromedriver might be required to run cucumber tests
+sudo apt-get update
+sudo apt-get install nodejs imagemagick -y
+
+
+
+
+
+echo ""
+echo "--------------------------------------"
 echo "We will now bundle app"
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
 
 cd match-my-fashion-public-CodeCreators
-
-# install dependencies
-sudo apt-get install nodejs imagemagick -y
 
 gem install bundler
 gem update --system
