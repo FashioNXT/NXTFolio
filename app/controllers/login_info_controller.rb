@@ -23,28 +23,27 @@ class LoginInfoController < ApplicationController
     end
 
     # Checks for mismatched & unentered passwords before saving LoginInfo object to database
-    if @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
-      if @login_info[:password] == login_info_params[:password_confirmation]
-        #@login_info.userKey = SecureRandom.hex(10)
-
-        if @login_info.validate_pwd == true
-          #session[:current_user_key] = @login_info.userKey
-          #flash[:notice] = "Account Created!"
-          session[:current_login_user]=@login_info
-
-          redirect_to new_general_info_path
-        else
-          flash[:notice] = "Failed Saving beause Email/Password format is not valid !"
-          redirect_to login_info_login_path
-        end
-      else
-        flash[:notice] = "Passwords don't match! Please try again."
-        redirect_to login_info_login_path
-      end
-    else
+    unless @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
       flash[:notice] = "Enter your password! Please try again."
-      redirect_to login_info_login_path
+      redirect_to login_info_login_path and return
     end
+    
+    unless @login_info[:password] == login_info_params[:password_confirmation]
+      #@login_info.userKey = SecureRandom.hex(10)
+      flash[:notice] = "Passwords don't match! Please try again."
+      redirect_to login_info_login_path and return
+    end
+
+    unless @login_info.validate_pwd == true
+      flash[:notice] = "Failed Saving beause Email/Password format is not valid !"
+      redirect_to login_info_login_path and return
+    end
+
+    #session[:current_user_key] = @login_info.userKey
+    #flash[:notice] = "Account Created!"
+
+    session[:current_login_user]=@login_info
+    redirect_to new_general_info_path
   end
 
   # Params used to create the LoginInfo object
