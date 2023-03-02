@@ -86,7 +86,8 @@ class SpecificModelController < ApplicationController
   def update
     @specific_model = SpecificModel.find_by(user_key: session[:current_user_key])
     
-    if @specific_model.update_attributes(specific_model_param)
+    # if @specific_model.update_attributes(specific_model_param)
+    if @specific_model.update(specific_model_param)
       redirect_to '/show_profile'
     else
       render :action => 'edit'

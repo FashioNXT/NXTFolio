@@ -33,7 +33,7 @@ When(/^I submitted all the required personal information$/) do
   fill_in "last_name", :with => 'User'
   fill_in "company", :with => 'Test Company'
   select 'Creators', from: 'general_info_industry'
-  select 'Designer', from: 'general_info_job_name'
+  select 'Model', from: 'general_info_job_name'
   fill_in "highlights", :with => 'highlights'
   select 'United States', from: 'country'
   select 'Texas', from: 'state'

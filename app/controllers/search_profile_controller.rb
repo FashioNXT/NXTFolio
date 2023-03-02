@@ -261,7 +261,8 @@ class SearchProfileController < ApplicationController
   def update
     @search_profile = SearchProfile.find(params[:id])
     	
-    if @search_profile.update_attributes(login_info_param)
+    # if @search_profile.update_attributes(login_info_param)
+    if @search_profile.update(login_info_param)
       redirect_to :action => 'show', :id => @login_info
     else
       render :action => 'edit'
