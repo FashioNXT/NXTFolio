@@ -5,6 +5,8 @@
 #   docker-compose exec ruby bash
 # or run
 #   docker-compose --service-ports run ruby bash
+# to check what the website's 
+#   http://localhost:7900/?autoconnect=1&resize=scale&password=secret
 
 version: '3'
 services:
@@ -14,6 +16,7 @@ services:
     # image: seleniarm/standalone-chromium
     # image: seleniarm/standalone-firefox
     
+    # image: selenium/standalone-firefox:110.0
     image: selenium/standalone-firefox
     # image: selenium/standalone-chrome
     
@@ -37,3 +40,4 @@ services:
     ports:
       - "8080:3000"
       - "3001:22"
+    # command: sudo service postgresql start

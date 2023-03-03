@@ -12,14 +12,16 @@ RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid
 
 # to include the setup script
 WORKDIR /home
-# COPY setup.sh setup.sh
-# RUN echo "tzdata tzdata/Areas select US" | sudo debconf-set-selections
-# RUN echo "tzdata tzdata/Zones/US select Central" | sudo debconf-set-selections
-# RUN chmod +x setup.sh && ./setup.sh https://github.com/vibalcam/match-my-fashion-public-CodeCreators
+COPY setup_rvm.sh setup_rvm.sh
+RUN chmod +x setup_rvm.sh && \
+    ./setup_rvm.sh && \
+    rm setup_rvm.sh
 
 # expose ports for ssh (22) and web (3000)
 EXPOSE 22
 EXPOSE 3000
 
 # run ssh service automatically
-CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/bin/bash", "-c", "service postgresql start & /usr/sbin/sshd -D"]
+# CMD ["/bin/bash", "-c", "service postgresql start"]

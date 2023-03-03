@@ -7,59 +7,41 @@
 # or to see command output
 # docker build -t ruby-ssh . --progress plain
 
-# With ssh
-# docker run -d -p 8080:3000 -p 3001:22 --name test_container ruby-ssh
-# Without ssh
-# docker run -d -p 8080:3000 --name test_container ruby-ssh
 # Binding to host folder (linux)
-# docker run -d -p 8080:3000 --mount type=bind,src="$(pwd)",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
+#   docker run -d -p 8080:3000 --mount type=bind,src="$(pwd)",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
+
 # Binding to host folder (windows)
-# docker run -d -p 8080:3000 --mount type=bind,src="%cd%",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
+#   docker run -d -p 8080:3000 --mount type=bind,src="%cd%",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
 
-# docker exec -it test_container bash
-# rails server -b 0.0.0.0 -p 3000
+# With ssh
+#   docker run -d -p 8080:3000 -p 3001:22 --mount type=bind,src="%cd%",target=/home/match-my-fashion-public-CodeCreators --name test_container ruby-ssh
 
-# install prerequisites packages, rvm and ruby
-echo ""
-echo "--------------------------------------"
-echo "Installing prerequisites..."
-echo "--------------------------------------"
-sleep 2
-
-# install prerequisites packages
-apt-get update && apt-get upgrade -y && apt-get install -y git sudo curl software-properties-common gpg
-# other non-necesary but useful
-apt install -y nano tmux
-
-echo ""
-echo "--------------------------------------"
-echo "Installing rvm"
-echo "--------------------------------------"
-sleep 2
-# read -p "Press [Enter] key to continue..."
-
-# install rvm
-sudo apt-add-repository -y ppa:rael-gc/rvm
-sudo apt-get update
-sudo apt-get install rvm -y
-source /etc/profile.d/rvm.sh
-echo "source /etc/profile.d/rvm.sh" >> ~/.bashrc
-
-# update rvm
-command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-rvm get stable
-
-# install ruby
-rvm install ruby-3.2.0
+# to connect to the docker
+#   docker exec -it test_container bash
+# and run the server
+#   rails server -b 0.0.0.0 -p 3000
 
 # clone repo
-# git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators
+#   git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators
 # git clone if parameter provided, if not ignore
 if [ $# -eq 1 ]
 then
     echo "Cloning repo..."
     git clone "$1"
 fi
+
+# install prerequisites packages, rvm and ruby
+echo ""
+echo "--------------------------------------"
+echo "Installing prerequisites and rvm..."
+echo "--------------------------------------"
+sleep 2
+
+cd match-my-fashion-public-CodeCreators/install
+source setup_rvm.sh
+
+# install ruby
+rvm install ruby-3.2.0
 
 echo ""
 echo "--------------------------------------"
@@ -111,18 +93,6 @@ sudo -u postgres --  psql -c "alter user beaverthing createdb;"
 # # install brew packages for the app
 # brew install imagemagick
 
-echo ""
-echo "--------------------------------------"
-echo "Install dependencies"
-echo "--------------------------------------"
-sleep 2
-# read -p "Press [Enter] key to continue..."
-
-# nodejs required to db setup and execjs
-# imagemagick required for images
-# chromium-chromedriver might be required to run cucumber tests
-sudo apt-get update
-sudo apt-get install nodejs imagemagick -y
 
 echo ""
 echo "--------------------------------------"
@@ -131,7 +101,7 @@ echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
 
-cd match-my-fashion-public-CodeCreators
+cd ..
 
 gem install bundler
 gem update --system
@@ -156,7 +126,6 @@ sleep 2
 # read -p "Press [Enter] key to continue..."
 
 # setup tables
-source /etc/profile.d/rvm.sh
 rake db:create
 rake db:migrate
 rake db:seed
@@ -165,7 +134,7 @@ rake db:seed
 # bin/rails db:seed RAILS_ENV=development
 
 # setup for test
-rails db:test:prepare
+rake db:test:prepare
 
 echo ""
 echo "--------------------------------------"

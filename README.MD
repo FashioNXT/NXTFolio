@@ -2,7 +2,7 @@
 
 - [(OLD) DEMO](#old-demo)
 - [Install local server](#install-local-server)
-  - [Using docker-compose (Ubuntu 18.04 and )](#using-docker-compose-ubuntu-1804-and-)
+  - [Recommended: Using docker-compose (Ubuntu 18.04 and selenium firefox)](#recommended-using-docker-compose-ubuntu-1804-and-selenium-firefox)
   - [Using Dockerfile (Ubuntu 18.04)](#using-dockerfile-ubuntu-1804)
   - [Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)](#run-on-linux-without-docker-tested-on-aws-e2c-ubuntu-1804)
   - [Helpful fixes](#helpful-fixes)
@@ -29,8 +29,84 @@ Get Facebook Login to function:
 
 ## Install local server
 
-### Using docker-compose (Ubuntu 18.04 and )
-<!-- todo finish this -->
+Go to `config/environments/test.rb` and set `config.use_remote_webdriver` to true if using docker-compose, and to false otherwise.
+
+### Recommended: Using docker-compose (Ubuntu 18.04 and selenium firefox)
+
+This is the fastest way to get started. 
+It uses docker-compose to set up two containers
+- ruby: container with the app and in which you will be developing
+- browser: container with selenium web driver needed for testing with cucumber
+
+The files to setup docker-compose can be found in the `install` folder.
+
+0. If you are using M1 chip, change in `docker-compose.yml` the `browser` image to 
+ 
+    `image: seleniarm/standalone-firefox`
+
+1. Clone the repository
+
+    ```bash
+    git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators --config core.autocrlf=input
+    ```
+
+2. Go into the `install` folder
+
+    ```bash
+    cd install
+    ```
+
+3. Build and start the containers for docker-compose (-d used to do start in detach mode)
+
+    ```bash
+    docker-compose up -d
+    ```
+
+    The project folder has been binded to `/home/match-my-fashion-public-CodeCreators`.
+    In other words, it is shared by the container and host so it you can continue developing in your host machine.
+
+4. Run a bash terminal on the ruby container
+
+    ```bash
+    docker-compose exec ruby bash
+    ```
+
+5. Copy the setup script and cd to home
+
+    ```bash
+    cd /home
+    cp match-my-fashion-public-CodeCreators/install/setup.sh .
+    sudo chmod +x setup.sh
+    ```
+
+6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.sh`)
+
+    ```bash
+    source setup.sh
+    ```
+
+    If you run into trouble, try looking the script since the comments might help.
+
+7. You should be set. Whenever you want to run the server just run
+
+    ```ruby
+    rails server -b 0.0.0.0 -p 3000
+    ```
+    
+8.  To connect to the website go to:
+
+    [http://localhost:8080](http://localhost:8080)
+
+
+When you are done developing, you can stop the docker-compose so the next time you want to connect you just have to run the following:
+
+```bash
+cd install
+docker-compose start
+```
+
+or start the docker-compose from the desktop app.
+
 
 ### Using Dockerfile (Ubuntu 18.04)
 
@@ -71,7 +147,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
 6. Run `setup.sh` script and follow the instructions (more details about what it does can be found in `install/setup.sh`)
 
-        ./setup.sh
+        source setup.sh
 
     If you run into trouble, try looking the script since the comments might help
 
