@@ -98,7 +98,21 @@ The files to setup docker-compose can be found in the `install` folder.
     [http://localhost:8080](http://localhost:8080)
 
 
-When you are done developing, you can stop the docker-compose so the next time you want to connect you just have to run the following:
+When running cucumber tests (`rails cucumber`), you can access the following website to see what the tests are doing
+
+[http://localhost:7900/?autoconnect=1&resize=scale&password=secret](http://localhost:7900/?autoconnect=1&resize=scale&password=secret)
+
+This combined with the cucumber step `When I debug` is a powerful tool to debug the cucumber tests.
+
+
+When you are done developing, you can stop the docker-compose 
+
+```bash
+cd install
+docker-compose stop
+```
+
+The next time you want to connect you just have to run the following:
 
 ```bash
 cd install
