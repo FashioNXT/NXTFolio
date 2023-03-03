@@ -63,7 +63,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.4.0'
+  # to debug using cucumber binding.pry
+  gem 'pry'
   
   gem 'simplecov'
   gem 'simplecov-rcov'
@@ -102,7 +104,7 @@ gem 'geocoder'
 # Fixes the problem of "Your bundle is locked to mimemagic (0.3.5)""
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
-gem 'webdrivers', require: false
+# gem 'webdrivers', require: false
 
 # avoid update to 3.0
 gem 'rubyzip', "~> 2.3.0"

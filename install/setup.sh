@@ -113,15 +113,25 @@ sudo -u postgres --  psql -c "alter user beaverthing createdb;"
 
 echo ""
 echo "--------------------------------------"
+echo "Install dependencies"
+echo "--------------------------------------"
+sleep 2
+# read -p "Press [Enter] key to continue..."
+
+# nodejs required to db setup and execjs
+# imagemagick required for images
+# chromium-chromedriver might be required to run cucumber tests
+sudo apt-get update
+sudo apt-get install nodejs imagemagick -y
+
+echo ""
+echo "--------------------------------------"
 echo "We will now bundle app"
 echo "--------------------------------------"
 sleep 2
 # read -p "Press [Enter] key to continue..."
 
 cd match-my-fashion-public-CodeCreators
-
-# install dependencies
-sudo apt-get install nodejs imagemagick -y
 
 gem install bundler
 gem update --system
@@ -147,9 +157,15 @@ sleep 2
 
 # setup tables
 source /etc/profile.d/rvm.sh
-bin/rails db:create RAILS_ENV=development
-bin/rails db:migrate RAILS_ENV=development
-bin/rails db:seed RAILS_ENV=development
+rake db:create
+rake db:migrate
+rake db:seed
+# bin/rails db:create RAILS_ENV=development
+# bin/rails db:migrate RAILS_ENV=development
+# bin/rails db:seed RAILS_ENV=development
+
+# setup for test
+rails db:test:prepare
 
 echo ""
 echo "--------------------------------------"
@@ -161,8 +177,8 @@ sleep 2
 # Start server
 # it starts in port 3000
 # if using docker with -p 8080:3000 option, you can also use localhost:8080
-# rails server -b 0.0.0.0 -p 3000
+rails server -b 0.0.0.0 -p 3000
 
 # if every works, that's great!
-# if not, try using docker
+# if not, try using docker-compose
 # GOOD LUCK!
