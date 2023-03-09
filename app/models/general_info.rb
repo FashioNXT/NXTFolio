@@ -1,7 +1,7 @@
 class GeneralInfo < ApplicationRecord
-  has_many :gallery
-  has_many :messages
-  has_many :reviews
+  has_many :gallery, dependent: :delete_all
+  has_many :messages, dependent: :delete_all
+  has_many :reviews, dependent: :delete_all
   has_one :login_info
 
 

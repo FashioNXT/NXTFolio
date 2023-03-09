@@ -11,8 +11,8 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 AWS_ACCESS_KEY: ''
 AWS_SECRET_KEY: ''
-AWS_BUCKET: 'nxtfolio'
-AWS_REGION: "us-east-1"
+AWS_BUCKET: ''
+AWS_REGION: ''
 #development&production:
 facebook_client_id: '529985925072978'
 facebook_client_secret: 'd76f6eaaa6d11b8a0bd7c1d17849ddae'
