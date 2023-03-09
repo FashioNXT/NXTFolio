@@ -1,7 +1,6 @@
-require 'rails_helper'
+# require 'rails_helper'
 
 RSpec.describe RoomsController, type: :controller do
-
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -9,4 +8,4 @@ RSpec.describe RoomsController, type: :controller do
     end
   end
 
-end
+# end

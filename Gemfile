@@ -63,7 +63,12 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.4.0'
+  # to debug using cucumber binding.pry
+  gem 'pry'
+  
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 group :development do
@@ -82,8 +87,8 @@ gem "bcrypt"
 
 gem "rails-controller-testing"
 gem "factory_bot_rails"
-gem 'simplecov', :require => false, :group => :test
-gem 'simplecov-rcov'
+#gem 'simplecov', :require => false, :group => :test
+#gem 'simplecov-rcov'
 
 # Fixes the problem of "You are using an old OmniAuth version"
 # gem 'devise', github: 'heartcombo/devise', branch: 'main'

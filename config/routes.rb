@@ -6,11 +6,13 @@ Rails.application.routes.draw do
 
   get '/dm/:id', to: 'room#show'
 
-  get 'galleries/new'
+  get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
 
-#  get 'galleries/create'
+  
+  #get 'galleries/create'
 
   get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
+
   get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
 
   get 'galleries/index'
