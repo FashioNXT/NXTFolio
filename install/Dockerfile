@@ -2,7 +2,7 @@
 
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git sudo curl software-properties-common gpg
+RUN apt-get update && apt-get upgrade -y && apt-get install -y git sudo curl software-properties-common gpg openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:prueba' | chpasswd
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config

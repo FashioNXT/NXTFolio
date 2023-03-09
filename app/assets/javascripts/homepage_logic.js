@@ -3,12 +3,12 @@
 
 
 var indicator=localStorage.getItem('buttonpressed');
-
+console.log(indicator + "...");
 
 //temporary code
 if(indicator=='false'){
 
-    $(".modeldiv").hide();
+    $(".modeldiv").show();
     $(".branddiv").hide();
     $(".othercreatordiv").hide();
     $(".influencerdiv").hide();
@@ -51,10 +51,10 @@ if(indicator=='false'){
     $(".modelbutton").removeClass("active");
 
 }
-
 if(indicator=='model'){
     localStorage.setItem('buttonpressed', 'model');
     $(".modeldiv").show();
+    console.log(indicator + "model div");
     $(".alldiv").hide();
     $(".branddiv").hide();
     $(".othercreatordiv").hide();

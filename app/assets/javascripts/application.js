@@ -53,10 +53,11 @@ $( document ).ready(function() {
     //$(".designerdiv").hide();
     //$(".everyonediv").hide();
     //$(".branddiv").hide();
-    console.log("Printing Button Status:..")
+    console.log("Printing Button Status:..") 
 
 
-    $(".modelbutton").on("click", function(){
+    $(".modelbutton").on("click", function(){ 
+        console.log("Inside model button:..")
         localStorage.setItem('buttonpressed', 'model');
         $(".modeldiv").show();
         $(".alldiv").hide();
@@ -102,7 +103,7 @@ $( document ).ready(function() {
         $(".modelbutton").addClass("active");
     });
     $(".brandbutton").click(function () {
-        //console.log("Goosebump");
+        console.log("Goosebump");
         localStorage.setItem('buttonpressed', 'brand');
         $(".branddiv").show();
         $(".alldiv").hide();

@@ -155,7 +155,8 @@
         </div>
 
 
-        <div class="be-post modeldiv" id="Model1">
+        <!-- <div class="be-post modeldiv" id="Model1"> -->
+        <div>
           <% @gallery.present? and @gallery.each do |gallery| %>
             <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
             <% if modinfo.attribute_values[:job_name]=="Model" %>
