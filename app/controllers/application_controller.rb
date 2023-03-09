@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   # Used to confirm the session key of the current room
   def index
     @landing = true
-    puts "HOWDY"
-    puts ENV["AWS_SECRET_KEY"]
     @users = GeneralInfo.order(updated_at: :desc).limit(40)
     #@users = GeneralInfo.paginate(page: params[:page], per_page: 12).order('updated_at DESC')
     #@users = GeneralInfo.paginate(page: params[:page], per_page: 12)
