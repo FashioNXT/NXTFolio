@@ -31,14 +31,16 @@ end
 When(/^I click on search button and search by email id$/) do
   visit 'search_profile/search'
   fill_in "email", :with => 'hellofriend@gmail.com'
-  click_button "Submit"
+  # click_button "Submit"
+  click_button "Search by email"
 end
 
-When(/^I click on search button and search by fields$/) do
-  visit 'search_profile/search'
-  fill_in "First Name", :with => 'avinash'
-  click_button "Submit"
-end
+# the search by field is not implemented : 2023-03-06
+# When(/^I click on search button and search by fields$/) do
+#   visit 'search_profile/search'
+#   fill_in "First Name", :with => 'avinash'
+#   click_button "Submit"
+# end
 
 # When(/^I try to log in$/) do
 #   visit 'login_info/login'

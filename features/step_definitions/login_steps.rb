@@ -19,7 +19,11 @@ Given(/^I am a valid user$/) do
       :country => "United States",
       :state => "TX",
       :city => "College Station",
-      :phone => 82711
+      :phone => 82711,
+      :industry => "Professional",
+      :company => "Test company",
+      :emailaddr => "ive.yi@gmail.com",
+      :highlights => "dummy"
     })
 end
 
