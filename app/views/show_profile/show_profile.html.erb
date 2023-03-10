@@ -66,6 +66,9 @@
 										<% if @attribute_titles && !@is_Admin %>
 											<li><a href="/general_info/edit2">Edit Professional Info</a></li>
 										<% end %>
+										<% if !@is_Admin %>
+											<li><a href="/general_info/edit_travel">Edit Travel Info</a></li>
+										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if !@is_Admin %>
 											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
@@ -200,6 +203,25 @@
 							<div class="be-desc-text">
 								<!--Add Bio HERE-->
 								<%= @general_info.profdetails %>
+							</div>
+						</div>
+						<!--% end %-->
+					</div>
+					
+					
+					<div class="be-desc-block">
+						<!--% if @general_info && @general_info.bio != "" %-->
+						<div class="be-desc-author">
+							<div class="be-desc-label">Travel Details</div>
+							<div class="clearfix"></div>
+							<div class="be-desc-text">
+								<!--Add Bio HERE-->
+								<%= @general_info.travel_country %>,
+								<%= @general_info.travel_state %>,
+								<%= @general_info.travel_city %>,
+								<%= @general_info.travel_start %>,
+								<%= @general_info.travel_end %>,
+								<%= @general_info.travel_details %>
 							</div>
 						</div>
 						<!--% end %-->
