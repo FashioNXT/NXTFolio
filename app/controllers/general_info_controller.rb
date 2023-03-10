@@ -198,7 +198,11 @@ class GeneralInfoController < ApplicationController
 
   # Params used to create the GeneralInfo object
   def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :company, :industry, :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :company, :industry, \
+        :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, \
+        :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, \
+        :compensation, :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, \
+        :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_details, :travel_end => [])
   end
 
   # Allows room to edit the general_info_params of the GeneralInfo object
@@ -221,6 +225,18 @@ class GeneralInfoController < ApplicationController
     end
 
   end
+  
+  # edit travel info
+  def edit_travel
+    if GeneralInfo.exists?(:userKey => session[:current_user_key])
+      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    else
+      redirect_to :action => 'new'
+    end
+
+  end
+  
+  
 
   # Saves the edit of the GeneralInfo object to the database
   def update
@@ -245,7 +261,10 @@ class GeneralInfoController < ApplicationController
 
   # Params used to edit the GeneralInfo object
   def general_info_update_param
-    params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, :industry, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, :cover_picture, :gallery_pictures => [])
+    params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, :industry, \
+        :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, \
+        :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, \
+        :cover_picture, :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_details, :travel_end  => [])
   end
 
   # Allows room to edit the profession of the GeneralInfo object
