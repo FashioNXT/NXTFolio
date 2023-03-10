@@ -1,4 +1,4 @@
-# require 'rails_helper'
+require 'rails_helper'
 
 #RSpec.describe GalleryController, type: :controller do
 RSpec.describe GalleriesController, type: :controller do
@@ -31,4 +31,4 @@ RSpec.describe GalleriesController, type: :controller do
 #     end
 #   end
 
-# end
+end
