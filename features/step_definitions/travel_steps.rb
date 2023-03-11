@@ -40,4 +40,6 @@ Given(/^I am a professional and want to add my travel information$/) do
 
   And(/^my travel details should include "([^"]*)"$/) do |travel_details|
     expect(page).to have_content(travel_details)
+    click_button('Log out')
   end
+
