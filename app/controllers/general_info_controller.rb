@@ -202,7 +202,10 @@ class GeneralInfoController < ApplicationController
         :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, \
         :profdetails, :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, \
         :compensation, :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, \
-        :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_details, :travel_end => [])
+        :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_end, :travel_details, :tempVar => [])
+  # the tempVar here does not have any meaning, 
+  # but if deleted, the last variable will not be permit, don't know why
+  # keep the tempVar at the end!
   end
 
   # Allows room to edit the general_info_params of the GeneralInfo object
