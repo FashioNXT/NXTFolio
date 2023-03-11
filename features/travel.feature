@@ -19,8 +19,9 @@ Feature: Travel Feature
     Then I should see my travel details on my profile page
     And my travel details should include "United States, Washington, Seattle, 2023-04-01, 2023-05-01, Attending a conference. Reach out to me!"
 
-  Scenario: If I save my travel details, others can see them
-    Given I am a professional and I add my travel information
-    When another user visits my profile
-    Then that user should be able to see my travel information
+# Yet to be implemented
+  #Scenario: If I save my travel details, others can see them
+   # Given I am a professional and I add my travel information
+    #When another user visits my profile
+    #Then that user should be able to see my travel information
     

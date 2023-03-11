@@ -267,7 +267,7 @@ class GeneralInfoController < ApplicationController
     params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, :industry, \
         :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link, \
         :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, :experience, \
-        :cover_picture, :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_details, :travel_end  => [])
+        :cover_picture, :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start, :travel_end, :travel_details, :tempVar => [])
   end
 
   # Allows room to edit the profession of the GeneralInfo object
