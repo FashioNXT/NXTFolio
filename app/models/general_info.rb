@@ -1,9 +1,15 @@
 class GeneralInfo < ApplicationRecord
-  has_many :gallery
-  has_many :messages
-  has_many :reviews
+  has_many :gallery, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_one :login_info
 
+  # For follow feature
+  has_many(:follows, :foreign_key => :followee, :dependent => :destroy)
+  has_many(:follows_from, :class_name => :Follow,
+      :foreign_key => :follower, :dependent => :destroy)
+  has_many :followers, :through => :follows, :source => :follower
+  has_many :follows_others, :through => :follows_from, :source => :followee
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -30,6 +36,10 @@ class GeneralInfo < ApplicationRecord
   def address
     [city, state, country].compact.join(", ")
   end
+
+  # def name
+  #   self[:name]
+  # end
 
   def self.search searchArg
     location = nil
