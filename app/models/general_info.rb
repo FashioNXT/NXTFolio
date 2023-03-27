@@ -333,6 +333,25 @@ class GeneralInfo < ApplicationRecord
     end
   end
 
+
+  def follow(id)
+    followee = GeneralInfo.find(id)
+    Follow.create!(:follower => self, :followee => followee)
+  end
+
+  def unfollow(id)
+    followee = GeneralInfo.find(id)
+    self.follows_others.delete(followee)
+  end
+
+  def get_followers 
+     self.followers
+  end
+
+  def get_users_they_follow
+     self.follows_others
+  end
+
   def self.filterBy state, profession, city
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all

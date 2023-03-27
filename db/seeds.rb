@@ -55,22 +55,35 @@ puts "Creating fake follower/followee connections..."
     random_user = rand(1..filenames.length())
     followee = GeneralInfo.find(random_user)
     if not Follow.exists?(:follower => follower, :followee => followee) and i != random_user
-      puts i, random_user
-      Follow.create!(:follower => follower, :followee => followee)
+      follower.follow(random_user)
+      # Follow.create!(:follower => follower, :followee => followee)
     end
   end
 end
 
-# Basic test of Follow model relations
+# # Basic test of Follow model relations
 # user = GeneralInfo.find(1)
 # puts user[:first_name] + " has the below followers"
-# user.followers.map do |u| 
+# user.get_followers.map do |u| 
 #   puts u[:first_name]
 # end
+
 # puts user[:first_name] + " follows the below users"
-# user.follows_others.map do |u| 
+# user.get_users_they_follow.map do |u| 
 #   puts u[:first_name]
 # end
+
+# puts user[:first_name] + " will now unfollow all users"
+# user.get_users_they_follow.map do |u| 
+#   puts "Unfollowing " + u[:first_name]
+#   user.unfollow(u.id)
+# end
+
+# puts "Now " + user[:first_name] + " follows the below users"
+# user.get_users_they_follow.map do |u| 
+#   puts u[:first_name]
+# end
+
 
 puts "Creating fake galleries..."
 (1..10).each do |i| 
