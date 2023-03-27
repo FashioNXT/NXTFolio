@@ -26,3 +26,6 @@ local_redis/
 
 # Ignore application configuration
 /config/application.yml
+
+# ide config folder
+.vscode/

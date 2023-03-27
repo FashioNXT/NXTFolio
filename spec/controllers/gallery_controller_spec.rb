@@ -1,4 +1,4 @@
-# require 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe GalleriesController, type: :controller do
 
@@ -30,10 +30,4 @@ RSpec.describe GalleriesController, type: :controller do
 #     end
 #   end
 
-<<<<<<< .merge_file_Fd7UQI
 end
-
-
-=======
-# end
->>>>>>> .merge_file_FL1uYl

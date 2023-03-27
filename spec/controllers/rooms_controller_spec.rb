@@ -1,3 +1,6 @@
+# This is irrelevant because there is no RoomsController, only RoomController is present
+# So commenting - 2023-03-09
+
 # require 'rails_helper'
 
 # RSpec.describe RoomsController, type: :controller do
@@ -8,4 +11,4 @@
 #     end
 #   end
 
-# end
+# # end

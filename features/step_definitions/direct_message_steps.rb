@@ -1,23 +1,24 @@
 # Direct Message Steps
 
-Given(/^I am a valid user$/) do
-    @login_info = LoginInfo.create!({
-       :email => "hellofriend@gmail.com",
-       :password => "Apple12345*",
-       :password_confirmation => "Apple12345*"
-     })
-    @general_info = GeneralInfo.create!({
-       :first_name => "Ive",
-       :last_name => "Yi",
-       :month_ofbirth => "January",
-       :day_ofbirth => "23",
-       :year_ofbirth => "1990",
-       :country => "United States",
-       :state => "TX",
-       :city => "College Station",
-       :phone => 82711
-     })
-end
+# commented this block because ambiguous match 2023-03-06
+# Given(/^I am a valid user$/) do
+#     @login_info = LoginInfo.create!({
+#        :email => "hellofriend@gmail.com",
+#        :password => "Apple12345*",
+#        :password_confirmation => "Apple12345*"
+#      })
+#     @general_info = GeneralInfo.create!({
+#        :first_name => "Ive",
+#        :last_name => "Yi",
+#        :month_ofbirth => "January",
+#        :day_ofbirth => "23",
+#        :year_ofbirth => "1990",
+#        :country => "United States",
+#        :state => "TX",
+#        :city => "College Station",
+#        :phone => 82711
+#      })
+# end
 
 And(/^I am logged in$/) do
     visit 'login_info/login'

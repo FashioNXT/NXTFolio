@@ -14,12 +14,13 @@ Feature: Search a Profile
     When I click on search button and search by fields
     Then I should see "No matches"
 
-  Scenario: When I go to the search page to search by model, I can see the search results
-    Given I am a valid user
-    When I select model
-    And I click on the search button
-    And I click on the search button
-    Then I should see "No matches"
+# commented because this is not a functionality
+#  Scenario: When I go to the search page to search by model, I can see the search results
+#    Given I am a valid user
+#    When I select model
+#    And I click on the search button
+#    And I click on the search button
+#    Then I should see "No matches"
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
@@ -35,6 +36,7 @@ Feature: Search a Profile
 #    When I fill in all fields for general information
 #    And I select "Designer" or "Model" or "Photographer"
 #    Then I should see the designer page or model page or photographer page
+
   Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
     Given I am a valid user
     When I click on search button and search by fields

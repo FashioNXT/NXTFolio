@@ -19,7 +19,11 @@ Given(/^I am a valid user$/) do
       :country => "United States",
       :state => "TX",
       :city => "College Station",
-      :phone => 82711
+      :phone => 82711,
+      :industry => "Professional",
+      :company => "Test company",
+      :emailaddr => "ive.yi@gmail.com",
+      :highlights => "dummy"
     })
 end
 
@@ -62,14 +66,14 @@ When(/^I try to log in$/) do
   click_button "Login"
 end
 
-Then(/^I should see "(.*?)"$/) do |field_name|
-  case field_name
-  when "Logged In!"
-    page.has_content?("Logged In!")
-  when "Incorrect Email!"
-    page.has_content?("Incorrect Email")
-  when "Incorrect Password"
-    page.has_content?("Incorrect Password")
-  end
-end
+# Then(/^I should see "(.*?)"$/) do |field_name|
+#   case field_name
+#   when "Logged In!"
+#     page.has_content?("Logged In!")
+#   when "Incorrect Email!"
+#     page.has_content?("Incorrect Email")
+#   when "Incorrect Password"
+#     page.has_content?("Incorrect Password")
+#   end
+# end
 
