@@ -4,6 +4,9 @@ class GeneralInfo < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one :login_info
 
+  # Ayushri
+  has_many :gallery_taggings
+  has_many :tagged_gallery, through: :gallery_taggings, source: :gallery
 
   validates_presence_of :first_name
   validates_presence_of :last_name

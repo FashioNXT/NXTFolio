@@ -46,6 +46,19 @@
     <div class = "container be-detail-container">
       <h3> Description: </h3>
       <p> <%= @gallery.gallery_description %> </p>
+
+<!--Ayushri-->
+<h2>Tagged Users:</h2>
+<% @gallery.tagged_users.each do |user| %>
+  <p><%= user.emailaddr %></p>
+<% end %>
+<h1>
+<%= form_with(model: [@gallery, @gallery_tagging], url: create_tagging_gallery_path(@gallery.id), local: true) do |form| %>
+  <%= form.label :tagged_user_id, 'Tag User:' %>
+  <%= form.collection_select :tagged_user_id, GeneralInfo.all, :id, :emailaddr,{}, { multiple: true } %>
+  <%= form.submit 'Tag' %>
+<% end %>
+</h1>
       <h3> All Images: </h3>
     </div>
 

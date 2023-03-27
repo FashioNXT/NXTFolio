@@ -48,8 +48,10 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    puts (params.inspect)
     @gallery = Gallery.find(params[:project_key])
+
+    # Ayushri
+    @gallery_tagging = @gallery.gallery_taggings
 
     logger.info("Debugging Average ")
 
@@ -60,9 +62,48 @@ class GalleriesController < ApplicationController
     end
   end
 
+  # Ayushri
+  def create_tagging
+    puts "Parameters are :"
+    puts params.inspect
+    @gallery = Gallery.find_by(id: params[:id])
+    puts "Gallery is :"
+    puts @gallery.inspect
+    @gallery_tagging = @gallery.gallery_taggings.build(gallery_tagging_params)
+    #@gallery_tagging = GalleryTagging.new(gallery_tagging_params)
+    @gallery_tagging.general_info_id = @gallery.GeneralInfo_id
+    puts "Gallery taggig is :"
+    puts @gallery_tagging.inspect
+    tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
+    tagged_ids.each do |tagged_id|
+      puts tagged_id
+      @gallery_tagging = GalleryTagging.new
+      @gallery_tagging.gallery_id = params[:id]
+      @gallery_tagging.general_info_id = tagged_id
+
+    if @gallery_tagging.save!
+      flash[:notice] = "Tagged User(s) Successfully"
+      puts "success"
+    else
+      flash[:alert] = "Failed to Tag User(s)"
+      puts "failure"
+    end
+  end
+    redirect_to galleries_show_path(:project_key => params[:id])
+  end
+
+  
   private
 
   def gallery_params
-    params.require(:gallery).permit(:gallery, :gallery_title, :gallery_description, :ratings, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_picture => [])
+    # Ayushri
+    params.require(:gallery).permit(:gallery, :gallery_title, :gallery_description, :ratings, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_tagging, :gallery_picture => [])
   end
+
+  # Ayushri
+  def gallery_tagging_params
+    #params.require(:gallery_tagging).permit(tagged_user_id: [])
+    params.require(:gallery_tagging).permit(tagged_user_id: [] )
+  end
+  
 end
