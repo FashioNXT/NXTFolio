@@ -4,7 +4,7 @@ class GeneralInfo < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one :login_info
 
-  # Ayushri
+  # NXTFolio : Added in Spring 2023 for tagging feature
   has_many :gallery_taggings
   has_many :tagged_gallery, through: :gallery_taggings, source: :gallery
 

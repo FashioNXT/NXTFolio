@@ -3,7 +3,7 @@ class Gallery < ApplicationRecord
     belongs_to :general_info, optional: true
     has_many :reviews
 
-    # Ayushri
+    # NXTFolio : Added in Spring 2023 for tagging feature.
     has_many :gallery_taggings, dependent: :destroy
     has_many :tagged_users, through: :gallery_taggings, source: :general_info
 

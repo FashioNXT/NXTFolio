@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
 
-  # Ayushri
+  # NXTFolio : Added in Spring 2023 for tagging feature
   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
 
   #get 'template/create'
@@ -125,7 +125,7 @@ Rails.application.routes.draw do
   resources :galleries, except: :destroy do
     resources :reviews
 
-    # Ayushri
+    # NXTFolio : Added in Spring 2023 for tagging feature
     resources :gallery_taggings
 
   end

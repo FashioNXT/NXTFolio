@@ -50,7 +50,7 @@ class GalleriesController < ApplicationController
   def show
     @gallery = Gallery.find(params[:project_key])
 
-    # Ayushri
+    # NXTFolio : Added in Spring 2023 for tagging feature
     @gallery_tagging = @gallery.gallery_taggings
 
     logger.info("Debugging Average ")
@@ -62,33 +62,20 @@ class GalleriesController < ApplicationController
     end
   end
 
-  # Ayushri
+  # NXTFolio : Added in Spring 2023 for tagging feature
   def create_tagging
-    puts "Parameters are :"
-    puts params.inspect
     @gallery = Gallery.find_by(id: params[:id])
-    puts "Gallery is :"
-    puts @gallery.inspect
-    @gallery_tagging = @gallery.gallery_taggings.build(gallery_tagging_params)
-    #@gallery_tagging = GalleryTagging.new(gallery_tagging_params)
-    @gallery_tagging.general_info_id = @gallery.GeneralInfo_id
-    puts "Gallery taggig is :"
-    puts @gallery_tagging.inspect
     tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
     tagged_ids.each do |tagged_id|
-      puts tagged_id
-      @gallery_tagging = GalleryTagging.new
-      @gallery_tagging.gallery_id = params[:id]
-      @gallery_tagging.general_info_id = tagged_id
-
-    if @gallery_tagging.save!
-      flash[:notice] = "Tagged User(s) Successfully"
-      puts "success"
-    else
-      flash[:alert] = "Failed to Tag User(s)"
-      puts "failure"
+      if GalleryTagging.where(gallery_id: params[:id], general_info_id: tagged_id).empty?
+        @gallery_tagging = GalleryTagging.new(gallery_id: params[:id], general_info_id: tagged_id)
+        if @gallery_tagging.save
+          flash[:notice] = "Tagged User(s) Successfully"
+        else
+          flash[:alert] = "Failed to Tag User(s)"
+        end
+      end
     end
-  end
     redirect_to galleries_show_path(:project_key => params[:id])
   end
 
@@ -96,13 +83,12 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    # Ayushri
+    # NXTFolio : Added gallery_tagging in Spring 2023 for tagging feature
     params.require(:gallery).permit(:gallery, :gallery_title, :gallery_description, :ratings, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_tagging, :gallery_picture => [])
   end
 
-  # Ayushri
+  # NXTFolio : Added in Spring 2023 for tagging feature
   def gallery_tagging_params
-    #params.require(:gallery_tagging).permit(tagged_user_id: [])
     params.require(:gallery_tagging).permit(tagged_user_id: [] )
   end
   
