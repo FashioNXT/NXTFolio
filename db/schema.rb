@@ -216,9 +216,6 @@ ActiveRecord::Schema.define(version: 2023_03_28_031503) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "collaborations", "galleries"
-  add_foreign_key "collaborators", "galleries"
-  add_foreign_key "collaborators", "general_infos"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
   add_foreign_key "messages", "general_infos"
