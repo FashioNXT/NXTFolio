@@ -29,4 +29,5 @@ domain_url: 'fashionnxt.herokuapp.com'
 #gmail_username: 'fashioNTWRKtesting@gmail.com'
 #gmail_password: 'test123#'
 gmail_username: 'fashionxtllc@gmail.com'
-gmail_password: 'yukzwzmegwaxvfbx'
+# NXTFolio Spring 2023 : this password is app password generated after enabling 2-step verification
+gmail_password: 'yukzwzmegwaxvfbx' 

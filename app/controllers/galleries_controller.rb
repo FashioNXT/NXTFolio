@@ -62,7 +62,7 @@ class GalleriesController < ApplicationController
     end
   end
 
-  # NXTFolio : Added in Spring 2023 for tagging feature
+  # NXTFolio : Added function in Spring 2023 for tagging feature
   def create_tagging
     @gallery = Gallery.find_by(id: params[:id])
     tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
@@ -78,14 +78,11 @@ class GalleriesController < ApplicationController
     end
     invited_email = params[:gallery_tagging][:invited_email]
     if invited_email
-      general_info = LoginInfo.create(email: invited_email, password: SecureRandom.hex(8))
-      GalleryTagging.create(gallery_id: @gallery.id, general_info_id: general_info.id, invited_email: invited_email)  
-        # send invitation email to collaborator
-        # you can use ActionMailer or any other email sending library here
-        # for example, you could create a new mailer called "InvitationMailer" and call a method like "invitation_email" to send the email
-        InvitationMailer.invitation_email(invited_email).deliver_now
+      inviter_name = GeneralInfo.find_by(id:@gallery.GeneralInfo_id).emailaddr
+      project_name = @gallery.gallery_title
+      project_key = params[:id]
+      InvitationMailer.invitation_email(invited_email,inviter_name,project_name,project_key).deliver_now
     end
-
 
     redirect_to galleries_show_path(:project_key => params[:id])
   end
