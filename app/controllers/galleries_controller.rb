@@ -76,6 +76,17 @@ class GalleriesController < ApplicationController
         end
       end
     end
+    invited_email = params[:gallery_tagging][:invited_email]
+    if invited_email
+      general_info = LoginInfo.create(email: invited_email, password: SecureRandom.hex(8))
+      GalleryTagging.create(gallery_id: @gallery.id, general_info_id: general_info.id, invited_email: invited_email)  
+        # send invitation email to collaborator
+        # you can use ActionMailer or any other email sending library here
+        # for example, you could create a new mailer called "InvitationMailer" and call a method like "invitation_email" to send the email
+        InvitationMailer.invitation_email(invited_email).deliver_now
+    end
+
+
     redirect_to galleries_show_path(:project_key => params[:id])
   end
 

@@ -10,26 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_27_212259) do
+ActiveRecord::Schema.define(version: 2023_03_28_031503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "collaborations", force: :cascade do |t|
-    t.bigint "gallery_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gallery_id"], name: "index_collaborations_on_gallery_id"
-  end
-
-  create_table "collaborators", force: :cascade do |t|
-    t.bigint "gallery_id", null: false
-    t.bigint "general_info_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gallery_id"], name: "index_collaborators_on_gallery_id"
-    t.index ["general_info_id"], name: "index_collaborators_on_general_info_id"
-  end
 
   create_table "galleries", id: :serial, force: :cascade do |t|
     t.string "gallery_title"
@@ -49,6 +33,7 @@ ActiveRecord::Schema.define(version: 2023_03_27_212259) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "tagged_user_id"
+    t.string "invited_email"
     t.index ["gallery_id"], name: "index_gallery_taggings_on_gallery_id"
     t.index ["general_info_id"], name: "index_gallery_taggings_on_general_info_id"
   end

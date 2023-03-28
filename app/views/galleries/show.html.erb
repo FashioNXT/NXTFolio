@@ -61,6 +61,8 @@
       <%= form_with(model: [@gallery, @gallery_tagging], url: create_tagging_gallery_path(@gallery.id), local: true) do |form| %>
         <%= form.label :tagged_user_id, 'Tag User:' %>
         <%= form.collection_select :tagged_user_id, GeneralInfo.where.not(id: current_user.id), :id, :emailaddr,{}, { multiple: true } %>
+        <%= form.label :invited_email, 'Invite User:' %>
+        <%= form.email_field :invited_email %>
         <%= form.submit 'Tag' %>
       <% end %>
     <% end %>
