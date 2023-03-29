@@ -4,6 +4,7 @@ Given(/the following users exist/) do |users_table|
   users_table.hashes.each do |user|
     name = user['name'].split(".")
     fake_password = user['password']
+    job = user['job']
 
     first_name = name[0]
     last_name = name[1]
@@ -21,7 +22,7 @@ Given(/the following users exist/) do |users_table|
     general_info.userKey = userkey
     general_info.company = "TestInc"
     general_info.industry = "Fashion"
-    general_info.job_name = "Model"
+    general_info.job_name = job
     general_info.highlights = "Just a test User"
     general_info.country = "United States"
     general_info.state = "Texas"
@@ -41,8 +42,32 @@ Then(/^I should be on (.+)$/) do |page_name|
   expect(current_path).to eq(path_to(page_name))
 end
 
+Given(/^I am logged in$/) do
+  visit 'login_info/login'
+  fill_in "email", :with => @login_info.email
+  fill_in "password", :with => @login_info.password
+  click_button "Login"
+end
+
+Given(/^I am logged in as "(.+)"$/) do |user|
+  # get user info
+  name = user['name'].split(".")
+  email = "#{name[0]}.#{name[1]}@example.com"
+  login_info = LoginInfo.find_by(email: email)
+
+  # login as user
+  visit 'login_info/login'
+  fill_in "email", :with => login_info.email
+  fill_in "password", :with => login_info.password
+  click_button "Login"
+end
+
 Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
+end
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
+  fill_in(field, :with => value)
 end
 
 When /^(?:|I )fill in the following:$/ do |fields|
