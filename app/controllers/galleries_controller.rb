@@ -77,7 +77,7 @@ class GalleriesController < ApplicationController
       end
     end
     invited_email = params[:gallery_tagging][:invited_email]
-    if invited_email
+    if invited_email.present?
       inviter_name = GeneralInfo.find_by(id:@gallery.GeneralInfo_id).emailaddr
       project_name = @gallery.gallery_title
       project_key = params[:id]

@@ -48,10 +48,11 @@
       <p> <%= @gallery.gallery_description %> </p>
 
 <!--NXTFolio : Added in Spring 2023 for tagging feature.-->
+<div class="collaborators">
 <h3>Collaborators:</h3>
 <ul>
 <% @gallery.tagged_users.each do |user| %>
-  <li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.emailaddr %></a></li>
+ <div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.emailaddr %></a></li></div>
 <% end %>
 </ul>
 <% if session[:current_user_key] %>
@@ -67,7 +68,7 @@
       <% end %>
     <% end %>
 <% end %>
-
+</div>
       <h3> All Images: </h3>
     </div>
 
