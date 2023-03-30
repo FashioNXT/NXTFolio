@@ -36,6 +36,7 @@ Feature: Search a Profile
 #    When I fill in all fields for general information
 #    And I select "Designer" or "Model" or "Photographer"
 #    Then I should see the designer page or model page or photographer page
+
   Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
     Given I am a valid user
     When I click on search button and search by fields

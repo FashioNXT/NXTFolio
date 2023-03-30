@@ -66,14 +66,14 @@ When(/^I try to log in$/) do
   click_button "Login"
 end
 
-Then(/^I should see "(.*?)"$/) do |field_name|
-  case field_name
-  when "Logged In!"
-    page.has_content?("Logged In!")
-  when "Incorrect Email!"
-    page.has_content?("Incorrect Email")
-  when "Incorrect Password"
-    page.has_content?("Incorrect Password")
-  end
-end
+# Then(/^I should see "(.*?)"$/) do |field_name|
+#   case field_name
+#   when "Logged In!"
+#     page.has_content?("Logged In!")
+#   when "Incorrect Email!"
+#     page.has_content?("Incorrect Email")
+#   when "Incorrect Password"
+#     page.has_content?("Incorrect Password")
+#   end
+# end
 

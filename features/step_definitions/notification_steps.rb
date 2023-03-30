@@ -84,11 +84,11 @@ Then(/^I should have no more notificaitons$/) do
     page.has_content?("You're all caught up!")
 end
 
-Then(/^I should see "(.*?)"$/) do |field_name|
-    case field_name
-    when "You're all caught up!"
-      page.has_content?("You're all caught up!")
-    when "dropdown menu with notifications"
-      page.has_content?("sent you a message!")
-    end
-  end
+# Then(/^I should see "(.*?)"$/) do |field_name|
+#     case field_name
+#     when "You're all caught up!"
+#       page.has_content?("You're all caught up!")
+#     when "dropdown menu with notifications"
+#       page.has_content?("sent you a message!")
+#     end
+#   end

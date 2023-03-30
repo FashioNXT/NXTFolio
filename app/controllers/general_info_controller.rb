@@ -61,13 +61,15 @@ class GeneralInfoController < ApplicationController
     @templates.unshift('Designer')
     @templates.unshift('Model')
     @templates.unshift('Photographer')
-    @general_info = GeneralInfo.new
+
+    # get default email from session if available
+    @general_info ||= GeneralInfo.new
+    @general_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
   end
 
   def new2
-    @general_info = GeneralInfo.new
+    @general_info ||= GeneralInfo.new
   end
-
 
   def profession_specific
     last_template_id = GeneralInfo.last.template_id
@@ -101,6 +103,7 @@ class GeneralInfoController < ApplicationController
   def create
     @possible_Jobs = GeneralInfo.see_Jobs
     # Check to see if the required params are filled in
+    @general_info = GeneralInfo.new(general_info_params)
     error_statement = ""
     if params[:general_info][:first_name] == ""
       error_statement += "First Name, "
@@ -137,14 +140,17 @@ class GeneralInfoController < ApplicationController
       error_statement = error_statement[0, error_statement.length-2]
       error_statement += " are required."
       flash[:notice] = error_statement
-      redirect_to new_general_info_path and return
+      render :new and return
     end
-
 
     # Add room to LoginInfo DB here to
     # synchronize with GeneralInfo DB
     current_user = session[:current_login_user]
-    login_user = LoginInfo.new(:email => current_user["email"], :password => current_user["password"], :password_confirmation => current_user["password"])
+    login_user = LoginInfo.new(
+      :email => params[:general_info][:emailaddr], 
+      :password => current_user["password"], 
+      :password_confirmation => current_user["password"]
+    )
     userKey = SecureRandom.hex(10)
     login_user.userKey = userKey
     login_user.save!
@@ -169,31 +175,31 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
 
-    if @general_info.save!
-      # Send Verification Email upon successful sign-up
-      #UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
-      if params[:select_one]
-        session.delete(:current_login_user)
-        redirect_to "/general_info/new2"
-
-      elsif params[:select_two]
-             redirect_to "/search_engine/show"
-      end
-      # Redirect to specific profession edit page
-      #if $template_name == "Designer"
-        #@general_info.update_attribute(:specific_profile_id,1)
-        #redirect_to "/specific_designer/edit"
-        #elsif $template_name == "Model"
-        #@general_info.update_attribute(:specific_profile_id,2)
-        #redirect_to "/specific_model/edit"
-        #elsif $template_name == "Photographer"
-        #@general_info.update_attribute(:specific_profile_id,3)
-        #redirect_to "/specific_photographer/edit"
-        #end
-    else
-
-      render :action => 'new'
+    unless @general_info.save!
+      flash[:error] = "Unknown error when saving: try again later"
+      render :action => 'new' and return
     end
+
+    # Send Verification Email upon successful sign-up
+    #UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
+    if params[:select_one]
+      session.delete(:current_login_user)
+      redirect_to "/general_info/new2"
+    elsif params[:select_two]
+      redirect_to "/search_engine/show"
+    end
+    
+    # Redirect to specific profession edit page
+    #if $template_name == "Designer"
+      #@general_info.update_attribute(:specific_profile_id,1)
+      #redirect_to "/specific_designer/edit"
+      #elsif $template_name == "Model"
+      #@general_info.update_attribute(:specific_profile_id,2)
+      #redirect_to "/specific_model/edit"
+      #elsif $template_name == "Photographer"
+      #@general_info.update_attribute(:specific_profile_id,3)
+      #redirect_to "/specific_photographer/edit"
+    #end
   end
 
   # Params used to create the GeneralInfo object
@@ -243,7 +249,6 @@ class GeneralInfoController < ApplicationController
 
   # Saves the edit of the GeneralInfo object to the database
   def update
-
     logger.info("Debugging general info edit")
     logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
