@@ -29,9 +29,9 @@ Then(/^Ishould redirect to the DM page$/) do
     page.has_content?("Select a user to message!")
 end
 
-And(/^I am on the DM page$/) do
-    visit '/dm'
-end
+# And(/^I am on the DM page$/) do
+#     visit '/dm'
+# end
 
 When(/^I click a user$/) do
     click_on "Model"
