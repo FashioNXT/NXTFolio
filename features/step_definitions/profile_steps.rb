@@ -24,6 +24,6 @@ When(/^I press and go to edit profile$/) do
   visit '/general_info/edit'
 end
 
-When (/^(?:|I )fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
-  @general_info.update(first_name: value)
-end
+# When (/^(?:|I )fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
+#   @general_info.update(first_name: value)
+# end

@@ -111,7 +111,11 @@
 
 <div class="head-bg-searchresult">
   <!-- Display Search Result -->
-  <div class="divider"><span></span><span>Search Results</span><span></span></div>
+  <% if @final_users.none? %>
+  <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
+  <% else %>
+  <div class="divider"><span></span><span>Search Results For <%= @final_users[0].job_name %></span><span></span></div>
+  <% end %>
   <% if @final_users.none? %>
     No matching profiles
   <% end %>
@@ -134,6 +138,7 @@
                     <div class="line"></div>
                     <div class="desc"> <%= info.city %> </div>
                     <div class="desc"> <%= info.state %> </div>
+                    <div class="desc"> <%= info.job_name %> </div>
                     <div class="line"></div>
                     <div class="desc"> <%= info.bio %> </div>
                   </div>

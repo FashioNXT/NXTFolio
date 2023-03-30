@@ -34,6 +34,12 @@ module NavigationHelpers
       when /^the login_info login page$/
         '/login_info/login'
 
+      when /^the search engine page$/
+        '/search_engine/search'
+
+      when /^the DM page$/
+        '/dm'
+
       else
         send(page_name + "_path")
         # raise "Can't find mapping from \"#{page_name}\" to a path."

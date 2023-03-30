@@ -20,13 +20,6 @@
 #      })
 # end
 
-And(/^I am logged in$/) do
-    visit 'login_info/login'
-    fill_in "email", :with => @login_info.email
-    fill_in "password", :with => @login_info.password
-    click_button "Login"
-end
-
 When(/^I click the "DM" button$/) do
     visit root_path
     click_button "a.dropbtn"
@@ -36,16 +29,9 @@ Then(/^Ishould redirect to the DM page$/) do
     page.has_content?("Select a user to message!")
 end
 
-Given(/^I am logged in$/) do
-    visit 'login_info/login'
-    fill_in "email", :with => @login_info.email
-    fill_in "password", :with => @login_info.password
-    click_button "Login"
-end
-
-And(/^I am on the DM page$/) do
-    visit '/dm'
-end
+# And(/^I am on the DM page$/) do
+#     visit '/dm'
+# end
 
 When(/^I click a user$/) do
     click_on "Model"
