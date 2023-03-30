@@ -33,13 +33,6 @@ When(/^I click the "notification" button$/) do
     click_button "button.dropbtn"
 end
 
-Given(/^I am logged in$/) do
-    visit 'login_info/login'
-    fill_in "email", :with => @login_info.email
-    fill_in "password", :with => @login_info.password
-    click_button "Login"
-end
-
 And(/^I don't have notifications$/) do
     @general_info = GeneralInfo.create!({
         :first_name => "Ive",

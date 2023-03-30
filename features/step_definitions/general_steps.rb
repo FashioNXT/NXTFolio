@@ -4,6 +4,7 @@ Given(/the following users exist/) do |users_table|
   users_table.hashes.each do |user|
     name = user['name'].split(".")
     fake_password = user['password']
+    job = user['job']
 
     first_name = name[0]
     last_name = name[1]
@@ -21,7 +22,7 @@ Given(/the following users exist/) do |users_table|
     general_info.userKey = userkey
     general_info.company = "TestInc"
     general_info.industry = "Fashion"
-    general_info.job_name = "Model"
+    general_info.job_name = job
     general_info.highlights = "Just a test User"
     general_info.country = "United States"
     general_info.state = "Texas"
@@ -41,8 +42,32 @@ Then(/^I should be on (.+)$/) do |page_name|
   expect(current_path).to eq(path_to(page_name))
 end
 
+Given(/^I am logged in$/) do
+  visit 'login_info/login'
+  fill_in "email", :with => @login_info.email
+  fill_in "password", :with => @login_info.password
+  click_button "Login"
+end
+
+Given(/^I am logged in as "(.+)"$/) do |user|
+  # get user info
+  name = user.split(".")
+  email = "#{name[0]}.#{name[1]}@example.com"
+  login_info = LoginInfo.find_by(email: email)
+
+  # login as user
+  visit 'login_info/login'
+  fill_in "login_email", :with => login_info.email
+  fill_in "login_password", :with => login_info.password
+  click_button "SIGN IN"
+end
+
 Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
+end
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
+  fill_in(field, :with => value)
 end
 
 When /^(?:|I )fill in the following:$/ do |fields|
@@ -97,4 +122,32 @@ When(/^I hover over the "([^"]*)" element$/) do |element|
 
   # use the Selenium WebDriver 'action' object to hover over the element
   page.driver.browser.action.move_to(target_element.native).perform
+end
+
+Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, msg|
+  step "I am logged in as \"#{from_user}\""
+  visit path_to "the DM page"
+  step "I select \"#{to_user.gsub('.', ' ')}\" chat"
+  fill_in("body", :with => msg)
+  click_link_or_button "send"
+  click_link_or_button "Log out"
+
+
+
+  # todo! create a message
+  # from_name = from_user.split(".")
+  # from_email = "#{from_name[0]}.#{from_name[1]}@example.com"
+  # from_info = GeneralInfo.find_by(email: from_email)
+
+  # to_name = to_user.split(".")
+  # to_email = "#{to_name[0]}.#{to_name[1]}@example.com"
+  # to_info = GeneralInfo.find_by(email: to_email)
+
+
+
+  # users = [from_user.id, to_user.id].sort
+  # room_name = "private_#{users[0]}_#{users[1]}"
+  # @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
+
+  # @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
 end
