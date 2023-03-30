@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_215625) do
+ActiveRecord::Schema.define(version: 2023_03_28_031503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2022_04_29_215625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+  end
+
+  create_table "gallery_taggings", force: :cascade do |t|
+    t.bigint "gallery_id", null: false
+    t.bigint "general_info_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tagged_user_id"
+    t.string "invited_email"
+    t.index ["gallery_id"], name: "index_gallery_taggings_on_gallery_id"
+    t.index ["general_info_id"], name: "index_gallery_taggings_on_general_info_id"
   end
 
   create_table "general_infos", id: :serial, force: :cascade do |t|
@@ -68,6 +79,12 @@ ActiveRecord::Schema.define(version: 2022_04_29_215625) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
+    t.string "travel_country"
+    t.string "travel_state"
+    t.string "travel_city"
+    t.date "travel_start"
+    t.date "travel_end"
+    t.string "travel_details"
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
@@ -199,6 +216,8 @@ ActiveRecord::Schema.define(version: 2022_04_29_215625) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "gallery_taggings", "galleries"
+  add_foreign_key "gallery_taggings", "general_infos"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
 end

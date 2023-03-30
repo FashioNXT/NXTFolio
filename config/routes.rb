@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
 
+  # NXTFolio : Added in Spring 2023 for tagging feature
+  post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
+
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -121,6 +124,10 @@ Rails.application.routes.draw do
 
   resources :galleries, except: :destroy do
     resources :reviews
+
+    # NXTFolio : Added in Spring 2023 for tagging feature
+    resources :gallery_taggings
+
   end
   resources :search_engine
 
