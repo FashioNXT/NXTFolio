@@ -3849,6 +3849,48 @@ body .login-user-down:hover {
     display: flex;
 }
 
+.modalWindow {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 99999;
+  opacity:0;
+  pointer-events: none;
+  text-align:center;
+}
+.modalWindow:target {
+  opacity:1;
+  pointer-events: auto;
+}
+.modalWindow > div {
+  width: 500px;
+  position: relative;
+  margin: 10% auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.modal-elements-container {
+  text-align: center;
+  margin-top: 10px;
+  height: 200px;
+  overflow-y:auto;
+}
+
+.modal-element {
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+}
+
+.modal-element:hover {
+  background-color: #f2f2f2
+}
+
 .profile-row {
   background: #fffffff0;
   padding: 1px;

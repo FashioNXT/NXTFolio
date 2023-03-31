@@ -226,26 +226,48 @@
 				<% end %>
 			<% end %>
 			<div style="margin-right: 10px; margin-left: 10px;">
-				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
+				<a href="#followers-modal" class="btn color-3 size-1 hover-9">
 					<h2>Followers</h2>
-				<% end %>
-				<% @followers.present? and @followers.each do |follower| %>
-                	<a href="<%= show_profile_show_profile_path(:user_key => follower.userKey) %>">
-						<div> <%= follower.first_name + " " + follower.last_name%> </div>
-					</a>
-				<% end %>
+				</a>
 			</div>
 			<div style="margin-right: 10px; margin-left: 10px;">
-				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
+				<a href="#following-modal" class="btn color-3 size-1 hover-9">
 					<h2>Following</h2>
-				<% end %>
-				<% @following.present? and @following.each do |followee| %>
-                	<a href="<%= show_profile_show_profile_path(:user_key => followee.userKey) %>">
-						<div> <%= followee.first_name + " " + followee.last_name%> </div>
-					</a>
-				<% end %>
+				</a>
 			</div>
 		</div>
+		<!-- Popup Modals -->
+		<div id="followers-modal" class="modalWindow">
+			<div>
+				<h2 style="margin-top: 10px;">Followers</h2>
+				<div class="modal-elements-container">
+					<% @followers.present? and @followers.each do |follower| %>
+						<a href="<%= show_profile_show_profile_path(:user_key => follower.userKey) %>">
+							<div class="modal-element"> <%= follower.first_name + " " + follower.last_name%> </div>
+						</a>
+					<% end %>
+				</div>
+				<div style="margin-top: 10px;">
+					<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+				</div>
+			</div>
+		</div>
+		<div id="following-modal" class="modalWindow">
+			<div>
+				<h2>Following</h2>
+				<div class="modal-elements-container">
+					<% @following.present? and @following.each do |followee| %>
+						<a href="<%= show_profile_show_profile_path(:user_key => followee.userKey) %>">
+							<div class="modal-element"> <%= followee.first_name + " " + followee.last_name%> </div>
+						</a>
+					<% end %>
+				</div>
+				<div style="margin-top: 10px;">
+					<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+				</div>
+			</div>
+		</div>
+
 		<div class="container-fluid custom-container">
 			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">
