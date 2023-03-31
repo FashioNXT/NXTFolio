@@ -3,6 +3,13 @@ Feature: Travel Feature
   I want to share my upcoming travel details
   So that others can see my travel plans
 
+  Background: users in database
+    Given the following users exist
+    | name              | password  | job          |
+    | Andrea.Picardo    | Test1234! | Model        |
+    | Anthony.Gray      | Test1234! | Photographer |
+    | Jack.Sparrow      | Test1234! | Model        |
+
   Scenario: I can access travel information option
     Given I am a professional and want to add my travel information
     And I want to add my travel information
