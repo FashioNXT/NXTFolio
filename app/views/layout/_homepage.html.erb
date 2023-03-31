@@ -44,14 +44,36 @@
 
         <div>
         <h1>Projects you may be interested in:</h1>
-          <% @all_users = GeneralInfo.all%>
+          
           <% @all_galleries = Gallery.all%>
 
-          <% map = Hash.new%>
+          
 
+          <% map = Hash.new%>
           <% for gal in @all_galleries do%>
-            <% average_review=gal.reviews.average(:rating).round(2) %>
-            <%map[gal] = average_review %>
+            <%total = 0%>
+            <%len = 0%>
+
+            <% for x in gal.reviews%>
+              <% total += x.rating%>
+              <%len +=1%>
+            <%end%>
+
+            <%if gal.gallery_totalRate == nil%>
+              <%gal.gallery_totalRate = total%>
+            <%end%>
+
+            <%if gal.gallery_totalRator == nil%>
+              <%gal.gallery_totalRator = len%>
+            <%end%>
+
+
+            <% if map.length < 4 %>
+              <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
+              <%if average_review >= 3%>
+                <%map[gal] = average_review %>
+              <%end%>
+            <%end%>
           <% end%>
           <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
 
@@ -76,6 +98,9 @@
                 
               </div>
             </a>
+            <div class="headline"> <%= gall.gallery_title %> </div>
+            <div class="desc"> <%= gall.gallery_description %> </div>
+            <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
           </div>
         <% end %>
 

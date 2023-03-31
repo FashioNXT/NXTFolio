@@ -113,6 +113,7 @@
 <div class="head-bg-searchresult">
   <!-- Display Search Result -->
   <% if @final_users.none? %>
+    <div> No matching profiles</div>
     <% recommend_set = []%>
 
     <% @current_user = GeneralInfo.find_by(userKey: session[:current_user_key])%>
@@ -120,8 +121,8 @@
     <%city_key = @current_user.city%>
     <%state_key = @current_user.state%>
 
-    <%@same_city_state = GeneralInfo.where(state: state_key, city: city_key)%>
 
+    <%@same_city_state = GeneralInfo.where(state: state_key, city: city_key)%>
     <%@same_state = GeneralInfo.where(state: state_key)%>
 
 
@@ -133,12 +134,13 @@
         <%recommend_set.push(item)%>
       <%end%>
     <%end%>
-
+    
     <%for item in @same_state do %>
       <%if item.userKey != @current_user.userKey and !@same_city_state.include?(item)%>
         <%recommend_set.push(item)%>
       <%end%>
     <%end%>
+    
     <% if recommend_set.length() != 0%>
     
     <% for info in recommend_set.each do %>
@@ -163,6 +165,7 @@
                   </div>
                   <div class="mask"></div>
                 </a>
+                <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
               </div>
             </a>
           </div>
@@ -201,6 +204,13 @@
                   <div class="mask"></div>
                 </a>
               </div>
+              <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+              <div class="desc"> <%= info.city %> </div>
+              <div class="desc"> <%= info.state %> </div>
+              <div class="desc"> <%= info.job_name %> </div>
+              <div class="line"></div>
+              <div class="desc"> <%= info.bio %> </div>
+              
             </a>
           </div>
         </div>

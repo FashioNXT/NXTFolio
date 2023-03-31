@@ -25,6 +25,7 @@ gem 'haml'
 gem 'carrierwave'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 
+
 # # may be required with ruby 2.4
 # gem 'therubyracer', platforms: :ruby
 # # or
@@ -63,7 +64,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.4.0'
+  # to debug using cucumber binding.pry
+  gem 'pry'
   
   gem 'simplecov'
   gem 'simplecov-rcov'
@@ -106,3 +109,5 @@ gem 'webdrivers', require: false
 
 # avoid update to 3.0
 gem 'rubyzip', "~> 2.3.0"
+
+gem 'database_cleaner'

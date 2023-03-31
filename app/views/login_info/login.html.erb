@@ -102,15 +102,17 @@
         <!-- Log In -->
         <div class="col-md-4">
           <h1>Log In</h1>
-          <div class="row-fluid">
+          <div class="row-fluid" id="log_in_div">
               <%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
                   <form action="#" class="popup-input-search" method="post">
-                    <div class="span3">
-                      <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+                    <div class="span3" id = "email">
+                      <div> email</div>
+                      <%= form.text_field :email, :class => 'input-signtype', :id => 'login_email', :placeholder => 'Your Email', :required => ''%>
                     </div>
                     <br>
                     <div class="span3">
-                      <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+                      <div> password</div>
+                      <%= form.password_field :password, :class => 'input-signtype', :id => 'login_password', :placeholder => 'Your Password', :required => '' %>
                     </div>
                     <br>
                     <%= link_to "Forgot your password?", password_reset_path, :class => 'forgot' %>
@@ -130,17 +132,17 @@
             <!-- %= form_for :sign_in_up, :action => 'create', :url => login_info_create_path do |form| % -->
                 <form action="./" class="popup-input-search" method="post">
                   <div class = "span5">
-                    <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
+                    <%= form.text_field :email, :class => 'input-signtype', :id => 'sign_up_email', :placeholder => 'Email', :required => ''%>
                   </div>
                   <br>
                   <div class = "span5">
-                    <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Password', :required => '' %>
+                    <%= form.password_field :password, :class => 'input-signtype', :id => 'sign_up_password', :placeholder => 'Password', :required => '' %>
                   </div>
                   <div class="span5">
                     <p style="color:white;">(Should contain one uppercase, one lowercase, one special character, and one digit)</p>
                   </div>
                   <div class="span5">
-                    <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'confirm', :placeholder => 'Repeat Password', :required => '' %>
+                    <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'sign_up_confirm', :placeholder => 'Repeat Password', :required => '' %>
                   </div>
                   <br>
                   <div class="span5 for-signin">

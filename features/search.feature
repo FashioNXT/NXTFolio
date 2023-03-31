@@ -1,25 +1,101 @@
 # Search Profile Feature
 
 Feature: Search a Profile
-
   As a fashion industry professional
   I want to be able to search professionals seeking jobs in the domain of fashion.
   I want to be able to search based on name, city, state, etc
 
-  Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
+  # NXTFolio Spring 2023, Iteration 2
+  Background: users in database
+    Given the following users exist
+    | name              | password  | job | city | state |
+    | Andrea.Picardo   | Test1234! | Model | Houston | TX |
+    | Leonardo.Picardo    | Test1234! | Model | Houston | TX |
+    | Leonardo.Secondo   | Test1234! | Manufacturing | College Station | TX |
+    | Andrea.Secondo    | Test1234! | Manufacturing | Columbus | OH |
+  # NXTFolio Spring 2023, Iteration 3
+  Scenario: When a user searches for Brand Owners when there are no profiles, it should see no matching profiles and some recommend proflies
+    When I am a valid user
+    Given I am on the home page
+    When I click on "Brand Owner"
+    Then I should be on the search engine page
+    And I should see "You May Also Like:"
 
-    Given I am a valid user
-    When I click on search button and search by email id
-    Then I should see "No matches"
-    When I click on search button and search by fields
-    Then I should see "No matches"
+    And I should see "Andrea Picardo"
+    And I should see "Leonardo Picardo"
+    And I should see "Leonardo Secondo"
+    And I should not see "Andrea Secondo"
+    And I should see "No matching profiles"
 
-  Scenario: When I go to the search page to search by model, I can see the search results
-    Given I am a valid user
-    When I select model
-    And I click on the search button
-    And I click on the search button
-    Then I should see "No matches"
+  # todo! delete into
+  # NXTFolio Spring 2023, Iteration 2
+  #Scenario: When a user searches for Brand Owners when there are no profiles, it should see no matching profiles
+    #Given I am on the home page
+    #When I click on "Brand Owner"
+    #Then I should be on the search engine page
+    #And I should see "You May Also Like:"
+    #And I should see "No matching profiles"
+
+  # NXTFolio Spring 2023, Iteration 2
+  Scenario: When a user searches for Manufacturing, it should show the Manufacturing
+    Given I am on the home page
+    When I click on "Manufacturing"
+    Then I should be on the search engine page
+    And I should see "Leonardo Secondo"
+    And I should see "Andrea Secondo"
+    And I should not see "Andrea Picardo"
+    And I should not see "Leonardo Picardo"
+
+  # NXTFolio Spring 2023, Iteration 2
+  Scenario: When a user searches for Model, it should show the models
+    Given I am on the home page
+    When I click on "Model"
+    Then I should be on the search engine page
+    And I should not see "Leonardo Secondo"
+    And I should not see "Andrea Secondo"
+    And I should see "Andrea Picardo"
+    And I should see "Leonardo Picardo"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## commented because this is not a functionality
+
+# Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
+  #   Given I am a valid user
+  #   When I click on search button and search by email id
+  #   Then I should see "No matches"
+  #   When I click on search button and search by fields
+  #   Then I should see "No matches"
+
+  # Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
+  #   Given I am a valid user
+  #   When I click on search button and search by fields
+  #   Then I should see "No matches"
+
+#  Scenario: When I go to the search page to search by model, I can see the search results
+#    Given I am a valid user
+#    When I select model
+#    And I click on the search button
+#    And I click on the search button
+#    Then I should see "No matches"
 
 
 #  Scenario: When a user attempts to create a profile, account creation fails
@@ -35,7 +111,3 @@ Feature: Search a Profile
 #    When I fill in all fields for general information
 #    And I select "Designer" or "Model" or "Photographer"
 #    Then I should see the designer page or model page or photographer page
-  Scenario: When a user creates a profile, and I go to the search page to search, I can see the search results
-    Given I am a valid user
-    When I click on search button and search by fields
-    Then I should see "No matches"

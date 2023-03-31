@@ -1,7 +1,7 @@
 class GeneralInfo < ApplicationRecord
-  has_many :gallery
-  has_many :messages
-  has_many :reviews
+  has_many :gallery, dependent: :destroy, foreign_key: 'GeneralInfo_id'
+  has_many :messages, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_one :login_info
 
 

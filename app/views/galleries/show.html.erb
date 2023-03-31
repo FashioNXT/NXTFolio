@@ -74,7 +74,11 @@
             </div>
         </div>
     <%= link_to 'Add Another Gallary', 'new' %>
-    <a class="btn full color-1 size-1 hover-1" href="/show_profile" method="get"><i class="fa fa-chevron-left"></i>Back</a>
+    <% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
+    <% if owner.userKey != session[:current_user_key] %>
+      <a class="btn full color-1 size-1 hover-1" href="<%= show_profile_show_profile_path(:user_key => owner.userKey) %>" method="get"><i class="fa fa-chevron-left"></i>See project owner's profile </a>
+    <%end%>
+    <a class="btn full color-1 size-1 hover-1" href="/" method="get"><i class="fa fa-chevron-left"></i>Back</a>
     
     <!-- MAIN CONTENT END -->
     <footer>	

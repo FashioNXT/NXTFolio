@@ -1,17 +1,19 @@
 # Login Step Definitions
 
 
-When(/^I click on search button and search by email id$/) do
-  visit 'search_profile/search'
-  fill_in "email", :with => 'hellofriend@gmail.com'
-  click_button "Submit"
-end
+# commented this block because ambiguous match 2023-03-06
+# When(/^I click on search button and search by email id$/) do
+#   visit 'search_profile/search'
+#   fill_in "email", :with => 'hellofriend@gmail.com'
+#   click_button "Submit"
+# end
 
-When(/^I click on search button and search by fields$/) do
-  visit 'search_profile/search'
-  fill_in "First Name", :with => 'avinash'
-  click_button "Submit"
-end
+# commented this block because ambiguous match 2023-03-06
+# When(/^I click on search button and search by fields$/) do
+#   visit 'search_profile/search'
+#   fill_in "First Name", :with => 'avinash'
+#   click_button "Submit"
+# end
 
 # When(/^I try to log in$/) do
 #   visit 'login_info/login'
