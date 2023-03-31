@@ -211,23 +211,38 @@
 		<!-- Follow Features -->
 		<div class="follow-box">
 			<% if not @on_Own %>
-				<div style="margin-right: 10px; margin-left: 10px;">
-					<%= link_to "/", method: :post, :class => "btn color-2 size-1 hover-2" do%>
-						<h2>Follow</h2>
-					<% end %>
-				</div>
+				<% if not @currently_following %>
+					<div style="margin-right: 10px; margin-left: 10px;">
+						<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+							<h2>Follow</h2>
+						<% end %>
+					</div>
+				<% else %>
+					<div style="margin-right: 10px; margin-left: 10px;">
+						<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+							<h2>Unfollow</h2>
+						<% end %>
+					</div>
+				<% end %>
 			<% end %>
 			<div style="margin-right: 10px; margin-left: 10px;">
 				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
 					<h2>Followers</h2>
 				<% end %>
 				<% @followers.present? and @followers.each do |follower| %>
-					<div> <%= follower.first_name %> </div>
+                	<a href="<%= show_profile_show_profile_path(:user_key => follower.userKey) %>">
+						<div> <%= follower.first_name + " " + follower.last_name%> </div>
+					</a>
 				<% end %>
 			</div>
 			<div style="margin-right: 10px; margin-left: 10px;">
 				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
 					<h2>Following</h2>
+				<% end %>
+				<% @following.present? and @following.each do |followee| %>
+                	<a href="<%= show_profile_show_profile_path(:user_key => followee.userKey) %>">
+						<div> <%= followee.first_name + " " + followee.last_name%> </div>
+					</a>
 				<% end %>
 			</div>
 		</div>

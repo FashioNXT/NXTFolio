@@ -40,8 +40,8 @@ Rails.application.routes.draw do
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
 
   # Follow Feature
-  # post 'general_info/follow/:id' +> 
-  # post 'general_info/unfollow/:id'
+  get 'general_info/follow/:id' => 'general_info#follow'
+  get 'general_info/unfollow/:id' => 'general_info#unfollow'
 
   namespace :admin do
     get '/' => 'admin#landing'

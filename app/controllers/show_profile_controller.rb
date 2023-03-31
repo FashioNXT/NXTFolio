@@ -96,6 +96,8 @@ class ShowProfileController < ApplicationController
         end
         @followers = @user.get_followers
         @following = @user.get_users_they_follow
+        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @currently_following = Follow.exists?(:follower => current_user, :followee => @user)
         # End of Messy Profile Selection
         puts @profile_info.inspect
       else

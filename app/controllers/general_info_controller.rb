@@ -270,6 +270,22 @@ class GeneralInfoController < ApplicationController
     end
   end
 
+  def follow
+    user = GeneralInfo.find_by(userKey: session[:current_user_key])
+    user.follow(params[:id])
+    other_user = GeneralInfo.find(params[:id])
+    # redirect_to '/show_profile/' + other_user.userKey
+    redirect_to show_profile_show_profile_path(:user_key => other_user.userKey)
+  end
+
+  def unfollow
+    user = GeneralInfo.find_by(userKey: session[:current_user_key])
+    user.unfollow(params[:id])
+    other_user = GeneralInfo.find(params[:id])
+    redirect_to show_profile_show_profile_path(:user_key => other_user.userKey)
+    # redirect_to '/show_profile/' + other_user.userKey
+  end
+
   # Params used to edit the GeneralInfo object's profession
   def general_info_update_profession_param
     params.require(:general_info).permit(:specific_profile_id)
