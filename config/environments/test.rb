@@ -23,10 +23,10 @@ Rails.application.configure do
     authentication:       'plain',
     enable_starttls_auto: true  }
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'http://54.241.41.232:', port: 3000 }
   
   # Whether to use remote webdriver or not
-  config.use_remote_webdriver = false
+  config.use_remote_webdriver = true
   if config.use_remote_webdriver
     # Change the Capybara default max wait time to 10 seconds
     Capybara.default_max_wait_time = 30

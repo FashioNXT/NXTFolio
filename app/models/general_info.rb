@@ -340,6 +340,28 @@ class GeneralInfo < ApplicationRecord
 
     return @filteredUsers
   end
+  
+  def self.filterByWithDate state, profession, city, service_date
+    #filter by profession, country, state
+    @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+    # @filteredUsers = @filteredUsers.where(country: country) #United States
+    @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
+    #adding city on filter list
+    @filteredUsers = city.present? ? @filteredUsers.where(city: city): @filteredUsers
+    @filteredUsers = @filteredUsers.where.not(travel_start: nil)
+
+    @filteredUsers1 = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+    
+    @filteredUsers1.where('travel_start <= ? AND travel_end >= ?', service_date, service_date)
+    @filteredUsers1 = state.present? ? @filteredUsers1.where(travel_state: state) : @filteredUsers1
+    @filteredUsers1 = city.present? ? @filteredUsers1.where(travel_city: city) : @filteredUsers1
+    
+    #@filteredUsers.each do |room|
+    #  puts "users are: #{room[:first_name]}"
+    #end
+
+    return @filteredUsers + @filteredUsers1
+  end
 
 end
 
