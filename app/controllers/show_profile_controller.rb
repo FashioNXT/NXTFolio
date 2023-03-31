@@ -94,6 +94,8 @@ class ShowProfileController < ApplicationController
           puts "Unknown profile type! Profile type given: "
           @profile_type = "Error"
         end
+        @followers = @user.get_followers
+        @following = @user.get_users_they_follow
         # End of Messy Profile Selection
         puts @profile_info.inspect
       else

@@ -94,8 +94,8 @@
 														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
 														<div id="myDropdown" class="dropdown-content">
 															<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
-															<div style="color: black; height: 20px; width: 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
-															<div style="color: black; height: 20px; width: 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
+															<div style="color: black; height: 20px;"> <b> You're all caught up! </b> </div>
+															<div style="color: black; height: 20px;"> <b> No new messages. </b> </div>
 													<% end %>
 														</div>
 													</div>
@@ -169,8 +169,8 @@
 								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
 								<!--% end %-->
 								<% if @on_Own %>
-									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
-								<% else%>
+									<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
+								<% else %>
 									<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
 								<% end%>
 							</div>
@@ -206,6 +206,29 @@
 					</div>
 
 			  	</div>
+			</div>
+		</div>
+		<!-- Follow Features -->
+		<div class="follow-box">
+			<% if not @on_Own %>
+				<div style="margin-right: 10px; margin-left: 10px;">
+					<%= link_to "/", method: :post, :class => "btn color-2 size-1 hover-2" do%>
+						<h2>Follow</h2>
+					<% end %>
+				</div>
+			<% end %>
+			<div style="margin-right: 10px; margin-left: 10px;">
+				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
+					<h2>Followers</h2>
+				<% end %>
+				<% @followers.present? and @followers.each do |follower| %>
+					<div> <%= follower.first_name %> </div>
+				<% end %>
+			</div>
+			<div style="margin-right: 10px; margin-left: 10px;">
+				<%= link_to "/", method: :post, :class => "btn color-3 size-1 hover-9" do%>
+					<h2>Following</h2>
+				<% end %>
 			</div>
 		</div>
 		<div class="container-fluid custom-container">

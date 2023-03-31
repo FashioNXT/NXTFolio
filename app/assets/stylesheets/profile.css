@@ -244,6 +244,12 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
+.follow-box {
+    width: 50%;
+    height: 200px;
+    background-color:rgba(240, 95, 64, 0.9);
+}
+
 .profile-img {
     max-height: 100%;  
     max-width: 100%;
