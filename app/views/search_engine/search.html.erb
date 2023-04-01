@@ -113,7 +113,6 @@
 <div class="head-bg-searchresult">
   <!-- Display Search Result -->
   <% if @final_users.none? %>
-    <div> No matching profiles</div>
     <% recommend_set = []%>
 
     <% @current_user = GeneralInfo.find_by(userKey: session[:current_user_key])%>
@@ -127,6 +126,7 @@
 
 
     <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
+    <div> No matching profiles</div>
     <div class="divider">You May Also Like:
 
     <%for item in @same_city_state do %>
