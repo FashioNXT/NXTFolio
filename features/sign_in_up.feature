@@ -31,11 +31,11 @@ Feature: Login and sign up
       | company | Testing For Test |
       | highlights | Not much |
       | emailaddr | test@example.com |
+      | city | Austin |
     And I select "Creator" from "general_info_industry"
     And I select "Creators" from "general_info_job_name"
     And I select "United States" from "country"
     And I select "Texas" from "state"
-    And I select "Austin" from "city"
     And I click on "SAVE AND CONTINUE"
     And I should be on the second signup page
     When I fill in the following:
