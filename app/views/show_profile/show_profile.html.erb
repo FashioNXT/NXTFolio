@@ -124,7 +124,7 @@
 		<% end %>
 		<div class="container be-detail-container">
 			<div class="row profile-row">
-				<div class="col-xs-12 col-md-6 left-field">
+				<div class="col-xs-12 col-md-6 left-box">
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
@@ -157,16 +157,17 @@
 							</div>
 							<div class="be-user-social">
 								<!--% if @general_info && @general_info.facebook_link != "" %-->							
-									<a class="social-btn color-1" href="http://<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
+									<a class="social-btn color-1" href=<%= @general_info.facebook_link.blank? ? "#" : @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>
 								<!--% end %-->
 								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
-									<a class="social-btn color-6" href="http://<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+								<a class="social-btn color-6" href=<%= @general_info.linkedIn_link.blank? ? "#" : @general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>
 								<!--% end %-->
 								<!--% if @login_info && @login_info.email != "" %-->
-									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
+								<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
 								<!--% end %-->
 
-								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
+								<a class="be-user-site" href=<%= @general_info.personalWebsite_link %> target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
 								<!--% end %-->
 								<% if @on_Own %>
 									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
@@ -178,8 +179,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6 left-field">
-					<div class="be-desc-block">
+				<div class="col-xs-12 col-md-6 right-box">
+					<div class="top-right-box">
 				  		<!--% if @general_info && @general_info.bio != "" %-->
 							<div class="be-desc-author">
 								<div class="be-desc-label">About Me</div>
@@ -192,14 +193,17 @@
 						<!--% end %-->
 					</div>
 
-					<div class="be-desc-block">
+					<div class="bottom-right-box">
 						<!--% if @general_info && @general_info.bio != "" %-->
 						<div class="be-desc-author">
 							<div class="be-desc-label">Professional Details</div>
 							<div class="clearfix"></div>
 							<div class="be-desc-text">
 								<!--Add Bio HERE-->
+								<%=	@general_info.specialization %>
 								<%= @general_info.profdetails %>
+								<p>Compensation Type: <%=@general_info.compensation%></p>
+								<p>Years of Experience: <%=@general_info.experience%></p>
 							</div>
 						</div>
 						<!--% end %-->
