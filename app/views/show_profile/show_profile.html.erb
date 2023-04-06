@@ -185,7 +185,7 @@
 							<div class="be-desc-author">
 								<div class="be-desc-label">About Me</div>
 								<div class="clearfix"></div>
-								<div class="be-desc-text">
+								<div class="be-user-detail">
 									<!--Add Bio HERE-->
 									<%= @general_info.bio %>
 								</div>
@@ -198,10 +198,9 @@
 						<div class="be-desc-author">
 							<div class="be-desc-label">Professional Details</div>
 							<div class="clearfix"></div>
-							<div class="be-desc-text">
+							<div class="be-user-detail">
 								<!--Add Bio HERE-->
-								<%=	@general_info.specialization %>
-								<%= @general_info.profdetails %>
+								<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
 								<p>Compensation Type: <%=@general_info.compensation%></p>
 								<p>Years of Experience: <%=@general_info.experience%></p>
 							</div>
