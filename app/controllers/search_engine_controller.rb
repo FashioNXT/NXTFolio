@@ -22,12 +22,9 @@ class SearchEngineController < ApplicationController
 
         @stateInfo=state
         profession = @params_args[:Profession]
-        if @params_args[:service_date]
-            service_date = @params_args[:service_date]
-            @filtered_users = GeneralInfo.filterByWithDate state, profession, city, service_date
-        else
-            @filtered_users = GeneralInfo.filterBy state, profession, city
-        end 
+        
+        @filtered_users = GeneralInfo.filterBy state, profession, city
+         
         
         #puts "Filtered users are: "
         #@filtered_users.each do |room|
