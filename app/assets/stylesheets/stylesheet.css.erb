@@ -5260,3 +5260,44 @@ legend {
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 
+.tagModalWindow {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 99999;
+  opacity:0;
+  pointer-events: none;
+  text-align:center;
+}
+.tagModalWindow:target {
+  opacity:1;
+  pointer-events: auto;
+}
+.tagModalWindow > div {
+  width: 500px;
+  position: relative;
+  margin: 10% auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.tagModal-elements-container {
+  text-align: center;
+  margin-top: 10px;
+  height: 200px;
+  overflow-y:auto;
+}
+
+.tagModal-element {
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+}
+
+.tagModal-element:hover {
+  background-color: #f2f2f2
+}

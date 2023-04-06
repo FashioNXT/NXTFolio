@@ -285,21 +285,58 @@
 												<!-- NXTFolio : Added in Spring 2023 for tagging feature. -->
 												<div class="collaborators">
 												<p>Collaborators:</p>
-												<% gallery.tagged_users.each do |user| %><div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.emailaddr %></a></li></div><% end %>
+												<% if gallery.tagged_users.blank? %>
+													<div>No collaborators</div>
+												<% else %>
+													<% gallery.tagged_users.each do |user| %><div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div><% end %>
+												<% end %>
+												<!-- -->
+												
 												<% if session[:current_user_key] %>
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
-													<% profile_user_id=gallery.GeneralInfo_id %>
-													<% if current_user.id==profile_user_id %>
-														<% @gallery_tagging = GalleryTagging.new %>
-														<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true) do |form| %>
-															<%= form.label :tagged_user_id, 'Tag User:' %>
-															<%= form.collection_select :tagged_user_id, GeneralInfo.where.not(id: current_user.id), :id, :emailaddr,{}, { multiple: true } %>
-															<%= form.submit 'Tag' %>
-														<% end %>
-   													 <% end %>
+														<% profile_user_id=gallery.GeneralInfo_id %>
+														<% if current_user.id==profile_user_id %>
+															<div style="margin-right: 10px; margin-left: 10px;">
+																<a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-1 hover-9">
+																	<h4>Add Collaborators</h4>
+																</a>
+															</div>
+															<div id="collaborators-modal-<%= gallery.id %>" class="tagModalWindow">
+																<div>
+																<div class="tagModal-elements-container-<%= gallery.id %>">
+																	<h4>Existing collaborators</h4>
+																		<% gallery.tagged_users.each do |user| %>
+																			<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>">
+																				<div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div>
+																			</a>
+																		<% end %>
+														<!--h3>Add collaborators</h3-->
+																	<% @gallery_tagging = GalleryTagging.new %>
+																	<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}") do |form| %>
+																		<div class="search-box">
+																			<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
+																			<ul class="all-list">
+																		<% GeneralInfo.where.not(id: current_user.id).each do |user| %>
+																				<li data-user-id="<%= user.id %>" ><%= user.first_name + " " + user.last_name %></li>
+																			<% end %>
+																			</ul>
+																		</div>
+																		<%= form.hidden_field :tagged_user_id %>
+																		<%= form.submit 'Tag' %>
+																	<% end %>
+															
+																	</div>
+																	<div style="margin-top: 10px;">
+																		<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+																	</div>
+																</div>
+															</div>
+													<% end %>
 												<%end %>
-												</div>
 												
+
+
+									</div>			
 										</div>
 
 										<% end %>
@@ -397,5 +434,50 @@
 			path: '/assets/'
 		});
 	</script>
+
+	<script>
+
+function searchCollaborator(galleryId) {
+	console.log(galleryId);
+var form = document.querySelector("#new_gallery_tagging_"+galleryId);
+    var searchInput = document.querySelector("#collab-search-"+ galleryId);
+    var searchResults = document.querySelector(".all-list");
+	console.log(searchResults);
+	var taggedUserIds = [];
+	
+    searchInput.addEventListener("keyup", function() {   
+		console.log("hello");     
+        var filter = searchInput.value.toLowerCase();
+		//console.log(filter);
+        var items = searchResults.getElementsByTagName("li");
+	   //var items = searchResults.querySelectorAll("li:not([style*='display: none'])");
+		console.log(items);
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var text = item.textContent || item.innerText;
+			console.log(text);
+            if (filter === "" || text.toLowerCase().indexOf(filter) > -1) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+	console.log();
+	
+	searchResults.addEventListener('click', (event) => {
+		console.log();
+	const selectedValue = event.target.textContent;
+	searchInput.value = selectedValue;
+    const selectedId = event.target.getAttribute('data-user-id');
+    taggedUserIds.push(selectedId);
+    form.querySelector("#tagged_user_id").value = taggedUserIds.join(",");
+	// Submit the form
+	form.submit();
+	});
+}
+
+</script>
+
 	</body>
 </html>

@@ -65,7 +65,8 @@ class GalleriesController < ApplicationController
   # NXTFolio : Added function in Spring 2023 for tagging feature
   def create_tagging
     @gallery = Gallery.find_by(id: params[:id])
-    tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
+    tagged_ids = params[:gallery_tagging][:tagged_user_id].split(",").reject(&:blank?)
+    #tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
     tagged_ids.each do |tagged_id|
       if GalleryTagging.where(gallery_id: params[:id], general_info_id: tagged_id).empty?
         @gallery_tagging = GalleryTagging.new(gallery_id: params[:id], general_info_id: tagged_id)
