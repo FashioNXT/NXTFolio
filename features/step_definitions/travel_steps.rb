@@ -1,5 +1,11 @@
 Given(/^I am a professional and want to add my travel information$/) do
   visit root_path
+  puts "adsfs"
+  visit "www.google.com"
+  puts "123234"
+  visit "http://54.67.56.169:3000/"
+  
+  puts "1233"
   click_on "Sign In"
   fill_in "Your Email", :with => "Anthony.Gray@example.com"
   fill_in "Your Password", :with => "Test1234!"
