@@ -5,10 +5,10 @@ Feature: Travel Feature
 
   Background: users in database
     Given the following users exist
-    | name              | password  |
-    | Andrea.Picardo    | Test1234! |
-    | Anthony.Gray      | Test1234! |
-    | Jack.Sparrow      | Test1234! |
+    | name              | password  | job          |
+    | Andrea.Picardo    | Test1234! | Model        |
+    | Anthony.Gray      | Test1234! | Photographer |
+    | Jack.Sparrow      | Test1234! | Model        |
     
     Given that 3 projects exist
 
