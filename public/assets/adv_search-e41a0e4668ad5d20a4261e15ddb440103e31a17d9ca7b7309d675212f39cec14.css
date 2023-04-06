@@ -1,0 +1,94 @@
+
+
+
+
+
+
+.md-outline.select-wrapper+label {
+    top: .5em !important;
+    z-index: 2 !important;
+}
+
+.buttongroup-class {
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+.button-class {
+    padding-left: 5px;
+    padding-right: 20px;
+}
+
+
+#advsearch {
+    height: 300px;
+}
+
+/*Mobile View of pink background of advanced search*/
+@media screen and (max-width: 560px){
+    #advsearch {
+        height: 500px;
+}
+
+}
+
+.searchContainer {
+    width: 600px;
+    background-color: #969693; /*#a8a7a5; /*#333; #BA5555;*/
+    border-radius: 25px;
+}
+.mod-1 {
+    color: white;
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.changedLabel {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    color: white;
+}
+
+.searchbox {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    height: 46px;
+    width: 500px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+.buttongroup {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+}
+
+.searchpagesearch {
+    width: 600px;
+    background-color: #BA5555;
+    border-radius: 25px;
+    position: relative;
+    top: 80px;
+    left: 380px;
+
+}
+
+@media screen and (max-width: 560px)
+{
+    .searchpagesearch {
+        width: 600px;
+        background-color: #BA5555;
+        border-radius: 25px;
+        position: relative;
+        top: 80px;
+        left: 20px;
+
+    }
+}
+
+.searchboxcontainer {
+    min-height: 400px;
+}
+
+
