@@ -62,6 +62,9 @@ class GeneralInfoController < ApplicationController
     @templates.unshift('Model')
     @templates.unshift('Photographer')
 
+    # get list of countries
+    # options = Geocoder.search("").map(&:country).uniq.sort.map{ |c| [c, c] }
+
     # get default email from session if available
     @general_info ||= GeneralInfo.new
     @general_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
