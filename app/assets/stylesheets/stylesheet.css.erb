@@ -1255,7 +1255,7 @@ span.right { float: right; }
 
 .be-user-detail { text-align: centre; margin-bottom: 30px;}
 
-.be-ava-user { width: 70px; height: 70px; display: inline-block; margin-bottom: 25px; }
+.be-ava-user { width: 70px; height: 70px; display: inline;block; margin-bottom: 25px; }
 
 .be-ava-user > img { width: 70px; height: 70px; }
 
@@ -1378,7 +1378,7 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 
 .be-user-block.style-2 .be-user-detail, .be-user-block.style-3 .be-user-detail { margin-bottom: 60px; }
 
-.be-user-block.style-3 { padding: 30px 15px 0px 15px; margin-bottom: 48px; }
+.be-user-block.style-3 { padding: 30px 15px 0px 15px; margin-bottom: 48px; height: 100%}
 
 .be-ava-user.style-2 { width: 115px; height: 115px; }
 
@@ -1412,7 +1412,11 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 
 .be-desc-block { margin-bottom: 20px; }
 
-.be-desc-author { position: relative; padding: 20px 30px; border: 1px solid #222835; min-height: 188px; }
+.be-desc-author { position: relative; 
+                  padding: 20px 30px; 
+                  border: 1px solid #222835; 
+                  height: 100%;
+                  }
 
 .be-desc-img { float: left; width: 70px; height: 70px; margin-bottom: 15px; border-radius: 70px; }
 
@@ -3102,6 +3106,25 @@ transition: all ease-out 0.3s;}
 
 }
 
+<%# Profile Page Styling %>
+.left-box {
+  <%# background-color: #0000FF; %>
+  height: 100%;
+}
+
+.right-box {
+  height: 100%;
+}
+
+.top-right-box {
+  margin-bottom: 25px;
+  height: 199px
+}
+
+.bottom-right-box {
+  height: 199px;
+}
+
 .s-cover-box {
     max-width: 720px;
     width: 100%;
@@ -3851,8 +3874,8 @@ body .login-user-down:hover {
   background: #fffffff0;
   padding: 1px;
   margin-bottom: 5px !important;
-    padding-top: 50px;
-
+  height: 425px;
+  margin-top:50px;
 }
 /*Mobile View of my profile view*/
 @media screen and (min-width:0px) and (max-width:560px) {
