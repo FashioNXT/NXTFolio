@@ -124,7 +124,7 @@
 														<div class="col-sm-4">
 															<div class="form-group focus-2">
 																<label>Country</label>
-																<select name="general_info[country]" class="countries form-control" id="country" required>
+																<select name="general_info[country]" class="countries form-control" id="country" required style="color: black;" >
 																	<option value="">Select Country</option>
 																</select>
 															</div>
@@ -135,15 +135,16 @@
 
 													<div class="col-sm-4">
 														<label>State</label>
-														<select name="general_info[state]" class="states form-control" id="state" required>
+														<select name="general_info[state]" class="states form-control" id="state" required style="color: black;" >
 															<option value="">Select State</option>
 														</select>
 													</div>
 													<div class="col-sm-4">
 														<label>City</label>
-														<select name="general_info[city]" class="cities form-control" id="city" required>
+														<%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', required: true, style: "height: 35px;" %>
+														<%# <select name="general_info[city]" class="cities form-control" id="city" required>
 															<option value="">Select City</option>
-														</select>
+														</select> %>
 													</div>
 												</div>
 											</div>
