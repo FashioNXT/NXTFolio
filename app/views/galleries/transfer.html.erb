@@ -1,3 +1,48 @@
-<h1> Successfully added images!</h1>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>FashioNXT</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+	<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+
+  
+<div class = "container">
+<h1> Successfully added images!</h1>
 <a class="btn full color-1 size-1 hover-1" href="/show_profile" method="get"><i class="fa fa-chevron-left"></i>Back</a>
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  <!-- SCRIPT	-->
+	  <script src="<%= asset_path "jquery.min.js"%>"></script>
+	  <script src="<%= asset_path "jquery-ui.js"%>"></script>
+	  <script src="<%= asset_path "bootstrap.min.js"%>"></script>		
+	  <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+	  <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+	  <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+	  <script src="<%= asset_path "global.js"%>"></script>
+
+</div>
+
+<style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+
+</body>
+<%= render 'shared/footer' %>
+</html>

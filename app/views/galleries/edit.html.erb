@@ -16,6 +16,18 @@
 
 <body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
 
+<div class="be-loader">
+    	<div class="spinner">
+			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+			<p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+			</p>
+		</div>
+    </div>
+
 <h1>Add images (No more than 5 images pre gallery!)</h1>
 <% if flash[:notice] %>
 	<div class="alert alert-success">
