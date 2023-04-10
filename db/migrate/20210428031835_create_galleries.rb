@@ -8,6 +8,8 @@ class CreateGalleries < ActiveRecord::Migration[5.0]
       t.integer :gallery_totalRator
       t.integer :GeneralInfo_id
 
+
+      t.string :test_picture, array:true
       t.timestamps
     end
   end

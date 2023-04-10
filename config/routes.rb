@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/dm/:id', to: 'room#show'
 
+
+  #________________________________________________________________________
   get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
 
   
@@ -22,6 +24,41 @@ Rails.application.routes.draw do
   post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
 
   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
+
+  get '/galleries/:id/edit', to: 'galleries#edit', as: 'edit_gallery'
+  get '/galleries/:id/show', to: 'galleries#show', as: 'gallery'
+
+  put '/galleries/:id/show', to: 'galleries#update', as: 'gallery/update'
+
+
+  get '/galleries/:id/delete/:idx', to: 'galleries#delete', as: 'gallery_delete'
+
+  get '/galleries/:id/add_images', to: 'galleries#transfer', as: 'gallery_added_image'
+
+#________________________________________________________________________
+
+# get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
+
+  
+#   #get 'galleries/create'
+
+#   get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
+
+#   get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
+
+#   get 'galleries/index'
+
+#   get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
+
+#   post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
+
+#   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
+
+#   # NXTFolio : Added in Spring 2023 for tagging feature
+#   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
+
+
+
 
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
@@ -117,7 +154,16 @@ Rails.application.routes.draw do
   resources :search_profile
   resources :template
 
+  #get '/galleries/:id/remove_image/:image_id', to: 'galleries#remove_image', as: 'remove_image_gallery'
+
 #halting this changes, later will check
+
+resources :galleries do
+  resources :images, only: [:create, :destroy]
+end
+
+
+
 
   resources :galleries, except: :destroy do
     resources :reviews

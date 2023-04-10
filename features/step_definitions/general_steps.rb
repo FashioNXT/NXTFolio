@@ -17,6 +17,7 @@ Given(/the following users exist/) do |users_table|
     login_info.save!
 
     general_info = GeneralInfo.new
+    general_info.id = user['id']
     general_info.first_name = first_name
     general_info.last_name = last_name
     general_info.userKey = userkey
@@ -41,6 +42,7 @@ Given(/^the following galleries exist$/) do |table|
   image_file = Rack::Test::UploadedFile.new(image_path, 'image/jpeg')
   table.hashes.each do |gallery_info|
     Gallery.create!(gallery_title: gallery_info['title'],
+      id: '2',
       gallery_description: gallery_info['description'],
       gallery_totalRate: gallery_info['id'],
       GeneralInfo_id: gallery_info['id'],
@@ -49,6 +51,54 @@ Given(/^the following galleries exist$/) do |table|
       gallery_picture: [image_file])
   end
 end
+
+When("I upload an image") do
+  attach_file('test_picture', File.absolute_path('app/assets/images/4.jpg'), make_visible: true)
+end
+
+When("I upload multiple images") do
+  files = [
+    File.absolute_path('app/assets/images/4.jpg'),
+    File.absolute_path('app/assets/images/5.jpg'),
+    File.absolute_path('app/assets/images/6.jpg'),
+    File.absolute_path('app/assets/images/a1.png')
+  ]
+
+  attach_file('test_picture', files, make_visible: true, multiple: true)
+end
+
+
+
+
+Given(/^the following galleries for testing delete exist$/) do |table|
+  image_path1 = File.join(Rails.root, 'app', 'assets', 'images', '1.jpg')
+  image_file1 = Rack::Test::UploadedFile.new(image_path1, 'image/jpeg')
+
+  image_path2 = File.join(Rails.root, 'app', 'assets', 'images', '2.jpg')
+  image_file2 = Rack::Test::UploadedFile.new(image_path2, 'image/jpeg')
+
+  image_path3 = File.join(Rails.root, 'app', 'assets', 'images', '3.jpg')
+  image_file3 = Rack::Test::UploadedFile.new(image_path3, 'image/jpeg')
+
+  table.hashes.each do |gallery_info|
+    Gallery.create!(gallery_title: gallery_info['title'],
+      id: '1',
+      gallery_description: gallery_info['description'],
+      gallery_totalRate: gallery_info['id'],
+      GeneralInfo_id: '0',
+      gallery_totalRate: gallery_info['total'],
+      gallery_totalRator: gallery_info['num'],
+      gallery_picture: [image_file1, image_file2, image_file3])
+  end
+end
+
+
+
+
+
+
+
+
 
 And(/^the following reviews exist for galleries$/) do |table|
   ids = [1,2,3,4]
@@ -67,6 +117,7 @@ And(/^the following reviews exist for galleries$/) do |table|
     index += 1
   end
 end
+
 
 #  Given(/the following galleries exist/) do |gallery_table|
 
@@ -113,6 +164,9 @@ Then(/^I should be on (.+)$/) do |page_name|
   expect(current_path).to eq(path_to(page_name))
 end
 
+
+
+
 Given(/^I am logged in$/) do
   visit 'login_info/login'
   fill_in "email", :with => @login_info.email
@@ -137,6 +191,11 @@ Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
 end
 
+Then /^I am with id gallery (\d+)$/ do |id|
+  visit gallery_path(id)
+end
+
+
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in(field, :with => value)
 end
@@ -146,6 +205,8 @@ When /^(?:|I )fill in the following:$/ do |fields|
     fill_in(name, :with => value)
   end
 end
+
+
 
 Then /^(?:|I )should see the following fields:$/ do |fields|
   fields.rows_hash.each do |name, value|
@@ -193,4 +254,16 @@ When(/^I hover over the "([^"]*)" element$/) do |element|
 
   # use the Selenium WebDriver 'action' object to hover over the element
   page.driver.browser.action.move_to(target_element.native).perform
+end
+
+
+
+
+
+When("I click on the image with alt text {string}") do |alt_text|
+  # Find the image element with the specified alt text
+  image = find("img[alt='#{alt_text}']")
+
+  # Click on the image element
+  image.click
 end
