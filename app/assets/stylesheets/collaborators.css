@@ -1,0 +1,57 @@
+.tagModalWindow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 99999;
+    opacity:0;
+    pointer-events: none;
+    text-align:center;
+  }
+  .tagModalWindow:target {
+    opacity:1;
+    pointer-events: auto;
+  }
+  .tagModalWindow > div {
+    width: 500px;
+    position: relative;
+    margin: 10% auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  
+  .tagModal-elements-container {
+    text-align: center;
+    margin-top: 10px;
+    height: 200px;
+    overflow-y:auto;
+  }
+  
+  .tagModal-element {
+    text-align: center;
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .tagModal-element:hover {
+    background-color: #f2f2f2
+  }
+  
+  [class^="all-list-"] {
+      display: none;
+  }
+
+  [class^="all-list-"].show {
+    display: block;
+  }
+
+  .hidden-collab {
+    display: none;
+  }
+  
+  .show-more-collab {
+    cursor: pointer;
+  }

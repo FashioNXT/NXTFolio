@@ -66,7 +66,6 @@ class GalleriesController < ApplicationController
   def create_tagging
     @gallery = Gallery.find_by(id: params[:id])
     tagged_ids = params[:gallery_tagging][:tagged_user_id].split(",").reject(&:blank?)
-    #tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
     tagged_ids.each do |tagged_id|
       if GalleryTagging.where(gallery_id: params[:id], general_info_id: tagged_id).empty?
         @gallery_tagging = GalleryTagging.new(gallery_id: params[:id], general_info_id: tagged_id)
@@ -84,10 +83,18 @@ class GalleriesController < ApplicationController
       project_key = params[:id]
       InvitationMailer.invitation_email(invited_email,inviter_name,project_name,project_key).deliver_now
     end
-
-    redirect_to galleries_show_path(:project_key => params[:id])
+    redirect_to '/show_profile'
+    
   end
-
+  def destroy_tagging
+    @gallery = Gallery.find(params[:gallery_id])
+    @tagging = @gallery.gallery_taggings.find(params[:id])
+    if @tagging.destroy
+      redirect_to @gallery, notice: 'Collaborator removed successfully'
+    else
+      redirect_to @gallery, alert: 'Error removing collaborator'
+    end
+  end
   
   private
 

@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
 		<style>
 			.big{
 				font-size: 25px;
@@ -287,18 +288,28 @@
 
 												<!-- NXTFolio : Added in Spring 2023 for tagging feature. -->
 												<div class="collaborators">
-												<p>Collaborators:</p>
-												<% if gallery.tagged_users.blank? %>
-													<div>No collaborators</div>
-												<% else %>
-													<% gallery.tagged_users.each do |user| %><div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div><% end %>
-												<% end %>
-												<!-- -->
 												
+												<% unless gallery.tagged_users.blank? %>
+												<p>Collaborators:</p>
+													<% if gallery.tagged_users.length < 2 %>
+													<% gallery.tagged_users.each do |user| %>
+														<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+													<% end %>
+													<% else %>
+													<% gallery.tagged_users.first(1).each do |user| %>
+														<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+													<% end %>
+													<div class="collab show-more-collab"><li><a href="#">+<%= gallery.tagged_users.length - 1 %> more</a></li></div>
+													<% gallery.tagged_users.drop(1).each do |user| %>
+														<div class="collab hidden-collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+													<% end %>
+													<% end %>
+												<% end %>
 												<% if session[:current_user_key] %>
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 														<% profile_user_id=gallery.GeneralInfo_id %>
 														<% if current_user.id==profile_user_id %>
+															
 															<div style="margin-right: 10px; margin-left: 10px;">
 																<a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-1 hover-9">
 																	<h4>Add Collaborators</h4>
@@ -312,19 +323,26 @@
 																			<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>">
 																				<div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div>
 																			</a>
+																			
+																		
+																			
+
+
 																		<% end %>
 														<!--h3>Add collaborators</h3-->
 																	<% @gallery_tagging = GalleryTagging.new %>
 																	<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}") do |form| %>
 																		<div class="search-box">
 																			<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
-																			<ul class="all-list">
+																			<ul class="all-list-<%= gallery.id %>">
 																		<% GeneralInfo.where.not(id: current_user.id).each do |user| %>
 																				<li data-user-id="<%= user.id %>" ><%= user.first_name + " " + user.last_name %></li>
 																			<% end %>
 																			</ul>
 																		</div>
-																		<%= form.hidden_field :tagged_user_id %>
+																		<%= form.label :invited_email, 'Invite User:' %>
+        																<%= form.email_field :invited_email %>
+																		<%= form.hidden_field id="tagged_user_id" %>
 																		<%= form.submit 'Tag' %>
 																	<% end %>
 															
@@ -441,24 +459,23 @@
 	<script>
 
 function searchCollaborator(galleryId) {
-	console.log(galleryId);
 var form = document.querySelector("#new_gallery_tagging_"+galleryId);
     var searchInput = document.querySelector("#collab-search-"+ galleryId);
-    var searchResults = document.querySelector(".all-list");
-	console.log(searchResults);
+    var searchResults = document.querySelector(".all-list-"+ galleryId);
 	var taggedUserIds = [];
 	
     searchInput.addEventListener("keyup", function() {   
-		console.log("hello");     
+		//console.log("hello");     
         var filter = searchInput.value.toLowerCase();
-		//console.log(filter);
+		if (filter.length > 0) {
+    		searchResults.classList.add("show");
+  		} else {
+    		searchResults.classList.remove("show");
+  		}
         var items = searchResults.getElementsByTagName("li");
-	   //var items = searchResults.querySelectorAll("li:not([style*='display: none'])");
-		console.log(items);
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
             var text = item.textContent || item.innerText;
-			console.log(text);
             if (filter === "" || text.toLowerCase().indexOf(filter) > -1) {
                 item.style.display = "";
             } else {
@@ -466,21 +483,22 @@ var form = document.querySelector("#new_gallery_tagging_"+galleryId);
             }
         }
     });
-	console.log();
-	
 	searchResults.addEventListener('click', (event) => {
-		console.log();
 	const selectedValue = event.target.textContent;
 	searchInput.value = selectedValue;
     const selectedId = event.target.getAttribute('data-user-id');
     taggedUserIds.push(selectedId);
-    form.querySelector("#tagged_user_id").value = taggedUserIds.join(",");
-	// Submit the form
-	form.submit();
-	});
+	form.querySelector("input[name='gallery_tagging[tagged_user_id]']").value = taggedUserIds.join(",");
+	
+	});	
 }
-
 </script>
-
+<script>
+$(document).on('click', '.show-more-collab a', function(e) {
+  e.preventDefault();
+  $(this).closest('.collaborators').find('.hidden-collab').show();
+  $(this).closest('.collab').hide();
+});
+</script>
 	</body>
 </html>
