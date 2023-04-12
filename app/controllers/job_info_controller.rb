@@ -18,26 +18,34 @@ class JobInfoController < ApplicationController
     end
 
 
+    # # Associated with the view used for create
+    # def new
+    #     # get default email from session if available
+    #     @job_info ||= JobInfo.new
+    #     # @job_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
+    # end
+
     def post_job 
 
         
         # @job_info ||= JobInfo.new()
         @job_info = JobInfo.new(job_info_params)
-        # if @job_info.save
-        #     flash[:success] = "Job info created successfully"
-        #     redirect_to job_info_path(@job_info)
-        # else
-        #     flash[:error] = "Error creating job info"
-        #     render 'new'
-        # end
+        if @job_info.save
+            flash[:success] = "Job info created successfully"
+            # redirect_to job_search_jobshow_path
+        else
+            flash[:error] = "Error creating job info"
+            render 'new'
+        end
 
     end
 
 
     # Params used to create the JobInfo object
     def job_info_params
-        params.require(:job_info).permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
-        # params.permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
+        # cannot use the first line, b/c currently the job_info is nil/missing
+        # params.require(:job_info).permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
+        params.permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
     end
 
 
