@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_28_031503) do
+ActiveRecord::Schema.define(version: 2023_04_08_223206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,21 @@ ActiveRecord::Schema.define(version: 2023_03_28_031503) do
     t.date "travel_start"
     t.date "travel_end"
     t.string "travel_details"
+  end
+
+  create_table "job_infos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "category"
+    t.string "profession"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "type"
+    t.integer "low_salary"
+    t.integer "high_salary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
