@@ -1,11 +1,11 @@
 class JobSearchController < ApplicationController
 
     def jobshow
-        @searchQuery = params[:Initkey]
-        if session[:current_user_key]
-            current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-            @username = current_user[:first_name]
-        end
+        # @searchQuery = params[:Initkey]
+        # if session[:current_user_key]
+        #     current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+        #     @username = current_user[:first_name]
+        # end
     end
 
     def jobsearch

@@ -109,8 +109,9 @@ Rails.application.routes.draw do
   get 'job_search/jobshow' => 'job_search#jobshow', :as => 'job_search/jobshow'
   get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
 
-  get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
-  post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
+  # get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
+  # post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
+  post 'job_info/create' => 'job_info#create', :as => 'job_info/create'
 
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'
