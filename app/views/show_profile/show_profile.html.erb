@@ -133,22 +133,11 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-
-
-							
-
-
-
-
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
-
 							<br>
-
-
-
 							<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px; height: 80px"><%= @general_info.highlights %></p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
@@ -158,7 +147,7 @@
 							</div>
 							<div class="be-user-social">
 								<!--% if @general_info && @general_info.facebook_link != "" %-->							
-									<a class="social-btn color-1" href=<%= @general_info.facebook_link.blank? ? "#" : @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>
+								<a class="social-btn color-1" href=<%= @general_info.facebook_link.blank? ? "#" : @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>
 								<!--% end %-->
 								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
 
@@ -183,14 +172,14 @@
 				<div class="col-xs-12 col-md-6 right-box">
 					<div class="top-right-box">
 				  		<!--% if @general_info && @general_info.bio != "" %-->
-							<div class="be-desc-author">
-								<div class="be-desc-label">About Me</div>
-								<div class="clearfix"></div>
-								<div class="be-user-detail">
-									<!--Add Bio HERE-->
-									<%= @general_info.bio %>
-								</div>
+						<div class="be-desc-author">
+							<div class="be-desc-label">About Me</div>
+							<div class="clearfix"></div>
+							<div class="be-user-detail">
+								<!--Add Bio HERE-->
+								<%= @general_info.bio %>
 							</div>
+						</div>
 						<!--% end %-->
 					</div>
 
@@ -235,13 +224,11 @@
 													</a>
 													<div class="profile-img-container">
 														<a class="be-img-block profile-img img-thumbnail">
-
-														<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-													</a>
+															<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+														</a>
 														<div class="mask"></div>
-									     </div>
-
-											</div>
+									     			</div>
+												</div>
 												<br>
 												<% if gallery.reviews.blank? %>
 													<% average_review=0 %>
@@ -250,9 +237,7 @@
 													<% average_review=gallery.reviews.average(:rating).round(2) %>
 													<% rating_count=gallery.reviews.count %>
 												<% end %>
-
-												<div class="average-review-rating" data-score='<%= average_review %>>'>
-												</div>
+												<div class="average-review-rating" data-score='<%= average_review %>>'></div>
 												<% if gallery.reviews.blank? %>
 													<div>No rating available</div>
 													<% else %>
@@ -262,13 +247,12 @@
 												<% if session[:current_user_key] %>
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 													<% profile_user_id=gallery.GeneralInfo_id %>
-													<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
+													<!--div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div-->
 													<% if current_user.id!= profile_user_id %>
 														<% if gallery.reviews.empty? %>
 															<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
 															<% else %>
 																<% if gallery.reviews.collect(&:user_id).include?(current_user.id) %>
-
 																<% else %>
 																	<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
 																<% end %>
@@ -280,95 +264,116 @@
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 													<% profile_user_id=gallery.GeneralInfo_id %>
 													<% if current_user.id==profile_user_id %>
-																<div class = "delete">
-																	<%= link_to 'Delete This Project', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
-																</div>
-														<%end %>
+														<div class = "delete">
+															<%= link_to 'Delete This Project', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+														</div>
+													<%end %>
 												<% end %>
 
 												<!-- NXTFolio : Added in Spring 2023 for tagging feature. -->
 												<div class="collaborators">
-												
-												<% unless gallery.tagged_users.blank? %>
-												<p>Collaborators:</p>
-													<% if gallery.tagged_users.length < 2 %>
-													<% gallery.tagged_users.each do |user| %>
-														<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+			
+													<% unless gallery.tagged_users.blank? %>
+														<p>Collaborators:</p>
+														<% if gallery.tagged_users.length < 2 %>
+															<% gallery.tagged_users.each do |user| %>
+																<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+														<% else %>
+															<% gallery.tagged_users.first(1).each do |user| %>
+																<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+															<div class="collab show-more-collab"><li><a href="#">+<%= gallery.tagged_users.length - 1 %> more</a></li></div>
+															<% gallery.tagged_users.drop(1).each do |user| %>
+																<div class="collab hidden-collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+														<% end %>
 													<% end %>
-													<% else %>
-													<% gallery.tagged_users.first(1).each do |user| %>
-														<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
-													<% end %>
-													<div class="collab show-more-collab"><li><a href="#">+<%= gallery.tagged_users.length - 1 %> more</a></li></div>
-													<% gallery.tagged_users.drop(1).each do |user| %>
-														<div class="collab hidden-collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
-													<% end %>
-													<% end %>
-												<% end %>
-												<% if session[:current_user_key] %>
-													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
+													<% if session[:current_user_key] %>
+														<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 														<% profile_user_id=gallery.GeneralInfo_id %>
 														<% if current_user.id==profile_user_id %>
-															
-															<div style="margin-right: 10px; margin-left: 10px;">
-																<a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-1 hover-9">
-																	<h4>Add Collaborators</h4>
-																</a>
-															</div>
-															<div id="collaborators-modal-<%= gallery.id %>" class="tagModalWindow">
-																<div>
-																<div class="tagModal-elements-container-<%= gallery.id %>">
-																	<h4>Existing collaborators</h4>
-																		<% gallery.tagged_users.each do |user| %>
-																			<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>">
-																				<div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div>
-																			</a>
-																			
-																		
-																			
-
-
-																		<% end %>
-														<!--h3>Add collaborators</h3-->
-																	<% @gallery_tagging = GalleryTagging.new %>
-																	<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}") do |form| %>
-																		<div class="search-box">
-																			<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
-																			<ul class="all-list-<%= gallery.id %>">
-																		<% GeneralInfo.where.not(id: current_user.id).each do |user| %>
-																				<li data-user-id="<%= user.id %>" ><%= user.first_name + " " + user.last_name %></li>
+															<div style="margin-right: 10px; margin-left: 10px;"><a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-1 hover-9"><h4>Add Collaborators</h4></a></div>
+																<div id="collaborators-modal-<%= gallery.id %>" class="tagModalWindow">
+																	<div>
+																		<div class="tagModal-elements-container-<%= gallery.id %>">
+																			<h4>Existing collaborators</h4>
+																				<% gallery.tagged_users.each do |user| %>
+																					<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div></a>
+																				<% end %>
+																			<% @gallery_tagging = GalleryTagging.new %>
+																			<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}") do |form| %>
+																				<div class="search-box">
+																					<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
+																					<ul class="all-list-<%= gallery.id %>">
+																						<% GeneralInfo.where.not(id: current_user.id).each do |user| %>
+																							<li data-user-id="<%= user.id %>" ><%= user.first_name + " " + user.last_name %></li>
+																						<% end %>
+																					</ul>
+																				</div>
+																				<%= form.label :invited_email, 'Invite User:' %>
+																				<%= form.email_field :invited_email %>
+																				<%= form.hidden_field id="tagged_user_id" %>
+																				<%= form.submit 'Tag' %>
 																			<% end %>
-																			</ul>
 																		</div>
-																		<%= form.label :invited_email, 'Invite User:' %>
-        																<%= form.email_field :invited_email %>
-																		<%= form.hidden_field id="tagged_user_id" %>
-																		<%= form.submit 'Tag' %>
-																	<% end %>
-															
-																	</div>
-																	<div style="margin-top: 10px;">
-																		<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+																		<div style="margin-top: 10px;">
+																			<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+																		</div>
 																	</div>
 																</div>
-															</div>
-													<% end %>
-												<%end %>
-												
-
-
-									</div>			
-										</div>
+														<% end %>	
+													<%end %>
+												</div>			
+											</div>
 
 										<% end %>
 										<% end %>
 								  </div>
 					      </div>
-				      </div>
+						  </div>
+						  </div> </div>
+						<div class="container-fluid custom-container">
+						<div class="row profile-row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="container-mix"  class="row _post-container_">
+						<div class="be-post">
+							<div class="be-desc-label">Collaborated Galleries</div>
+								<% @gallery_taggings.each do |gallery_tagging| %>	
+									<% if gallery_tagging.general_info_id == @general_info.id%>
+										<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
+											<div class="col-md-4">
+												<div class="photo photo-type-line">
+													<a class="photo-hover" href="<%= galleries_show_path(:project_key => tagged_gallery.id) %>">
+														<div class="photo-info">
+															<div class="headline"> <%= tagged_gallery.gallery_title %> </div>
+															<div class="line"></div>
+															<div class="desc"> <%= tagged_gallery.gallery_description %> </div>
+														</div>
+														<div class="mask"></div>
+													</a>
+													<div class="profile-img-container">
+														<a class="be-img-tagged_gallery profile-img img-thumbnail">
+															<img src="<%= tagged_gallery.gallery_picture[0].url %>" alt="omg">
+														</a>
+														<div class="mask"></div>
+													</div>
+												</div>
+												<br>
+												<div id="custom-project-title"><%= render tagged_gallery.reviews %></div>
+											</div>
+									<% end %>
+								<% end %>
+							
+						
+				    </div>
+					</div>
+						</div>	  
+				    </div>
             </div>
         	</div>
     	</div>
-	
+	</div>
 	<!-- MAIN CONTENT END -->
 	<%= render 'shared/footer' %>
 

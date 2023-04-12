@@ -8,7 +8,7 @@ class GalleriesController < ApplicationController
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     params[:gallery][:GeneralInfo_id] = @general_info.id
     @gallery = Gallery.new(gallery_params)
-    
+
     if @gallery.save!
       flash[:notice] = "Project Created"
 
@@ -52,7 +52,7 @@ class GalleriesController < ApplicationController
 
     # NXTFolio : Added in Spring 2023 for tagging feature
     @gallery_tagging = @gallery.gallery_taggings
-
+    
     logger.info("Debugging Average ")
 
     if @gallery.reviews.blank?
