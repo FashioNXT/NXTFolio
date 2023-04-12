@@ -18,25 +18,30 @@ class JobInfoController < ApplicationController
     end
 
 
-    # # Associated with the view used for create
+    # # # Associated with the view used for create
     # def new
     #     # get default email from session if available
     #     @job_info ||= JobInfo.new
     #     # @job_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
     # end
 
+    # def new
+    #   @job_info = JobInfo.new
+    # end
+
+
     def post_job 
 
         
         # @job_info ||= JobInfo.new()
         @job_info = JobInfo.new(job_info_params)
-        if @job_info.save
-            flash[:success] = "Job info created successfully"
-            # redirect_to job_search_jobshow_path
-        else
-            flash[:error] = "Error creating job info"
-            render 'new'
-        end
+        # if @job_info.save
+        #     flash[:success] = "Job info created successfully"
+        #     # redirect_to job_search_jobshow_path
+        # else
+        #     flash[:error] = "Error creating job info"
+        #     render 'new'
+        # end
 
     end
 
