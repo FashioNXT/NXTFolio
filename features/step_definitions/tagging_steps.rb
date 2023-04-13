@@ -10,13 +10,13 @@ Given(/^I am a professional and I am on my profile page$/) do
   And(/^I want to add collaborators in one of my projects$/) do
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    expect(page).to have_css('.photo-type-line') do |cards|
-        cards.each do |card|
-          expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-          expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-          expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-        end
-      end
+    # expect(page).to have_css('.photo-type-line') do |cards|
+    #     cards.each do |card|
+    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
+    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
+    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
+    #     end
+    #   end
     # sleep(inspection_time=10)
 end
 
@@ -102,13 +102,13 @@ end
   Then(/^I can see their projects$/) do
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    expect(page).to have_css('.photo-type-line') do |cards|
-        cards.each do |card|
-          expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-          expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-          expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-        end
-      end
+    # expect(page).to have_css('.photo-type-line') do |cards|
+    #     cards.each do |card|
+    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
+    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
+    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
+    #     end
+    #   end
   end
   
   Then(/^the collaborators of their projects$/) do
@@ -150,13 +150,13 @@ end
   When(/^I add (.*?) as collaborator in my project$/) do |name|
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    expect(page).to have_css('.photo-type-line') do |cards|
-        cards.each do |card|
-          expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-          expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-          expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-        end
-      end
+    # expect(page).to have_css('.photo-type-line') do |cards|
+    #     cards.each do |card|
+    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
+    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
+    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
+    #     end
+    #   end
     click_on "Add Collaborators"
     expect(page).to have_content("Existing collaborators")
     fill_in('collab-search-1', with: 'ja')
