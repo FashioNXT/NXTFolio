@@ -7,9 +7,6 @@ end
 
 ruby '3.2.0' #ruby '2.7.5'
 
-#spring 2023
-gem 'simple_form'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.4.2'
 # Use postgresql as the database for Active Record
