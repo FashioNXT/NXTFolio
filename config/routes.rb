@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # to retrive states and cities
+  get 'states/:country_id', to: 'states#index', as: 'states'
+  get 'cities/:state_id', to: 'cities#index', as: 'cities'
+
   post '/dm/:id', to: 'room#create_message'
 
   get '/dm', to: 'room#show'
