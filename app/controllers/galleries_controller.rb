@@ -206,7 +206,8 @@ class GalleriesController < ApplicationController
       InvitationMailer.invitation_email(invited_email,inviter_name,project_name,project_key).deliver_now
     end
 
-    redirect_to galleries_show_path(:project_key => params[:id])
+    #redirect_to galleries_show_path(:project_key => params[:id])
+    redirect_to gallery_path(params[:id])
   end
 
   

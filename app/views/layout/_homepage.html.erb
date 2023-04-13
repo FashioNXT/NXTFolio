@@ -97,8 +97,7 @@
                 
               </div>
             </a>
-            <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a>
-            <div class="headline"> <%= gall.gallery_title %> </div>
+            <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
             <div class="desc"> <%= gall.gallery_description %> </div>
             <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
           </div>
