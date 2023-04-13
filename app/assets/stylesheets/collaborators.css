@@ -114,13 +114,13 @@
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: #4CAF50;
+  background-color: #656c65;
   color: white;
   font-weight: bold;
   cursor: pointer;
 }
 
 .new_gallery_tagging_form input[type="submit"]:hover {
-  background-color: #3e8e41;
+  background-color: #cfcfdc;
 }
 
