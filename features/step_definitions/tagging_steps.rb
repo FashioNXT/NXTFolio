@@ -174,7 +174,12 @@ end
     visit show_profile_show_profile_path(:user_key => GeneralInfo.find_by(emailaddr: "James.Lawrence@example.com").userKey)
   end
   Then(/^I should see my project in their collaborated projects$/) do
-    expect(page).to have_content("Collaborated Galleries")
-    link = find('a.photo-hover[href="/galleries/show?project_key=1"]')
-    expect(link).to be_visible
+    within(".collaborated-galleries") do
+      expect(page).to have_content("Collaborated Galleries")
+      find(".profile-img-container").hover
+      expect(find("a.photo-hover[href='/galleries/show?project_key=1']")).to be_visible
+      #link = find('a.photo-hover[href="/galleries/show?project_key=1"]')
+      #expect(link).to be_visible
+    end
   end
+
