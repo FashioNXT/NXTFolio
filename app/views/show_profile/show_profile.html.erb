@@ -272,7 +272,6 @@
 
 												<!-- NXTFolio : Added in Spring 2023 for tagging feature. -->
 												<div class="collaborators">
-			
 													<% unless gallery.tagged_users.blank? %>
 														<p>Collaborators:</p>
 														<% if gallery.tagged_users.length < 2 %>
@@ -293,16 +292,16 @@
 														<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 														<% profile_user_id=gallery.GeneralInfo_id %>
 														<% if current_user.id==profile_user_id %>
-															<div style="margin-right: 10px; margin-left: 10px;"><a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-1 hover-9"><h4>Add Collaborators</h4></a></div>
+															<a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-0 hover-9"><h5>Add Collaborators</h5></a>
 																<div id="collaborators-modal-<%= gallery.id %>" class="tagModalWindow">
 																	<div>
 																		<div class="tagModal-elements-container-<%= gallery.id %>">
-																			<h4>Existing collaborators</h4>
+																			<h5><b>Existing collaborators</b></h5>
 																				<% gallery.tagged_users.each do |user| %>
 																					<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div></a>
 																				<% end %>
 																			<% @gallery_tagging = GalleryTagging.new %>
-																			<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}") do |form| %>
+																			<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}", class: "new_gallery_tagging_form" ) do |form| %>
 																				<div class="search-box">
 																					<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
 																					<ul class="all-list-<%= gallery.id %>">
@@ -311,9 +310,11 @@
 																						<% end %>
 																					</ul>
 																				</div>
-																				<%= form.label :invited_email, 'Invite User:' %>
+																				<br>
+																				<%= form.label :invited_email, 'Invite User' %>
 																				<%= form.email_field :invited_email %>
 																				<%= form.hidden_field id="tagged_user_id" %>
+																				<br>
 																				<%= form.submit 'Tag' %>
 																			<% end %>
 																		</div>
@@ -332,47 +333,60 @@
 								  </div>
 					      </div>
 						  </div>
-						  </div> </div>
-						<div class="container-fluid custom-container">
-						<div class="row profile-row">
+						  </div> 
+						</div>
+		
+		<div class="container-fluid custom-container">
+			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">
 					<div id="container-mix"  class="row _post-container_">
 						<div class="be-post">
-						<div class="collaborated-galleries">
+							<div class="collaborated-galleries">
 							<div class="be-desc-label">Collaborated Galleries</div>
-								<% @gallery_taggings.each do |gallery_tagging| %>	
-									<% if gallery_tagging.general_info_id == @general_info.id%>
-										<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
-											<div class="col-md-4">
-												<div class="photo photo-type-line">
-													<a class="photo-hover" href="<%= galleries_show_path(:project_key => tagged_gallery.id) %>">
-														<div class="photo-info">
-															<div class="headline"> <%= tagged_gallery.gallery_title %> </div>
-															<div class="line"></div>
-															<div class="desc"> <%= tagged_gallery.gallery_description %> </div>
-														</div>
-														<div class="mask"></div>
-													</a>
-													<div class="profile-img-container">
-														<a class="be-img-tagged_gallery profile-img img-thumbnail">
-															<img src="<%= tagged_gallery.gallery_picture[0].url %>" alt="omg">
-														</a>
-														<div class="mask"></div>
-													</div>
+							<% @gallery_taggings.each do |gallery_tagging| %>	
+								<% if gallery_tagging.general_info_id == @general_info.id%>
+									<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
+									<div class="col-md-4">
+										<div class="photo photo-type-line">
+											<a class="photo-hover" href="<%= galleries_show_path(:project_key => tagged_gallery.id) %>">
+												<div class="photo-info">
+													<div class="headline"> <%= tagged_gallery.gallery_title %> </div>
+													<div class="line"></div>
+													<div class="desc"> <%= tagged_gallery.gallery_description %> </div>
 												</div>
-												<br>
-												<div id="custom-project-title"><%= render tagged_gallery.reviews %></div>
+												<div class="mask"></div>
+											</a>
+											<div class="profile-img-container">
+												<a class="be-img-block profile-img img-thumbnail"><img src="<%= tagged_gallery.gallery_picture[0].url %>" alt="omg"></a>
+												<div class="mask"></div>
 											</div>
+										</div>
+										<br>
+										<% if tagged_gallery.reviews.blank? %>
+											<% average_review=0 %>
+											<% rating_count=0 %>
+										<% else %>
+											<% average_review=tagged_gallery.reviews.average(:rating).round(2) %>
+											<% rating_count=tagged_gallery.reviews.count %>
+										<% end %>
+										<div class="average-review-rating" data-score='<%= average_review %>>'></div>
+										<% if tagged_gallery.reviews.blank? %>
+											<div>No rating available</div>
+										<% else %>
+											<div>Based on <%= rating_count %> ratings</div>
+										<% end %>
+										<div id="custom-project-title"><%= render tagged_gallery.reviews %></div>
+									</div>
 									<% end %>
 								<% end %>
-							
-						</div>
-				    </div>
-					</div>
+								</div>
+							</div>
+							</div>
 						</div>	  
 				    </div>
-            </div>
-        	</div>
+            	</div>
+        	
+			
     	</div>
 	</div>
 	<!-- MAIN CONTENT END -->
