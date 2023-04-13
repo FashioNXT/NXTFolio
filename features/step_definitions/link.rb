@@ -1,4 +1,4 @@
-Given(/^I am on the FashioNxt home page$/) do
+Given(/^I am at FashioNxt home page$/) do
     visit root_path
 end
 
