@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
 
+
+  # NXTFolio : Added in Spring 2023 for tagging feature
+  post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
+
   get '/galleries/:id/edit', to: 'galleries#edit', as: 'edit_gallery'
   get '/galleries/:id/show', to: 'galleries#show', as: 'gallery'
 
@@ -34,30 +38,6 @@ Rails.application.routes.draw do
   get '/galleries/:id/delete/:idx', to: 'galleries#delete', as: 'gallery_delete'
 
   get '/galleries/:id/add_images', to: 'galleries#transfer', as: 'gallery_added_image'
-
-#________________________________________________________________________
-
-# get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
-
-  
-#   #get 'galleries/create'
-
-#   get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
-
-#   get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
-
-#   get 'galleries/index'
-
-#   get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
-
-#   post 'galleries/update' => 'galleries#update', :as => 'galleries/update'
-
-#   post 'galleries/create' => 'galleries#create', :as => 'galleries/create'
-
-#   # NXTFolio : Added in Spring 2023 for tagging feature
-#   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
-
-
 
 
   #get 'template/create'
@@ -167,6 +147,10 @@ end
 
   resources :galleries, except: :destroy do
     resources :reviews
+
+    # NXTFolio : Added in Spring 2023 for tagging feature
+    resources :gallery_taggings
+
   end
   resources :search_engine
 

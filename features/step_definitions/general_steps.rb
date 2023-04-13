@@ -42,7 +42,7 @@ Given(/^the following galleries exist$/) do |table|
   image_file = Rack::Test::UploadedFile.new(image_path, 'image/jpeg')
   table.hashes.each do |gallery_info|
     Gallery.create!(gallery_title: gallery_info['title'],
-      id: '2',
+      #id: '2',
       gallery_description: gallery_info['description'],
       gallery_totalRate: gallery_info['id'],
       GeneralInfo_id: gallery_info['id'],
@@ -82,7 +82,7 @@ Given(/^the following galleries for testing delete exist$/) do |table|
 
   table.hashes.each do |gallery_info|
     Gallery.create!(gallery_title: gallery_info['title'],
-      id: '1',
+      #id: '1',
       gallery_description: gallery_info['description'],
       gallery_totalRate: gallery_info['id'],
       GeneralInfo_id: '0',
@@ -176,18 +176,19 @@ end
 
 Given(/^I am logged in as "(.+)"$/) do |user|
   # get user info
-  name = user['name'].split(".")
+  name = user.split(".")
   email = "#{name[0]}.#{name[1]}@example.com"
   login_info = LoginInfo.find_by(email: email)
 
   # login as user
   visit 'login_info/login'
-  fill_in "email", :with => login_info.email
-  fill_in "password", :with => login_info.password
-  click_button "Login"
+  fill_in "login_email", :with => login_info.email
+  fill_in "login_password", :with => login_info.password
+  click_button "SIGN IN"
 end
 
 Given(/^I am on (.+)$/) do |page_name|
+  #puts(path_to(page_name))
   visit path_to(page_name)
 end
 
@@ -257,8 +258,13 @@ When(/^I hover over the "([^"]*)" element$/) do |element|
 end
 
 
-
-
+Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, msg|
+  step "I am logged in as \"#{from_user}\""
+  visit path_to "the DM page"
+  step "I select \"#{to_user.gsub('.', ' ')}\" chat"
+  fill_in("body", :with => msg)
+  click_link_or_button "send"
+  click_link_or_button "Log out"
 
 When("I click on the image with alt text {string}") do |alt_text|
   # Find the image element with the specified alt text
@@ -266,4 +272,24 @@ When("I click on the image with alt text {string}") do |alt_text|
 
   # Click on the image element
   image.click
+
+end
+
+  # todo! create a message
+  # from_name = from_user.split(".")
+  # from_email = "#{from_name[0]}.#{from_name[1]}@example.com"
+  # from_info = GeneralInfo.find_by(email: from_email)
+
+  # to_name = to_user.split(".")
+  # to_email = "#{to_name[0]}.#{to_name[1]}@example.com"
+  # to_info = GeneralInfo.find_by(email: to_email)
+
+
+
+  # users = [from_user.id, to_user.id].sort
+  # room_name = "private_#{users[0]}_#{users[1]}"
+  # @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
+
+  # @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
+
 end

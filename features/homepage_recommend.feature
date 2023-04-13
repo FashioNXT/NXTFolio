@@ -15,18 +15,18 @@ Feature: Recommending projects on homepage
 
     Given the following galleries exist
   | title | description | total  | id|  num|
-  | t1    | high1       | 20     |  1  | 4 |
-  | t2    | high2       | 20     |   2  | 4|
-  | t3    | low1        | 4     |   3  |  4|
-  | t4    | low2        | 4     |   4  |  4|
+  | t10    | high1       | 20     |  1  | 4 |
+  | t20    | high2       | 20     |   2  | 4|
+  | t30    | low1        | 4     |   3  |  4|
+  | t40    | low2        | 4     |   4  |  4|
     
 
   Scenario: When a user on the homepage, he should see some recommending projects
     Given I am on the home page
     And I should see "Projects you may be interested in:"
-    And I should see "t1"
+    And I should see "t10"
     And I should see "5"
-    And I should see "t2"
+    And I should see "t20"
     And I should see "5"
 
 Scenario: When a user on the homepage, he should not see some low-rating projects

@@ -203,6 +203,10 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
 ### Helpful fixes
 
+- **Changes to css or javascript not reflecting on test**
+
+    Try recompiling the assets by running `rake assets:clobber` and `rake assets:precompile`.
+
 - **env: ruby\r: No such file or directory**
 
     Windows uses a different line ending to linux, which is makes linux not read correctly windows files.

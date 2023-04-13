@@ -166,9 +166,14 @@ class GalleriesController < ApplicationController
   end
 
   def show
+
     puts (params.inspect)
     #@gallery = Gallery.find(params[:project_key])
     @gallery = Gallery.find(params[:id])
+
+
+    # NXTFolio : Added in Spring 2023 for tagging feature
+    @gallery_tagging = @gallery.gallery_taggings
 
     logger.info("Debugging Average ")
 
@@ -179,11 +184,42 @@ class GalleriesController < ApplicationController
     end
   end
 
+  # NXTFolio : Added function in Spring 2023 for tagging feature
+  def create_tagging
+    @gallery = Gallery.find_by(id: params[:id])
+    tagged_ids = params[:gallery_tagging][:tagged_user_id].reject(&:blank?)
+    tagged_ids.each do |tagged_id|
+      if GalleryTagging.where(gallery_id: params[:id], general_info_id: tagged_id).empty?
+        @gallery_tagging = GalleryTagging.new(gallery_id: params[:id], general_info_id: tagged_id)
+        if @gallery_tagging.save
+          flash[:notice] = "Tagged User(s) Successfully"
+        else
+          flash[:alert] = "Failed to Tag User(s)"
+        end
+      end
+    end
+    invited_email = params[:gallery_tagging][:invited_email]
+    if invited_email.present?
+      inviter_name = GeneralInfo.find_by(id:@gallery.GeneralInfo_id).emailaddr
+      project_name = @gallery.gallery_title
+      project_key = params[:id]
+      InvitationMailer.invitation_email(invited_email,inviter_name,project_name,project_key).deliver_now
+    end
+
+    redirect_to galleries_show_path(:project_key => params[:id])
+  end
+
+  
   private
 
   def gallery_params
-    params.require(:gallery).permit(:id, :gallery, :gallery_title, :gallery_description, :ratings, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_picture => [], :remove_image_ids => [], :test_picture => [])
+    # NXTFolio : Added gallery_tagging in Spring 2023 for tagging feature
+    params.require(:gallery).permit(:id,:gallery, :gallery_title, :gallery_description, :ratings, :gallery_totalRate, :gallery_totalRator, :GeneralInfo_id, :gallery_tagging, :gallery_picture => [], :remove_image_ids => [], :test_picture => [])
   end
 
+  # NXTFolio : Added in Spring 2023 for tagging feature
+  def gallery_tagging_params
+    params.require(:gallery_tagging).permit(tagged_user_id: [] )
+  end
   
 end

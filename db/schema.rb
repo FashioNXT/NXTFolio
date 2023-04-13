@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2023_04_05_064328) do
     t.string "test_picture", array: true
   end
 
+  create_table "gallery_taggings", force: :cascade do |t|
+    t.bigint "gallery_id", null: false
+    t.bigint "general_info_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tagged_user_id"
+    t.string "invited_email"
+    t.index ["gallery_id"], name: "index_gallery_taggings_on_gallery_id"
+    t.index ["general_info_id"], name: "index_gallery_taggings_on_general_info_id"
+  end
+
   create_table "general_infos", id: :serial, force: :cascade do |t|
     t.string "userKey"
     t.string "first_name"
@@ -200,6 +211,8 @@ ActiveRecord::Schema.define(version: 2023_04_05_064328) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "gallery_taggings", "galleries"
+  add_foreign_key "gallery_taggings", "general_infos"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
 end
