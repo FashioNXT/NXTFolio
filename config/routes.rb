@@ -126,18 +126,9 @@ Rails.application.routes.draw do
     resources :reviews
 
     # NXTFolio : Added in Spring 2023 for tagging feature
-#    resources :gallery_taggings
- #   delete '/gallery/:id/tagging/:user_id', to: 'gallery_taggings#destroy', as: 'remove_tagging_gallery'
     resources :gallery_taggings, only: [:create, :destroy]
-#    delete 'tagging/:id', to: 'galleries#destroy_tagging', as: 'gallery_destroy_tagging'
-   # delete '/galleries/:gallery_id/gallery_taggings/:id', to: 'galleries#destroy_tagging', as: 'gallery_destroy_tagging'
-   #delete '/gallery_taggings/:id', to: 'gallery_taggings#destroy', as: 'gallery_destroy_gallery_tagging'
-
 
   end
-
-
-
 
   resources :search_engine
 
