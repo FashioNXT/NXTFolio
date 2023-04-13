@@ -55,7 +55,6 @@
 </header>
 
 <!-- MAIN CONTENT -->
-
 <div id="content-block">
   <div class="head-bg">
     <div class="head-bg-img"></div>
@@ -105,7 +104,7 @@
           <div class="row-fluid" id="log_in_div">
               <%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
                   <form action="#" class="popup-input-search" method="post">
-                    <div class="span3">
+                    <div class="span3" id = "email">
                       <%= form.text_field :email, :class => 'input-signtype', :id => 'login_email', :placeholder => 'Your Email', :required => ''%>
                     </div>
                     <br>
