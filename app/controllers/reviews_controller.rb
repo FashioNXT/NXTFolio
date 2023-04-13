@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :find_gallery
   before_action :find_user
   before_action :find_review, only: [:edit,:update, :destroy]
-
+  
 
 
   def new

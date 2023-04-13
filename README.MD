@@ -8,6 +8,7 @@
   - [Helpful fixes](#helpful-fixes)
   - [(OLD) How to start a local server:](#old-how-to-start-a-local-server)
 - [Using AWS S3 as Image Backend](#using-aws-s3-as-image-backend)
+- [Country/States/Cities Database](#countrystatescities-database)
 - [Geocoding](#geocoding)
 - [What will you see on the web app?](#what-will-you-see-on-the-web-app)
 - [To get started](#to-get-started)
@@ -336,6 +337,11 @@ For deployed Heroku environments: (assuming the site is already deployed)
 
 ```heroku config:set AWS_SECRET_KEY=x``` and then ```heroku config:set AWS_ACCESS_KEY=y```
    
+
+## Country/States/Cities Database
+
+To update the country/state/city database visit [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database) to obtain the latest json file and replace it for the one located at `db/seed_files/countries+states+cities.json`.
+
 ## Geocoding
 
 For searching by location, a Google Geocoding API key will be required. This must be set as an environment variable (see Using AWS S3... above) with the name "GOOGLE_KEY".

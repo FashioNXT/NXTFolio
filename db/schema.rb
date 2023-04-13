@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_08_223206) do
+
+#ActiveRecord::Schema.define(version: 2023_04_05_064328) do
+
+ActiveRecord::Schema.define(version: 2023_04_12_212227) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "state_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "iso3"
+    t.string "phone_code"
+    t.string "capital"
+    t.string "currency"
+    t.string "region"
+    t.string "subregion"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["iso3"], name: "index_countries_on_iso3", unique: true
+  end
 
   create_table "galleries", id: :serial, force: :cascade do |t|
     t.string "gallery_title"
@@ -25,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_04_08_223206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+    t.string "test_picture", array: true
   end
 
   create_table "gallery_taggings", force: :cascade do |t|
@@ -79,27 +109,6 @@ ActiveRecord::Schema.define(version: 2023_04_08_223206) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
-    t.string "travel_country"
-    t.string "travel_state"
-    t.string "travel_city"
-    t.date "travel_start"
-    t.date "travel_end"
-    t.string "travel_details"
-  end
-
-  create_table "job_infos", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "category"
-    t.string "profession"
-    t.string "country"
-    t.string "state"
-    t.string "city"
-    t.string "type"
-    t.integer "low_salary"
-    t.integer "high_salary"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
@@ -202,6 +211,17 @@ ActiveRecord::Schema.define(version: 2023_04_08_223206) do
     t.string "state"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.string "state_code"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "country_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_states_on_country_id"
+  end
+
   create_table "templates", id: :serial, force: :cascade do |t|
     t.string "prof_name"
     t.json "prof_attribute"
@@ -231,8 +251,10 @@ ActiveRecord::Schema.define(version: 2023_04_08_223206) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cities", "states"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
+  add_foreign_key "states", "countries"
 end
