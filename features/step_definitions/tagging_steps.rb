@@ -10,14 +10,6 @@ Given(/^I am a professional and I am on my profile page$/) do
   And(/^I want to add collaborators in one of my projects$/) do
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    # expect(page).to have_css('.photo-type-line') do |cards|
-    #     cards.each do |card|
-    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-    #     end
-    #   end
-    # sleep(inspection_time=10)
 end
 
   When(/^I click on Add Collaborators button$/) do
@@ -53,12 +45,6 @@ end
     expect(page).to have_content("Collaborators:")
     expect(page).to have_content(collaborator_name)
   end
-
-  # Then(/^I should be able to see collaborators added to my project$/) do
-  #   expect(page).to have_content("Collaborators:")
-  #   expect(page).to have_selector(".collab a", text: "Andrea.Picardo@example.com", count: 1)
-
-  # end
   
   Given(/^I am a professional and I am on profile page of some other user who has projects$/) do
     visit root_path
@@ -71,9 +57,6 @@ end
   
   Then(/^I should not be able to see the option to tag collaborators in their project$/) do
     expect(page).not_to have_button("Add Collaborators")
-    #expect(page).not_to have_selector("select[name='gallery_tagging[tagged_user_id][]'] option[value='2']")
-    #expect(page).not_to have_selector("select[name='gallery_tagging[tagged_user_id][]'] option[value='3']")
-    
   end
   
   Given(/^I am a professional but not logged in$/) do
@@ -102,13 +85,6 @@ end
   Then(/^I can see their projects$/) do
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    # expect(page).to have_css('.photo-type-line') do |cards|
-    #     cards.each do |card|
-    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-    #     end
-    #   end
   end
   
   Then(/^the collaborators of their projects$/) do
@@ -143,20 +119,13 @@ end
 
     expect(invitation_email.body).to include("Hello Mona.Lisa@example.com,")
     expect(invitation_email.body).to include("Anthony.Gray@example.com is inviting you to collaborate on the project <b>Test Gallery 1</b>.")
-    expect(invitation_email.body).to include("<p><a href=\"http://localhost:3000/galleries/show?project_key=1\">Link to project.</a></p>")
+    expect(invitation_email.body).to include("<p><a href=\"http://localhost:3000/galleries/show?id=1\">Link to project.</a></p>")
   
   end
 
   When(/^I add (.*?) as collaborator in my project$/) do |name|
     expect(page).to have_content("Gallery Pictures")
     expect(page).to have_css('.photo-type-line', count: 1)
-    # expect(page).to have_css('.photo-type-line') do |cards|
-    #     cards.each do |card|
-    #       expect(card).to have_css('img[src*="uploads/gallery/gallery_picture/"]')
-    #       expect(card).to have_css('.headline', text: /[a-zA-Z]/)
-    #       expect(card).to have_css('.desc', text: /[a-zA-Z]/)
-    #     end
-    #   end
     click_on "Add Collaborators"
     expect(page).to have_content("Existing collaborators")
     fill_in('collab-search-1', with: 'ja')

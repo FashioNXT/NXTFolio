@@ -8,14 +8,15 @@ Feature: Search a Profile
   # NXTFolio Spring 2023, Iteration 2
   Background: users in database
     Given the following users exist
-    | name              | password  | job |
-    | Andrea.Picardo    | Test1234! | Model |
-    | Leonardo.Picardo    | Test1234! | Model |
-    | Leonardo.Secondo    | Test1234! | Photographer |
-    | Andrea.Secondo    | Test1234! | Photographer |
+    | name              | password  | job | city | state |
+    | Andrea.Picardo   | Test1234! | Model | Houston | TX |
+    | Leonardo.Picardo    | Test1234! | Model | Houston | TX |
+    | Leonardo.Secondo   | Test1234! | Manufacturing | College Station | TX |
+    | Andrea.Secondo    | Test1234! | Manufacturing | Columbus | OH |
 
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When a user searches for Brand Owners when there are no profiles, it should see no matching profiles
+    When I am a valid user
     Given I am on the home page
     When I click on "Brand Owner"
     Then I should be on the search engine page
@@ -24,15 +25,16 @@ Feature: Search a Profile
   # todo! delete into
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When a user searches for Brand Owners when there are no profiles, it should see no matching profiles
+    When I am a valid user
     Given I am on the home page
     When I click on "Brand Owner"
     Then I should be on the search engine page
     And I should see "No matching profiles"
 
   # NXTFolio Spring 2023, Iteration 2
-  Scenario: When a user searches for Photographer, it should show the photographers
+  Scenario: When a user searches for Manufacturing, it should show the Manufacturing
     Given I am on the home page
-    When I click on "Photographer"
+    When I click on "Manufacturing"
     Then I should be on the search engine page
     And I should see "Leonardo Secondo"
     And I should see "Andrea Secondo"

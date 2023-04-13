@@ -214,7 +214,8 @@
 										<% if gallery.GeneralInfo_id == @general_info.id %>
 											<div class="col-md-4">
 												<div class="photo photo-type-line">
-													<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+													<a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+													
 														<div class="photo-info">
 															<div class="headline"> <%= gallery.gallery_title %> </div>
 															<div class="line"></div>

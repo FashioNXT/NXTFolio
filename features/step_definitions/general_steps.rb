@@ -17,6 +17,7 @@ Given(/the following users exist/) do |users_table|
     login_info.save!
 
     general_info = GeneralInfo.new
+    general_info.id = user['id']
     general_info.first_name = first_name
     general_info.last_name = last_name
     general_info.userKey = userkey
@@ -25,12 +26,134 @@ Given(/the following users exist/) do |users_table|
     general_info.job_name = job
     general_info.highlights = "Just a test User"
     general_info.country = "United States"
-    general_info.state = "Texas"
-    general_info.city = "College Station"
+    #general_info.state = "Texas"
+    #general_info.city = "College Station"
+    general_info.city = user['city']
+    general_info.state = user['state']
     general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
     general_info.save!
   end
 end
+
+
+
+Given(/^the following galleries exist$/) do |table|
+  image_path = File.join(Rails.root, 'app', 'assets', 'images', '1.jpg')
+  image_file = Rack::Test::UploadedFile.new(image_path, 'image/jpeg')
+  table.hashes.each do |gallery_info|
+    Gallery.create!(gallery_title: gallery_info['title'],
+      #id: '2',
+      gallery_description: gallery_info['description'],
+      gallery_totalRate: gallery_info['id'],
+      GeneralInfo_id: gallery_info['id'],
+      gallery_totalRate: gallery_info['total'],
+      gallery_totalRator: gallery_info['num'],
+      gallery_picture: [image_file])
+  end
+end
+
+When("I upload an image") do
+  attach_file('test_picture', File.absolute_path('app/assets/images/4.jpg'), make_visible: true)
+end
+
+When("I upload multiple images") do
+  files = [
+    File.absolute_path('app/assets/images/4.jpg'),
+    File.absolute_path('app/assets/images/5.jpg'),
+    File.absolute_path('app/assets/images/6.jpg'),
+    File.absolute_path('app/assets/images/a1.png')
+  ]
+
+  attach_file('test_picture', files, make_visible: true, multiple: true)
+end
+
+
+
+
+Given(/^the following galleries for testing delete exist$/) do |table|
+  image_path1 = File.join(Rails.root, 'app', 'assets', 'images', '1.jpg')
+  image_file1 = Rack::Test::UploadedFile.new(image_path1, 'image/jpeg')
+
+  image_path2 = File.join(Rails.root, 'app', 'assets', 'images', '2.jpg')
+  image_file2 = Rack::Test::UploadedFile.new(image_path2, 'image/jpeg')
+
+  image_path3 = File.join(Rails.root, 'app', 'assets', 'images', '3.jpg')
+  image_file3 = Rack::Test::UploadedFile.new(image_path3, 'image/jpeg')
+
+  table.hashes.each do |gallery_info|
+    Gallery.create!(gallery_title: gallery_info['title'],
+      #id: '1',
+      gallery_description: gallery_info['description'],
+      gallery_totalRate: gallery_info['id'],
+      GeneralInfo_id: '0',
+      gallery_totalRate: gallery_info['total'],
+      gallery_totalRator: gallery_info['num'],
+      gallery_picture: [image_file1, image_file2, image_file3])
+  end
+end
+
+
+
+
+
+
+
+
+
+And(/^the following reviews exist for galleries$/) do |table|
+  ids = [1,2,3,4]
+  index = 0
+  table.hashes.each do |review_info|
+    numss = review_info['rating'].split(",")
+    nums = []
+    for x in numss
+      nums.push(x.to_i)
+    end
+
+
+    @gallery = Gallery.find_by(gallery_totalRate: ids[index])
+    r = Review.create!(rating: nums, gallery_id: 1, general_info_id: 1)
+    @gallery.reviews = r
+    index += 1
+  end
+end
+
+
+#  Given(/the following galleries exist/) do |gallery_table|
+
+  
+#   gallery_table.hashes.each do |gall|
+
+#     gallery_info = Gallery.new
+#     gallery_info.gallery_title = gall['title']
+#     gallery_info.gallery_description = gall['description']
+    
+#     gallery_info.gallery_picture = [nil]
+#     gallery_info.GeneralInfo_id = 1
+
+#     gallery_info.reviews = Review.find(gallery_id: 1)
+#     gallery_info.save!
+#   end
+
+
+# end
+
+# Given(/the following reviews exist/) do |table|
+#   table.hashes.each do |review|
+#     review_info = Review.new
+#     nums = review['rating'].split(",")
+#     for x in nums 
+#       x = x.to_i
+#     end
+#     review_info.rating = nums
+#     review_info.general_info_id = review['general_info_id']
+#     review_info.gallery_id = review['gallery_id']
+
+#     review_info.save!
+#   end
+# end
+
+
 
 Given(/the following countries exist/) do |location_table|
   location_table.hashes.each do |location|
@@ -49,6 +172,9 @@ Then(/^I should be on (.+)$/) do |page_name|
   current_path = URI.parse(current_url).path
   expect(current_path).to eq(path_to(page_name))
 end
+
+
+
 
 Given(/^I am logged in$/) do
   visit 'login_info/login'
@@ -71,8 +197,14 @@ Given(/^I am logged in as "(.+)"$/) do |user|
 end
 
 Given(/^I am on (.+)$/) do |page_name|
+  #puts(path_to(page_name))
   visit path_to(page_name)
 end
+
+Then /^I am with id gallery (\d+)$/ do |id|
+  visit gallery_path(id)
+end
+
 
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in(field, :with => value)
@@ -83,6 +215,8 @@ When /^(?:|I )fill in the following:$/ do |fields|
     fill_in(name, :with => value)
   end
 end
+
+
 
 Then /^(?:|I )should see the following fields:$/ do |fields|
   fields.rows_hash.each do |name, value|
@@ -132,6 +266,7 @@ When(/^I hover over the "([^"]*)" element$/) do |element|
   page.driver.browser.action.move_to(target_element.native).perform
 end
 
+
 Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, msg|
   step "I am logged in as \"#{from_user}\""
   visit path_to "the DM page"
@@ -140,7 +275,14 @@ Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, m
   click_link_or_button "send"
   click_link_or_button "Log out"
 
+When("I click on the image with alt text {string}") do |alt_text|
+  # Find the image element with the specified alt text
+  image = find("img[alt='#{alt_text}']")
 
+  # Click on the image element
+  image.click
+
+end
 
   # todo! create a message
   # from_name = from_user.split(".")
@@ -158,4 +300,5 @@ Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, m
   # @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
 
   # @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
+
 end

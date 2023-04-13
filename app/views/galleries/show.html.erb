@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+  
 		<title>FashioNXT</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,15 +38,14 @@
 
     
     <!-- Main Content -->
-    <div class = "container be-detail-container">
+  <div class="container float-left">
+    <div class = "container be-detail-container float-left">
       <h2> <%= @gallery.gallery_title %> </h2>
-
-      
     </div>
-
-    <div class = "container be-detail-container">
+    <div class = "container be-detail-container float-left">
       <h3> Description: </h3>
       <p> <%= @gallery.gallery_description %> </p>
+
 
 <!--NXTFolio : Added in Spring 2023 for tagging feature.-->
 <div class="collaborators">
@@ -57,34 +57,55 @@
 </ul>
 </div>
       <h3> All Images: </h3>
-    </div>
 
+    </div>
+</div>
     <div class="container-fluid custom-container">
             <div class="row profile-row">
                 <div class="col-md-10 col-md-offset-1">
                     <div id="container-mix"  class="row _post-container_">
-                        <div class="be-post">
-                            <% @gallery.gallery_picture.each do |image| %>
-                                <div class="col-md-3">
-                                  <div class="photo photo-type-line">
-                                  <div class="profile-img-container">
-                                  <a class="be-img-block profile-img img-thumbnail">
-                                    <img src="<%= image.url %>" alt="omg">
-																		
-																		<%= link_to 'View Image', image_path(image), method: :delete, data: { confirm: "Are you sure you want to delete this image?" } %>
-                          
+                      <h3> All Images: </h3>
+                        <div class="be-post row">
+                          <% @gallery.gallery_picture.each do |image| %>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="profile-img-container">
+                                  <a class="be-img-block profile-img img-thumbnail" href="#">
+                                    <%= image_tag image.url %>
+                                    <%idx = @gallery.gallery_picture.index(image)%>
+                                    <%if @gallery.gallery_picture.length() > 1 %>
+                                    <%which = (idx + 1).to_s%>
+                                    
+                                      <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                    <%end%>
+              
                                   </a>
-                                  </div>
-                                  </div>
                                 </div>
-                            <% end %>
-                        </div>
+              
+                                
+                            </div>
+                          <% end %>
+              
+                          <div class="col-md-3">
+                      </div>
+                      
+                    </div>
+                    <%if @gallery.gallery_picture.length() == 1 %>
+                            <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+                      <%end%>
                     </div>
                 </div>
             </div>
+      <div class="row">
+      
+</div>
+<%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+    <div class="be-desc-label"><a href="/galleries/new">Add a new gallery</a></div>
         </div>
-    <%= link_to 'Add Another Gallary', 'new' %>
-    <a class="btn full color-1 size-1 hover-1" href="/show_profile" method="get"><i class="fa fa-chevron-left"></i>Back</a>
+    <% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
+    <% if owner.userKey != session[:current_user_key] %>
+      <a class="btn full color-1 size-1 hover-1" href="<%= show_profile_show_profile_path(:user_key => owner.userKey) %>" method="get"><i class="fa fa-chevron-left"></i>See project owner's profile </a>
+    <%end%>
+    <a class="btn full color-1 size-1 hover-1" href="/" method="get"><i class="fa fa-chevron-left"></i>Back</a>
     
     <!-- MAIN CONTENT END -->
     <footer>	
@@ -143,4 +164,3 @@
     <script src="<%= asset_path "global.js"%>"></script>
 	</body>
 </html>
-

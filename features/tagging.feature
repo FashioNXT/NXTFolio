@@ -5,11 +5,11 @@ Feature: Travel Feature
 
   Background: users in database
     Given the following users exist
-    | name              | password  | job          |
-    | Andrea.Picardo    | Test1234! | Model        |
-    | Anthony.Gray      | Test1234! | Photographer |
-    | Jack.Sparrow      | Test1234! | Model        |
-    | James.Lawrence    | Test1234! | Model        |
+    | name              | password  | job          | city | state | id |
+    | Andrea.Picardo    | Test1234! | Model        | Houston | TX | 1  |
+    | Anthony.Gray      | Test1234! | Photographer | College Station | TX | 2  |
+    | Jack.Sparrow      | Test1234! | Model        | Bryan | TX | 3  |
+    | James.Lawrence    | Test1234! | Model        | Houston | TX | 4  |
     
     Given that 3 projects exist
 
