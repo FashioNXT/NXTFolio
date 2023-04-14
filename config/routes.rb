@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   # to retrive states and cities
@@ -29,7 +30,18 @@ Rails.application.routes.draw do
 
   # NXTFolio : Added in Spring 2023 for tagging feature
   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
+  
+  # spring2023 add/delete images in gallery
+  get '/galleries/:id/edit', to: 'galleries#edit', as: 'edit_gallery'
+  get '/galleries/:id/show', to: 'galleries#show', as: 'gallery'
 
+  put '/galleries/:id/show', to: 'galleries#update', as: 'gallery/update'
+
+
+  get '/galleries/:id/delete/:idx', to: 'galleries#delete', as: 'gallery_delete'
+
+  get '/galleries/:id/add_images', to: 'galleries#transfer', as: 'gallery_added_image'
+  
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -127,13 +139,18 @@ Rails.application.routes.draw do
 
 #halting this changes, later will check
 
+resources :galleries do
+  resources :images, only: [:create, :destroy]
+end
+
   resources :galleries, except: :destroy do
     resources :reviews
 
     # NXTFolio : Added in Spring 2023 for tagging feature
-    resources :gallery_taggings
+    resources :gallery_taggings, only: [:create, :destroy]
 
   end
+
   resources :search_engine
 
   devise_scope :user do
@@ -142,3 +159,4 @@ Rails.application.routes.draw do
   end
   root 'application#index'
 end
+

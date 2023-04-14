@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+#ActiveRecord::Schema.define(version: 2023_04_05_064328) do
+
 ActiveRecord::Schema.define(version: 2023_04_12_212227) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+    t.string "test_picture", array: true
   end
 
   create_table "gallery_taggings", force: :cascade do |t|
@@ -104,12 +109,6 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
-    t.string "travel_country"
-    t.string "travel_state"
-    t.string "travel_city"
-    t.date "travel_start"
-    t.date "travel_end"
-    t.string "travel_details"
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
