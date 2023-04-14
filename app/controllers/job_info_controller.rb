@@ -25,9 +25,11 @@ class JobInfoController < ApplicationController
     #     # @job_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
     # end
 
-    # def new
-    #   @job_info = JobInfo.new
-    # end
+
+
+    def new
+      @job_info = JobInfo.new
+    end
 
 
     def post_job 
@@ -37,7 +39,7 @@ class JobInfoController < ApplicationController
         @job_info = JobInfo.new(job_info_params)
         # if @job_info.save
         #     flash[:success] = "Job info created successfully"
-        #     # redirect_to job_search_jobshow_path
+        #     redirect_to job_search_jobshow_path
         # else
         #     flash[:error] = "Error creating job info"
         #     render 'new'
