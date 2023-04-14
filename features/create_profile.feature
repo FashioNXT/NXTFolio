@@ -8,7 +8,7 @@ Feature: Create a Profile
   
 Scenario: When a user attempts to create a profile, account creation is successful
   
-  Given I am on the Match My Fashion home page
+  Given I am at the Match My Fashion home page
   When I follow "Sign Up"
   Then I should be on the sign up page
   When I fill in "login_info_email" with "hellowfriend@gmail.com"

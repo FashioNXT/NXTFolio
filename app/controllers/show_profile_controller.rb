@@ -1,6 +1,7 @@
 class ShowProfileController < ApplicationController
   # Associated with the view that displays after a profile is selected from the search results list
   def show_profile
+    @gallery_taggings = GalleryTagging.all
     logger.info("Debuggging Star rating:")
     logger.debug(@gallery.inspect)
     if session[:current_user_key] != nil or params[:user_key] != nil
