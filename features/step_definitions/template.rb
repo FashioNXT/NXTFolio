@@ -1,8 +1,8 @@
 # Create Profile Step Definitions
 
-Given(/^I am on the home page$/) do
-    visit root_path
-end
+# Given(/^I am on the home page$/) do
+#     visit root_path
+# end
 
 Then(/^I should be able to visit Template page$/) do
   visit '/template'

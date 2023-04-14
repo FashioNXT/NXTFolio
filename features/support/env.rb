@@ -5,65 +5,13 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 # require 'rspec' #for page.shoud etc
-# require 'capybara/cucumber'
-# require 'cucumber'
-# require 'pry'
-# require "selenium-webdriver"
-# Ask capybara to register a driver called 'selenium'
-# options = Selenium::WebDriver::Firefox::Options.new
-# options.add_argument('--headless')
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(
-#       app,
-
-#       #what browser do we want? Must match whatever is in our seleniarm stand-alone image
-#       # browser: :firefox, 
-#       browser: :remote, 
-
-#       # desired_capabilities: Selenium::WebDriver::Remote::Capabilities.firefox,
-
-#       options: options,
-      
-#       #where does it live? By passing a URL we tell capybara to use a selenium grid instance (not local)
-#       # url: "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}" 
-#   )
-# end
-# Capybara.server_host = '0.0.0.0'
-# # make the driver we just registered our default driver
-# # Capybara.default_driver = :selenium
-# Capybara.javascript_driver = :selenium
-# # Capybara.default_driver = :selenium_chrome
-
-# # # set the default URL for our tests
-# Capybara.app_host = "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}"
-
-# require 'selenium-webdriver'
-
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, browser: :firefox, url: "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}/wd/hub")
-# end
-# # Capybara.default_driver = :selenium
-# Capybara.javascript_driver = :selenium
-
-
-# Capybara.configure do |config|
-#   config.app_host = 'http://localhost:3000'
-#   config.server_host = "#{ENV['SELENIUM_HOST']}"
-#   config.server_port = "#{ENV['SELENIUM_PORT']}"
-# end
-
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, browser: :firefox, url: "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}/wd/hub")
-# end
-# Capybara.default_driver = :selenium
-# # Capybara.javascript_driver = :selenium
-
-# require 'rspec' #for page.shoud etc
 require 'capybara/cucumber'
 require 'cucumber'
 require 'pry'
-
 require "selenium-webdriver"
+
+require 'database_cleaner'
+
 
 if Rails.configuration.use_remote_webdriver
   # Ask capybara to register a driver called 'selenium'
@@ -81,32 +29,16 @@ if Rails.configuration.use_remote_webdriver
 
   # make the driver we just registered our default driver
   Capybara.default_driver = :selenium
+  # Capybara.javascript_driver = :selenium
 
   # set the default URL for our tests
   Capybara.server_host = "0.0.0.0"
-  Capybara.server_port = 3000
-  Capybara.app_host = "http://ruby:#{Capybara.server_port}"
+  Capybara.server_port = ENV['RAILS_PORT']
+  Capybara.app_host = "http://#{ENV['RAILS_HOST']}:#{Capybara.server_port}"
 else
   Capybara.default_driver = :selenium_chrome
+  # Capybara.default_driver = :selenium
 end
-
-
-# Capybara.app_host = "http://ruby-ssh:3000"
-# # "http://#{ENV['RAILS_HOST']}:#{ENV['RAILS_PORT']}" 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -146,11 +78,24 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-begin
-  DatabaseCleaner.strategy = :transaction
-rescue NameError
-  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+#begin
+  #DatabaseCleaner.strategy = :transaction
+  #DatabaseCleaner.strategy = :truncation
+#rescue NameError
+  #raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+#end
+
+
+DatabaseCleaner.strategy = :truncation
+
+Before do
+  DatabaseCleaner.start
 end
+
+After do
+  DatabaseCleaner.clean
+end
+
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:

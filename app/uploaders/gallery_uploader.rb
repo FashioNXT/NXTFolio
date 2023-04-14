@@ -3,11 +3,16 @@ class GalleryUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  # configure do |config|
+  #   config.remove_previously_stored_files_after_update = false
+  # end
+
+
   # Choose what kind of storage to use for this uploader:
   if Rails.env.test? || Rails.env.development?
      storage :file
   else
-    storage :file
+    storage :fog
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

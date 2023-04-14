@@ -1,5 +1,5 @@
 class GeneralInfo < ApplicationRecord
-  has_many :gallery, dependent: :destroy
+  has_many :gallery, dependent: :destroy, foreign_key: 'GeneralInfo_id'
   has_many :messages, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one :login_info
@@ -10,6 +10,10 @@ class GeneralInfo < ApplicationRecord
       :foreign_key => :follower, :dependent => :destroy)
   has_many :followers, :through => :follows, :source => :follower
   has_many :follows_others, :through => :follows_from, :source => :followee
+
+  # NXTFolio : Added in Spring 2023 for tagging feature
+  has_many :gallery_taggings
+  has_many :tagged_gallery, through: :gallery_taggings, source: :gallery
 
   validates_presence_of :first_name
   validates_presence_of :last_name

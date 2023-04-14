@@ -7,7 +7,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   if Rails.env.test? || Rails.env.development?
      storage :file
   else
-    storage :file
+    storage :fog
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

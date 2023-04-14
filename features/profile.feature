@@ -7,7 +7,7 @@ Feature: See a Profile
 
   Scenario: When a user creates a profile, and I go to the profile page, I can see my profile informations
 
-    Given I am on the profile page
+    Given I am at the profile page
     Given I am a valid user
 # <<<<<<< HEAD
 #    When I log in

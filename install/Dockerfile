@@ -2,6 +2,7 @@
 
 FROM ubuntu:18.04
 
+# download dependencies
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git sudo curl software-properties-common gpg openssh-server
 # to allow connecting through ssh with username root and password root
 RUN mkdir /var/run/sshd

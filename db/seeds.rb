@@ -5,6 +5,64 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#####################################
+### SEED COUNTRIES/STATE/CITIES #####
+#####################################
+require 'json'
+
+filename = "countries+states+cities.json"
+puts "Seeding countries/states/cities from #{filename}"
+
+countries_data = File.read(Rails.root.join('db', 'seed_files', filename))
+countries = JSON.parse(countries_data)
+
+num_countries = countries.length
+Country.transaction do
+  countries.each_with_index do |country, idx|
+    print "\rCountry #{idx} of #{num_countries}"
+    STDOUT.flush
+
+    # phone_code = country['phone_code']
+    # phone_code = phone_code.start_with?("+") ? phone_code[1..-1] : phone_code
+
+    # create country
+    country_obj = Country.create!(
+      name: country['name'],
+      iso3: country['iso3'],
+      # phone_code: phone_code,
+      capital: country['capital'],
+      currency: country['currency'],
+      region: country['region'],
+      subregion: country['subregion'],
+      latitude: country['latitude'],
+      longitude: country['longitude'],
+    )
+
+    # create each of the states
+    country['states'].each do |state|
+      state_obj = country_obj.states.create!(
+        name: state['name'],
+        state_code: state['state_code'],
+        latitude: state['latitude'],
+        longitude: state['longitude'],
+      )
+
+      # create each city
+      state['cities'].each do |city|
+        state_obj.cities.create!(
+          name: city['name'],
+          latitude: city['latitude'],
+          longitude: city['longitude'],
+        )
+      end
+    end
+  end
+end
+
+#####################################
+### CREATE FAKE USERS ###############
+#####################################
 require 'securerandom'
 
 # User.destroy_all
@@ -44,7 +102,7 @@ filenames.each do |filename|
   general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
   general_info.profile_picture = File.open(Rails.root.join("db", "seed_files" ,filename))
   general_info.save!
- 
+
   puts "Creating User " + first_name + ", " + last_name + "..."
 end
 

@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
 		<style>
 			.big{
 				font-size: 25px;
@@ -124,7 +125,7 @@
 		<% end %>
 		<div class="container be-detail-container">
 			<div class="row profile-row">
-				<div class="col-xs-12 col-md-6 left-field">
+				<div class="col-xs-12 col-md-6 left-box">
 					<div class="be-user-block style-3">
 						<div class="be-user-detail">
 							<% if @general_info.profile_picture.url %>
@@ -132,23 +133,12 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-
-
-							
-
-
-
-
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
-
 							<br>
-
-
-
-							<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px;"><%= @general_info.highlights %></p>
+							<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px; height: 80px"><%= @general_info.highlights %></p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							
@@ -157,16 +147,17 @@
 							</div>
 							<div class="be-user-social">
 								<!--% if @general_info && @general_info.facebook_link != "" %-->							
-									<a class="social-btn color-1" href="http://<%= @general_info.facebook_link%>" target="_blank"><i class="fa fa-facebook"></i></a>
+								<a class="social-btn color-1" href=<%= @general_info.facebook_link.blank? ? "#" : @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>
 								<!--% end %-->
 								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
-									<a class="social-btn color-6" href="http://<%= @general_info.linkedIn_link %>" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+								<a class="social-btn color-6" href=<%= @general_info.linkedIn_link.blank? ? "#" : @general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>
 								<!--% end %-->
 								<!--% if @login_info && @login_info.email != "" %-->
-									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
+								<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
 								<!--% end %-->
 
-								<a class="be-user-site" href="http://<%= @general_info.personalWebsite_link %>" target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
+								<a class="be-user-site" href=<%= @general_info.personalWebsite_link %> target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
 								<!--% end %-->
 								<% if @on_Own %>
 									<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
@@ -178,28 +169,30 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6 left-field">
-					<div class="be-desc-block">
+				<div class="col-xs-12 col-md-6 right-box">
+					<div class="top-right-box">
 				  		<!--% if @general_info && @general_info.bio != "" %-->
-							<div class="be-desc-author">
-								<div class="be-desc-label">About Me</div>
-								<div class="clearfix"></div>
-								<div class="be-desc-text">
-									<!--Add Bio HERE-->
-									<%= @general_info.bio %>
-								</div>
+						<div class="be-desc-author">
+							<div class="be-desc-label">About Me</div>
+							<div class="clearfix"></div>
+							<div class="be-user-detail">
+								<!--Add Bio HERE-->
+								<%= @general_info.bio %>
 							</div>
+						</div>
 						<!--% end %-->
 					</div>
 
-					<div class="be-desc-block">
+					<div class="bottom-right-box">
 						<!--% if @general_info && @general_info.bio != "" %-->
 						<div class="be-desc-author">
 							<div class="be-desc-label">Professional Details</div>
 							<div class="clearfix"></div>
-							<div class="be-desc-text">
+							<div class="be-user-detail">
 								<!--Add Bio HERE-->
-								<%= @general_info.profdetails %>
+								<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
+								<p>Compensation Type: <%=@general_info.compensation%></p>
+								<p>Years of Experience: <%=@general_info.experience%></p>
 							</div>
 						</div>
 						<!--% end %-->
@@ -281,7 +274,8 @@
 										<% if gallery.GeneralInfo_id == @general_info.id %>
 											<div class="col-md-4">
 												<div class="photo photo-type-line">
-													<a class="photo-hover" href="<%= galleries_show_path(:project_key => gallery.id) %>">
+													<a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+													
 														<div class="photo-info">
 															<div class="headline"> <%= gallery.gallery_title %> </div>
 															<div class="line"></div>
@@ -291,13 +285,11 @@
 													</a>
 													<div class="profile-img-container">
 														<a class="be-img-block profile-img img-thumbnail">
-
-														<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-													</a>
+															<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+														</a>
 														<div class="mask"></div>
-									     </div>
-
-											</div>
+									     			</div>
+												</div>
 												<br>
 												<% if gallery.reviews.blank? %>
 													<% average_review=0 %>
@@ -306,9 +298,7 @@
 													<% average_review=gallery.reviews.average(:rating).round(2) %>
 													<% rating_count=gallery.reviews.count %>
 												<% end %>
-
-												<div class="average-review-rating" data-score='<%= average_review %>>'>
-												</div>
+												<div class="average-review-rating" data-score='<%= average_review %>>'></div>
 												<% if gallery.reviews.blank? %>
 													<div>No rating available</div>
 													<% else %>
@@ -318,13 +308,12 @@
 												<% if session[:current_user_key] %>
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 													<% profile_user_id=gallery.GeneralInfo_id %>
-													<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
+													<!--div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div-->
 													<% if current_user.id!= profile_user_id %>
 														<% if gallery.reviews.empty? %>
 															<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
 															<% else %>
 																<% if gallery.reviews.collect(&:user_id).include?(current_user.id) %>
-
 																<% else %>
 																	<div id="custom-profile-name"><%= link_to "Add Review", new_gallery_review_path(gallery.id) %></div>
 																<% end %>
@@ -336,22 +325,131 @@
 													<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
 													<% profile_user_id=gallery.GeneralInfo_id %>
 													<% if current_user.id==profile_user_id %>
-																<div class = "delete">
-																	<%= link_to 'Delete This Project', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
-																</div>
-														<%end %>
+														<div class = "delete">
+															<%= link_to 'Delete This Project', show_profile_destroy_path(gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+														</div>
+													<%end %>
 												<% end %>
-										</div>
+
+												<!-- NXTFolio : Added in Spring 2023 for tagging feature. -->
+												<div class="collaborators">
+													<% unless gallery.tagged_users.blank? %>
+														<p>Collaborators:</p>
+														<% if gallery.tagged_users.length < 2 %>
+															<% gallery.tagged_users.each do |user| %>
+																<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+														<% else %>
+															<% gallery.tagged_users.first(1).each do |user| %>
+																<div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+															<div class="collab show-more-collab"><li><a href="#">+<%= gallery.tagged_users.length - 1 %> more</a></li></div>
+															<% gallery.tagged_users.drop(1).each do |user| %>
+																<div class="collab hidden-collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+															<% end %>
+														<% end %>
+													<% end %>
+													<% if session[:current_user_key] %>
+														<% current_user=GeneralInfo.find_by(userKey: session[:current_user_key]) %>
+														<% profile_user_id=gallery.GeneralInfo_id %>
+														<% if current_user.id==profile_user_id %>
+															<a href="#collaborators-modal-<%= gallery.id %>" class="btn color-3 size-0 hover-9"><h5>Add Collaborators</h5></a>
+																<div id="collaborators-modal-<%= gallery.id %>" class="tagModalWindow">
+																	<div>
+																		<div class="tagModal-elements-container-<%= gallery.id %>">
+																			<h5><b>Existing collaborators</b></h5>
+																				<% gallery.tagged_users.each do |user| %>
+																					<a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><div class="tagModal-element"> <%= user.first_name + " " + user.last_name %> </div></a>
+																				<% end %>
+																			<% @gallery_tagging = GalleryTagging.new %>
+																			<%= form_with(model: [@gallery_tagging], url: create_tagging_gallery_path(gallery.id), local: true, id:"new_gallery_tagging_#{gallery.id}", class: "new_gallery_tagging_form" ) do |form| %>
+																				<div class="search-box">
+																					<input type="text" id="collab-search-<%= gallery.id %>" placeholder="Search for others..." onkeyup="searchCollaborator(<%= gallery.id %>)">
+																					<ul class="all-list-<%= gallery.id %>">
+																						<% GeneralInfo.where.not(id: current_user.id).each do |user| %>
+																							<li data-user-id="<%= user.id %>" ><%= user.first_name + " " + user.last_name %></li>
+																						<% end %>
+																					</ul>
+																				</div>
+																				<br>
+																				<%= form.label :invited_email, 'Invite User' %>
+																				<%= form.email_field :invited_email %>
+																				<%= form.hidden_field id="tagged_user_id" %>
+																				<br>
+																				<%= form.submit 'Tag' %>
+																			<% end %>
+																		</div>
+																		<div style="margin-top: 10px;">
+																			<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+																		</div>
+																	</div>
+																</div>
+														<% end %>	
+													<%end %>
+												</div>			
+											</div>
 
 										<% end %>
 										<% end %>
 								  </div>
 					      </div>
-				      </div>
-            </div>
-        	</div>
+						  </div>
+						  </div> 
+						</div>
+		
+		<div class="container-fluid custom-container">
+			<div class="row profile-row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="container-mix"  class="row _post-container_">
+						<div class="be-post">
+							<div class="collaborated-galleries">
+							<div class="be-desc-label">Collaborated Galleries</div>
+							<% @gallery_taggings.each do |gallery_tagging| %>	
+								<% if gallery_tagging.general_info_id == @general_info.id%>
+									<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
+									<div class="col-md-4">
+										<div class="photo photo-type-line">
+											<a class="photo-hover" href="<%= galleries_show_path(:project_key => tagged_gallery.id) %>">
+												<div class="photo-info">
+													<div class="headline"> <%= tagged_gallery.gallery_title %> </div>
+													<div class="line"></div>
+													<div class="desc"> <%= tagged_gallery.gallery_description %> </div>
+												</div>
+												<div class="mask"></div>
+											</a>
+											<div class="profile-img-container">
+												<a class="be-img-block profile-img img-thumbnail"><img src="<%= tagged_gallery.gallery_picture[0].url %>" alt="omg"></a>
+												<div class="mask"></div>
+											</div>
+										</div>
+										<br>
+										<% if tagged_gallery.reviews.blank? %>
+											<% average_review=0 %>
+											<% rating_count=0 %>
+										<% else %>
+											<% average_review=tagged_gallery.reviews.average(:rating).round(2) %>
+											<% rating_count=tagged_gallery.reviews.count %>
+										<% end %>
+										<div class="average-review-rating" data-score='<%= average_review %>>'></div>
+										<% if tagged_gallery.reviews.blank? %>
+											<div>No rating available</div>
+										<% else %>
+											<div>Based on <%= rating_count %> ratings</div>
+										<% end %>
+										<div id="custom-project-title"><%= render tagged_gallery.reviews %></div>
+									</div>
+									<% end %>
+								<% end %>
+								</div>
+							</div>
+							</div>
+						</div>	  
+				    </div>
+            	</div>
+        	
+			
     	</div>
-	
+	</div>
 	<!-- MAIN CONTENT END -->
 	<%= render 'shared/footer' %>
 
@@ -438,5 +536,50 @@
 			path: '/assets/'
 		});
 	</script>
+
+	<script>
+
+function searchCollaborator(galleryId) {
+var form = document.querySelector("#new_gallery_tagging_"+galleryId);
+    var searchInput = document.querySelector("#collab-search-"+ galleryId);
+    var searchResults = document.querySelector(".all-list-"+ galleryId);
+	var taggedUserIds = [];
+	
+    searchInput.addEventListener("keyup", function() {   
+		//console.log("hello");     
+        var filter = searchInput.value.toLowerCase();
+		if (filter.length > 0) {
+    		searchResults.classList.add("show");
+  		} else {
+    		searchResults.classList.remove("show");
+  		}
+        var items = searchResults.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var text = item.textContent || item.innerText;
+            if (filter === "" || text.toLowerCase().indexOf(filter) > -1) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+	searchResults.addEventListener('click', (event) => {
+	const selectedValue = event.target.textContent;
+	searchInput.value = selectedValue;
+    const selectedId = event.target.getAttribute('data-user-id');
+    taggedUserIds.push(selectedId);
+	form.querySelector("input[name='gallery_tagging[tagged_user_id]']").value = taggedUserIds.join(",");
+	
+	});	
+}
+</script>
+<script>
+$(document).on('click', '.show-more-collab a', function(e) {
+  e.preventDefault();
+  $(this).closest('.collaborators').find('.hidden-collab').show();
+  $(this).closest('.collab').hide();
+});
+</script>
 	</body>
 </html>

@@ -8,8 +8,29 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: ENV['gmail_username']}
+  # Settings for Gmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            ENV['gmail_username'],
+    password:             ENV['gmail_password'],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+  # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
   # Whether to use remote webdriver or not
   config.use_remote_webdriver = false
+  if config.use_remote_webdriver
+    # Change the Capybara default max wait time to 10 seconds
+    Capybara.default_max_wait_time = 30
+  end
 
   config.cache_classes = false
   config.action_view.cache_template_loading = true

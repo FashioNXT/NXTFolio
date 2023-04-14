@@ -691,6 +691,11 @@ form.input-search { position: relative; margin-bottom: 50px; }
 
 .be-post .be-img-block:after { content: ""; position: absolute; bottom: 0; left: 15px; width: 0; height: 0; border-style: solid; border-width: 0 15px 15px 15px; border-color: transparent transparent #FFF transparent; }
 
+
+
+
+
+
 .be-post-title { position: relative; display: block; font-size: 13px; line-height: 20px; font-family: 'Conv_helveticaneuecyr'; color: #262626b3; border-bottom: 1px solid #edeff2; margin: 0 15px 10px 15px; cursor: pointer; min-height: 52px; padding-bottom: 11px; overflow: hidden; text-overflow: ellipsis; }
 
 a.be-post-title:hover { color: #0D58C8; }
@@ -1250,7 +1255,14 @@ span.right { float: right; }
 
 .be-user-detail { text-align: centre; margin-bottom: 30px;}
 
-.be-ava-user { width: 70px; height: 70px; display: inline-block; margin-bottom: 25px; }
+
+.be-ava-user {
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
 
 .be-ava-user > img { width: 70px; height: 70px; }
 
@@ -1373,7 +1385,7 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 
 .be-user-block.style-2 .be-user-detail, .be-user-block.style-3 .be-user-detail { margin-bottom: 60px; }
 
-.be-user-block.style-3 { padding: 30px 15px 0px 15px; margin-bottom: 48px; }
+.be-user-block.style-3 { padding: 30px 15px 0px 15px; margin-bottom: 48px; height: 100%}
 
 .be-ava-user.style-2 { width: 115px; height: 115px; }
 
@@ -1407,7 +1419,11 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 
 .be-desc-block { margin-bottom: 20px; }
 
-.be-desc-author { position: relative; padding: 20px 30px; border: 1px solid #222835; min-height: 170px; }
+.be-desc-author { position: relative; 
+                  padding: 20px 30px; 
+                  border: 1px solid #222835; 
+                  height: 100%;
+                  }
 
 .be-desc-img { float: left; width: 70px; height: 70px; margin-bottom: 15px; border-radius: 70px; }
 
@@ -3097,6 +3113,25 @@ transition: all ease-out 0.3s;}
 
 }
 
+<%# Profile Page Styling %>
+.left-box {
+  <%# background-color: #0000FF; %>
+  height: 100%;
+}
+
+.right-box {
+  height: 100%;
+}
+
+.top-right-box {
+  margin-bottom: 25px;
+  height: 199px
+}
+
+.bottom-right-box {
+  height: 199px;
+}
+
 .s-cover-box {
     max-width: 720px;
     width: 100%;
@@ -3895,8 +3930,8 @@ body .login-user-down:hover {
   background: #fffffff0;
   padding: 1px;
   margin-bottom: 5px !important;
-    padding-top: 50px;
-
+  height: 425px;
+  margin-top:50px;
 }
 /*Mobile View of my profile view*/
 @media screen and (min-width:0px) and (max-width:560px) {
@@ -4042,6 +4077,10 @@ button #Model {
   left: 0;
 }
 
+
+
+
+
 .photo-type-line .photo-hover {
   z-index: 100;
   -webkit-transition: all 300ms ease-out;
@@ -4091,6 +4130,39 @@ button #Model {
 .photo-type-line .photo-hover:hover {
   opacity: 1;
 }
+
+
+.result-name {
+  display: inline-block;
+  font-size: 20px;
+  text-align: left;
+  margin-top: 3px;
+  margin-left: 6px;
+}
+
+.result-city {
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 7px;
+  margin-left: auto;
+}
+
+.result-job_name {
+  display: inline-block;
+  font-size: 15px;
+  text-align: left;
+  margin-left: 6px;
+}
+
+.result-state {
+  display: inline-block;
+  font-size: 15px;
+  margin-left: auto;
+}
+
+
+
+
 
 .photo-img {
   background: #7a548f;
@@ -5266,4 +5338,3 @@ legend {
 /*# sourceMappingURL=Searchs_008.css.map */
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
-
