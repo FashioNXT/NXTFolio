@@ -18,9 +18,22 @@ Feature: delete single image in the gallery
   | title | description | total  | id|  num|
   | t2    | high2       | 20     |   1  | 4|
 
+Scenario: User can delete image in their gallery
+  Given I am a valid gallery user
+  Given I am on the home page
+  When I click on "t1"
+  Then I should see "Delete1"
+  When I click on "Delete1"
+  Then I should see "The image has been removed from the gallery!"
 
 
-
+Scenario: User can only delete gallery if there is only one image
+  Given I am a valid gallery user
+  Given I am on the home page
+  When I click on "t2"
+  Then I should not see "Delete1"
+  Then I should see "Delete This Project"
+  
 
 
 Scenario: User add images to their gallery (at most 5 in the gallery)
