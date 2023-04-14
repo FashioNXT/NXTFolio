@@ -7,8 +7,11 @@ Feature: Login and sign up
 
   Background: users in database
     Given the following users exist
-    | name              | password  | job |
-    | Andrea.Picardo    | Test1234! | Model |
+    | name              | password  | job | city | state | id |
+    | Andrea.Picardo    | Test1234! | Model | Austin | Texas | 0 |
+    And the following countries exist
+    | country | state  | city |
+    | United States | Texas  | Austin |
 
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When I press log in button I should be redirected to login page
