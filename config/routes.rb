@@ -156,9 +156,10 @@ end
     resources :reviews
 
     # NXTFolio : Added in Spring 2023 for tagging feature
-    resources :gallery_taggings
+    resources :gallery_taggings, only: [:create, :destroy]
 
   end
+
   resources :search_engine
   resources :job_search
 

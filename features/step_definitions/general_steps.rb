@@ -253,7 +253,7 @@ Then(/^(?:|I )should not see "([^"]*)"$/) do |text|
 end
 
 # untested method
-Then /^(?:|I ) should see "([^"]*)" in the (.+) section/ do |expected_text, section_selector|
+Then(/^(?:|I ) should see "([^"]*)" in the (.+) section$/) do |expected_text, section_selector|
   expect(page).to have_selector(section_selector, text: expected_text)
 end
 
@@ -267,14 +267,14 @@ When(/^I hover over the "([^"]*)" element$/) do |element|
 end
 
 
-Given /"(.+)" sends a message to "(.+)" saying "(.+)"/ do |from_user, to_user, msg|
+Given (/"(.+)" sends a message to "(.+)" saying "(.+)"/) do |from_user, to_user, msg|
   step "I am logged in as \"#{from_user}\""
   visit path_to "the DM page"
   step "I select \"#{to_user.gsub('.', ' ')}\" chat"
   fill_in("body", :with => msg)
   click_link_or_button "send"
   click_link_or_button "Log out"
-
+end
 When("I click on the image with alt text {string}") do |alt_text|
   # Find the image element with the specified alt text
   image = find("img[alt='#{alt_text}']")
@@ -301,4 +301,4 @@ end
 
   # @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
 
-end
+#end
