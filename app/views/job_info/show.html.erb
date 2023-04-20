@@ -1,0 +1,29 @@
+<!--  app/views/job_info/show.html.erb -->
+<h2>Details about <em><%= @job_info.title %></em></h2>
+
+<ul id="details">
+  <li>
+    Description:
+    <%= @job_info.description %>
+  </li>
+  <li>
+    Category:
+    <%= @job_info.category %>
+  </li>
+  <li>
+    Profession:
+    <%= @job_info.profession %>
+  </li>
+</ul>
+
+<h3>Description:</h3>
+<p id="description">
+  <%= @job_info.description %>
+</p>
+
+<div class="row">
+  <%= link_to 'Edit', edit_job_info_path(@job_info), :class => 'btn btn-primary col-2' %>
+  <%= link_to 'Delete', job_info_path(@job_info), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
+  <%= link_to 'Back to jobs list', "/job_info", :class => 'btn btn-primary col-2' %>
+</div>
+

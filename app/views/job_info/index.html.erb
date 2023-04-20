@@ -1,0 +1,35 @@
+
+<h2>All Jobs</h2>
+
+<%#  Part 2: Start here... %>
+
+<table class="table table-striped col-md-12" id="job_infos">
+  <thead>
+    <tr>
+      <th>Job Title</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>More Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @job_infos.each do |job_info| %>
+      <tr>
+        <td>
+          <%= job_info.title %>
+        </td>
+        <td>
+          <%= job_info.description %>
+        </td>
+        <td>
+          <%= job_info.category %>
+        </td>
+        <td>
+          <%= link_to "More about #{job_info.title}", job_info_path(job_info) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<! -- tag before the code and a -->

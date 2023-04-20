@@ -1,0 +1,10 @@
+<h2>Edit Existing Job</h2>
+<%= form_tag job_info_path(@job_info), :method => :put do %>
+  <%= label :job_info, :title, 'Title', :class => 'col-form-label' %>
+  <%= text_field :job_info, 'title', :class => 'form-control' %>
+  <%= label :job_info, :description, 'Description', :class => 'col-form-label' %>
+  <%= text_field :job_info, 'description', :class => 'form-control' %>
+  <br/>
+  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
+<% end %>
