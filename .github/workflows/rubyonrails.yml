@@ -51,8 +51,8 @@ jobs:
           bin/rails db:create
           bin/rails db:schema:load
       - name: Run tests
-        run: bin/rake spec
-          bin/rake cucumber
-      - name: Stop Selenium
-        run: docker stop selenium
-        if: always()
+        run: bin/rake cucumber
+          bin/rake spec
+      #- name: Stop Selenium
+      #  run: docker stop selenium
+      #  if: always()
