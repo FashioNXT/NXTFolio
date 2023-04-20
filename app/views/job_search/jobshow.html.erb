@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>FashioNXT</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="<%= asset_path "adv_search.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "dropdown.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+    </head>
+    <body>
+    <!-- THE HEADER -->
+	<header>
+		
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+					</a>
+				</div>
+				``
+				<div class="header-menu-block">
+					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+					<ul class="header-menu" id="one">
+						<% if session[:current_user_key] %>
+                            <li><a >Manage Job</a></li>
+                            <li><a href="/job_info/new_job">Post Job</a></li>
+							<li><a href="/show_profile">My Profile</a></li>
+						<% end %>
+					</ul>
+				</div>
+
+                <!--Logout Button Begin -->
+				<div class="login-header-block">
+						<div class="login_block">
+							<div class="login_block_rightup">
+                <% if session[:current_user_key] %>
+									<div class="dropdown">
+										<%if GeneralInfo.find_by(userKey: session[:current_user_key]).notification %>
+											<button onclick="dropdown()" class="dropbtn" id='notif'><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
+											<div id="myDropdown" class="dropdown-content">
+												<% @notifications_from = GeneralInfo.find_by(userKey: session[:current_user_key]).notification_from %>
+												<% @notifications_from.each do |notification|%>
+													<a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
+												<% end %>
+										<% else %>
+											<button onclick="dropdown()" class="dropbtn" id='notif'><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
+											<div id="myDropdown" class="dropdown-content">
+												<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
+												<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
+												<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
+										<% end %>
+											</div>
+										</div>
+									<a href="/dm" class="dropbtn" id="dm"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
+                  <a class="btn color-1 size-2 hover-2" href="/show_profile"><%= @username %></a>
+                  <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+                <% else %>
+                  <a class="btn color-1 size-2 hover-2" href="/login" id="sign_in_up"><i class="fa fa-lock"></i>Sign In</a>
+              <% end %>
+
+
+							</div>
+						</div>
+				</div>
+				<!--Logout Button End-->  
+    
+        
+			</div>
+		</div>
+		</div>
+
+    <% if flash[:success_post_job] %>
+			<div class="alert-container col-md-12">
+				<div class="alert style-3 alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <alertstrong1><%= flash[:success_post_job]%></alertstrong1>
+				</div>
+			</div>
+      <% elsif flash[:error_post_job] %>
+			<div class="alert-container col-md-12">
+				<div class="alert style-3 alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <alertstrong1><%= flash[:error_post_job]%></alertstrong1>
+				</div>
+			</div>
+			<% end %>
+			
+      
+
+	</header>
+ 
+
+
+
+    
+
+      <!-- CONTENT -->
+
+      
+	
+    
+
+
+      <div class="s008" id='head-bg-img'>
+
+
+      
+
+
+        <%= form_tag(job_info_search_path, :method=>'get') do %>
+        <div class="searchContainer" id="advsearch">
+          <h5 class="mod-1">What jobs are you looking for?</h5>
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-12" >
+            <div id="custom-search-input">
+              <div class="input-group col-md-12">
+                <input name="Keyword" id="search" type="text" class="form-control input-lg" value="<%= @searchQuery %>" />
+                <span class="input-group-btn">
+                          <button id="show_page_button" class="btn btn-info btn-lg" type="submit">
+                              <i class="glyphicon glyphicon-search"></i>
+                          </button>
+                      </span>
+              </div>
+            </div>
+
+            <div class="buttongroup-class">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group"> <label class="changedLabel">Category</label> <select id='general_info_industry' name="Industry" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                    <option placeholder="" value="">Select</option>
+                    <option>Creators</option>
+                    <option>Services</option>
+                    <option>Makers</option>
+                  </select> </div> <!-- /.form-group -->
+                </div> <!-- /.col -->
+
+                <div class="col-md-6">
+                  <div class="form-group"> <label class="changedLabel">Profession</label> <select id="general_info_job_name" name="Profession" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                    <option placeholder="" value="">Select</option>
+                    <option>Brand Owner</option>
+                    <option>Designer</option>
+                    <option>Other Creator</option>
+                    <option>Model</option>
+                    <option>Photographer</option>
+                    <option>Sales</option>
+                    <option>Marketing</option>
+                    <option>Retail</option>
+                    <option>Visual</option>
+                    <option>Content Creator</option>
+                    <option>Blogger</option>
+                    <option>Influencer</option>
+                    <option>Forecasting</option>
+                    <option>Finances</option>
+                    <option>Other Service</option>
+                    <option>Manufacturing</option>
+                    <option>Materials</option>
+                    <option>Other Makers</option>
+                  </select> </div> <!-- /.form-group -->
+                </div> <!-- /.col -->
+
+
+                <div class="col-md-4">
+                  <div class="form-group"> <label class="changedLabel">Country</label> <select name="Country" id="country" data-trigger="" class="countries form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                    <option value="">Select Country</option>
+                  </select> </div> <!-- /.form-group -->
+                </div> <!-- /.col -->
+
+                <div class="col-md-4">
+                  <div class="form-group"> <label class="changedLabel">State</label> <select name="State" id="state" data-trigger="" class="states form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                    <option value="">Select State</option>
+                  </select> </div> <!-- /.form-group -->
+                </div> <!-- /.col -->
+
+                <div class="col-md-4">
+                  <div class="form-group"> <label class="changedLabel">City</label> <select name="City" id="city" data-trigger="" class="cities form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                    <option value="">Select City</option>
+                  </select> </div> <!-- /.form-group -->
+                </div> <!-- /.col -->
+
+
+              </div>
+
+
+            </div>
+
+
+              </div>
+            </div>
+        </div>
+        <% end %>
+      </div>
+
+
+
+      <script>
+          $(document).ready(function() {
+              $('.mdb-select').materialSelect();
+              $('.select-wrapper.md-form.md-outline input.select-dropdown').bind('focus blur', function () {
+                  $(this).closest('.select-outline').find('label').toggleClass('active');
+                  $(this).closest('.select-outline').find('.caret').toggleClass('active');
+              });
+          });
+
+        </script>
+      <script>
+          $(function(){
+              $(".dropdown-menu li a").click(function(){
+                  $(this).closest('.btn-group').find(".btn:first-child").text($(this).text());
+                  $(this).closest('.btn-group').find(".btn:first-child").val($(this).text());
+              });
+          });
+      </script>
+      <script>
+        const customSelects = document.querySelectorAll("select");
+        const deleteBtn = document.getElementById('delete')
+        const choices = new Choices('select',
+        {
+          searchEnabled: false,
+          removeItemButton: true,
+          itemSelectText: '',
+        });
+        for (let i = 0; i < customSelects.length; i++)
+        {
+          customSelects[i].addEventListener('addItem', function(event)
+          {
+            if (event.detail.value)
+            {
+              let parent = this.parentNode.parentNode
+              parent.classList.add('valid')
+              parent.classList.remove('invalid')
+            }
+            else
+            {
+              let parent = this.parentNode.parentNode
+              parent.classList.add('invalid')
+              parent.classList.remove('valid')
+            }
+          }, false);
+        }
+        deleteBtn.addEventListener("click", function(e)
+        {
+          e.preventDefault()
+          const deleteAll = document.querySelectorAll('.choices__button')
+          for (let i = 0; i < deleteAll.length; i++)
+          {
+            deleteAll[i].click();
+          }
+        });
+
+      </script>
+        <script src="<%= asset_path "jquery.min.js"%>"></script>
+        <script src="<%= asset_path "jquery-ui.js"%>"></script>
+        <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+        <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+        <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+        <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+        <script src="<%= asset_path "global.js"%>"></script>
+        <script src="<%= asset_path "professionPicker.js"%>"></script>
+        <script src="<%= asset_path "location.js"%>"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+  </html>
