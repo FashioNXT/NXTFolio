@@ -14,4 +14,4 @@ RSpec.describe 'search_profile/search', :type => :view do
 #   it "does not render a different template" do
 #     expect(view).to_not render_template("search_profile/show")
 #   end
-# end
+end
