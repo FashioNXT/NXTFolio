@@ -22,9 +22,13 @@ jobs:
           POSTGRES_DB: workspace_test
           POSTGRES_USER: beaverthing
           POSTGRES_PASSWORD: beaverthing
+      browser:
+        image: selenium/standalone-chrome:latest
+        ports: 
+          - 4444:4444
     env:
       RAILS_ENV: test
-      SELENIUM_HOST: localhost
+      SELENIUM_HOST: browser
       SELENIUM_PORT: 4444
       RAILS_HOST: localhost
       RAILS_PORT: 3000
@@ -33,19 +37,22 @@ jobs:
         uses: ConorMacBride/install-package@v1.1.0
         with:
           apt: nodejs 
+      - name: Start Selenium
+        run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
-      # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
           ruby-version: 3.2.0
-      # Add or replace database setup steps here
       - name: Set up database schema
         run: 
           bin/rails db:create
           bin/rails db:schema:load
-      # Add or replace test runners here
-      - name: Selenium
-        run: bin/rake test:system
+      - name: Run tests
+        run: bin/rake spec
+          bin/rake cucumber
+      - name: Stop Selenium
+        run: docker stop selenium
+        if: always()
