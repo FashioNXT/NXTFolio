@@ -48,7 +48,6 @@ jobs:
       # Add or replace database setup steps here
       - name: Set up database schema
         run: 
-          bundle install
           bin/rails db:create
           bin/rails db:schema:load
       # Add or replace test runners here
