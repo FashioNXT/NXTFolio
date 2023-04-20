@@ -24,9 +24,9 @@ jobs:
           POSTGRES_PASSWORD: beaverthing
     env:
       RAILS_ENV: test
-      SELENIUM_HOST: browser
+      SELENIUM_HOST: localhost
       SELENIUM_PORT: 4444
-      RAILS_HOST: ruby
+      RAILS_HOST: localhost
       RAILS_PORT: 3000
     steps:
       - name: Install Package
