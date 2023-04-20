@@ -33,8 +33,6 @@ jobs:
         uses: ConorMacBride/install-package@v1.1.0
         with:
           apt: nodejs 
-      - name: Start Selenium
-        run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
@@ -50,9 +48,8 @@ jobs:
           bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails server &
-          bin/rake cucumber
-          #bin/rake spec
+        run: bin/rails test
       - name: Stop Selenium
-        run: docker stop selenium
-        if: always()
+        run: bin/rake
+      - name: Selenium
+        run: bin/rake test:system
