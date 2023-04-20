@@ -50,8 +50,9 @@ jobs:
           bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rake spec
-          #bin/rake cucumber
+        run: bin/rails server &
+          bin/rake cucumber
+          #bin/rake spec
       - name: Stop Selenium
         run: docker stop selenium
         if: always()
