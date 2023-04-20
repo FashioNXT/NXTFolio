@@ -19,7 +19,7 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_DB: workspace_development
+          POSTGRES_DB: workspace_test
           POSTGRES_USER: beaverthing
           POSTGRES_PASSWORD: beaverthing
     env:
