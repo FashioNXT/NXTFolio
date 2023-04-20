@@ -34,7 +34,7 @@ jobs:
         with:
           apt: nodejs 
       - name: Start Selenium
-        run: docker run -d -p 4444:4444 -p 5900:5900 -p 7900:7900 --name selenium selenium/standalone-firefox
+        run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
@@ -50,7 +50,8 @@ jobs:
           bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rake cucumber
+        run: bin/rake spec
+          #bin/rake cucumber
       - name: Stop Selenium
         run: docker stop selenium
         if: always()
