@@ -130,7 +130,8 @@ Rails.application.routes.draw do
   get 'job_info/search', to: 'job_info#search', as: 'job_info/search'
   # get 'job_info/new_job', to: 'job_info#new_job', as: 'job_info_new_job'
   # get 'job_info/show/:id', to: 'job_info#show', as: 'job_info_show'
-  
+  # delete 'job_info/:id/del(.:format)', to: 'job_info#destroy', as: 'del_job_info'
+  get '/job_info/:id/del', to: 'job_info#destroy', as: 'del_job_info'
 
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'

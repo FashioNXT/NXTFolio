@@ -43,10 +43,11 @@ class JobInfoController < ApplicationController
     end
 
     def destroy
+      # puts "check adfsadfa"
       @job_info = JobInfo.find(params[:id])
       @job_info.destroy
-      flash[:notice] = "Job '#{@job_info.title}' deleted."
-      redirect_to job_info_path
+      flash[:notice_delete_job] = "Job '#{@job_info.title}' deleted."
+      redirect_to "/job_info"
     end
 
     def new_job 
