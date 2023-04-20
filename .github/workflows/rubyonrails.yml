@@ -24,19 +24,17 @@ jobs:
           POSTGRES_PASSWORD: beaverthing
     env:
       RAILS_ENV: test
-      #DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      SELENIUM_HOST: browser
+      SELENIUM_PORT: 4444
+      RAILS_HOST: ruby
+      RAILS_PORT: 3000
     steps:
       - name: Install Package
         uses: ConorMacBride/install-package@v1.1.0
         with:
           apt: nodejs 
-      - name: Set up Chrome driver
-        run: |
-          LATEST=$(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget https://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          chmod +x chromedriver
-          sudo mv chromedriver /usr/local/bin
+      - name: Start Selenium
+        run: docker run -d -p 4444:4444 -p 5900:5900 -p 7900:7900 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
@@ -52,6 +50,7 @@ jobs:
           bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: export DISPLAY=:99
-          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-          bin/rake cucumber
+        run: bin/rake cucumber
+      - name: Stop Selenium
+        run: docker stop selenium
+        if: always()
