@@ -37,8 +37,8 @@ jobs:
         uses: ConorMacBride/install-package@v1.1.0
         with:
           apt: nodejs 
-      - name: Start Selenium
-        run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
+      #- name: Start Selenium
+      #  run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
