@@ -47,8 +47,6 @@ jobs:
           bin/rails db:create
           bin/rails db:schema:load
       # Add or replace test runners here
-      - name: Run tests
-        run: bin/rails test
       - name: Stop Selenium
         run: bin/rake
       - name: Selenium
