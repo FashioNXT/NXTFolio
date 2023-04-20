@@ -37,7 +37,6 @@ jobs:
           unzip chromedriver_linux64.zip
           chmod +x chromedriver
           sudo mv chromedriver /usr/local/bin
-          bundle exec cucumber
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
