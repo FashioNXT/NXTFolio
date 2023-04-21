@@ -11,7 +11,7 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  test:
+  cucumber:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -52,5 +52,45 @@ jobs:
         run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run cucumber tests
         run: bin/rake cucumber
+        
+  spec:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: workspace_test
+          POSTGRES_USER: beaverthing
+          POSTGRES_PASSWORD: beaverthing
+      browser:
+        image: selenium/standalone-firefox:latest
+        ports: 
+          - 4444:4444
+    env:
+      RAILS_ENV: test
+      SELENIUM_HOST: localhost
+      SELENIUM_PORT: 4444
+      #RAILS_HOST: # ip of hostHow 
+      RAILS_PORT: 3000
+    steps:
+      - name: Install Package
+        uses: ConorMacBride/install-package@v1.1.0
+        with:
+          apt: nodejs 
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.0
+      - name: Set up database schema
+        run: 
+          bin/rails db:create
+          bin/rails db:schema:load
+      - name: Set RAILS_HOST
+        run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run spec tests
         run: bin/rake spec
