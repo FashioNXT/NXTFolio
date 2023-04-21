@@ -26,12 +26,11 @@ jobs:
         image: selenium/standalone-firefox:latest
         ports: 
           - 4444:4444
-          - 3000:3000
     env:
       RAILS_ENV: test
       SELENIUM_HOST: localhost
       SELENIUM_PORT: 4444
-      RAILS_HOST: localhost
+      #RAILS_HOST: # ip of hostHow 
       RAILS_PORT: 3000
     steps:
       - name: Install Package
@@ -51,6 +50,8 @@ jobs:
         run: 
           bin/rails db:create
           bin/rails db:schema:load
+      - name: Set RAILS_HOST
+        run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run tests
         run: bin/rake cucumber
           bin/rake spec
