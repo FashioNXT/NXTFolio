@@ -26,9 +26,10 @@ jobs:
         image: selenium/standalone-firefox:latest
         ports: 
           - 4444:4444
+          - 3000:3000
     env:
       RAILS_ENV: test
-      SELENIUM_HOST: browser
+      SELENIUM_HOST: localhost
       SELENIUM_PORT: 4444
       RAILS_HOST: localhost
       RAILS_PORT: 3000
