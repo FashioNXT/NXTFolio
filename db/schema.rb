@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-#ActiveRecord::Schema.define(version: 2023_04_05_064328) do
-
 ActiveRecord::Schema.define(version: 2023_04_12_212227) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +105,21 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
+  end
+
+  create_table "job_infos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "category"
+    t.string "profession"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "type"
+    t.integer "low_salary"
+    t.integer "high_salary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
