@@ -23,7 +23,7 @@ jobs:
           POSTGRES_USER: beaverthing
           POSTGRES_PASSWORD: beaverthing
       browser:
-        image: selenium/standalone-chrome:latest
+        image: selenium/standalone-firefox:latest
         ports: 
           - 4444:4444
     env:
