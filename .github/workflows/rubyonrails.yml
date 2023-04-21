@@ -37,8 +37,6 @@ jobs:
         uses: ConorMacBride/install-package@v1.1.0
         with:
           apt: nodejs 
-      #- name: Start Selenium
-      #  run: docker run -d -p 4444:4444 --name selenium selenium/standalone-firefox
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
@@ -52,9 +50,7 @@ jobs:
           bin/rails db:schema:load
       - name: Set RAILS_HOST
         run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
-      - name: Run tests
+      - name: Run cucumber tests
         run: bin/rake cucumber
-          bin/rake spec
-      #- name: Stop Selenium
-      #  run: docker stop selenium
-      #  if: always()
+      - name: Run spec tests
+        run: bin/rake spec
