@@ -342,6 +342,12 @@ For deployed Heroku environments: (assuming the site is already deployed)
 
 To update the country/state/city database visit [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database) to obtain the latest json file and replace it for the one located at `db/seed_files/countries+states+cities.json`.
 
+Then run 
+
+```bash
+rake db:reset_countries
+```
+
 ## Geocoding
 
 For searching by location, a Google Geocoding API key will be required. This must be set as an environment variable (see Using AWS S3... above) with the name "GOOGLE_KEY".
