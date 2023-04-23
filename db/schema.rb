@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_12_212227) do
+ActiveRecord::Schema.define(version: 2023_04_23_200123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,12 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
+    t.string "travel_country"
+    t.string "travel_state"
+    t.string "travel_city"
+    t.date "travel_start"
+    t.date "travel_end"
+    t.string "travel_details"
   end
 
   create_table "job_infos", force: :cascade do |t|
