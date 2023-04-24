@@ -154,6 +154,15 @@ end
 # end
 
 
+
+Given(/the following countries exist/) do |location_table|
+  location_table.hashes.each do |location|
+    c = Country.create!(name: location['country'], iso3: location['country'])
+    s = c.states.create!(name: location['state'], state_code: location['state'])
+    s.cities.create!(name: location['city'])
+  end
+end
+
 # a handy debugging step you can use in your scenarios to invoke 'pry' mid-scenario and poke around
 When /I debug/ do
   binding.pry

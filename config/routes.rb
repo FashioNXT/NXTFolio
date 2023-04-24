@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   # to retrive states and cities
@@ -155,4 +156,9 @@ end
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   root 'application#index'
+<<<<<<< HEAD
 end
+=======
+end
+
+>>>>>>> refs/remotes/origin/baichuan_update_gallery
