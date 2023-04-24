@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-#ActiveRecord::Schema.define(version: 2023_04_05_064328) do
-
 ActiveRecord::Schema.define(version: 2023_04_12_212227) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +50,8 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+    t.integer "remove_image_ids"
+    t.string "added_image"
     t.string "test_picture", array: true
   end
 
@@ -109,6 +107,14 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "file_name"
+    t.bigint "gallery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gallery_id"], name: "index_images_on_gallery_id"
   end
 
   create_table "login_infos", id: :serial, force: :cascade do |t|
@@ -254,6 +260,7 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
   add_foreign_key "cities", "states"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
+  add_foreign_key "images", "galleries"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
   add_foreign_key "states", "countries"
