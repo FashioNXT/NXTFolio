@@ -122,6 +122,14 @@ Rails.application.routes.draw do
   get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
+  get 'job_search/jobshow' => 'job_search#jobshow', :as => 'job_search/jobshow'
+  # get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
+
+  get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
+  post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
+  get 'job_info/search', to: 'job_info#search', as: 'job_info/search'
+  get 'job_info/new_job', to: 'job_info#new_job', as: 'job_info_new_job'
+
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit'
@@ -136,6 +144,9 @@ Rails.application.routes.draw do
   resources :search_profile
   resources :template
 
+  # for job function
+  resources :job_info
+
 #halting this changes, later will check
 
 resources :galleries do
@@ -146,10 +157,12 @@ end
     resources :reviews
 
     # NXTFolio : Added in Spring 2023 for tagging feature
-    resources :gallery_taggings
+    resources :gallery_taggings, only: [:create, :destroy]
 
   end
+
   resources :search_engine
+  resources :job_search
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
