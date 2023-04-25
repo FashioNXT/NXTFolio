@@ -113,7 +113,7 @@
           <div class="be-post othercreatordiv" id="Othercreator1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Creator" %>
+              <% if modinfo.attribute_values[:job_name]=="Other Creator" && sorted_map.length() == 0 %>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -150,7 +150,7 @@
           <div class="be-post influencerdiv" id="Influencer1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Influencer" %>
+              <% if modinfo.attribute_values[:job_name]=="Influencer" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -187,7 +187,7 @@
           <div class="be-post modeldiv" id="Model1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Model" %>
+              <% if modinfo.attribute_values[:job_name]=="Model" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -224,7 +224,7 @@
           <div class="be-post contentdiv" id="Content1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Content Creator" %>
+              <% if modinfo.attribute_values[:job_name]=="Content Creator" && sorted_map.length() == 0 %>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -261,7 +261,7 @@
           <div class="be-post salesdiv" id="Sales1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Sales" %>
+              <% if modinfo.attribute_values[:job_name]=="Sales" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -298,7 +298,7 @@
           <div class="be-post marketingdiv" id="Marketingdiv1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Marketing" %>
+              <% if modinfo.attribute_values[:job_name]=="Marketing" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -335,7 +335,7 @@
           <div class="be-post retaildiv" id="Retail1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Retail" %>
+              <% if modinfo.attribute_values[:job_name]=="Retail" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -372,7 +372,7 @@
           <div class="be-post visualdiv" id="Visual1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Visual" %>
+              <% if modinfo.attribute_values[:job_name]=="Visual" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -409,7 +409,7 @@
           <div class="be-post bloggingdiv" id="Blogging1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Blogging" %>
+              <% if modinfo.attribute_values[:job_name]=="Blogging" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -446,7 +446,7 @@
           <div class="be-post financingdiv" id="Financing1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Financing" %>
+              <% if modinfo.attribute_values[:job_name]=="Financing" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -483,7 +483,7 @@
           <div class="be-post otherservicesdiv" id="Otherservices1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Services" %>
+              <% if modinfo.attribute_values[:job_name]=="Other Services" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -520,7 +520,7 @@
           <div class="be-post manufacturingdiv" id="Manufacturing1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Manufacturing" %>
+              <% if modinfo.attribute_values[:job_name]=="Manufacturing" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -558,7 +558,7 @@
           <div class="be-post materialsdiv" id="Materials1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Materials" %>
+              <% if modinfo.attribute_values[:job_name]=="Materials" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -595,7 +595,7 @@
           <div class="be-post othermakersiv" id="Othermakers1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Makers" %>
+              <% if modinfo.attribute_values[:job_name]=="Other Makers" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -632,7 +632,7 @@
           <div class="be-post photographerdiv" id="Photographer1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Photographer" %>
+              <% if modinfo.attribute_values[:job_name]=="Photographer" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -669,7 +669,7 @@
           <div class="be-post agentdiv" id="Agent1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Agent" %>
+              <% if modinfo.attribute_values[:job_name]=="Agent" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
@@ -707,7 +707,7 @@
           <div class="be-post designerdiv" id="Designer1">
             <% @gallery.present? and @gallery.each do |gallery| %>
               <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Designer" %>
+              <% if modinfo.attribute_values[:job_name]=="Designer" && sorted_map.length() == 0%>
                     <div class="col-md-4">
                       <a class="be-img-block">
                         <div class="photo photo-type-line">
