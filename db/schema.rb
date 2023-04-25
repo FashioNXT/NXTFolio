@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_12_212227) do
+ActiveRecord::Schema.define(version: 2023_04_25_133708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
-    t.integer "remove_image_ids"
-    t.string "added_image"
     t.string "test_picture", array: true
   end
 
@@ -107,18 +105,14 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.string "emailaddr"
     t.boolean "notification", default: false
     t.integer "notification_from", default: [], array: true
-  end
-
-
-
-
-  create_table "images", force: :cascade do |t|
-    t.string "file_name"
-    t.bigint "gallery_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gallery_id"], name: "index_images_on_gallery_id"
-
+    t.string "travel_country"
+    t.string "travel_state"
+    t.string "travel_city"
+    t.date "travel_start"
+    t.date "travel_end"
+    t.string "travel_details"
+    t.datetime "last_active_at"
+    t.datetime "logged_in_at"
   end
 
   create_table "job_infos", force: :cascade do |t|
@@ -254,6 +248,24 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "usage_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "usage_minutes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "general_info_id", null: false
+    t.index ["general_info_id"], name: "index_usage_logs_on_general_info_id"
+  end
+
+  create_table "user_activity_details", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "logged_in_at"
+    t.datetime "last_active_at"
+    t.integer "time_spent_on_website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -279,8 +291,8 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
   add_foreign_key "cities", "states"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
-  add_foreign_key "images", "galleries"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
   add_foreign_key "states", "countries"
+  add_foreign_key "usage_logs", "general_infos"
 end
