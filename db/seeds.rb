@@ -10,9 +10,10 @@
 ### SEED COUNTRIES/STATE/CITIES #####
 #####################################
 require 'json'
-Country.destroy_all
-State.destroy_all
-City.destroy_all
+# City.destroy_all
+# State.destroy_all
+# Country.destroy_all
+
 
 filename = "countries+states+cities.json"
 puts "Seeding countries/states/cities from #{filename}"
