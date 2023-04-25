@@ -117,6 +117,21 @@ ActiveRecord::Schema.define(version: 2023_04_12_212227) do
     t.index ["gallery_id"], name: "index_images_on_gallery_id"
   end
 
+  create_table "job_infos", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "category"
+    t.string "profession"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "type"
+    t.integer "low_salary"
+    t.integer "high_salary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "login_infos", id: :serial, force: :cascade do |t|
     t.string "email"
     t.string "password"

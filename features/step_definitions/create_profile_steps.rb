@@ -1,10 +1,10 @@
 # Create Profile Step Definitions
 
-Given(/^I am on the Match My Fashion home page$/) do
+Given(/^I am at the Match My Fashion home page$/) do
     visit root_path
 end
 
-Given(/^I am on the profile page$/) do
+Given(/^I am at the profile page$/) do
   visit '/show_profile'
 end
 

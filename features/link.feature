@@ -5,7 +5,7 @@ Feature: Able to access the links on the buttom of home page
   
   Scenario: When logged in as user, 
     
-    Given I am on the FashioNxt home page
+    Given I am at FashioNxt home page
 
     When I click on about us link 
     Then I should see the about us page of FashioNxt website

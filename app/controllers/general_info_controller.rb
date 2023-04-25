@@ -63,7 +63,7 @@ class GeneralInfoController < ApplicationController
     @templates.unshift('Photographer')
 
     # get list of countries
-    @countries = Country.all
+    @countries = Country.all.order(:name)
 
     # get default email from session if available
     @general_info ||= GeneralInfo.new
@@ -214,6 +214,9 @@ class GeneralInfoController < ApplicationController
   # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update
   def edit
+    # get list of countries
+    @countries = Country.all.order(:name)
+
     @possible_Jobs = GeneralInfo.see_Jobs
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
