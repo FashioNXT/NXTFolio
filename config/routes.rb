@@ -68,6 +68,10 @@ Rails.application.routes.draw do
     post '/delete' => 'admin#delete'
   end
 
+  namespace :api do
+    resources :general_info, only: [:index]
+  end
+
   get '/general_info/make_admin/:room' => 'general_info#make_admin'
   
   get 'edit_job' => 'edit_job#edit'

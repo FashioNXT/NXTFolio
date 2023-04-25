@@ -51,7 +51,6 @@ class ApplicationController < ActionController::Base
   def track_time_spent_on_website
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-      #UserActivityDetail.find_or_create_by(user_id: current_user[:id]).update(logged_in_at: Time.current, last_active_at: Time.current)
       user_activity_detail = UserActivityDetail.find_or_create_by(user_id: current_user[:id])
       if user_activity_detail.time_spent_on_website.nil?
         user_activity_detail.update(
