@@ -48,6 +48,7 @@
 
 
 <!--NXTFolio : Added in Spring 2023 for tagging feature.-->
+<% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
 <div class="collaborators">
 <h3>Collaborators:</h3>
 <ul>
@@ -74,8 +75,9 @@
                                     <%idx = @gallery.gallery_picture.index(image)%>
                                     <%if @gallery.gallery_picture.length() > 1 %>
                                     <%which = (idx + 1).to_s%>
-                                    
-                                      <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                      <% if owner.userKey == session[:current_user_key] %>
+                                        <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                      <%end%>
                                     <%end%>
               
                                   </a>
@@ -89,7 +91,7 @@
                       </div>
                       
                     </div>
-                    <%if @gallery.gallery_picture.length() == 1 %>
+                    <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
                             <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
                       <%end%>
                     </div>
@@ -98,8 +100,13 @@
       <div class="row">
       
 </div>
-<%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+
+<% if owner.userKey == session[:current_user_key] %>
+  <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+<%end%>
+<% if owner.userKey == session[:current_user_key] %>
     <div class="be-desc-label"><a href="/galleries/new">Add a new gallery</a></div>
+  <%end%>
         </div>
     <% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
     <% if owner.userKey != session[:current_user_key] %>
