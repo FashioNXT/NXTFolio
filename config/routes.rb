@@ -69,7 +69,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :general_info, only: [:index]
+    get 'users', to: 'general_info#index'
+    # resources :general_info, only: [:index]
   end
 
   get '/general_info/make_admin/:room' => 'general_info#make_admin'
