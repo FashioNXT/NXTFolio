@@ -188,10 +188,12 @@
 																<label for="country">Country</label>
 																<select name="general_info[country]" class="countries form-control" id="country" required style="color: black;" >
 																	<option value="">Select Country</option>
-																	<% @countries.each do |country| %>
-																		<option value="<%= country.id %>"><%= country.name %></option>
-																	<% end %>
-																	<%# <option value="">Select Country</option> %>
+																	<%#<% @countries.each do |country| %>
+																		<%#<option value="<%= country.id %><%#">%>
+																			<%#<%= country.name %>
+																		<%# </option> %>
+																	<%#<% end %>
+																	<option value="">Select Country</option>
 																</select>
 															</div>
 														</div>
@@ -207,10 +209,10 @@
 													</div>
 													<div class="col-sm-4">
 														<label for="city">City</label>
-														<%# <%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', required: true, style: "height: 35px;" %>
-														<select name="general_info[city]" class="cities form-control" id="city" required style="color: black;" >
+														<%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', required: true, style: "height: 35px;" %>
+														<%# <select name="general_info[city]" class="cities form-control" id="city" required style="color: black;" >
 															<option value="">Select City</option>
-														</select>
+														</select> %>
 													</div>
 												</div>
 										</div>
