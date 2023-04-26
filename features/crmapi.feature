@@ -19,5 +19,5 @@ Feature: CRM API Feature
     And perform some activities and logs out
     When Jack Sparrow login to account
     And perform some activities and logs out
-    When I visit /api/general_info page
+    When I visit /api/users page
     Then I should see their usage time

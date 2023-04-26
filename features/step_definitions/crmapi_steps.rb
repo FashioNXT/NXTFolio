@@ -1,5 +1,5 @@
 Given(/^no usage statistics exist$/) do
-    get "/api/general_info"
+    get "/api/users"
     response_body = JSON.parse(last_response.body)
     expect(response_body).to include("user_info")
     expect(response_body["user_info"].size).to be 0
@@ -29,8 +29,8 @@ And(/^perform some activities and logs out$/) do
     click_on "Log out"
 end
 
-When(/^I visit \/api\/general_info page$/) do
-    get "/api/general_info"
+When(/^I visit \/api\/users page$/) do
+    get "/api/users"
 end
 
 Then(/^I should see their usage time$/) do
