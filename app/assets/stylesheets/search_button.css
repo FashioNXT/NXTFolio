@@ -4,6 +4,19 @@
     text-decoration: none;
 }
 
+.be-img-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .be-img-block img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
 
 #custom-project-title{
     font-weight: 700;
