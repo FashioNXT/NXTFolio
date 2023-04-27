@@ -67,6 +67,9 @@
 										<% if @attribute_titles && !@is_Admin %>
 											<li><a href="/general_info/edit2">Edit Professional Info</a></li>
 										<% end %>
+										<% if !@is_Admin %>
+											<li><a href="/general_info/edit_travel">Edit Travel Info</a></li>
+										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if !@is_Admin %>
 											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
@@ -137,6 +140,9 @@
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
+							<% if @general_info.travel_start %>
+							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label><%= @general_info.travel_city%>, <%= @general_info.travel_state%>, <%= @general_info.travel_country%>, <%= @general_info.travel_start%>, <%= @general_info.travel_end %>, <%= @general_info.travel_details %></p>
+							<% end %>
 							<br>
 							<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px; height: 80px"><%= @general_info.highlights %></p>
 							
