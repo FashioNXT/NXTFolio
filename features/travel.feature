@@ -24,9 +24,8 @@ Feature: Travel Feature
     When I fill in the travel form with details
     And I click on "SAVE and GO TO PROFILE" button
     Then I should see my travel details on my profile page
-    # And my travel details should include "United States, Washington, Seattle, 2023-04-01, 2023-05-01, Attending a conference. Reach out to me!"
-    And my travel details should include ", , , 2023-04-01, 2023-05-01, Attending a conference. Reach out to me!"
-
+    And my travel details should include "Seattle, Washington, United States, 2023-04-01, 2023-05-01, Attending a conference. Reach out to me!"
+    
 # Yet to be implemented
   #Scenario: If I save my travel details, others can see them
    # Given I am a professional and I add my travel information

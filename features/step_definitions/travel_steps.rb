@@ -22,11 +22,11 @@ Given(/^I am a professional and want to add my travel information$/) do
   end
   
   When(/^I fill in the travel form with details$/) do
-    # select 'United States', from: 'country'
-    # select 'Washington', from: 'state'
-    # select 'Seattle', from: 'city'
-    fill_in 'start', :with => '04/01/2023'
-    fill_in 'end', :with => '05/01/2023'
+    select 'United States', from: 'country'
+    select 'Washington', from: 'state'
+    fill_in 'city', :with => 'Seattle'
+    fill_in 'start', :with => '05/01/2023'
+    fill_in 'end', :with => '05/10/2023'
     fill_in 'travel_details', :with => 'Attending a conference. Reach out to me!'
   end
   
