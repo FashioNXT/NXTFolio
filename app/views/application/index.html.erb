@@ -8,7 +8,7 @@
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
@@ -62,34 +62,24 @@
 			</div>
 			<% end %>
 
-			<div class=head-bg-content>
+			<div class="head-bg-content">
 				<%= form_tag(search_engine_show_path, :method=>'get') do %>
 				<div class="homepage-login-btn-section">
-
-					<div class="container">
-						<div class="row">
-							<div class="col-md-2">
-							</div>
-							<div class="col-md-6">
-								<div id="custom-search-input">
-									<div class="input-group col-md-12">
-										<input name="Initkey" type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
-										<span class="input-group-btn">
-                        <button id="search_submit" class="btn btn-info btn-lg" type="submit">
-													<%= link_to search_engine_show_path do %>
-                            <i class="glyphicon glyphicon-search"></i>
-														<% end %>
-                        </button>
-                    </span>
-									</div>
+					
+						<div id="custom-search-input">
+							<div class="input-group">
+								<input name="Initkey" type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
+								<span class="input-group-btn">
+                        		<button id="search_submit" class="btn btn-info btn-lg" type="submit">
+								<%= link_to search_engine_show_path do %>
+                            	<i class="glyphicon glyphicon-search"></i>
+									<% end %>
+                        			</button>
+                    				</span>
 								</div>
-							</div>
 						</div>
-						<% end %>
-					</div>
-
-
 				</div>
+				<% end %>
 				<div class="login_block_links">
 					
 					<div class="register_howitworks">
@@ -99,22 +89,22 @@
 					</div>
 				</div>
 
-				</div>
 			</div>
 		</div>
 
-    <%= render 'layout/category' %>
+    	<%= render 'layout/category' %>
+	</div>
 
 		<div id="homepage_contents">
     	<%= render 'layout/homepage' %>
 		</div>
 
-	<div id="infinite-scrolling">
-		<%= will_paginate @gallery %>
+		<div id="infinite-scrolling">
+			<%= will_paginate @gallery %>
+		</div>
 	</div>
-
-	<br></br>
-	<!-- THE FOOTER -->
+	<br/>
+	<!-- THE First FOOTER -->
 
 	<%= render 'shared/footer' %>
 

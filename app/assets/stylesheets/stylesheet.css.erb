@@ -28,7 +28,7 @@
 
 :-ms-input-placeholder { /* Internet Explorer 10+ */ color: inherit !important; }
 
-#content-block *:last-child { margin-bottom: 0; }
+#content-block *:last-child { margin-bottom: 6px; }
 
 body { margin: 0; padding: 0; font-family: "Trebuchet MS", Tahoma, sans-serif; }
 
@@ -142,7 +142,7 @@ img.be_logo { text-align: left; }
 
 .header-menu > li { display: inline-block; padding: 0 16px; position: relative; }
 
-.header-menu > li > a { color: black; }
+.header-menu > li > a { color: white; }
 
 .header-menu > li:hover > a, .header-menu > li.active-header > a { color: #0d58c8; }
 
@@ -155,7 +155,7 @@ img.be_logo { text-align: left; }
 
 .login_block { text-align: center; margin-top: 10px;}
 
-.login_block_links { text-align: left; margin-top: 10px; margin-left: 500px; }
+.login_block_links { text-align: center; margin-top: 10px; }
 
 .login_block .btn-login { margin-right: 27px; margin-bottom: 10px; }
 
@@ -349,12 +349,12 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
      opacity: 1; }
   .cmn-toggle-switch { display: none; } }
 
-@media screen and (max-width: 1199px) { .brand-be { position: absolute; left: 20%; text-align: center; -webkit-transform: translateX(-50%) !important; -ms-transform: translateX(-50%) !important; transform: translateX(-50%) !important; }
+@media screen and (max-width: 4000px) { .brand-be { position: absolute; left: 20%; text-align: center; -webkit-transform: translateX(-50%) !important; -ms-transform: translateX(-50%) !important; transform: translateX(-50%) !important; }
   .fa-angle-right { display: none; }
   header .header-menu > #ad-work-li {float: none;}
   .fa-angle-down, .fa-angle-up { display: block; position: absolute; right: 15px; top: 10px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
   header { z-index: 550; }
-  .header-menu { height: auto; display: none; width: 100%; background: navajowhite; text-align: center; font-size: 26px; position: absolute; top: 70px; left: -1px; overflow: auto; padding-bottom: 15px; }
+  .header-menu { height: auto; display: none; width: 100%; background: black; text-align: center; font-size: 26px; position: absolute; top: 70px; left: -1px; overflow: auto; padding-bottom: 5px; }
 /*    .header-menu ul { display: none; width: 100%; background: #FFF; text-align: center; font-size: 26px; }*/
   .page-login .header-menu { padding-top: 60px; }
   .header-menu > li > a { font-size: 20px; }
@@ -375,7 +375,8 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
   header .col-xs-3:last-child { float: right; }
   .header-menu > li ul { background: #F6F6F6; margin: 0; padding: 0; }
   .login-header-block { padding-right: 0; float: right; }
-
+  .logo-c.active { display: block; padding-left: 5%; height: 45px; width: 100%; }
+  .btn.size-2 { font-family: "Trebuchet MS", Tahoma, sans-serif; font-size: 18px; line-height: 10px; padding: 12px 19px 10px 19px; }
 
 }
 
@@ -383,7 +384,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 @media screen and (max-width: 560px){
     .header-menu > li a { display: inline; line-height: 42px; padding: 0 75px; text-align: left;}
     .header-menu > li > a { font-size: 18px; text-align: left;}
-    .header-menu > li > ul > li > a { font-size: 15px; text-align: left; width: 10px; color: black;}
+    .header-menu > li > ul > li > a { font-size: 12px; text-align: left; width: 10px; color: white;}
     .header-menu ul {width: 0px; background: #FFF; text-align: left; font-size: 16px; white-space: nowrap; flex-flow: row nowrap; padding: 0px 0px 0px 0px;}
     .header-menu.header-menu li {  text-align: left; text-align: left; display: inline; padding: 0px 0px 0px 0px; flex-flow: row nowrap; margin-right: -118px; width: 348px;margin-left: -20px;left: 0;}
 
@@ -406,11 +407,22 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 
 /*Mobile View search engine background picture*/
-@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 650px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+@media screen and (min-width:0px) and (max-width:560px)
+ {#content-block
+  .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 1.0; z-index: 1; background-position: center right; }
+  .logo-c.active { display: block; padding-left: 5%; height: 30px; width: 90%; }
+  .btn { martgin-right:0px; margin-bottom:0px }
+  .btn.size-2 { font-family: "Trebuchet MS", Tahoma, sans-serif; font-size: 16px; line-height: 10px; padding: 10px 10px 10px 10px;margin-left }
+  
+  .searchContainer{width:100%;}
+  .fa-xlm{font-size:4.5em;}
+}
+
+
 
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
-.head-bg-content { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: middle; width: 5000px; }
+.head-bg-content { text-align: center; position: relative; z-index: 200; vertical-align: middle; padding: 22rem 0; }
 
 .head-bg-searchresult { height: 400px; text-align: center; position: relative; z-index: 200; display: table-cell; vertical-align: top; width: 5000px; }
 #content-block .head-bg-content .btn { margin-bottom: 10px; }
@@ -681,6 +693,21 @@ form.input-search { position: relative; margin-bottom: 50px; }
 /*Mobile View of each project in the homepage project gallery*/
 @media screen and (min-width: 0px) and (max-width: 560px){
     .be-img-block { overflow: hidden; display: block; max-height: 230px; width: 370px;}
+    .img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: 213px;
+    width: 171px;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin-left: -17px;
+} 
 }
 
 .be-post .be-img-block { margin-bottom: 15px; position: relative; }
@@ -787,10 +814,33 @@ transition: all ease-out 0.3s;}
 	07 - FOOTER
 ==================================
 */
-footer { background: #222835;}
-
+footer { 
+  background: #222835;
+}
+.mobiletray { 
+position: fixed;
+bottom: 0;
+border-top: 2px solid #000000;
+background: #ffffff;
+text-align: center;
+z-index: 99;
+}
+.colpadding {
+  padding-bottom: 10px;
+  padding-top: 10px; 
+  margin-left:12px;
+}
 /*Mobile View of whole footer block*/
-@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 650px;}}
+@media screen and (min-width:0px) and (max-width:560px) {
+  
+.hidemain{display:none;}
+#.mobiletray{display: inline-block;}
+img{ height: 4rem; width: 4rem; }
+.col-xs-2{margin-right:12px;}
+footer { 
+    background: #222835; width: 100%;}
+  }
+}
 
 .footer_slider .swiper-slide { position: relative; }
 
@@ -806,7 +856,9 @@ footer p a:visited { color: #95afbd; background-color: transparent; text-decorat
 
 footer p a:hover { color: #fff; text-decoration: none; }
 
-.footer-main { padding: 46px 0; border-bottom: 1px solid #2e3542; padding-bottom: 80px;}
+.footer-combine { padding: 46px 0; width: 100%; background-color: black; }
+
+.footer-main { border-bottom: 1px solid #2e3542; }
 
 .footer-title { color: #FFF; font-size: 14px; font-family: 'Conv_helveticaneuecyr-bold'; margin-bottom: 20px; }
 
@@ -897,6 +949,10 @@ span.right { float: right; }
 .footer-bottom .btn { margin-bottom: 0px; }
 
 .footer-bottom .right .btn { margin-left: 10px; margin-right: 0px; }
+@media screen and (min-width: 561px)
+{
+  .mobiletray {display: none;}
+} 
 
 @media screen and (max-width: 991px) { .footer-list-footer > div:last-child { margin: 0; }
   .footer-list-footer li { display: inline-block; }
@@ -907,11 +963,13 @@ span.right { float: right; }
   .footer-main div[class^="col-"]:last-child .footer-block { margin-bottom: 0px; }
   .footer-bottom .left, .footer-bottom .right { float: none; }
   .footer-end .left { margin-bottom: 15px; }
-  .footer-end .right .btn { margin-left: 0px; margin-right: 10px; margin-bottom: 10px; } }
+  .footer-end .right .btn { margin-left: 0px; margin-right: 10px; margin-bottom: 10px; } 
+}
 
-@media screen and (min-width: 992px) and (max-width: 1200px) { ul.soc_buttons > li { width: 25px; height: 25px; font-size: 12px; } }
-
-@media screen and (max-width: 767px) { .footer-list-footer li { display: block; line-height: 19px; } }
+@media screen and (min-width: 992px) and (max-width: 1200px) { ul.soc_buttons > li { width: 25px; height: 25px; font-size: 12px; }
+}
+@media screen and (max-width: 767px) { .footer-list-footer li { display: block; line-height: 19px; }
+}
 
 /*===========================
 	08 - LOADER
@@ -1600,7 +1658,7 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .btn.size-1 { padding: 15px 28px; }
 
-.btn.size-2 { font-family: "Trebuchet MS", Tahoma, sans-serif; font-size: 18px; line-height: 10px; padding: 12px 19px 10px 19px; }
+
 
 .btn.size-3 { font-size: 9px; line-height: 9px; padding: 9px 10px; }
 
@@ -2456,7 +2514,7 @@ transition: all ease-out 0.3s;}
 .head-bg.ab-us .swiper-container{position: absolute;top:0;left: 0; width: 100%;height: 100% !important;}
 .head-bg.ab-us .head-bg-img{position: relative;top:initial; left: initial;}
 @media screen and (max-width: 992px){
-  .header-menu{overflow: auto;}
+  .header-menu{overflow: hidden;}
 }
 @media screen and (min-width: 993px){
   .header-menu ul{border-radius: 0 0 5px 5px;
@@ -2722,11 +2780,7 @@ transition: all ease-out 0.3s;}
   display: none;
   -webkit-filter: invert(0%);
 }
-.logo-c.active {
-  display: block;
-  height: 45px;
-  width: 100%;
-}
+
 
 #spinner-img {
   -webkit-filter: invert(100%);
@@ -3856,7 +3910,7 @@ body .login-user-down:hover {
         padding: 1px;
         margin-bottom: 5px !important;
         padding-top: 86px;
-        width: 650px;
+        width: auto;
     }
 }
 
@@ -3870,6 +3924,10 @@ body .login-user-down:hover {
     justify-content: space-between;
 } %>
 
+.homepage-login-btn-section {
+    max-width: 530px;
+    margin: auto;
+}
 .homepage-login-btn-section .btn{
     padding: 15px 30px;
 
@@ -4872,7 +4930,7 @@ legend {
   background-size: cover;
   padding: 15px;
   font-family: 'Roboto', sans-serif;
-  position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+  position: reltive; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
 }
 
 /*mobile view background of advanced search engine*/
@@ -4886,11 +4944,12 @@ legend {
         justify-content: center;
         -ms-flex-align: center;
         align-items: center;
+
         background: url(<%= asset_path "carouselwomen.jpg"%>);
         background-size: cover;
         padding: 15px;
         font-family: 'Roboto', sans-serif;
-        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; width: 630px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+        position: absolute; left: 0; top: 0; background: black;  background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
     }
 }
 
@@ -5217,4 +5276,3 @@ legend {
 /*# sourceMappingURL=Searchs_008.css.map */
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
-

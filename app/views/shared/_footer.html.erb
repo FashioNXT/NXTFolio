@@ -1,14 +1,28 @@
 <!-- THE FOOTER -->
-<footer>
+<footer class="mobiletray">
+<div class="container colpadding">
+<div class="row">
+  <div class="col-xs-2"><a href="/"><img src="<%= asset_path "home.png"%>"</a></div>
+  <div class="col-xs-2"><a href="/search_engine/show"><img src="<%= asset_path "search.png"%>"</a></div>
+  <div class="col-xs-2"><a href="galleries/new"><img src="<%= asset_path "create.png"%>"</a></div>
+  <div class="col-xs-2"><a href="/show_profile"><img src="<%= asset_path "profile.png"%>"</a></div>
+  <div class="col-xs-2"><a href="job_info"><img src="<%= asset_path "job.png"%>"</a></div>
+</div>
+</div>
+
+</footer>
+
+<footer class="hidemain">
+<div class = "footer-combine">
   <div class="footer-main">
     <div class="container-fluid custom-container">
-      <div class="row">
+      <div class="row mx-auto">
         <div class="col-md-2 col-xl-4">
         </div>
         <div class="col-md-4 col-xl-4">
           <div class="footer-block">
             <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
-            <p>© FashioNXT, 2022</p>p>
+            <p>© FashioNXT, 2022</p>
             <p><a href="https://fashionxt.com/">FashioNXT</a> hello create innovative fashion experiences and the creative edge in lifestyle technology.</p>
             <ul class="soc_buttons">
               <li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
@@ -45,6 +59,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </footer>
 
