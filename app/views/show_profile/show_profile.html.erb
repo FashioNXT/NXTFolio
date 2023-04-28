@@ -342,7 +342,7 @@
 						  </div>
 						  </div> 
 						</div>
-		
+		<% if @gallery_taggings.any? { |gallery_tagging| gallery_tagging.general_info_id == @general_info.id } %>
 		<div class="container-fluid custom-container">
 			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">
@@ -387,11 +387,13 @@
 									<% end %>
 								<% end %>
 								</div>
+								
 							</div>
 							</div>
 						</div>	  
 				    </div>
             	</div>
+				<% end %>
         	
 			
     	</div>
