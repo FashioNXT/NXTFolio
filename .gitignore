@@ -24,8 +24,12 @@ coverage
 public/uploads/
 local_redis/
 
-# Ignore application configuration
-/config/application.yml
+# Ignore Mac and Linux system files
+.DS_Store
+Thumbs.db
+*.swp
 
-# ide config folder
-.vscode/
+# Ignore IDE files
+/.idea/
+/.vscode/
+*.iml
