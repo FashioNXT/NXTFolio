@@ -26,7 +26,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
   # Whether to use remote webdriver or not
-  config.use_remote_webdriver = true
+  config.use_remote_webdriver = false
   if config.use_remote_webdriver
     # Change the Capybara default max wait time to 10 seconds
     Capybara.default_max_wait_time = 30
