@@ -32,7 +32,7 @@ Rails.application.configure do
     Capybara.default_max_wait_time = 30
   end
 
-  config.cache_classes = true
+  config.cache_classes = false
   config.action_view.cache_template_loading = false
 
   # Do not eager load code on boot. This avoids loading your whole application
