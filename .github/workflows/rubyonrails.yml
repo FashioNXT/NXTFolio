@@ -40,8 +40,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/@v1.147.0
         with:
+          bundler: 'Gemfile.lock'
           bundler-cache: true
           ruby-version: 3.2.0
       - name: Set up database schema
@@ -82,8 +83,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/@v1.147.0
         with:
+          bundler: 'Gemfile.lock'
           bundler-cache: true
           ruby-version: 3.2.0
       - name: Set up database schema
