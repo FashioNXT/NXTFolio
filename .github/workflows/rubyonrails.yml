@@ -40,14 +40,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/setup-ruby@v1.148.0
         with:
+          bundler: 'Gemfile.lock'
           bundler-cache: true
           ruby-version: 3.2.0
       - name: Set up database schema
         run: 
           bin/rails db:create
           bin/rails db:schema:load
+      # - name: Compile assets
+      #   run: 
+      #     rake assets:clobber
+      #     rake assets:precompile
       - name: Set RAILS_HOST
         run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run cucumber tests
@@ -81,9 +86,11 @@ jobs:
           apt: nodejs 
       - name: Checkout code
         uses: actions/checkout@v3
+        
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/setup-ruby@v1.148.0
         with:
+          bundler: 'Gemfile.lock'
           bundler-cache: true
           ruby-version: 3.2.0
       - name: Set up database schema
