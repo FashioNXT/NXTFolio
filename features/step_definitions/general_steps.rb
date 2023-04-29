@@ -94,7 +94,7 @@ Given(/^the following galleries for testing delete exist$/) do |table|
       #id: '1',
       gallery_description: gallery_info['description'],
       gallery_totalRate: gallery_info['id'],
-      GeneralInfo_id: '0',
+      GeneralInfo_id: gallery_info['id'],
       gallery_totalRate: gallery_info['total'],
       gallery_totalRator: gallery_info['num'],
       gallery_picture: [image_file1, image_file2, image_file3])
