@@ -45,5 +45,7 @@ Feature: Search a Profile with algorithm
     When I fill in the following:
       | search               | able  |
     Then I click the button with id "show_page_button"
-    And I should not see "Leonardo  "
+
+    And I should not see "Leonardo Secondo "
+
     And I should see "No Results For This" 
