@@ -49,6 +49,10 @@ jobs:
         run: 
           bin/rails db:create
           bin/rails db:schema:load
+      # - name: Compile assets
+      #   run: 
+      #     rake assets:clobber
+      #     rake assets:precompile
       - name: Set RAILS_HOST
         run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run cucumber tests
