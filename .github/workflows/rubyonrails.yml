@@ -40,7 +40,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/@v1.147.0
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler: 'Gemfile.lock'
           bundler-cache: true
@@ -82,8 +82,9 @@ jobs:
           apt: nodejs 
       - name: Checkout code
         uses: actions/checkout@v3
+        
       - name: Install Ruby and gems
-        uses: ruby/@v1.147.0
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler: 'Gemfile.lock'
           bundler-cache: true
