@@ -79,8 +79,11 @@ dir_path = "seed_files"
 fake_password = "Test1234!"
 
 filenames = ["Andrea-Piacquadio.jpg", "Anthony-Gray.jpg", "Jack-Winbow.jpg", "James-Lawrence.jpg", "Masha-Raymers.jpg", "Tasha-Washington.jpg"]
-filenames.each do |filename|
+job_names = ["Brand Owner", "Designer", "Other Creator", "Model", "Photographer",  "Sales", "Marketing", "Retail", "Visual", "Content Creator", "Blogger",  "Influencer", "Forecasting", "Finances", "Other Services", "Manufacturing",  "Materials", "Other Makers"]
 
+# generate a few users
+puts "==> Creating fake users..."
+filenames.each do |filename|
   name = filename.gsub(".jpg", "").split("-")
   first_name = name[0]
   last_name = name[1]
@@ -98,7 +101,7 @@ filenames.each do |filename|
   general_info.userKey = userkey
   general_info.company = "TestInc"
   general_info.industry = "Fashion"
-  general_info.job_name = "Model"
+  general_info.job_name = job_names.sample
   general_info.highlights = "Just a test User"
   general_info.country = "United States"
   general_info.state = "Texas"
@@ -110,7 +113,8 @@ filenames.each do |filename|
   puts "Creating User " + first_name + ", " + last_name + "..."
 end
 
-puts "Creating fake galleries..."
+# generating a few galleries
+puts "==> Creating fake galleries..."
 (1..10).each do |i| 
     Gallery.create!(
         gallery_title: "Test Gallery",
@@ -118,4 +122,51 @@ puts "Creating fake galleries..."
         GeneralInfo_id: i % 6 + 1, # 6 users, so only allow ids from 1 to 
         gallery_picture: [File.open(Rails.root.join("db", "seed_files" , "test_pic.jpg"))]
     )
+end
+
+require 'faker'
+# generate extra users and galleries
+puts "==> Generate extra fake users..."
+200.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  email = "#{first_name}.#{last_name}@example.com"
+  userkey = SecureRandom.hex(10)
+  
+  login_info = LoginInfo.new(
+    email: "#{first_name}.#{last_name}@example.com",
+    password: fake_password,
+    password_confirmation: fake_password,
+    userKey: userkey
+  )
+  login_info.save!
+
+  general_info = GeneralInfo.new(
+    first_name: first_name,
+    last_name: last_name,
+    userKey: userkey,
+    company: "TestInc",
+    industry: "Fashion",
+    job_name: job_names.sample,
+    highlights: "Just a test User",
+    country: "United States",
+    state: "Texas",
+    city: "College Station",
+    emailaddr: email,
+    profile_picture: File.open(Rails.root.join("db", "seed_files" , filenames.sample))
+  )
+  general_info.save!
+  
+  general_info = GeneralInfo.find_by(emailaddr: email)
+
+  num_galleries = rand(1..3)
+  num_galleries.times do
+    gallery = Gallery.new(
+      gallery_title: Faker::Lorem.sentence(word_count: 3),
+      gallery_description: Faker::Lorem.sentence(word_count: 10),
+      GeneralInfo_id: general_info.id,
+      gallery_picture: [File.open(Rails.root.join("db", "seed_files", "test_pic.jpg"))]
+    )
+    gallery.save!
+  end
 end
