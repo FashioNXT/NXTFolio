@@ -338,9 +338,6 @@ class GeneralInfo < ApplicationRecord
     #  puts "users are: #{room[:first_name]}"
     #end
 
-    puts "check adfsaf"
-    puts city.present? 
-    puts city 
 
     # add travel feature
     # if the profession travels to the city within 30 days,
