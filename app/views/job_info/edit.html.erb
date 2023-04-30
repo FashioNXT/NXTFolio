@@ -115,13 +115,43 @@
     <%= form_tag job_info_path(@job_info), :method => :put do %>
       <%= label :job_info, :title, 'Title', :class => 'col-form-label' %>
       <%= text_field :job_info, 'title', :class => 'form-control' %>
+
       <%= label :job_info, :description, 'Description', :class => 'col-form-label' %>
       <%= text_field :job_info, 'description', :class => 'form-control' %>
+
+	  <%= label :job_info, :category, 'Category', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'category', :class => 'form-control' %>
+
+
+	  <%= label :job_info, :profession, 'Profession', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'profession', :class => 'form-control' %>
+
+	  <%= label :job_info, :country, 'Country', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'country', :class => 'form-control' %>
+
+	  <%= label :job_info, :state, 'State', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'state', :class => 'form-control' %>
+
+	  <%= label :job_info, :city, 'City', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'city', :class => 'form-control' %>
+
+	  <%= label :job_info, 'Salary (Annual):', :class => 'col-form-label' %>
+	  <%= label :job_info, :low_salary, 'Lowest', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'low_salary', :class => 'form-control' %>
+
+	  <%= label :job_info, :high_salary, 'Highest', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'high_salary', :class => 'form-control' %>
       <br/>
-      <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+	  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
     <% end %>
+
+
+
+
+
     
+
 
 
 

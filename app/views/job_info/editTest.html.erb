@@ -1,4 +1,3 @@
-<!--  app/views/job_info/show.html.erb -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -111,48 +110,225 @@
 		<div class="container be-detail-container">
 			
 				
-				<div class="col-xs-12 col-md-6 right-box">
-					
+				
+    <h2>Edit Existing Job</h2>
+    <%= form_tag job_info_path(@job_info), :method => :put do %>
+      <%= label :job_info, :title, 'Title', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'title', :class => 'form-control' %>
+      <%= label :job_info, :description, 'Description', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'description', :class => 'form-control' %>
+	  <%= label :job_info, :category, 'Category', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'category', :class => 'form-control' %>
+	  <%= label :job_info, :profession, 'Profession', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'profession', :class => 'form-control' %>
+	  <%= label :job_info, :country, 'country', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'country', :class => 'form-control' %>
+	  <%= label :job_info, :state, 'state', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'state', :class => 'form-control' %>
+	  <%= label :job_info, :city, 'city', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'city', :class => 'form-control' %>
+	  <%= label :job_info, :low_salary, 'low_salary', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'low_salary', :class => 'form-control' %>
+	  <%= label :job_info, :high_salary, 'high_salary', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'high_salary', :class => 'form-control' %>
+      <br/>
+	  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
+    <% end %>
 
-          <h2>Job Details</h2>
-          
 
-          
 
-						
 
-              <div class="be-desc-author">
-                <div class="be-desc-label">Job Title: <%=@job_info.title%></div>
-                <div class="clearfix"></div>
-                <div class="be-user-detail">
-                  
-                  <p>Description: <%=@job_info.description%></p>
-                  <p>Category: <%=@job_info.category%></p>
-                  <p>Profession: <%=@job_info.profession%></p>
-                  <p>Location: <%=@job_info.country%>, <%=@job_info.state%>, <%=@job_info.city%></p>
-                  <p>Salary (Annual): <%=@job_info.low_salary%> ~ <%=@job_info.high_salary%></p>
-                  
-                  
 
-                </div>
+	<h2>Edit Existing Job</h2>
+    <%= form_tag job_info_path(@job_info), :method => :put do %>
 
-                <div class="row">
-                  <%= link_to 'Edit', edit_job_info_path(@job_info), :class => 'btn btn-primary col-2' %>
-                  <%= link_to 'Delete', del_job_info_path(@job_info), 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2' %>
-                  <%= link_to 'Back to jobs list', "/job_info", :class => 'btn btn-primary col-2' %>
-                </div>
 
-              </div>
 
-           
+	  <div class="col-xs-12 col-md-9 _editor-content_">
+	  <div class="custom-sec"  data-sec="basic-information">
+		<div id="custom-sec" class="be-large-post">
+		  <div id="custom-sec" class="info-block style-2">
+			<div class="be-large-post-align "><h3 class="info-block-label">Job Posting Form</h3></div>
+		  </div>
 
-            
-					
-          
 
-					
+		  
 
-			  	</div>
+		  <div class="be-large-post-align">
+			<div class="row">
+			  <!--name-->
+
+			  
+
+			  <div class="input-col col-xs-12 col-sm-10">
+				  <div class="form-group focus-2">
+				  <div class="form-label">Job Title</div>
+				  <%= text_area :job_info, :title, id: "title", :class =>'form-input1', :maxlength => '200', :rows => '1'%>
+				  
+				  </div>
+			  </div>
+
+
+			  <div class="input-col col-xs-12 col-sm-10">
+				  <div class="form-group focus-2">
+					  <div class="form-label">Job Description</div>
+					  <%= text_area :job_info, :description, id: "description", :class =>'form-input', :maxlength => '200', :rows => '3'%>
+					  
+				  </div>
+			  </div>
+
+	   
+			  <div>
+				  
+			  </div>
+
+			  <div class="col-md-6">
+                        <div class="form-group"> <label class="changedLabel">Category</label> <select :job_info, :category, id='job_info_category' name="category" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 80%;" tabindex="-1" aria-hidden="true">
+                            <option placeholder="" value="">Select</option>
+                            <option>Creators</option>
+                            <option>Services</option>
+                            <option>Makers</option>
+                        </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group"> <label class="changedLabel">Profession</label> <select id="job_info_profession" name="profession" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 80%;" tabindex="-1" aria-hidden="true">
+                            <option placeholder="" value="">Select</option>
+                            <option>Brand Owner</option>
+                            <option>Designer</option>
+                            <option>Other Creator</option>
+                            <option>Model</option>
+                            <option>Photographer</option>
+                            <option>Sales</option>
+                            <option>Marketing</option>
+                            <option>Retail</option>
+                            <option>Visual</option>
+                            <option>Content Creator</option>
+                            <option>Blogger</option>
+                            <option>Influencer</option>
+                            <option>Forecasting</option>
+                            <option>Finances</option>
+                            <option>Other Service</option>
+                            <option>Manufacturing</option>
+                            <option>Materials</option>
+                            <option>Other Makers</option>
+                        </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+
+
+			  <!--this is for adding some margin (space) on the page.-->
+			  <div class="input-col col-xs-12 col-sm-10">
+				<div class="form-group focus-2">
+				  
+				</div>
+			  </div>
+
+
+			    <div class="col-md-4">
+                      <div class="form-group"> <label class="changedLabel">Country</label> 
+                      <select id="country" data-trigger="" class="countries form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                        <option value="">Select Country</option>
+                      </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+        
+                    <div class="col-md-4">
+                      <div class="form-group"> <label class="changedLabel">State</label> 
+                      <select name="job_info[state]" id="state" data-trigger="" class="states form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                        <option value="">Select State</option>
+                      </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+                    
+                    
+        
+                    <div class="col-md-4">
+                      <div class="col-sm-4">
+                      <label for="city">City</label>
+                      <%= text_field :job_info, :city, id: "city", class: 'cities form-input', :type => 'text', style: "height: 35px;" %>
+                      </div>
+                    </div> 
+
+                    <!--this is for adding some margin (space) on the page.-->
+                    <div class="input-col col-xs-12 col-sm-10">
+                      <div class="form-group focus-2">
+                        
+                      </div>
+                    </div>
+                    
+
+                    
+
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Salary Range (Annual)</div>
+                        </div>
+                    </div>
+
+
+                   
+                    <div class="col-md-6">
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Lowest</div>
+                        
+                        <input type = "number" name="job_info[low_salary]" id="low_salary" data-trigger="" >
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Highest</div>
+                        
+                        <input type = "number" name="job_info[high_salary]" id="high_salary" data-trigger="" >
+                        </div>
+                    </div>
+
+                    </div>
+
+
+			  <!--this is for adding some margin (space) on the page.-->
+			  <div class="input-col col-xs-12 col-sm-10">
+				<div class="form-group focus-2">
+				  
+				</div>
+			  </div>
+			  
+
+
+			  
+			 
+
+			  <!--gender-->
+
+			</div>
+		  </div>
+
+
+		  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
+		<% end %>
+		  
+
+		</div>
+	  </div>
+
+	
+
+	</div>
+
+    
+
+
+
+
 			
 		</div>
 		<div class="container-fluid custom-container">

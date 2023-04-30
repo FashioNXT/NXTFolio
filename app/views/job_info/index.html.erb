@@ -128,7 +128,7 @@
                   <p>Description: <%=job_info.description%></p>
                   <p>Category: <%=job_info.category%></p>
                   <p>Profession: <%=job_info.profession%></p>
-                  <p>Location: <%=job_info.country%></p>
+                  <p>Location: <%=job_info.country%>, <%=job_info.state%>, <%=job_info.city%></p>
                   <p>Salary (Annual): <%=job_info.low_salary%> ~ <%=job_info.high_salary%></p>
                   
                   <td>
@@ -146,6 +146,9 @@
             
 					
           <% end %>
+
+
+		  <%= link_to 'Back to Search', "/job_search/jobshow", :class => 'btn btn-primary col-2' %>
 
 					
 

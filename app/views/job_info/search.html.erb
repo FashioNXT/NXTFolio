@@ -109,48 +109,62 @@
   <% end %>
   </div>
 
-<div class="head-bg-searchresult">
+
+
   <!-- Display Search Result -->
   <% if @final_users.none? %>
   <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
   <% else %>
-  <div class="divider"><span></span><span>Search Results For <%= @final_users[0].category %></span><span></span></div>
+  <div class="divider"><span></span><span>Search Results For Jobs</span><span></span></div>
   <% end %>
+
   <% if @final_users.none? %>
     No matching profiles
   <% end %>
   <div class="container-fluid custom-container">
     <div class="row profile-row">
-      <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1">
         <% @final_users.present? and @final_users.each do |info| %>
-        <div class="be-post">
-          <div class="col-md-4">
-            <a class="be-img-block">
-              <div class="photo photo-type-line" onClick="()=>{console.log(2333)}; return false;">
+          <div class="be-post">
+          <div class="col-md-6">
+
+            <div class="job-list-box">
+
+              <div class="be-desc-author">
+
+                <div class="be-desc-label">Job Title: <%= info.title%></div>
                 
-              
-                1
-                <div><%= info.title %> </div>
-                <div><%= info.description %> </div>
-                <div><%= info.category %> </div>
-                <div><%= info.profession %> </div>
-                <div><%= info.low_salary %> </div>
-                <div><%= info.high_salary %> </div>
-                <div style='display:flex;'>
+
                 
+                  
+                  <div>Description: <%= info.description%></div>
+                  <div>Category: <%= info.category%></div>
+                  <div>Profession: <%= info.profession%></div>
+                  <div>Location: <%= info.country%>, <%= info.state%>, <%= info.city%></div>
+                  <div>Salary (Annual): <%= info.low_salary%> ~ <%= info.high_salary%></div>
+                  
+                  <td>
+                    <%= link_to "More Infos", visitor_job_info_path(info) %>
+                  </td>
+
+                
+
               </div>
-            
-              </div>
+                
+            </div>
               
-             
-            </a>
+
           </div>
-        </div>
+          </div>
         <% end %>
-      </div>
+
+    </div>
+    </div>
     </div>
   </div>
-</div>
+
+
+
 
 
 

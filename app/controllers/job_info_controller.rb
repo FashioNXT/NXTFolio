@@ -30,6 +30,15 @@ class JobInfoController < ApplicationController
       # will render app/views/job_info/show.<extension> by default
     end
 
+    def visitor_show 
+      id = params[:id] # retrieve job ID from URI route
+      puts "check params"
+      puts params 
+      @job_info = JobInfo.find(id) # look up job by unique ID
+      
+      # will render app/views/job_info/show.<extension> by default
+    end
+
 
     def edit
       @job_info = JobInfo.find params[:id]
