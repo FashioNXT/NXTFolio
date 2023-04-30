@@ -162,8 +162,8 @@
 								<!--% if @login_info && @login_info.email != "" %-->
 								<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
 								<!--% end %-->
-
-								<a class="be-user-site" href=<%= @general_info.personalWebsite_link %> target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a>
+								<a class="be-user-site" href=<%= @general_info.personalWebsite_link.blank? ? "#" : @general_info.personalWebsite_link%> target="_blank"><i class="fa fa-linkedin"></i></a>
+								<!--a class="be-user-site" href=<%= @general_info.personalWebsite_link %> target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a-->
 								<!--% end %-->
 								<% if @on_Own %>
 									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
@@ -342,7 +342,7 @@
 						  </div>
 						  </div> 
 						</div>
-		
+		<% if @gallery_taggings.any? { |gallery_tagging| gallery_tagging.general_info_id == @general_info.id } %>
 		<div class="container-fluid custom-container">
 			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">
@@ -387,11 +387,13 @@
 									<% end %>
 								<% end %>
 								</div>
+								
 							</div>
 							</div>
 						</div>	  
 				    </div>
             	</div>
+				<% end %>
         	
 			
     	</div>
