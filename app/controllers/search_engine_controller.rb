@@ -17,7 +17,7 @@ class SearchEngineController < ApplicationController
         @params_args = params #parameters passed from view
         country = "United States" # change country to industry later (need to modify filterBy as well)
         state = @params_args[:State]
-        city= @params_args[:City][:city]
+        city= @params_args[:city]
 
         puts "check adfsaf"
         puts city
