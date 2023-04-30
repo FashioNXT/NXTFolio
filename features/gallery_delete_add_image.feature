@@ -6,19 +6,23 @@ Feature: delete single image in the gallery
   Background: galleries in database
 
   Given the following users exist
-    | name              | password  | job | city | state | id |
-    | Andrea.Picardo   | Test1234! | Model | Houston | TX | 0 |
+    | name              | password  | job | city | state | id | highlights |
+    | Andrea.Picardo   | Test1234! | Model | Houston | TX | 2 | test | 
 
   Given the following galleries for testing delete exist
   | title | description | total  | id|  num|
-  | t1    | high1       | 20     |  1  | 4 |
+  | t1    | high1       | 20     |  2  | 4 |
 
 
    Given the following galleries exist
   | title | description | total  | id|  num|
-  | t2    | high2       | 20     |   1  | 4|
+  | t2    | high2       | 20     |   2  | 4|
+
+
+
 
 Scenario: User can delete image in their gallery
+  Given I am logged in as "Andrea.Picardo"
   Given I am a valid gallery user
   Given I am on the home page
   When I click on "t1"
@@ -28,6 +32,7 @@ Scenario: User can delete image in their gallery
 
 
 Scenario: User can only delete gallery if there is only one image
+  Given I am logged in as "Andrea.Picardo"
   Given I am a valid gallery user
   Given I am on the home page
   When I click on "t2"
@@ -38,6 +43,7 @@ Scenario: User can only delete gallery if there is only one image
 
 Scenario: User add images to their gallery (at most 5 in the gallery)
   Given I am a valid gallery user
+  Given I am logged in as "Andrea.Picardo"
   Given I am on the home page
   When I click on "t1"
   When I click on "Add pictures"
@@ -51,6 +57,7 @@ Scenario: User add images to their gallery (at most 5 in the gallery)
 
 Scenario: User cannot add images to their gallery when the total amount is more than 5
   Given I am a valid gallery user
+  Given I am logged in as "Andrea.Picardo"
   Given I am on the home page
   When I click on "t1"
   When I click on "Add pictures"
@@ -63,12 +70,18 @@ Scenario: User cannot add images to their gallery when the total amount is more 
 
 Scenario: User cannot add 0 image to their gallery 
   Given I am a valid gallery user
+  Given I am logged in as "Andrea.Picardo"
   Given I am on the home page
   When I click on "t1"
   When I click on "Add pictures"
   When I click on "Add images"
   Then I should not see "Images uploaded!"
   Then I should see "Add at least 1 image!"
+
+  
+
+
+
 
 
   
