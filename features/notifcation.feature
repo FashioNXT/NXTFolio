@@ -1,5 +1,3 @@
-# Notification Feature
-
 Feature: Receive notifications while logged in to the Application
 
     As a professional and application user
