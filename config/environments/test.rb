@@ -26,19 +26,20 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
   # Whether to use remote webdriver or not
-  config.use_remote_webdriver = false
+  config.use_remote_webdriver = true
   if config.use_remote_webdriver
     # Change the Capybara default max wait time to 10 seconds
     Capybara.default_max_wait_time = 30
   end
 
   config.cache_classes = false
-  config.action_view.cache_template_loading = true
+  config.action_view.cache_template_loading = false
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
-  config.eager_load = false
+  # config.eager_load = false
+  config.eager_load = true
 
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true

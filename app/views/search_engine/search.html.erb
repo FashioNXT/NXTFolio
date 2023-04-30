@@ -110,14 +110,14 @@
   <% end %>
   </div>
 
-<div class="head-bg-searchresult">
+<div class="head-bg-searchresult" style="height:1px">
   <!-- Display Search Result -->
   <% if session[:current_user_key] == nil%>
     <a class="btn full color-1 size-1 hover-1" href="/login" method="get"><i class="fa fa-chevron-left"></i>Login to see the result users</a>
   <%else%>
 
   <% if @final_users.none? %>
-    <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
+    <div class="divider"><span>No Results For This Job </span></div>
     <div> No matching profiles</div>
     <% recommend_set = []%>
 

@@ -1,0 +1,103 @@
+# This workflow uses actions that are not certified by GitHub.  They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+#
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  cucumber:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: workspace_test
+          POSTGRES_USER: beaverthing
+          POSTGRES_PASSWORD: beaverthing
+      browser:
+        image: selenium/standalone-firefox:latest
+        ports: 
+          - 4444:4444
+    env:
+      RAILS_ENV: test
+      SELENIUM_HOST: localhost
+      SELENIUM_PORT: 4444
+      #RAILS_HOST: # ip of hostHow 
+      RAILS_PORT: 3000
+    steps:
+      - name: Install Package
+        uses: ConorMacBride/install-package@v1.1.0
+        with:
+          apt: nodejs 
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1.148.0
+        with:
+          bundler: 'Gemfile.lock'
+          bundler-cache: true
+          ruby-version: 3.2.0
+      - name: Set up database schema
+        run: 
+          bin/rails db:create
+          bin/rails db:schema:load
+      # - name: Compile assets
+      #   run: 
+      #     rake assets:clobber
+      #     rake assets:precompile
+      - name: Set RAILS_HOST
+        run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
+      - name: Run cucumber tests
+        run: bin/rake cucumber
+        
+  spec:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: workspace_test
+          POSTGRES_USER: beaverthing
+          POSTGRES_PASSWORD: beaverthing
+      browser:
+        image: selenium/standalone-firefox:latest
+        ports: 
+          - 4444:4444
+    env:
+      RAILS_ENV: test
+      SELENIUM_HOST: localhost
+      SELENIUM_PORT: 4444
+      #RAILS_HOST: # ip of hostHow 
+      RAILS_PORT: 3000
+    steps:
+      - name: Install Package
+        uses: ConorMacBride/install-package@v1.1.0
+        with:
+          apt: nodejs 
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1.148.0
+        with:
+          bundler: 'Gemfile.lock'
+          bundler-cache: true
+          ruby-version: 3.2.0
+      - name: Set up database schema
+        run: 
+          bin/rails db:create
+          bin/rails db:schema:load
+      - name: Set RAILS_HOST
+        run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
+      - name: Run spec tests
+        run: bin/rake spec

@@ -1,12 +1,12 @@
 # NXTFolio
 
-- [(OLD) DEMO](#old-demo)
+[![Ruby on Rails CI](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml)
+
 - [Install local server](#install-local-server)
   - [Recommended: Using docker-compose (Ubuntu 18.04 and selenium firefox)](#recommended-using-docker-compose-ubuntu-1804-and-selenium-firefox)
   - [Using Dockerfile (Ubuntu 18.04)](#using-dockerfile-ubuntu-1804)
   - [Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)](#run-on-linux-without-docker-tested-on-aws-e2c-ubuntu-1804)
   - [Helpful fixes](#helpful-fixes)
-  - [(OLD) How to start a local server:](#old-how-to-start-a-local-server)
 - [Using AWS S3 as Image Backend](#using-aws-s3-as-image-backend)
 - [Country/States/Cities Database](#countrystatescities-database)
 - [Geocoding](#geocoding)
@@ -17,7 +17,7 @@
 - [Rating Featues](#rating-featues)
 - [Forgot Password Feature:](#forgot-password-feature)
 
-## (OLD) DEMO
+<!-- ## (OLD) DEMO
 https://sheltered-woodland-21494.herokuapp.com/
 
 
@@ -26,7 +26,7 @@ Get Facebook Login to function:
 1. Create Facebook developers acccount  [https://developers.facebook.com/](https://developers.facebook.com/)
 2. Create a facebook login app 
 3. Use the API key of Facebook app, in the source code. You can find the required details in the document.
-4. Start serving Facebook login easily
+4. Start serving Facebook login easily -->
 
 ## Install local server
 
@@ -228,7 +228,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
-### (OLD) How to start a local server:
+<!-- ### (OLD) How to start a local server:
 
 1. git clone the repository to your local machine  
     `https://github.com/vibalcam/match-my-fashion-public-CodeCreators`
@@ -326,7 +326,7 @@ If there is any problem about pg database. Try the steps below:
 
 8. The local server will start on the following link
 
-    [http://localhost:3000](http://localhost:3000)
+    [http://localhost:3000](http://localhost:3000) -->
     
 ## Using AWS S3 as Image Backend
 
@@ -341,6 +341,12 @@ For deployed Heroku environments: (assuming the site is already deployed)
 ## Country/States/Cities Database
 
 To update the country/state/city database visit [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database) to obtain the latest json file and replace it for the one located at `db/seed_files/countries+states+cities.json`.
+
+Then run 
+
+```bash
+rake db:reset_countries
+```
 
 ## Geocoding
 
