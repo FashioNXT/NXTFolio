@@ -159,6 +159,22 @@
 <script src="<%= asset_path "location.js"%>"></script>
 
 
+<script>
+  const startDateInput = document.getElementById("start");
+  const endDateInput = document.getElementById("end");
+
+  endDateInput.addEventListener('change', () => {
+    if (endDateInput.value < startDateInput.value) {
+      endDateInput.setCustomValidity("End date cannot be earlier than start date.");
+        } else {
+          endDateInput.setCustomValidity("");
+        }
+    
+  });
+  
+
+</script>
+
 
 </body>
 </html>
