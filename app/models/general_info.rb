@@ -347,8 +347,10 @@ class GeneralInfo < ApplicationRecord
     @filteredUsers1 = city.present? ? @filteredUsers1.where(travel_city: city) : @filteredUsers1
     # @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date) + \
     #                   @filteredUsers1.where.not(travel_start: Date.today..30.days.from_now.to_date).
-    @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date).or(@filteredUsers1.where(travel_end: Date.today..30.days.from_now.to_date))
-
+    @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date)\
+                    .or(@filteredUsers1.where(travel_end: Date.today..30.days.from_now.to_date)\
+                    .or(@filteredUsers1.where('travel_start < ?', Date.today).where('travel_end > ?', Date.today) ) )
+                    
     return @filteredUsers.or(@filteredUsers1)
 
 
