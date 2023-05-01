@@ -16,7 +16,9 @@ Given(/the following users exist/) do |users_table|
     login_info.userKey = userkey
     login_info.save!
 
+
     general_info = GeneralInfo.new
+    #general_info.profession = user['profession']
     general_info.id = user['id']
     general_info.first_name = first_name
     general_info.last_name = last_name
@@ -24,7 +26,9 @@ Given(/the following users exist/) do |users_table|
     general_info.company = "TestInc"
     general_info.industry = "Fashion"
     general_info.job_name = job
-    general_info.highlights = "Just a test User"
+
+    general_info.highlights = user['highlights']
+
     general_info.country = "United States"
     #general_info.state = "Texas"
     #general_info.city = "College Station"
@@ -33,6 +37,11 @@ Given(/the following users exist/) do |users_table|
     general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
     general_info.save!
   end
+end
+
+When(/^I click the button with id "([^"]*)"$/) do |id|
+  button = find_by_id(id)
+  button.click
 end
 
 
@@ -85,7 +94,7 @@ Given(/^the following galleries for testing delete exist$/) do |table|
       #id: '1',
       gallery_description: gallery_info['description'],
       gallery_totalRate: gallery_info['id'],
-      GeneralInfo_id: '0',
+      GeneralInfo_id: gallery_info['id'],
       gallery_totalRate: gallery_info['total'],
       gallery_totalRator: gallery_info['num'],
       gallery_picture: [image_file1, image_file2, image_file3])
@@ -201,6 +210,11 @@ Given(/^I am on (.+)$/) do |page_name|
   visit path_to(page_name)
 end
 
+Given(/^I am searching$/) do
+  #puts(path_to(page_name))
+  visit 'search_engine/show'
+end
+
 Then /^I am with id gallery (\d+)$/ do |id|
   visit gallery_path(id)
 end
@@ -232,6 +246,10 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When('I click on submit') do
+  find('#submit').click
+end
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -247,6 +265,14 @@ end
 Then(/^(?:|I )should see "([^"]*)"$/) do |text|
   expect(page).to have_content(text)
 end
+
+# test sorting
+Then(/^I should see "([^"]*)" to the left of "([^"]*)"$/) do |left, right|
+  page_content = page.text
+  expect(page_content).to match(/#{left}.*#{right}/m)
+end
+
+
 
 Then(/^(?:|I )should not see "([^"]*)"$/) do |text|
   expect(page).not_to have_content(text)

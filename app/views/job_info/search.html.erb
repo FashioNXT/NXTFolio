@@ -112,9 +112,9 @@
 <div class="head-bg-searchresult">
   <!-- Display Search Result -->
   <% if @final_users.none? %>
-  <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
+  <div class="divider"><span></span><span>No Results For This </span><span></span></div>
   <% else %>
-  <div class="divider"><span></span><span>Search Results For <%= @final_users[0].category %></span><span></span></div>
+  <div class="divider"><span></span><span>Search Results:</span><span></span></div>
   <% end %>
   <% if @final_users.none? %>
     No matching profiles
