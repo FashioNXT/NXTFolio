@@ -141,7 +141,7 @@
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
 							<% if @general_info.travel_start %>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label><%= @general_info.travel_city%>, <%= @general_info.travel_state%>, <%= @general_info.travel_country%>, <%= @general_info.travel_start%>, <%= @general_info.travel_end %>, <%= @general_info.travel_details %></p>
+							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label> In <%= @general_info.travel_city%>, <%= @general_info.travel_state%> from <%= @general_info.travel_start.strftime('%b %d')%> to <%= @general_info.travel_end.strftime('%b %d') %>: <%= @general_info.travel_details %></p>
 							<% end %>
 							<br>
 							<p style="font-size: 12px; margin-top:0px; text-align: left;
