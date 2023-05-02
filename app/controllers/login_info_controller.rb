@@ -99,6 +99,7 @@ class LoginInfoController < ApplicationController
       if @login_user[:password] == @login_info[:password]
         #login
         session[:current_user_key] = @login_user[:userKey]
+        session[:login_time] = Time.current # Spring 2023
 
         if @login_user[:is_admin] != nil
           session[:is_admin] = true
@@ -107,7 +108,6 @@ class LoginInfoController < ApplicationController
 
         # create/update record in the user_activity_details table
         current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-        UserActivityDetail.find_or_create_by(user_id: current_user[:id]).update(logged_in_at: Time.current, last_active_at: Time.current)
         redirect_to root_path
       else
         flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
@@ -129,6 +129,7 @@ class LoginInfoController < ApplicationController
   def logout
     session[:current_user_key] = nil
     session[:is_admin] = false
+    session.delete(:login_time)
     flash[:success] = "You Have Successfully Logged Out! Hope To See You Soon!"
     $current_user = nil #for facebook login usecase
     # redirect_to destroy_user_session_path

@@ -1,19 +1,29 @@
 class Api::GeneralInfoController < ApplicationController
     def index
-        user_activities = UserActivityDetail.all
-        user_activities = user_activities.map do |user_activity|
-            user = GeneralInfo.find_by(id: user_activity[:user_id])
+        # user_activities = UserActivityDetail.all
+        users = GeneralInfo.all
+        # user_activities = user_activities.map do |user_activity|
+        user_info = users.map do |user|
+            # user = GeneralInfo.find_by(id: user_activity[:user_id])
             email = user[:emailaddr]
             id = user[:id]
             location = user[:city] + ',' + user[:state] + ',' + user[:country]
             name = user[:first_name] + ' ' + user[:last_name]
             access_enabled = true # !user.deactivated
             app = "NXTFolio"
-            average_minutes_used_last_30_days = (user_activity[:time_spent_on_website]/60.to_i)%43200
+            user_activities = UserActivityDetail.where(user_id: id).first
+            if user_activities
+                average_minutes_used_last_30_days = (UserActivityDetail.where("user_id = ? AND created_at >= ?", id, 30.days.ago).average(:time_spent_on_website).to_i)/60
+                last_access = user_activities.last_active_at ? user_activities.last_active_at.strftime("%Y-%m-%d %H:%M:%S") : "null"
+            else
+                average_minutes_used_last_30_days = 0
+                last_access = "null"
+            end
+
             user_type = user.job_name || "Unknown"
             initial_access = user.created_at.strftime("%Y-%m-%d %H:%M:%S")
-            last_access = user_activity.last_active_at ? user_activity.last_active_at.strftime("%Y-%m-%d %H:%M:%S") : "null"
-            updated_at = user_activity.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+
+            updated_at = user.updated_at.strftime("%Y-%m-%d %H:%M:%S")
             {
             access_enabled: access_enabled,
             app: app,
@@ -30,6 +40,6 @@ class Api::GeneralInfoController < ApplicationController
             }
         end
     
-        render json: { user_info: user_activities }
+        render json: { user_info: user_info }
     end
   end

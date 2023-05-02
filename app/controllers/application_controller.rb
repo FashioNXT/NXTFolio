@@ -51,10 +51,10 @@ class ApplicationController < ActionController::Base
   def track_time_spent_on_website
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-      user_activity_detail = UserActivityDetail.find_or_create_by(user_id: current_user[:id])
+      user_activity_detail = UserActivityDetail.find_or_create_by(user_id: current_user[:id], logged_in_at: session[:login_time])
       if user_activity_detail.time_spent_on_website.nil?
         user_activity_detail.update(
-          logged_in_at: Time.current,
+          logged_in_at: session[:login_time],
           last_active_at: Time.current,
           time_spent_on_website: 0
         )
@@ -64,8 +64,6 @@ class ApplicationController < ActionController::Base
           last_active_at: Time.current,
           time_spent_on_website: user_activity_detail.time_spent_on_website + time_spent.to_i
         )
-        puts user_activity_detail
-        user_activity_detail.update(last_active_at: Time.current) if user_activity_detail
        end
     end
   end
