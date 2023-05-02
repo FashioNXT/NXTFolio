@@ -39,9 +39,8 @@ class SearchEngineController < ApplicationController
         #country = "United States" # change country to industry later (need to modify filterBy as well)
         country =@params_args[:Country]
         state = @params_args[:State]
-        city= @params_args[:City]
+        city= @params_args[:city]
 
-        
 
 
         @stateInfo=state

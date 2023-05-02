@@ -339,7 +339,22 @@ class GeneralInfo < ApplicationRecord
     #  puts "users are: #{room[:first_name]}"
     #end
 
-    return @filteredUsers
+
+    # add travel feature
+    # if the profession travels to the city within 30 days,
+    # he should show up in the search results
+    @filteredUsers1 = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+    @filteredUsers1 = state.present? ? @filteredUsers1.where(travel_state: state) : @filteredUsers1
+    @filteredUsers1 = city.present? ? @filteredUsers1.where(travel_city: city) : @filteredUsers1
+    # @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date) + \
+    #                   @filteredUsers1.where.not(travel_start: Date.today..30.days.from_now.to_date).
+    @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date)\
+                    .or(@filteredUsers1.where(travel_end: Date.today..30.days.from_now.to_date)\
+                    .or(@filteredUsers1.where('travel_start < ?', Date.today).where('travel_end > ?', Date.today) ) )
+                    
+    return @filteredUsers.or(@filteredUsers1)
+
+
   end
 
 end
