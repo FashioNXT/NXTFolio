@@ -5,10 +5,10 @@ Feature: Travel Feature
 
   Background: users in database
     Given the following users exist
-    | name              | password  | job          | state | city            |
-    | Andrea.Picardo    | Test1234! | Model        | Texas | college station |
-    | Anthony.Gray      | Test1234! | Photographer | Texas | college station |
-    | Jack.Sparrow      | Test1234! | Model        | Texas | college station |
+    | name              | password  | job          | state | city            | highlights |
+    | Andrea.Picardo    | Test1234! | Model        | Texas | college station | test       |
+    | Anthony.Gray      | Test1234! | Photographer | Texas | college station | test1      |
+    | Jack.Sparrow      | Test1234! | Model        | Texas | college station | test2      |
 
   Scenario: I can search based on travel information
     Given I am a professional and want to add my travel information
