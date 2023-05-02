@@ -117,7 +117,9 @@
   <%else%>
 
   <% if @final_users.none? %>
-    <div class="divider"><span>No Results For This Job </span></div>
+
+    <div class="divider"><span></span><span>No Results For This </span><span></span></div>
+
     <div> No matching profiles</div>
     <% recommend_set = []%>
 
@@ -130,7 +132,7 @@
     <%@same_city_state = GeneralInfo.where(state: state_key, city: city_key)%>
     <%@same_state = GeneralInfo.where(state: state_key)%>
 
-
+    
 
     <div class="divider">You May Also Like:
 
@@ -182,7 +184,7 @@
     <% if @final_users[0].job_name == "Admin"%>
       <div class="divider"><span></span><span>Search Results:</span><span></span></div>
     <%else%>
-      <div class="divider"><span></span><span>Search Results For <%= @final_users[0].job_name %></span><span></span></div>
+      <div class="divider"><span></span><span>Search Results: </span><span></span></div>
     <%end%>
   <%end%>
   <%end%>

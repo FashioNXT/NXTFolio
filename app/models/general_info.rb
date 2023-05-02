@@ -326,10 +326,11 @@ class GeneralInfo < ApplicationRecord
     end
   end
 
-  def self.filterBy state, profession, city
+  def self.filterBy state, profession, city, country
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
     # @filteredUsers = @filteredUsers.where(country: country) #United States
+    @filteredUsers = country.present? ? GeneralInfo.where(country: country) : @filteredUsers
     @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
     #adding city on filter list
     @filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
