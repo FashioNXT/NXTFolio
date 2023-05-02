@@ -128,11 +128,11 @@
                     
         
                     <div class="col-md-4">
-                      <div class="form-group"> <label class="changedLabel">City</label> 
-                      <select name="job_info[city]" id="city" data-trigger="" class="cities form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
-                        <option value="">Select City</option>
-                      </select> </div> <!-- /.form-group -->
-                    </div> <!-- /.col -->
+                      <div class="col-sm-4">
+                      <label for="city">City</label>
+                      <%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', style: "height: 35px;" %>
+                      </div>
+                    </div> 
 
                     <!--this is for adding some margin (space) on the page.-->
                     <div class="input-col col-xs-12 col-sm-10">

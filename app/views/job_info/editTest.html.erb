@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FashioNXT</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
+		<style>
+			.big{
+				font-size: 25px;
+			}
+		</style>
+		
+	</head>
+	<body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+	
+
+	<!-- THE LOADER -->
+
+	<div class="be-loader">
+    	<div class="spinner">
+			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+			<p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+			</p>
+		</div>
+    </div>
+	<!-- THE HEADER -->
+	<header>
+		
+		<div class="container-fluid custom-container">
+			<div class="row no_row row-header">
+				<div class="brand-be">
+					<a href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+					</a>
+				</div>
+				
+				<div class="header-menu-block">
+					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
+					<ul class="header-menu" id="one">
+						<li><a href="/search_profile/search">Search</a>
+						</li>
+						<% if session[:current_user_key] %>
+							<li><a href="/show_profile">My Profile</a></li>
+							<% if @on_Own %>
+								<li><a href="/general_info/edit">Edit Profile</a>
+									<ul>
+										<li><a href="/general_info/edit">Edit Personal Info</a></li>
+										<% if @attribute_titles && !@is_Admin %>
+											<li><a href="/general_info/edit2">Edit Professional Info</a></li>
+										<% end %>
+										<li><a href="/login_info/edit">Change Password</a></li>
+										<% if !@is_Admin %>
+											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
+										<% elsif @is_Admin%>
+											<li><a href="/admin">Admin Dashboard</a></li>
+										<% end %>
+									</ul>
+								</li>
+							<% end %>
+						<% end %>
+					</ul>
+				</div>
+
+                <!--Logout Button Begin -->
+                <div class="login-header-block">
+                    <div class="login_block">
+                        <% if session[:current_user_key] %>
+													<div class="dropdown">
+
+														</div>
+													</div>
+													<a href="/dm" class="dropbtn"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
+													<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
+                        <% else %>
+                        	<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
+                        <% end %>
+                    </div>
+                </div>
+                <!--Logout Button End-->
+    
+			</div>
+		</div>
+		
+		</div>
+	</header>
+	
+	
+	<!-- MAIN CONTENT -->
+	<div id="content-block"
+		
+		<div class="container be-detail-container">
+			
+				
+				
+    <h2>Edit Existing Job</h2>
+    <%= form_tag job_info_path(@job_info), :method => :put do %>
+      <%= label :job_info, :title, 'Title', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'title', :class => 'form-control' %>
+      <%= label :job_info, :description, 'Description', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'description', :class => 'form-control' %>
+	  <%= label :job_info, :category, 'Category', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'category', :class => 'form-control' %>
+	  <%= label :job_info, :profession, 'Profession', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'profession', :class => 'form-control' %>
+	  <%= label :job_info, :country, 'country', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'country', :class => 'form-control' %>
+	  <%= label :job_info, :state, 'state', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'state', :class => 'form-control' %>
+	  <%= label :job_info, :city, 'city', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'city', :class => 'form-control' %>
+	  <%= label :job_info, :low_salary, 'low_salary', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'low_salary', :class => 'form-control' %>
+	  <%= label :job_info, :high_salary, 'high_salary', :class => 'col-form-label' %>
+      <%= text_field :job_info, 'high_salary', :class => 'form-control' %>
+      <br/>
+	  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
+    <% end %>
+
+
+
+
+
+	<h2>Edit Existing Job</h2>
+    <%= form_tag job_info_path(@job_info), :method => :put do %>
+
+
+
+	  <div class="col-xs-12 col-md-9 _editor-content_">
+	  <div class="custom-sec"  data-sec="basic-information">
+		<div id="custom-sec" class="be-large-post">
+		  <div id="custom-sec" class="info-block style-2">
+			<div class="be-large-post-align "><h3 class="info-block-label">Job Posting Form</h3></div>
+		  </div>
+
+
+		  
+
+		  <div class="be-large-post-align">
+			<div class="row">
+			  <!--name-->
+
+			  
+
+			  <div class="input-col col-xs-12 col-sm-10">
+				  <div class="form-group focus-2">
+				  <div class="form-label">Job Title</div>
+				  <%= text_area :job_info, :title, id: "title", :class =>'form-input1', :maxlength => '200', :rows => '1'%>
+				  
+				  </div>
+			  </div>
+
+
+			  <div class="input-col col-xs-12 col-sm-10">
+				  <div class="form-group focus-2">
+					  <div class="form-label">Job Description</div>
+					  <%= text_area :job_info, :description, id: "description", :class =>'form-input', :maxlength => '200', :rows => '3'%>
+					  
+				  </div>
+			  </div>
+
+	   
+			  <div>
+				  
+			  </div>
+
+			  <div class="col-md-6">
+                        <div class="form-group"> <label class="changedLabel">Category</label> <select :job_info, :category, id='job_info_category' name="category" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 80%;" tabindex="-1" aria-hidden="true">
+                            <option placeholder="" value="">Select</option>
+                            <option>Creators</option>
+                            <option>Services</option>
+                            <option>Makers</option>
+                        </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group"> <label class="changedLabel">Profession</label> <select id="job_info_profession" name="profession" data-trigger="" class="form-control select2 select2-hidden-accessible" style="width: 80%;" tabindex="-1" aria-hidden="true">
+                            <option placeholder="" value="">Select</option>
+                            <option>Brand Owner</option>
+                            <option>Designer</option>
+                            <option>Other Creator</option>
+                            <option>Model</option>
+                            <option>Photographer</option>
+                            <option>Sales</option>
+                            <option>Marketing</option>
+                            <option>Retail</option>
+                            <option>Visual</option>
+                            <option>Content Creator</option>
+                            <option>Blogger</option>
+                            <option>Influencer</option>
+                            <option>Forecasting</option>
+                            <option>Finances</option>
+                            <option>Other Service</option>
+                            <option>Manufacturing</option>
+                            <option>Materials</option>
+                            <option>Other Makers</option>
+                        </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+
+
+			  <!--this is for adding some margin (space) on the page.-->
+			  <div class="input-col col-xs-12 col-sm-10">
+				<div class="form-group focus-2">
+				  
+				</div>
+			  </div>
+
+
+			    <div class="col-md-4">
+                      <div class="form-group"> <label class="changedLabel">Country</label> 
+                      <select id="country" data-trigger="" class="countries form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                        <option value="">Select Country</option>
+                      </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+        
+                    <div class="col-md-4">
+                      <div class="form-group"> <label class="changedLabel">State</label> 
+                      <select name="job_info[state]" id="state" data-trigger="" class="states form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
+                        <option value="">Select State</option>
+                      </select> </div> <!-- /.form-group -->
+                    </div> <!-- /.col -->
+                    
+                    
+        
+                    <div class="col-md-4">
+                      <div class="col-sm-4">
+                      <label for="city">City</label>
+                      <%= text_field :job_info, :city, id: "city", class: 'cities form-input', :type => 'text', style: "height: 35px;" %>
+                      </div>
+                    </div> 
+
+                    <!--this is for adding some margin (space) on the page.-->
+                    <div class="input-col col-xs-12 col-sm-10">
+                      <div class="form-group focus-2">
+                        
+                      </div>
+                    </div>
+                    
+
+                    
+
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Salary Range (Annual)</div>
+                        </div>
+                    </div>
+
+
+                   
+                    <div class="col-md-6">
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Lowest</div>
+                        
+                        <input type = "number" name="job_info[low_salary]" id="low_salary" data-trigger="" >
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                    <div class="input-col col-xs-12 col-sm-10">
+                        <div class="form-group focus-2">
+                        <div class="form-label">Highest</div>
+                        
+                        <input type = "number" name="job_info[high_salary]" id="high_salary" data-trigger="" >
+                        </div>
+                    </div>
+
+                    </div>
+
+
+			  <!--this is for adding some margin (space) on the page.-->
+			  <div class="input-col col-xs-12 col-sm-10">
+				<div class="form-group focus-2">
+				  
+				</div>
+			  </div>
+			  
+
+
+			  
+			 
+
+			  <!--gender-->
+
+			</div>
+		  </div>
+
+
+		  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', job_info_path, :class => 'btn btn-secondary' %>
+		<% end %>
+		  
+
+		</div>
+	  </div>
+
+	
+
+	</div>
+
+    
+
+
+
+
+			
+		</div>
+		<div class="container-fluid custom-container">
+			<div class="row profile-row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="container-mix"  class="row _post-container_">
+						
+        	
+			
+    	</div>
+	</div>
+	<!-- MAIN CONTENT END -->
+	<%= render 'shared/footer' %>
+
+	<div class="be-fixed-filter"></div>
+	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+	<div class="large-popup login">
+		<div class="container large-popup-container">
+			<div class="row">
+				<div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
+					<div class="row">
+						<div class="col-md-12">
+							<i class="fa fa-times close-button"></i>
+							<h5 class="large-popup-title">Log in</h5>
+						</div>
+						<form action="#" class="popup-input-search" method="post">
+						<div class="col-md-6">
+							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+							<!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
+						</div>
+						<div class="col-md-6 form-group">
+							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+							<!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
+						</div>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-6 for-signin">
+							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+							<!--<input type="submit" class="be-popup-sign-button" value="SIGN IN">-->
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<!-- SCRIPT	-->
+	<script src="<%= asset_path "jquery.min.js"%>"></script>
+	<script src="<%= asset_path "jquery-ui.js"%>"></script>
+	<script src="<%= asset_path "bootstrap.min.js"%>"></script>		
+	<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+	<script src="<%= asset_path "global.js"%>"></script>
+	<script src="<%= asset_path "jquery.raty.js"%>"></script>
+	<script> 
+		var element = document.getElementById("messages");
+		element.scrollTop = element.scrollHeight;
+
+			/* When the user clicks on the button,
+		toggle between hiding and showing the dropdown content */
+		function dropdown() {
+		document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown menu if the user clicks outside of it
+		window.onclick = function(event) {
+		if (!event.target.matches('.dropbtn')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length(); i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');s
+			}
+			}
+		}
+		}
+	</script>
+	<script>
+		$('.review-rating').raty({
+			readOnly:true,
+			score: function() {
+				return $(this).attr('data-score');
+			},
+			path: '/assets/'
+		});
+	</script>
+	<script>
+		$('.average-review-rating').raty({
+			readOnly:true,
+			score: function() {
+				return $(this).attr('data-score');
+			},
+			path: '/assets/'
+		});
+	</script>
+
+	<script>
+
+function searchCollaborator(galleryId) {
+var form = document.querySelector("#new_gallery_tagging_"+galleryId);
+    var searchInput = document.querySelector("#collab-search-"+ galleryId);
+    var searchResults = document.querySelector(".all-list-"+ galleryId);
+	var taggedUserIds = [];
+	
+    searchInput.addEventListener("keyup", function() {   
+		//console.log("hello");     
+        var filter = searchInput.value.toLowerCase();
+		if (filter.length > 0) {
+    		searchResults.classList.add("show");
+  		} else {
+    		searchResults.classList.remove("show");
+  		}
+        var items = searchResults.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var text = item.textContent || item.innerText;
+            if (filter === "" || text.toLowerCase().indexOf(filter) > -1) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        }
+    });
+	searchResults.addEventListener('click', (event) => {
+	const selectedValue = event.target.textContent;
+	searchInput.value = selectedValue;
+    const selectedId = event.target.getAttribute('data-user-id');
+    taggedUserIds.push(selectedId);
+	form.querySelector("input[name='gallery_tagging[tagged_user_id]']").value = taggedUserIds.join(",");
+	
+	});	
+}
+</script>
+<script>
+$(document).on('click', '.show-more-collab a', function(e) {
+  e.preventDefault();
+  $(this).closest('.collaborators').find('.hidden-collab').show();
+  $(this).closest('.collab').hide();
+});
+</script>
+	</body>
+</html>
