@@ -4,6 +4,13 @@ class GeneralInfo < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one :login_info
 
+  # For follow feature
+  has_many(:follows, :foreign_key => :followee, :dependent => :destroy)
+  has_many(:follows_from, :class_name => :Follow,
+      :foreign_key => :follower, :dependent => :destroy)
+  has_many :followers, :through => :follows, :source => :follower
+  has_many :follows_others, :through => :follows_from, :source => :followee
+
   # NXTFolio : Added in Spring 2023 for tagging feature
   has_many :gallery_taggings
   has_many :tagged_gallery, through: :gallery_taggings, source: :gallery
@@ -33,6 +40,10 @@ class GeneralInfo < ApplicationRecord
   def address
     [city, state, country].compact.join(", ")
   end
+
+  # def name
+  #   self[:name]
+  # end
 
   def self.search searchArg
     location = nil
@@ -326,7 +337,26 @@ class GeneralInfo < ApplicationRecord
     end
   end
 
-  def self.filterBy state, profession, city, country
+
+  def follow(id)
+    followee = GeneralInfo.find(id)
+    Follow.create!(:follower => self, :followee => followee)
+  end
+
+  def unfollow(id)
+    followee = GeneralInfo.find(id)
+    self.follows_others.delete(followee)
+  end
+
+  def get_followers 
+     self.followers
+  end
+
+  def get_users_they_follow
+     self.follows_others
+  end
+
+  def self.filterBy state, profession, city
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
     # @filteredUsers = @filteredUsers.where(country: country) #United States
