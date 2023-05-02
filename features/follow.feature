@@ -16,10 +16,20 @@ Feature: Follow Feature
     Then I should be added to the followers list of James Lawrence
 
   Scenario: I can unfollow other users
-    Given I visit the profile page of James Lawrence
+    Given I am logged in as Anthony Gray
+    And I visit the profile page of James Lawrence
     And I am currently following James Lawrence
     When I click on the Unfollow button
     Then I should be removed from the followers list of James Lawrence
 
-
+  Scenario: I can see who I am following
+    Given I am a professional and I am on my profile page
+    And I am following other users
+    When I click on the Following button
+    Then I should see a popup containing the users I follow
     
+  Scenario: I can see who is following me
+    Given I am a professional and I am on my profile page
+    And other users are following me
+    When I click on the Followers button
+    Then I should see a popup containing the users following me
