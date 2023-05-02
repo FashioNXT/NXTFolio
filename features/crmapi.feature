@@ -5,11 +5,11 @@ Feature: CRM API Feature
 
   Background: users in database
     Given the following users exist
-    | name              | password  | job          | city | state | id |
-    | Andrea.Picardo    | Test1234! | Model        | Houston | TX | 1  |
-    | Anthony.Gray      | Test1234! | Photographer | College Station | TX | 2  |
-    | Jack.Sparrow      | Test1234! | Model        | Bryan | TX | 3  |
-    | James.Lawrence    | Test1234! | Model        | Houston | TX | 4  |
+    | name              | password  | job          | city | state | id | highlights |
+    | Andrea.Picardo    | Test1234! | Model        | Houston | TX | 1  | test |
+    | Anthony.Gray      | Test1234! | Photographer | College Station | TX | 2  | test |
+    | Jack.Sparrow      | Test1234! | Model        | Bryan | TX | 3  | test |
+    | James.Lawrence    | Test1234! | Model        | Houston | TX | 4  | test |
 
   Scenario: I can view usage statistics
     Given no usage statistics exist
