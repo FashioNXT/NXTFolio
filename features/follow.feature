@@ -2,11 +2,11 @@ Feature: Follow Feature
 
   Background: users in database
     Given the following users exist
-    | name              | password  | job          | city | state | id |
-    | Andrea.Picardo    | Test1234! | Model        | Houston | TX | 1  |
-    | Anthony.Gray      | Test1234! | Photographer | College Station | TX | 2  |
-    | Jack.Sparrow      | Test1234! | Model        | Bryan | TX | 3  |
-    | James.Lawrence    | Test1234! | Model        | Houston | TX | 4  |
+    | name              | password  | job          | highlights | city | state | id |
+    | Andrea.Picardo    | Test1234! | Model        | test       | Houston | TX | 1  |
+    | Anthony.Gray      | Test1234! | Photographer | test       | College Station | TX | 2  |
+    | Jack.Sparrow      | Test1234! | Model        | test       | Bryan | TX | 3  |
+    | James.Lawrence    | Test1234! | Model        | test       | Houston | TX | 4  |
     
   Scenario: I can follow other users
     Given I am logged in as Anthony Gray

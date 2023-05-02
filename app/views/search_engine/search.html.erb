@@ -110,13 +110,21 @@
   <% end %>
   </div>
 
-<div class="head-bg-searchresult">
+<div class="head-bg-searchresult" style="height:1px">
   <!-- Display Search Result -->
+  <% if session[:current_user_key] == nil%>
+    <a class="btn full color-1 size-1 hover-1" href="/login" method="get"><i class="fa fa-chevron-left"></i>Login to see the result users</a>
+  <%else%>
+
   <% if @final_users.none? %>
+
+    <div class="divider"><span></span><span>No Results For This </span><span></span></div>
+
+    <div> No matching profiles</div>
     <% recommend_set = []%>
 
     <% @current_user = GeneralInfo.find_by(userKey: session[:current_user_key])%>
-
+    <%if @current_user != nil%>
     <%city_key = @current_user.city%>
     <%state_key = @current_user.state%>
 
@@ -124,9 +132,8 @@
     <%@same_city_state = GeneralInfo.where(state: state_key, city: city_key)%>
     <%@same_state = GeneralInfo.where(state: state_key)%>
 
+    
 
-    <div class="divider"><span></span><span>No Results For This Job </span><span></span></div>
-    <div> No matching profiles</div>
     <div class="divider">You May Also Like:
 
     <%for item in @same_city_state do %>
@@ -171,20 +178,65 @@
           </div>
         </div>
         <% end %>
+      <%end%>
     <%end%>
   <% else %>
-    <div class="divider"><span></span><span>Search Results For <%= @final_users[0].job_name %></span><span></span></div>
+    <% if @final_users[0].job_name == "Admin"%>
+      <div class="divider"><span></span><span>Search Results:</span><span></span></div>
+    <%else%>
+      <div class="divider"><span></span><span>Search Results: </span><span></span></div>
+    <%end%>
+  <%end%>
   <%end%>
 </div>
+
+
 
 <div>
   <div class="container-fluid custom-container">
     <div class="row profile-row">
       <div class="col-md-10 col-md-offset-1">
+        <% @current_user = GeneralInfo.find_by(userKey: session[:current_user_key])%>
+    <% if @current_user != nil%>
+
+        <%profession_key = @current_user.job_name.downcase%>
+        <%city_key = @current_user.city%>
+        <%state_key = @current_user.state%>
+        <%country_key = @current_user.country%>
+
+        <% results = Hash.new%>
         <% @final_users.present? and @final_users.each do |info| %>
+          <%score = 0%>
+          <%if info.first_name.downcase == @EnteredKw.downcase || info.last_name.downcase == @EnteredKw.downcase%>
+            <%score += 24%>
+          <%end%>
+          <%if info.job_name.downcase == profession_key%>
+            <%score += 12%>
+          <%end%>
+          <%if info.city == city_key%>
+            <% score += 3.5%>
+          <%end%>
+          <%if info.state == state_key%>
+            <% score += 3%>
+          <%end%>
+          <%if info.country == country_key%>
+            <% score += 2.5%>
+          <%end%>
+          <% gall_number = info.gallery.length()%>
+          <% gall_score = 2 * gall_number.to_f / 10%>
+          <% if gall_score > 2%>
+            <%gall_score = 2%>
+          <%end%>
+          <% score += gall_score%>
+          <%results[info] = score%>
+        <% end %>  
+        <%sorted_results = results.sort_by { |k, v| -v }.to_h%>
+
+        <% sorted_results.keys.each do |info| %>
         <div class="be-post">
           <div class="col-md-4">
             <a class="be-img-block">
+            
               <div class="photo photo-type-line">
                 <% if info.profile_picture? %>
                   <img src="<%= info.profile_picture.url %>" alt="omg">
@@ -208,14 +260,50 @@
               <div class="desc"> <%= info.city %> </div>
               <div class="desc"> <%= info.state %> </div>
               <div class="desc"> <%= info.job_name %> </div>
-              <div class="line"></div>
-              <div class="desc"> <%= info.bio %> </div>
+            
               
             </a>
           </div>
         </div>
         <% end %>
+      <%else %>
+        <% if session[:current_user_key] != nil%>
+            <% @final_users.present? and @final_users.each do |info| %>
+            <div class="be-post">
+              <div class="col-md-4">
+                <a class="be-img-block">
+                
+                  <div class="photo photo-type-line">
+                    <% if info.profile_picture? %>
+                      <img src="<%= info.profile_picture.url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= show_profile_show_profile_path(:user_key => info.userKey) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= info.city %> </div>
+                        <div class="desc"> <%= info.state %> </div>
+                        <div class="desc"> <%= info.job_name %> </div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= info.bio %> </div>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                  <div class="headline"><%= info.first_name %> <%= info.last_name %></div>
+                  <div class="desc"> <%= info.city %> </div>
+                  <div class="desc"> <%= info.state %> </div>
+                  <div class="desc"> <%= info.job_name %> </div>
+                </a>
+              </div>
+            </div>
+            <% end %>
+          <%end%>
+      <%end%>
       </div>
+      
     </div>
   </div>
 </div>

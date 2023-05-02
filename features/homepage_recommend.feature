@@ -9,8 +9,8 @@ Feature: Recommending projects on homepage
 
 
     Given the following users exist
-    | name              | password  | job | city | state |
-    | Andrea.Picardo   | Test1234! | Model | Houston | TX |
+    | name              | password  | job | city | state | highlights |
+    | Andrea.Picardo   | Test1234! | Model | Houston | TX | test |
     
 
     Given the following galleries exist

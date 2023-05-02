@@ -40,6 +40,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 gem 'fog-aws'
+gem 'aws-sdk-s3'
 
 # gem 'fog'
 gem 'figaro'
@@ -79,6 +80,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
 end
+# to generate seed data for testing
+gem 'faker'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

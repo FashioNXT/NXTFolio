@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
   get 'general_info/edit2' => 'general_info#edit2', :as => 'general_info/edit2'
+  get 'general_info/edit_travel' => 'general_info#edit_travel', :as => 'general_info/edit_travel'
   get 'general_info/new2' => 'general_info#new2', :as => 'general_info/new2'
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
   get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'
@@ -126,6 +127,18 @@ Rails.application.routes.draw do
   get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
+  get 'job_search/jobshow' => 'job_search#jobshow', :as => 'job_search/jobshow'
+  # get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
+
+  # get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
+  post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
+  get 'job_info/search', to: 'job_info#search', as: 'job_info/search'
+  get 'job_info/new_job', to: 'job_info#new_job', as: 'job_info_new_job'
+  # get 'job_info/show/:id', to: 'job_info#show', as: 'job_info_show'
+  # delete 'job_info/:id/del(.:format)', to: 'job_info#destroy', as: 'del_job_info'
+  get '/job_info/:id/del', to: 'job_info#destroy', as: 'del_job_info'
+  get '/job_info/:id/visitor', to: 'job_info#visitor_show', as: 'visitor_job_info'
+
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'
   get 'password/reset/edit', to: 'password_resets#edit'
@@ -139,6 +152,9 @@ Rails.application.routes.draw do
   resources :specific_photographer
   resources :search_profile
   resources :template
+
+  # for job function
+  resources :job_info
 
 #halting this changes, later will check
 
@@ -155,11 +171,16 @@ end
   end
 
   resources :search_engine
+  resources :job_search
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   root 'application#index'
+
 end
 
+#end
+
+#>>>>>>> refs/remotes/origin/baichuan_update_gallery

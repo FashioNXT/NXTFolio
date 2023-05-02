@@ -1,5 +1,5 @@
 class GeneralInfo < ApplicationRecord
-  has_many :gallery, dependent: :destroy, foreign_key: 'GeneralInfo_id'
+  has_many :gallery, dependent: :destroy, foreign_key: 'GeneralInfo_id' 
   has_many :messages, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one :login_info
@@ -360,6 +360,7 @@ class GeneralInfo < ApplicationRecord
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
     # @filteredUsers = @filteredUsers.where(country: country) #United States
+    @filteredUsers = country.present? ? GeneralInfo.where(country: country) : @filteredUsers
     @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
     #adding city on filter list
     @filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
