@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 2023_04_25_133708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
-    t.integer "remove_image_ids"
-    t.string "added_image"
     t.string "test_picture", array: true
   end
 
@@ -113,14 +111,6 @@ ActiveRecord::Schema.define(version: 2023_04_25_133708) do
     t.date "travel_start"
     t.date "travel_end"
     t.string "travel_details"
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "file_name"
-    t.bigint "gallery_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gallery_id"], name: "index_images_on_gallery_id"
   end
 
   create_table "job_infos", force: :cascade do |t|
@@ -290,7 +280,6 @@ ActiveRecord::Schema.define(version: 2023_04_25_133708) do
   add_foreign_key "cities", "states"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
-  add_foreign_key "images", "galleries"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
   add_foreign_key "states", "countries"

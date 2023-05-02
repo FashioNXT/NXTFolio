@@ -7,9 +7,9 @@ Feature: Chat
     # NXTFolio Spring 2023, Iteration 2
     Background: users in database
         Given the following users exist
-        | name              | password  | job | city | state | id |
-        | Andrea.Picardo    | Test1234! | Model | Houston | TX | 1  |
-        | Anthony.Gray    | Test1234! | Model | College Station | TX | 2  |
+        | name              | password  | job | city | state | id | highlights |
+        | Andrea.Picardo    | Test1234! | Model | Houston | TX | 1  | test |
+        | Anthony.Gray    | Test1234! | Model | College Station | TX | 2  |  test |
 
     # NXTFolio Spring 2023, Iteration 2
     Scenario: As a user I should be available to access the chat and see other users
