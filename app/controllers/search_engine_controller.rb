@@ -41,11 +41,15 @@ class SearchEngineController < ApplicationController
         state = @params_args[:State]
         city= @params_args[:city]
 
+       
+
+
 
 
         @stateInfo=state
         profession = @params_args[:Profession]
-        @filtered_users = GeneralInfo.filterBy state, profession, city, country
+        @filtered_users = GeneralInfo.filterBy country, state, profession, city
+
 
         #puts "Filtered users are: "
         #@filtered_users.each do |room|
@@ -67,7 +71,7 @@ class SearchEngineController < ApplicationController
         # end
 
         if country != nil  && state!= nil  && city!= nil  && profession!= nil  && @keyword!= nil  && country.empty?  && state.empty?  && city.empty?  && profession.empty?  && @keyword.empty? 
-            puts('empty!!!!!!!')
+            
             #'search_engine/show?'
             @final_users = []
             render 'search_engine/show'
@@ -86,8 +90,7 @@ class SearchEngineController < ApplicationController
                 end
                 user_data = specific_user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
                 
-                #puts(user_data)
-                #puts('!!!!!!!!!!')
+                
                 user_data << user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
 
                 userdataString=user_data.split(" ")
@@ -126,13 +129,10 @@ class SearchEngineController < ApplicationController
                     text_info += filter_words(user.bio)
                 end
 
-                #puts(text_info)
-                #puts('!!!')
+           
 
                 @keyword_set = filter_words(@keyword)
-                # puts("--------")
-                # puts(@keyword_set)
-                # puts("--------")
+                
                 for word in text_info
                     for keyword in @keyword_set
                         if word.include?(keyword) 

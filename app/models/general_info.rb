@@ -356,15 +356,20 @@ class GeneralInfo < ApplicationRecord
      self.follows_others
   end
 
-  def self.filterBy state, profession, city
+  def self.filterBy country, state, profession, city
     #filter by profession, country, state
     @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
     # @filteredUsers = @filteredUsers.where(country: country) #United States
-    @filteredUsers = country.present? ? GeneralInfo.where(country: country) : @filteredUsers
+
+    #@filteredUsers = country.present? ? GeneralInfo.where(country: country) : @filteredUsers
+    @filteredUsers = country.present? ? @filteredUsers.where(country: country) : @filteredUsers
+
     @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
     #adding city on filter list
-    @filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
+    #@filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
+    @filteredUsers = city.present? ? @filteredUsers.where("LOWER(city) = ?", city.downcase) : @filteredUsers
 
+    
     #@filteredUsers.each do |room|
     #  puts "users are: #{room[:first_name]}"
     #end
