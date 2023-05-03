@@ -107,6 +107,14 @@ class SearchEngineController < ApplicationController
                 # puts(user.compensation)
                 # puts(user.bio)
                 text_info = Set.new
+
+                if user.first_name != nil 
+                    text_info += filter_words(user.first_name)
+                end
+
+                if user.last_name != nil 
+                    text_info += filter_words(user.last_name)
+                end
                 
 
                 if user.highlights != nil 
@@ -128,6 +136,9 @@ class SearchEngineController < ApplicationController
                 if user.bio != nil 
                     text_info += filter_words(user.bio)
                 end
+
+                puts(text_info)
+                puts("ddd")
 
            
 
