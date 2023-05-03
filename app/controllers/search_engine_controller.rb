@@ -137,10 +137,6 @@ class SearchEngineController < ApplicationController
                     text_info += filter_words(user.bio)
                 end
 
-                puts(text_info)
-                puts("ddd")
-
-           
 
                 @keyword_set = filter_words(@keyword)
                 
