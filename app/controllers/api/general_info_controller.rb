@@ -10,6 +10,7 @@ class Api::GeneralInfoController < ApplicationController
             location = user[:city] + ',' + user[:state] + ',' + user[:country]
             name = user[:first_name] + ' ' + user[:last_name]
             access_enabled = true # !user.deactivated
+            fees_last_30_days = 0
             app = "NXTFolio"
             user_activities = UserActivityDetail.where(user_id: id).first
             if user_activities
@@ -36,7 +37,8 @@ class Api::GeneralInfoController < ApplicationController
             user_type: user_type,
             initial_access: initial_access,
             last_access: last_access,
-            updated_at: updated_at
+            updated_at: updated_at,
+            fees_last_30_days: fees_last_30_days
             }
         end
     

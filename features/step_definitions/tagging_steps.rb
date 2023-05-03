@@ -146,7 +146,7 @@ end
     within(".collaborated-galleries") do
       expect(page).to have_content("Collaborated Galleries")
       find(".profile-img-container").hover
-      expect(find("a.photo-hover[href='/galleries/show?project_key=1']")).to be_visible
+      expect(find("a.photo-hover[href='/galleries/1/show']")).to be_visible
       #link = find('a.photo-hover[href="/galleries/show?project_key=1"]')
       #expect(link).to be_visible
     end
