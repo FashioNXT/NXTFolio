@@ -8,21 +8,21 @@ $('#general_info_industry').on('change', function(e) {
     $("#general_info_job_name option").hide() //hide all options
     //$('#job_name').selectpicker('deselectAll') //if want to remove all selcted optn
     if (values =='Creators') {
-
+        $('#general_info_job_name').empty();
         $('#general_info_job_name').append('<option>' +'Select One'+ '</option>');
         for (var i = 0; i < 3; i++) {
             //$("#profession option[value="' + creator_array[i] + '"]").show()
             $('#general_info_job_name').append('<option>' +creator_array[i]+ '</option>');
         }
     }else if (values =='Services') {
-
+        $('#general_info_job_name').empty();
         $('#general_info_job_name').append('<option>' +'Select One'+ '</option>');
         for (var i = 0; i < 12; i++) {
             //$("#profession option[value="' + creator_array[i] + '"]").show()
             $('#general_info_job_name').append('<option>' +service_array[i]+ '</option>');
         }
     }else if (values =='Makers') {
-
+        $('#general_info_job_name').empty();
         $('#general_info_job_name').append('<option>' +'Select One'+ '</option>');
         for (var i = 0; i < 3; i++) {
             //$("#profession option[value="' + creator_array[i] + '"]").show()
@@ -30,7 +30,9 @@ $('#general_info_industry').on('change', function(e) {
         }
     }
     else {
-        $("#general_info_job_name option").show() //show all options
+        // dont show anything
+        $("#general_info_job_name option").hide()
+        //$("#general_info_job_name option").show() //show all options
     }
     //$('#job_name').selectpicker('refresh'); //refresh selctpicker
 });
