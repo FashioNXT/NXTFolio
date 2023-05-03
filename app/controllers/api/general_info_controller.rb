@@ -40,6 +40,6 @@ class Api::GeneralInfoController < ApplicationController
             }
         end
     
-        render json: { user_info: user_info }
+        render json: user_info
     end
   end
