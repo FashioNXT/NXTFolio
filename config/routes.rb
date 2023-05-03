@@ -59,6 +59,10 @@ Rails.application.routes.draw do
   get 'general_info/profession_specific' => 'general_info#profession_specific', :as => 'general_info/profession_specific'
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
 
+  # Follow Feature
+  get 'general_info/follow/:id' => 'general_info#follow'
+  get 'general_info/unfollow/:id' => 'general_info#unfollow'
+
   namespace :admin do
     get '/' => 'admin#landing'
     get '/create' => 'admin#create'
@@ -67,6 +71,11 @@ Rails.application.routes.draw do
     post '/edit' => 'admin#edit'
     get '/delete' => 'admin#delete'
     post '/delete' => 'admin#delete'
+  end
+
+  namespace :api do
+    get 'users', to: 'general_info#index'
+    # resources :general_info, only: [:index]
   end
 
   get '/general_info/make_admin/:room' => 'general_info#make_admin'
@@ -126,10 +135,14 @@ Rails.application.routes.draw do
   get 'job_search/jobshow' => 'job_search#jobshow', :as => 'job_search/jobshow'
   # get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
 
-  get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
+  # get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
   post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
   get 'job_info/search', to: 'job_info#search', as: 'job_info/search'
   get 'job_info/new_job', to: 'job_info#new_job', as: 'job_info_new_job'
+  # get 'job_info/show/:id', to: 'job_info#show', as: 'job_info_show'
+  # delete 'job_info/:id/del(.:format)', to: 'job_info#destroy', as: 'del_job_info'
+  get '/job_info/:id/del', to: 'job_info#destroy', as: 'del_job_info'
+  get '/job_info/:id/visitor', to: 'job_info#visitor_show', as: 'visitor_job_info'
 
   get 'password/reset', to: 'password_resets#new'
   post 'password/reset', to: 'password_resets#create'

@@ -226,6 +226,24 @@ The Dockerfile and script to automatically setup app can be found in the `instal
     
         (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.profile
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    
+- **Error: Is the server running on host "127.0.0.1" and accepting TCP/IP connections on port 5432?**
+
+    First go to the setup script and try to run all the postgres related commands
+
+        sudo apt install -y postgresql postgresql-contrib libpq-dev -y
+
+    If an error occurs involving the "dpkg is locked" then there are other processes trying to use apt. You need to kill these processes
+
+    To get a list of processes using apt run the follow command 
+
+        ps aux | grep -i apt
+
+    Hopefully it will show that some other processes are trying to use apt, kill these processes by running
+
+        sudo kill <process_id>
+
+    Once the processes are killed try installing postgres again using the lines specified in the setup script.
 
 
 <!-- ### (OLD) How to start a local server:

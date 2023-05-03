@@ -74,6 +74,7 @@ require 'securerandom'
 LoginInfo.destroy_all
 GeneralInfo.destroy_all
 Gallery.destroy_all
+Follow.destroy_all
 
 dir_path = "seed_files"
 fake_password = "Test1234!"
@@ -113,8 +114,20 @@ filenames.each do |filename|
   puts "Creating User " + first_name + ", " + last_name + "..."
 end
 
-# generating a few galleries
-puts "==> Creating fake galleries..."
+puts "Creating fake follower/followee connections..."
+(1..filenames.length()).each do |i|
+  follower = GeneralInfo.find(i)
+  (1..3).each do |j| 
+    random_user = rand(1..filenames.length())
+    followee = GeneralInfo.find(random_user)
+    if not Follow.exists?(:follower => follower, :followee => followee) and i != random_user
+      follower.follow(random_user)
+      # Follow.create!(:follower => follower, :followee => followee)
+    end
+  end
+end
+
+puts "Creating fake galleries..."
 (1..10).each do |i| 
     Gallery.create!(
         gallery_title: "Test Gallery",

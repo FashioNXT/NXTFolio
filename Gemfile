@@ -92,6 +92,8 @@ gem "rails-controller-testing"
 gem "factory_bot_rails"
 #gem 'simplecov', :require => false, :group => :test
 #gem 'simplecov-rcov'
+# gem 'bootstrap'
+# gem 'popperjs' 
 
 # Fixes the problem of "You are using an old OmniAuth version"
 # gem 'devise', github: 'heartcombo/devise', branch: 'main'

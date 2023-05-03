@@ -95,6 +95,10 @@ class ShowProfileController < ApplicationController
           puts "Unknown profile type! Profile type given: "
           @profile_type = "Error"
         end
+        @followers = @user.get_followers
+        @following = @user.get_users_they_follow
+        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+        @currently_following = Follow.exists?(:follower => current_user, :followee => @user)
         # End of Messy Profile Selection
         puts @profile_info.inspect
       else
@@ -110,6 +114,15 @@ class ShowProfileController < ApplicationController
       redirect_to "/login_info/login"
     end
     puts @attribute_titles.inspect
+
+    # check if the end date of travel pass today
+    # if this is the case, do not show the travel
+    
+    if @general_info.travel_end.present? && @general_info.travel_end < Date.today 
+      @general_info.travel_start = nil 
+      # the frontend will check this to decide show travel info or not
+    end
+    
   end
 
   def destroy

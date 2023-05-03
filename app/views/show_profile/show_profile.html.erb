@@ -98,8 +98,8 @@
 														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
 														<div id="myDropdown" class="dropdown-content">
 															<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
-															<div style="color: black; height: 20px; width: 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
-															<div style="color: black; height: 20px; width: 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
+															<div style="color: black; height: 20px;"> <b> You're all caught up! </b> </div>
+															<div style="color: black; height: 20px;"> <b> No new messages. </b> </div>
 													<% end %>
 														</div>
 													</div>
@@ -141,33 +141,73 @@
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
 							<% if @general_info.travel_start %>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label><%= @general_info.travel_city%>, <%= @general_info.travel_state%>, <%= @general_info.travel_country%>, <%= @general_info.travel_start%>, <%= @general_info.travel_end %>, <%= @general_info.travel_details %></p>
+							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label> In <%= @general_info.travel_city%>, <%= @general_info.travel_state%> from <%= @general_info.travel_start.strftime('%b %d')%> to <%= @general_info.travel_end.strftime('%b %d') %>: <%= @general_info.travel_details %></p>
 							<% end %>
 							<br>
-							<p style="font-size: 12px; margin-top:0px; text-align: left; margin-left: 30px; margin-bottom: 40px; height: 80px"><%= @general_info.highlights %></p>
+							<p style="font-size: 12px; margin-top:0px; text-align: left;
+									 margin-left: 30px; margin-bottom: 5px; height: 60px;
+									 overflow: hidden;"><%= @general_info.highlights %></p>
 							
 							<!--<img src="img/ava_10.jpg" alt=""> -->
-							
+							<div class="follow-box">
+								<div class="follow-element1">
+									<% if not @on_Own %>
+										<% if not @currently_following %>
+											<div style="margin-right: 10px; margin-left: 10px;">
+												<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
+													<p>Follow</p>
+												<% end %>
+											</div>
+										<% else %>
+											<div style="margin-right: 10px; margin-left: 10px;">
+												<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
+													<p>Unfollow</p>
+												<% end %>
+											</div>
+										<% end %>
+									<% end %>
+								</div>
+								<div class="follow-element2">
+									<div style="margin-right: 10px; margin-left: 10px;">
+										<p><%=@followers.length%></p>
+										<a href="#followers-modal" class="btn color-3 size-0 hover-9">
+											<p>Followers</p>
+										</a>
+									</div>
+								</div>
+								<div class="follow-element2">
+									<div style="margin-right: 10px; margin-left: 10px;">
+										<p><%=@following.length%></p>
+										<a href="#following-modal" class="btn color-3 size-0 hover-9">
+											<p>Following</p>
+										</a>
+									</div>
+								</div>
+							</div>	
 							<div class="be-text-tags style-1 job_title-style">
 								<a style="font-size: 20px"><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
 								<!--% if @general_info && @general_info.facebook_link != "" %-->							
-								<a class="social-btn color-1" href=<%= @general_info.facebook_link.blank? ? "#" : @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>
-								<!--% end %-->
-								<!--% if @general_info && @general_info.linkedIn_link != "" %-->
-
-								<a class="social-btn color-6" href=<%= @general_info.linkedIn_link.blank? ? "#" : @general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>
-								<!--% end %-->
-								<!--% if @login_info && @login_info.email != "" %-->
+								<% if @general_info.facebook_link.blank? %> 
+									<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
+								<% else %>
+									<a class="social-btn color-1" href=<%= @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>	
+								<% end %>
+								<% if @general_info.linkedIn_link.blank? %> 
+									<a class="social-btn color-1"><i class="fa fa-linkedin"></i></a>
+								<% else %>
+									<a class="social-btn color-1" href=<%=@general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>	
+								<% end %>
+								<% if @general_info.linkedIn_link.blank? %> 
+									<a class="social-btn color-1"><i class="fa fa-link"></i></a>
+								<% else %>
+									<a class="social-btn color-1" href=<%=@general_info.personalWebsite_link%> target="_blank"><i class="fa fa-link"></i></a>	
+								<% end %>
 								<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
-								<!--% end %-->
-								<a class="be-user-site" href=<%= @general_info.personalWebsite_link.blank? ? "#" : @general_info.personalWebsite_link%> target="_blank"><i class="fa fa-linkedin"></i></a>
-								<!--a class="be-user-site" href=<%= @general_info.personalWebsite_link %> target="_blank"><i class="fa fa-link"></i> <%= @general_info.personalWebsite_link %></a-->
-								<!--% end %-->
 								<% if @on_Own %>
-									<a class="social-btn color-4" href="/dm"><i class="fa fa-message"></i></a>
-								<% else%>
+									<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
+								<% else %>
 									<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
 								<% end%>
 							</div>
@@ -196,7 +236,11 @@
 							<div class="clearfix"></div>
 							<div class="be-user-detail">
 								<!--Add Bio HERE-->
-								<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
+								<% if @general_info.specialization.blank?%>
+									<p ><%= @general_info.profdetails %></p>
+								<% else %>
+									<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
+								<% end %>
 								<p>Compensation Type: <%=@general_info.compensation%></p>
 								<p>Years of Experience: <%=@general_info.experience%></p>
 							</div>
@@ -207,6 +251,66 @@
 			  	</div>
 			</div>
 		</div>
+		<!-- Follow Features -->
+		<!-- <div class="follow-box">
+			<% if not @on_Own %>
+				<% if not @currently_following %>
+					<div style="margin-right: 10px; margin-left: 10px;">
+						<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+							<p>Follow</p>
+						<% end %>
+					</div>
+				<% else %>
+					<div style="margin-right: 10px; margin-left: 10px;">
+						<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+							<p>Unfollow</p>
+						<% end %>
+					</div>
+				<% end %>
+			<% end %>
+			<div style="margin-right: 10px; margin-left: 10px;">
+				<a href="#followers-modal" class="btn color-3 size-0 hover-9">
+					<p>Followers</p>
+				</a>
+			</div>
+			<div style="margin-right: 10px; margin-left: 10px;">
+				<a href="#following-modal" class="btn color-3 size-0 hover-9">
+					<p>Following</p>
+				</a>
+			</div>
+		</div> -->
+		<!-- Popup Modals -->
+		<div id="followers-modal" class="modalWindow">
+			<div>
+				<h2 style="margin-top: 10px;">Followers</h2>
+				<div class="modal-elements-container">
+					<% @followers.present? and @followers.each do |follower| %>
+						<a href="<%= show_profile_show_profile_path(:user_key => follower.userKey) %>">
+							<div class="modal-element"> <%= follower.first_name + " " + follower.last_name%> </div>
+						</a>
+					<% end %>
+				</div>
+				<div style="margin-top: 10px;">
+					<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+				</div>
+			</div>
+		</div>
+		<div id="following-modal" class="modalWindow">
+			<div>
+				<h2>Following</h2>
+				<div class="modal-elements-container">
+					<% @following.present? and @following.each do |followee| %>
+						<a href="<%= show_profile_show_profile_path(:user_key => followee.userKey) %>">
+							<div class="modal-element"> <%= followee.first_name + " " + followee.last_name%> </div>
+						</a>
+					<% end %>
+				</div>
+				<div style="margin-top: 10px;">
+					<a href="#ok" title="Ok" class="ok btn color-1 size-2 hover-1">Close</a>
+				</div>
+			</div>
+		</div>
+
 		<div class="container-fluid custom-container">
 			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">

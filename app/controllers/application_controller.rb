@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # before_action :update_last_active_at
+  before_action :track_time_spent_on_website
+
   # Used to confirm the session key of the current room
   def index
     @landing = true
@@ -42,4 +45,27 @@ class ApplicationController < ActionController::Base
       new_general_info_path
     end
   end
+
+  private
+
+  def track_time_spent_on_website
+    if session[:current_user_key]
+      current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+      user_activity_detail = UserActivityDetail.find_or_create_by(user_id: current_user[:id], logged_in_at: session[:login_time])
+      if user_activity_detail.time_spent_on_website.nil?
+        user_activity_detail.update(
+          logged_in_at: session[:login_time],
+          last_active_at: Time.current,
+          time_spent_on_website: 0
+        )
+      else
+        time_spent = Time.current - user_activity_detail.last_active_at
+        user_activity_detail.update(
+          last_active_at: Time.current,
+          time_spent_on_website: user_activity_detail.time_spent_on_website + time_spent.to_i
+        )
+       end
+    end
+  end
+
 end

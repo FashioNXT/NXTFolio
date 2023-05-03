@@ -1,21 +1,13 @@
 class JobInfoController < ApplicationController
     # Variable that holds a params/object with all the attributes filled in
     def list
-        @general_infos = JobInfo.all
+        
     end
 
     def jobshow
         # @general_info = JobInfo.find(params[:id])
     end
 
-    def get_user_keys array
-        @return_array = Array.new
-        array.each do |element,index|
-        @return_array.push(element[:userKey])
-        end
-
-        return @return_array
-    end
 
 
     # # # Associated with the view used for create
@@ -25,7 +17,47 @@ class JobInfoController < ApplicationController
     #     # @job_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
     # end
 
+    def index 
+      @job_infos = JobInfo.all 
+    end
 
+    def show 
+      id = params[:id] # retrieve job ID from URI route
+      puts "check params"
+      puts params 
+      @job_info = JobInfo.find(id) # look up job by unique ID
+      
+      # will render app/views/job_info/show.<extension> by default
+    end
+
+    def visitor_show 
+      id = params[:id] # retrieve job ID from URI route
+      puts "check params"
+      puts params 
+      @job_info = JobInfo.find(id) # look up job by unique ID
+      
+      # will render app/views/job_info/show.<extension> by default
+    end
+
+
+    def edit
+      @job_info = JobInfo.find params[:id]
+    end
+  
+    def update
+      @job_info = JobInfo.find params[:id]
+      @job_info.update!(job_info_params)
+      flash[:notice] = "#{@job_info.title} was successfully updated."
+      redirect_to job_info_path(@job_info)
+    end
+
+    def destroy
+      # puts "check adfsadfa"
+      @job_info = JobInfo.find(params[:id])
+      @job_info.destroy
+      flash[:notice_delete_job] = "Job '#{@job_info.title}' deleted."
+      redirect_to "/job_info"
+    end
 
     def new_job 
       @job_info = JobInfo.new

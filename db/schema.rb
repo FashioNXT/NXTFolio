@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_23_200123) do
+ActiveRecord::Schema.define(version: 2023_04_25_133708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2023_04_23_200123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["iso3"], name: "index_countries_on_iso3", unique: true
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "galleries", id: :serial, force: :cascade do |t|
@@ -254,6 +261,15 @@ ActiveRecord::Schema.define(version: 2023_04_23_200123) do
     t.json "prof_attribute"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_activity_details", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "logged_in_at"
+    t.datetime "last_active_at"
+    t.integer "time_spent_on_website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
