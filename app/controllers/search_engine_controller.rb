@@ -41,11 +41,24 @@ class SearchEngineController < ApplicationController
         state = @params_args[:State]
         city= @params_args[:city]
 
+        print(country)
+        print("????")
+
+
+        print(state)
+        print("????")
+
+
+        print(city)
+        print("????")
+
+
 
 
         @stateInfo=state
         profession = @params_args[:Profession]
-        @filtered_users = GeneralInfo.filterBy state, profession, city, country
+        @filtered_users = GeneralInfo.filterBy country, state, profession, city
+
 
         #puts "Filtered users are: "
         #@filtered_users.each do |room|
