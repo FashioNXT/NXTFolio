@@ -1,9 +1,9 @@
 Given(/^no usage statistics exist$/) do
     get "/api/users"
     response_body = JSON.parse(last_response.body)
-    expect(response_body).to include("user_info")
-    expect(response_body["user_info"].size).to be 4
-    response_body["user_info"].each do |user_info|
+    # expect(response_body).to include("user_info")
+    expect(response_body.size).to be 4
+    response_body.each do |user_info|
         expect(user_info["timespent"]).to be_nil
     end
 end
@@ -38,14 +38,14 @@ end
 
 Then(/^I should see their usage time$/) do
     response_body = JSON.parse(last_response.body)
-    expect(response_body).to include("user_info")
-    expect(response_body["user_info"]).to be_an(Array)
-    expect(response_body["user_info"].size).to be >= 1
+    # expect(response_body).to include("user_info")
+    expect(response_body).to be_an(Array)
+    expect(response_body.size).to be >= 1
 
-    user_names = response_body["user_info"].map { |user| user["name"] }
+    user_names = response_body.map { |user| user["name"] }
     expect(user_names).to include("James Lawrence").or include("Andrea Picardo").or include("Jack Sparrow")
     
-    user_info = response_body["user_info"]
+    user_info = response_body
     expect(user_info).to be_an(Array)
     
     user_info.each do |user|
