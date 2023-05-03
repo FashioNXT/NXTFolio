@@ -460,7 +460,7 @@
 									<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
 									<div class="col-md-4">
 										<div class="photo photo-type-line">
-											<a class="photo-hover" href="<%= galleries_show_path(:project_key => tagged_gallery.id) %>">
+											<a class="photo-hover" href="<%= gallery_path(tagged_gallery.id) %>">
 												<div class="photo-info">
 													<div class="headline"> <%= tagged_gallery.gallery_title %> </div>
 													<div class="line"></div>
