@@ -444,7 +444,7 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 1. User can add travel info in their profile. 
 2. Travelling user will show up in search results. 
 
-## Gallery feature: 
+## Gallery features
 
 1. The user can add and delete gallery in their profile page. 
 2. The user can add/delete individual images in their gallery. (no more than 5) 
