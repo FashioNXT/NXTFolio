@@ -16,6 +16,10 @@
 - [Search Features](#search-features)
 - [Rating Featues](#rating-featues)
 - [Forgot Password Feature:](#forgot-password-feature)
+- [Job Feature:](#job-features)
+- [Tag features:](#tag-features)
+- [Travel features:](#travel-features)
+- [Gallery features:](#gallery-features)
 
 <!-- ## (OLD) DEMO
 https://sheltered-woodland-21494.herokuapp.com/
@@ -380,29 +384,37 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 4. Rating/ Review feature on application
 5. Admin user has been added, with privilege for using the admin APIs. This is only available to the single admin user, added by the developer. Contact admin for help
 6. Direct Messaging (DM) and Notification feature on Profile Details page.
-7. orgot Password option in the Sign In Page.
+7. forgot Password option in the Sign In Page.
+8. Search with keywords matching for profile’s name, bio, compensation type, and highlights. And filtering by country, state, city, and professions.  
+9. Search results will be sorted by a logic based on rating, gallery numbers, names and location. 
+10. Add/delete individual images in the gallery, also tag collaborate contributors to a gallery. 
+11. Add travel information to users. 
+12. Mobile view of each page. 
 
 
 ## To get started
 
-1. Click on sign up and create your profile in 3 quick steps.
-2. Once your profile is created, you will be shown logged in to the account
-3. Click on my profile page, to see your profile information.
-4. If you want to edit your profile, you can click on the three main links available on the edit profile page. You can find two options, “Edit Personal    Info” and “Edit Professional Info”.  You can edit your profile according to your preferences
-5. Social Media handles are shown in the profile details page, 
-6. You can add projects and upload up to 5 photos in the project. You can view the average project rating of your project. If you are the creator of the    project, you will be able to find a link of creating the project.
+1. Click on sign up and create your profile in 3 quick steps.  
+2. Once your profile is created, you will be shown logged in to the account  
+3. Click on my profile page, to see your profile information.  
+4. If you want to edit your profile, you can click on the three main links available on the edit profile page. You can find two options, “Edit Personal Info” and “Edit Professional Info”. You can edit your profile according to your preferences  
+5. Social Media handles are shown in the profile details page,  
+6. You can add projects and upload up to 5 photos to the project. You can view the average project rating of your project. If you are the creator of the project, you will be able to find a link to creating the project. 
 
 ## Home Page Features
 
-1. Home page will show the list of the projects sorted by their ratings. Most rated projects will appear first.
-2. Buttons of Home page are updated and professional can see the projects filtered by specific professions
-3. The professionals can see both the profile details and project details page link from the home page.
-4. The users can search directly from Home page Now
+1. Home page will show the list of the projects based on current user’s city, state, and country. 
+2. Buttons of Home page are updated and professional can see the projects filtered by specific professions. 
+3. The professionals can see both the profile details and project details page link from the home page.  
+4. The users can search directly from Home page now. 
 
 ## Search Features
 
-1. The user can search from home page directly
-2. Search matching algorithm now matches Full name (Previously not supported) and email on searching professionals. They can also search by category, profession, Country, city, and state.
+1. The user can search from home page directly. 
+2. The user can search with keywords matching for profile’s name, bio, compensation type, and highlights. And filtering by country, state, city, and professions. 
+3. The search results will be sorted by a logic based on rating, gallery numbers, names and location. 
+4. The users can also find travelling profiles during their travelling time. 
+5. If there are no results for a search, the recommending profiles based on user’s location will be listed. 
 
 ## Rating Featues
 
@@ -411,8 +423,29 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 3. One can add only one rating to a project and edit their rating after that. A professional cannot rate their own project.
 
 
-## Forgot Password Feature:
+## Forgot Password Feature
     
 1. The user can request a password reset  in their registered email address.
 2. A temporary link (validity: 15 minutes) has been generated for the resetting password
 3. After resetting, they will be redirected to the sign in page again.
+
+## Job Features
+
+1. The user can go to the pages to post jobs, edit jobs, and delete jobs. 
+2. There is a separate search engine in which users can search for matching jobs. 
+
+## Tag features
+
+1. User can tag users in project to show that they work together to do a project. 
+2. User can invite users to collaborate by sending email to others, and then the invitor can edit it directly from the link in project. 
+
+## Travel features
+
+1. User can add travel info in their profile. 
+2. Travelling user will show up in search results. 
+
+## Gallery feature: 
+
+1. The user can add and delete gallery in their profile page. 
+2. The user can add/delete individual images in their gallery. (no more than 5) 
+3. The user can edit their text info in a gallery. 
