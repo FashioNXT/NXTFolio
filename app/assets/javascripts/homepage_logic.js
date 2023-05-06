@@ -954,3 +954,6 @@ if(indicator=='sales'){
     $(".othermakersbutton").addClass("active");
 
 }
+
+
+  

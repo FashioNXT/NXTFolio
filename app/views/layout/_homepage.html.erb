@@ -67,7 +67,7 @@
               <%gal.gallery_totalRator = len%>
             <%end%>
 
-            <% if map.length < 4 %>
+            <% if map.length < 50 %>
               <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
               <%if average_review >= 3%>
                 <%map[gal] = average_review %>
@@ -76,7 +76,12 @@
           <% end%>
           <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
 
-        <% for gall in sorted_map.keys do %>
+
+          <div class="gallery-wrapper" style="height: 400px; overflow-y: scroll;">
+  <div class="row">
+    <% sorted_map.keys.each_slice(50) do |galls| %>
+      <div class="gallery-pair">
+        <% galls.each do |gall| %>
           <div class="col-md-4">
             <a class="be-img-block">
               <div class="photo photo-type-line">
@@ -102,6 +107,35 @@
             <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
           </div>
         <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .gallery-pair {
+    display: inline-block;
+    white-space: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-snap-points-x: repeat(50%);
+    scroll-snap-type: mandatory;
+    scroll-snap-align: center;
+  }
+  .col-md-4 {
+    scroll-snap-align: center;
+  }
+</style>
+
+
+
+
+
+
+
+
+
 
         </div>
 
@@ -748,3 +782,4 @@
     </div>
   </div>
   <script src="<%= asset_path "homepage_logic.js"%>"></script>
+  
