@@ -18,7 +18,10 @@ class JobInfoController < ApplicationController
     # end
 
     def index 
-      @job_infos = JobInfo.all 
+
+      # @job_infos = JobInfo.all 
+      @job_infos = JobInfo.filterByUserKey session[:current_user_key]
+      
     end
 
     def show 
@@ -36,7 +39,7 @@ class JobInfoController < ApplicationController
       puts params 
       @job_info = JobInfo.find(id) # look up job by unique ID
       
-      # will render app/views/job_info/show.<extension> by default
+      # will render app/views/job_info/visitor_show.<extension> by default
     end
 
 
@@ -69,7 +72,8 @@ class JobInfoController < ApplicationController
         
         # @job_info ||= JobInfo.new()
         @job_info = JobInfo.new(job_info_params)
-        
+        @job_info.userKey = session[:current_user_key]
+
         if @job_info.save
             flash[:success_post_job] = "   Job info created successfully"
             redirect_to job_search_jobshow_path
@@ -84,7 +88,7 @@ class JobInfoController < ApplicationController
     # Params used to create the JobInfo object
     def job_info_params
         # cannot use the first line, b/c currently the job_info is nil/missing
-        params.require(:job_info).permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
+        params.require(:job_info).permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary, :userKey)
         # params.permit(:title, :description, :category, :profession, :country, :state, :city, :type, :low_salary, :high_salary)
     end
 
