@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2023_05_05_032853) do
     t.float "gallery_totalRate"
     t.integer "gallery_totalRator"
     t.integer "GeneralInfo_id"
+    t.string "test_picture", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
-    t.string "test_picture", array: true
   end
 
   create_table "gallery_taggings", force: :cascade do |t|
