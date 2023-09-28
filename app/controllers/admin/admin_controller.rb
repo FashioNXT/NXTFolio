@@ -3,10 +3,10 @@ module Admin
     # Probably some code here for if you have permission, but otherwise just links to other pages are here.
     # Maybe all the other pages could get consolidated here and seperated under tabs.
 
-    
+
     def landing
       #GeneralInfo.load_Job_File #No longer needed- Job file is loaded in initializer
-      @hasPermission = false 
+      @hasPermission = false
       if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
 	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
         @hasPermission = general_info.is_admin
@@ -16,7 +16,7 @@ module Admin
       end
 
     end
-    
+
     def create
 
       @hasPermission = false
@@ -26,11 +26,11 @@ module Admin
       end
       if(@hasPermission == false)
         redirect_to "/login_info/login"
-      end 
+      end
 
       @potentialJob = params[:job_name].to_s
-      
-      
+
+
       if(@potentialJob != nil && @potentialJob != "")
         @potentialJob = @potentialJob.parameterize(separator: '_').upcase_first
         if(GeneralInfo.check_Job?(@potentialJob) == false)
@@ -39,15 +39,15 @@ module Admin
           flash.now[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	else
           flash.now[:notice] = params[:job_name].titleize + " already exists.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
-	end 
+	end
       elsif(params[:job_name] == "")
         flash.now[:notice] = "Please enter a non-empty value."
       end
-      
+
      # else
      # Probably fetching page
 
-      
+
     end
 
     def edit
@@ -66,7 +66,7 @@ module Admin
       GeneralInfo.see_Jobs.each do |i|
         @jobs.push i.titleize
       end
-      
+
       if(params[:job_name] != nil && params[:attr_action] != nil && params[:attr_name] != nil)
         @job = params[:job_name].parameterize(separator: '_').upcase_first
         @job_Obj = params[:job_name].parameterize(separator: '_').upcase_first.constantize
@@ -105,11 +105,11 @@ module Admin
           else
             flash.now[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
           end
-          
+
         else
           flash.now[:notice] = "Job " + @job.titleize + " not found."
         end
-         	  
+
       else
         flash.now[:notice] = "Error: One or more empty fields"
       end
@@ -127,8 +127,8 @@ module Admin
       end
 
       @jobs = Array.new
-      
-      
+
+
       if(params[:job_name] != nil)
          @potentialJob = params[:job_name].to_s.parameterize(separator: '_').upcase_first
         if(GeneralInfo.check_Job?(@potentialJob))
@@ -144,7 +144,7 @@ module Admin
       GeneralInfo.see_Jobs.each do |i|
         @jobs.push i.titleize
       end
-	
+
     end
   end
 end
