@@ -8,4 +8,5 @@ Given(/^I am logged in$/) do
 
   When(/^I press search.svg go to search$/) do
     visit '/show_profile'
+    # For now it just goes to the show_profile
   end
