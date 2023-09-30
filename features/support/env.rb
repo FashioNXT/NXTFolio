@@ -1,8 +1,8 @@
-require 'simplecov'
-SimpleCov.start 'rails'
-
 require 'cucumber/rails'
 require 'webdrivers'
+
+require 'simplecov'
+SimpleCov.start 'rails'
 
 # require 'rspec' #for page.shoud etc
 require 'capybara/cucumber'
