@@ -55,7 +55,7 @@
             <%len = 0%>
 
             <% for x in gal.reviews%>
-              <% total += x.rating%>
+              <% total += x.rating.to_i%>
               <%len +=1%>
             <%end%>
 
