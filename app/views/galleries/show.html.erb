@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-  
 		<title>FashioNXT</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,92 +21,90 @@
 		
 	</head>
   <body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
-  <!-- THE LOADER -->
+    <!-- THE LOADER -->
 
-	<div class="be-loader">
-    	<div class="spinner">
-			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
-			<p class="circle">
-			  <span class="ouro">
-			    <span class="left"><span class="anim"></span></span>
-			    <span class="right"><span class="anim"></span></span>
-			  </span>
-			</p>
-		</div>
+    <div class="be-loader">
+        <div class="spinner">
+        <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+        <p class="circle">
+          <span class="ouro">
+            <span class="left"><span class="anim"></span></span>
+            <span class="right"><span class="anim"></span></span>
+          </span>
+        </p>
+      </div>
     </div>
 
-    
-    <!-- Main Content -->
-  <div class="container float-left">
-    <div class = "container be-detail-container float-left">
-      <h2> <%= @gallery.gallery_title %> </h2>
-    </div>
-    <div class = "container be-detail-container float-left">
-      <h3> Description: </h3>
-      <p> <%= @gallery.gallery_description %> </p>
-
-
-<!--NXTFolio : Added in Spring 2023 for tagging feature.-->
-<% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
-<div class="collaborators">
-<h3>Collaborators:</h3>
-<ul>
-<% @gallery.tagged_users.each do |user| %>
- <div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
-<% end %>
-</ul>
-</div>
-      <h3> All Images: </h3>
-
-    </div>
-</div>
-    <div class="container-fluid custom-container">
-            <div class="row profile-row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div id="container-mix"  class="row _post-container_">
-                      <h3> All Images: </h3>
-                        <div class="be-post row">
-                          <% @gallery.gallery_picture.each do |image| %>
-                            <div class="col-sm-6 col-md-4">
-                                <div class="profile-img-container">
-                                  <a class="be-img-block profile-img img-thumbnail" href="#">
-                                    <%= image_tag image.url %>
-                                    <%idx = @gallery.gallery_picture.index(image)%>
-                                    <%if @gallery.gallery_picture.length() > 1 %>
-                                    <%which = (idx + 1).to_s%>
-                                      <% if owner.userKey == session[:current_user_key] %>
-                                        <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
-                                      <%end%>
-                                    <%end%>
-              
-                                  </a>
-                                </div>
-              
-                                
-                            </div>
-                          <% end %>
-              
-                          <div class="col-md-3">
-                      </div>
-                      
-                    </div>
-                    <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
-                            <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
-                      <%end%>
-                    </div>
-                </div>
-            </div>
-      <div class="row">
       
-</div>
+      <!-- Main Content -->
+    <div class="container float-left">
+      <div class = "container be-detail-container float-left">
+        <h2> <%= @gallery.gallery_title %> </h2>
+    </div>
+    <div class = "container be-detail-container float-left">
+        <h3> Description: </h3>
+        <p> <%= @gallery.gallery_description %> </p>
 
-<% if owner.userKey == session[:current_user_key] %>
-  <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
-<%end%>
-<% if owner.userKey == session[:current_user_key] %>
-    <div class="be-desc-label"><a href="/galleries/new">Add a new gallery</a></div>
-  <%end%>
+
+        <!--NXTFolio : Added in Spring 2023 for tagging feature.-->
+        <% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
+        <div class="collaborators">
+          <h3>Collaborators:</h3>
+          <ul>
+            <% @gallery.tagged_users.each do |user| %>
+              <div class="collab"><li><a href="<%= show_profile_show_profile_path(:user_key => user.userKey) %>"><%= user.first_name + " " + user.last_name %></a></li></div>
+            <% end %>
+          </ul>
         </div>
+    </div>
+    </div>
+        <div class="container-fluid custom-container">
+              <div class="row profile-row">
+                  <div class="col-md-10 col-md-offset-1">
+                      <div id="container-mix"  class="row _post-container_">
+                        <h3> All Images: </h3>
+                          <div class="be-post row">
+                            <% @gallery.gallery_picture.each do |image| %>
+                              <div class="col-sm-6 col-md-4">
+                                  <div class="profile-img-container">
+                                    <a class="be-img-block profile-img img-thumbnail" href="#">
+                                      <%= image_tag image.url %>
+                                      <%idx = @gallery.gallery_picture.index(image)%>
+                                      <%if @gallery.gallery_picture.length() > 1 %>
+                                      <%which = (idx + 1).to_s%>
+                                        <% if owner.userKey == session[:current_user_key] %>
+                                          <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                        <%end%>
+                                      <%end%>
+                
+                                    </a>
+                                  </div>
+                
+                                  
+                              </div>
+                            <% end %>
+                
+                            <div class="col-md-3">
+                        </div>
+                        
+                      </div>
+                      <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
+                              <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+                        <%end%>
+                      </div>
+                  </div>
+              </div>
+        <div class="row">
+        
+  </div>
+
+  <% if owner.userKey == session[:current_user_key] %>
+    <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+  <%end%>
+  <% if owner.userKey == session[:current_user_key] %>
+      <div class="be-desc-label"><a href="/galleries/new">Add a new gallery</a></div>
+    <%end%>
+          </div>
     <% owner = GeneralInfo.find(@gallery.GeneralInfo_id)%>
     <% if owner.userKey != session[:current_user_key] %>
       <a class="btn full color-1 size-1 hover-1" href="<%= show_profile_show_profile_path(:user_key => owner.userKey) %>" method="get"><i class="fa fa-chevron-left"></i>See project owner's profile </a>

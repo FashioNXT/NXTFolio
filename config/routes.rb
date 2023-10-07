@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
 
+  get 'galleries/private_info/:id' => 'galleries#private_info'
   
   #get 'galleries/create'
 
