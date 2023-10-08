@@ -58,49 +58,55 @@
         </div>
     </div>
     </div>
-        <div class="container-fluid custom-container">
-              <div class="row profile-row">
-                  <div class="col-md-10 col-md-offset-1">
-                      <div id="container-mix"  class="row _post-container_">
-                        <h3> All Images: </h3>
-                          <div class="be-post row">
-                            <% @gallery.gallery_picture.each do |image| %>
-                              <div class="col-sm-6 col-md-4">
-                                  <div class="profile-img-container">
-                                    <a class="be-img-block profile-img img-thumbnail" href="#">
-                                      <%= image_tag image.url %>
-                                      <%idx = @gallery.gallery_picture.index(image)%>
-                                      <%if @gallery.gallery_picture.length() > 1 %>
-                                      <%which = (idx + 1).to_s%>
-                                        <% if owner.userKey == session[:current_user_key] %>
-                                          <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
-                                        <%end%>
-                                      <%end%>
-                
-                                    </a>
-                                  </div>
-                
-                                  
-                              </div>
-                            <% end %>
-                
-                            <div class="col-md-3">
+    <div class="container-fluid custom-container">
+        <div class="row profile-row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="container-mix"  class="row _post-container_">
+                  <h3> All Images: </h3>
+                    <div class="be-post row">
+                      <% @gallery.gallery_picture.each do |image| %>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="profile-img-container">
+                              <a class="be-img-block profile-img img-thumbnail" href="#">
+                                <%= image_tag image.url %>
+                                <%idx = @gallery.gallery_picture.index(image)%>
+                                <%if @gallery.gallery_picture.length() > 1 %>
+                                <%which = (idx + 1).to_s%>
+                                  <% if owner.userKey == session[:current_user_key] %>
+                                    <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                  <%end%>
+                                <%end%>
+          
+                              </a>
+                            </div>
+          
+                            
                         </div>
-                        
-                      </div>
-                      <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
-                              <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
-                        <%end%>
-                      </div>
-                  </div>
-              </div>
-        <div class="row">
-        
-  </div>
+                      <% end %>
+          
+                      <%# <div class="col-md-3">
+                      </div> %>
+                  
+                </div>
+                  <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
+                        <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+                  <%end%>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+          
+    </div>
 
   <% if owner.userKey == session[:current_user_key] %>
     <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+  <%end %>
+
+  <% if (owner.userKey == session[:current_user_key] || @gallery.tagged_users.any? {|user| session[:current_user_key] == user.userKey }) %>
+    <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
   <%end%>
+
+
   <% if owner.userKey == session[:current_user_key] %>
       <div class="be-desc-label"><a href="/galleries/new">Add a new gallery</a></div>
     <%end%>
