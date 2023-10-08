@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_05_032853) do
+ActiveRecord::Schema.define(version: 2023_10_08_194921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2023_05_05_032853) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "gallery_id", null: false
+    t.index ["gallery_id"], name: "index_comments_on_gallery_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -58,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_05_05_032853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+    t.text "comments", default: [], array: true
   end
 
   create_table "gallery_taggings", force: :cascade do |t|
@@ -286,6 +295,7 @@ ActiveRecord::Schema.define(version: 2023_05_05_032853) do
   end
 
   add_foreign_key "cities", "states"
+  add_foreign_key "comments", "galleries"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
   add_foreign_key "messages", "general_infos"

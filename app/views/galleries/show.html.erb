@@ -98,12 +98,21 @@
           
     </div>
 
+    <div class="custom-container">
+      <% @gallery.comments.each do |comment| %>
+        <div class="comment">
+          <%= comment.body %>
+        </div>
+      <% end %>
+    </div>
+
   <% if owner.userKey == session[:current_user_key] %>
     <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
   <%end %>
 
   <% if (owner.userKey == session[:current_user_key] || @gallery.tagged_users.any? {|user| session[:current_user_key] == user.userKey }) %>
-    <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+    <%= link_to 'Add comments', gallery_add_comment_path(@gallery), class: 'btn btn-success' %>
+    
   <%end%>
 
 

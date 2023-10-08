@@ -16,5 +16,8 @@ class Gallery < ApplicationRecord
 
     mount_uploaders :test_picture, GalleryUploader
 
+    # NXTFolio: Added in Fall 2023 : Piyush Sharan
+    has_many :comments
+
 end
     

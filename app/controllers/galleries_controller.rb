@@ -217,7 +217,25 @@ class GalleriesController < ApplicationController
       redirect_to @gallery, alert: 'Error removing collaborator'
     end
   end
+
+  # Fall 2023: Piyush Sharan: Add Comments
+  def add_comment
+    @gallery = Gallery.find(params[:id])
+  end
   
+  # Fall 2023: Piyush Sharan: Post Comments
+  def post_comment
+    @gallery = Gallery.find(params[:id])
+    @comment = @gallery.comments.build(comment_params)
+
+    if @comment.save
+      redirect_to gallery_path(@gallery), notice: "Comment added successfully."
+    else
+      flash.now[:alert] = "Failed to add comment."
+      render 'add_comment'
+    end
+  end
+
   private
 
   def gallery_params
@@ -230,4 +248,8 @@ class GalleriesController < ApplicationController
     params.require(:gallery_tagging).permit(tagged_user_id: [] )
   end
   
+  # Fall 2023: To add Comments
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 end
