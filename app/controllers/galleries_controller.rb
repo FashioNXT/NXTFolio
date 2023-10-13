@@ -227,12 +227,17 @@ class GalleriesController < ApplicationController
   def post_comment
     @gallery = Gallery.find(params[:id])
     @comment = @gallery.comments.build(comment_params)
-
-    if @comment.save
-      redirect_to gallery_path(@gallery), notice: "Comment added successfully."
+    # Fall 2023: Vishnuvasan: Added check for empty comment
+    if @comment.body.blank?
+      flash[:error] = "Comment cannot be empty."
+      redirect_to gallery_path(@gallery)
     else
-      flash.now[:alert] = "Failed to add comment."
-      render 'add_comment'
+      if @comment.save
+        redirect_to gallery_path(@gallery), notice: "Comment added successfully."
+      else
+        flash.now[:alert] = "Failed to add comment."
+        render 'add_comment'
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 <%= form_with(model: [@gallery, Comment.new], url: gallery_post_comment_path(@gallery), local: true) do |form| %>
   <div class="field">
     <%= form.label :body, "Add a Comment:" %>
-    <%= form.text_field :body, class: 'comment-input' %>
+    <%= form.text_field :body, class: 'comment-input', required: true, title: 'Comment cannot be empty' %>
   </div>
   <%= form.submit "Submit Comment", class: 'btn btn-primary' %>
 <% end %>

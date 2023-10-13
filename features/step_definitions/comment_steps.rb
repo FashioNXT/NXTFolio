@@ -1,57 +1,70 @@
   # Check
-  Given(/^I am a logged-in user on a portfolio posting page$/) do
-    # Implement the steps to log in the user and navigate to a portfolio posting page
-  end
+# Scenario: User can view the add comment button in their gallery
+Given(/^I am logged in as (.*) (.*)$/) do |first_name, last_name|
+  visit root_path
+  click_on "Sign In"
+  fill_in "Your Email", :with => first_name + "." + last_name + "@example.com"
+  fill_in "Your Password", :with => "Test1234!"
+  click_on "SIGN IN"
+end
   
-  And(/^there is a comment box and a submit button$/) do
-    expect(page).to have_field('comment_body')
-    expect(page).to have_button('Submit Comment')
-  end
-  
-  When(/^I fill in the comment box with "(.*?)"$/) do |comment_text|
-    fill_in('comment_body', with: comment_text)
-  end
-  
-  When(/^I click the "Submit Comment" button$/) do
-    click_button('Submit Comment')
-  end
-  
-  Then(/^I should see a success message "Comment submitted successfully"$/) do
-    expect(page).to have_content('Comment submitted successfully')
-  end
-  
-  Then(/^I should be on the home page$/) do
-    expect(current_path).to eq(root_path) # Adjust this based on your application's route
-  end
-  
-  Then(/^the new comment "(.*?)" should be displayed$/) do |comment_text|
-    expect(page).to have_content(comment_text)
-  end
-  
+Given("I am a valid gallery user") do
+  # Example code to set up a valid gallery user
+  create_gallery_user
+end
 
-  # Users cannot submit an empty comment
-  Given(/^I am a logged-in user on a portfolio posting page$/) do
-    # Implement the steps to log in the user and navigate to a portfolio posting page
-  end
-  
-  And(/^there is a comment box and a submit button$/) do
-    expect(page).to have_field('comment_body')
-    expect(page).to have_button('Submit Comment')
-  end
-  
-  When(/^I leave the comment box empty$/) do
-    # Leave the comment box empty (do not fill it in)
-  end
-  
-  When(/^I click the "Submit Comment" button$/) do
-    click_button('Submit Comment')
-  end
-  
-  Then(/^I should see an error message "Comment cannot be empty"$/) do
-    expect(page).to have_content('Comment cannot be empty')
-  end
-  
-  Then(/^the comment should not be posted$/) do
-    expect(Comment.count).to eq(0) # Assuming 'Comment' is the model used
-  end
-  
+Given("I am on the home page") do
+  # Example code to visit the home page
+  visit_home_page
+end
+
+When(/^I click on "(.*?)"$/) do |element|
+  # Example code to click on the specified element
+  click_on_element(element)
+end
+
+Then(/^I should see "(.*?)"$/) do |text|
+  # Example code to check if the specified text is visible
+  expect(page).to have_content(text)
+end
+
+# Scenario: Users can successfully submit a comment on a portfolio posting
+And("I click the {string}") do |string|
+  # Example code to click the specified element
+  click_element(string)
+end
+
+Then("I should be able to see the comment page") do
+  # Example code to verify the comment page is displayed
+  expect(page).to have_selector(".comment-page")
+end
+
+When("I fill in the comment box with details") do
+  # Example code to fill in the comment box
+  fill_in("comment_box", with: "Great work on this portfolio!")
+end
+
+And("I click on {string} button") do |string|
+  # Example code to click on the specified button
+  click_button(string)
+end
+
+And("the new comment {string} should be displayed") do |string|
+  # Example code to verify the new comment is displayed
+  expect(page).to have_content(string)
+end
+
+When("I leave the comment box empty") do
+  # Example code to leave the comment box empty
+  fill_in("comment_box", with: "")
+end
+
+Then("I should see an error message {string}") do |string|
+  # Example code to verify the error message is displayed
+  expect(page).to have_content(string)
+end
+
+And("no new comment should not be posted") do
+  # Example code to verify that no new comment is posted
+  expect(page).not_to have_selector(".comment")
+end
