@@ -98,14 +98,26 @@
           
     </div>
 
+    <br>
+    <br>
     <div class="custom-container">
+      <h2> Comments: </h2>
+      <br>
       <% @gallery.comments.each do |comment| %>
         <div class="comment">
-          <%= comment.body %>
+          <div class="comment_by">
+            <%= comment.comment_by%>
+          </div>
+          <div class="comment_body">
+            <%= comment.body %>
+          </div>
         </div>
       <% end %>
     </div>
 
+  <br>
+
+  <%# Fall 2023: Piyush Sharan, adding comments to Gallery %>
   <% if owner.userKey == session[:current_user_key] %>
     <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
   <%end %>
@@ -114,6 +126,7 @@
     <%= link_to 'Enter a comment', gallery_add_comment_path(@gallery), class: 'btn btn-success' %>
     
   <%end%>
+  <%# Adding Comments to Gallery %>
 
 
   <% if owner.userKey == session[:current_user_key] %>

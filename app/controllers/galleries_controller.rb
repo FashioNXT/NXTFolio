@@ -227,6 +227,8 @@ class GalleriesController < ApplicationController
   def post_comment
     @gallery = Gallery.find(params[:id])
     @comment = @gallery.comments.build(comment_params)
+    @user = GeneralInfo.find_by(userKey: session[:current_user_key])
+    @comment.comment_by = @user.first_name + " " + @user.last_name
     # Fall 2023: Vishnuvasan: Added check for empty comment
     if @comment.body.blank?
       flash[:error] = "Comment cannot be empty."
