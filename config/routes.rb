@@ -1,6 +1,11 @@
 
 Rails.application.routes.draw do
 
+  # Defines the root path route ("/")
+  # root "articles#index"
+  get 'chat', to: 'chat#index'
+  post 'chat', to: 'chat#chat'
+
   # to retrive states and cities
   get 'states/:country_id', to: 'states#index', as: 'states'
   get 'cities/:state_id', to: 'cities#index', as: 'cities'
@@ -13,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
 
-  
+
   #get 'galleries/create'
 
   get 'galleries/destroy/:id'=> 'galleries#destroy', :as => 'galleries_destroy'
@@ -30,7 +35,7 @@ Rails.application.routes.draw do
 
   # NXTFolio : Added in Spring 2023 for tagging feature
   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
-  
+
   # spring2023 add/delete images in gallery
   get '/galleries/:id/edit', to: 'galleries#edit', as: 'edit_gallery'
   get '/galleries/:id/show', to: 'galleries#show', as: 'gallery'
@@ -41,7 +46,7 @@ Rails.application.routes.draw do
   get '/galleries/:id/delete/:idx', to: 'galleries#delete', as: 'gallery_delete'
 
   get '/galleries/:id/add_images', to: 'galleries#transfer', as: 'gallery_added_image'
-  
+
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -79,7 +84,7 @@ Rails.application.routes.draw do
   end
 
   get '/general_info/make_admin/:room' => 'general_info#make_admin'
-  
+
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'
   patch 'edit_job/update' => 'edit_job#update'
@@ -101,18 +106,18 @@ Rails.application.routes.draw do
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_designer/edit' => 'specific_designer#edit', :as => 'specific_designer/edit'
   post 'specific_designer/update' => 'specific_designer#update', :as => 'specific_designer/update'
-  
+
   get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
   get 'specific_model/edit' => 'specific_model#edit', :as => 'specific_model/edit'
   post 'specific_model/update' => 'specific_model#update', :as => 'specific_model/update'
-  
+
   get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
   get 'specific_photographer/edit' => 'specific_photographer#edit', :as => 'specific_photographer/edit'
   post 'specific_photographer/update' => 'specific_photographer#update', :as => 'specific_photographer/update'
-  
+
   get 'show_profile/mymodel' => 'show_profile#show_model', :as => 'show_profile_show_model'
   get 'show_profile' => 'show_profile#show_profile', :as => 'show_profile_show_profile'
-  
+
   get 'search_profile/show' => 'search_profile#show', :as => 'search_profile/show'
   get 'search_profile/search' => 'search_profile#search', :as => 'search_profile/search'
   get 'search_profile/search_general' => 'search_profile#search_general', :as => 'search_profile/search_general'

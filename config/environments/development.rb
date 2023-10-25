@@ -1,7 +1,7 @@
 Rails.application.configure do
   # To whitelist certain IPs
   # config.web_console.whitelisted_ips = '198.217.28.2/0'
-  
+
   # UserMailer
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
@@ -71,4 +71,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.web_console.permissions = '192.168.0.0/16'
 end
