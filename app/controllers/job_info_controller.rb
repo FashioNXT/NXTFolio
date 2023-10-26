@@ -204,66 +204,139 @@ class JobInfoController < ApplicationController
     
 
 
-    def search 
+    # def search 
 
         
-        @params_args = params #parameters passed from view
-        # country = "United States" # change country to industry later (need to modify filterBy as well)
-        # state = @params_args[:State]
-        # city= @params_args[:City]
+    #     @params_args = params #parameters passed from view
+    #     # country = "United States" # change country to industry later (need to modify filterBy as well)
+    #     # state = @params_args[:State]
+    #     # city= @params_args[:City]
 
 
-        # @stateInfo=state
-        # profession = @params_args[:Profession]
-        # @filtered_users = GeneralInfo.filterBy state, profession, city
+    #     # @stateInfo=state
+    #     # profession = @params_args[:Profession]
+    #     # @filtered_users = GeneralInfo.filterBy state, profession, city
 
-        @filtered_users = JobInfo.all 
+    #     @filtered_users = JobInfo.all 
 
-        #puts "Filtered users are: "
-        #@filtered_users.each do |room|
-        #    puts room[:first_name]
-        #end
+    #     #puts "Filtered users are: "
+    #     #@filtered_users.each do |room|
+    #     #    puts room[:first_name]
+    #     #end
 
-        # # Search Users' general info and profession detail for the keyword
-        # @keyword = @params_args[:Keyword]
-        # @EnteredKw=@keyword
-        # @keyword= @keyword.downcase
-        # @keywordArr=@keyword.split(" ")
-        @final_users = []
-        # if @keyword.present?
-        #     @filtered_users.each do |user|
-        #         if user[:job_name] == "Designer"
-        #             specific_user = SpecificDesigner.find_by(user_key: user[:userKey])
-        #         elsif user[:job_name] == "Model"
-        #             specific_user = SpecificModel.find_by(user_key: user[:userKey])
-        #         else
-        #             specific_user = SpecificPhotographer.find_by(user_key: user[:userKey])
-        #         end
-        #         user_data = specific_user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
+    #     # # Search Users' general info and profession detail for the keyword
+    #     # @keyword = @params_args[:Keyword]
+    #     # @EnteredKw=@keyword
+    #     # @keyword= @keyword.downcase
+    #     # @keywordArr=@keyword.split(" ")
+    #     @final_users = []
+    #     # if @keyword.present?
+    #     #     @filtered_users.each do |user|
+    #     #         if user[:job_name] == "Designer"
+    #     #             specific_user = SpecificDesigner.find_by(user_key: user[:userKey])
+    #     #         elsif user[:job_name] == "Model"
+    #     #             specific_user = SpecificModel.find_by(user_key: user[:userKey])
+    #     #         else
+    #     #             specific_user = SpecificPhotographer.find_by(user_key: user[:userKey])
+    #     #         end
+    #     #         user_data = specific_user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
 
-        #         user_data << user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
+    #     #         user_data << user.inspect.downcase.gsub(/[^a-z0-9\s]/i, '')
 
-        #         userdataString=user_data.split(" ")
+    #     #         userdataString=user_data.split(" ")
 
-        #         #previous check --user_data.include? @keyword
-        #         if (userdataString & @keywordArr).any?
-        #             logger.info("Tanvir Checking")
-        #             logger.debug(user_data.inspect)
-        #             @final_users << user
-        #         end
-        #     end
-        # else
-        #     @final_users = @filtered_users
-        # end
+    #     #         #previous check --user_data.include? @keyword
+    #     #         if (userdataString & @keywordArr).any?
+    #     #             logger.info("Tanvir Checking")
+    #     #             logger.debug(user_data.inspect)
+    #     #             @final_users << user
+    #     #         end
+    #     #     end
+    #     # else
+    #     #     @final_users = @filtered_users
+    #     # end
 
-        @final_users = @filtered_users
+    #     @final_users = @filtered_users
 
-        puts "Final users are: "
+    #     # puts "Final users are: "
 
+    # end
+
+
+
+    # Copied from search_engine_controller.rb
+    def filter_words(string)
+      file = File.open("app/assets/stop_words_english.txt", "r")
+      text = file.read
+      file.close
+      stopwords_list = text.split
+      
+      res = Set.new
+      for word in string.split(/\W+/) do
+          if !stopwords_list.include?(word.downcase.gsub(/\W+/, ''))
+              res.add(word.downcase.gsub(/\W+/, ''))
+          end
+      end
+      return res
     end
 
-   
-  
     
+    def search 
+      @params_args = params #parameters passed from view
+
+      @keyword = @params_args[:Keyword]
+      if @keyword != nil
+        @keyword = @keyword.downcase
+      end
+      
+      country = @params_args[:Country]
+      state = @params_args[:State]
+      city= @params_args[:City]
+
+      category = @params_args[:Category]
+      profession = @params_args[:Profession]
+
+      # if country != nil  && state!= nil  && city!= nil && category!= nil  && profession!= nil  && @keyword!= nil  
+      #   if country.empty?  && state.empty?  && city.empty? && category.empty? && profession.empty?  && @keyword.empty? 
+      #     @final_users = []
+      #     render 'job_info/show'
+      #   end
+      # end
+      
+      @filtered_users = JobInfo.filterByFeature category, profession, country, state, city
+
+      @final_users = []
+      if @keyword.present?
+          @filtered_users.each do |user|
+
+              text_info = Set.new
+
+              if user.title != nil 
+                  text_info += filter_words(user.title)
+              end
+
+              if user.description != nil 
+                  text_info += filter_words(user.description)
+              end
+
+              @keyword_set = filter_words(@keyword)
+              
+              for word in text_info
+                  for keyword in @keyword_set
+                      if word.include?(keyword) 
+                          @final_users << user
+                      end
+                  end
+              end
+          end
+      else
+          @final_users = @filtered_users
+      end
+
+      # puts "Final users are: "
+      # @final_users.each do |final|
+      #   puts final['title']
+      # end
+    end
   end
   
