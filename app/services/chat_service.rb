@@ -21,7 +21,6 @@ class ChatService
 
     response = send_request(messages)
     puts response
-    puts "asfsjdavnjknvjknkjnkjan"
     answer = response.dig("choices", 0, "message", "content")
     puts answer
 
@@ -38,7 +37,7 @@ class ChatService
       # "Do you know who captain jean luc picard is? Just tell me yes or no",
       # "Can you pretend to be captain jean luc picard from here on out? Answer yes or no",
       # "You are a tour guide",
-      'You are an expert on history',
+      'You are an expert on fashion and social media marketing',
     ]
   end
 
