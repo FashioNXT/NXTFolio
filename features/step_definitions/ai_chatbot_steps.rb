@@ -6,7 +6,7 @@ And(/^I want to go to the ai chatbot page$/) do
   click_on "AI Chatbot"
 end
 
-When(/^I I enter "Hi" message and click send$/) do
+When(/^I enter "Hi" message and click send$/) do
   fill_in "Type your message...", :with => "Hi"
   click_on "Send"
 end
