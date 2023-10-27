@@ -2,7 +2,7 @@ Given(/^I am a content creator and I want to learn how to set up fashion portfol
   visit root_path
 end
 
-And(/^I I want to go to the ai chatbot page$/) do
+And(/^I want to go to the ai chatbot page$/) do
   click_on "AI Chatbot"
 end
 
