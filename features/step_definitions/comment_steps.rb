@@ -49,3 +49,15 @@ And("no new comment should be posted") do
   # Example code to verify that no new comment is posted
   expect(page).not_to have_selector(".comment")
 end
+
+Given ("the following tagging exist") do |taggings|
+  taggings.hashes.each do |tagging|
+    user_id = tagging['user_id']
+    gallery_name = tagging['gallery']
+
+    gallery = Gallery.find_by(gallery_title: gallery_name)
+
+    gallery_tagging = GalleryTagging.new(gallery_id: gallery.id, general_info_id: user_id)
+    gallery_tagging.save!
+  end
+end

@@ -15,6 +15,11 @@ class GeneralInfo < ApplicationRecord
   has_many :gallery_taggings
   has_many :tagged_gallery, through: :gallery_taggings, source: :gallery
 
+  # List of all collaborators our user has collaborated with
+  has_many :collaborations, foreign_key: :general_info_id
+  has_many :collaborators, through: :collaborations, source: :collaborator
+  
+
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :company

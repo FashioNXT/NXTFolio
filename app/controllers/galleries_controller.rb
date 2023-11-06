@@ -176,6 +176,11 @@ class GalleriesController < ApplicationController
     @gallery_tagging = @gallery.gallery_taggings
     
     logger.info("Debugging Average ")
+    current_user_id = GeneralInfo.find_by(userKey: session[:current_user_key]).id
+    @collab_count = Collaboration.where(general_info_id: current_user_id).count
+
+    print("Users " + current_user_id.to_s + " collaborated with: ")
+    print(@collab_count)
 
     if @gallery.reviews.blank?
       @average_review=0
@@ -195,6 +200,27 @@ class GalleriesController < ApplicationController
           flash[:notice] = "Tagged User(s) Successfully"
         else
           flash[:alert] = "Failed to Tag User(s)"
+        end
+      end
+      
+      current_user_id = GeneralInfo.find_by(userKey: session[:current_user_key]).id
+      print("Making collaboration between: " + current_user_id.to_s + " and " + tagged_id.to_s)
+
+      if Collaboration.where(general_info_id: current_user_id, collaborator_id: tagged_id).empty?
+        @collab = Collaboration.new(general_info_id: current_user_id, collaborator_id: tagged_id)
+        if @collab.save
+          flash[:notice] = "Collaborations saved Successfully"
+        else
+          flash[:alert] = "Failed to save Collaboration"
+        end
+      end
+
+      if Collaboration.where(general_info_id: tagged_id, collaborator_id: current_user_id).empty?
+        @collab = Collaboration.new(general_info_id: tagged_id, collaborator_id: current_user_id)
+        if @collab.save
+          flash[:notice] = "Collaborations saved Successfully"
+        else
+          flash[:alert] = "Failed to save Collaboration"
         end
       end
     end
