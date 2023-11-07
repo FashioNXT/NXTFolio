@@ -16,14 +16,24 @@ end
 
 Then("I should be able to see the comment page") do
   # Example code to verify the comment page is displayed
-  expect(page).to have_selector(".comment-input")
+  expect(page).to have_selector(".form-group") # Change the selector to match the comment form
 end
 
 When("I fill in the comment box with details") do
   # Example code to fill in the comment box
-  # fill_in(".comment-input", with: "Great work on this portfolio!")
-  find(".comment-input").set("Great work on this portfolio!")
+  find(".form-control").set("Great work on this portfolio!") # Change the selector to match the comment input field
 end
+
+# Then("I should be able to see the comment page") do
+#   # Example code to verify the comment page is displayed
+#   expect(page).to have_selector(".comment-input")
+# end
+
+# When("I fill in the comment box with details") do
+#   # Example code to fill in the comment box
+#   # fill_in(".comment-input", with: "Great work on this portfolio!")
+#   find(".comment-input").set("Great work on this portfolio!")
+# end
 
 And("I click on {string} button") do |string|
   # Example code to click on the specified button
@@ -37,7 +47,8 @@ end
 
 When("I leave the comment box empty") do
   # Example code to leave the comment box empty
-  find(".comment-input").set("")
+  # find(".comment-input").set("")
+  find(".form-control").set("") # Change the selector to match the comment input field
 end
 
 # Then("I should see an error message {string}") do |string|
