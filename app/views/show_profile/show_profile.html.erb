@@ -57,6 +57,8 @@
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
 						<!--li><a href="/search_profile/search">Search</a--> 
+						<li><a href="/chat">AI Chatbot</a>
+						</li>
 						<li><a href="/search_engine/show">Search</a>
 						</li>
 						<% if session[:current_user_key] %>
@@ -68,9 +70,6 @@
 										<% if @attribute_titles && !@is_Admin %>
 											<li><a href="/general_info/edit2">Edit Professional Info</a></li>
 										<% end %>
-										<% if !@is_Admin %>
-											<li><a href="/general_info/edit_travel">Edit Travel Info</a></li>
-										<% end %>
 										<li><a href="/login_info/edit">Change Password</a></li>
 										<% if !@is_Admin %>
 											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
@@ -81,6 +80,8 @@
 								</li>
 							<% end %>
 						<% end %>
+						<li><a href="/general_info/edit_travel">Travel</a>
+						</li>
 					</ul>
 				</div>
 
