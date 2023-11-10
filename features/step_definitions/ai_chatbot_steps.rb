@@ -1,9 +1,5 @@
 Given(/^I am a content creator and I want to learn how to set up fashion portfolio$/) do
-  visit root_path
-end
-
-And(/^I want to go to the ai chatbot page$/) do
-  click_on "AI Chatbot"
+  visit "/chat"
 end
 
 When(/^I enter "Hi" message and click send$/) do
