@@ -263,6 +263,7 @@ When(/^I click on "([^"]*)"$/) do |button|
 end
 
 Then(/^(?:|I )should see "([^"]*)"$/) do |text|
+  # puts(page.body)
   expect(page).to have_content(text)
 end
 
