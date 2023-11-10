@@ -86,5 +86,9 @@ Scenario: Collaborators cannot comment on portfolio postings if they are not tag
   When I click on "t5"
   Then I should not see "Enter a comment"
 
-
-
+Scenario: Collaborators can comment on any portfolio postings after getting tagged with 3 projects from unique users
+  Given I am logged in as "Emma.Watson"
+  Given I am a valid gallery user
+  Given I am on the home page
+  When I click on "t5"
+  Then I should see "Enter a comment"
