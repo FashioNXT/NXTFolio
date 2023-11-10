@@ -27,7 +27,6 @@ Feature: add a comment in a project
   | t2      | 4       |
   | t4      | 4       |
   | t5      | 5       |
-  | t6      | 4       |
 
 Scenario: User can view the add comment button in their gallery
   Given I am logged in as "Andrea.Picardo"
@@ -73,8 +72,10 @@ Scenario: Collaborators can comment on portfolio postings only after getting tag
   Given I am on the home page
   When I click on "t1"
   Then I should see "Enter a comment"
+  Given I am on the home page
   When I click on "t2"
   Then I should see "Enter a comment"
+  Given I am on the home page
   When I click on "t4"
   Then I should see "Enter a comment"
 
