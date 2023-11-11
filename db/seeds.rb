@@ -183,3 +183,47 @@ puts "==> Generate extra fake users..."
     gallery.save!
   end
 end
+
+
+# generate fake jobs
+puts "==> Generate fake jobs..."
+state_list = ["Texas", "Texas", "California", "New York", "Iowa", "Florida", "Washington"]
+city_list = ["College Station", "Houston", "San Diago", "New York City", "Iowa City", "Miami", "Seattle"]
+# category_list = ["Creators", "Services", "Makers"]
+creator_list = ["Brand Owner", "Designer"]
+service_list = ["Model", "Photographer", "Sales", "Marketing", "Blogger", "Finances"]
+maker_list = ["Manufacturing", "Materials"]
+
+(1..100).each do |ind|
+  location_index = ind % state_list.length()
+  state = state_list[location_index]
+  city = city_list[location_index]
+  if ind < 20
+    category = "Creators"
+    profession = creator_list[ind % creator_list.length()-1]
+  elsif ind < 70
+    category = "Services"
+    profession = service_list[ind % service_list.length()-1]
+  else
+    category = "Makers"
+    profession = maker_list[ind % maker_list.length()-1]
+  end
+
+  title = profession + rand(1..100).to_s
+  description = "This is a fake job of " + profession
+  userKey = SecureRandom.hex(10)
+
+  job_info = JobInfo.new(
+    title: title,
+    description: description,
+    category: category,
+    profession: profession,
+    country: "United States",
+    state: state,
+    city: city,
+    low_salary: 1000,
+    high_salary: 2000,
+    userKey: userKey
+  )
+  job_info.save!
+end
