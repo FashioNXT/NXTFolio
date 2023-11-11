@@ -17,19 +17,16 @@ Feature: add a comment in a project
   | title | description | total  | id|  num|
   | t1    | high1       | 20     |  2  | 4 |
   | t2    | high2       | 15    | 3  | 3   |
-  | t3    | high3       | 10    | 4  | 2   |
   | t4    | high4       | 5     | 5  | 1   |
   | t5    | high5       | 2     | 6  | 0   |
-  | t6    | high6       | 3     | 3  | 5   |
+  | t6    | high6       | 3     | 4  | 5   |
 
   Given the following tagging exist
   | gallery | user_id |
   | t1      | 4       |
-  | t2      | 2       |
-  | t3      | 2       |
-  | t4      | 2       |
-  | t5      | 2       |
-  | t6      | 4       |
+  | t2      | 4       |
+  | t4      | 4       |
+  | t5      | 5       |
 
 Scenario: User can view the add comment button in their gallery
   Given I am logged in as "Andrea.Picardo"
@@ -69,20 +66,29 @@ Scenario: Non-collaborators cannot submit a comment on a portfolio posting
   When I click on "t1"
   Then I should not see "Enter a comment"
 
-Scenario: Collaborators can comment on a portfolio posting where they are tagged
-  Given I am logged in as "Andrea.Picardo"
-  Given I am a valid gallery user
-  Given I am on the home page
-  When I click on "t2"
-  Then I should see "Enter a comment"
-
-Scenario: Collaborators can comment on all portfolio postings if they are tagged in more than three projects
-  Given I am logged in as "Andrea.Picardo"
+Scenario: Collaborators can comment on portfolio postings only after getting tagged with 3 projects from unique users
+  Given I am logged in as "Emma.Watson"
   Given I am a valid gallery user
   Given I am on the home page
   When I click on "t1"
   Then I should see "Enter a comment"
-  When I click on "t6"
+  Given I am on the home page
+  When I click on "t2"
+  Then I should see "Enter a comment"
+  Given I am on the home page
+  When I click on "t4"
   Then I should see "Enter a comment"
 
+Scenario: Collaborators cannot comment on portfolio postings if they are not tagged with 3 projects from unique users
+  Given I am logged in as "John.Doe"
+  Given I am a valid gallery user
+  Given I am on the home page
+  When I click on "t5"
+  Then I should not see "Enter a comment"
 
+Scenario: Collaborators can comment on any portfolio postings after getting tagged with 3 projects from unique users
+  Given I am logged in as "Emma.Watson"
+  Given I am a valid gallery user
+  Given I am on the home page
+  When I click on "t5"
+  Then I should see "Enter a comment"

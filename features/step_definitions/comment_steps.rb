@@ -63,12 +63,24 @@ end
 
 Given ("the following tagging exist") do |taggings|
   taggings.hashes.each do |tagging|
-    user_id = tagging['user_id']
+    tagged_id = tagging['user_id']
     gallery_name = tagging['gallery']
 
     gallery = Gallery.find_by(gallery_title: gallery_name)
 
-    gallery_tagging = GalleryTagging.new(gallery_id: gallery.id, general_info_id: user_id)
+    gallery_tagging = GalleryTagging.new(gallery_id: gallery.id, general_info_id: tagged_id)
     gallery_tagging.save!
+
+    current_user_id = gallery.GeneralInfo_id
+
+    if Collaboration.where(general_info_id: current_user_id, collaborator_id: tagged_id).empty?
+      collab = Collaboration.new(general_info_id: current_user_id, collaborator_id: tagged_id)
+      collab.save!
+    end
+
+    if Collaboration.where(general_info_id: tagged_id, collaborator_id: current_user_id).empty?
+      collab = Collaboration.new(general_info_id: tagged_id, collaborator_id: current_user_id)
+      collab.save!
+    end
   end
 end
