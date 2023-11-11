@@ -154,6 +154,10 @@ Rails.application.routes.draw do
   get 'password/reset/edit', to: 'password_resets#edit'
   patch 'password/reset/edit', to: 'password_resets#update'
 
+  # Defines the root path route ("/")
+  # root "articles#index"
+  get 'chat', to: 'chat#index'
+  post 'chat', to: 'chat#chat'
 
   resources :general_info
   resources :login_info
