@@ -1,10 +1,4 @@
-
 Rails.application.routes.draw do
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-  get 'chat', to: 'chat#index'
-  post 'chat', to: 'chat#chat'
 
   # to retrive states and cities
   get 'states/:country_id', to: 'states#index', as: 'states'
@@ -18,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'galleries/new' => 'galleries#new', :as => 'galleries/newg'
 
+  get 'galleries/private_info/:id' => 'galleries#private_info'
 
   #get 'galleries/create'
 
@@ -46,6 +41,10 @@ Rails.application.routes.draw do
   get '/galleries/:id/delete/:idx', to: 'galleries#delete', as: 'gallery_delete'
 
   get '/galleries/:id/add_images', to: 'galleries#transfer', as: 'gallery_added_image'
+
+  # Fall 2023: To add comments
+  get '/galleries/:id/comments', to: 'galleries#add_comment', as: 'gallery_add_comment'
+  post '/galleries/:id/comments', to: 'galleries#post_comment', as: 'gallery_post_comment'
 
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
