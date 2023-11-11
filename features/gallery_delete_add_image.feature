@@ -78,8 +78,6 @@ Scenario: User cannot add 0 image to their gallery
   Then I should not see "Images uploaded!"
   Then I should see "Add at least 1 image!"
 
-  
-
 
 
 

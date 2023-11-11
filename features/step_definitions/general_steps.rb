@@ -206,7 +206,7 @@ Given(/^I am logged in as "(.+)"$/) do |user|
 end
 
 Given(/^I am on (.+)$/) do |page_name|
-  #puts(path_to(page_name))
+  puts(path_to(page_name))
   visit path_to(page_name)
 end
 

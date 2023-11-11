@@ -176,6 +176,11 @@ class GalleriesController < ApplicationController
     @gallery_tagging = @gallery.gallery_taggings
     
     logger.info("Debugging Average ")
+    current_user_id = GeneralInfo.find_by(userKey: session[:current_user_key]).id
+    @collab_count = Collaboration.where(general_info_id: current_user_id).count
+
+    print("Users " + current_user_id.to_s + " collaborated with: ")
+    print(@collab_count)
 
     if @gallery.reviews.blank?
       @average_review=0
@@ -195,6 +200,27 @@ class GalleriesController < ApplicationController
           flash[:notice] = "Tagged User(s) Successfully"
         else
           flash[:alert] = "Failed to Tag User(s)"
+        end
+      end
+      
+      current_user_id = GeneralInfo.find_by(userKey: session[:current_user_key]).id
+      print("Making collaboration between: " + current_user_id.to_s + " and " + tagged_id.to_s)
+
+      if Collaboration.where(general_info_id: current_user_id, collaborator_id: tagged_id).empty?
+        @collab = Collaboration.new(general_info_id: current_user_id, collaborator_id: tagged_id)
+        if @collab.save
+          flash[:notice] = "Collaborations saved Successfully"
+        else
+          flash[:alert] = "Failed to save Collaboration"
+        end
+      end
+
+      if Collaboration.where(general_info_id: tagged_id, collaborator_id: current_user_id).empty?
+        @collab = Collaboration.new(general_info_id: tagged_id, collaborator_id: current_user_id)
+        if @collab.save
+          flash[:notice] = "Collaborations saved Successfully"
+        else
+          flash[:alert] = "Failed to save Collaboration"
         end
       end
     end
@@ -217,7 +243,32 @@ class GalleriesController < ApplicationController
       redirect_to @gallery, alert: 'Error removing collaborator'
     end
   end
+
+  # Fall 2023: Piyush Sharan: Add Comments
+  def add_comment
+    @gallery = Gallery.find(params[:id])
+  end
   
+  # Fall 2023: Piyush Sharan: Post Comments
+  def post_comment
+    @gallery = Gallery.find(params[:id])
+    @comment = @gallery.comments.build(comment_params)
+    @user = GeneralInfo.find_by(userKey: session[:current_user_key])
+    @comment.comment_by = @user.first_name + " " + @user.last_name
+    # Fall 2023: Vishnuvasan: Added check for empty comment
+    if @comment.body.blank?
+      flash[:error] = "Comment cannot be empty."
+      redirect_to gallery_path(@gallery)
+    else
+      if @comment.save
+        redirect_to gallery_path(@gallery), notice: "Comment added successfully."
+      else
+        flash.now[:alert] = "Failed to add comment."
+        render 'add_comment'
+      end
+    end
+  end
+
   private
 
   def gallery_params
@@ -230,4 +281,8 @@ class GalleriesController < ApplicationController
     params.require(:gallery_tagging).permit(tagged_user_id: [] )
   end
   
+  # Fall 2023: To add Comments
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 end
