@@ -49,7 +49,8 @@ class ChatService
 
   private
   def new_chat
-    @openaiClient = OpenAI::Client.new(access_token: Rails.application.credentials.open_ai_api_key,
+    @openaiClient = OpenAI::Client.new(access_token: ENV["OPEN_AI_API_KEY"],
+    # @openaiClient = OpenAI::Client.new(access_token: Rails.application.credentials.open_ai_api_key,
       uri_base: "https://oai.hconeai.com/",
       request_timeout: 240)
   end
