@@ -33,3 +33,5 @@ Thumbs.db
 /.idea/
 /.vscode/
 *.iml
+
+/config/master.key

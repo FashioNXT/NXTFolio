@@ -113,3 +113,6 @@ gem 'webdrivers', require: false
 
 # avoid update to 3.0
 gem 'rubyzip', "~> 2.3.0"
+
+
+gem "ruby-openai"
