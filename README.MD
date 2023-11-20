@@ -126,6 +126,14 @@ docker-compose start
 
 or start the docker-compose from the desktop app.
 
+#### Running Tests
+
+In the root directory, run "rails cucumber"
+
+##### Possible issues ->
+
+1. Capybara Timeout issue : Go to /install -> docker-compose down -> docker-compose up -d -> run setup steps from step 4 above.
+
 
 ### Using Dockerfile (Ubuntu 18.04)
 
@@ -358,8 +366,7 @@ If you wish to use the S3 image backend (allowing images to be saved for more th
 For deployed Heroku environments: (assuming the site is already deployed)
 
 ```heroku config:set AWS_SECRET_KEY=x``` and then ```heroku config:set AWS_ACCESS_KEY=y```
-   
-
+  
 ## Country/States/Cities Database
 
 To update the country/state/city database visit [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database) to obtain the latest json file and replace it for the one located at `db/seed_files/countries+states+cities.json`.
