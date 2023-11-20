@@ -103,13 +103,6 @@ The files to setup docker-compose can be found in the `install` folder.
     [http://localhost:8080](http://localhost:8080)
 
 
-When running cucumber tests (`rails cucumber`), you can access the following website to see what the tests are doing
-
-[http://localhost:7900/?autoconnect=1&resize=scale&password=secret](http://localhost:7900/?autoconnect=1&resize=scale&password=secret)
-
-This combined with the cucumber step `When I debug` is a powerful tool to debug the cucumber tests.
-
-
 When you are done developing, you can stop the docker-compose 
 
 ```bash
@@ -129,6 +122,12 @@ or start the docker-compose from the desktop app.
 #### Running Tests
 
 In the root directory, run "rails cucumber"
+When running cucumber tests (`rails cucumber`), you can access the following website to see what the tests are doing
+
+[http://localhost:7900/?autoconnect=1&resize=scale&password=secret](http://localhost:7900/?autoconnect=1&resize=scale&password=secret)
+
+This combined with the cucumber step `When I debug` is a powerful tool to debug the cucumber tests.
+
 
 ##### Possible issues ->
 
@@ -357,7 +356,12 @@ If there is any problem about pg database. Try the steps below:
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000) -->
-    
+
+## How to Deploy :
+
+The website is deployed using AWS credentials and additional buckets. Client has requested to keep everthing deployed on Client's Heroku.
+Contact previous team for Credentials.
+
 ## Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
@@ -456,3 +460,11 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 1. The user can add and delete gallery in their profile page. 
 2. The user can add/delete individual images in their gallery. (no more than 5) 
 3. The user can edit their text info in a gallery. 
+
+## HELP:
+
+Contact previous teams for testing, deployment and issues related to following features :
+
+1. AI Chatbot -> liewgh1995@tamu.edu
+2. Collaborator Commenting -> pisharan@tamu.edu, vasan2001@tamu.edu
+3. Job Posting -> quanqi-hu@tamu.edu
