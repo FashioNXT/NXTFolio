@@ -2,11 +2,12 @@
 
 [![Ruby on Rails CI](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml)
 
-- [Install local server](#install-local-server)
+- [Setup and Testing:](#setup-and-testing)
   - [Recommended: Using docker-compose (Ubuntu 18.04 and selenium firefox)](#recommended-using-docker-compose-ubuntu-1804-and-selenium-firefox)
   - [Using Dockerfile (Ubuntu 18.04)](#using-dockerfile-ubuntu-1804)
   - [Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)](#run-on-linux-without-docker-tested-on-aws-e2c-ubuntu-1804)
   - [Helpful fixes](#helpful-fixes)
+- [How to Deploy :](#how-to-deploy)
 - [Using AWS S3 as Image Backend](#using-aws-s3-as-image-backend)
 - [Country/States/Cities Database](#countrystatescities-database)
 - [Geocoding](#geocoding)
@@ -20,6 +21,7 @@
 - [Tag features:](#tag-features)
 - [Travel features:](#travel-features)
 - [Gallery features:](#gallery-features)
+- [Contact:](#contact)
 
 <!-- ## (OLD) DEMO
 https://sheltered-woodland-21494.herokuapp.com/
@@ -32,7 +34,7 @@ Get Facebook Login to function:
 3. Use the API key of Facebook app, in the source code. You can find the required details in the document.
 4. Start serving Facebook login easily -->
 
-## Install local server
+## Setup and Testing
 
 Go to `config/environments/test.rb` and set `config.use_remote_webdriver` to true if using docker-compose, and to false otherwise.
 
@@ -103,13 +105,6 @@ The files to setup docker-compose can be found in the `install` folder.
     [http://localhost:8080](http://localhost:8080)
 
 
-When running cucumber tests (`rails cucumber`), you can access the following website to see what the tests are doing
-
-[http://localhost:7900/?autoconnect=1&resize=scale&password=secret](http://localhost:7900/?autoconnect=1&resize=scale&password=secret)
-
-This combined with the cucumber step `When I debug` is a powerful tool to debug the cucumber tests.
-
-
 When you are done developing, you can stop the docker-compose 
 
 ```bash
@@ -125,6 +120,20 @@ docker-compose start
 ```
 
 or start the docker-compose from the desktop app.
+
+#### Running Tests
+
+In the root directory, run "rails cucumber"
+When running cucumber tests (`rails cucumber`), you can access the following website to see what the tests are doing
+
+[http://localhost:7900/?autoconnect=1&resize=scale&password=secret](http://localhost:7900/?autoconnect=1&resize=scale&password=secret)
+
+This combined with the cucumber step `When I debug` is a powerful tool to debug the cucumber tests.
+
+
+##### Possible issues ->
+
+1. Capybara Timeout issue : Go to /install -> docker-compose down -> docker-compose up -d -> run setup steps from step 4 above.
 
 
 ### Using Dockerfile (Ubuntu 18.04)
@@ -349,7 +358,12 @@ If there is any problem about pg database. Try the steps below:
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000) -->
-    
+
+## How to Deploy 
+
+The website is deployed using AWS credentials and additional buckets. Client has requested to keep everthing deployed on Client's Heroku.
+Contact previous team for Credentials.
+
 ## Using AWS S3 as Image Backend
 
 If you wish to use the S3 image backend (allowing images to be saved for more than 2 days), you will need to create an S3 bucket(AWS_BUCKET). You will then need to set AWS_BUCKET, AWS_SECRET_KEY ,  AWS_ACCESS_KEY and AWS_REGION so that Rails can find that bucket. For local environments: 
@@ -358,8 +372,7 @@ If you wish to use the S3 image backend (allowing images to be saved for more th
 For deployed Heroku environments: (assuming the site is already deployed)
 
 ```heroku config:set AWS_SECRET_KEY=x``` and then ```heroku config:set AWS_ACCESS_KEY=y```
-   
-
+  
 ## Country/States/Cities Database
 
 To update the country/state/city database visit [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database) to obtain the latest json file and replace it for the one located at `db/seed_files/countries+states+cities.json`.
@@ -449,3 +462,11 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 1. The user can add and delete gallery in their profile page. 
 2. The user can add/delete individual images in their gallery. (no more than 5) 
 3. The user can edit their text info in a gallery. 
+
+## Contact
+
+Contact previous teams for testing, deployment and issues related to following features :
+
+1. AI Chatbot -> liewgh1995@tamu.edu
+2. Collaborator Commenting -> pisharan@tamu.edu, vasan2001@tamu.edu
+3. Job Posting -> quanqi-hu@tamu.edu
