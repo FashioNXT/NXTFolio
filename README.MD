@@ -2,11 +2,12 @@
 
 [![Ruby on Rails CI](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml)
 
-- [Install local server](#install-local-server)
+- [Setup and Testing:](#setup-and-testing)
   - [Recommended: Using docker-compose (Ubuntu 18.04 and selenium firefox)](#recommended-using-docker-compose-ubuntu-1804-and-selenium-firefox)
   - [Using Dockerfile (Ubuntu 18.04)](#using-dockerfile-ubuntu-1804)
   - [Run on Linux without docker (tested on AWS E2C, Ubuntu 18.04)](#run-on-linux-without-docker-tested-on-aws-e2c-ubuntu-1804)
   - [Helpful fixes](#helpful-fixes)
+- [How to Deploy :](#how-to-deploy)
 - [Using AWS S3 as Image Backend](#using-aws-s3-as-image-backend)
 - [Country/States/Cities Database](#countrystatescities-database)
 - [Geocoding](#geocoding)
@@ -20,6 +21,7 @@
 - [Tag features:](#tag-features)
 - [Travel features:](#travel-features)
 - [Gallery features:](#gallery-features)
+- [Contact:](#contact)
 
 <!-- ## (OLD) DEMO
 https://sheltered-woodland-21494.herokuapp.com/
@@ -32,7 +34,7 @@ Get Facebook Login to function:
 3. Use the API key of Facebook app, in the source code. You can find the required details in the document.
 4. Start serving Facebook login easily -->
 
-## Install local server
+## Setup and Testing
 
 Go to `config/environments/test.rb` and set `config.use_remote_webdriver` to true if using docker-compose, and to false otherwise.
 
@@ -357,7 +359,7 @@ If there is any problem about pg database. Try the steps below:
 
     [http://localhost:3000](http://localhost:3000) -->
 
-## How to Deploy :
+## How to Deploy 
 
 The website is deployed using AWS credentials and additional buckets. Client has requested to keep everthing deployed on Client's Heroku.
 Contact previous team for Credentials.
@@ -461,7 +463,7 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 2. The user can add/delete individual images in their gallery. (no more than 5) 
 3. The user can edit their text info in a gallery. 
 
-## HELP:
+## Contact
 
 Contact previous teams for testing, deployment and issues related to following features :
 
