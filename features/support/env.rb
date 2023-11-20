@@ -36,8 +36,13 @@ if Rails.configuration.use_remote_webdriver
   Capybara.server_port = ENV['RAILS_PORT']
   Capybara.app_host = "http://#{ENV['RAILS_HOST']}:#{Capybara.server_port}"
 else
-  Capybara.default_driver = :selenium_chrome
+  # Capybara.default_driver = :selenium_chrome
   # Capybara.default_driver = :selenium
+  # Selenium::WebDriver::Chrome::Service.executable_path = '/Users/quanqihu/Desktop/Fall_2023/csce606/project/NXTFolio/chromedriver-mac-arm64' # specify the path of chromedriver
+  # driver = webdriver.Chrome(executable_path='C:/path/to/chromedriver.exe')
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome, :executable_path => '/Users/quanqihu/Desktop/Fall_2023/csce606/project/NXTFolio/chromedriver-mac-arm64')
+  end
 end
 
 
