@@ -81,3 +81,7 @@ end
 Then(/^I should click on the job search button$/) do 
     click_button "job_search_button"
   end
+
+Then(/^I should click on the more infos button$/) do 
+    click_link "More Infos"
+  end
