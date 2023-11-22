@@ -83,7 +83,7 @@ Rails.application.routes.draw do
     # resources :general_info, only: [:index]
   end
 
-  get '/general_info/make_admin/:room' => 'general_info#make_admin'
+  get '/general_info/make_admin/:user' => 'general_info#make_admin'
 
   get 'edit_job' => 'edit_job#edit'
   post 'edit_job' => 'edit_job#update'
