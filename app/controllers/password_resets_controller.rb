@@ -12,6 +12,7 @@ class PasswordResetsController < ApplicationController
       #send email
       # Need to set it as background job
       #logger.debug(@token.inspect)
+      puts("here")
       ForgotMailer.reset(exusers).deliver_now
     else
       #logger.info("Not Present! Yahooo!")
