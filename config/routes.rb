@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
