@@ -3,6 +3,7 @@ Given(/^I want to reset my password$/) do
 end
 
 When(/^I fill in the email$/) do
-  fill_in "example@nxtfolio.com", :with => "test123@gmail.com"
-  ForgotMailer.reset("test123@gmail.com").deliver_now
+  fill_in "example@nxtfolio.com", :with => "Anthony.Gray@example.com"
+  click_on "Reset Password"
+  visit "/password/reset/edit"
 end
