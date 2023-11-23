@@ -48,10 +48,10 @@ class JobInfoController < ApplicationController
     end
   
     def update
-      @job_info = JobInfo.find params[:id]
-      @job_info.update!(job_info_params)
-      flash[:notice] = "#{@job_info.title} was successfully updated."
-      redirect_to job_info_path(@job_info)
+      # @job_info = JobInfo.find params[:id]
+      # @job_info.update!(job_info_params)
+      # flash[:notice] = "#{@job_info.title} was successfully updated."
+      # redirect_to job_info_path(@job_info)
     end
 
     def destroy

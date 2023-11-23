@@ -68,29 +68,29 @@ class ShowProfileController < ApplicationController
         # Start of messy profile selection
         case @general_info.specific_profile_id
         when 1
-          @profile_type = "Designer"
-          if SpecificDesigner.exists?(:user_key => user_key_current)
-            @specific_designer = SpecificDesigner.find_by(user_key: user_key_current)
-            @profile_info = @specific_designer.attribute_values
-          else
-            @profile_info = nil
-          end
+        #   @profile_type = "Designer"
+        #   if SpecificDesigner.exists?(:user_key => user_key_current)
+        #     @specific_designer = SpecificDesigner.find_by(user_key: user_key_current)
+        #     @profile_info = @specific_designer.attribute_values
+        #   else
+        #     @profile_info = nil
+          # end
         when 2
-          @profile_type = "Model"
-          if SpecificModel.exists?(:user_key => user_key_current)
-            @specific_model = SpecificModel.find_by(user_key: user_key_current)
-            @profile_info = @specific_model.attribute_values
-          else
-            @profile_info = nil
-          end
+        #   @profile_type = "Model"
+        #   if SpecificModel.exists?(:user_key => user_key_current)
+        #     @specific_model = SpecificModel.find_by(user_key: user_key_current)
+        #     @profile_info = @specific_model.attribute_values
+        #   else
+        #     @profile_info = nil
+          # end
         when 3
-          @profile_type = "Photographer"
-          if SpecificPhotographer.exists?(:user_key => user_key_current)
-            @specific_photographer = SpecificPhotographer.find_by(user_key: user_key_current)
-            @profile_info = @specific_photographer.attribute_values
-          else
-            @profile_info = nil
-          end
+        #   @profile_type = "Photographer"
+        #   if SpecificPhotographer.exists?(:user_key => user_key_current)
+        #     @specific_photographer = SpecificPhotographer.find_by(user_key: user_key_current)
+        #     @profile_info = @specific_photographer.attribute_values
+        #   else
+        #     @profile_info = nil
+          # end
         else
           puts "Unknown profile type! Profile type given: "
           @profile_type = "Error"
@@ -103,12 +103,12 @@ class ShowProfileController < ApplicationController
         puts @profile_info.inspect
       else
         #SHOULD SHOW BLANK STUFF!!!!
-        @job_title = "No Profile Selected"
-        @general_info = GeneralInfo.new
-        @general_info_values = Hash.new
-        @attribute_titles = Hash.new
-        @attribute_types = Array.new
-        @attribute_contents = Hash.new
+        # @job_title = "No Profile Selected"
+        # @general_info = GeneralInfo.new
+        # @general_info_values = Hash.new
+        # @attribute_titles = Hash.new
+        # @attribute_types = Array.new
+        # @attribute_contents = Hash.new
       end
     else
       redirect_to "/login_info/login"

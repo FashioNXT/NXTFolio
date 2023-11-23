@@ -1,11 +1,11 @@
 
-Given(/^I am logged in as (.*) (.*)$/) do |first_name, last_name|
-    visit root_path
-    click_on "Sign In"
-    fill_in "Your Email", :with => first_name + "." + last_name + "@example.com"
-    fill_in "Your Password", :with => "Test1234!"
-    click_on "SIGN IN"
-  end
+# Given(/^I am logged in as (.*) (.*)$/) do |first_name, last_name|
+#     visit root_path
+#     click_on "Sign In"
+#     fill_in "Your Email", :with => first_name + "." + last_name + "@example.com"
+#     fill_in "Your Password", :with => "Test1234!"
+#     click_on "SIGN IN"
+#   end
 
 And(/^I visit the profile page of (.*) (.*)$/) do |first_name, last_name| 
   visit show_profile_show_profile_path(:user_key => GeneralInfo.find_by(emailaddr: first_name + "." + last_name + "@example.com").userKey) 

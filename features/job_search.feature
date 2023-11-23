@@ -68,6 +68,14 @@ Feature: Job Search
         Then I should click on the job search button 
         Then I should see "No Results For This"
 
+    Scenario: After searching, I can click on more infos to see job details
+        Given I am logged in as "Andrea.Picardo" 
+        And I go to job_info_search
+        When I fill in the following:
+         | search               | animal  |
+        Then I should click on the job search button  
+        Then I should click on the more infos button 
+
 
     
 

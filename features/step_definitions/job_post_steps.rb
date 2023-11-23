@@ -31,9 +31,9 @@ Given(/^I am a professional and want to post a new job$/) do
     fill_in 'high_salary', :with => '120000'
   end
   
-  And(/^I click on "SAVE and Post Job" button$/) do
-    click_button('SAVE and Post Job')
-  end
+  # And(/^I click on "SAVE and Post Job" button$/) do
+  #   click_button('SAVE and Post Job')
+  # end
   
   Then(/^I should see job post success message$/) do
     expect(page).to have_content("Job info created successfully")

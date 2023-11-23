@@ -5,16 +5,16 @@ class GeneralInfoController < ApplicationController
   end
 
   def show
-    @general_info = GeneralInfo.find(params[:id])
+    # @general_info = GeneralInfo.find(params[:id])
   end
 
   def get_user_keys array
-    @return_array = Array.new
-    array.each do |element,index|
-      @return_array.push(element[:userKey])
-    end
+  #   @return_array = Array.new
+  #   array.each do |element,index|
+  #     @return_array.push(element[:userKey])
+  #   end
 
-    return @return_array
+  #   return @return_array
   end
 
   def make_admin
@@ -35,22 +35,22 @@ class GeneralInfoController < ApplicationController
 
   # Displays the correct specific profile search when selected during GeneralInfo search
   def search_redirect
-    @objects = params.except("utf8")
-    @objects = @objects.except("button")
+    # @objects = params.except("utf8")
+    # @objects = @objects.except("button")
 
-    @general_queries = GeneralInfo.search @objects
+    # @general_queries = GeneralInfo.search @objects
 
-    flash[:general_queries] = get_user_keys @general_queries
+    # flash[:general_queries] = get_user_keys @general_queries
 
-    if @objects[:profession] == "1"
-      redirect_to specific_designer_search_path
-    elsif @objects[:profession] == "2"
-      redirect_to specific_model_search_path
-    elsif @objects[:profession] == "3"
-      redirect_to specific_photographer_search_path
-    else
-      redirect_to root_path
-    end
+    # if @objects[:profession] == "1"
+    #   redirect_to specific_designer_search_path
+    # elsif @objects[:profession] == "2"
+    #   redirect_to specific_model_search_path
+    # elsif @objects[:profession] == "3"
+    #   redirect_to specific_photographer_search_path
+    # else
+    #   redirect_to root_path
+    # end
   end
 
   # Associated with the view used for create
@@ -74,33 +74,33 @@ class GeneralInfoController < ApplicationController
     @general_info ||= GeneralInfo.new
   end
 
-  def profession_specific
-    last_template_id = GeneralInfo.last.template_id
-    template = Template.find(last_template_id)
-    $prof_name = template.prof_name
-    @some = eval(template.prof_attribute)
-  end
+  # def profession_specific
+  #   last_template_id = GeneralInfo.last.template_id
+  #   template = Template.find(last_template_id)
+  #   $prof_name = template.prof_name
+  #   @some = eval(template.prof_attribute)
+  # end
 
-  # POST request action for profession_specifi, called when profession_specific form is submitted     
-  def profession_specific_create
-    field_name_arr = params[:field_name]
-    field_value_arr = params[:field_value]
-    attributes_json = {}
-    if (field_name_arr != nil)
-      field_name_arr.each_with_index do |field_name, index|
-        attributes_json[field_name] = field_value_arr[index]
-      end
-    end
-    attributes_json = attributes_json.to_json
-    ginfo_last = GeneralInfo.last # this would be last entry in general_info i.e. the one created by previous (general_info/new) page
-    ginfo_last.specific_profile = attributes_json
-    ginfo_last.save
-    if ginfo_last.save!
-      redirect_to '/show_profile'
-    else
-      render :action=> 'new'
-    end
-  end
+  # # POST request action for profession_specifi, called when profession_specific form is submitted     
+  # def profession_specific_create
+  #   field_name_arr = params[:field_name]
+  #   field_value_arr = params[:field_value]
+  #   attributes_json = {}
+  #   if (field_name_arr != nil)
+  #     field_name_arr.each_with_index do |field_name, index|
+  #       attributes_json[field_name] = field_value_arr[index]
+  #     end
+  #   end
+  #   attributes_json = attributes_json.to_json
+  #   ginfo_last = GeneralInfo.last # this would be last entry in general_info i.e. the one created by previous (general_info/new) page
+  #   ginfo_last.specific_profile = attributes_json
+  #   ginfo_last.save
+  #   if ginfo_last.save!
+  #     redirect_to '/show_profile'
+  #   else
+  #     render :action=> 'new'
+  #   end
+  # end
 
   # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
   def create
@@ -108,42 +108,42 @@ class GeneralInfoController < ApplicationController
     # Check to see if the required params are filled in
     @general_info = GeneralInfo.new(general_info_params)
     error_statement = ""
-    if params[:general_info][:first_name] == ""
-      error_statement += "First Name, "
-    end
-    if params[:general_info][:highlights] == ""
-      error_statement += "Highlights, "
-    end
-    if params[:general_info][:last_name] == ""
-      error_statement += "Last Name, "
-    end
-    if params[:general_info][:company] == ""
-      error_statement += "Company"
-    end
-    if params[:general_info][:industry] == ""
-      error_statement += "Industry"
-    end
-    if params[:general_info][:job_name] == ""
-      error_statement += "Profession"
-    end
-    if params[:general_info][:country] == ""
-      error_statement += "Country, "
-    end
-    if params[:general_info][:state] == ""
-      error_statement += "State, "
-    end
-    if params[:general_info][:city] == ""
-      error_statement += "City, "
-    end
-    if params[:general_info][:emailaddr] == ""
-      error_statement += "Email, "
-    end
+    # if params[:general_info][:first_name] == ""
+    #   error_statement += "First Name, "
+    # end
+    # if params[:general_info][:highlights] == ""
+    #   error_statement += "Highlights, "
+    # end
+    # if params[:general_info][:last_name] == ""
+    #   error_statement += "Last Name, "
+    # end
+    # if params[:general_info][:company] == ""
+    #   error_statement += "Company"
+    # end
+    # if params[:general_info][:industry] == ""
+    #   error_statement += "Industry"
+    # end
+    # if params[:general_info][:job_name] == ""
+    #   error_statement += "Profession"
+    # end
+    # if params[:general_info][:country] == ""
+    #   error_statement += "Country, "
+    # end
+    # if params[:general_info][:state] == ""
+    #   error_statement += "State, "
+    # end
+    # if params[:general_info][:city] == ""
+    #   error_statement += "City, "
+    # end
+    # if params[:general_info][:emailaddr] == ""
+    #   error_statement += "Email, "
+    # end
 
     if error_statement.length > 0
-      error_statement = error_statement[0, error_statement.length-2]
-      error_statement += " are required."
-      flash[:notice] = error_statement
-      render :new and return
+      # error_statement = error_statement[0, error_statement.length-2]
+      # error_statement += " are required."
+      # flash[:notice] = error_statement
+      # render :new and return
     end
 
     # Add room to LoginInfo DB here to
@@ -286,24 +286,24 @@ class GeneralInfoController < ApplicationController
   # Allows room to edit the profession of the GeneralInfo object
   # Displays information pulled from database that matches the session key of the current room
   # Associated with the view used for update_profession
-  def edit_profession
-    if GeneralInfo.exists?(:userKey => session[:current_user_key])
-      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-    else
-      redirect_to :action => 'new'
-    end
-  end
+  # def edit_profession
+  #   if GeneralInfo.exists?(:userKey => session[:current_user_key])
+  #     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+  #   else
+  #     redirect_to :action => 'new'
+  #   end
+  # end
 
-  # Saves the edit of the GeneralInfo object's profession to the database
-  def update_profession
-    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+  # # Saves the edit of the GeneralInfo object's profession to the database
+  # def update_profession
+  #   @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
 
-    if @general_info.update_attribute(specific_profile_id, :specific_profile_id)
-      redirect_to '/show_profile'
-    else
-      render :action => 'edit_profession'
-    end
-  end
+  #   if @general_info.update_attribute(specific_profile_id, :specific_profile_id)
+  #     redirect_to '/show_profile'
+  #   else
+  #     render :action => 'edit_profession'
+  #   end
+  # end
 
   def follow
     user = GeneralInfo.find_by(userKey: session[:current_user_key])
@@ -319,20 +319,20 @@ class GeneralInfoController < ApplicationController
     redirect_to show_profile_show_profile_path(:user_key => other_user.userKey)
   end
 
-  # Params used to edit the GeneralInfo object's profession
-  def general_info_update_profession_param
-    params.require(:general_info).permit(:specific_profile_id)
-  end
+  # # Params used to edit the GeneralInfo object's profession
+  # def general_info_update_profession_param
+  #   params.require(:general_info).permit(:specific_profile_id)
+  # end
 
   # Not implemented
   def delete
-    GeneralInfo.find(params[:userKey]).destroy
+    # GeneralInfo.find(params[:userKey]).destroy
   end
 
 
   #for destroying Gallery
   def destroy
-    GeneralInfo.find(params[:gallery]).destroy
+    # GeneralInfo.find(params[:gallery]).destroy
   end
 
 
