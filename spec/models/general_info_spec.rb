@@ -1,7 +1,7 @@
 require 'rails_helper'
 
   RSpec.describe GeneralInfo, type: :model do
-    let(:general_info) { described_class.create(first_name: 'John', last_name: 'Johns', city: 'Houston', state: 'Texas', country: 'United States', company: 'test company', industry: 'Creator', highlights: 'test', emailaddr: 'abcd@email.com') }
+    let(:general_info) { described_class.create(id: 11, first_name: 'John', last_name: 'Johns', city: 'Houston', state: 'Texas', country: 'United States', company: 'test company', industry: 'Creator', highlights: 'test', emailaddr: 'abcd@email.com') }
     let(:general_info_2) { described_class.create(id: 10, first_name: 'David', last_name: 'Johns', city: 'Houston', state: 'Texas', country: 'United States', company: 'test company', industry: 'Creator', highlights: 'test', emailaddr: 'abcd2@email.com') }
 
 
@@ -89,7 +89,18 @@ require 'rails_helper'
 
     describe '.create_Job' do
         it 'create_Job' do
-            expect(GeneralInfo.create_Job('test_class')).to eq(nil)
+            expect(GeneralInfo.create_Job('NewJobClass', true)).to eq(nil)
+            new_class = Object.const_get('NewJobClass')
+
+            expect(new_class.display_Name).not_to eq(nil)
+            expect(new_class.add_Attr('test_name')).to eq(nil)
+            expect(new_class.edit_Attr('test_name', 'new_test_name', ['String','String','String','String'])).to eq(nil)
+            expect(new_class.delete_Attr('new_test_name')).to eq(nil)
+            expect(new_class.view_Attr).not_to eq(nil)
+            expect(new_class.view_Attr_Type).not_to eq(nil)
+            expect(new_class.view_Attr_Type('test_name')).to eq(nil)
+            expect(new_class.update_File).to eq(nil)
+            
         end
     end
 
