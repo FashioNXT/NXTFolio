@@ -253,7 +253,7 @@ class GeneralInfo < ApplicationRecord
 
           if(indexLoc)
             @@Job_Attr[self.name][indexLoc] = new_Name
-            if(new_type != nil)
+            if(new_Type != nil)
               @@Attr_Type[self.name] = new_Type
             end
             self.update_File
@@ -330,6 +330,7 @@ class GeneralInfo < ApplicationRecord
 
       })
 
+      writeToFile = true
       if(writeToFile)
         jobString = '\''
         @@Job_List.each do |job|
