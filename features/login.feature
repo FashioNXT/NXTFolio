@@ -12,7 +12,7 @@ Scenario: When correct login information is entered a user logs in successfully
   When I log in
   Then I should see "Logged In!"
   And I should be on the home page
-  
+
 Scenario: When incorrect password is entered, a user cannot log in
 
   Given I am not logged in
@@ -31,3 +31,4 @@ Scenario: When incorrect email is entered, a user cannot log in
   And I fill in "email" with "test"
   And I press "Login"
   Then I should see "Incorrect Email"
+  

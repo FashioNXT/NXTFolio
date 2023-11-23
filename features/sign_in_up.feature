@@ -36,7 +36,7 @@ Feature: Login and sign up
       | emailaddr | test@example.com |
       | city | Austin |
     And I select "Creator" from "general_info_industry"
-    And I select "Creators" from "general_info_job_name"
+    And I select "Designer" from "general_info_job_name"
     And I select "United States" from "country"
     And I select "Texas" from "state"
     # And I select "Austin" from "city"
@@ -88,6 +88,39 @@ Feature: Login and sign up
     Then I should be on the home page 
     And I should see "Email already exists"
 
+    # NXTFolio Fall 2023, Iteration 5
+  Scenario: When new user attempts to create an account with Invalid email format, account creation should fail
+    Given I am on the login page
+    When I fill in the following:
+      | sign_up_email               | Andrea.Picardo.example.com  |
+      | sign_up_password            | Test1234! |
+      | sign_up_confirm             |  Test1234!     |
+    And I click on "SIGN UP"
+    Then I should be on the home page 
+    And I should see "Failed Saving beause Email/Password format is not valid !"
+
+    # NXTFolio Fall 2023, Iteration 5
+  Scenario: When new user attempts to create an account with different passwords, account creation should fail
+    Given I am on the login page
+    When I fill in the following:
+      | sign_up_email               | Andrea.Picardo.example.com  |
+      | sign_up_password            | Test1234! |
+      | sign_up_confirm             |  Test1234     |
+    And I click on "SIGN UP"
+    Then I should be on the home page 
+    And I should see "Passwords don't match! Please try again."
+  
+  # NXTFolio Fall 2023, Iteration 5
+  Scenario: When new user attempts to create an account with unentered passwords, account creation should fail
+    Given I am on the login page
+    When I fill in the following:
+      | sign_up_email               | Andrea.Picardo.example.com  |
+      | sign_up_password            |  |
+      | sign_up_confirm             |       |
+    And I click on "SIGN UP"
+    Then I should be on the home page 
+    And I should see "Enter your password! Please try again."
+
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When existing user attempts to sign in with correct password, sign in successfully processes
     Given I am on the login page
@@ -110,7 +143,43 @@ Feature: Login and sign up
     And I should see "The Credentials You Provided Are Not Valid"
     And I should not see "Andrea"
 
+  # NXTFolio Fall 2023, Iteration 5
+  Scenario: When existing user attempts to edit his password, editing successfully processes
+    Given I am on the login page
+    When I fill in the following:
+      | login_email               | Andrea.Picardo@example.com  |
+      | login_password            | Test1234! |
+    And I click on "SIGN IN"
+    Then I should be on the home page
+    And I should see "You Have Successfully Logged In"
+    And I should see "Andrea"
+    And I click on "Andrea"
+    When I move to Edit Profile and select Change Password
+    Then I should land on the Change Password page
+    When I fill in the following:
+      | login_info_password               | Test1234fda!!  |
+      | login_info_password_confirmation            | Test1234fda!!                |
+    And I click on "SAVE"
+    Then I should be on the profile page
 
+  # NXTFolio Fall 2023, Iteration 5
+  Scenario: When existing user attempts to edit his password, and does not provide matching passwords, edit is not successful
+    Given I am on the login page
+    When I fill in the following:
+      | login_email               | Andrea.Picardo@example.com  |
+      | login_password            | Test1234! |
+    And I click on "SIGN IN"
+    Then I should be on the home page
+    And I should see "You Have Successfully Logged In"
+    And I should see "Andrea"
+    And I click on "Andrea"
+    When I move to Edit Profile and select Change Password
+    Then I should land on the Change Password page
+    When I fill in the following:
+      | login_info_password               | Test1234fda!!  |
+      | login_info_password_confirmation            | Test1234fda!!!                |
+    And I click on "SAVE"
+    Then I should see "Passwords don't match!"
 
   #Scenario: When new user attempts to create an account, account creation fails
   #  Given I am on the landing page

@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     get '/create' => 'admin#create'
     post '/create' => 'admin#create'
     get '/edit' => 'admin#edit'
-    post '/edit' => 'admin#edit'
+    post '/edit' => 'admin#edit'  
     get '/delete' => 'admin#delete'
     post '/delete' => 'admin#delete'
   end
@@ -92,7 +92,7 @@ Rails.application.routes.draw do
   get 'login_info_list' => 'login_info#list', :as => 'login_info_list'
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
-  # get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
