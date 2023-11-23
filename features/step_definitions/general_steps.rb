@@ -258,6 +258,10 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
+When(/^I move to Edit Profile and select Change Password$/) do 
+  visit "/login_info/edit"
+end
+
 When(/^I click on "([^"]*)"$/) do |button|
   click_link_or_button(button)
 end
@@ -265,6 +269,11 @@ end
 Then(/^(?:|I )should see "([^"]*)"$/) do |text|
   # puts(page.body)
   expect(page).to have_content(text)
+end
+
+Then(/^(?:|I )should land on the Change Password page$/) do
+  # puts(page.body)
+  expect(page).to have_content("Change Password")
 end
 
 # test sorting

@@ -23,10 +23,11 @@ class LoginInfoController < ApplicationController
     end
 
     # Checks for mismatched & unentered passwords before saving LoginInfo object to database
-    unless @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
-      flash[:notice] = "Enter your password! Please try again."
-      redirect_to login_info_login_path and return
-    end
+    # field value required in HTML, hence this check not required
+    # unless @login_info[:password] != "" && login_info_params[:password_confirmation] != ""
+    #   flash[:notice] = "Enter your password! Please try again."
+    #   redirect_to login_info_login_path and return
+    # end
     
     unless @login_info[:password] == login_info_params[:password_confirmation]
       #@login_info.userKey = SecureRandom.hex(10)

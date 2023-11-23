@@ -2,6 +2,7 @@
 
 Given(/^I am not logged in$/) do
   visit "/login_info/logout"
+  # expect(page).to have_current_path(destroy_user_session_path)
 end
 
 Given(/^I am a valid user$/) do
@@ -131,3 +132,10 @@ end
 #   end
 # end
 
+And(/^I am now on home page$/) do
+  visit root_path
+end
+
+And(/^I fill in "([^"]*)" field with "([^"]*)"$/) do |field, value|
+  fill_in(field, with: value)
+end
