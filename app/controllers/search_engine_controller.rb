@@ -10,20 +10,20 @@ class SearchEngineController < ApplicationController
     end
 
     # spring 2023 keywords matching
-    def filter_words(string)
-        file = File.open("app/assets/stop_words_english.txt", "r")
-        text = file.read
-        file.close
-        stopwords_list = text.split
+    # def filter_words(string)
+    #     file = File.open("app/assets/stop_words_english.txt", "r")
+    #     text = file.read
+    #     file.close
+    #     stopwords_list = text.split
 
-        res = Set.new
-        for word in string.split(/\W+/) do
-            if !stopwords_list.include?(word.downcase.gsub(/\W+/, ''))
-                res.add(word.downcase.gsub(/\W+/, ''))
-            end
-        end
-        return res
-    end
+    #     res = Set.new
+    #     for word in string.split(/\W+/) do
+    #         if !stopwords_list.include?(word.downcase.gsub(/\W+/, ''))
+    #             res.add(word.downcase.gsub(/\W+/, ''))
+    #         end
+    #     end
+    #     return res
+    # end
 
     def search
         if session[:current_user_key]
