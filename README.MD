@@ -463,6 +463,17 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 2. The user can add/delete individual images in their gallery. (no more than 5) 
 3. The user can edit their text info in a gallery. 
 
+## AI Chatbot feature
+
+For Deployed App: 
+- Update the 'OPEN_AI_API_KEY' on Heroku website => Settings => Config Vars 
+- In chat_service.rb, use the line: $@openaiClient = OpenAI::Client.new(access_token: ENV["OPEN_AI_API_KEY"],
+
+For Running Locally:
+- Set up local key on Terminal: $EDITOR="nano" bundle exec rails credentials:edit
+- Add the line in the nano editor: $open_ai_api_key: YOUR-API-KEY
+- In chat_service.rb, use the line: $@openaiClient = OpenAI::Client.new(access_token: Rails.application.credentials.open_ai_api_key,
+
 ## Contact
 
 Contact previous teams for testing, deployment and issues related to following features :
