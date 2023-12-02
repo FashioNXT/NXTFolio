@@ -468,6 +468,7 @@ Once this key is set, it is necessary to run "rake geocode:all CLASS=GeneralInfo
 For Deployed App: 
 - Update the 'OPEN_AI_API_KEY' on Heroku website => Settings => Config Vars 
 - In chat_service.rb, use the line: $@openaiClient = OpenAI::Client.new(access_token: ENV["OPEN_AI_API_KEY"],
+
 For Running Locally:
 - Set up local key on Terminal: $EDITOR="nano" bundle exec rails credentials:edit
 - Add the line in the nano editor: $open_ai_api_key: YOUR-API-KEY
