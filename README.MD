@@ -474,6 +474,16 @@ For Running Locally:
 - Add the line in the nano editor: $open_ai_api_key: YOUR-API-KEY
 - In chat_service.rb, use the line: $@openaiClient = OpenAI::Client.new(access_token: Rails.application.credentials.open_ai_api_key,
 
+## Possible Future Improvements
+1. Developing an algorithm for recommending Profile, Projects, and Jobs
+- An algorithm can be developed for displaying projects and profiles that are based on the user’s history or interest. Likewise, Jobs can also be recommended.
+2. Fixing bugs and displaying the availability of a user based on the Travel dates
+3. Tuning the Collaborator Comment Feature into a points based system
+4. Introducing a new points/rating based system where users are not only given comment access based on their taggings/collaborations. They are given access when the number of points cross a certain threshold like 80. 
+5. Mobile View
+6. Reverse Image Search
+
+
 ## Contact
 
 Contact previous teams for testing, deployment and issues related to following features :
