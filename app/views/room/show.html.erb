@@ -102,7 +102,7 @@
           <div class="login_block">
             <% if session[:current_user_key] %>
               <div class="dropdown">
-              <%if @user.notification %>
+              <%if @user && @user.notification %>
                 <button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
                 <div id="myDropdown" class="dropdown-content">
                     <% @notifications_from.each do |notification|%>

@@ -118,7 +118,7 @@ class ShowProfileController < ApplicationController
     # check if the end date of travel pass today
     # if this is the case, do not show the travel
     
-    if @general_info.travel_end.present? && @general_info.travel_end < Date.today 
+    if @generalinfo && @general_info.travel_end.present? && @general_info.travel_end < Date.today 
       @general_info.travel_start = nil 
       # the frontend will check this to decide show travel info or not
     end
