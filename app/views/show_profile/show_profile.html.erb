@@ -268,14 +268,18 @@
 			<% if not @on_Own %>
 				<% if not @currently_following %>
 					<div style="margin-right: 10px; margin-left: 10px;">
-						<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
-							<p>Follow</p>
+						<% if @general_info% >
+							<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+								<p>Follow</p>
+							<% end %>
 						<% end %>
 					</div>
 				<% else %>
 					<div style="margin-right: 10px; margin-left: 10px;">
-						<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
-							<p>Unfollow</p>
+						<% if @general_info% >
+							<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
+								<p>Unfollow</p>
+							<% end %>
 						<% end %>
 					</div>
 				<% end %>
@@ -333,7 +337,7 @@
 								<div class="be-post">
 									<div class="be-desc-label">Gallery Pictures</div>
 										<% @gallery.present? and @gallery.each do |gallery| %>
-										<% if gallery.GeneralInfo_id == @general_info.id %>
+										<% if @general_info && gallery.GeneralInfo_id == @general_info.id %>
 											<div class="col-md-4">
 												<div class="photo photo-type-line">
 													<a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
@@ -458,7 +462,7 @@
 						  </div>
 						  </div> 
 						</div>
-		<% if @gallery_taggings.any? { |gallery_tagging| gallery_tagging.general_info_id == @general_info.id } %>
+		<% if @gallery_taggings.any? { |gallery_tagging| @general_info && gallery_tagging.general_info_id == @general_info.id } %>
 		<div class="container-fluid custom-container">
 			<div class="row profile-row">
 				<div class="col-md-10 col-md-offset-1">
@@ -467,7 +471,7 @@
 							<div class="collaborated-galleries">
 							<div class="be-desc-label">Collaborated Galleries</div>
 							<% @gallery_taggings.each do |gallery_tagging| %>	
-								<% if gallery_tagging.general_info_id == @general_info.id%>
+								<% if @general_info && gallery_tagging.general_info_id == @general_info.id%>
 									<% tagged_gallery=Gallery.find(gallery_tagging.gallery_id) %>
 									<div class="col-md-4">
 										<div class="photo photo-type-line">
