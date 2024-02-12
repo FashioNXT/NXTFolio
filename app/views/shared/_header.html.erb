@@ -38,7 +38,7 @@
 							<div class="login_block_rightup">
                 <% if session[:current_user_key] %>
 									<div class="dropdown">
-										<%if GeneralInfo.find_by(userKey: session[:current_user_key]).notification %>
+										<%if GeneralInfo.find_by(userKey: session[:current_user_key]) && GeneralInfo.find_by(userKey: session[:current_user_key]).notification %>
 											<button onclick="dropdown()" class="dropbtn" id='notif'><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
 											<div id="myDropdown" class="dropdown-content">
 												<% @notifications_from = GeneralInfo.find_by(userKey: session[:current_user_key]).notification_from %>
