@@ -138,34 +138,39 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
+							<% if @general_info && @general_info.profile_picture.url %>
+								<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
+								<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
+								<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
+								<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
+							<% end %>
 							<% if @general_info && @general_info.travel_start %>
 							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label> In <%= @general_info.travel_city%>, <%= @general_info.travel_state%> from <%= @general_info.travel_start.strftime('%b %d')%> to <%= @general_info.travel_end.strftime('%b %d') %>: <%= @general_info.travel_details %></p>
 							<% end %>
 							<br>
-							<p style="font-size: 12px; margin-top:0px; text-align: left;
-									 margin-left: 30px; margin-bottom: 5px; height: 60px;
-									 overflow: hidden;"><%= @general_info.highlights %></p>
-							
+							<% if @general_info %>
+								<p style="font-size: 12px; margin-top:0px; text-align: left;
+										margin-left: 30px; margin-bottom: 5px; height: 60px;
+										overflow: hidden;"><%= @general_info.highlights %></p>
+							<% end %>
 							<!--<img src="img/ava_10.jpg" alt=""> -->
 							<div class="follow-box">
 								<div class="follow-element1">
-									<% if not @on_Own %>
-										<% if not @currently_following %>
-											<div style="margin-right: 10px; margin-left: 10px;">
-												<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
-													<p>Follow</p>
-												<% end %>
-											</div>
-										<% else %>
-											<div style="margin-right: 10px; margin-left: 10px;">
-												<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
-													<p>Unfollow</p>
-												<% end %>
-											</div>
+									<% if @general_info %>
+										<% if not @on_Own %>
+											<% if not @currently_following %>
+												<div style="margin-right: 10px; margin-left: 10px;">
+													<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
+														<p>Follow</p>
+													<% end %>
+												</div>
+											<% else %>
+												<div style="margin-right: 10px; margin-left: 10px;">
+													<%= link_to "/general_info/unfollow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-0 hover-2" do%>
+														<p>Unfollow</p>
+													<% end %>
+												</div>
+											<% end %>
 										<% end %>
 									<% end %>
 								</div>
