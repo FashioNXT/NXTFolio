@@ -10,7 +10,7 @@ class RoomController < ApplicationController
       @users = GeneralInfo.where.not(userKey: user_key_current)
       @loader = true
 
-      if @user.notification
+      if @user && @user.notification
         @notifications_from = @user.notification_from
       end
 

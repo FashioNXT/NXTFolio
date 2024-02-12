@@ -11,7 +11,7 @@ class ShowProfileController < ApplicationController
 
       @user = GeneralInfo.find_by(userKey: user_key_current)
       
-      if @user.notification
+      if @user && @user.notification
         @notifications_from = @user.notification_from
       end
 
