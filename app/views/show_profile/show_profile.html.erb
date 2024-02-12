@@ -268,7 +268,7 @@
 			<% if not @on_Own %>
 				<% if not @currently_following %>
 					<div style="margin-right: 10px; margin-left: 10px;">
-						<% if @general_info% %>
+						<% if @general_info %>
 							<%= link_to "/general_info/follow/" + @general_info.id.to_s, method: :get, :class => "btn color-2 size-1 hover-2" do%>
 								<p>Follow</p>
 							<% end %>
