@@ -123,7 +123,7 @@
 	
 	<!-- MAIN CONTENT -->
 	<div id="content-block"
-		<% if @general_info.cover_picture.url %>
+		<% if @general_info && @general_info.cover_picture.url %>
 			style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(<%= asset_path @general_info.cover_picture.url %>) no-repeat; margin-bottom:0px; background-size: cover;">
 		<% else %>
 			>
