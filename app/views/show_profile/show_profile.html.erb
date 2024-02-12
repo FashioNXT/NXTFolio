@@ -176,18 +176,22 @@
 								</div>
 								<div class="follow-element2">
 									<div style="margin-right: 10px; margin-left: 10px;">
-										<p><%=@followers.length%></p>
-										<a href="#followers-modal" class="btn color-3 size-0 hover-9">
-											<p>Followers</p>
-										</a>
+										<% if @followers %>
+											<p><%=@followers.length%></p>
+											<a href="#followers-modal" class="btn color-3 size-0 hover-9">
+												<p>Followers</p>
+											</a>
+										<% end %>
 									</div>
 								</div>
 								<div class="follow-element2">
 									<div style="margin-right: 10px; margin-left: 10px;">
-										<p><%=@following.length%></p>
-										<a href="#following-modal" class="btn color-3 size-0 hover-9">
-											<p>Following</p>
-										</a>
+										<% if @following %>
+											<p><%=@following.length%></p>
+											<a href="#following-modal" class="btn color-3 size-0 hover-9">
+												<p>Following</p>
+											</a>
+										<% end %>
 									</div>
 								</div>
 							</div>	
@@ -195,27 +199,28 @@
 								<a style="font-size: 20px"><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
-								<!--% if @general_info && @general_info.facebook_link != "" %-->							
-								<% if @general_info.facebook_link.blank? %> 
-									<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
-								<% else %>
-									<a class="social-btn color-1" href=<%= @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>	
-								<% end %>
-								<% if @general_info.linkedIn_link.blank? %> 
-									<a class="social-btn color-1"><i class="fa fa-linkedin"></i></a>
-								<% else %>
-									<a class="social-btn color-1" href=<%=@general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>	
-								<% end %>
-								<% if @general_info.linkedIn_link.blank? %> 
-									<a class="social-btn color-1"><i class="fa fa-link"></i></a>
-								<% else %>
-									<a class="social-btn color-1" href=<%=@general_info.personalWebsite_link%> target="_blank"><i class="fa fa-link"></i></a>	
-								<% end %>
-								<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
-								<% if @on_Own %>
-									<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
-								<% else %>
-									<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
+								<% if @general_info && @general_info.facebook_link != "" %>							
+									<% if @general_info.facebook_link.blank? %> 
+										<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
+									<% else %>
+										<a class="social-btn color-1" href=<%= @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>	
+									<% end %>
+									<% if @general_info.linkedIn_link.blank? %> 
+										<a class="social-btn color-1"><i class="fa fa-linkedin"></i></a>
+									<% else %>
+										<a class="social-btn color-1" href=<%=@general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>	
+									<% end %>
+									<% if @general_info.linkedIn_link.blank? %> 
+										<a class="social-btn color-1"><i class="fa fa-link"></i></a>
+									<% else %>
+										<a class="social-btn color-1" href=<%=@general_info.personalWebsite_link%> target="_blank"><i class="fa fa-link"></i></a>	
+									<% end %>
+									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
+									<% if @on_Own %>
+										<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
+									<% else %>
+										<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
+									<% end%>
 								<% end%>
 							</div>
 
@@ -224,35 +229,35 @@
 				</div>
 				<div class="col-xs-12 col-md-6 right-box">
 					<div class="top-right-box">
-				  		<!--% if @general_info && @general_info.bio != "" %-->
-						<div class="be-desc-author">
-							<div class="be-desc-label">About Me</div>
-							<div class="clearfix"></div>
-							<div class="be-user-detail">
-								<!--Add Bio HERE-->
-								<%= @general_info.bio %>
+				  		<% if @general_info && @general_info.bio != "" %>
+							<div class="be-desc-author">
+								<div class="be-desc-label">About Me</div>
+								<div class="clearfix"></div>
+								<div class="be-user-detail">
+									<!--Add Bio HERE-->
+									<%= @general_info.bio %>
+								</div>
 							</div>
-						</div>
-						<!--% end %-->
+						<% end %>
 					</div>
 
 					<div class="bottom-right-box">
-						<!--% if @general_info && @general_info.bio != "" %-->
-						<div class="be-desc-author">
-							<div class="be-desc-label">Professional Details</div>
-							<div class="clearfix"></div>
-							<div class="be-user-detail">
-								<!--Add Bio HERE-->
-								<% if @general_info.specialization.blank?%>
-									<p ><%= @general_info.profdetails %></p>
-								<% else %>
-									<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
-								<% end %>
-								<p>Compensation Type: <%=@general_info.compensation%></p>
-								<p>Years of Experience: <%=@general_info.experience%></p>
+						<% if @general_info && @general_info.bio != "" %>
+							<div class="be-desc-author">
+								<div class="be-desc-label">Professional Details</div>
+								<div class="clearfix"></div>
+								<div class="be-user-detail">
+									<!--Add Bio HERE-->
+									<% if @general_info.specialization.blank?%>
+										<p ><%= @general_info.profdetails %></p>
+									<% else %>
+										<p ><strong><%=	@general_info.specialization %>:</strong> <%= @general_info.profdetails %></p>
+									<% end %>
+									<p>Compensation Type: <%=@general_info.compensation%></p>
+									<p>Years of Experience: <%=@general_info.experience%></p>
+								</div>
 							</div>
-						</div>
-						<!--% end %-->
+						<% end %>
 					</div>
 
 			  	</div>
