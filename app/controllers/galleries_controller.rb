@@ -176,11 +176,14 @@ class GalleriesController < ApplicationController
     @gallery_tagging = @gallery.gallery_taggings
     
     logger.info("Debugging Average ")
-    current_user_id = GeneralInfo.find_by(userKey: session[:current_user_key]).id
-    @collab_count = Collaboration.where(general_info_id: current_user_id).count
+    current_user =  GeneralInfo.find_by(userKey: session[:current_user_key])
+    if current_user
+      current_user_id = current_user.id
+      @collab_count = Collaboration.where(general_info_id: current_user_id).count
 
-    print("Users " + current_user_id.to_s + " collaborated with: ")
-    print(@collab_count)
+      print("Users " + current_user_id.to_s + " collaborated with: ")
+      print(@collab_count)
+    end
 
     if @gallery.reviews.blank?
       @average_review=0
