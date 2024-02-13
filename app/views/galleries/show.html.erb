@@ -117,12 +117,12 @@
 
   <br>
 
-  <% if owner.userKey == session[:current_user_key] %>
+  <% if owner && owner.userKey == session[:current_user_key] %>
     <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
   <%end %>
 
   <%# Fall 2023: Piyush Sharan, adding comments to Gallery %>
-  <% if (owner.userKey == session[:current_user_key] || @collab_count >= 3) %>
+  <% if ((owner && owner.userKey == session[:current_user_key]) || @collab_count >= 3) %>
     <%= link_to 'Enter a comment', gallery_add_comment_path(@gallery), class: 'btn btn-success' %>
     
   <%end%>
