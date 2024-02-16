@@ -300,7 +300,7 @@
 			<div>
 				<h2 style="margin-top: 10px;">Followers</h2>
 				<div class="modal-elements-container">
-					<% @followers.present? and @followers.each do |follower| %>
+					<% @followers and @followers.present? and @followers.each do |follower| %>
 						<a href="<%= show_profile_show_profile_path(:user_key => follower.userKey) %>">
 							<div class="modal-element"> <%= follower.first_name + " " + follower.last_name%> </div>
 						</a>
@@ -315,7 +315,7 @@
 			<div>
 				<h2>Following</h2>
 				<div class="modal-elements-container">
-					<% @following.present? and @following.each do |followee| %>
+					<% @following and @following.present? and @following.each do |followee| %>
 						<a href="<%= show_profile_show_profile_path(:user_key => followee.userKey) %>">
 							<div class="modal-element"> <%= followee.first_name + " " + followee.last_name%> </div>
 						</a>
@@ -336,7 +336,7 @@
 							<% end %>
 								<div class="be-post">
 									<div class="be-desc-label">Gallery Pictures</div>
-										<% @gallery.present? and @gallery.each do |gallery| %>
+										<% @gallery and @gallery.present? and @gallery.each do |gallery| %>
 										<% if @general_info && gallery.GeneralInfo_id == @general_info.id %>
 											<div class="col-md-4">
 												<div class="photo photo-type-line">
