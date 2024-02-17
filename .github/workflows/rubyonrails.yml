@@ -44,7 +44,7 @@ jobs:
         with:
           bundler: 'Gemfile.lock'
           bundler-cache: true
-          ruby-version: 3.2.0
+          ruby-version: 3.2.2
       - name: Set up database schema
         run: 
           bin/rails db:create
@@ -92,7 +92,7 @@ jobs:
         with:
           bundler: 'Gemfile.lock'
           bundler-cache: true
-          ruby-version: 3.2.0
+          ruby-version: 3.2.2
       - name: Set up database schema
         run: 
           bin/rails db:create
