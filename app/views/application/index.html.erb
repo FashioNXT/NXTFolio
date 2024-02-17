@@ -1,218 +1,185 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>FashioNXT</title>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-    	<link rel="stylesheet" href="<%= asset_path "profile.css"%>">
-		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
-		<script src="<%= asset_path "initializer.js"%>"></script>
-
-
-	</head>
-
-	<br>
-	<!-- THE LOADER -->
-	<div class="be-loader">
-    	<div class="spinner">
-			<img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
-			<p class="circle">
-			  <span class="ouro">
-			    <span class="left"><span class="anim"></span></span>
-			    <span class="right"><span class="anim"></span></span>
-			  </span>
-			</p>
-		</div>
+  <head>
+    <title>FashioNXT</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+    <script src="<%= asset_path "initializer.js"%>"></script>
+  </head>
+  <br>
+  <!-- THE LOADER -->
+  <div class="be-loader">
+    <div class="spinner">
+      <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+      <p class="circle">
+        <span class="ouro">
+          <span class="left"><span class="anim"></span></span>
+          <span class="right"><span class="anim"></span></span>
+        </span>
+      </p>
     </div>
-
-	<!-- THE HEADER -->
-	<%= render 'shared/header' %>
-
-	<!-- MAIN CONTENT -->
-	<div id="content-block">
-		<div class="head-bg">
-			<div class="head-bg-img"></div>
-
-			<div class="large-popup-fixed"></div>
-			<% if flash[:notice] %>
-			<div class="alert-container col-md-12">
-				<div class="alert style-3 alert-dismissible">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				    <strong><%= flash[:notice]%></strong>
-				</div>
-			</div>
-			<% elsif flash[:success] %>
-			<div class="alert-container col-md-12">
-				<div class="alert style-3 alert-dismissible">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				    <strong><%= flash[:success]%></strong>
-				</div>
-			</div>
-			<% end %>
-
-			<div class=head-bg-content>
-				<%= form_tag(search_engine_show_path, :method=>'get') do %>
-					<div class="homepage-login-btn-section">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-2"></div>
-								<div class="col-md-6">
-									<div id="custom-search-input">
-										<div class="input-group col-md-12">
-											<input name="Initkey" type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
-											<span class="input-group-btn">
-												<button id="search_submit" class="btn btn-info btn-lg" type="submit">
-																			<%= link_to search_engine_show_path do %>
-													<i class="glyphicon glyphicon-search"></i>
-																				<% end %>
-												</button>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				<% end %>
-					
-
-
-				
-				<div class="login_block_links">
-					
-					<div class="register_howitworks">
-						<a id="registrationlink" class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business</a>
-						<a class="register-but-below-search-but">|</a>
-						<a class="color-1 size-1 register-but-below-search-but" href="">How It Works</a>
-						<a class="register-but-below-search-but">|</a>
-						<a class="color-1 size-1 register-but-below-search-but" href="job_search/jobshow">Jobs</a>
-						<a class="register-but-below-search-but">|</a>
-					</div>
-				</div>
-
-			</div>
-			</div>
-		
-</div>
+  </div>
+  <!-- THE HEADER -->
+  <%= render 'shared/header' %>
+  <!-- MAIN CONTENT -->
+  <div id="content-block">
+    <div class="head-bg">
+      <div class="head-bg-img"></div>
+      <div class="large-popup-fixed"></div>
+      <% if flash[:notice] %>
+        <div class="alert-container col-md-12">
+          <div class="alert style-3 alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%= flash[:notice]%></strong>
+          </div>
+        </div>
+      <% elsif flash[:success] %>
+        <div class="alert-container col-md-12">
+          <div class="alert style-3 alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%= flash[:success]%></strong>
+          </div>
+        </div>
+      <% end %>
+      <div class=head-bg-content>
+        <%= form_tag(search_engine_show_path, :method=>'get') do %>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input name="Initkey" type="text" class="form-control input-lg" placeholder="Search for keywords or name" />
+                    <span class="input-group-btn">
+                      <button id="search_submit" class="btn btn-info btn-lg" type="submit">
+                        <%= link_to search_engine_show_path do %>
+                          <i class="glyphicon glyphicon-search"></i>
+                        <% end %>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div class="text-center register_howitworks">
+                  <a id="registrationlink" class="be-register color-1 size-1 register-but-below-search-but" href="">Register Your Business</a>
+                  <span class="register-but-below-search-but">|</span>
+                  <a class="color-1 size-1 register-but-below-search-but" href="">How It Works</a>
+                  <span class="register-but-below-search-but">|</span>
+                  <a class="color-1 size-1 register-but-below-search-but" href="job_search/jobshow">Jobs</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <%= render 'layout/category' %>
-
-		<div id="homepage_contents">
-    	<%= render 'layout/homepage' %>
-		</div>
-
-	<div id="infinite-scrolling">
-		<%= will_paginate @gallery %>
-	</div>
-
-	<br>
-	<!-- THE FOOTER -->
-
-	<%= render 'shared/footer' %>
-
-
-	<div class="be-fixed-filter"></div>
-
-	<%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
-	<div class="large-popup login">
-		<div class="container large-popup-container">
-			<div class="row">
-				<div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
-					<div class="row">
-						<div class="col-md-12">
-							<i class="fa fa-times close-button"></i>
-							<h5 class="large-popup-title">Log in</h5>
-						</div>
-						<form action="#" class="popup-input-search" method="post">
-						<div class="col-md-6">
-							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
-							<!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
-						</div> 
-						<div class="col-md-6 form-group">
-							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
-							<!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
-						</div>
-						<div class="col-xs-6"></div>
-						<div class="col-xs-6 for-signin">
-							<%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
-							<!--<input type="submit" class="be-popup-sign-button" value="Sign In">-->
-						</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
-	<%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
-	<div class="large-popup register">
-		<div class="large-popup-fixed"></div>
-		<div class="container large-popup-container">
-			<div class="row">
-				<div class="col-md-10 col-md-push-1 col-lg-8 col-lg-push-2 large-popup-content">
-					<div class="row">
-						<div class="col-md-12">
-							<i class="fa fa-times close-button"></i>
-							<h5 class="large-popup-title">Register</h5>
-						</div>
-						<form action="./" class="popup-input-search" method="post">
-
-						<div class="col-md-4">
-							<%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
-							<!--<input class="input-signtype" type="text" required="" placeholder="Email">-->
-						</div>
-						<div class="col-md-4">
-							<%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Password', :required => '' %>
-							<!--<input class="input-signtype" type="text" required="" placeholder="Password">-->
-						</div>
-						<div class="col-md-4">
-							<p style="color:white;">(Should contain one uppercase, one lowercase, one special character, and one digit)</p>
-						</div>
-						<div class="col-md-8">
-							<!--<input id="password_confirmation" class="input-signtype" type="text" required="" placeholder="Repeat Password">-->
-                  			<%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'confirm', :placeholder => 'Repeat Password', :required => '' %>
-						</div>
-						<div class="col-md-4 for-signin">
-							<%= form.submit "Register", :class => 'be-popup-sign-button', :type => 'submit' %>
-							<!--<input type="submit" class="be-popup-sign-button" value="Sign In">-->
-						</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
-	<!-- SCRIPTS	 -->
-	<script src="<%= asset_path "jquery.min.js"%>"></script>
-	<script src="<%= asset_path "jquery-ui.js"%>"></script>
-	<script src="<%= asset_path "bootstrap.min.js"%>"></script>
-	<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
-	<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
-	<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
-	<script src="<%= asset_path "global.js"%>"></script>
-	<script src="<%= asset_path "pagination.js.coffee"%>"></script>
-	<script src="<%= asset_path "application.js"%>"></script>
-	<script src="<%= asset_path "jquery.raty.js"%>"></script>
-	<script src="<%= asset_path "starrating.js"%>"></script>
-	<script>
-
-
-	</script>
-	<script>
-		console.log("Hey man");
-	</script>
-
-	</body>
+    <div id="homepage_contents">
+      <%= render 'layout/homepage' %>
+    </div>
+    <div id="infinite-scrolling">
+      <%= will_paginate @gallery %>
+    </div>
+    <br>
+    <!-- THE FOOTER -->
+    <%= render 'shared/footer' %>
+    <div class="be-fixed-filter"></div>
+    <%= form_for :login_info, :action => 'login_submit', :url => login_info_login_submit_path do |form| %>
+      <div class="large-popup login">
+        <div class="container large-popup-container">
+          <div class="row">
+            <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3  large-popup-content">
+              <div class="row">
+                <div class="col-md-12">
+                  <i class="fa fa-times close-button"></i>
+                  <h5 class="large-popup-title">Log in</h5>
+                </div>
+                <form action="#" class="popup-input-search" method="post">
+                  <div class="col-md-6">
+                    <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Your Email', :required => ''%>
+                    <!--<input class="input-signtype" type="email" required="" placeholder="Your email">-->
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Your Password', :required => '' %>
+                    <!--<input id= "password" class="input-signtype" type="password" required="" placeholder="Password">-->
+                  </div>
+                  <div class="col-xs-6"></div>
+                  <div class="col-xs-6 for-signin">
+                    <%= form.submit "SIGN IN", :class => 'be-popup-sign-button', :type => 'submit' %>
+                    <!--<input type="submit" class="be-popup-sign-button" value="Sign In">-->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
+      <div class="large-popup register">
+        <div class="large-popup-fixed"></div>
+        <div class="container large-popup-container">
+          <div class="row">
+            <div class="col-md-10 col-md-push-1 col-lg-8 col-lg-push-2 large-popup-content">
+              <div class="row">
+                <div class="col-md-12">
+                  <i class="fa fa-times close-button"></i>
+                  <h5 class="large-popup-title">Register</h5>
+                </div>
+                <form action="./" class="popup-input-search" method="post">
+                  <div class="col-md-4">
+                    <%= form.text_field :email, :class => 'input-signtype', :id => 'email', :placeholder => 'Email', :required => ''%>
+                    <!--<input class="input-signtype" type="text" required="" placeholder="Email">-->
+                  </div>
+                  <div class="col-md-4">
+                    <%= form.password_field :password, :class => 'input-signtype', :id => 'password', :placeholder => 'Password', :required => '' %>
+                    <!--<input class="input-signtype" type="text" required="" placeholder="Password">-->
+                  </div>
+                  <div class="col-md-4">
+                    <p style="color:white;">(Should contain one uppercase, one lowercase, one special character, and one digit)</p>
+                  </div>
+                  <div class="col-md-8">
+                    <!--<input id="password_confirmation" class="input-signtype" type="text" required="" placeholder="Repeat Password">-->
+                    <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'confirm', :placeholder => 'Repeat Password', :required => '' %>
+                  </div>
+                  <div class="col-md-4 for-signin">
+                    <%= form.submit "Register", :class => 'be-popup-sign-button', :type => 'submit' %>
+                    <!--<input type="submit" class="be-popup-sign-button" value="Sign In">-->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- SCRIPTS  -->
+    <script src="<%= asset_path "jquery.min.js"%>"></script>
+    <script src="<%= asset_path "jquery-ui.js"%>"></script>
+    <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+    <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+    <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+    <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+    <script src="<%= asset_path "global.js"%>"></script>
+    <script src="<%= asset_path "pagination.js.coffee"%>"></script>
+    <script src="<%= asset_path "application.js"%>"></script>
+    <script src="<%= asset_path "jquery.raty.js"%>"></script>
+    <script src="<%= asset_path "starrating.js"%>"></script>
+    <script></script>
+    <script>
+      console.log("Hey man");
+    </script>
+  </body>
 </html>
