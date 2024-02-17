@@ -21,7 +21,7 @@ jobs:
 
     - name: Run tests and report coverage
       env:
-        CC_TEST_REPORTER_ID: ${{ 586eaabeadb3d6ec19b6dca68b050bbce441c5e3b3ac72546cf9939b83a06c98 }}
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       run: |
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
