@@ -1,72 +1,61 @@
     <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
-  <div class="container-fluid custom-container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div id="container-mix"  class="row _post-container_">
-          <div class="be-post branddiv" id="Brand1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Brand Owner" %>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+<div class="container-fluid custom-container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div id="container-mix"  class="row _post-container_">
+        <div class="be-post branddiv" id="Brand1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Brand Owner" %>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-                  <% end %>
-                <% end %>
-          </div>
-
-        
-
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
         <div>
-        <h3>Projects you may be interested in:</h3>
-          
+          <h3>Projects you may be interested in:</h3>
           <% @all_galleries = Gallery.all%>
-
-          
-
           <% map = Hash.new%>
           <% for gal in @all_galleries do%>
             <%total = 0%>
             <%len = 0%>
-
             <% for x in gal.reviews%>
               <% total += x.rating.to_i%>
               <%len +=1%>
             <%end%>
-
             <%if gal.gallery_totalRate == nil%>
               <%gal.gallery_totalRate = total%>
             <%end%>
-
             <%if gal.gallery_totalRator == nil%>
               <%gal.gallery_totalRator = len%>
             <%end%>
-
             <% if map.length < 50 %>
               <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
               <%if average_review >= 3%>
@@ -75,711 +64,670 @@
             <%end%>
           <% end%>
           <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
-
-
-          <div class="gallery-wrapper" style="height: 400px; overflow-y: scroll;">
-  <div class="row">
-    <% sorted_map.keys.each_slice(50) do |galls| %>
-      <div class="gallery-pair">
-        <% galls.each do |gall| %>
-          <div class="col-md-4">
-            <a class="be-img-block">
-              <div class="photo photo-type-line">
-                <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
-                  <div class="photo-info">
-                    <div class="headline"> <%= gall.gallery_title %> </div>
-                    <div class="line"></div>
-                    <div class="desc"> <%= gall.gallery_description %> </div>
-                  </div>
-                  <div class="mask"></div>
-                </a>
-                <div class="image">
-                  <a class="be-img-block profile-img img-thumbnail">
-                    <img src="<%= gall.gallery_picture[0].url %>" alt="omg">
-                  </a>
+          <div class="gallery-wrapper" style="height: 400px; overflow-y: visible;">
+            <div class="row">
+              <% sorted_map.keys.each_slice(50) do |galls| %>
+                <div class="gallery-pair">
+                  <% galls.each do |gall| %>
+                    <div class="col-md-4">
+                      <a class="be-img-block">
+                        <div class="photo photo-type-line">
+                          <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
+                            <div class="photo-info">
+                              <div class="headline"> <%= gall.gallery_title %> </div>
+                              <div class="line"></div>
+                              <div class="desc"> <%= gall.gallery_description %> </div>
+                            </div>
+                            <div class="mask"></div>
+                          </a>
+                          <div class="image">
+                            <a class="be-img-block profile-img img-thumbnail">
+                              <img src="<%= gall.gallery_picture[0].url %>" alt="omg">
+                            </a>
+                          </div>
+                          <div class="mask"></div>
+                        </div>
+                      </a>
+                      <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
+                      <div class="desc"> <%= gall.gallery_description %> </div>
+                      <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
+                    </div>
+                  <% end %>
                 </div>
-                  <div class="mask"></div>
-                
-              </div>
-            </a>
-            <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
-            <div class="desc"> <%= gall.gallery_description %> </div>
-            <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
+              <% end %>
+            </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<style>
-  .gallery-pair {
-    display: inline-block;
-    white-space: nowrap;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scroll-snap-points-x: repeat(50%);
-    scroll-snap-type: mandatory;
-    scroll-snap-align: center;
-  }
-  .col-md-4 {
-    scroll-snap-align: center;
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
+          <style>
+            .gallery-pair {
+              display: inline-block;
+              white-space: nowrap;
+              overflow-x: visible;
+              scroll-behavior: smooth;
+              scroll-snap-type: x mandatory;
+              scroll-snap-points-x: repeat(50%);
+              scroll-snap-type: mandatory;
+              scroll-snap-align: center;
+              padding-bottom: 30px;
+            }
+            .col-md-4 {
+              scroll-snap-align: center;
+            }
+          </style>
         </div>
-
-
-
-          
-
-
-          <div class="be-post othercreatordiv" id="Othercreator1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Creator" && sorted_map.length() == 0 %>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+        <div class="be-post othercreatordiv" id="Othercreator1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Other Creator" && sorted_map.length() == 0 %>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post influencerdiv" id="Influencer1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Influencer" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post influencerdiv" id="Influencer1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Influencer" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post modeldiv" id="Model1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Model" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post modeldiv" id="Model1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Model" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post contentdiv" id="Content1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Content Creator" && sorted_map.length() == 0 %>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path( gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post contentdiv" id="Content1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Content Creator" && sorted_map.length() == 0 %>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path( gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post salesdiv" id="Sales1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Sales" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post salesdiv" id="Sales1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Sales" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post marketingdiv" id="Marketingdiv1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Marketing" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post marketingdiv" id="Marketingdiv1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Marketing" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post retaildiv" id="Retail1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Retail" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path( gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post retaildiv" id="Retail1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Retail" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path( gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post visualdiv" id="Visual1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Visual" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <<div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post visualdiv" id="Visual1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Visual" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <<div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post bloggingdiv" id="Blogging1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Blogging" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post bloggingdiv" id="Blogging1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Blogging" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post financingdiv" id="Financing1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Financing" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post financingdiv" id="Financing1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Financing" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post otherservicesdiv" id="Otherservices1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Services" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post otherservicesdiv" id="Otherservices1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Other Services" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post manufacturingdiv" id="Manufacturing1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Manufacturing" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post manufacturingdiv" id="Manufacturing1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Manufacturing" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-
-          <div class="be-post materialsdiv" id="Materials1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Materials" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post materialsdiv" id="Materials1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Materials" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post othermakersiv" id="Othermakers1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Other Makers" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post othermakersiv" id="Othermakers1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Other Makers" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post photographerdiv" id="Photographer1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Photographer" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post photographerdiv" id="Photographer1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Photographer" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-          <div class="be-post agentdiv" id="Agent1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Agent" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post agentdiv" id="Agent1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Agent" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-
-          <div class="be-post designerdiv" id="Designer1">
-            <% @gallery.present? and @gallery.each do |gallery| %>
-              <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-              <% if modinfo.attribute_values[:job_name]=="Designer" && sorted_map.length() == 0%>
-                    <div class="col-md-4">
-                      <a class="be-img-block">
-                        <div class="photo photo-type-line">
-                          <% if modinfo.profile_picture? %>
-                            <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                          <% else %>
-                            <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                          <% end %>
-                          <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                            <div class="photo-info">
-                              <div class="headline"><%= gallery.gallery_title %></div>
-                              <div class="line"></div>
-                              <div class="desc"> <%= gallery.gallery_description %> </div>
-                              <div class="line"></div>
-                              <% if gallery.reviews.blank? %>
-                                <% average_review=0 %>
-                              <% else %>
-                                <% average_review=gallery.reviews.average(:rating).round(2) %>
-                              <% end %>
-                              <div class="average-review-rating" data-score='<%= average_review %>>'>
-                              </div>
-                            </div>
-                            <div class="mask"></div>
-                          </a>
+          <% end %>
+        </div>
+        <div class="be-post designerdiv" id="Designer1">
+          <% @gallery.present? and @gallery.each do |gallery| %>
+            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
+            <% if modinfo.attribute_values[:job_name]=="Designer" && sorted_map.length() == 0%>
+              <div class="col-md-4">
+                <a class="be-img-block">
+                  <div class="photo photo-type-line">
+                    <% if modinfo.profile_picture? %>
+                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                    <% else %>
+                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                    <% end %>
+                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                      <div class="photo-info">
+                        <div class="headline"><%= gallery.gallery_title %></div>
+                        <div class="line"></div>
+                        <div class="desc"> <%= gallery.gallery_description %> </div>
+                        <div class="line"></div>
+                        <% if gallery.reviews.blank? %>
+                          <% average_review=0 %>
+                        <% else %>
+                          <% average_review=gallery.reviews.average(:rating).round(2) %>
+                        <% end %>
+                        <div class="average-review-rating" data-score='<%= average_review %>>'>
                         </div>
-                      </a>
-                      <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                      <div id="custom-profile-name"><%= modinfo.job_name %></div>
-                    </div>
-              <% end %>
+                      </div>
+                      <div class="mask"></div>
+                    </a>
+                  </div>
+                </a>
+                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
+                <div id="custom-profile-name"><%= modinfo.job_name %></div>
+              </div>
             <% end %>
-          </div>
-
-
-
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  <script src="<%= asset_path "homepage_logic.js"%>"></script>
-  
+</div>
+<script src="<%= asset_path "homepage_logic.js"%>"></script>
