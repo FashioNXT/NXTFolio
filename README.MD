@@ -1,3 +1,6 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/maintainability)](https://codeclimate.com/github/FashioNXT/NXTFolio/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/test_coverage)](https://codeclimate.com/github/FashioNXT/NXTFolio/test_coverage)
+
 # NXTFolio
 
 [![Ruby on Rails CI](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/vibalcam/NXTFolio/actions/workflows/rubyonrails.yml)
