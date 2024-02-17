@@ -1,0 +1,30 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7 # Or your Ruby version
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: |
+        bundle install
+
+    - name: Run tests and report coverage
+      env:
+        CC_TEST_REPORTER_ID: ${{ 586eaabeadb3d6ec19b6dca68b050bbce441c5e3b3ac72546cf9939b83a06c98 }}
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+        bundle exec rake test # Or your test command
+        ./cc-test-reporter after-build --exit-code $?
