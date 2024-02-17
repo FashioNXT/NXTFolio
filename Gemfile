@@ -116,3 +116,10 @@ gem 'rubyzip', "~> 2.3.0"
 
 
 gem "ruby-openai"
+
+# adding simplecov for test reports 
+group :test do
+  gem 'simplecov', require: false
+  gem 'simplecov_json_formatter', require: false
+end
+
