@@ -64,7 +64,7 @@
             <%end%>
           <% end%>
           <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
-          <div class="gallery-wrapper" style="height: 400px; overflow-y: hidden;">
+          <div class="gallery-wrapper" style="overflow-y: hidden;">
             <div class="row">
               <% sorted_map.keys.each_slice(50) do |galls| %>
                 <div class="gallery-pair">
@@ -102,16 +102,16 @@
               display: inline-block;
               white-space: nowrap;
               overflow-x: hidden;
-              scroll-behavior: smooth;
+              /* scroll-behavior: smooth;
               scroll-snap-type: x mandatory;
               scroll-snap-points-x: repeat(50%);
               scroll-snap-type: mandatory;
-              scroll-snap-align: center;
+              scroll-snap-align: center; */
               padding-bottom: 30px;
             }
-            .col-md-4 {
+            /* .col-md-4 {
               scroll-snap-align: center;
-            }
+            } */
           </style>
         </div>
       </div>
