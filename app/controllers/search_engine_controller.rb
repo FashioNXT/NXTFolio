@@ -29,8 +29,7 @@ class SearchEngineController < ApplicationController
     def search
         if session[:current_user_key]
             current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-            if current_user:
-                @username = current_user[:first_name]
+            @username = current_user[:first_name]
         end
         file = File.open("app/assets/stop_words_english.txt", "r")
         text = file.read
