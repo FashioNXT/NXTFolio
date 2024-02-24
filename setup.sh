@@ -50,7 +50,7 @@ command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 rvm get stable
 
 # install ruby
-rvm install ruby-3.2.0
+rvm install ruby-3.2.2
 
 # clone repo
 # git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators
