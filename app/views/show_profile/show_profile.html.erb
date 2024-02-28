@@ -145,7 +145,7 @@
 								<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Professions:</label><%= " "+ @general_info.job_name %></p>
 							<% end %>
 							<% if @general_info && @general_info.travel_start %>
-							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label> In <%= @general_info.travel_city%>, <%= @general_info.travel_state%> from <%= @general_info.travel_start.strftime('%b %d')%> to <%= @general_info.travel_end.strftime('%b %d') %>: <%= @general_info.travel_details %></p>
+							<p style="font-size: 16px; margin-top:5px; text-align: left; margin-left: 200px"><label>Travel:</label> In <%= @general_info.travel_city%>, <%= @general_info.travel_state%>, <%= @general_info.travel_country%> from <%= @general_info.travel_start.strftime('%b %d')%> to <%= @general_info.travel_end.strftime('%b %d') %>: <%= @general_info.travel_details %></p>
 							<% end %>
 							<br>
 							<% if @general_info %>
