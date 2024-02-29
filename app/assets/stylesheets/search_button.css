@@ -91,3 +91,43 @@
     font-size: 23px;
 }
 
+
+/* Additions */
+/* This is for mobile friendlyness*/
+@media (max-width: 767px) {
+  .custom-container, .be-post, .photo, .photo-info {
+    padding: 0 15px;
+  }
+  
+  .be-img-block img {
+    width: 100%;
+    height: auto;
+  }
+
+  .col-xs-12 {
+    padding: 0;
+  }
+
+  .gallery-pair, .photo-type-line {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .headline, .desc {
+    font-size: smaller;
+  }
+}
+
+@media (max-width: 991px) {
+  .col-md-4 {
+    width: 50%;
+    float: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-md-4 {
+    width: 100%;
+  }
+}
+
