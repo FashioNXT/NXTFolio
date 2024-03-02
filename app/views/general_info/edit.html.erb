@@ -185,7 +185,9 @@
 													<form accept-charset="UTF-8">
 														<div class="col-sm-4">
 															<div class="form-group focus-2">
-																<label for="country">Country</label>
+																<%= form.label :country %>
+																<%= form.select :country, options_from_collection_for_select(@countries, 'name', 'name',  :selected => form.object.country), {:prompt => "Select Country"}, {class: "countries form-control", style: "color: black"} %>
+																<!--
 																<select name="general_info[country]" class="countries form-control" id="country" required style="color: black;" >
 																	<option value="">Select Country</option>
 																	<%#<% @countries.each do |country| %>
@@ -195,6 +197,7 @@
 																	<%#<% end %>
 																	<option value="">Select Country</option>
 																</select>
+																-->
 															</div>
 														</div>
 													</form>
@@ -202,13 +205,16 @@
 													<!- State and City>
 
 													<div class="col-sm-4">
-														<label for="state">State</label>
+														<%= form.label :state %>
+														<%= form.select :state, options_from_collection_for_select(@countries.find_by_name(form.object.country).states, 'name', 'name',  :selected => form.object.state), {:prompt => "Select State"}, {class: "states form-control", style: "color: black"} %>
+														<!--
 														<select name="general_info[state]" class="states form-control" id="state" required style="color: black;" >
 															<option value="">Select State</option>
 														</select>
+														-->
 													</div>
 													<div class="col-sm-4">
-														<label for="city">City</label>
+														<%= form.label :city %>
 														<%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', required: true, style: "height: 35px;" %>
 														<%# <select name="general_info[city]" class="cities form-control" id="city" required style="color: black;" >
 															<option value="">Select City</option>
