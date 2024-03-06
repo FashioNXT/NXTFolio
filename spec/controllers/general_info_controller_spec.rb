@@ -44,17 +44,17 @@ RSpec.describe GeneralInfoController, type: :controller do
     end
   end
 
-#   describe "POST #create" do
-#     it 'should create GeneralInfo' do
-#         post :create, :general_info => { :first_name => "R", :last_name => "Spec", :month_ofbirth => 01, :phone =>892,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}
-#         #expect(response).to redirect_to new_specific_model_path
-#     end
+#describe "GET #create" do
+  #it 'should create GeneralInfo' do
+    #get :create, params: { :general_info => {:first_name => "R", :last_name => "Spec", :month_ofbirth => 01, :phone =>892,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}}, session: {current_user_key: {password: "test"}}
+    #expect(response).to redirect_to new_specific_model_path
+  #end
 #     it 'should not create GeneralInfo' do
 #       ### NEED TO FIX ###
 #       post :create, :general_info => { :first_name => "", :last_name => "", :highlights => "", :company => "", :industry => "", :job_name => "", :emailaddr => "", :month_ofbirth => 01, :day_ofbirth => 31,:phone =>892, :year_ofbirth => 1985, :gender => "Female", :country => "", :state => "", :city => "", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 0}
 #     #   expect(response).to redirect_to new_specific_model_path
 #     end
-#   end
+#end
   
   describe "GET #edit" do
     it "should get GeneralInfo" do

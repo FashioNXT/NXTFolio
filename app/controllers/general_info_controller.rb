@@ -148,6 +148,7 @@ class GeneralInfoController < ApplicationController
 
     # Add room to LoginInfo DB here to
     # synchronize with GeneralInfo DB
+    logger.debug(session.inspect)
     current_user = session[:current_login_user]
     login_user = LoginInfo.new(
       :email => params[:general_info][:emailaddr], 

@@ -2,6 +2,8 @@ require 'cucumber/rails'
 require 'webdrivers'
 
 require 'simplecov'
+require 'simplecov_json_formatter'
+SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 SimpleCov.start 'rails'
 
 # require 'rspec' #for page.shoud etc
@@ -41,7 +43,7 @@ else
   # Selenium::WebDriver::Chrome::Service.executable_path = '/Users/quanqihu/Desktop/Fall_2023/csce606/project/NXTFolio/chromedriver-mac-arm64' # specify the path of chromedriver
   # driver = webdriver.Chrome(executable_path='C:/path/to/chromedriver.exe')
   Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, :browser => :chrome, :executable_path => '/Users/quanqihu/Desktop/Fall_2023/csce606/project/NXTFolio/chromedriver-mac-arm64')
+    Capybara::Selenium::Driver.new(app, :browser => :chrome, :executable_path => '/Users/user/Desktop/chrome-mac-x64')
   end
 end
 
