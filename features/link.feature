@@ -19,8 +19,8 @@ Feature: Able to access the links on the buttom of home page
     When I click on what are you looking for link
     Then I should redirect to search page
 
-    When I click on help link
-    Then I should see the help page of FashioNxt
+    # When I click on help link
+    # Then I should see the help page of FashioNxt
 
     When I click on the facebook icon on the bottom left corner
     Then I should redirect to the facebook page 

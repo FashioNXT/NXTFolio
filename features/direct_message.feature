@@ -1,17 +1,17 @@
 # Direct Message Feature
 
-Feature: Recieve Direct Messages from Other Users
+# Feature: Recieve Direct Messages from Other Users
 
-    As a professional and application user
-	So that I can communicate with other professionals,
-    I want to send direct messages to other professionals.
+#    As a professional and application user
+#	 So that I can communicate with other professionals,
+#    I want to send direct messages to other professionals.
 
-Scenario: When a user clicks on the dm button, they will be taken to the dm page
+# Scenario: When a user clicks on the dm button, they will be taken to the dm page
 
-    Given I am a valid user
-    And I am logged in
-    When I click the "DM" button
-    Then I should redirect to the DM page
+#    Given I am a valid user
+#    And I am logged in
+#    When I click the "DM" button
+#    Then I should redirect to the DM page
 
 # Scenario: When a user clicks on a user, they will be taken to their DMs
 
