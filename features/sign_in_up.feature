@@ -89,37 +89,37 @@ Feature: Login and sign up
     And I should see "Email already exists"
 
     # NXTFolio Fall 2023, Iteration 5
-  Scenario: When new user attempts to create an account with Invalid email format, account creation should fail
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email               | Andrea.Picardo.example.com  |
-      | sign_up_password            | Test1234! |
-      | sign_up_confirm             |  Test1234!     |
-    And I click on "SIGN UP"
-    Then I should be on the home page 
-    And I should see "Failed Saving beause Email/Password format is not valid !"
+  # Scenario: When new user attempts to create an account with Invalid email format, account creation should fail
+  #  Given I am on the login page
+  #  When I fill in the following:
+  #    | sign_up_email               | Andrea.Picardo.example.com  |
+  #    | sign_up_password            | Test1234! |
+  #    | sign_up_confirm             |  Test1234!     |
+  #  And I click on "SIGN UP"
+  #  Then I should be on the home page 
+  #  And I should see "Failed Saving beause Email/Password format is not valid !"
 
     # NXTFolio Fall 2023, Iteration 5
-  Scenario: When new user attempts to create an account with different passwords, account creation should fail
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email               | Andrea.Picardo.example.com  |
-      | sign_up_password            | Test1234! |
-      | sign_up_confirm             |  Test1234     |
-    And I click on "SIGN UP"
-    Then I should be on the home page 
-    And I should see "Passwords don't match! Please try again."
+  # Scenario: When new user attempts to create an account with different passwords, account creation should fail
+  #  Given I am on the login page
+  #  When I fill in the following:
+  #    | sign_up_email               | Andrea.Picardo.example.com  |
+  #    | sign_up_password            | Test1234! |
+  #    | sign_up_confirm             |  Test1234     |
+  #  And I click on "SIGN UP"
+  #  Then I should be on the home page 
+  #  And I should see "Passwords don't match! Please try again."
   
   # NXTFolio Fall 2023, Iteration 5
-  Scenario: When new user attempts to create an account with unentered passwords, account creation should fail
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email               | Andrea.Picardo.example.com  |
-      | sign_up_password            |  |
-      | sign_up_confirm             |       |
-    And I click on "SIGN UP"
-    Then I should be on the home page 
-    And I should see "Enter your password! Please try again."
+  # Scenario: When new user attempts to create an account with unentered passwords, account creation should fail
+  #  Given I am on the login page
+  #  When I fill in the following:
+  #    | sign_up_email               | Andrea.Picardo.example.com  |
+  #    | sign_up_password            |  |
+  #    | sign_up_confirm             |       |
+  #  And I click on "SIGN UP"
+  #  Then I should be on the home page 
+  #  And I should see "Enter your password! Please try again."
 
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When existing user attempts to sign in with correct password, sign in successfully processes

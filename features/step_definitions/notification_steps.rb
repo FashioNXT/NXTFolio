@@ -73,7 +73,7 @@ Then(/^I should redirect to the DM$/) do
     page.has_content?("Select a user to message!")
 end
 
-Then(/^I should have no more notificaitons$/) do
+Then(/^I should have no more notifications$/) do
     page.has_content?("You're all caught up!")
 end
 

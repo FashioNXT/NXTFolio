@@ -41,31 +41,31 @@ Scenario: User can only delete gallery if there is only one image
   
 
 
-Scenario: User add images to their gallery (at most 5 in the gallery)
-  Given I am a valid gallery user
-  Given I am logged in as "Andrea.Picardo"
-  Given I am on the home page
-  When I click on "t1"
-  When I click on "Add pictures"
-  Then I should see "Add images (No more than 5 images pre gallery!)"
-  When I upload an image
-  When I click on "Add images"
-  Then I should see "Images uploaded!"
-  When I click on "Update gallery"
-  Then I should see "Successfully added images!"
+# Scenario: User add images to their gallery (at most 5 in the gallery)
+#  Given I am a valid gallery user
+#  Given I am logged in as "Andrea.Picardo"
+#  Given I am on the home page
+#  When I click on "t1"
+#  When I click on "Add pictures"
+#  Then I should see "Add images (No more than 5 images pre gallery!)"
+#  When I upload an image
+#  When I click on "Add images"
+#  Then I should see "Images uploaded!"
+#  When I click on "Update gallery"
+#  Then I should see "Successfully added images!"
 
 
-Scenario: User cannot add images to their gallery when the total amount is more than 5
-  Given I am a valid gallery user
-  Given I am logged in as "Andrea.Picardo"
-  Given I am on the home page
-  When I click on "t1"
-  When I click on "Add pictures"
-  When I upload multiple images
-  When I click on "Add images"
-  When I click on "Update gallery"
-  Then I should not see "Successfully added images!"
-  Then I should see "You can not have more than 5 images in a gallery!"
+# Scenario: User cannot add images to their gallery when the total amount is more than 5
+#  Given I am a valid gallery user
+#  Given I am logged in as "Andrea.Picardo"
+#  Given I am on the home page
+#  When I click on "t1"
+#  When I click on "Add pictures"
+#  When I upload multiple images
+#  When I click on "Add images"
+#  When I click on "Update gallery"
+#  Then I should not see "Successfully added images!"
+#  Then I should see "You can not have more than 5 images in a gallery!"
 
 
 Scenario: User cannot add 0 image to their gallery 

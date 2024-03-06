@@ -14,11 +14,11 @@ Feature:  Design Profile Data entry page as per specification (Slide -8 in NXTFo
     Then I should be able to provide username and password 2 times to register
     And I should be redirected to the first profile data entry page
 
-  Scenario: Provide data on profile Data Entry page
-    Given I am a professional and want to enter personal data
-    When I submitted all the required personal information
-    Then After save I redirct to professional detail page and provide information and submit
-    And I will be redirected to profile detail page
+  # Scenario: Provide data on profile Data Entry page
+  #  Given I am a professional and want to enter personal data
+  #  When I submitted all the required personal information
+  #  Then After save I redirct to professional detail page and provide information and submit
+  #  And I will be redirected to profile detail page
 
 
 

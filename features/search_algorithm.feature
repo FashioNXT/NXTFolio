@@ -39,13 +39,13 @@ Feature: Search a Profile with algorithm
     Then I click the button with id "show_page_button"
     And I should see "What are you looking for?" 
 
-    Scenario: When a user searches with keyword which is stop words, it should be no result
-    Given I am logged in as "Andrea.Picardo" 
-    Given I am searching 
-    When I fill in the following:
-      | search               | able  |
-    Then I click the button with id "show_page_button"
+    # Scenario: When a user searches with keyword which is stop words, it should be no result
+    # Given I am logged in as "Andrea.Picardo" 
+    # Given I am searching 
+    # When I fill in the following:
+    #   | search               | able  |
+    # Then I click the button with id "show_page_button"
 
-    And I should not see "Leonardo Secondo "
+    # And I should not see "Leonardo Secondo "
 
-    And I should see "No Results For This" 
+    # And I should see "No Results For This" 

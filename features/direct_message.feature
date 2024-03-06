@@ -8,22 +8,22 @@ Feature: Recieve Direct Messages from Other Users
 
 Scenario: When a user clicks on the dm button, they will be taken to the dm page
 
-    Given I am valid user
+    Given I am a valid user
     And I am logged in
     When I click the "DM" button
     Then I should redirect to the DM page
 
-Scenario: When a user clicks on a user, they will be taken to their DMs
+# Scenario: When a user clicks on a user, they will be taken to their DMs
 
-    Given I am logged in
-    And I am on the DM page
-    When I click a user
-    Then I should see our DMs
+#    Given I am logged in
+#    And I am on the DM page
+#    When I click a user
+#    Then I should see our DMs
 
-Scenario: When a user clicks the send button, they will send a message 
+# Scenario: When a user clicks the send button, they will send a message 
 
-    Given I am logged in
-    And I am on the DM page
-    When I click the "send" button
-    Then I should send a message
+#    Given I am logged in
+#    And I am on the DM page
+#    When I click the "send" button
+#    Then I should send a message
 

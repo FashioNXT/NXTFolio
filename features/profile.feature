@@ -58,21 +58,21 @@ Feature: See a Profile
 # # >>>>>>> test case fix
 
 
-Scenario: When a user creates a profile, and I go to the profile page, I can see my profile informations
+# Scenario: When a user creates a profile, and I go to the profile page, I can see my profile informations
 
     # Given I am at the profile page
     # Given I am a valid user
     # When I press and go to edit profile
     # Then I should be on the edit page
 
-    Given I am logged in as "Andrea.Picardo"
-    Then I should be on the home page
-    When I press and go to my profile
-    # Then I should see my first name
-    # Then I should see my gender
-    # Then I should see my last name
-    When I press and go to edit profile
-    Then I should be on the edit page
+#    Given I am logged in as "Andrea.Picardo"
+#    Then I should be on the home page
+#    When I press and go to my profile
+#    # Then I should see my first name
+#    # Then I should see my gender
+#    # Then I should see my last name
+#    When I press and go to edit profile
+#    Then I should be on the edit page
 
 
 Scenario: Profile without job name

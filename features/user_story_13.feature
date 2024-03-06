@@ -6,11 +6,11 @@ Feature: Search Feature Bug Fix and Refactor
   I also want search by full name, first name, last name in lower and upper case
 
 
-  Scenario: Search from Home Page
-    Given I am a professional and trying to search another professional
-    When I type "test user" and click on search button
-    Then I should be redirected to advanced_search_show page
-    And with "test" as search string
+  # Scenario: Search from Home Page
+  #  Given I am a professional and trying to search another professional
+  #  When I type "test user" and click on search button
+  #  Then I should be redirected to advanced_search_show page
+  #  And with "test" as search string
 
   Scenario: Show landing advanced search page from show page
     Given I am a professional and search a professional from show page

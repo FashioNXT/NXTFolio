@@ -25,7 +25,7 @@ When(/^I click the "DM" button$/) do
     click_button "a.dropbtn"
 end
 
-Then(/^Ishould redirect to the DM page$/) do
+Then(/^I should redirect to the DM page$/) do
     page.has_content?("Select a user to message!")
 end
 
