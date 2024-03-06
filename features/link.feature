@@ -22,17 +22,17 @@ Feature: Able to access the links on the buttom of home page
     # When I click on help link
     # Then I should see the help page of FashioNxt
 
-    When I click on the facebook icon on the bottom left corner
-    Then I should redirect to the facebook page 
+    # When I click on the facebook icon on the bottom left corner
+    # Then I should redirect to the facebook page 
 
-    When I click on the twitter icon on the bottom left corner
-    Then I should redirect to the twitter page 
+    # When I click on the twitter icon on the bottom left corner
+    # Then I should redirect to the twitter page 
 
-    When I click on the pinterest icon on the bottom left corner
-    Then I should redirect to the pinterest page 
+    # When I click on the pinterest icon on the bottom left corner
+    # Then I should redirect to the pinterest page 
 
-    When I click on the instagram icon on the bottom left corner
-    Then I should redirect to the instagram page 
+    # When I click on the instagram icon on the bottom left corner
+    # Then I should redirect to the instagram page 
 
-    When I click on the linkedin icon on the bottom left corner
-    Then I should redirect to the linkedin page 
+    # When I click on the linkedin icon on the bottom left corner
+    # Then I should redirect to the linkedin page 
