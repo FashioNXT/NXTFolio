@@ -34,7 +34,7 @@ if Rails.configuration.use_remote_webdriver
   # Capybara.javascript_driver = :selenium
 
   # set the default URL for our tests
-  Capybara.server_host = "127.0.0.1"
+  Capybara.server_host = "0.0.0.0"
   Capybara.server_port = ENV['RAILS_PORT']
   Capybara.app_host = "http://#{ENV['RAILS_HOST']}:#{Capybara.server_port}"
 else
