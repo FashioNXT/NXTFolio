@@ -179,7 +179,7 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
 
-    unless @general_info.save!
+    if !@general_info.save
       flash[:error] = "Unknown error when saving: try again later"
       render :action => 'new' and return
     end
