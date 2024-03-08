@@ -26,7 +26,7 @@ Heroku link - https://nxtfolio.herokuapp.com/
 - [Tag features:](#tag-features)
 - [Travel features:](#travel-features)
 - [Gallery features:](#gallery-features)
-- [CRM API:}(#How to add NXTFolio to the CRM)
+- [CRM API:}(#How-to-add-NXTFolio-to-the-CRM)
 - [Contact:](#contact)
 
 <!-- ## (OLD) DEMO
