@@ -26,6 +26,7 @@ Heroku link - https://nxtfolio.herokuapp.com/
 - [Tag features:](#tag-features)
 - [Travel features:](#travel-features)
 - [Gallery features:](#gallery-features)
+- [CRM API:}(#How to add NXTFolio to the CRM)
 - [Contact:](#contact)
 
 <!-- ## (OLD) DEMO
@@ -488,6 +489,16 @@ For Running Locally:
 5. Mobile View
 6. Reverse Image Search
 
+## How to add NXTFolio to the CRM
+
+1. Open the CRM either locally or on heroku
+2. Login as admin (default admin information is in seed.rb)
+3. Go to application management
+4. Click the new applicaiton button
+5. In the API URL add the home link of NXTFolio and then add /api/user to the end of it for example "https://nxtfolio.herokuapp.com/api/users
+6. Fill in the callback and the home page with the same values
+7. The other fields are self explanatory
+8. From here NXTFolio should be available on the left side menu to see the statistics
 
 ## Contact
 
