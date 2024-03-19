@@ -1,4 +1,4 @@
-class SearchProfileController < ApplicationController
+#class SearchProfileController < ApplicationController
 #   # Variable that holds a params/object with all the attributes filled in
 #   def list
 #     @search_profiles = SearchProfile.all
@@ -277,4 +277,4 @@ class SearchProfileController < ApplicationController
 #     SearchProfile.find(params[:id]).destroy
 #     redirect_to :action => 'list'
 #   end
-end
+#end

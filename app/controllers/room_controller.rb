@@ -99,9 +99,9 @@ class RoomController < ApplicationController
     end
   end
 
-  def show_notifications
+  #def show_notifications
     
-  end
+  #end
 
   private
   def get_name(user1, user2)

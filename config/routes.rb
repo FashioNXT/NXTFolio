@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'show_profile/destroy/:id'=> 'show_profile#destroy', :as => 'show_profile_destroy'
 
+  get 'galleries/delete/:id'=> 'galleries#delete', :as => 'galleries_delete'
+
   get 'galleries/index'
 
   get 'galleries/show' => 'galleries#show', :as => 'galleries/show'
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
 
   # NXTFolio : Added in Spring 2023 for tagging feature
   post '/galleries/:id/create_tagging', to: 'galleries#create_tagging', as: 'create_tagging_gallery'
+  delete '/galleries/:id/destroy_tagging', to: 'galleries#destroy_tagging', as: 'destroy_tagging_gallery'
 
   # spring2023 add/delete images in gallery
   get '/galleries/:id/edit', to: 'galleries#edit', as: 'edit_gallery'
@@ -106,14 +109,17 @@ Rails.application.routes.draw do
   get 'specific_designer_list' => 'specific_designer#list', :as => 'specific_designer_list'
   get 'specific_designer/edit' => 'specific_designer#edit', :as => 'specific_designer/edit'
   post 'specific_designer/update' => 'specific_designer#update', :as => 'specific_designer/update'
+  delete 'specific_designer/destroy' => 'specific_designer#destroy', :as => 'specific_designer/destroy'
 
   get 'specific_model_list' => 'specific_model#list', :as => 'specific_model_list'
   get 'specific_model/edit' => 'specific_model#edit', :as => 'specific_model/edit'
   post 'specific_model/update' => 'specific_model#update', :as => 'specific_model/update'
+  delete 'specific_model/destroy' => 'specific_model#destroy', :as => 'specific_model/destroy'
 
   get 'specific_photographer_list' => 'specific_photographer#list', :as => 'specific_photographer_list'
   get 'specific_photographer/edit' => 'specific_photographer#edit', :as => 'specific_photographer/edit'
   post 'specific_photographer/update' => 'specific_photographer#update', :as => 'specific_photographer/update'
+  delete 'specific_photographer/destroy' => 'specific_photographer#destroy', :as => 'specific_photographer/destroy'
 
   get 'show_profile/mymodel' => 'show_profile#show_model', :as => 'show_profile_show_model'
   get 'show_profile' => 'show_profile#show_profile', :as => 'show_profile_show_profile'
@@ -134,6 +140,8 @@ Rails.application.routes.draw do
   get 'add_profession' => 'template#index', :as => 'template'
   post '/' => 'general_info#index', :as => 'general_info_index_post'
 
+  get 'application/index' => 'application#index', :as => 'application/index'
+
   get 'search_engine/show' => 'search_engine#show', :as => 'search_engine/show'
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
@@ -142,9 +150,10 @@ Rails.application.routes.draw do
 
   # get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
   post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'
+  get 'job_info/index',   to: 'job_info#index',  as: 'job_info/index'
   get 'job_info/search', to: 'job_info#search', as: 'job_info/search'
   get 'job_info/new_job', to: 'job_info#new_job', as: 'job_info_new_job'
-  # get 'job_info/show/:id', to: 'job_info#show', as: 'job_info_show'
+  get 'job_info/show/:id', to: 'job_info#show', as: 'job_info_show'
   # delete 'job_info/:id/del(.:format)', to: 'job_info#destroy', as: 'del_job_info'
   get '/job_info/:id/del', to: 'job_info#destroy', as: 'del_job_info'
   get '/job_info/:id/visitor', to: 'job_info#visitor_show', as: 'visitor_job_info'

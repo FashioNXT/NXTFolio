@@ -1,6 +1,6 @@
 class ChatController < ApplicationController
-  def index
-  end
+  #def index
+  #end
 
   def chat
     user_input = params[:user_input]

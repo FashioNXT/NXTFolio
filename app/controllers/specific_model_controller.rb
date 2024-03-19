@@ -61,14 +61,7 @@
      # Else displays the SpecificModel new view
      if @specific_model.save!
        redirect_to '/show_profile'
-     else
-       render :action => 'new'
      end
-   end
-
-   # Params used to create the SpecificModel object
-   def specific_model_params
-     params.require(:specific_models).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, {:allgenres => []})
    end
 
    # Allows room to edit the params of the SpecificModel object
@@ -89,18 +82,16 @@
      # if @specific_model.update_attributes(specific_model_param)
      if @specific_model.update(specific_model_param)
        redirect_to '/show_profile'
-     else
-       render :action => 'edit'
      end
    end
-   # Params used to edit the SpecificModel object
+   # Params used to create and edit the SpecificModel object
    def specific_model_param
      params.require(:specific_model).permit(:height_feet, :height_inches, :bust, :waist, :hips, :cups, :shoe_size, :dress_size, :hair_color, :eye_color, :ethnicity, :skin_color, :shoot_nudes, :tattoos, :piercings, :experience, :genre, {:allgenres => []})
    end
 
    # Not implemented
-   def delete
-     SpecificModel.find(params[:user_key]).destroy
-     redirect_to :action => 'root_path'
+   def destroy
+     SpecificModel.find_by_user_key(params[:user_key]).destroy
+     redirect_to root_path
    end
  end

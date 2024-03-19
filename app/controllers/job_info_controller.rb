@@ -79,7 +79,7 @@ class JobInfoController < ApplicationController
             redirect_to job_search_jobshow_path
         else
             flash[:error_post_job] = "Error creating job info"
-            render 'new'
+            render 'new_job'
         end
 
     end

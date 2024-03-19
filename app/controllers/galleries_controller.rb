@@ -17,7 +17,7 @@ class GalleriesController < ApplicationController
       render 'new'
 
     
-    elsif @gallery.save!
+    elsif @gallery.save
       flash[:notice] = "Project Created"
 
       redirect_to '/show_profile'
@@ -73,7 +73,7 @@ class GalleriesController < ApplicationController
         render 'edit'
       else
         flash[:notice] = "Images uploaded!"
-        redirect_to edit_gallery_path()
+        redirect_to edit_gallery_path(params[:id])
       end
     else
       render 'edit'
@@ -94,7 +94,7 @@ class GalleriesController < ApplicationController
 # spring2023 delete single image in the gallery
   def delete
     @gallery = Gallery.find(params[:id])
-    index_str = params[:idx][4..]
+    index_str = params[:idx]
     index = (index_str).to_i
     #puts(index.to_s + "!!!!!!!!!!")
     img = @gallery.gallery_picture[index]
@@ -131,13 +131,13 @@ class GalleriesController < ApplicationController
   end
 
 
-  def remove_file(gallery_picture)
-    File.delete(gallery_picture)
-  end
+  #def remove_file(gallery_picture)
+    #File.delete(gallery_picture)
+  #end
 
-  def set_gallery
-    @gallery = Gallery.find(params[:gallery_id])
-  end
+  #def set_gallery
+    #@gallery = Gallery.find(params[:gallery_id])
+  #end
 
   #def remove_image_at_index(index)
   #remain_images = gallery_params # copy the array
@@ -162,8 +162,8 @@ class GalleriesController < ApplicationController
 
 
 
-  def index
-  end
+  #def index
+  #end
 
   def show
 
@@ -196,6 +196,7 @@ class GalleriesController < ApplicationController
   def create_tagging
     @gallery = Gallery.find_by(id: params[:id])
     tagged_ids = params[:gallery_tagging][:tagged_user_id].split(",").reject(&:blank?)
+    puts tagged_ids
     tagged_ids.each do |tagged_id|
       if GalleryTagging.where(gallery_id: params[:id], general_info_id: tagged_id).empty?
         @gallery_tagging = GalleryTagging.new(gallery_id: params[:id], general_info_id: tagged_id)
@@ -217,7 +218,6 @@ class GalleriesController < ApplicationController
           flash[:alert] = "Failed to save Collaboration"
         end
       end
-
       if Collaboration.where(general_info_id: tagged_id, collaborator_id: current_user_id).empty?
         @collab = Collaboration.new(general_info_id: tagged_id, collaborator_id: current_user_id)
         if @collab.save
@@ -241,9 +241,11 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:gallery_id])
     @tagging = @gallery.gallery_taggings.find(params[:id])
     if @tagging.destroy
-      redirect_to @gallery, notice: 'Collaborator removed successfully'
+      flash[:notice] = 'Collaborator removed successfully'
+      redirect_to @gallery
     else
-      redirect_to @gallery, alert: 'Error removing collaborator'
+      flash[:alert] = 'Error removing collaborator'
+      redirect_to @gallery
     end
   end
 
@@ -264,7 +266,8 @@ class GalleriesController < ApplicationController
       redirect_to gallery_path(@gallery)
     else
       if @comment.save
-        redirect_to gallery_path(@gallery), notice: "Comment added successfully."
+        flash[:notice] = "Comment added successfully."
+        redirect_to gallery_path(@gallery)
       else
         flash.now[:alert] = "Failed to add comment."
         render 'add_comment'

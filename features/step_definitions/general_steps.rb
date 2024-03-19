@@ -206,12 +206,10 @@ Given(/^I am logged in as "(.+)"$/) do |user|
 end
 
 Given(/^I am on (.+)$/) do |page_name|
-  puts(path_to(page_name))
   visit path_to(page_name)
 end
 
 Given(/^I am searching$/) do
-  #puts(path_to(page_name))
   visit 'search_engine/show'
 end
 

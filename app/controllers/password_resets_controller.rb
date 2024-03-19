@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
-  def new
-  end
+  #def new
+  #end
 
   def create
 
@@ -14,8 +14,6 @@ class PasswordResetsController < ApplicationController
       #logger.debug(@token.inspect)
       puts("here")
       ForgotMailer.reset(exusers).deliver_now
-    else
-      #logger.info("Not Present! Yahooo!")
     end
 
     redirect_to root_path, :notice => "If an account exists with this email, We have sent a link to reset the password"
@@ -26,10 +24,10 @@ class PasswordResetsController < ApplicationController
     @exusers=GlobalID::Locator.locate_signed(params[:token], purpose: "password reset")
     logger.debug(@exusers.inspect)
     if @exusers.nil?
-      logger.info("Link is invalid")
+      flash[:alert] = "Link is invalid"
       redirect_to root_path, :notice => "The Password Reset Link is Expired! Please Try Again"
     else
-      logger.info("Link is valid")
+      flash[:notice] = "Link is valid"
     end
 
   end
@@ -42,11 +40,12 @@ class PasswordResetsController < ApplicationController
     logger.debug(@exusers.inspect)
 
     # if @exusers.update_attributes!(exusers_params)
-    if @exusers.update!(exusers_params)
+    if @exusers.update(exusers_params)
       logger.info("Yay!")
-      redirect_to login_path, :notice => "Your Password has been reset Successfully!"
+      flash[:notice] = "Your Password has been reset Successfully!"
+      redirect_to login_path
     else
-      redirect_to :edit
+      redirect_to "password_resets#edit"
     end
   end
 

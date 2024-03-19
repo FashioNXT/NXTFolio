@@ -12,29 +12,26 @@
    end
 
    # Displays the correct specific profile search when selected during SpecificDesigner search
-   def search_redirect
-     @checkboxes = params[:checkboxes]
-     @experience = params[:checkboxes]
-     @params_arg = params
+  def search_redirect
+    @checkboxes = params[:checkboxes]
+    @experience = params[:checkboxes]
+    @params_arg = params
 
-     @user_objects = SpecificDesigner.search @checkboxes,flash[:general_queries], @experience, @params_arg
+    @user_objects = SpecificDesigner.search @checkboxes,flash[:general_queries], @experience, @params_arg
 
-     @user_objects.each do |object|
-       @general_info_object = GeneralInfo.find_by(object[:userKey])
+    @user_objects.each do |object|
+      @general_info_object = GeneralInfo.find_by(object[:userKey])
 
-       @attribute_param = object.attribute_values
-       @attribute_param[:first_name] = @general_info_object[:first_name]
-       @attribute_param[:last_name] = @general_info_object[:last_name]
-       @attribute_param[:gender] = @general_info_object[:gender]
-       @attribute_param[:state] = @general_info_object[:state]
-       @attribute_param[:profession] = @general_info_object[:profession]
-     end
+      @attribute_param = object.attribute_values
+      @attribute_param[:first_name] = @general_info_object[:first_name]
+      @attribute_param[:last_name] = @general_info_object[:last_name]
+      @attribute_param[:gender] = @general_info_object[:gender]
+      @attribute_param[:state] = @general_info_object[:state]
+      @attribute_param[:profession] = @general_info_object[:profession]
+    end
 
-     redirect_to search_profile_show_path
-   end
-
-   def prep_show
-   end
+    redirect_to search_profile_show_path
+  end
 
    # Associated with the view used for create
    def new
@@ -60,11 +57,9 @@
 
      # If SpecificDesigner object saved correctly to database, displays home page
      # Else displays the SpecificDesigner new view
-     if @specific_designer.save!
+     if @specific_designer.save
       redirect_to '/show_profile'
-     else
-      render :action=> 'new'
-  end
+     end
    end
 
    # Params used to create the SpecificDesigner object
@@ -90,8 +85,6 @@
      # if @specific_designer.update_attributes(specific_designer_param)
      if @specific_designer.update(specific_designer_param)
        redirect_to '/show_profile'
-     else
-       render :action => 'edit'
      end
    end
 
@@ -101,8 +94,8 @@
    end
 
    # Not implemented
-   def delete
-     SpecificDesigner.find(params[:user_key]).destroy
-     redirect_to :action => 'root_path'
+   def destroy
+     SpecificDesigner.find_by_user_key(params[:user_key]).destroy
+     redirect_to root_path
    end
  end

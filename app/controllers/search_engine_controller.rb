@@ -50,7 +50,6 @@ class SearchEngineController < ApplicationController
         profession = @params_args[:Profession]
         @filtered_users = GeneralInfo.filterBy country, state, profession, city
 
-
         #puts "Filtered users are: "
         #@filtered_users.each do |room|
         #    puts room[:first_name]
@@ -58,6 +57,7 @@ class SearchEngineController < ApplicationController
 
         # Search Users' general info and profession detail for the keyword
         @keyword = @params_args[:Keyword]
+        puts city  
         @EnteredKw=@keyword
         if @keyword != nil
             @keyword= @keyword.downcase
@@ -70,8 +70,7 @@ class SearchEngineController < ApplicationController
         #     render 'search_engine/show?utf8=✓&Initkey='
         # end
 
-        if country != nil  && state!= nil  && city!= nil  && profession!= nil  && @keyword!= nil  && country.empty?  && state.empty?  && city.empty?  && profession.empty?  && @keyword.empty?
-
+        if country.nil?  && state.nil?  && city.nil?  && profession.nil?  && @keyword.nil?
             #'search_engine/show?'
             @final_users = []
             render 'search_engine/show'

@@ -14,4 +14,11 @@ RSpec.describe TemplateController, type: :controller do
       end
   end
 
+  describe "GET #index" do
+    it "returns http error" do
+      get :index 
+      expect(response).to_not have_http_status(:error)
+    end
+  end
+
 end

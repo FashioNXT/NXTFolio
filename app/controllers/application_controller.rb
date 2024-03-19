@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # before_action :update_last_active_at
-  #before_action :track_time_spent_on_website
+  before_action :track_time_spent_on_website
 
   # Used to confirm the session key of the current room
   def index
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
-=begin
+begin
   def track_time_spent_on_website
     if session[:current_user_key]
       current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
@@ -71,6 +71,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-=end
+end
 
 end

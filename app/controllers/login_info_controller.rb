@@ -16,7 +16,6 @@ class LoginInfoController < ApplicationController
   # Create is called upon for the 1st part of profile creation
   def create
     @login_info = LoginInfo.new(login_info_params)
-
     if LoginInfo.exists?(:email => @login_info[:email])
       flash[:notice] = "Email already exists."
       redirect_to root_path and return

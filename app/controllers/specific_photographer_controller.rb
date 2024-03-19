@@ -28,9 +28,6 @@
      if @specific_photographer.save!
        puts "Saved and returning the profile"
        redirect_to '/show_profile'
-     else
-       puts "Error saving, returning to new"
-       render :action => 'new'
      end
    end
 
@@ -52,8 +49,6 @@
      # if @specific_photographer.update_attributes(specific_photographers_param)
      if @specific_photographer.update(specific_photographers_param)
        redirect_to '/show_profile'
-     else
-       render :action => 'edit'
      end
    end
 
@@ -61,9 +56,9 @@
      params.require(:specific_photographer).permit(:compensation, :experience, :influencers, :specialties, :genre)
    end
 
-   def delete
-     SpecificPhotographer.find(params[:user_key]).destroy
-     redirect_to :action => 'root_path'
+   def destroy
+     SpecificPhotographer.find_by_user_key(params[:user_key]).destroy
+     redirect_to root_path
    end
 
    def search

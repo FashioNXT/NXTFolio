@@ -260,11 +260,7 @@ class GeneralInfoController < ApplicationController
     
     #if @general_info.update_attributes!(general_info_update_param)
     if @general_info.update(general_info_update_param)
-      if params[:select_one]
-        #session.delete(:current_login_user)
-        #redirect_to "/general_info/edit2"
-        redirect_to '/show_profile'
-      elsif params[:select_two]
+      if params[:select_one] || params[:select_two]
         redirect_to '/show_profile'
       end
     else
