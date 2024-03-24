@@ -223,9 +223,9 @@ class GeneralInfo < ApplicationRecord
           self.name
         end
 
-        def display_Name()
-          self.display_Name()
-        end
+        #def display_Name()
+          #self.display_Name()
+        #end
 
         # def initialize()
 
@@ -244,9 +244,9 @@ class GeneralInfo < ApplicationRecord
           # Else Error, name already exists
         end
 
-        def add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
-          self.add_Attr(attr_Name, attr_Type, writeToRedis)
-        end
+        #def add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
+          #self.add_Attr(attr_Name, attr_Type, writeToRedis)
+        #end
 
         def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
           indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
@@ -261,9 +261,9 @@ class GeneralInfo < ApplicationRecord
           end
         end
 
-        def edit_Attr(attr_Name, new_Name, new_Type = nil)
-          self.edit_Attr(attr_Name, new_Name, new_Type)
-        end
+        #def edit_Attr(attr_Name, new_Name, new_Type = nil)
+          #self.edit_Attr(attr_Name, new_Name, new_Type)
+        #end
 
         def self.delete_Attr(attr_Name)
           indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
@@ -276,17 +276,17 @@ class GeneralInfo < ApplicationRecord
           end
         end
 
-        def delete_Attr(attr_Name)
-          self.delete_Attr(attr_Name)
-        end
+        #def delete_Attr(attr_Name)
+          #self.delete_Attr(attr_Name)
+        #end
 
         def self.view_Attr()
           @@Job_Attr[self.name]
         end
 
-        def view_Attr()
-          self.view_Attr()
-        end
+        #def view_Attr()
+          #self.view_Attr()
+        #end
 
         def self.view_Attr_Type(attr_Name = nil)
           if (attr_Name == nil)
@@ -302,9 +302,9 @@ class GeneralInfo < ApplicationRecord
           end
         end
 
-        def view_Attr_Type(attr_Name)
-          self.view_Attr_Type(attr_Name)
-        end
+        #def view_Attr_Type(attr_Name)
+          #self.view_Attr_Type(attr_Name)
+        #end
 
         def self.update_File()
           self_Name = self.name
@@ -324,9 +324,9 @@ class GeneralInfo < ApplicationRecord
           $redis.set(self.name, attr_Body)
         end
 
-        def update_File()
-          self.update_File()
-        end
+        #def update_File()
+          #self.update_File()
+        #end
 
       })
 

@@ -1,5 +1,5 @@
-require 'rails_helper'
+#require 'rails_helper'
 
-  RSpec.describe User, type: :model do
+#RSpec.describe User, type: :model do
     
-  end
+#end

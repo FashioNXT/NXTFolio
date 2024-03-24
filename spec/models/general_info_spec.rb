@@ -99,6 +99,7 @@ require 'rails_helper'
             expect(new_class.view_Attr).not_to eq(nil)
             expect(new_class.view_Attr_Type).not_to eq(nil)
             expect(new_class.view_Attr_Type('test_name')).to eq(nil)
+            expect(new_class.view_Attr_Type('String')).not_to eq(nil)
             expect(new_class.update_File).to eq(nil)
             
         end

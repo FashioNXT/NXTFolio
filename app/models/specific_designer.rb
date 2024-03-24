@@ -1,11 +1,10 @@
  class SpecificDesigner < ApplicationRecord
    attr_accessor :allgenres
 
-   def self.search checkboxes, general_info_user_keys, experience_arg, params_arg
+   def self.search checkboxes, general_info_user_keys, experience_arg
      @user_array = Array.new
      @genre_checked_array = Array.new
      @return_array = Array.new
-     @experience_str = params_arg[:experiece]
 
      # Search based on the room keys retrieved from GeneralInfo, store into @user_array
      if (general_info_user_keys.length > 0)

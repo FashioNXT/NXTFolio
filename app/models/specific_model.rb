@@ -2,7 +2,7 @@
    attr_accessor :allgenres
 
    #params_arg are the params returned from the SpecificModel search but DOES NOT INCLUDE GENRE
-   def self.search general_info_user_keys, params_arg
+   def self.search params_arg
      @final_return = []
 
      if params_arg.length > 0

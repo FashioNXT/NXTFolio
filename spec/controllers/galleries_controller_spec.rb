@@ -16,6 +16,7 @@ RSpec.describe GalleriesController, type: :controller do
       post :create, params: { gallery: {GeneralInfo_id: 1, gallery_title: "test", gallery_description: "test", gallery_picture: [fixture_file_upload('background-creative.jpg', 'image/jpg')]}}
       expect(response).to redirect_to show_profile_show_profile_path
     end
+    
     it "should not create a new gallery when there are no pictures" do
       session[:current_user_key] = SecureRandom.hex(10)
       general_info = GeneralInfo.create(:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "testgmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", userKey: session[:current_user_key])
@@ -30,7 +31,7 @@ RSpec.describe GalleriesController, type: :controller do
       expect(response).to render_template :new
     end
 
-    it "should not create a new gallery when there are too many pictures" do
+    it "should not create a new gallery" do
       session[:current_user_key] = SecureRandom.hex(10)
       general_info = GeneralInfo.create(:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "testgmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", userKey: session[:current_user_key])
       post :create, params: { gallery: {GeneralInfo_id: 1, gallery_title: "test", gallery_picture: [fixture_file_upload('1.jpg', 'image/jpg')]}}

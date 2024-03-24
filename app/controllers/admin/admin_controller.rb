@@ -59,9 +59,9 @@ module Admin
         general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
         @hasPermission = general_info.is_admin
       end
-      # if(@hasPermission == false)
-      #   redirect_to "/login_info/login"
-      # end
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end
 
       @jobs = Array.new
 
@@ -81,11 +81,11 @@ module Admin
               flash.now[:notice] = "Attribute " + @attr + " added to " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
               x = @job_Obj.view_Attr().find_index(@attr)
               GeneralInfo.find_each do |user|
-              # if(user[:job_name] == @job_Obj.name)
-                  # newAttr = user[:job_attr]
-                  # newAttr[x] = "Default"
-                  # user.update_attribute(:job_attr, newAttr)
-              # end
+              if(user[:job_name] == @job_Obj.name)
+                  newAttr = user[:job_attr]
+                  newAttr[x] = "Default"
+                  user.update_attribute(:job_attr, newAttr)
+              end
             end
             elsif(@action == 'Remove' && @job_Obj.view_Attr().include?(@attr))
               origLoc = @job_Obj.view_Attr().find_index(@attr)
@@ -93,23 +93,23 @@ module Admin
               flash.now[:notice] = "Attribute " + @attr + " removed from " + @job + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
               attrLength = @job_Obj.view_Attr().length
               GeneralInfo.find_each do |user|
-              # if(user[:job_name] == @job_Obj.name)
-              #   x = origLoc
-              #   newAttr = user[:job_attr]
-              #   while (x < attrLength)
-              #     newAttr[x] = newAttr[x + 1]
-              #     x += 1
-              #   end
-              #   newAttr.delete(attrLength)
-              #   user.update_attribute(:job_attr, newAttr)
-              # end
+              if(user[:job_name] == @job_Obj.name)
+                x = origLoc
+                newAttr = user[:job_attr]
+                while (x < attrLength)
+                  newAttr[x] = newAttr[x + 1]
+                  x += 1
+                end
+                newAttr.delete(attrLength)
+                user.update_attribute(:job_attr, newAttr)
+              end
             end
             else
-              # flash.now[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
+              flash.now[:notice] = "Attribute " + @attr + " already in " + @job.to_s + "---" + @job + "\'s current attributes are " + @job_Obj.view_Attr.inspect
             end
             
           else
-            # flash.now[:notice] = "Job " + @job.titleize + " not found."
+            flash.now[:notice] = "Job " + @job.titleize + " not found."
           end	  
         else
           flash.now[:notice] = "Error: One or more empty fields"

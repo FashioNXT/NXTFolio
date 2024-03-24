@@ -1,7 +1,7 @@
  class SpecificPhotographer < ApplicationRecord
    attr_accessor :allgenres
 
-   def self.search general_info_user_keys, params_arg
+   def self.search params_arg
      @final_return = []
 
      if params_arg.length > 0
