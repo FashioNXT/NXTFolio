@@ -19,5 +19,8 @@ class Gallery < ApplicationRecord
     # NXTFolio: Added in Fall 2023 : Piyush Sharan
     has_many :comments
 
+    #NXTFolio: Added in Winter 2024: Sai Chandhrasekhar
+    has_many :tags
+
 end
     

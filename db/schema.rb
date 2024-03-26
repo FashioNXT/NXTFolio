@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_06_155358) do
+ActiveRecord::Schema.define(version: 2024_03_25_101704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2023_11_06_155358) do
     t.datetime "updated_at", null: false
     t.string "gallery"
     t.text "comments", default: [], array: true
+    t.text "tags", default: [], array: true
   end
 
   create_table "gallery_taggings", force: :cascade do |t|
@@ -265,6 +266,14 @@ ActiveRecord::Schema.define(version: 2023_11_06_155358) do
     t.index ["country_id"], name: "index_states_on_country_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.bigint "gallery_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gallery_id"], name: "index_tags_on_gallery_id"
+  end
+
   create_table "templates", id: :serial, force: :cascade do |t|
     t.string "prof_name"
     t.json "prof_attribute"
@@ -310,4 +319,5 @@ ActiveRecord::Schema.define(version: 2023_11_06_155358) do
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
   add_foreign_key "states", "countries"
+  add_foreign_key "tags", "galleries"
 end

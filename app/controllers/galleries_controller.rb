@@ -275,6 +275,20 @@ class GalleriesController < ApplicationController
     end
   end
 
+  def add_tag
+    @gallery = Gallery.find_by(id: params[:id])
+  end
+
+  def create_tag
+    @gallery = Gallery.find_by(id: params[:id])
+    @tag = Tag.new(gallery_id: params[:id], body: params[:tag][:body])
+    if @tag.save
+      redirect_to gallery_path(@gallery)
+    else
+      render 'add_tag'
+    end
+  end
+
   private
 
   def gallery_params

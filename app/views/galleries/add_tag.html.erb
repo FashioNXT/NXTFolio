@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FashioNXT</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+      <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body data-spy="scroll" data-target="blog-detail-2.htmlscrollspy">
+
+
+  <!-- Main Content -->
+  <div class="container be-detail-container">
+    <div class="row profile-row">
+      <h2>Add a Comment:</h2>
+      <%= form_with(model: [@gallery, Tag.new], url: gallery_create_tag_path(@gallery), local: true) do |form| %>
+        <div class="form-group">
+          <%= form.label :body, "Tag:" %>
+          <%= form.text_field :body, class: 'form-control', required: true, title: 'Tag cannot be empty' %>
+        </div>
+        
+        <%= form.submit "Submit Tag", class: 'btn btn-primary' %>
+        <%= link_to "Cancel", "/galleries/#{@gallery.id}/show", class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+
+  </body>
+</html>
