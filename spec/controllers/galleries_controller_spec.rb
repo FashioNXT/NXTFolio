@@ -166,4 +166,20 @@ RSpec.describe GalleriesController, type: :controller do
       expect(response).to redirect_to gallery
     end 
   end
+
+  describe "POST #create_tag" do
+    it 'should create a tag' do
+      general_info = GeneralInfo.create(:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "testgmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Male", :country => "United States", :state => "TX", :city => "Houston")
+      gallery = Gallery.create(GeneralInfo_id: general_info.id, gallery_title: "test", gallery_description: "test", gallery_picture:  [fixture_file_upload('1.jpg', 'image/jpg'), fixture_file_upload('2.jpg', 'image/jpg'), fixture_file_upload('3.jpg', 'image/jpg')])
+      post :create_tag, params: {id: gallery.id, tag: {body: "Test tag"}}
+      expect(response).to redirect_to gallery_path(gallery)
+    end 
+
+    it 'should not create a tag' do
+      general_info = GeneralInfo.create(:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "testgmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Male", :country => "United States", :state => "TX", :city => "Houston")
+      gallery = Gallery.create(GeneralInfo_id: general_info.id, gallery_title: "test", gallery_description: "test", gallery_picture:  [fixture_file_upload('1.jpg', 'image/jpg'), fixture_file_upload('2.jpg', 'image/jpg'), fixture_file_upload('3.jpg', 'image/jpg')])
+      post :create_tag, params: {id: gallery.id, tag: {body: nil}}
+      expect(response).to render_template :add_tag
+    end 
+  end 
 end

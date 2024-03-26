@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   get '/galleries/:id/comments', to: 'galleries#add_comment', as: 'gallery_add_comment'
   post '/galleries/:id/comments', to: 'galleries#post_comment', as: 'gallery_post_comment'
 
+  # Winter 2024: To add tags
+  get '/galleries/:id/tags', to: 'galleries#add_tag', as: 'gallery_add_tag'
+  post '/galleries/:id/tags', to: 'galleries#create_tag', as: 'gallery_create_tag'
+
   #get 'template/create'
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
