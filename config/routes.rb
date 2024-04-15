@@ -150,7 +150,7 @@ Rails.application.routes.draw do
   get 'search_engine/search' => 'search_engine#search', :as => 'search_engine/search'
 
   get 'job_search/jobshow' => 'job_search#jobshow', :as => 'job_search/jobshow'
-  # get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
+  get 'job_search/jobsearch' => 'job_search#jobsearch', :as => 'job_search/jobsearch'
 
   # get 'job_info/post_job' => 'job_info#post_job', :as => 'job_info/post_job1'
   post '/job_info/post_job', to: 'job_info#post_job', as: 'job_info_post_job'

@@ -7,7 +7,7 @@ class JobSearchController < ApplicationController
             @username = current_user[:first_name]
         end
     end
-
+=begin
     def jobsearch
         if session[:current_user_key]
             current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
@@ -16,13 +16,13 @@ class JobSearchController < ApplicationController
 
         @params_args = params #parameters passed from view
         country = "United States" # change country to industry later (need to modify filterBy as well)
-        state = @params_args[:State]
-        city= @params_args[:City]
+        state = @params_args[:state]
+        city= @params_args[:city]
 
 
         @stateInfo=state
-        profession = @params_args[:Profession]
-        @filtered_users = GeneralInfo.filterBy state, profession, city
+        profession = @params_args[:profession]
+        @filtered_users = GeneralInfo.filterBy country, state, profession, city
 
         puts "Filtered users are: "
         @filtered_users.each do |room|
@@ -30,7 +30,7 @@ class JobSearchController < ApplicationController
         end
 
         # Search Users' general info and profession detail for the keyword
-        @keyword = @params_args[:Keyword]
+        @keyword = @params_args[:keyword]
         @EnteredKw=@keyword
         @keyword= @keyword.downcase
         @keywordArr=@keyword.split(" ")
@@ -67,4 +67,5 @@ class JobSearchController < ApplicationController
         end
 
     end
+=end
 end
