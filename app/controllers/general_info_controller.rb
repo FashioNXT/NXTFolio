@@ -228,6 +228,7 @@ class GeneralInfoController < ApplicationController
     @possible_Jobs = GeneralInfo.see_Jobs
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
@@ -236,6 +237,7 @@ class GeneralInfoController < ApplicationController
   def edit2
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
@@ -246,6 +248,7 @@ class GeneralInfoController < ApplicationController
   def edit_travel
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
