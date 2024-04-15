@@ -105,7 +105,7 @@ class JobInfoController < ApplicationController
 
 
 
-
+=begin
     def create
       @possible_Jobs = GeneralInfo.see_Jobs
       # Check to see if the required params are filled in
@@ -207,7 +207,7 @@ class JobInfoController < ApplicationController
         redirect_to "/specific_photographer/edit"
       end
     end
-
+=end
     # Copied from search_engine_controller.rb
     def filter_words(string)
       file = File.open("app/assets/stop_words_english.txt", "r")
@@ -225,7 +225,13 @@ class JobInfoController < ApplicationController
     end
 
     
-    def search 
+    def search
+      if session[:current_user_key]
+        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+        if current_user
+          @username = current_user[:first_name]
+        end
+      end 
       @params_args = params #parameters passed from view
 
       @keyword = @params_args[:Keyword]
