@@ -52,7 +52,7 @@ RSpec.describe JobInfoController, type: :controller do
     describe "POST#post_job" do
         it 'should post a new job' do
             session[:current_user_key] = SecureRandom.hex(10)
-            GeneralInfo.create(first_name: "R", last_name: "Spec", company: "Test", industry: "Test", highlights: "test", country: "United States", state: "California", city: "San Jose", emailaddr: "test@gmail.com", userKey: session[:current_user_key])
+            GeneralInfo.create(first_name: "R", last_name: "Spec", company: "Test", industry: "Test", highlights: "test", country: "United States", state: "California", city: "San Jose", emailaddr: "test@gmail.com", job_name: "Designer", userKey: session[:current_user_key])
             post :post_job, params: {job_info: {country: "United States", state: "California", city: "San Jose", profession: "Designer", category: "Creators", title: "test", description: "test"}}
             expect(response).to redirect_to job_search_jobshow_path
         end 
