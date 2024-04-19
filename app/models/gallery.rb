@@ -35,6 +35,7 @@ class Gallery < ApplicationRecord
                 similar_galleries[gallery] = similarity 
             end
         end
+        similar_galleries.reject! { |key, val| val.nan? }
         Hash[similar_galleries.sort_by { |key, val| val }.reverse]
     end
 
