@@ -136,7 +136,7 @@
 							<% if @general_info && @general_info.profile_picture.url %>
 								<img class="profile-img img-thumbnail" src="<%= @general_info.profile_picture.url %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
 							<% else %>
-                                <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="150px" height="150px" style="position:absolute;top:10px;left:30px" alt="">
+                                <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="100px" height="100px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
 							<% if @general_info && @general_info.profile_picture.url %>
 								<p style="font-size: 16px; margin-top:5px; text-align: center; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>

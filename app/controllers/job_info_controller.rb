@@ -71,17 +71,20 @@ class JobInfoController < ApplicationController
 
         
         # @job_info ||= JobInfo.new()
-        @job_info = JobInfo.new(job_info_params)
-        @job_info.userKey = session[:current_user_key]
+      @job_info = JobInfo.new(job_info_params)
+      @job_info.userKey = session[:current_user_key]
 
-        if @job_info.save
-            flash[:success_post_job] = "   Job info created successfully"
-            redirect_to job_search_jobshow_path
-        else
-            flash[:error_post_job] = "Error creating job info"
-            render 'new_job'
-        end
-
+      if @job_info.save
+          flash[:success_post_job] = "Job info created successfully"
+          filtered_users = GeneralInfo.filterBy(@job_info.country, @job_info.state, @job_info.profession, @job_info.city)
+          filtered_users.each do |user|
+            JobNotificationMailer.job_notification_email(user.emailaddr, user.first_name, @job_info).deliver_now!
+          end
+          redirect_to job_search_jobshow_path
+      else
+          flash[:error_post_job] = "Error creating job info"
+          render 'new_job'
+      end
     end
 
 
