@@ -11,6 +11,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+    @username = current_user[:first_name]
     @review=Review.new(review_params)
     @review.gallery_id=@gallery.id
     @review.user_id=@user.id
@@ -19,17 +21,14 @@ class ReviewsController < ApplicationController
 
 
     if @review.save
+      RatingMailer.gallery_rating_email(@general_info.emailaddr, @general_info.first_name, @user.first_name + " " + @user.last_name, @gallery.gallery_title, @review.rating).deliver_now!
       redirect_to show_profile_show_profile_path(:user_key => @general_info.userKey)
     else
       render 'new'
     end
   end
 
-  def edit
-  end
-
   def update
-    @review=Review.find(params[:id])
     if @review.update(review_params)
       redirect_to show_profile_show_profile_path(:user_key => @general_info.userKey)
     else

@@ -39,19 +39,19 @@
 }
 .mod-1 {
     color: white;
-    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 30px;
     text-align: center;
     padding-top: 10px;
 }
 
 .changedLabel {
-    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: white;
 }
 
 .searchbox {
-    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
     height: 46px;
     width: 500px;
     padding: 10px 16px;
@@ -61,7 +61,7 @@
 }
 
 .buttongroup {
-    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .searchpagesearch {

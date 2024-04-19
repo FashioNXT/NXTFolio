@@ -64,28 +64,20 @@ class JobInfoController < ApplicationController
 
     def new_job 
       @job_info = JobInfo.new
-      if session[:current_user_key]
-        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-        if current_user
-          @username = current_user[:first_name]
-        end
-      end
     end
 
 
     def post_job 
-      if session[:current_user_key]
-        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-        if current_user
-          @username = current_user[:first_name]
-        end
-      end
         # @job_info ||= JobInfo.new()
       @job_info = JobInfo.new(job_info_params)
       @job_info.userKey = session[:current_user_key]
 
       if @job_info.save
           flash[:success_post_job] = "   Job info created successfully"
+          filtered_users = GeneralInfo.filterBy(@job_info.country, @job_info.state, @job_info.profession, @job_info.city)
+          filtered_users.each do |user|
+            JobNotificationMailer.job_notification_email(user.emailaddr, user.first_name, @job_info).deliver_now!
+          end
           redirect_to job_search_jobshow_path
       else
           flash[:error_post_job] = "Error creating job info"
@@ -226,12 +218,6 @@ class JobInfoController < ApplicationController
 
     
     def search
-      if session[:current_user_key]
-        current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
-        if current_user
-          @username = current_user[:first_name]
-        end
-      end 
       @params_args = params #parameters passed from view
 
       @keyword = @params_args[:Keyword]
