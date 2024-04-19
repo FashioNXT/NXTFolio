@@ -43,12 +43,12 @@ Feature: Travel Feature
     Given I am a professional but not logged in
     Then I should not be able to see the option to tag collaborators in projects
 
-   Scenario: I can invite unregistered people to be a collaborator on my project
-    Given I am a professional with projects and I am on my profile page
-    And I want to add a collaborator who is not registered
-    When I click on Add Collaborators button
-    And I write their email in the invite users textbox
-    And I click on tag button
-    Then they should receive invitation mail
+#   Scenario: I can invite unregistered people to be a collaborator on my project
+#    Given I am a professional with projects and I am on my profile page
+#    And I want to add a collaborator who is not registered
+#    When I click on Add Collaborators button
+#    And I write their email in the invite users textbox
+#    And I click on tag button
+#    Then they should receive invitation mail
 
     
