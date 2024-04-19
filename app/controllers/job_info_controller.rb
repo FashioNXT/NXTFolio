@@ -73,7 +73,7 @@ class JobInfoController < ApplicationController
       @job_info.userKey = session[:current_user_key]
 
       if @job_info.save
-          flash[:success_post_job] = "   Job info created successfully"
+          flash[:success_post_job] = "Job info created successfully"
           filtered_users = GeneralInfo.filterBy(@job_info.country, @job_info.state, @job_info.profession, @job_info.city)
           filtered_users.each do |user|
             JobNotificationMailer.job_notification_email(user.emailaddr, user.first_name, @job_info).deliver_now!
