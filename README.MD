@@ -507,3 +507,5 @@ Contact previous teams for testing, deployment and issues related to following f
 1. AI Chatbot -> liewgh1995@tamu.edu
 2. Collaborator Commenting -> pisharan@tamu.edu, vasan2001@tamu.edu
 3. Job Posting -> quanqi-hu@tamu.edu
+4. CRM -> jubey.s.garza@tamu.edu
+5. General -> sknc@tamu.edu
