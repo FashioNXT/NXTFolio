@@ -351,7 +351,8 @@ If there is any problem about pg database. Try the steps below:
 
 6. Generate table with database
 
-        bin/rails db:migrate RAILS_ENV=development
+        rails db:migrate 
+        rails db:seed
     
     Useful to check migration status if something goes wrong:
     
@@ -365,10 +366,21 @@ If there is any problem about pg database. Try the steps below:
 
     [http://localhost:3000](http://localhost:3000) -->
 
+9. Execute tests as follows:
+      bundle exec rails
+      bundle exec cucumber
+
 ## How to Deploy 
 
-The website is deployed using AWS credentials and additional buckets. Client has requested to keep everthing deployed on Client's Heroku.
-Contact previous team for Credentials.
+1. heroku create -a [appname]
+2. heroku config:set AWS_ACCESS_KEY=AKIAV5IDIKICCNPVFZ3U
+3. heroku config set AWS_BUCKET=nxtfolio-s3 
+4. heroku config:set AWS_REGION=us-west-2
+5. heroku config:set AWS_SECRET_KEY=/q8xUNLrsVtMOmE+h2UsyKjjJyQA04PcIQcz+f22
+6. heroku addons:create heroku-postgresql:essential-2
+7. git push heroku master
+8. heroku run rails db:migrate
+9. heroku run rails db:seed
 
 ## Using AWS S3 as Image Backend
 
