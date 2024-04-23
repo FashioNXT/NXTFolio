@@ -509,3 +509,8 @@ Contact previous teams for testing, deployment and issues related to following f
 3. Job Posting -> quanqi-hu@tamu.edu
 4. CRM -> jubey.s.garza@tamu.edu
 5. General -> sknc@tamu.edu
+
+AWS_ACCESS_KEY=AKIAV5IDIKICCNPVFZ3U
+AWS_BUCKET=nxtfolio-s3
+AWS_REGION=us-west-2
+AWS_SECRET_KEY=/q8xUNLrsVtMOmE+h2UsyKjjJyQA04PcIQcz+f22
