@@ -5,11 +5,9 @@
   </head>
   <body>
     <h1>You have been invited to collaborate on a project!</h1>
-    <p>Hello <%= @invited_email %>,</p>
+    <p>Hello <%= @invited_name %>,</p>
     <p><%= @inviter_name %> is inviting you to collaborate on the project <b><%= @project_name %></b>.</p>
     <p><a href="<%= @project_url %>">Link to project.</a></p>
-    <p>To get started, please click the following link to register:</p>
-    <p><%= link_to "Register", @url %></p>
     <br>
     <p>Best Regards,</p>
     <p>The NXTFolio Team</p>

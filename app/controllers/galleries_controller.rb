@@ -229,10 +229,11 @@ class GalleriesController < ApplicationController
     end
     invited_email = params[:gallery_tagging][:invited_email]
     if invited_email.present?
-      inviter_name = GeneralInfo.find_by(id:@gallery.GeneralInfo_id).emailaddr
+      inviter_name = GeneralInfo.find_by(id:@gallery.GeneralInfo_id).first_name + " " + GeneralInfo.find_by(id:@gallery.GeneralInfo_id).last_name
+      invited_name = GeneralInfo.find_by(emailaddr: invited_email).first_name + " " + GeneralInfo.find_by(emailaddr: invited_email).last_name
       project_name = @gallery.gallery_title
       project_key = params[:id]
-      InvitationMailer.invitation_email(invited_email,inviter_name,project_name,project_key).deliver_now
+      InvitationMailer.invitation_email(invited_email,invited_name,inviter_name,project_name,project_key).deliver_now
     end
     redirect_to '/show_profile'
     
@@ -240,13 +241,9 @@ class GalleriesController < ApplicationController
   def destroy_tagging
     @gallery = Gallery.find(params[:gallery_id])
     @tagging = @gallery.gallery_taggings.find(params[:id])
-    if @tagging.destroy
-      flash[:notice] = 'Collaborator removed successfully'
-      redirect_to @gallery
-    else
-      flash[:alert] = 'Error removing collaborator'
-      redirect_to @gallery
-    end
+    @tagging.destroy
+    flash[:notice] = 'Collaborator removed successfully'
+    redirect_to @gallery
   end
 
   # Fall 2023: Piyush Sharan: Add Comments

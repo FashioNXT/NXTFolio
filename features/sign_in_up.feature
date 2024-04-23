@@ -130,7 +130,7 @@ Feature: Login and sign up
     And I click on "SIGN IN"
     Then I should be on the home page
     And I should see "You Have Successfully Logged In"
-    And I should see "Andrea"
+    And I should see "My Profile"
 
   # NXTFolio Spring 2023, Iteration 2
   Scenario: When existing user attempts to sign in with incorrect password, sign in successfully processes
@@ -152,8 +152,8 @@ Feature: Login and sign up
     And I click on "SIGN IN"
     Then I should be on the home page
     And I should see "You Have Successfully Logged In"
-    And I should see "Andrea"
-    And I click on "Andrea"
+    And I should see "My Profile"
+    And I click on "My Profile"
     When I move to Edit Profile and select Change Password
     Then I should land on the Change Password page
     When I fill in the following:
@@ -171,8 +171,8 @@ Feature: Login and sign up
     And I click on "SIGN IN"
     Then I should be on the home page
     And I should see "You Have Successfully Logged In"
-    And I should see "Andrea"
-    And I click on "Andrea"
+    And I should see "My Profile"
+    And I click on "My Profile"
     When I move to Edit Profile and select Change Password
     Then I should land on the Change Password page
     When I fill in the following:

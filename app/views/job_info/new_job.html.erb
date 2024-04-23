@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
   <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
@@ -129,9 +129,8 @@
         
                     <div class="col-md-4">
                       <div class="form-group"> <label class="changedLabel">City</label> 
-                      <select name="job_info[city]" id="city" data-trigger="" class="cities form-control select2 select2-hidden-accessible" style="width: 90%;" tabindex="-1" aria-hidden="true">
-                        <option value="">Select City</option>
-                      </select> </div> <!-- /.form-group -->
+                        <%= form.text_field :city, id: "city", class: 'cities form-input', :type => 'text', style: "height: 35px;" %> 
+                      </div> <!-- /.form-group -->
                     </div> <!-- /.col -->
 
                     <!--this is for adding some margin (space) on the page.-->

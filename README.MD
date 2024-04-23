@@ -185,11 +185,21 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
     If you run into trouble, try looking the script since the comments might help
 
-7. You should be set. Whenever you want to run the server just run
+7. Generate database:
+
+        rails db:migrate
+        rails db:seed
+
+8. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
+
+9. Execute tests as follows:
+
+        bundle exec rails
+        bundle exec cucumber
     
-9. To connect to the website go to:
+10. To connect to the website go to:
 
         [http://localhost:8080](http://localhost:8080)
 
@@ -220,6 +230,8 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 5. To connect to the website go to:
 
         [http://localhost:8080](http://localhost:8080)
+
+
 
 ### Helpful fixes
 
@@ -351,7 +363,8 @@ If there is any problem about pg database. Try the steps below:
 
 6. Generate table with database
 
-        bin/rails db:migrate RAILS_ENV=development
+        rails db:migrate 
+        rails db:seed
     
     Useful to check migration status if something goes wrong:
     
@@ -367,8 +380,15 @@ If there is any problem about pg database. Try the steps below:
 
 ## How to Deploy 
 
-The website is deployed using AWS credentials and additional buckets. Client has requested to keep everthing deployed on Client's Heroku.
-Contact previous team for Credentials.
+1. heroku create -a [appname]
+2. heroku config:set AWS_ACCESS_KEY=AKIAV5IDIKICCNPVFZ3U
+3. heroku config set AWS_BUCKET=nxtfolio-s3 
+4. heroku config:set AWS_REGION=us-west-2
+5. heroku config:set AWS_SECRET_KEY=/q8xUNLrsVtMOmE+h2UsyKjjJyQA04PcIQcz+f22
+6. heroku addons:create heroku-postgresql:essential-2
+7. git push heroku master
+8. heroku run rails db:migrate
+9. heroku run rails db:seed
 
 ## Using AWS S3 as Image Backend
 
@@ -507,3 +527,5 @@ Contact previous teams for testing, deployment and issues related to following f
 1. AI Chatbot -> liewgh1995@tamu.edu
 2. Collaborator Commenting -> pisharan@tamu.edu, vasan2001@tamu.edu
 3. Job Posting -> quanqi-hu@tamu.edu
+4. CRM -> jubey.s.garza@tamu.edu
+5. General -> sknc@tamu.edu

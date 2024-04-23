@@ -185,7 +185,7 @@ class GeneralInfoController < ApplicationController
     end
 
     # Send Verification Email upon successful sign-up
-    #UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
+    UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
     if params[:select_one]
       session.delete(:current_login_user)
       redirect_to "/general_info/new2"
@@ -228,6 +228,7 @@ class GeneralInfoController < ApplicationController
     @possible_Jobs = GeneralInfo.see_Jobs
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
@@ -236,6 +237,7 @@ class GeneralInfoController < ApplicationController
   def edit2
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
@@ -246,6 +248,7 @@ class GeneralInfoController < ApplicationController
   def edit_travel
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = @general_info[:first_name]
     else
       redirect_to :action => 'new'
     end
