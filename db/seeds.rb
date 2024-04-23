@@ -16,54 +16,53 @@ City.delete_all
 State.delete_all
 Country.delete_all
 
-# filename = "countries+states+cities.json"
-# puts "Seeding countries/states/cities from #{filename}"
+filename = "countries+states+cities.json"
+puts "Seeding countries/states/cities from #{filename}"
 
-# countries_data = File.read(Rails.root.join('db', 'seed_files', filename))
-# countries = JSON.parse(countries_data)
+countries_data = File.read(Rails.root.join('db', 'seed_files', filename))
+countries = JSON.parse(countries_data)
 
-# num_countries = countries.length
-# Country.transaction do
-#   countries.each_with_index do |country, idx|
-#     print "\rCountry #{idx} of #{num_countries}"
-#     STDOUT.flush
-
-#     # phone_code = country['phone_code']
-#     # phone_code = phone_code.start_with?("+") ? phone_code[1..-1] : phone_code
+num_countries = countries.length
+Country.transaction do
+   countries.each_with_index do |country, idx|
+     print "\rCountry #{idx} of #{num_countries}"
+     STDOUT.flush
+     phone_code = country['phone_code']
+     phone_code = phone_code.start_with?("+") ? phone_code[1..-1] : phone_code
 
 #     # create country
-#     country_obj = Country.create!(
-#       name: country['name'],
-#       iso3: country['iso3'],
-#       # phone_code: phone_code,
-#       capital: country['capital'],
-#       currency: country['currency'],
-#       region: country['region'],
-#       subregion: country['subregion'],
-#       latitude: country['latitude'],
-#       longitude: country['longitude'],
-#     )
+     country_obj = Country.create!(
+       name: country['name'],
+       iso3: country['iso3'],
+        phone_code: phone_code,
+       capital: country['capital'],
+       currency: country['currency'],
+       region: country['region'],
+       subregion: country['subregion'],
+       latitude: country['latitude'],
+       longitude: country['longitude'],
+     )
 
-#     # create each of the states
-#     country['states'].each do |state|
-#       state_obj = country_obj.states.create!(
-#         name: state['name'],
-#         state_code: state['state_code'],
-#         latitude: state['latitude'],
-#         longitude: state['longitude'],
-#       )
+     # create each of the states
+     country['states'].each do |state|
+       state_obj = country_obj.states.create!(
+         name: state['name'],
+         state_code: state['state_code'],
+         latitude: state['latitude'],
+         longitude: state['longitude'],
+       )
 
 #       # create each city
-#       state['cities'].each do |city|
-#         state_obj.cities.create!(
-#           name: city['name'],
-#           latitude: city['latitude'],
-#           longitude: city['longitude'],
-#         )
-#       end
-#     end
-#   end
-# end
+       state['cities'].each do |city|
+         state_obj.cities.create!(
+           name: city['name'],
+           latitude: city['latitude'],
+           longitude: city['longitude'],
+         )
+       end
+     end
+   end
+ end
 
 # #####################################
 # ### CREATE FAKE USERS ###############
@@ -83,49 +82,49 @@ filenames = ["Andrea-Piacquadio.jpg", "Anthony-Gray.jpg", "Jack-Winbow.jpg", "Ja
 job_names = ["Brand Owner", "Designer", "Other Creator", "Model", "Photographer",  "Sales", "Marketing", "Retail", "Visual", "Content Creator", "Blogger",  "Influencer", "Forecasting", "Finances", "Other Services", "Manufacturing",  "Materials", "Other Makers"]
 
 # # generate a few users
-# puts "==> Creating fake users..."
-# filenames.each do |filename|
-#   name = filename.gsub(".jpg", "").split("-")
-#   first_name = name[0]
-#   last_name = name[1]
-#   userkey = SecureRandom.hex(10)
-#   login_info = LoginInfo.new
-#   login_info.email = "#{first_name}.#{last_name}@example.com"
-#   login_info.password = fake_password
-#   login_info.password_confirmation = fake_password
-#   login_info.userKey = userkey
-#   login_info.save!
+ puts "==> Creating fake users..."
+ filenames.each do |filename|
+   name = filename.gsub(".jpg", "").split("-")
+   first_name = name[0]
+   last_name = name[1]
+   userkey = SecureRandom.hex(10)
+   login_info = LoginInfo.new
+   login_info.email = "#{first_name}.#{last_name}@example.com"
+   login_info.password = fake_password
+   login_info.password_confirmation = fake_password
+   login_info.userKey = userkey
+  login_info.save!
 
-#   general_info = GeneralInfo.new
-#   general_info.first_name = first_name
-#   general_info.last_name = last_name
-#   general_info.userKey = userkey
-#   general_info.company = "TestInc"
-#   general_info.industry = "Fashion"
-#   general_info.job_name = job_names.sample
-#   general_info.highlights = "Just a test User"
-#   general_info.country = "United States"
-#   general_info.state = "Texas"
-#   general_info.city = "College Station"
-#   general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
-#   general_info.profile_picture = File.open(Rails.root.join("db", "seed_files" ,filename))
-#   general_info.save!
+   general_info = GeneralInfo.new
+   general_info.first_name = first_name
+   general_info.last_name = last_name
+   general_info.userKey = userkey
+   general_info.company = "TestInc"
+   general_info.industry = "Fashion"
+   general_info.job_name = job_names.sample
+   general_info.highlights = "Just a test User"
+   general_info.country = "United States"
+   general_info.state = "Texas"
+   general_info.city = "College Station"
+   general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
+   general_info.profile_picture = File.open(Rails.root.join("db", "seed_files" ,filename))
+   general_info.save!
 
-#   puts "Creating User " + first_name + ", " + last_name + "..."
-# end
+   puts "Creating User " + first_name + ", " + last_name + "..."
+ end
 
-# puts "Creating fake follower/followee connections..."
-# (1..filenames.length()).each do |i|
-#   follower = GeneralInfo.find(i)
-#   (1..3).each do |j|
-#     random_user = rand(1..filenames.length())
-#     followee = GeneralInfo.find(random_user)
-#     if not Follow.exists?(:follower => follower, :followee => followee) and i != random_user
-#       follower.follow(random_user)
-#       # Follow.create!(:follower => follower, :followee => followee)
-#     end
-#   end
-# end
+ puts "Creating fake follower/followee connections..."
+ (1..filenames.length()).each do |i|
+   follower = GeneralInfo.find(i)
+   (1..3).each do |j|
+     random_user = rand(1..filenames.length())
+     followee = GeneralInfo.find(random_user)
+    if not Follow.exists?(:follower => follower, :followee => followee) and i != random_user
+       follower.follow(random_user)
+        Follow.create!(:follower => follower, :followee => followee)
+     end
+   end
+ end
 
 puts "Creating fake galleries..."
 (1..10).each do |i|
