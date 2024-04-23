@@ -221,6 +221,14 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
         [http://localhost:8080](http://localhost:8080)
 
+8. To populate the database run:
+        rails db:migrate
+        rails db:seed
+
+7. Execute tests as follows:
+        bundle exec rails
+        bundle exec cucumber
+
 ### Helpful fixes
 
 - **Changes to css or javascript not reflecting on test**
@@ -365,10 +373,6 @@ If there is any problem about pg database. Try the steps below:
 8. The local server will start on the following link
 
     [http://localhost:3000](http://localhost:3000) -->
-
-9. Execute tests as follows:
-      bundle exec rails
-      bundle exec cucumber
 
 ## How to Deploy 
 
