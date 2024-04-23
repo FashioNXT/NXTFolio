@@ -95,20 +95,26 @@ class LoginInfoController < ApplicationController
     @login_info = LoginInfo.new(login_info_param)
     if LoginInfo.exists?(:email => @login_info[:email])
       @login_user = LoginInfo.find_by(email: @login_info[:email])
-
+      
       if @login_user[:password] == @login_info[:password]
         #login
-        session[:current_user_key] = @login_user[:userKey]
-        session[:login_time] = Time.current # Spring 2023
 
-        if @login_user[:is_admin] != nil
-          session[:is_admin] = true
+        if not @login_user[:enabled]
+          flash[:notice] = 'This accound is currently disabled'
+          redirect_to login_info_login_path
+        else
+          session[:current_user_key] = @login_user[:userKey]
+          session[:login_time] = Time.current # Spring 2023
+
+          if @login_user[:is_admin] != nil
+            session[:is_admin] = true
+          end
+          flash[:success] = "You Have Successfully Logged In! Welcome Back!";
+
+          # create/update record in the user_activity_details table
+          current_user = GeneralInfo.find_or_create_by(userKey: session[:current_user_key])
+          redirect_to root_path
         end
-        flash[:success] = "You Have Successfully Logged In! Welcome Back!";
-
-        # create/update record in the user_activity_details table
-        current_user = GeneralInfo.find_or_create_by(userKey: session[:current_user_key])
-        redirect_to root_path
       else
         flash[:notice] = "The Credentials You Provided Are Not Valid. Please Try Again."
         redirect_to login_info_login_path

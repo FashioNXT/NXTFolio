@@ -32,3 +32,6 @@ domain_url: 'nxtfolio.herokuapp.com'
 gmail_username: 'fashionxtllc@gmail.com'
 # NXTFolio Spring 2023 : this password is app password generated after enabling 2-step verification
 gmail_password: 'yukzwzmegwaxvfbx' 
+
+#Thi i needed for the cucumber tests to visit the correct path
+#ELASTICSEARCH_URL: "http://localhost:3000"

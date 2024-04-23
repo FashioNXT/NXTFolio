@@ -9,7 +9,10 @@ class Api::GeneralInfoController < ApplicationController
             id = user[:id]
             location = user[:city] + ',' + user[:state] + ',' + user[:country]
             name = user[:first_name] + ' ' + user[:last_name]
-            access_enabled = true # !user.deactivated
+
+            login_info = LoginInfo.find_by(userKey: user['userKey'])
+            access_enabled = login_info['enabled'] # !user.deactivated
+
             fees_last_30_days = 0
             app = "NXTFolio"
             user_activities = UserActivityDetail.where(user_id: id).first
@@ -44,4 +47,24 @@ class Api::GeneralInfoController < ApplicationController
     
         render json: user_info
     end
+
+    def delete
+        user_gen_info = GeneralInfo.find_by(id: params[:id])
+        login_info = LoginInfo.find_by(userKey: user_gen_info['userKey'])
+
+        user_gen_info.destroy
+        login_info.destroy
+    end
+
+    def toggle_access
+        user = GeneralInfo.find_by(id: params[:id])
+        login_info = LoginInfo.find_by(userKey: user['userKey'])
+
+        if login_info[:enabled]
+            login_info.update(enabled: false)
+        else
+            login_info.update(enabled: true)
+        end
+    end
+
   end
