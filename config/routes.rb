@@ -87,6 +87,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'users', to: 'general_info#index'
+    get 'delete/:id', to: 'general_info#delete'
+    get 'toggle_access/:id', to: 'general_info#toggle_access'
     # resources :general_info, only: [:index]
   end
 
