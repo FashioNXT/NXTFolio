@@ -185,11 +185,21 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
     If you run into trouble, try looking the script since the comments might help
 
-7. You should be set. Whenever you want to run the server just run
+7. Generate database:
+
+        rails db:migrate
+        rails db:seed
+
+8. You should be set. Whenever you want to run the server just run
 
         rails server -b 0.0.0.0 -p 3000
+
+9. Execute tests as follows:
+
+        bundle exec rails
+        bundle exec cucumber
     
-9. To connect to the website go to:
+10. To connect to the website go to:
 
         [http://localhost:8080](http://localhost:8080)
 
@@ -221,13 +231,7 @@ The Dockerfile and script to automatically setup app can be found in the `instal
 
         [http://localhost:8080](http://localhost:8080)
 
-8. To populate the database run:
-        rails db:migrate
-        rails db:seed
 
-7. Execute tests as follows:
-        bundle exec rails
-        bundle exec cucumber
 
 ### Helpful fixes
 
