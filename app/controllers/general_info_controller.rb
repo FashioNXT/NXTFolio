@@ -325,9 +325,10 @@ class GeneralInfoController < ApplicationController
   # end
 
   # Not implemented
-  def delete
-    # GeneralInfo.find(params[:userKey]).destroy
-  end
+  #def delete
+  #  # GeneralInfo.find(params[:userKey]).destroy
+  #  GeneralInfo.find_by(userKey: params[:id]).destroy
+  #end
 
 
   #for destroying Gallery
