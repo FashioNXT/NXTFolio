@@ -86,6 +86,63 @@
                 <%# end %>
               </div>
             </div>
+          <% else %>
+            <% @all_galleries = Gallery.all%>
+            <% map = Hash.new%>
+            <% for gal in @all_galleries do%>
+              <%total = 0%>
+              <%len = 0%>
+              <% for x in gal.reviews%>
+                <% total += x.rating.to_i%>
+                <%len +=1%>
+              <%end%>
+              <%if gal.gallery_totalRate == nil%>
+                <%gal.gallery_totalRate = total%>
+              <%end%>
+              <%if gal.gallery_totalRator == nil%>
+                <%gal.gallery_totalRator = len%>
+              <%end%>
+              <% if map.length < 50 %>
+                <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
+                <%if average_review >= 3%>
+                  <%map[gal] = average_review %>
+                <%end%>
+              <%end%>
+            <% end%>
+            <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
+            <div class="gallery-wrapper" style="overflow-y: visible;">
+              <div class="row">
+                <% sorted_map.keys.each_slice(50) do |galls| %>
+                  <div class="gallery-pair">
+                    <% galls.each do |gall| %>
+                      <div class="col-md-4">
+                        <a class="be-img-block">
+                          <div class="photo photo-type-line">
+                            <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
+                              <div class="photo-info">
+                                <div class="headline"> <%= gall.gallery_title %> </div>
+                                <div class="line"></div>
+                                <div class="desc"> <%= gall.gallery_description %> </div>
+                              </div>
+                              <div class="mask"></div>
+                            </a>
+                            <div class="image">
+                              <a class="be-img-block profile-img img-thumbnail">
+                                <img src="<%= gall.gallery_picture[0].url %>" alt="omg">
+                              </a>
+                            </div>
+                            <div class="mask"></div>
+                          </div>
+                        </a>
+                        <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
+                        <div class="desc"> <%= gall.gallery_description %> </div>
+                        <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>           
           <% end %>
         </div>
       </div>
