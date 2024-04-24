@@ -18,14 +18,16 @@ require 'database_cleaner'
 if Rails.configuration.use_remote_webdriver
   # Ask capybara to register a driver called 'selenium'
   Capybara.register_driver :selenium do |app|
+    options = Selenium::WebDriver::Firefox::Options.new
+    options.add_argument('--headless')
     Capybara::Selenium::Driver.new(
         app,
 
         #what browser do we want? Must match whatever is in our seleniarm stand-alone image
         browser: :firefox, 
-        
+        options: options
         #where does it live? By passing a URL we tell capybara to use a selenium grid instance (not local)
-        url: "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}" 
+        #url: "http://#{ENV['SELENIUM_HOST']}:#{ENV['SELENIUM_PORT']}" 
     )
   end
 
@@ -34,9 +36,11 @@ if Rails.configuration.use_remote_webdriver
   # Capybara.javascript_driver = :selenium
 
   # set the default URL for our tests
-  Capybara.server_host = "0.0.0.0"
-  Capybara.server_port = ENV['RAILS_PORT']
-  Capybara.app_host = "http://#{ENV['RAILS_HOST']}:#{Capybara.server_port}"
+  #Capybara.server_host = "0.0.0.0"
+  Capybara.server_host = "127.0.0.1"
+  #Capybara.server_port = ENV['RAILS_PORT']
+  Capybara.server_port = "3000"
+  Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
 else
   # Capybara.default_driver = :selenium_chrome
   # Capybara.default_driver = :selenium

@@ -64,7 +64,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 4.4.0'
+  gem 'selenium-webdriver', '~> 4.8.0'
   # to debug using cucumber binding.pry
   gem 'pry'
   

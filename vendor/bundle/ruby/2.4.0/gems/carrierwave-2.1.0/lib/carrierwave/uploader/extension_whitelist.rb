@@ -4,7 +4,7 @@ module CarrierWave
       extend ActiveSupport::Concern
 
       included do
-        before :cache, :check_extension_whitelist!
+        before :cache, :check_extension_allowlist!
       end
 
       ##
@@ -21,30 +21,30 @@ module CarrierWave
       #
       # === Examples
       #
-      #     def extension_whitelist
+      #     def extension_allowlist
       #       %w(jpg jpeg gif png)
       #     end
       #
       # Basically the same, but using a Regexp:
       #
-      #     def extension_whitelist
+      #     def extension_allowlist
       #       [/jpe?g/, 'gif', 'png']
       #     end
       #
-      def extension_whitelist; end
+      def extension_allowlist; end
 
     private
 
-      def check_extension_whitelist!(new_file)
+      def check_extension_allowlist!(new_file)
         extension = new_file.extension.to_s
-        if extension_whitelist && !whitelisted_extension?(extension)
-          raise CarrierWave::IntegrityError, I18n.translate(:"errors.messages.extension_whitelist_error", extension: new_file.extension.inspect, allowed_types: Array(extension_whitelist).join(", "))
+        if extension_allowlist && !whitelisted_extension?(extension)
+          raise CarrierWave::IntegrityError, I18n.translate(:"errors.messages.extension_allowlist_error", extension: new_file.extension.inspect, allowed_types: Array(extension_allowlist).join(", "))
         end
       end
 
       def whitelisted_extension?(extension)
         downcase_extension = extension.downcase
-        Array(extension_whitelist).any? { |item| downcase_extension =~ /\A#{item}\z/i }
+        Array(extension_allowlist).any? { |item| downcase_extension =~ /\A#{item}\z/i }
       end
 
     end # ExtensionWhitelist

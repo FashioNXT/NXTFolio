@@ -238,7 +238,7 @@ make the record invalid instead. Otherwise, an error is raised.
 
 ```ruby
 class MyUploader < CarrierWave::Uploader::Base
-  def extension_whitelist
+  def extension_allowlist
     %w(jpg jpeg gif png)
   end
 end
@@ -280,7 +280,7 @@ class MyUploader < CarrierWave::Uploader::Base
 end
 ```
 
-**WARNING**: A `content_type_whitelist` is the only form of whitelist or blacklist supported by CarrierWave that can effectively mitigate against CVE-2016-3714. Use of `extension_whitelist` will not inspect the file headers, and thus still leaves your application open to the vulnerability.
+**WARNING**: A `content_type_whitelist` is the only form of whitelist or blacklist supported by CarrierWave that can effectively mitigate against CVE-2016-3714. Use of `extension_allowlist` will not inspect the file headers, and thus still leaves your application open to the vulnerability.
 
 ### Filenames and unicode chars
 
@@ -964,7 +964,7 @@ errors:
     carrierwave_processing_error: failed to be processed
     carrierwave_integrity_error: is not of an allowed file type
     carrierwave_download_error: could not be downloaded
-    extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+    extension_allowlist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
     extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
     content_type_whitelist_error: "You are not allowed to upload %{content_type} files, allowed types: %{allowed_types}"
     content_type_blacklist_error: "You are not allowed to upload %{content_type} files"
