@@ -382,7 +382,7 @@ If there is any problem about pg database. Try the steps below:
 
 1. heroku create -a [appname]
 2. heroku config:set AWS_ACCESS_KEY=AKIAV5IDIKICCNPVFZ3U
-3. heroku config set AWS_BUCKET=nxtfolio-s3 
+3. heroku config:set AWS_BUCKET=nxtfolio-s3 
 4. heroku config:set AWS_REGION=us-west-2
 5. heroku config:set AWS_SECRET_KEY=/q8xUNLrsVtMOmE+h2UsyKjjJyQA04PcIQcz+f22
 6. heroku addons:create heroku-postgresql:essential-2
