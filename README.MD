@@ -60,7 +60,7 @@ The files to setup docker-compose can be found in the `install` folder.
 1. Clone the repository
 
     ```bash
-    git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators --config core.autocrlf=input
+    git clone https://github.com/omarkhater-school/NXTFolio.git --config core.autocrlf=input
     ```
 
 2. Go into the `install` folder
