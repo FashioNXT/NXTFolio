@@ -1,7 +1,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/maintainability)](https://codeclimate.com/github/FashioNXT/NXTFolio/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/test_coverage)](https://codeclimate.com/github/FashioNXT/NXTFolio/test_coverage)
 
-Heroku link - https://nxtfolio.herokuapp.com/
+Heroku link - https://nxtfolio-fall-24-ff06e002a0ca.herokuapp.com/
+
+Taiga Tracker link - https://tree.taiga.io/project/honraoyash-fashionxt-nxtfolio/timeline
+
+[Agile Team Working Agreement](https://github.com/omarkhater-school/NXTFolio/blob/master/documentation/Fall2024/Agile%20Team%20Working%20Agreement.txt)
 
 # NXTFolio
 
