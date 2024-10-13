@@ -41,7 +41,7 @@ cd match-my-fashion-public-CodeCreators/install
 source setup_rvm.sh
 
 # install ruby
-rvm install ruby-3.2.0
+rvm install ruby-3.2.2
 
 echo ""
 echo "--------------------------------------"
