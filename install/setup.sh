@@ -117,7 +117,7 @@ gem update --system
 
 # install all gems (and hope for the best)
 bundle install
-
+bundle config set force_ruby_platform true
 echo ""
 echo "--------------------------------------"
 echo "Setting up the database..."
