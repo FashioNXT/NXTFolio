@@ -10,7 +10,7 @@ RUN echo 'root:root' | chpasswd
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd 
-
+RUN sudo apt install -y firefox
 # to include the setup script
 WORKDIR /home
 COPY setup_rvm.sh setup_rvm.sh
