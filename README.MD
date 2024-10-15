@@ -1,7 +1,11 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/maintainability)](https://codeclimate.com/github/FashioNXT/NXTFolio/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/0728492bc199d77a82b7/test_coverage)](https://codeclimate.com/github/FashioNXT/NXTFolio/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/585c984c77cfbfe8f1a0/maintainability)](https://codeclimate.com/github/omarkhater-school/NXTFolio/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/585c984c77cfbfe8f1a0/test_coverage)](https://codeclimate.com/github/omarkhater-school/NXTFolio/test_coverage)
 
-Heroku link - https://nxtfolio.herokuapp.com/
+Heroku link - https://nxtfolio-fall-24-ff06e002a0ca.herokuapp.com/
+
+Taiga Tracker link - https://tree.taiga.io/project/honraoyash-fashionxt-nxtfolio/timeline
+
+[Agile Team Working Agreement](https://github.com/omarkhater-school/NXTFolio/blob/master/documentation/Fall2024/Agile%20Team%20Working%20Agreement.txt)
 
 # NXTFolio
 
@@ -60,7 +64,7 @@ The files to setup docker-compose can be found in the `install` folder.
 1. Clone the repository
 
     ```bash
-    git clone https://github.com/vibalcam/match-my-fashion-public-CodeCreators --config core.autocrlf=input
+    git clone https://github.com/omarkhater-school/NXTFolio.git --config core.autocrlf=input
     ```
 
 2. Go into the `install` folder
