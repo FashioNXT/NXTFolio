@@ -26,61 +26,22 @@ class GalleriesController < ApplicationController
     end
   end
 
-  # def edit
-  #   @gallery = Gallery.find(params[:id])
-  #   if @gallery.update(gallery_params)
-  #     redirect_to @gallery
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-  # def edit
-  #   @gallery = Gallery.find(params[:id])
-  # end
-
-  # def update
-  #   #@gallery = Gallery.find(params[:id])
-  #   @gallery = Gallery.find(35)
-  #   if @gallery.update(gallery_params)
-  #     redirect_to @gallery
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-
-
-  # def update
-  #   @gallery = Gallery.find(params[:id])
-  #   if @gallery.update(gallery_params)
-  #     redirect_to @gallery
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+  def edit
+    @gallery = Gallery.find(params[:id])
+  end
 
   def update
     @gallery = Gallery.find(params[:id])
-    # for item in @gallery.test_picture do
-    #   @gallery.gallery_picture.push(item)
-    # end
-    #@gallery.save!
-    #puts(@gallery.test_picture.length)
-    #puts("!!!!!!!")
     if @gallery.update(gallery_params)
-      @gallery.save
-      if @gallery.test_picture.length == 0
-        flash.now[:error] = "Add at least 1 image!"
+      if @gallery.test_picture.empty?
+        flash.now[:error] = "Add at least one image!"
         render 'edit'
       else
-        flash[:notice] = "Images uploaded!"
-        redirect_to edit_gallery_path(params[:id])
+        flash[:notice] = "#{@gallery.gallery_title} was successfully updated."
+        redirect_to @gallery
       end
-    else
-      render 'edit'
     end
   end
-
-  
 
 
   def destroy
