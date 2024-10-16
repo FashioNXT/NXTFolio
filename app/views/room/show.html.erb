@@ -264,16 +264,24 @@
                 <% @messages.each do |message| %>
                   <% if message[:general_info_id] == @user[:id] %>
                     <div class="message-box" style="background-color: #147efb; margin-left: auto; margin-right: 0;">
-                      <%= message[:body] %>
+                      <%= simple_format(message[:body]) %>
                       <% message.files.each do |file| %>
-                        <%= link_to file.filename, rails_blob_path(file, disposition: "attachment") %>
+                        <p><%= link_to rails_blob_path(file, disposition: "attachment"), style: "color: black; text-decoration: none;" do %>
+                          <i class="fas fa-file" style="margin-right: 5px;"></i>
+                          <%= file.filename %>
+                          <i class="fas fa-download" style="margin-left: 5px;"></i>
+                        <% end %><p>
                       <% end %>
                     </div>
                   <% else %>
                     <div class="message-box">
-                      <%= message[:body] %>
+                      <%= simple_format(message[:body]) %>
                       <% message.files.each do |file| %>
-                        <%= link_to file.filename, rails_blob_path(file, disposition: "attachment") %>
+                        <p><%= link_to rails_blob_path(file, disposition: "attachment"), style: "text-decoration: none;" do %>
+                          <i class="fas fa-file" style="margin-right: 5px;"></i>
+                          <%= file.filename %>
+                          <i class="fas fa-download" style="margin-left: 5px;"></i>
+                        <% end %><p>
                       <% end %>
                     </div>
                   <% end %>
