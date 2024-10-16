@@ -7,7 +7,12 @@ class RoomController < ApplicationController
       puts "sessions current_user_key" + user_key_current.to_s
 
       @user = GeneralInfo.find_by(userKey: user_key_current)
-      @users = GeneralInfo.where.not(userKey: user_key_current)
+      user_ids = Message.where("general_info_id = ? OR chatting_with = ?", @user[:id], @user[:id])
+                  .pluck(:general_info_id, :chatting_with)
+                  .flatten
+                  .uniq
+
+      @users = GeneralInfo.where(id: user_ids).where.not(userKey: user_key_current)
       @loader = true
 
       if @user && @user.notification
