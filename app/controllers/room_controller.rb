@@ -96,6 +96,10 @@ class RoomController < ApplicationController
         @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
 
         @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
+        # Check if there are any files in params[:files] and attach them
+        if params[:files].present?
+          @message.files.attach(params[:files])
+        end
       end
 
       redirect_to @chatlink

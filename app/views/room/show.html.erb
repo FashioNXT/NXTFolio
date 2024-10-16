@@ -198,10 +198,16 @@
                   <% if message[:general_info_id] == @user[:id] %>
                     <div class="message-box" style="background-color: #147efb; margin-left: auto; margin-right: 0;">
                       <%= message[:body] %>
+                      <% message.files.each do |file| %>
+                        <%= link_to file.filename, rails_blob_path(file, disposition: "attachment") %>
+                      <% end %>
                     </div>
                   <% else %>
                     <div class="message-box">
                       <%= message[:body] %>
+                      <% message.files.each do |file| %>
+                        <%= link_to file.filename, rails_blob_path(file, disposition: "attachment") %>
+                      <% end %>
                     </div>
                   <% end %>
                 <% end%>

@@ -1,4 +1,17 @@
-<%= form_tag(@chatlink) do %>
-  <%= text_field_tag "body", "", style: "width: 80%; padding: 12px 20px; margin: 8px 0; border-radius: 4px;", autocomplete: "off", autofocus: "autofocus", placeholder: "Message..." %>
-  <%= submit_tag "send", style: "border-radius: 4px; background-color: #333333; color: white; font-size:20px; padding: 8px 20px; margin: 8px; border-color: #333333"%>
+<%= form_tag(@chatlink, multipart: true) do %>
+  <!-- Text field for the body of the message -->
+  <%= text_field_tag "body", "", 
+        style: "width: 80%; padding: 12px 20px; margin: 8px 0; border-radius: 4px;", 
+        autocomplete: "off", 
+        autofocus: "autofocus", 
+        placeholder: "Message..." %>
+
+  <!-- File upload field for multiple attachments -->
+  <%= file_field_tag "files[]", 
+        multiple: true, 
+        style: "display: block; margin: 8px 0;" %>
+
+  <!-- Submit button -->
+  <%= submit_tag "Send", 
+        style: "border-radius: 4px; background-color: #333333; color: white; font-size: 20px; padding: 8px 20px; margin: 8px; border-color: #333333" %>
 <% end %>
