@@ -73,7 +73,7 @@
         <div class="header-menu-block">
           <button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
           <ul class="header-menu" id="one">
-            <li><a href="/search_profile/search">Search</a>
+            <li><a href="/chat">AI Chatbot</a>
             </li>
             <% if session[:current_user_key] %>
               <li><a href="/show_profile">My Profile</a></li>
@@ -143,48 +143,115 @@
     <% end %>
     <div class="container be-detail-container">
       <div id="chatroom_container" class="row profile-row">
-        <div id="side_panel" class="col-12 col-md-4 left-field" >
+        <div id="side_panel" class="col-12 col-md-4 left-field">
           <h1><b> <%= @username %> </b></h1>
           <hr style="height:2px;border-width:1px;color:gray;background-color:gray">
-          <h3><b> Users</b></h3>
+          <div class="button-group">
+            <style>
+              .btn-custom {
+                color: black;
+                background-color: transparent;
+                border: 2px solid transparent;
+              }
+              .btn-custom:hover {
+                color: #147efb;
+                background-color: #d9f0ff;
+              }
+              .btn-custom.active {
+                border-color: blue;
+              }
+            </style>
+
+            <button id="chat_button" class="btn btn-custom" onclick="showChat()"><b>Chat</b></button>
+            <button id="search_button" class="btn btn-custom" onclick="showSearch()"><b>Search</b></button>
+          </div>
           <br>
-          <div style="overflow-x:hidden;overflow-y:scroll;font-size:20px;height:700px;">
-            <% @users.each do |user| %>
-              <a href="/dm/<%=user.id %>">
+          <div id="chat_view" style="overflow-x:hidden;overflow-y:scroll;font-size:20px;height:700px;">
+            <% if @users.present? %>
+              <% @users.each do |user| %>
+              <a href="/dm/<%= user.id %>">
                 <% if @notifications_from %>
-                  <% if @notifications_from.include? user.id.to_i%>
-                    <div>
-                      <% if user.profile_picture.url %>
-                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
-                      <% else %>
-                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                      <% end %>
-                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
-                      <br>
-                    </div>
-                  <%else%>
-                    <div>
-                      <% if user.profile_picture.url %>
-                        <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                      <% else %>
-                        <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                      <% end %>
-                      <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
-                      <br>
-                    </div>
-                  <%end%>
-                <%else%>
+                <% if @notifications_from.include? user.id.to_i %>
                   <div>
-                    <% if user.profile_picture.url %>
-                      <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                    <% else %>
-                      <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                    <% end %>
-                    <%=user[:first_name] + " " + user[:last_name] + " - " + user[:job_name]%>
-                    <br>
+                  <% if user.profile_picture.url %>
+                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
+                  <% else %>
+                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] %>
+                  <br>
                   </div>
-                <%end%>
+                <% else %>
+                  <div>
+                  <% if user.profile_picture.url %>
+                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% else %>
+                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] %>
+                  <br>
+                  </div>
+                <% end %>
+                <% else %>
+                <div>
+                  <% if user.profile_picture.url %>
+                  <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% else %>
+                  <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] %>
+                  <br>
+                </div>
+                <% end %>
               </a>
+              <% end %>
+            <% else %>
+              <h1 class="text-center"> <b> No users to message! </b></h1>
+              <div style="text-align: center"><i class="fa-solid fa-message fa-10x" style="color:#147efb"></i></div>
+            <% end %>
+          </div>
+          <div id="search_view" style="display:none; height:700px;">
+            <%# <h1 class="text-center"> <b> No results found! </b></h1> %>
+            <% if @allusers.present? %>
+              <% @allusers.each do |user| %>
+              <a href="/dm/<%= user.id %>">
+                <% if @notifications_from %>
+                <% if @notifications_from.include? user.id.to_i %>
+                  <div>
+                  <% if user.profile_picture.url %>
+                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
+                  <% else %>
+                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
+                  <br>
+                  </div>
+                <% else %>
+                  <div>
+                  <% if user.profile_picture.url %>
+                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% else %>
+                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
+                  <br>
+                  </div>
+                <% end %>
+                <% else %>
+                <div>
+                  <% if user.profile_picture.url %>
+                  <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% else %>
+                  <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                  <% end %>
+                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
+                  <br>
+                </div>
+                <% end %>
+              </a>
+              <% end %>
+            <% else %>
+              <h1 class="text-center"> <b> No users found! </b></h1>
             <% end %>
           </div>
         </div>
@@ -217,6 +284,27 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function showChat() {
+      document.getElementById('chat_view').style.display = 'block';
+      document.getElementById('search_view').style.display = 'none';
+      document.getElementById('chat_button').classList.add('active');
+      document.getElementById('search_button').classList.remove('active');
+    }
+
+    function showSearch() {
+      document.getElementById('chat_view').style.display = 'none';
+      document.getElementById('search_view').style.display = 'block';
+      document.getElementById('search_button').classList.add('active');
+      document.getElementById('chat_button').classList.remove('active');
+    }
+
+    // Set default view to chat
+    document.addEventListener('DOMContentLoaded', function() {
+      showChat();
+    });
+  </script>
 
   <!-- MAIN CONTENT END -->
   <%= render 'shared/footer' %>
