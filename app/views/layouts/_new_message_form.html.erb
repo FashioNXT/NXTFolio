@@ -1,16 +1,6 @@
 <%= form_tag(@chatlink, multipart: true, style: "display: flex; align-items: flex-start;") do %>
-  <!-- Text field for the body of the message with automatic resizing and scrollable after 4 rows -->
-  <div style="flex-grow: 1; margin-right: 10px; position: relative;">
-    <%= text_area_tag "body", "", 
-          style: "width: 100%; padding: 12px 20px; border-radius: 4px; resize: none; overflow-y: hidden;", 
-          rows: 1,
-          autocomplete: "off", 
-          autofocus: "autofocus", 
-          placeholder: "Message...", 
-          id: "message-body" %>
-  </div>
-
-  <!-- File upload field as a paperclip symbol -->
+  
+  <!-- File upload field as a paperclip symbol, now to the left of the message body -->
   <div style="display: inline-block; position: relative; margin-right: 10px;">
     <%= file_field_tag "files[]", 
           multiple: true, 
@@ -27,6 +17,17 @@
       ">
       <i class="fas fa-paperclip"></i> <!-- Font Awesome paperclip icon -->
     </label>
+  </div>
+  
+  <!-- Text field for the body of the message with automatic resizing and scrollable after 4 rows -->
+  <div style="flex-grow: 1; margin-right: 10px; position: relative;">
+    <%= text_area_tag "body", "", 
+          style: "width: 100%; padding: 12px 20px; border-radius: 4px; resize: none; overflow-y: hidden;", 
+          rows: 1,
+          autocomplete: "off", 
+          autofocus: "autofocus", 
+          placeholder: "Message...", 
+          id: "message-body" %>
   </div>
 
   <!-- Submit button -->
