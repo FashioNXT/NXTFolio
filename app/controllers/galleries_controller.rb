@@ -8,18 +8,14 @@ class GalleriesController < ApplicationController
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     params[:gallery][:GeneralInfo_id] = @general_info.id
     @gallery = Gallery.new(gallery_params)
-    if @gallery.gallery_picture.length == 0
+    if @gallery.gallery_picture.empty?
       flash.now[:error] = "You should add at least 1 image!"
       render 'new'
-
     elsif @gallery.gallery_picture.length > 5 
       flash.now[:error] = "You can't add more than 5 images!"
       render 'new'
-
-    
     elsif @gallery.save
-      flash[:notice] = "Project Created"
-
+      flash[:notice] = "#{@gallery.gallery_title} was successfully Created"
       redirect_to '/show_profile'
     else
       render 'new'
@@ -30,19 +26,29 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
   end
 
+  #combine transfer and update function
   def update
     @gallery = Gallery.find(params[:id])
     if @gallery.update(gallery_params)
-      if @gallery.test_picture.empty?
+      current_picture = @gallery.gallery_picture + @gallery.test_picture
+      if @gallery.gallery_picture.empty?
         flash.now[:error] = "Add at least one image!"
+        render 'edit'
+      elsif current_picture.length > 5
+        flash.now[:error] = "You can not have more than 5 images in a gallery!"
+        @gallery.test_picture.clear
+        @gallery.save
         render 'edit'
       else
         flash[:notice] = "#{@gallery.gallery_title} was successfully updated."
+        @gallery.gallery_picture += @gallery.test_picture
+        flash[:success] = "successfully upload picture"
+        @gallery.test_picture.clear
+        @gallery.save
         redirect_to @gallery
       end
     end
   end
-
 
   def destroy
     #logger.debug(@gallery_picture.inspect)
@@ -52,6 +58,7 @@ class GalleriesController < ApplicationController
     @gallery.destroy
     redirect_to galleries_path
   end
+  
 # spring2023 delete single image in the gallery
   def delete
     @gallery = Gallery.find(params[:id])
@@ -71,24 +78,18 @@ class GalleriesController < ApplicationController
   def transfer
     @gallery = Gallery.find(params[:id])
     limit = 5 - @gallery.gallery_picture.length
-    #puts(limit)
-    if @gallery.test_picture.length == 0
-      render 'edit'
-    elsif @gallery.test_picture.length > limit
-      puts("wrong!!!!!!!!!!!!")
+    if @gallery.test_picture.length > limit
       flash.now[:error] = "You can not have more than 5 images in a gallery!"
       @gallery.test_picture.clear
       @gallery.save
       render 'edit'
     else
-     #puts("transfer running!!!!!!!!!!!")
-     puts("success!!!!!!!!!!!!")
-      added = @gallery.test_picture
-      @gallery.gallery_picture += added
-
+      @gallery.gallery_picture += @gallery.test_picture
+      flash[:success] = "successfully upload picture"
       @gallery.test_picture.clear
       @gallery.save
     end
+    redirect_to @gallery
   end
 
 

@@ -85,14 +85,14 @@
 
 <div class="d-flex justify-content-center">
   <div class="custom-file">
-    <%= f.label :upload_images , multipart: true %>
-    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' , style: "margin-bottom: 10px;"%>
-    <div class="actions" style="margin-bottom: 10px;" >
-      <%= button_tag "Add images", type: "submit" %>
+    <%= f.label :upload_images, 'Choose Files', class: 'custom-file-label' %>
+    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' %>
+    <div class="actions" style="margin-top: 10px;">
+      <%= submit_tag 'Update Project', class: 'btn btn-primary' %>
     </div>
-    <%= submit_tag 'Update gallery', :class => 'btn btn-primary' %>
   </div>
 </div>
+
 
 
 <% end %>
