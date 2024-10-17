@@ -210,49 +210,38 @@
               <div style="text-align: center"><i class="fa-solid fa-message fa-10x" style="color:#147efb"></i></div>
             <% end %>
           </div>
-          <div id="search_view" style="display:none; height:700px;">
-            <%# <h1 class="text-center"> <b> No results found! </b></h1> %>
-            <% if @allusers.present? %>
-              <% @allusers.each do |user| %>
-              <a href="/dm/<%= user.id %>">
-                <% if @notifications_from %>
-                <% if @notifications_from.include? user.id.to_i %>
-                  <div>
-                  <% if user.profile_picture.url %>
-                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%; border-color:#147efb; border-width: thick;" alt="">
-                  <% else %>
-                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                  <% end %>
-                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
-                  <br>
-                  </div>
-                <% else %>
-                  <div>
-                  <% if user.profile_picture.url %>
-                    <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                  <% else %>
-                    <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                  <% end %>
-                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
-                  <br>
-                  </div>
+          <div id="search_view" style="display:none;overflow-y:scroll; height:700px;">
+            <input type="text" id="user_search" class="form-control" placeholder="Search for a user..." onkeyup="searchUsers()">
+            <div id="search_results"></div>
+
+            <script>
+              function searchUsers() {
+                var input, filter, results, user, i, txtValue;
+                input = document.getElementById('user_search');
+                filter = input.value.toUpperCase();
+                results = document.getElementById("search_results");
+                results.innerHTML = '';
+
+                <% @allusers.each do |user| %>
+                  user = "<%= user[:first_name] + ' ' + user[:last_name] + ' - ' + user[:job_name] %>";
+                  if (user.toUpperCase().indexOf(filter) > -1) {
+                    results.innerHTML += `
+                      <a href="/dm/<%= user.id %>">
+                        <div>
+                          <% if user.profile_picture.url %>
+                            <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                          <% else %>
+                            <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
+                          <% end %>
+                          <%= user[:first_name] + ' ' + user[:last_name] + ' - ' + user[:job_name] %>
+                          <br>
+                        </div>
+                      </a>
+                    `;
+                  }
                 <% end %>
-                <% else %>
-                <div>
-                  <% if user.profile_picture.url %>
-                  <img class="profile-img img-thumbnail" src="<%= user.profile_picture.url %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                  <% else %>
-                  <img class="profile-img img-thumbnail" src="<%= asset_path 'avatar-icon.png' %>" width="75px" height="75px" style="border-radius:50%;" alt="">
-                  <% end %>
-                  <%= user[:first_name] + " " + user[:last_name] + " - " + user[:job_name] %>
-                  <br>
-                </div>
-                <% end %>
-              </a>
-              <% end %>
-            <% else %>
-              <h1 class="text-center"> <b> No users found! </b></h1>
-            <% end %>
+              }
+            </script>
           </div>
         </div>
         <div id="room_container" class="col-sm-8 col-md-8 " style="height:800px;">
