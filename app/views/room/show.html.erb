@@ -212,7 +212,12 @@
           </div>
           <div id="search_view" style="display:none;overflow-y:scroll; height:700px;">
             <input type="text" id="user_search" class="form-control" placeholder="Search for a user..." onkeyup="searchUsers()">
-            <div id="search_results"></div>
+            <div id="search_results">
+              <div id="default_message">
+                <h1 class="text-center"> <b> Search for a user to message! </b></h1>
+                <div style="text-align: center"><i class="fa-solid fa-search fa-10x" style="color:#147efb"></i></div>
+              </div>
+            </div>
 
             <script>
               function searchUsers() {
@@ -222,9 +227,21 @@
                 results = document.getElementById("search_results");
                 results.innerHTML = '';
 
+                if (filter === '') {
+                  results.innerHTML += `
+                    <div>
+                      <h1 class="text-center"> <b> Search for a user to message! </b></h1>
+                      <div style="text-align: center"><i class="fa-solid fa-search fa-10x" style="color:#147efb"></i></div>
+                    </div>
+                  `;
+                  return;
+                }
+
+                var found = false;
                 <% @allusers.each do |user| %>
                   user = "<%= user[:first_name] + ' ' + user[:last_name] + ' - ' + user[:job_name] %>";
                   if (user.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
                     results.innerHTML += `
                       <a href="/dm/<%= user.id %>">
                         <div>
@@ -240,7 +257,17 @@
                     `;
                   }
                 <% end %>
+
+                if (!found) {
+                  results.innerHTML += `
+                    <div>
+                      <h1 class="text-center"> <b> No users found </b></h1>
+                      <div style="text-align: center"><i class="fa-solid fa-user-slash fa-10x" style="color:#147efb"></i></div>
+                    </div>
+                  `;
+                }
               }
+            </script>
             </script>
           </div>
         </div>
