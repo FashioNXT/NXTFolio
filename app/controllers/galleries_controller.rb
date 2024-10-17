@@ -9,13 +9,13 @@ class GalleriesController < ApplicationController
     params[:gallery][:GeneralInfo_id] = @general_info.id
     @gallery = Gallery.new(gallery_params)
     if @gallery.gallery_picture.empty?
-      flash.now[:error] = "You should add at least 1 image!"
+      flash.now[:error] = "Please add at least one image."
       render 'new'
     elsif @gallery.gallery_picture.length > 5 
-      flash.now[:error] = "You can't add more than 5 images!"
+      flash.now[:error] = "You cannot add more than five images."
       render 'new'
     elsif @gallery.save
-      flash[:notice] = "#{@gallery.gallery_title} was successfully Created"
+      flash[:notice] = "#{@gallery.gallery_title} has been successfully created."
       redirect_to '/show_profile'
     else
       render 'new'
@@ -32,19 +32,18 @@ class GalleriesController < ApplicationController
     if @gallery.update(gallery_params)
       current_picture = @gallery.gallery_picture + @gallery.test_picture
       if @gallery.gallery_picture.empty?
-        flash.now[:error] = "Add at least one image!"
+        flash.now[:error] = "Please add at least one image."
         render 'edit'
       elsif current_picture.length > 5
-        flash.now[:error] = "You can not have more than 5 images in a gallery!"
+        flash.now[:error] = "The gallery cannot contain more than five images."
         @gallery.test_picture.clear
         @gallery.save
         render 'edit'
       else
-        flash[:notice] = "#{@gallery.gallery_title} was successfully updated."
         @gallery.gallery_picture += @gallery.test_picture
-        flash[:success] = "successfully upload picture"
         @gallery.test_picture.clear
         @gallery.save
+        flash[:notice] = "#{@gallery.gallery_title} has been successfully updated."
         redirect_to @gallery
       end
     end
@@ -72,7 +71,6 @@ class GalleriesController < ApplicationController
     end
     @gallery.save
   end
-
 
 # spring2023 add images to gallery
   def transfer
