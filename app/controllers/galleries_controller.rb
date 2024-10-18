@@ -26,7 +26,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
   end
 
-  #combine transfer and update function
+  #2024fall: combine transfer and update function
   def update
     @gallery = Gallery.find(params[:id])
     if @gallery.update(gallery_params)
