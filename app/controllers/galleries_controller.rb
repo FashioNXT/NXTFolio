@@ -59,18 +59,14 @@ class GalleriesController < ApplicationController
   end
   
 # spring2023 delete single image in the gallery
-  def delete
-    @gallery = Gallery.find(params[:id])
-    index_str = params[:idx]
-    index = (index_str).to_i
-    #puts(index.to_s + "!!!!!!!!!!")
-    img = @gallery.gallery_picture[index]
-    @gallery.gallery_picture.delete_at(index)
-    if img.in?(@gallery.test_picture)
-      @gallery.test_picture.delete(img)
-    end
-    @gallery.save
-  end
+def delete
+  @gallery = Gallery.find(params[:id])
+  index = params[:idx].to_i
+  deleted_image = @gallery.gallery_picture.delete_at(index)
+  @gallery.save
+  flash.now[:notice] = "Image deleted successfully."
+  render 'edit'
+end
 
 # spring2023 add images to gallery
   def transfer
