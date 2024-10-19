@@ -28,8 +28,7 @@
 		</div>
     </div>
 
-<h1 class="d-flex justify-content-center">Edit Gallery Details</h1>
-
+<h1 class="d-flex justify-content-center">Add images (No more than 5 images pre gallery!)</h1>
 <% if flash[:notice] %>
 	<div class="alert alert-success">
 		<%= flash[:notice] %>
@@ -49,6 +48,7 @@
   <% if @gallery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
+
       <ul>
       <% @gallery.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -77,12 +77,6 @@
     <div class="col-sm-4 custom-padding mb-2">
       <div class="card mb-4">
         <img src="<%= picture.url %>" class="card-img-top">
-        <div class="card-body text-center">
-          <% idx = @gallery.gallery_picture.index(picture)%>
-          <% if @gallery.gallery_picture.length > 1 %>
-            <%= link_to 'Delete', gallery_delete_path(@gallery, idx), method: :get%>
-          <% end %>
-          </div>
       </div>
     </div>
   <% end %>
@@ -91,19 +85,23 @@
 
 <div class="d-flex justify-content-center">
   <div class="custom-file">
-    <%= f.label :upload_images, 'Choose Files', class: 'custom-file-label' %>
-    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' %>
-    <div class="actions" style="margin-top: 10px;">
-      <%= submit_tag 'Update Project', class: 'btn btn-primary' %>
+    <%= f.label :upload_images , multipart: true %>
+    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' , style: "margin-bottom: 10px;"%>
+
+    <div class="actions" style="margin-bottom: 10px;" >
+      <%= button_tag "Add images", type: "submit" %>
     </div>
+
+    <a  href="add_images" class="btn btn-success" style="margin-bottom: 10px;" >Update gallery</a>
   </div>
 </div>
-
 
 
 <% end %>
 <a class="btn full color-1 size-1 hover-1" href = show method="get"><i class="fa fa-chevron-left"></i>Back</a>
 
+
+        
 
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 	  <!-- SCRIPT	-->
