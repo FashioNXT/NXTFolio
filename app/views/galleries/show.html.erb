@@ -34,22 +34,12 @@
       </div>
     </div>
 
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
       
       <!-- Main Content -->
     <div class="container float-left">
       <div class = "container be-detail-container float-left">
         <h2> <%= @gallery.gallery_title %> </h2>
-        <%if GeneralInfo.find(@gallery.GeneralInfo_id).userKey == session[:current_user_key]%>
-          <%= link_to 'Edit This Project', edit_gallery_path(@gallery.id)%>
-          <br>
-          <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
-        <%end%>
-      </div>
+    </div>
     <div class = "container be-detail-container float-left">
         <h3> Description: </h3>
         <p> <%= @gallery.gallery_description %> </p>
@@ -79,13 +69,27 @@
                               <a class="be-img-block profile-img img-thumbnail" href="#">
                                 <%= image_tag image.url %>
                                 <%idx = @gallery.gallery_picture.index(image)%>
+                                <%if @gallery.gallery_picture.length() > 1 %>
+                                <%which = (idx + 1).to_s%>
+                                  <% if owner.userKey == session[:current_user_key] %>
+                                    <a  href="delete/idx=<%= idx %>">Delete<%=which%></a>
+                                  <%end%>
+                                <%end%>
+          
                               </a>
-                            </div>                    
+                            </div>
+          
+                            
                         </div>
                       <% end %>
+          
                       <%# <div class="col-md-3">
-                      </div> %>      
+                      </div> %>
+                  
                 </div>
+                  <%if @gallery.gallery_picture.length() == 1 && owner.userKey == session[:current_user_key]%>
+                        <%= link_to 'Delete This Project', show_profile_destroy_path(@gallery.id), :method => :delete, data: { confirm: "Are you sure to delete?" } %>
+                  <%end%>
                 </div>
             </div>
         </div>
@@ -122,6 +126,10 @@
     </div>
 
   <br>
+
+  <% if owner && owner.userKey == session[:current_user_key] %>
+    <%= link_to 'Add pictures', edit_gallery_path(@gallery), class: 'btn btn-success' %>
+  <%end %>
 
   <%# Fall 2023: Piyush Sharan, adding comments to Gallery %>
   <% if ((owner && owner.userKey == session[:current_user_key]) || (@collab_count && @collab_count >= 3)) %>
