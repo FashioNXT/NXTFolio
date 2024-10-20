@@ -247,26 +247,6 @@
         <div id="room_container" class="col-sm-8 col-md-8 " style="height:800px;">
           <% if @single_room %>
             <%= render 'messages' %>
-            <script>
-                // Function to load new messages
-                function loadNewMessages() {
-                    $.ajax({
-                        url: '/messages?room_id=<%= @room_id %>', // Ensure this URL matches the route
-                        method: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            // Update the messages section with the new messages
-                            $('#messages').append(response.html);
-                        },
-                        error: function(error) {
-                            console.error('Error loading new messages:', error);
-                        }
-                    });
-                }
-
-                // Periodically load new messages every 5 seconds
-                setInterval(loadNewMessages, 10000);
-            </script>
           <%else %>
             <h1 class="text-center"> <b><br> Select a user to message! </b></h1>
             <div style="text-align: center"><i class="fa-solid fa-paper-plane fa-10x"></i></div>

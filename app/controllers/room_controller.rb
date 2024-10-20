@@ -109,18 +109,6 @@ class RoomController < ApplicationController
     end
   end
 
-
-  def index
-    @messages = Message.where(room_id: params[:room_id])
-
-    respond_to do |format|
-      format.json do
-        html = render_to_string(partial: 'room/messages', collection: @messages, as: :message, locals: { user: @user })
-        render json: { html: html }
-      end
-    end
-  end
-
   #def show_notifications
     
   #end
