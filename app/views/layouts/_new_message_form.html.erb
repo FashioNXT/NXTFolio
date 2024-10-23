@@ -1,4 +1,90 @@
-<%= form_tag(@chatlink) do %>
-  <%= text_field_tag "body", "", style: "width: 80%; padding: 12px 20px; margin: 8px 0; border-radius: 4px;", autocomplete: "off", autofocus: "autofocus", placeholder: "Message..." %>
-  <%= submit_tag "send", style: "border-radius: 4px; background-color: #333333; color: white; font-size:20px; padding: 8px 20px; margin: 8px; border-color: #333333"%>
+<%= form_tag(@chatlink, multipart: true, style: "display: flex; align-items: flex-start;") do %>
+  
+  <!-- File upload field as a paperclip symbol, now to the left of the message body -->
+  <div style="display: inline-block; position: relative; margin-right: 10px;">
+  <%= file_field_tag "files[]", 
+    multiple: true, 
+    style: "display: none;", 
+    id: "file-upload-input" %>
+  
+  <label for="file-upload-input" style="
+  display: inline-block; 
+  cursor: pointer; 
+  padding: 10px;
+  background-color: transparent;
+  color: #333333;
+  font-size: 20px;
+  ">
+  <i class="fas fa-paperclip"></i> <!-- Font Awesome paperclip icon -->
+  </label>
+  </div>
+  
+  <!-- Text field for the body of the message with automatic resizing and scrollable after 4 rows -->
+  <div style="flex-grow: 1; margin-right: 10px; position: relative;">
+  <%= text_area_tag "body", "", 
+    style: "width: 100%; padding: 12px 20px; border-radius: 4px; resize: none; overflow-y: hidden;", 
+    rows: 1,
+    autocomplete: "off", 
+    autofocus: "autofocus", 
+    placeholder: "Message...", 
+    id: "message-body" %>
+  </div>
+
+  <!-- Submit button -->
+  <%= submit_tag "Send", 
+  style: "border-radius: 4px; background-color: #333333; color: white; font-size: 20px; padding: 8px 20px; border-color: #333333; opacity: 0.5; cursor: not-allowed;", 
+  id: "send-button", 
+  disabled: true %>
 <% end %>
+
+<!-- Script to auto-resize the message body and update file count -->
+<script>
+  function updateSendButtonState() {
+  var messageBody = document.getElementById('message-body').value;
+  var fileUploadInput = document.getElementById('file-upload-input').files.length;
+  var sendButton = document.getElementById('send-button');
+
+  if (messageBody.length > 0 || fileUploadInput > 0) {
+    sendButton.style.opacity = '1';
+    sendButton.style.cursor = 'pointer';
+    sendButton.disabled = false;
+  } else {
+    sendButton.style.opacity = '0.5';
+    sendButton.style.cursor = 'not-allowed';
+    sendButton.disabled = true;
+  }
+  }
+
+  document.getElementById('file-upload-input').addEventListener('change', function() {
+  var label = document.querySelector('label[for="file-upload-input"]');
+  if (this.files.length > 0) {
+    label.innerHTML = this.files.length + ' file(s) selected <i class="fas fa-paperclip"></i>';
+  } else {
+    label.innerHTML = '<i class="fas fa-paperclip"></i>';
+  }
+  updateSendButtonState();
+  });
+
+  document.getElementById('message-body').addEventListener('input', function() {
+  const lineHeight = 24; // Approximate height of one line in pixels
+  const maxRows = 5; // Maximum number of rows to show before scrolling
+  const maxHeight = lineHeight * maxRows; // Maximum height before scrollbar appears
+
+  // Reset the height to auto to get the real scrollHeight
+  this.style.height = 'auto'; 
+
+  // If the content is less than the max height, grow normally
+  if (this.scrollHeight <= maxHeight) {
+    this.style.height = this.scrollHeight + 'px';
+    this.style.overflowY = 'hidden'; // Disable scrolling if within limit
+  } else {
+    // If content exceeds max height, fix the height and enable scrolling
+    this.style.height = maxHeight + 'px';
+    this.style.overflowY = 'scroll'; // Enable scrolling
+  }
+  updateSendButtonState();
+  });
+
+  // Initial call to set the correct state of the send button
+  updateSendButtonState();
+</script>

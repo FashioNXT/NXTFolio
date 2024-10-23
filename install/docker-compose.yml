@@ -8,7 +8,7 @@
 # to check what the website's 
 #   http://localhost:7900/?autoconnect=1&resize=scale&password=secret
 
-version: '3'
+# version: '3'
 services:
   browser:
     

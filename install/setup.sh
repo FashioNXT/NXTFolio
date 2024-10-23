@@ -126,6 +126,7 @@ sleep 2
 # read -p "Press [Enter] key to continue..."
 
 # setup tables
+rails active_storage:install
 rake db:create
 rake db:migrate
 rake db:seed

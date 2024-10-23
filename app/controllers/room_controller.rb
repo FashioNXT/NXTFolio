@@ -7,7 +7,13 @@ class RoomController < ApplicationController
       puts "sessions current_user_key" + user_key_current.to_s
 
       @user = GeneralInfo.find_by(userKey: user_key_current)
-      @users = GeneralInfo.where.not(userKey: user_key_current)
+      user_ids = Message.where("general_info_id = ? OR chatting_with = ?", @user[:id], @user[:id])
+          .pluck(:general_info_id, :chatting_with)
+          .flatten
+          .uniq
+
+      @users = user_ids.present? ? GeneralInfo.where(id: user_ids).where.not(userKey: user_key_current).order(updated_at: :desc) : nil
+      @allusers = GeneralInfo.where.not(userKey: user_key_current)
       @loader = true
 
       if @user && @user.notification
@@ -91,6 +97,10 @@ class RoomController < ApplicationController
         @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @chatting_with], @room_name)
 
         @message = Message.create(general_info_id: @user[:id], room_id: @single_room[:id], body: params[:body], chatting_with: @chatid)
+        # Check if there are any files in params[:files] and attach them
+        if params[:files].present?
+          @message.files.attach(params[:files])
+        end
       end
 
       redirect_to @chatlink
