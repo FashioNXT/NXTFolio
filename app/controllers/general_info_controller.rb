@@ -9,10 +9,11 @@ class GeneralInfoController < ApplicationController
     generator = AboutMeGenerator.new(@general_info)
   
     missing_fields = generator.missing_fields
-    puts "Missing fields: #{missing_fields}" # Debugging
+    Rails.logger.info "Missing fields: #{missing_fields}" # Debugging
   
     # Generate the About Me content, even if there are missing fields
     about_me_content = generator.generate_about_me
+    Rails.logger.info "About Me content: #{about_me_content}"
   
     # If there are missing fields, include them as recommendations
     if missing_fields.any?
@@ -261,7 +262,11 @@ class GeneralInfoController < ApplicationController
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = @general_info[:first_name]
+      puts "GeneralInfo found: #{@general_info.inspect}"
+      puts "Username: #{@username}"
     else
+      puts "No GeneralInfo found for userKey: #{session[:current_user_key]}"
+      flash[:notice] = "Please complete your profile to proceed."
       redirect_to :action => 'new'
     end
 
