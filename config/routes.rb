@@ -210,9 +210,6 @@ end
  
 
 end
-if Rails.env.test?
-  require 'rack_session_access/capybara'
-end
 
 #end
 

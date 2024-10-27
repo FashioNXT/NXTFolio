@@ -43,11 +43,11 @@ Background: users in database
 Scenario: Should See AI Enhance Button
   Given I am logged in as "Andrea.Picardo"
   And I am on general_info_edit2
-  Then I should see "Enhance with AI"
+  Then I should see "Generate About Me"
 
 Scenario: Should See AI Enhance Button
   Given I am logged in as "Anthony.Gray"
   And I am on general_info_edit2
-  And I press "Enhance with AI"
-  Then I should see "AI Response:"
+  And I press "Generate About Me"
+  Then I should see "About Me generated successfully"
 

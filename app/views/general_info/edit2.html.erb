@@ -68,29 +68,19 @@
                       </div>
                     </div>
 
-                    # <!-- About Me -->
-                    # <div class="input-col col-xs-12 col-sm-10">
-                    #   <div class="form-group focus-2">
-                    #     <div class="form-label">About Me</div>
-                    #     <label>Tell us what makes you unique and different, what are your hobbies and skills, etc.</label>
-                    #     <%= form.text_area :bio, id: "bio", :class => 'form-input', :placeholder => 'Something about you', :maxlength => '240', :rows => '3' %>
-                    #     <span class="pull-right label label-default" id="count_message_aboutme"></span>
-                    #     <!-- Button to trigger "Generate About Me" -->
-                    #     <%= button_tag 'Generate About Me', id: 'generate_about_me_button', class: 'btn btn-primary', type: 'button' %>
-                    #     <!-- Placeholder for feedback (missing fields or success message) -->
-                    #     <div id="about_me_message" style="color: red; margin-top: 10px;"></div>
-                    #   </div>
-                    # </div>
-
-                    <div class="input-col col-xs-12 col-sm-10">
-                    <div class="form-group focus-2">
-                      <div class="form-label">About Me</div>
-                      <%= form.text_area :bio, id: "bio", :class => 'form-input', :placeholder => 'Something about you', :maxlength => '240', :rows => '3' %>
-                      <span class="pull-right label label-default" id="count_message_aboutme"></span>
-                      <%= button_tag 'Generate About Me', id: 'generate_about_me_button', class: 'btn btn-primary', type: 'button' %>
-                      <div id="about_me_message" style="color: red; margin-top: 10px;"></div>
-                    </div>
-                    </div>
+                     <!-- About Me -->
+                     <div class="input-col col-xs-12 col-sm-10">
+                       <div class="form-group focus-2">
+                         <div class="form-label">About Me</div>
+                         <label>Tell us what makes you unique and different, what are your hobbies and skills, etc.</label>
+                         <%= form.text_area :bio, id: "bio", :class => 'form-input', :placeholder => 'Something about you', :maxlength => '240', :rows => '3' %>
+                         <span class="pull-right label label-default" id="count_message_aboutme"></span>
+                         <!-- Button to trigger "Generate About Me" -->
+                         <%= button_tag 'Generate About Me', id: 'generate_about_me_button', class: 'btn btn-primary', type: 'button' %>
+                         <!-- Placeholder for feedback (missing fields or success message) -->
+                         <div id="about_me_message" style="color: red; margin-top: 10px;"></div>
+                       </div>
+                     </div>
                     <!-- Social Media Handles -->
                     <div class="input-col col-xs-12 col-sm-10">
                       <div class="form-label">Social Media Handles</div>
@@ -201,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
-
 
 <script>
   // Existing character count logic
