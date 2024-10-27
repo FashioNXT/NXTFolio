@@ -3,7 +3,30 @@ class GeneralInfoController < ApplicationController
   def list
     @general_infos = GeneralInfo.all
   end
-
+  
+  def generate_about_me
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    generator = AboutMeGenerator.new(@general_info)
+  
+    missing_fields = generator.missing_fields
+    puts "Missing fields: #{missing_fields}" # Debugging
+  
+    # Generate the About Me content, even if there are missing fields
+    about_me_content = generator.generate_about_me
+  
+    # If there are missing fields, include them as recommendations
+    if missing_fields.any?
+      render json: { 
+        about_me: about_me_content, 
+        missing_fields: missing_fields, 
+        message: "For better personalization, please complete the following fields: #{missing_fields.join(', ')}."
+      }
+    else
+      # If no missing fields, just return the generated About Me content
+      render json: { about_me: about_me_content }
+    end
+  end
+  
   def show
     # @general_info = GeneralInfo.find(params[:id])
   end
@@ -340,4 +363,6 @@ class GeneralInfoController < ApplicationController
   # Takes input from the search view & calls the model search functions
   def search
   end
+
+
 end
