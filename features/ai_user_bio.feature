@@ -49,5 +49,5 @@ Scenario: Should See AI Enhance Button
   Given I am logged in as "Anthony.Gray"
   And I am on general_info_edit2
   And I press "Generate About Me"
-  Then I should see "About Me generated successfully"
+  Then I should see an about me message saying "About Me generated successfully"
 
