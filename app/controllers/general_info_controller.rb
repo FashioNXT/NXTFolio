@@ -7,6 +7,11 @@ class GeneralInfoController < ApplicationController
   def generate_about_me
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     generator = AboutMeGenerator.new(@general_info)
+
+    # Return 404 if no matching user is found
+  unless @general_info
+    render json: { error: 'User not found' }, status: :not_found and return
+  end
   
     missing_fields = generator.missing_fields
     Rails.logger.info "Missing fields: #{missing_fields}" # Debugging
