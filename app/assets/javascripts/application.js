@@ -79,12 +79,11 @@ $( document ).ready(function() {
     console.log("Printing Button Status:..")
 
     function setupButton(buttonType) {
-        $('.${buttonType}button').click(function () {
+        $(`.${buttonType}button`).click(function () {
             localStorage.setItem('buttonpressed', buttonType);
-            hideAll();
-            deactivateAll();
-            $('.${buttonType}div').show();
-            $('.${buttonType}button').addClass("active");
+            cleanButtonDiv();
+            $(`.${buttonType}div`).show();
+            $(`.${buttonType}button`).addClass("active");
         });
     }
     
