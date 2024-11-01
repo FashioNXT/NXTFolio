@@ -14,8 +14,6 @@
 
 // A $( document ).ready() block.
 
-console.log("Javascript update testing");
-
 // Function hides all changing divs
 function hideAll() {
     $(".alldiv").hide();
@@ -74,9 +72,7 @@ function cleanButtonDiv() {
 }
 
 $( document ).ready(function() {
-    console.log("I am inside document function");
     hideAll();
-    console.log("Printing Button Status:..")
 
     function setupButton(buttonType) {
         $(`.${buttonType}button`).click(function () {

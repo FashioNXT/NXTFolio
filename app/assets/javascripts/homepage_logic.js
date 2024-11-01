@@ -1,8 +1,3 @@
-$(document).on('turbolinks:load', function() {
-if (typeof $ === 'undefined') {
-    console.error("jQuery is not loaded on this page.");
-}
-
 const indicator = localStorage.getItem('buttonpressed');
 
 // Mapping sections and buttons to their respective indicators
@@ -56,4 +51,3 @@ if (indicator === 'false') {
 
 // Example of usage to change indicator when a new button is pressed
 // $('.some-button').on('click', () => activateSection('some-key'));
-});
