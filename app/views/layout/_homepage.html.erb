@@ -1,8 +1,8 @@
-    <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
-<div class="container-fluid custom-container"
+<link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
+<div class="container-fluid custom-container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <div id="container-mix"  class="row _post-container_">
+      <div id="container-mix" class="row _post-container_">
         <div class="be-post branddiv" id="Brand1">
           <% @gallery.present? and @gallery.each do |gallery| %>
             <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
@@ -26,7 +26,7 @@
                         <% else %>
                           <% average_review=gallery.reviews.average(:rating).round(2) %>
                         <% end %>
-                        <div class="average-review-rating" data-score='<%= average_review %>>'>
+                        <div class="average-review-rating" data-score='<%= average_review %>'>
                         </div>
                       </div>
                       <div class="mask"></div>
@@ -41,19 +41,19 @@
         </div>
         <div>
           <h3>Projects you may be interested in:</h3>
-          <%if session[:current_user_key]%>
+          <% if session[:current_user_key] %>
             <% current_user = GeneralInfo.find_by(userKey: session[:current_user_key]) %>
-            <% galleries = current_user.gallery %>
-            <% galls = []%>
-            <% galleries.each do |gallery| %>
-              <% gallery.get_similar_galleries.keys.each do |gal| %>
-                <% galls.push(gal) %>
+            <% if current_user %><!-- ADDED: Check if current_user is found -->
+              <% galleries = current_user.gallery %>
+              <% galls = [] %>
+              <% galleries.each do |gallery| %>
+                <% gallery.get_similar_galleries.keys.each do |gal| %>
+                  <% galls.push(gal) %>
+                <% end %>
               <% end %>
-            <% end %>
-            <% galls = galls.uniq %>
-            <div class="gallery-wrapper" style="overflow: visible;">
-              <div class="row">
-                <%# sorted_map.keys.each_slice(50) do |galls| %>
+              <% galls = galls.uniq %>
+              <div class="gallery-wrapper" style="overflow: visible;">
+                <div class="row">
                   <div class="gallery-pair">
                     <% galls.each do |gall| %>
                       <div class="col-md-4">
@@ -77,39 +77,41 @@
                         </a>
                         <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
                         <div class="desc"> <%= gall.gallery_description %> </div>
-                        <% if gall.gallery_totalRate && gall.gallery_totalRator%>
+                        <% if gall.gallery_totalRate && gall.gallery_totalRator %>
                           <div class="desc"> <%= "Rating: " + (gall.gallery_totalRate / gall.gallery_totalRator).to_s %> </div>
                         <% end %>
                       </div>
                     <% end %>
                   </div>
-                <%# end %>
+                </div>
               </div>
-            </div>
+            <% else %><!-- ADDED: Message if current_user is nil -->
+              <p>No user found. Please log in again.</p>
+            <% end %>
           <% else %>
-            <% @all_galleries = Gallery.all%>
-            <% map = Hash.new%>
-            <% for gal in @all_galleries do%>
-              <%total = 0%>
-              <%len = 0%>
-              <% for x in gal.reviews%>
-                <% total += x.rating.to_i%>
-                <%len +=1%>
-              <%end%>
-              <%if gal.gallery_totalRate == nil%>
-                <%gal.gallery_totalRate = total%>
-              <%end%>
-              <%if gal.gallery_totalRator == nil%>
-                <%gal.gallery_totalRator = len%>
-              <%end%>
+            <% @all_galleries = Gallery.all %>
+            <% map = Hash.new %>
+            <% for gal in @all_galleries do %>
+              <% total = 0 %>
+              <% len = 0 %>
+              <% for x in gal.reviews do %>
+                <% total += x.rating.to_i %>
+                <% len += 1 %>
+              <% end %>
+              <% if gal.gallery_totalRate == nil %>
+                <% gal.gallery_totalRate = total %>
+              <% end %>
+              <% if gal.gallery_totalRator == nil %>
+                <% gal.gallery_totalRator = len %>
+              <% end %>
               <% if map.length < 50 %>
-                <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
-                <%if average_review >= 3%>
-                  <%map[gal] = average_review %>
-                <%end%>
-              <%end%>
-            <% end%>
-            <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
+                <% average_review = gal.gallery_totalRate / gal.gallery_totalRator %>
+                <% if average_review >= 3 %>
+                  <% map[gal] = average_review %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% sorted_map = map.sort_by { |k, v| -v }.to_h %>
             <div class="gallery-wrapper" style="overflow-y: visible;">
               <div class="row">
                 <% sorted_map.keys.each_slice(50) do |galls| %>
@@ -142,7 +144,7 @@
                   </div>
                 <% end %>
               </div>
-            </div>           
+            </div>
           <% end %>
         </div>
       </div>

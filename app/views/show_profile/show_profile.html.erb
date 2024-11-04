@@ -239,6 +239,20 @@
 								</div>
 							</div>
 						<% end %>
+						<h2>Instagram Feed</h2>
+						<div class="instagram-feed">
+						<% if @instagram_photos.present? %>
+							<% @instagram_photos.each do |photo| %>
+							<div class="photo">
+								<a href="<%= photo.permalink %>" target="_blank">
+								<img src="<%= photo.image_url %>" alt="Instagram photo" />
+								</a>
+							</div>
+							<% end %>
+						<% else %>
+							<p>No Instagram photos available.</p>
+						<% end %>
+						</div>
 					</div>
 
 					<div class="bottom-right-box">

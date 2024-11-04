@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_16_040121) do
+ActiveRecord::Schema.define(version: 2024_11_04_022742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,18 @@ ActiveRecord::Schema.define(version: 2024_10_16_040121) do
     t.date "travel_start"
     t.date "travel_end"
     t.string "travel_details"
+  end
+
+  create_table "instagram_photos", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "url"
+    t.string "caption"
+    t.datetime "posted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "general_info_id"
+    t.index ["general_info_id"], name: "index_instagram_photos_on_general_info_id"
+    t.index ["user_id"], name: "index_instagram_photos_on_user_id"
   end
 
   create_table "job_infos", force: :cascade do |t|
@@ -347,6 +359,7 @@ ActiveRecord::Schema.define(version: 2024_10_16_040121) do
   add_foreign_key "comments", "galleries"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
+  add_foreign_key "instagram_photos", "users"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
   add_foreign_key "states", "countries"

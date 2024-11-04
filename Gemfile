@@ -116,3 +116,6 @@ gem 'rubyzip', "~> 2.3.0"
 
 
 gem "ruby-openai"
+
+gem 'omniauth-instagram'
+gem 'dotenv-rails', groups: [:development, :test]

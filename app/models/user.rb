@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :trackable, :validatable
 
-  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+  devise :omniauthable, omniauth_providers: %i[instagram]
 
 #  scope :all_except, -> (user) { where.not(id: user)}
 
@@ -26,5 +26,23 @@ class User < ApplicationRecord
       #room.skip_confirmation!
 #    end
 #  end
+
+def self.from_omniauth(auth)
+  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.username = auth.info.nickname
+    user.image_url = auth.info.image
+    user.access_token = auth.credentials.token
+  end
+end
+
+#For instagram-integration
+def instagram_photos
+  # This method should use the Instagram API to fetch photos
+  # Ensure you have the access token stored in the user model
+  access_token = self.instagram_access_token
+  response = HTTParty.get("https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url&access_token=#{access_token}")
+  photos = response.parsed_response["data"]
+  photos || []
+end
 
 end

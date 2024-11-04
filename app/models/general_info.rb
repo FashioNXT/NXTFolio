@@ -396,5 +396,13 @@ class GeneralInfo < ApplicationRecord
           
     return @filteredUsers.or(@filteredUsers1)
   end
+ 
+  has_many :instagram_photos
+
+  # def instagram_photos
+  #   self.instagram_photos
+  # end
+
+
 end
 

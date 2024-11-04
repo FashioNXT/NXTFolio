@@ -1,6 +1,9 @@
 
 Rails.application.routes.draw do
 
+  #For instagram integration
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+
   # to retrive states and cities
   get 'messages', to: 'room#index'
   get 'states/:country_id', to: 'states#index', as: 'states'
