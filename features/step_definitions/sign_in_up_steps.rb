@@ -23,3 +23,8 @@ end
 Then(/^"([^"]*)" should not be added to the GeneralInfo database$/) do |firstname|
   expect(GeneralInfo.exists?(:first_name => firstname)).to be(false)
 end
+
+Then(/^I will be on (.+)$/) do |page_name|
+  expected_path = path_to(page_name)
+  expect(page).to have_current_path(expected_path, wait: 5)
+end
