@@ -9,7 +9,6 @@ class AboutMeGenerator
       :city,
       :state,
       :country,
-      :gender,
       :highlights,
       :job_name,
       :compensation
@@ -25,7 +24,7 @@ class AboutMeGenerator
       
 
       # Generate message to send to api to recieve about me response
-      content << "Write an about me message tells us what makes you unique and different, what are your hobbies and skills, etc using the following information"
+      content << "Write an about me message that tells us what makes you unique and different, what are your hobbies and skills, etc using the following information. The response must be less than or equal to 200 characters including spaces."
       content << "I am a #{@general_info.industry.downcase} specializing in #{@general_info.specialization.downcase}" if @general_info.industry && @general_info.specialization
       content << "based in #{@general_info.city}, #{@general_info.state}, #{@general_info.country}" if @general_info.city && @general_info.state && @general_info.country
       content << "currently working at #{@general_info.company}" if @general_info.company
@@ -41,8 +40,9 @@ class AboutMeGenerator
       #if missing.any?
         #about_me_content += "\nThe following details are missing: #{missing.join(', ')}"
       #end
-      puts "About me content: #{about_me_content}"
+      puts "About me content sent to API: #{about_me_content}"
       response = chat_service.call(about_me_content)
+      response
     end
   
     def missing_fields

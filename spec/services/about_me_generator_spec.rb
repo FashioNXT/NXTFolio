@@ -28,7 +28,7 @@ RSpec.describe AboutMeGenerator, type: :service do
         chat_service_double = instance_double("ChatService")
         allow(ChatService).to receive(:new).and_return(chat_service_double)
         expect(chat_service_double).to receive(:call).with(a_string_including(
-          "Write an about me message tells us what makes you unique and different, what are your hobbies and skills, etc using the following information"
+          "Write an about me message that tells us what makes you unique and different"
         )).and_return("This is a mocked response with details about me.")
   
         # Run the service method
