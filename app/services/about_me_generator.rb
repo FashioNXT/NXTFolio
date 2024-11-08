@@ -20,9 +20,12 @@ class AboutMeGenerator
     end
   
     def generate_about_me
+      chat_service = ChatService.new
       content = []
-  
-      # Generate the about me content using relevant fields
+      
+
+      # Generate message to send to api to recieve about me response
+      content << "Write an about me message tells us what makes you unique and different, what are your hobbies and skills, etc using the following information"
       content << "I am a #{@general_info.industry.downcase} specializing in #{@general_info.specialization.downcase}" if @general_info.industry && @general_info.specialization
       content << "based in #{@general_info.city}, #{@general_info.state}, #{@general_info.country}" if @general_info.city && @general_info.state && @general_info.country
       content << "currently working at #{@general_info.company}" if @general_info.company
@@ -35,11 +38,11 @@ class AboutMeGenerator
   
       # Check for missing fields
       missing = missing_fields
-      if missing.any?
-        about_me_content += "\nThe following details are missing: #{missing.join(', ')}"
-      end
+      #if missing.any?
+        #about_me_content += "\nThe following details are missing: #{missing.join(', ')}"
+      #end
       puts "About me content: #{about_me_content}"
-      about_me_content
+      response = chat_service.call(about_me_content)
     end
   
     def missing_fields

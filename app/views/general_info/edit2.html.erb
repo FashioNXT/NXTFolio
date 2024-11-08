@@ -79,6 +79,7 @@
                          <%= button_tag 'Generate About Me', id: 'generate_about_me_button', class: 'btn btn-primary', type: 'button' %>
                          <!-- Placeholder for feedback (missing fields or success message) -->
                          <div id="about_me_message" style="color: red; margin-top: 10px;"></div>
+                         <div id="about_me_warning" style="color: red; margin-top: 10px;"></div>
                        </div>
                      </div>
                     <!-- Social Media Handles -->
@@ -180,8 +181,10 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => response.json())
     .then(data => {
       if (data.about_me) {
+        console.log(data)
         document.getElementById('bio').value = data.about_me;
         document.getElementById('about_me_message').innerText = 'About Me generated successfully.';
+        if (data.message) {document.getElementById('about_me_warning').innerText =  data.message;}
       }
     })
     .catch(error => {

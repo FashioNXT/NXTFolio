@@ -327,27 +327,49 @@ RSpec.describe GeneralInfoController, type: :controller do
         userKey: SecureRandom.hex(10)
       )
 
+      before do
+        session[:current_user_key] = user.userKey
+      end
+
       it 'creates response based on general info' do
+        # Mock AboutMeGenerator to avoid real API calls
+        about_me_double = instance_double("AboutMeGenerator")
+        allow(AboutMeGenerator).to receive(:new).and_return(about_me_double)
+        allow(about_me_double).to receive(:generate_about_me).and_return("Generated about me content.")
+        allow(about_me_double).to receive(:missing_fields).and_return([])
 
-      session[:current_user_key] = user.userKey
-      get :generate_about_me
-      json = JSON.parse(response.body)
-      expect(json).to have_key('about_me')
-    end
+        get :generate_about_me
+        json = JSON.parse(response.body)
+        
+        expect(json).to have_key('about_me')
+        expect(json['about_me']).to eq("Generated about me content.")
+      end
 
-    it 'includes missing fields in the response when fields are incomplete' do
-      session[:current_user_key] = user.userKey
-      allow_any_instance_of(AboutMeGenerator).to receive(:missing_fields).and_return(['city', 'industry'])
-      get :generate_about_me
-      json = JSON.parse(response.body)
-      expect(json['missing_fields']).to eq(['city', 'industry'])
-      # expect(json['message']).to include('For better personalization, please complete the following fields: city, industry.')
-    end
+      it 'includes missing fields in the response when fields are incomplete' do
+        # Mock AboutMeGenerator and the missing_fields method
+        about_me_double = instance_double("AboutMeGenerator")
+        allow(AboutMeGenerator).to receive(:new).and_return(about_me_double)
+        allow(about_me_double).to receive(:generate_about_me).and_return("Generated about me content.")
+        allow(about_me_double).to receive(:missing_fields).and_return(['city', 'industry'])
+    
+        get :generate_about_me
+        json = JSON.parse(response.body)
+    
+        expect(json['missing_fields']).to eq(['city', 'industry'])
+      end
+    
+      it 'returns an error if user is not found' do
+        # Set an invalid user key
+        session[:current_user_key] = 'invalid_key'
 
-    it 'returns an error if user is not found' do
-      session[:current_user_key] = 'invalid_key'
-      get :generate_about_me
-      expect(response).to have_http_status(:not_found)
-    end    
+        # Added mocking to prevent api call being made in testing if  error function changes
+        about_me_double = instance_double("AboutMeGenerator")
+        allow(AboutMeGenerator).to receive(:new).and_return(about_me_double)
+        allow(about_me_double).to receive(:generate_about_me).and_return("Generated about me content.")
+        allow(about_me_double).to receive(:missing_fields).and_return([])
+    
+        get :generate_about_me
+        expect(response).to have_http_status(:not_found)
+      end   
   end
 end
