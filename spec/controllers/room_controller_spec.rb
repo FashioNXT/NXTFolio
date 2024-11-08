@@ -35,6 +35,14 @@ RSpec.describe RoomController, type: :controller do
             expect(response).to redirect_to "/dm/" + general_info.id.to_s
         end
 
+        it "should create a new file message" do
+            session[:current_user_key] = SecureRandom.hex(10)
+            general_info = GeneralInfo.create(first_name: "R", last_name: "Spec", company: "Test", industry: "Test", highlights: "test", country: "United States", state: "California", city: "San Jose", emailaddr: "test@gmail.com", userKey: session[:current_user_key])
+            file = fixture_file_upload('test_file.txt', 'text/plain')
+            post :create_message, params: { id: general_info.id, files: file }
+            expect(response).to redirect_to "/dm/" + general_info.id.to_s
+        end
+
         it "should not create a new chat message" do
             get :create_message, params: {id: 1}
             expect(response).to redirect_to login_info_login_path

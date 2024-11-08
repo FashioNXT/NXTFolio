@@ -1,0 +1,34 @@
+<div id="single_room">
+    <a href="<%= show_profile_show_profile_path(:user_key => @chatting_with.userKey) %>">
+    <h1 class="text-center"> <img class="profile-img img-thumbnail" src="<%= @chatting_with.profile_picture.url %>" width="50px" height="50px" style="border-radius:50%;" alt=""> <b> <%= @chatname %> </b></h1>
+    </a>
+    <div id="messages">
+    <% @messages.each do |message| %>
+        <% if message[:general_info_id] == @user[:id] %>
+        <div class="message-box" style="background-color: #147efb; margin-left: auto; margin-right: 0;">
+            <%= simple_format(message[:body]) %>
+            <% message.files.each do |file| %>
+            <p><%= link_to rails_blob_path(file, disposition: "attachment"), style: "color: black; text-decoration: none;", onmouseover: "this.style.color='#404040'", onmouseout: "this.style.color='black'" do %>
+                <i class="fas fa-file" style="margin-right: 5px;"></i>
+                <%= file.filename %>
+                <i class="fas fa-download" style="margin-left: 5px;"></i>
+            <% end %><p>
+            <% end %>
+        </div>
+        <% else %>
+        <div class="message-box" style="background-color: #333333;">
+            <%= simple_format(message[:body]) %>
+            <% message.files.each do |file| %>
+            <p><%= link_to rails_blob_path(file, disposition: "attachment"), style: "color: #008ae6; text-decoration: none;", onmouseover: "this.style.color='#006bb3'", onmouseout: "this.style.color='#008ae6'" do %>
+                <i class="fas fa-file" style="margin-right: 5px;"></i>
+                <%= file.filename %>
+                <i class="fas fa-download" style="margin-left: 5px;"></i>
+            <% end %><p>
+            <% end %>
+        </div>
+        <% end %>
+    <% end%>
+    </div>
+
+    <%= render 'layouts/new_message_form'%>
+</div>

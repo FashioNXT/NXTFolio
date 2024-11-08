@@ -51,10 +51,10 @@ RSpec.describe ChatController, type: :controller do
         # Additionally, check that the HTTP status reflects unprocessable entity (422)
         expect(response).to have_http_status(:unprocessable_entity)
       end
-=======
     it 'sends a new message to the AI chat bot and validates the response body' do
       # Mock the ChatService to avoid making actual API requests
       chat_service = instance_double("ChatService")
+      allow(ChatService).to receive(:new).and_return(chat_service)
       
       # Mocking the response that would come from the API, simulating a valid response structure
       # even if the content might reflect an invalid API key or other errors
@@ -75,12 +75,15 @@ RSpec.describe ChatController, type: :controller do
       parsed_response = JSON.parse(response.body)
 
       # Validate that the response has the expected structure, without checking content
-      expect(parsed_response).to have_key("choices")
-      expect(parsed_response["choices"].first).to have_key("message")
-      expect(parsed_response["choices"].first["message"]).to have_key("content")
-
+      expect(parsed_response).to have_key("response")
+      expect(parsed_response["response"]).to have_key("choices")
+      expect(parsed_response["response"]["choices"].first).to have_key("message")
+      expect(parsed_response["response"]["choices"].first["message"]).to have_key("content")
+      expect(parsed_response["response"]["choices"].first["message"]["content"]).to eq("Invalid API key")
       # Additionally, check that the HTTP status is successful (200)
       expect(response).to have_http_status(:success)
     end
   end
 end
+end
+

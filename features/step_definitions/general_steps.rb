@@ -304,9 +304,11 @@ end
 Given (/"(.+)" sends a message to "(.+)" saying "(.+)"/) do |from_user, to_user, msg|
   step "I am logged in as \"#{from_user}\""
   visit path_to "the DM page"
+  step "I click on \"Search\""
+  step "I fill in \"user_search\" with \"#{to_user.gsub('.', ' ')}\""
   step "I select \"#{to_user.gsub('.', ' ')}\" chat"
   fill_in("body", :with => msg)
-  click_link_or_button "send"
+  click_link_or_button "Send"
   click_link_or_button "Log out"
 end
 When("I click on the image with alt text {string}") do |alt_text|

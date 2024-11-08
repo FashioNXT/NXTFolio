@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
 
   # to retrive states and cities
+  get 'messages', to: 'room#index'
   get 'states/:country_id', to: 'states#index', as: 'states'
   get 'cities/:state_id', to: 'cities#index', as: 'cities'
 
