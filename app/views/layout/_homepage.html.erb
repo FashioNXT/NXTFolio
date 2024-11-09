@@ -1,59 +1,66 @@
-    <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
-<div class="container-fluid custom-container"
+<link rel="stylesheet" href="<%= asset_path "search_button.css" %>">
+<div class="container-fluid custom-container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <div id="container-mix"  class="row _post-container_">
+      <div id="container-mix" class="row _post-container_">
         <div class="be-post branddiv" id="Brand1">
-          <% @gallery.present? and @gallery.each do |gallery| %>
-            <% modinfo=GeneralInfo.find(gallery.GeneralInfo_id) %>
-            <% if modinfo.attribute_values[:job_name]=="Brand Owner" %>
-              <div class="col-md-4">
-                <a class="be-img-block">
-                  <div class="photo photo-type-line">
-                    <% if modinfo.profile_picture? %>
-                      <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
-                    <% else %>
-                      <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
-                    <% end %>
-                    <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
-                      <div class="photo-info">
-                        <div class="headline"><%= gallery.gallery_title %></div>
-                        <div class="line"></div>
-                        <div class="desc"> <%= gallery.gallery_description %> </div>
-                        <div class="line"></div>
-                        <% if gallery.reviews.blank? %>
-                          <% average_review=0 %>
-                        <% else %>
-                          <% average_review=gallery.reviews.average(:rating).round(2) %>
-                        <% end %>
-                        <div class="average-review-rating" data-score='<%= average_review %>>'>
+          <% if @gallery.present? %>
+            <% @gallery.each do |gallery| %>
+              <% modinfo = GeneralInfo.find(gallery.GeneralInfo_id) %>
+              <% if modinfo.attribute_values[:job_name] == "Brand Owner" %>
+                <div class="col-md-4">
+                  <a class="be-img-block">
+                    <div class="photo photo-type-line">
+                      <% if modinfo.profile_picture? %>
+                        <img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+                      <% else %>
+                        <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>">
+                      <% end %>
+                      <a class="photo-hover" href="<%= gallery_path(gallery.id) %>">
+                        <div class="photo-info">
+                          <div class="headline"><%= gallery.gallery_title %></div>
+                          <div class="line"></div>
+                          <div class="desc"><%= gallery.gallery_description %></div>
+                          <div class="line"></div>
+                          <% if gallery.reviews.blank? %>
+                            <% average_review = 0 %>
+                          <% else %>
+                            <% average_review = gallery.reviews.average(:rating).round(2) %>
+                          <% end %>
+                          <div class="average-review-rating" data-score="<%= average_review %>">
+                          </div>
                         </div>
-                      </div>
-                      <div class="mask"></div>
+                        <div class="mask"></div>
+                      </a>
+                    </div>
+                  </a>
+                  <div id="custom-project-title">
+                    <a href="<%= show_profile_show_profile_path(user_key: modinfo.userKey) %>">
+                      <%= modinfo.first_name %> <%= modinfo.last_name %>
                     </a>
                   </div>
-                </a>
-                <div id="custom-project-title"><a href="<%= show_profile_show_profile_path(:user_key => modinfo.userKey) %>"><%= modinfo.first_name %> <%= modinfo.last_name %></a></div>
-                <div id="custom-profile-name"><%= modinfo.job_name %></div>
-              </div>
+                  <div id="custom-profile-name"><%= modinfo.job_name %></div>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         </div>
+
         <div>
           <h3>Projects you may be interested in:</h3>
-          <%if session[:current_user_key]%>
+          <% if session[:current_user_key] %>
             <% current_user = GeneralInfo.find_by(userKey: session[:current_user_key]) %>
-            <% galleries = current_user.gallery %>
-            <% galls = []%>
-            <% galleries.each do |gallery| %>
-              <% gallery.get_similar_galleries.keys.each do |gal| %>
-                <% galls.push(gal) %>
+            <% if current_user && current_user.gallery %>
+              <% galleries = current_user.gallery %>
+              <% galls = [] %>
+              <% galleries.each do |gallery| %>
+                <% gallery.get_similar_galleries.keys.each do |gal| %>
+                  <% galls.push(gal) %>
+                <% end %>
               <% end %>
-            <% end %>
-            <% galls = galls.uniq %>
-            <div class="gallery-wrapper" style="overflow: visible;">
-              <div class="row">
-                <%# sorted_map.keys.each_slice(50) do |galls| %>
+              <% galls = galls.uniq %>
+              <div class="gallery-wrapper" style="overflow: visible;">
+                <div class="row">
                   <div class="gallery-pair">
                     <% galls.each do |gall| %>
                       <div class="col-md-4">
@@ -61,9 +68,9 @@
                           <div class="photo photo-type-line">
                             <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
                               <div class="photo-info">
-                                <div class="headline"> <%= gall.gallery_title %> </div>
+                                <div class="headline"><%= gall.gallery_title %></div>
                                 <div class="line"></div>
-                                <div class="desc"> <%= gall.gallery_description %> </div>
+                                <div class="desc"><%= gall.gallery_description %></div>
                               </div>
                               <div class="mask"></div>
                             </a>
@@ -75,78 +82,73 @@
                             <div class="mask"></div>
                           </div>
                         </a>
-                        <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
-                        <div class="desc"> <%= gall.gallery_description %> </div>
-                        <% if gall.gallery_totalRate && gall.gallery_totalRator%>
-                          <div class="desc"> <%= "Rating: " + (gall.gallery_totalRate / gall.gallery_totalRator).to_s %> </div>
+                        <div class="headline"><a href="<%= gallery_path(gall.id) %>"><%= gall.gallery_title %></a></div>
+                        <div class="desc"><%= gall.gallery_description %></div>
+                        <% if gall.gallery_totalRate && gall.gallery_totalRator %>
+                          <div class="desc">Rating: <%= (gall.gallery_totalRate / gall.gallery_totalRator).to_s %></div>
                         <% end %>
                       </div>
                     <% end %>
                   </div>
-                <%# end %>
+                </div>
               </div>
-            </div>
+            <% else %>
+              <p>No galleries available for the current user.</p>
+            <% end %>
           <% else %>
-            <% @all_galleries = Gallery.all%>
-            <% map = Hash.new%>
-            <% for gal in @all_galleries do%>
-              <%total = 0%>
-              <%len = 0%>
-              <% for x in gal.reviews%>
-                <% total += x.rating.to_i%>
-                <%len +=1%>
-              <%end%>
-              <%if gal.gallery_totalRate == nil%>
-                <%gal.gallery_totalRate = total%>
-              <%end%>
-              <%if gal.gallery_totalRator == nil%>
-                <%gal.gallery_totalRator = len%>
-              <%end%>
-              <% if map.length < 50 %>
-                <% average_review= gal.gallery_totalRate / gal.gallery_totalRator %>
-                <%if average_review >= 3%>
-                  <%map[gal] = average_review %>
-                <%end%>
-              <%end%>
-            <% end%>
-            <%sorted_map = map.sort_by { |k, v| -v }.to_h %>
-            <div class="gallery-wrapper" style="overflow-y: visible;">
-              <div class="row">
-                <% sorted_map.keys.each_slice(50) do |galls| %>
-                  <div class="gallery-pair">
-                    <% galls.each do |gall| %>
-                      <div class="col-md-4">
-                        <a class="be-img-block">
-                          <div class="photo photo-type-line">
-                            <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
-                              <div class="photo-info">
-                                <div class="headline"> <%= gall.gallery_title %> </div>
-                                <div class="line"></div>
-                                <div class="desc"> <%= gall.gallery_description %> </div>
+            <% @all_galleries = Gallery.all %>
+            <% map = {} %>
+            <% @all_galleries.each do |gal| %>
+              <% total = gal.reviews.sum(&:rating).to_i %>
+              <% count = gal.reviews.size %>
+              <% gal.gallery_totalRate ||= total %>
+              <% gal.gallery_totalRator ||= count %>
+              <% if map.size < 50 && (gal.gallery_totalRate / gal.gallery_totalRator >= 3) %>
+                <% map[gal] = gal.gallery_totalRate / gal.gallery_totalRator %>
+              <% end %>
+            <% end %>
+            <% sorted_map = map.sort_by { |_, v| -v }.to_h %>
+            <% if sorted_map.present? %>
+              <div class="gallery-wrapper" style="overflow-y: visible;">
+                <div class="row">
+                  <% sorted_map.keys.each_slice(50) do |galls| %>
+                    <div class="gallery-pair">
+                      <% galls.each do |gall| %>
+                        <div class="col-md-4">
+                          <a class="be-img-block">
+                            <div class="photo photo-type-line">
+                              <a class="photo-hover" href="<%= gallery_path(gall.id) %>">
+                                <div class="photo-info">
+                                  <div class="headline"><%= gall.gallery_title %></div>
+                                  <div class="line"></div>
+                                  <div class="desc"><%= gall.gallery_description %></div>
+                                </div>
+                                <div class="mask"></div>
+                              </a>
+                              <div class="image">
+                                <a class="be-img-block profile-img img-thumbnail">
+                                  <img src="<%= gall.gallery_picture[0].url %>" alt="omg">
+                                </a>
                               </div>
                               <div class="mask"></div>
-                            </a>
-                            <div class="image">
-                              <a class="be-img-block profile-img img-thumbnail">
-                                <img src="<%= gall.gallery_picture[0].url %>" alt="omg">
-                              </a>
                             </div>
-                            <div class="mask"></div>
-                          </div>
-                        </a>
-                        <div class="headline"> <a href="<%= gallery_path(gall.id) %>"> <%= gall.gallery_title %> </a> </div>
-                        <div class="desc"> <%= gall.gallery_description %> </div>
-                        <div class="desc"> <%= "Rating: " + map[gall].to_s %> </div>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
+                          </a>
+                          <div class="headline"><a href="<%= gallery_path(gall.id) %>"><%= gall.gallery_title %></a></div>
+                          <div class="desc"><%= gall.gallery_description %></div>
+                          <div class="desc">Rating: <%= map[gall].to_s %></div>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
-            </div>           
+            <% else %>
+              <p>No galleries available with an average rating of 3 or higher.</p>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script src="<%= asset_path "homepage_logic.js"%>"></script>
+<script src="<%= asset_path "homepage_logic.js" %>"></script>
