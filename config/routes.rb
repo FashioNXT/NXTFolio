@@ -1,10 +1,10 @@
-
 Rails.application.routes.draw do
 
   # to retrive states and cities
   get 'messages', to: 'room#index'
   get 'states/:country_id', to: 'states#index', as: 'states'
   get 'cities/:state_id', to: 'cities#index', as: 'cities'
+  post 'general_info/generate_about_me', to: 'general_info#generate_about_me', as: :generate_about_me
 
   post '/dm/:id', to: 'room#create_message'
 
@@ -71,7 +71,6 @@ Rails.application.routes.draw do
   post 'general_info/update_profession' => 'general_info#update_profession', :as => 'general_info/update_profession'
   get 'general_info/profession_specific' => 'general_info#profession_specific', :as => 'general_info/profession_specific'
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
-
   # Follow Feature
   get 'general_info/follow/:id' => 'general_info#follow'
   get 'general_info/unfollow/:id' => 'general_info#unfollow'
@@ -208,6 +207,8 @@ end
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   root 'application#index'
+
+ 
 
 end
 
