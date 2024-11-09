@@ -261,10 +261,11 @@ class GeneralInfoController < ApplicationController
     logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
     
-    #if @general_info.update_attributes!(general_info_update_param)
     if @general_info.update(general_info_update_param)
-      if params[:select_one] || params[:select_two]
-        redirect_to '/show_profile'
+      if params[:continue]
+        redirect_to '/general_info/edit2' # Redirect to edit2 route if "Save and Continue" is clicked
+      else
+        redirect_to '/show_profile' # Otherwise, redirect to profile page
       end
     else
       render :action => 'edit'
