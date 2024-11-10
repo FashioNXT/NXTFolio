@@ -53,6 +53,13 @@
             <strong><%= flash[:success]%></strong>
           </div>
         </div>
+      <% elsif flash[:error] %>
+        <div class="alert-container col-md-12">
+          <div class="alert style-3 alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%= flash[:error] %></strong>
+          </div>
+        </div>
       <% end %>
       <div class=head-bg-content>
         <%= form_tag(search_engine_show_path, :method=>'get') do %>
