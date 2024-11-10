@@ -39,4 +39,3 @@
 #  And I click on "Updated Project"
 #  And I should see exactly 1 images
 #
-#
