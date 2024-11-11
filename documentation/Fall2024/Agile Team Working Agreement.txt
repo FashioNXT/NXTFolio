@@ -70,6 +70,8 @@ Be prepared to pivot or change direction if new information suggests a better ap
 Maintain a knowledge base to document learnings, best practices, and solutions to common problems.
 15. Reflection and Self-assessment
 Encourage team members to regularly reflect on their personal growth and learning journey.
+16. Cross-functional knowledge sharing
+Promote pair programming or shadowing across different roles to enhance understanding of various aspects of the project.
 
 Signatures:
 Omar Khater
