@@ -63,6 +63,13 @@ If you are falling behind on a task, notify the team immediately to discuss how 
 12. Learning and Adaptation
 Be open to learning new tools, technologies, and Agile practices as the project evolves.
 Adapt processes if they are not working for the team.
+13. Adaptive Planning
+Regularly review and adjust the project roadmap based on new learnings and changing requirements. 
+Be prepared to pivot or change direction if new information suggests a better approach.
+14. Documentation
+Maintain a knowledge base to document learnings, best practices, and solutions to common problems.
+15. Reflection and Self-assessment
+Encourage team members to regularly reflect on their personal growth and learning journey.
 
 Signatures:
 Omar Khater
