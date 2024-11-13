@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>FashioNXT</title>
+  <%= csrf_meta_tags %>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
@@ -15,13 +16,23 @@
   <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
   <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
   <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
-
 </head>
 
 <body>
 
 <!-- THE HEADER -->
 <%= render 'shared/header' %>
+
+<!-- FLASH MESSAGES -->
+<% if flash.any? %>
+  <div class="flash-messages">
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %>">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <!-- MAIN CONTENT -->
 <div id="bckimage">
@@ -30,124 +41,111 @@
       <div class="row">
         <%= form_for @general_info, :action => 'update', :url => general_info_update_path do |form| %>
           <div class="col-xs-12 col-md-9 _editor-content_">
-            <div class="custom-sec"  data-sec="basic-information">
+            <div class="custom-sec" data-sec="basic-information">
               <div id="custom-sec" class="be-large-post">
                 <div id="custom-sec" class="info-block style-2">
                   <div class="be-large-post-align "><h3 class="info-block-label">Update Professional Details</h3></div>
                 </div>
 
-
-
-
                 <div class="be-large-post-align">
                   <div class="row">
-                    <!--name-->
-
-
+                    <!-- Specialization -->
                     <div class="input-col col-xs-12 col-sm-10">
                       <div class="form-group focus-2">
                         <div class="form-label">Professional Specialization</div>
-                        <%= form.text_field :specialization, id: "specialization", :class =>'form-input', :maxlength => '20'%>
+                        <%= form.text_field :specialization, id: "specialization", :class => 'form-input', :maxlength => '20' %>
                         <span class="pull-right label label-default" id="count_message_spcialization"></span>
-
-                        <!--input class="form-input" type="text" id="company">-->
                       </div>
                     </div>
 
-
-
+                    <!-- Professional Details -->
                     <div class="input-col col-xs-12 col-sm-10">
                       <div class="form-group focus-2">
-                        <div class="form-label">Professional Details</div><label>optional, but highly recommended for better match</label>
-                        <%= form.text_area :profdetails, id: "profdetails", :class =>'form-input', :maxlength => '200', :rows => '3'%>
+                        <div class="form-label">Professional Details</div>
+                        <label>optional, but highly recommended for better match</label>
+                        <%= form.text_area :profdetails, id: "profdetails", :class => 'form-input', :maxlength => '200', :rows => '3' %>
                         <span class="pull-right label label-default" id="count_message_details"></span>
                       </div>
                     </div>
 
-                    <div class="input-col col-xs-12 col-sm-10">
-                      <div class="form-group focus-2">
-                        <div class="form-label">About Me</div><label>Tell us what makes you unique and different, what are your hobbies and skills, and etc</label>
-                        <%= form.text_area :bio, id: "bio", :class =>'form-input', :placeholder => 'Something about you' , :maxlength => '240', :rows => '3'%>
-                        <span class="pull-right label label-default" id="count_message_aboutme"></span>
-                      </div>
-                    </div>
-
-                    <!--Social Media Handle>-->
-
+                     <!-- About Me -->
+                     <div class="input-col col-xs-12 col-sm-10">
+                       <div class="form-group focus-2">
+                         <div class="form-label">About Me</div>
+                         <label>Tell us what makes you unique and different, what are your hobbies and skills, etc.</label>
+                         <%= form.text_area :bio, id: "bio", :class => 'form-input', :placeholder => 'Something about you', :maxlength => '240', :rows => '3' %>
+                         <span class="pull-right label label-default" id="count_message_aboutme"></span>
+                         <!-- Button to trigger "Generate About Me" -->
+                         <%= button_tag 'Generate About Me', id: 'generate_about_me_button', class: 'btn btn-primary', type: 'button' %>
+                         <!-- Placeholder for feedback (missing fields or success message) -->
+                         <div id="about_me_message" style="color: red; margin-top: 10px;"></div>
+                         <div id="about_me_warning" style="color: red; margin-top: 10px;"></div>
+                       </div>
+                     </div>
+                    <!-- Social Media Handles -->
                     <div class="input-col col-xs-12 col-sm-10">
                       <div class="form-label">Social Media Handles</div>
                       <div class="be-large-post m-social">
                         <div class="be-large-post-align">
+                          <!-- Facebook -->
                           <div class="social-input form-group focus-2">
                             <div class="s_icon">
-                              <div class="social-bars"><i class="fa fa-bars"></i></div>
                               <a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
                             </div>
                             <div class="s_input">
-                              <!--<input class="form-input" type="text" value="http:// facebook.com/taylor">-->
-                              <%= form.text_field :facebook_link, :placeholder=> 'Enter your Facebook profile link', :class => 'form-input', :type => 'text'%>
+                              <%= form.text_field :facebook_link, placeholder: 'Enter your Facebook profile link', class: 'form-input' %>
                             </div>
                           </div>
+                          <!-- LinkedIn -->
                           <div class="social-input form-group focus-2">
                             <div class="s_icon">
-                              <div class="social-bars"><i class="fa fa-bars"></i></div>
                               <a class="social-btn color-5"><i class="fa fa-linkedin"></i></a>
                             </div>
                             <div class="s_input">
-                              <!--<input class="form-input" type="text" value="http:// twitter.com/taylor">-->
-                              <%= form.text_field :linkedIn_link, :placeholder=> 'Enter your LinkedIn profile', :class => 'form-input' %>
+                              <%= form.text_field :linkedIn_link, placeholder: 'Enter your LinkedIn profile', class: 'form-input' %>
                             </div>
                           </div>
+                          <!-- Website -->
                           <div class="social-input form-group focus-2">
                             <div class="s_icon">
-                              <div class="social-bars"><i class="fa fa-bars"></i></div>
                               <a class="social-btn color-3"><i class="fa fa-globe"></i></a>
                             </div>
                             <div class="s_input">
-                              <!--<input class="form-input" type="text" value="http:// googleplus.com/taylor">-->
-                              <%= form.text_field :personalWebsite_link, :placeholder=> 'Enter your personal website link', :class => 'form-input' %>
+                              <%= form.text_field :personalWebsite_link, placeholder: 'Enter your personal website link', class: 'form-input' %>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-
+                    <!-- Compensation Type -->
                     <div class="input-col col-xs-12 col-sm-6">
-                      <div class="buttongroup-class">
-                        <div class="form-group focus-2">
-                          <div class="form-label">Compensation Type</div>
-                          <%= form.select :compensation, options_for_select([["Select", ""], "Per Gig", "Salary", "Depends"], :selected => form.object.compensation), {}, {class:'form-input select2 select2-hidden-accessible', style: 'width: 70%;', tabindex: '-1'} %>
-                        </div> <!-- /.form-group -->
+                      <div class="form-group focus-2">
+                        <div class="form-label">Compensation Type</div>
+                        <%= form.select :compensation, options_for_select([["Select", ""], "Per Gig", "Salary", "Depends"], selected: form.object.compensation), {}, { class: 'form-input select2', style: 'width: 70%' } %>
                       </div>
                     </div>
 
+                    <!-- Experience -->
                     <div class="input-col col-xs-12 col-sm-4">
                       <div class="form-group focus-2">
                         <div class="form-label">Experience (In years)</div>
-                        <%= form.text_field :experience, id: "experience", :class =>'form-input'%>
+                        <%= form.text_field :experience, id: "experience", class: 'form-input' %>
                         <span class="pull-right label label-default" id="count_message_spcialization"></span>
-
-                        <!--input class="form-input" type="text" id="company">-->
                       </div>
                     </div>
 
-
+                    <!-- Save Button -->
                     <div class="input-col col-xs-12 col-sm-12">
                       <div class="be-vidget back-block">
-                        <%= form.submit 'SAVE and GO TO PROFILE', :class => 'btn color-9-4 size-1 hover-1',name: "select_two" %>
-                        <!--<a class="btn color-1 size-1 hover-1" href="/edit_job_path" method="get"> <i class="fa fa-chevron-right"></i></a>-->
+                        <%= form.submit 'SAVE and GO TO PROFILE', class: 'btn color-9-4 size-1 hover-1', name: "select_two" %>
                       </div>
                     </div>
-
-
-                    <!--gender-->
 
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         <% end %>
       </div>
@@ -155,54 +153,67 @@
   </div>
 </div>
 
-
-
-
-<! -- Footer-->
+<!-- Footer -->
 <%= render 'shared/footer' %>
 
 <div class="be-fixed-filter"></div>
-<!-- SCRIPT	-->
-<script src="<%= asset_path "jquery.min.js"%>"></script>
-<script src="<%= asset_path "jquery-ui.js"%>"></script>
-<script src="<%= asset_path "bootstrap.min.js"%>"></script>
-<script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
-<script src="<%= asset_path "jquery.mixitup.js"%>"></script>
-<script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
-<script src="<%= asset_path "global.js"%>"></script>
-<script src="<%= asset_path "location.js"%>"></script>
+<!-- JavaScript for handling the About Me generation -->
+<script src="<%= asset_path "jquery.min.js" %>"></script>
+<script src="<%= asset_path "jquery-ui.js" %>"></script>
+<script src="<%= asset_path "bootstrap.min.js" %>"></script>
+<script src="<%= asset_path "idangerous.swiper.min.js" %>"></script>
+<script src="<%= asset_path "jquery.mixitup.js" %>"></script>
+<script src="<%= asset_path "jquery.viewportchecker.min.js" %>"></script>
+<script src="<%= asset_path "global.js" %>"></script>
+<script src="<%= asset_path "location.js" %>"></script>
 <script>
-    var text_max_details = 200;
-    $('#count_message_details').html('0 / ' + text_max_details );
-
-    $('#profdetails').keyup(function() {
-        var text_length_details = $('#profdetails').val().length;
-        var text_remaining_details = text_max_details - text_length_details;
-
-        $('#count_message_details').html(text_length_details + ' / ' + text_max_details);
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("generate_about_me_button").addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    fetch("<%= generate_about_me_path %>", {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.about_me) {
+        console.log(data)
+        document.getElementById('bio').value = data.about_me;
+        document.getElementById('about_me_message').innerText = 'About Me generated successfully.';
+        if (data.message) {document.getElementById('about_me_warning').innerText =  data.message;}
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('about_me_message').innerText = 'An error occurred while generating About Me.';
     });
+  });
+});
 </script>
+
 <script>
-    var text_max = 20;
-    $('#count_message_spcialization').html('0 / ' + text_max );
+  // Existing character count logic
+  var text_max_details = 200;
+  $('#count_message_details').html('0 / ' + text_max_details);
 
-    $('#specialization').keyup(function() {
-        var text_length = $('#specialization').val().length;
-        var text_remaining = text_max - text_length;
+  $('#profdetails').keyup(function() {
+    var text_length_details = $('#profdetails').val().length;
+    var text_remaining_details = text_max_details - text_length_details;
+    $('#count_message_details').html(text_length_details + ' / ' + text_max_details);
+  });
 
-        $('#count_message_spcialization').html(text_length + ' / ' + text_max);
-    });
-</script>
-<script>
-    var text_max_aboutme = 240;
-    $('#count_message_aboutme').html('0 / ' + text_max_aboutme );
+  var text_max_aboutme = 240;
+  $('#count_message_aboutme').html('0 / ' + text_max_aboutme);
 
-    $('#bio').keyup(function() {
-        var text_length_aboutme = $('#bio').val().length;
-        var text_remaining_aboutme = text_max_aboutme - text_length_aboutme;
-
-        $('#count_message_aboutme').html(text_length_aboutme + ' / ' + text_max_aboutme);
-    });
+  $('#bio').keyup(function() {
+    var text_length_aboutme = $('#bio').val().length;
+    var text_remaining_aboutme = text_max_aboutme - text_length_aboutme;
+    $('#count_message_aboutme').html(text_length_aboutme + ' / ' + text_max_aboutme);
+  });
 </script>
 </body>
 </html>

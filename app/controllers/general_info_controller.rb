@@ -3,7 +3,36 @@ class GeneralInfoController < ApplicationController
   def list
     @general_infos = GeneralInfo.all
   end
+  
+  def generate_about_me
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    generator = AboutMeGenerator.new(@general_info)
 
+    # Return 404 if no matching user is found
+  unless @general_info
+    render json: { error: 'User not found' }, status: :not_found and return
+  end
+  
+    missing_fields = generator.missing_fields
+    Rails.logger.info "Missing fields: #{missing_fields}" # Debugging
+  
+    # Generate the About Me content, even if there are missing fields
+    about_me_content = generator.generate_about_me
+    Rails.logger.info "About Me content: #{about_me_content}"
+  
+    # If there are missing fields, include them as recommendations
+    if missing_fields.any?
+      render json: { 
+        about_me: about_me_content, 
+        missing_fields: missing_fields, 
+        message: "For better personalization, please complete the following fields: #{missing_fields.join(', ')}."
+      }
+    else
+      # If no missing fields, just return the generated About Me content
+      render json: { about_me: about_me_content }
+    end
+  end
+  
   def show
     # @general_info = GeneralInfo.find(params[:id])
   end
@@ -238,7 +267,11 @@ class GeneralInfoController < ApplicationController
     if GeneralInfo.exists?(:userKey => session[:current_user_key])
       @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
       @username = @general_info[:first_name]
+      puts "GeneralInfo found: #{@general_info.inspect}"
+      puts "Username: #{@username}"
     else
+      puts "No GeneralInfo found for userKey: #{session[:current_user_key]}"
+      flash[:notice] = "Please complete your profile to proceed."
       redirect_to :action => 'new'
     end
 
@@ -341,4 +374,6 @@ class GeneralInfoController < ApplicationController
   # Takes input from the search view & calls the model search functions
   def search
   end
+
+
 end

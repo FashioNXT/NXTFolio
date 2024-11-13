@@ -1,0 +1,84 @@
+Agile Team Working Agreement 
+
+Project Title: NXTFolio
+
+Team Members:
+Omar Khater
+Yash Honrao
+Caroline Li
+Likhith Majjigapu
+Manikanta Gudipudi
+Venkat Pitta
+Brandon Hill
+
+1. Team Purpose
+Our goal is to successfully complete the NXTFolio for our client FashioNXT, demonstrating strong collaboration and applying Agile principles to deliver quality outcomes on time.
+2. Communication
+Primary Communication Tools:
+Daily communication via Slack - https://app.slack.com/client/T07MT8C5SLX/C07NAADTP28.
+Use [Zoom/Google Meet] for scheduled video meetings.
+Response Time:
+Respond to messages within 5 hours during weekdays.
+Notify the team in advance for any delays in responding.
+Stand-up Meetings:
+Frequency: Daily during weekdays with Alternate meetings in person.
+Duration: 15 minutes
+Format:
+What did I do since the last meeting?
+What will I work on next?
+Any blockers or issues?
+3. Collaboration and Pairing
+Pair programming is encouraged for complex tasks.
+Shared ownership of code; review each other’s work through pull requests on [GitHub].
+Open to constructive feedback during code reviews.
+4. Task Management
+Use Pivotal Tracker for task tracking.
+Break down user stories into manageable tasks.
+Assign tasks based on interest and skill set.
+Commit to completing tasks within the agreed Sprint timeline.
+5. Work Hours and Availability
+Regular working hours:as per everyone’s convenience, but must be present for the meetings.
+Share available times or schedule conflicts on - https://www.when2meet.com/?26829004-kK3El
+6. Decision-Making
+Decisions are made by consensus. When consensus cannot be reached, majority voting will be used.
+Critical technical decisions will be reviewed by the entire team.
+7. Code Quality and Standards
+Use Code Climate.
+Write unit tests for new functionality.
+Maintain clean, modular, and well-documented code.
+8. Conflict Resolution
+Address conflicts openly and respectfully.
+Raise issues during retrospective meetings.
+Escalate unresolved issues to the instructor if necessary.
+9. Sprint Planning
+Sprint length: [1 week].
+Define sprint goals and prioritize tasks at the start of each sprint.
+Ensure tasks are clearly defined with acceptance criteria.
+10. Retrospective
+Conduct a sprint retrospective at the end of each sprint.
+Discuss what went well, what could be improved, and actionable steps for improvement.
+11. Accountability
+Each team member is responsible for updating the status of their tasks regularly on Pivotal Tracker.
+If you are falling behind on a task, notify the team immediately to discuss how to resolve it.
+12. Learning and Adaptation
+Be open to learning new tools, technologies, and Agile practices as the project evolves.
+Adapt processes if they are not working for the team.
+13. Adaptive Planning
+Regularly review and adjust the project roadmap based on new learnings and changing requirements. 
+Be prepared to pivot or change direction if new information suggests a better approach.
+14. Documentation
+Maintain a knowledge base to document learnings, best practices, and solutions to common problems.
+15. Reflection and Self-assessment
+Encourage team members to regularly reflect on their personal growth and learning journey.
+16. Cross-functional knowledge sharing
+Promote pair programming or shadowing across different roles to enhance understanding of various aspects of the project.
+
+Signatures:
+Omar Khater
+Yash Honrao
+Likhith Majjigapu
+Caroline Li
+Manikanta Gudipudi
+Venkat Pitta
+Brandon Hill
+
