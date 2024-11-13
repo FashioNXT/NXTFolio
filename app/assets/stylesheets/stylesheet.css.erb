@@ -816,7 +816,7 @@ transition: all ease-out 0.3s;}
 footer { background: #222835;}
 
 /*Mobile View of whole footer block*/
-@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 650px;}}
+@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835;}}
 
 .footer_slider .swiper-slide { position: relative; }
 
@@ -5387,3 +5387,21 @@ legend {
 
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
+
+/* Center alignment for social buttons in footer */
+.soc_buttons li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* Responsive footer padding */
+.footer-main, .footer-bottom {
+  padding: 15px;
+}
+
+@media (max-width: 576px) {
+  .footer-block p, .footer-title, .link-list {
+    font-size: 14px;
+  }
+}
+
