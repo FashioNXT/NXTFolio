@@ -44,6 +44,15 @@ When(/^I click the button with id "([^"]*)"$/) do |id|
   button.click
 end
 
+Given("I store the email {string} for later verification") do |email|
+  @user_email = email
+end
+
+Then("I should receive a confirmation email with a link to confirm my account") do
+  raise "Email not set" if @user_email.nil?
+  open_email(@user_email)
+  expect(current_email).to have_content("Confirm my account")
+end
 
 
 Given(/^the following galleries exist$/) do |table|
