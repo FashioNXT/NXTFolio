@@ -39,6 +39,12 @@ require 'rails_helper'
       user = User.new(password: 'Test1234!')
       expect(user).to_not be_valid
     end
+
+    it 'is not valid with an invalid email format' do
+      user = User.new(email: 'invalid_email', password: 'Test1234!')
+      expect(user).to_not be_valid
+    end
+
   
       
    
