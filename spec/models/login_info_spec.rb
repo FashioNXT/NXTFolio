@@ -50,6 +50,12 @@ require 'rails_helper'
       expect(user).to_not be_valid
     end
 
+    it 'is not valid with a password less than 8 characters' do
+      user = User.new(email: 'test@example.com', password: 'Short1!')
+      expect(user).to_not be_valid
+      expect(user.errors[:password]).to include("is too short (minimum is 8 characters)")
+    end
+
       
    
   end
