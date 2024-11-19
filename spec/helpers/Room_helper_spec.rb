@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RoomHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  #pending "add some examples to (or delete) #{__FILE__}"
+  describe "#format_room_name" do
+    it "capitalizes the first letter of each word" do
+      expect(helper.format_room_name("living room")).to eq("Living Room")
+    end
+  end  
 end
