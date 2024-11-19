@@ -27,5 +27,15 @@ require 'rails_helper'
             expect(login_info.validate_pwd).not_to eq(nil)
         end
     end
+
+  #For Email Confirmation
+  describe 'validations' do
+    it 'is valid with valid attributes' do
+      user = User.new(email: 'test@example.com', password: 'Test1234!')
+      expect(user).to be_valid
+    end
     
+   
   end
+  
+end
