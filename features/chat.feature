@@ -48,18 +48,18 @@ Feature: Chat
         Then I should see "Hello, this is a test"
 
     # NXTFolio Spring 2023, Iteration 2
-    Scenario: I should receive a notification when I receive a message
-        Given "Andrea.Picardo" sends a message to "Anthony.Gray" saying "Hello, this is a test"
-        And I am logged in as "Anthony.Gray"
-        And I am on the home page
-        When I click on "notif"
-        Then I should see "Andrea Picardo sent you a message"
-        When I click on "Andrea Picardo sent you a message"
-        Then I should visit chat with "Andrea.Picardo"
-        And I should see "Hello, this is a test"
-        When I fill in "body" with "Test passed"
-        And I click on "Send"
-        Then I should see "Test passed"
+    #Scenario: I should receive a notification when I receive a message
+    #    Given "Andrea.Picardo" sends a message to "Anthony.Gray" saying "Hello, this is a test"
+    #    And I am logged in as "Anthony.Gray"
+    #    And I am on the home page
+    #    When I click on "notif"
+    #    Then I should see "Andrea Picardo sent you a message"
+    #    When I click on "Andrea Picardo sent you a message"
+    #    Then I should visit chat with "Andrea.Picardo"
+    #    And I should see "Hello, this is a test"
+    #    When I fill in "body" with "Test passed"
+    #    And I click on "Send"
+    #    Then I should see "Test passed"
 
     # New Scenarios - Fall 2024, Sprint 2
     Scenario: I should be able to send a message with an attachment

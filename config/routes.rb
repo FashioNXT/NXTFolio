@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations'}, skip: [:registrations]
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
@@ -202,7 +202,10 @@ end
   resources :search_engine
   resources :job_search
 
+
   devise_scope :user do
+    get 'sign_up', to: 'devise/registrations#new', as: :new_user_registration
+    post 'sign_up', to: 'devise/registrations#create', as: :user_registration
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
