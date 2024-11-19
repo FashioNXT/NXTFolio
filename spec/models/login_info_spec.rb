@@ -34,7 +34,13 @@ require 'rails_helper'
       user = User.new(email: 'test@example.com', password: 'Test1234!')
       expect(user).to be_valid
     end
-    
+      
+    it 'is not valid without an email' do
+      user = User.new(password: 'Test1234!')
+      expect(user).to_not be_valid
+    end
+  
+      
    
   end
   
