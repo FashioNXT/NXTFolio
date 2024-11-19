@@ -16,5 +16,9 @@ RSpec.describe RoomHelper, type: :helper do
     it "capitalizes the first letter of each word" do
       expect(helper.format_room_name("living room")).to eq("Living Room")
     end
+
+    it "handles single-word room names" do
+      expect(helper.format_room_name("kitchen")).to eq("Kitchen")
+    end
   end  
 end
