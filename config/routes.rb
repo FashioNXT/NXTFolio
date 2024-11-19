@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'general_info/:id/profile', to: 'general_info#profile', as: 'profile'
   # to retrive states and cities
   get 'messages', to: 'room#index'
   get 'states/:country_id', to: 'states#index', as: 'states'

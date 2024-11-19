@@ -35,3 +35,4 @@ Thumbs.db
 *.iml
 
 /config/master.key
+.env
