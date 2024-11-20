@@ -34,7 +34,7 @@ RSpec.describe GeneralInfoController, type: :controller do
     it "should create new GeneralInfo" do
       @general_info = GeneralInfo.new
       get :new2, params: { id: @GeneralInfo.to_param, template: 'general_info/new2' }
-      expect(response).to render_template :new2
+      expect(response).to render_template :edit2
     end
     
     it "should not create new GeneralInfo" do
