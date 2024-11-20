@@ -15,6 +15,11 @@ RSpec.describe InvitationMailer, type: :mailer do
       expect(mail.from).to eq(["fashionxtllc@gmail.com"]) # Updated to match your actual 'from' email
     end
 
-    
+    it "renders the body" do
+      expect(mail.body.encoded).to match("Jane Doe")
+      expect(mail.body.encoded).to match(inviter.name)
+      expect(mail.body.encoded).to match(project_name)
+    end
+
   end
 end
