@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       session[:temp_user_data] = resource.attributes.slice('email', 'encrypted_password') # Store the attributes temporarily
       redirect_to general_info_new_path
     else
-      flash[:error] = resource.errors.full_messages.to_sentence
+      flash[:error] = resource.errors.full_messages.any? ? resource.errors.full_messages.to_sentence : "Invalid registration details."
       clean_up_passwords(resource)
       render :new
     end
