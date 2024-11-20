@@ -62,12 +62,14 @@ class GeneralInfoController < ApplicationController
   end
 
   def new2
+    # initialize_general_info
     load_general_info
     @show_generate_about_me_button = true
     render :edit2
   end
 
   def create
+    Rails.logger.info "Entering GeneralInfoController#create"
     @possible_Jobs = GeneralInfo.see_Jobs
     @general_info = GeneralInfo.new(general_info_params)
   
@@ -80,7 +82,7 @@ class GeneralInfoController < ApplicationController
   
     if @general_info.save
       flash[:success] = "Profile created successfully."
-  
+      Rails.logger.info "Redirecting based on params[:select_one]: #{params[:select_one]}" # Debugging
       # Send the welcome email only if the profile was saved successfully
       UserMailer.welcome_email(@general_info, session[:current_login_user]).deliver_now!
   
@@ -94,6 +96,7 @@ class GeneralInfoController < ApplicationController
         head :no_content # Return 204 No Content for successful creation without redirection
       end
     else
+      Rails.logger.error "GeneralInfo save failed: #{@general_info.errors.full_messages.join(', ')}" # Debugging
       flash[:error] = @general_info.errors.full_messages.to_sentence
       render :new
     end
@@ -107,8 +110,9 @@ class GeneralInfoController < ApplicationController
   def edit2
     if load_general_info
       @username = @general_info[:first_name]
+      @show_generate_about_me_button = true
     else
-      puts "No GeneralInfo found for userKey: #{session[:current_user_key]}"
+      Rails.logger.warn "No GeneralInfo found for userKey: #{session[:current_user_key]}"
       flash[:notice] = "Please complete your profile to proceed."
       redirect_to :action => 'new' and return
     end
@@ -178,21 +182,48 @@ class GeneralInfoController < ApplicationController
   end
 
   def email_exists?
-    LoginInfo.exists?(email: params[:general_info][:emailaddr])
+    existing_user = LoginInfo.find_by(email: params[:general_info][:emailaddr])
+    existing_user && existing_user.userKey != session[:current_user_key]
   end
+  
 
   def setup_login_user
-    current_user = session[:current_login_user]
-    login_user = LoginInfo.create!(
-      email: params[:general_info][:emailaddr],
-      password: current_user["password"],
-      password_confirmation: current_user["password"],
-      userKey: generate_user_key
-    )
-    session[:current_user_key] = login_user.userKey
 
+    Rails.logger.info "Params general_info: #{params[:general_info].inspect}"
+    Rails.logger.info "Setting up login user with session: #{session[:current_login_user]}"
+    
+    current_user = session[:current_login_user]
+    Rails.logger.info "Current user: #{current_user.inspect}"
+  
+    # Check if session already has a user key
+    if current_user.nil?
+      Rails.logger.error "Session[:current_login_user] is nil"
+      flash[:error] = "Session expired. Please log in again."
+      redirect_to new_session_path and return
+    end
+  
+    # Check if LoginInfo already exists in the database
+    login_user = LoginInfo.find_by(email: params[:general_info][:emailaddr])
+    if login_user
+      Rails.logger.info "Login user already exists: #{login_user.inspect}"
+      session[:current_user_key] = login_user.userKey
+    else
+      # Create a new LoginInfo record if it doesn't exist
+      login_user = LoginInfo.create!(
+        email: params[:general_info][:emailaddr],
+        password: current_user["password"],
+        password_confirmation: current_user["password"],
+        userKey: generate_user_key
+      )
+      Rails.logger.info "Login user created: #{login_user.inspect}"
+      session[:current_user_key] = login_user.userKey
+    end
+  
+    Rails.logger.info "Session user key set: #{session[:current_user_key]}"
     initialize_general_info_profile
   end
+  
+  
 
   def generate_user_key
     SecureRandom.hex(10)
