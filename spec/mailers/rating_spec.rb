@@ -16,6 +16,17 @@ RSpec.describe RatingMailer, type: :mailer do
       expect(mail.from).to eq(["fashionxtllc@gmail.com"]) # Adjust if your default from address is different
     end
 
-    
+    it "renders the body" do
+      expect(mail.body.encoded).to match(owner_name)
+      expect(mail.body.encoded).to match(reviewer_name)
+      expect(mail.body.encoded).to match(project_name)
+      expect(mail.body.encoded).to include(rating.to_s)
+    end
+
+    it "uses the correct layout" do
+      expect(mail.body.encoded).to match(/<!DOCTYPE html>/)
+      expect(mail.body.encoded).to match(/<html>/)
+      expect(mail.body.encoded).to match(/<\/html>/)
+    end
   end
 end
