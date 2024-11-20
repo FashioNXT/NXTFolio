@@ -24,6 +24,8 @@ RSpec.describe JobNotificationMailer, type: :mailer do
       expect(mail.body.encoded).to match(job.title)
     end
 
-    
+    it "includes a link to view the job" do
+      expect(mail.body.encoded).to include(visitor_job_info_url(id: job.id))
+    end
   end
 end
