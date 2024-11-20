@@ -42,5 +42,13 @@ RSpec.describe MessagesHelper, type: :helper do
 
   end
 
-  
+  describe "#message_status_class" do
+    it "returns 'unread' for unread messages" do
+      expect(helper.message_status_class(false)).to eq("unread")
+    end
+
+    it "returns 'read' for read messages" do
+      expect(helper.message_status_class(true)).to eq("read")
+    end
+  end
 end
