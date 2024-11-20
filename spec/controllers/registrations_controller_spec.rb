@@ -90,4 +90,21 @@ RSpec.describe Users::RegistrationsController, type: :controller do
             end
           end
     end
+
+    describe 'Strong Parameters' do
+        it 'permits only specific attributes' do
+            params = ActionController::Parameters.new(
+                user: {
+                    email: 'test@example.com',
+                    password: 'Test1234!',
+                    password_confirmation: 'Test1234!',
+                    admin: true # Invalid parameter for User
+                }
+            )
+            allow(controller).to receive(:params).and_return(params)
+            permitted_params = controller.send(:sign_up_params)
+            expect(permitted_params.keys).to match_array(%w[email password password_confirmation])
+            expect(permitted_params).not_to include(:admin)
+        end
+    end
 end
