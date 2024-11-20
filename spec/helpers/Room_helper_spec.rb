@@ -20,5 +20,9 @@ RSpec.describe RoomHelper, type: :helper do
     it "handles single-word room names" do
       expect(helper.format_room_name("kitchen")).to eq("Kitchen")
     end
+
+    it "trims leading and trailing whitespace" do
+      expect(helper.format_room_name("  bedroom  ")).to eq("Bedroom")
+    end
   end  
 end
