@@ -11,5 +11,20 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ReviewsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  #pending "add some examples to (or delete) #{__FILE__}"
+  describe "#format_rating" do
+    it "formats rating as stars" do
+      expect(helper.format_rating(4)).to eq("★★★★☆")
+    end
+
+    it "handles zero rating" do
+      expect(helper.format_rating(0)).to eq("☆☆☆☆☆")
+    end
+
+    it "handles full rating" do
+      expect(helper.format_rating(5)).to eq("★★★★★")
+    end
+  end
+
+  
 end
