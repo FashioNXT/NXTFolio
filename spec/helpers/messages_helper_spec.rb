@@ -24,5 +24,23 @@ RSpec.describe MessagesHelper, type: :helper do
     end
   end
 
+  describe "#truncate_message" do
+      it "truncates long messages" do
+        long_message = "This is a very long message that needs to be truncated"
+        expect(helper.truncate_message(long_message, 20)).to eq("This is a very lo...")
+      end
+
+      it "doesn't truncate short messages" do
+        short_message = "Short message"
+        expect(helper.truncate_message(short_message, 20)).to eq("Short message")
+      end
+
+      it "handles messages exactly at the truncation length" do
+        exact_message = "This is twenty char"
+        expect(helper.truncate_message(exact_message, 20)).to eq("This is twenty char")
+      end
+
+  end
+
   
 end
