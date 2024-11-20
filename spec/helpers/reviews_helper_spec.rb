@@ -26,5 +26,21 @@ RSpec.describe ReviewsHelper, type: :helper do
     end
   end
 
+  describe "#review_status_class" do
+    it "returns 'positive' for ratings 4 and above" do
+      expect(helper.review_status_class(4)).to eq("positive")
+      expect(helper.review_status_class(5)).to eq("positive")
+    end
+
+    it "returns 'neutral' for rating 3" do
+      expect(helper.review_status_class(3)).to eq("neutral")
+    end
+
+    it "returns 'negative' for ratings below 3" do
+      expect(helper.review_status_class(2)).to eq("negative")
+      expect(helper.review_status_class(1)).to eq("negative")
+    end
+  end
+
   
 end
