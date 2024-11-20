@@ -41,7 +41,7 @@ Feature: Login and sign up
     And I select "Texas" from "state"
     # And I select "Austin" from "city"
     And I click on "SAVE AND CONTINUE"
-    And I should be on the second signup page
+    And I will be on the second signup page
     When I fill in the following:
       |specialization| some specialization|
       |profdetails| some profdetails|

@@ -6,6 +6,12 @@ class User < ApplicationRecord
 
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
+   #For password validation
+   validates :password, length: {minimum: 8}, if: :password_required?
+
+   #For email validation
+   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
 #  scope :all_except, -> (user) { where.not(id: user)}
 
 #  def self.new_with_session(params, session)
@@ -26,5 +32,11 @@ class User < ApplicationRecord
       #room.skip_confirmation!
 #    end
 #  end
+
+private
+
+def password_required?
+  new_record? || password.present
+end  
 
 end

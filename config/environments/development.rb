@@ -73,4 +73,7 @@ Rails.application.configure do
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.web_console.permissions = '192.168.0.0/16'
+  # Store files locally.
+  config.active_storage.service = :local
+
 end

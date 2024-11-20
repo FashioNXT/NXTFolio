@@ -1,5 +1,15 @@
 	<!-- THE HEADER -->
 	<header>
+		<!-- Display flash messages -->
+		<% if flash[:success] %>
+		<div class="alert alert-success">
+			<%= flash[:success] %>
+		</div>
+		<% elsif flash[:error] %>
+		<div class="alert alert-warning">
+			<%= flash[:error] %>
+		</div>
+		<% end %>
 		<div class="container-fluid custom-container">
 			<div class="row no_row row-header">
 				

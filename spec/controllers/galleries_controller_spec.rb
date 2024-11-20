@@ -44,19 +44,19 @@ RSpec.describe GalleriesController, type: :controller do
     it 'should update the gallery' do
       gallery = Gallery.create(GeneralInfo_id: 1, gallery_title: "test", gallery_description: "test", gallery_picture: [fixture_file_upload('1.jpg', 'image/jpg')])
       post :update, params: { id: gallery.id, gallery: {test_picture: [fixture_file_upload('2.jpg', 'image/jpg')]}}
-      expect(response).to redirect_to edit_gallery_path(gallery.id)
+      expect(response).to redirect_to gallery
     end 
 
     it 'should not update the gallery when there are no pictures' do
       gallery = Gallery.create(GeneralInfo_id: 1, gallery_title: "test", gallery_description: "test", gallery_picture: [fixture_file_upload('1.jpg', 'image/jpg')])
       post :update, params: {id: gallery.id, gallery: {gallery_description: "edit"}}
-      expect(response).to render_template :edit
+      expect(response).to redirect_to gallery
     end
 
     it 'should not update the gallery when update parameters are not valid' do
       gallery = Gallery.create(GeneralInfo_id: 1, gallery_title: "test", gallery_description: "test", gallery_picture: [fixture_file_upload('1.jpg', 'image/jpg')])
       post :update, params: {id: gallery.id, gallery: {gallery_picture: ["test"]}}
-      expect(response).to render_template :edit
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -85,6 +85,7 @@ RSpec.describe GalleriesController, type: :controller do
     it "should not add images to the gallery if there would be more than 5 after adding them" do
       gallery = Gallery.create(GeneralInfo_id: 1, gallery_title: "test", gallery_description: "test", gallery_picture:  [fixture_file_upload('1.jpg', 'image/jpg'), fixture_file_upload('2.jpg', 'image/jpg'), fixture_file_upload('3.jpg', 'image/jpg')], test_picture: [fixture_file_upload('4.jpg', 'image/jpg'), fixture_file_upload('5.jpg', 'image/jpg'), fixture_file_upload('6.jpg', 'image/jpg')])
       get :transfer, params: {id: gallery.id}
+      expect(flash[:error]).to eq('You can not have more than 5 images in a gallery!')
     end 
 
     it "should not add images to the gallery" do

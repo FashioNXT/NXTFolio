@@ -172,6 +172,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     docile (1.4.0)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     erubi (1.12.0)
     event_stream_parser (1.0.0)
     excon (0.110.0)
@@ -250,6 +254,7 @@ GEM
     mime-types-data (3.2024.0305)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.7)
     minitest (5.22.3)
     multi_json (1.15.0)
     multi_test (1.1.0)
@@ -267,6 +272,9 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.1)
+    nokogiri (1.16.3)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.16.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
@@ -455,6 +463,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
+  ruby
   x86_64-darwin-23
   x86_64-linux
 
@@ -472,6 +481,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  dotenv-rails
   factory_bot_rails
   faker
   figaro

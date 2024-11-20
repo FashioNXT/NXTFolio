@@ -41,7 +41,7 @@ cd match-my-fashion-public-CodeCreators/install
 source setup_rvm.sh
 
 # install ruby
-rvm install ruby-3.2.0
+rvm install ruby-3.2.2
 
 echo ""
 echo "--------------------------------------"
@@ -117,7 +117,7 @@ gem update --system
 
 # install all gems (and hope for the best)
 bundle install
-
+bundle config set force_ruby_platform true
 echo ""
 echo "--------------------------------------"
 echo "Setting up the database..."
@@ -126,6 +126,7 @@ sleep 2
 # read -p "Press [Enter] key to continue..."
 
 # setup tables
+rails active_storage:install
 rake db:create
 rake db:migrate
 rake db:seed
