@@ -1,7 +1,18 @@
 module RoomsHelper
     def format_room_number(number)
-        "Room #{number.to_s.rjust(3, '0')}"
-      end
-    
-     
+    "Room #{number.to_s.rjust(3, '0')}"
+  end
+
+  def room_capacity_label(capacity)
+    case capacity
+    when 0..5
+      "Small"
+    when 6..15
+      "Medium"
+    else
+      "Large"
+    end
+  end
+
+  
 end

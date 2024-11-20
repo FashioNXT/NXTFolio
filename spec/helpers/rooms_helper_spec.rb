@@ -26,5 +26,22 @@ RSpec.describe RoomsHelper, type: :helper do
     end
   end
 
- 
+  describe "#room_capacity_label" do
+    it "returns 'Small' for capacities up to 5" do
+      expect(helper.room_capacity_label(3)).to eq("Small")
+      expect(helper.room_capacity_label(5)).to eq("Small")
+    end
+
+    it "returns 'Medium' for capacities between 6 and 15" do
+      expect(helper.room_capacity_label(6)).to eq("Medium")
+      expect(helper.room_capacity_label(15)).to eq("Medium")
+    end
+
+    it "returns 'Large' for capacities above 15" do
+      expect(helper.room_capacity_label(16)).to eq("Large")
+      expect(helper.room_capacity_label(30)).to eq("Large")
+    end
+  end
+
+  
 end
