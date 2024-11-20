@@ -14,5 +14,7 @@ module RoomsHelper
     end
   end
 
-  
+  def room_availability_status(available)
+    available ? "Available" : "Occupied"
+  end
 end

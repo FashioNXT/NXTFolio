@@ -43,5 +43,13 @@ RSpec.describe RoomsHelper, type: :helper do
     end
   end
 
-  
+  describe "#room_availability_status" do
+    it "returns 'Available' for available rooms" do
+      expect(helper.room_availability_status(true)).to eq("Available")
+    end
+
+    it "returns 'Occupied' for unavailable rooms" do
+      expect(helper.room_availability_status(false)).to eq("Occupied")
+    end
+  end
 end
