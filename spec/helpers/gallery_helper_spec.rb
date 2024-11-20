@@ -26,5 +26,19 @@ RSpec.describe GalleryHelper, type: :helper do
     end
   end
 
- 
+  describe "#image_size_class" do
+    it "returns 'small' for images under 1MB" do
+      expect(helper.image_size_class(500_000)).to eq("small")
+    end
+
+    it "returns 'medium' for images between 1MB and 5MB" do
+      expect(helper.image_size_class(3_000_000)).to eq("medium")
+    end
+
+    it "returns 'large' for images over 5MB" do
+      expect(helper.image_size_class(6_000_000)).to eq("large")
+    end
+  end
+
+  
 end
