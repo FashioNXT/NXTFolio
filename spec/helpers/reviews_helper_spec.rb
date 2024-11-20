@@ -42,5 +42,15 @@ RSpec.describe ReviewsHelper, type: :helper do
     end
   end
 
-  
+  describe "#truncate_review" do
+    it "truncates long reviews" do
+      long_review = "This is a very long review that needs to be truncated for display purposes"
+      expect(helper.truncate_review(long_review, 30)).to eq("This is a very long review...")
+    end
+
+    it "doesn't truncate short reviews" do
+      short_review = "Short review"
+      expect(helper.truncate_review(short_review, 30)).to eq("Short review")
+    end
+  end
 end

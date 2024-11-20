@@ -14,5 +14,11 @@ module ReviewsHelper
         end
       end
     
-      
+      def truncate_review(review, length)
+        if review.length > length
+            review[0...(length - 3)].strip + "..."
+          else
+            review
+          end
+      end
 end
