@@ -25,4 +25,6 @@ RSpec.describe RoomHelper, type: :helper do
       expect(helper.format_room_name("  bedroom  ")).to eq("Bedroom")
     end
   end  
+
+
 end

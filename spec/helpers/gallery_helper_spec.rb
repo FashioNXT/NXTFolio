@@ -11,5 +11,20 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe GalleryHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  #pending "add some examples to (or delete) #{__FILE__}"
+  describe "#format_image_title" do
+    it "capitalizes the first letter of each word" do
+      expect(helper.format_image_title("sunset at beach")).to eq("Sunset At Beach")
+    end
+
+    it "handles single-word titles" do
+      expect(helper.format_image_title("landscape")).to eq("Landscape")
+    end
+
+    it "trims leading and trailing whitespace" do
+      expect(helper.format_image_title("  night sky  ")).to eq("Night Sky")
+    end
+  end
+
+ 
 end
