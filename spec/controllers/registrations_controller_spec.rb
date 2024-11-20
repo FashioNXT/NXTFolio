@@ -36,5 +36,19 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect(response).to redirect_to(general_info_new_path)
       end
     end
+
+    context 'with invalid parameters' do
+        it 'does not create a new user and re-renders new' do
+          expect {
+            post :create, params: { user: user_params.merge(password_confirmation: 'WrongPassword') }
+          }.not_to change(User, :count)
+          expect(response).to render_template(:new)
+        end
+  
+        it 'sets flash error messages' do
+          post :create, params: { user: user_params.merge(password_confirmation: 'WrongPassword') }
+          expect(flash[:error]).to be_present
+        end
+      end
   end
 end
