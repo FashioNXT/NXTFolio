@@ -12,5 +12,9 @@ module GalleryHelper
         else
           "large"
         end
-      end
+    end
+
+    def format_upload_date(date)
+        date.strftime("%b %d, %Y")
+    end
 end

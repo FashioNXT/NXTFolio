@@ -40,5 +40,10 @@ RSpec.describe GalleryHelper, type: :helper do
     end
   end
 
-  
+  describe "#format_upload_date" do
+    it "formats the date correctly" do
+      date = Date.new(2023, 11, 19)
+      expect(helper.format_upload_date(date)).to eq("Nov 19, 2023")
+    end
+  end
 end
