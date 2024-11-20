@@ -19,6 +19,11 @@ RSpec.describe JobNotificationMailer, type: :mailer do
       expect(mail.from).to eq(["fashionxtllc@gmail.com"]) 
     end
 
+    it "renders the body" do
+      expect(mail.body.encoded).to match(name)
+      expect(mail.body.encoded).to match(job.title)
+    end
+
     
   end
 end
