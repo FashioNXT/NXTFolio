@@ -1,77 +1,19 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  def create
+    build_resource(sign_up_params) # Build the user object without saving
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+    if resource.valid?
+      session[:temp_user_data] = resource.attributes.slice('email', 'encrypted_password') # Store the attributes temporarily
+      redirect_to general_info_new_path
+    else
+      clean_up_passwords(resource)
+      render :new
+    end
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  # def update
-  #   super
-  # end
-
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
   private
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation)
-  end
-
-  def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password)
-  end
-
-  protected
-
-  def after_sign_up_path_for(resource)
-    root_path
   end
 end
