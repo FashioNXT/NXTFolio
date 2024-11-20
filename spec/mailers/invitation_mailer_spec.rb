@@ -21,5 +21,8 @@ RSpec.describe InvitationMailer, type: :mailer do
       expect(mail.body.encoded).to match(project_name)
     end
 
+    it "includes the invitation link" do
+      expect(mail.body.encoded).to include("galleries/show?id=#{project_key}")
+    end
   end
 end
