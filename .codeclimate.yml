@@ -16,4 +16,4 @@ exclude_patterns:
   - "vendor/"
   - "public/"
   - "tmp/"
-  - "app\assets\javascripts"
+  - "app/assets/javascripts"
