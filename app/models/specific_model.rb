@@ -1,158 +1,108 @@
- class SpecificModel < ApplicationRecord
-   attr_accessor :allgenres
+class SpecificModel < ApplicationRecord
+  attr_accessor :allgenres
 
-   #params_arg are the params returned from the SpecificModel search but DOES NOT INCLUDE GENRE
-   def self.search params_arg
-     @final_return = []
+  def self.search(params_arg)
+    @final_return = []
 
-     if params_arg.length > 0
-       GeneralInfo.all.find_each do |user_object|
+    if params_arg.length > 0
+      GeneralInfo.all.find_each do |user_object|
+        next unless user_object[:specific_profile_id] == 2
 
-         if user_object[:specific_profile_id] == 2
-           spec_object = SpecificModel.find_by(user_key: user_object["userKey"])
-           puts spec_object.inspect
+        spec_object = SpecificModel.find_by(user_key: user_object["userKey"])
+        next unless spec_object
 
-           incl = true
-           params_arg.each do |param_key, param_val|
-             if param_key == "checkboxes" || param_key == "min_dress_size"
-               next
-             end
+        incl = validate_params(params_arg, user_object, spec_object)
+        incl &&= genre_check(params_arg["checkboxes"], spec_object["genre"]) if params_arg["checkboxes"]
 
-             if param_key == "max_height" || param_key == "min_height"
-               model_height_ft = 0
-               model_height_in = 0
+        @final_return.push(user_object[:userKey]) if incl
+      end
+    else
+      find_all_users
+    end
 
-               if spec_object["height_feet"] != nil
-                 model_height_ft = spec_object["height_feet"]
-               end
+    @final_return
+  end
 
-               if spec_object["height_inches"] != nil
-                 model_height_in = spec_object["height_inches"]
-               end
+  # Validate params other than genre
+  def self.validate_params(params_arg, user_object, spec_object)
+    params_arg.each do |param_key, param_val|
+      next if ["checkboxes", "min_dress_size"].include?(param_key)
 
-               model_height_tot = (model_height_ft * 12) + model_height_in
+      case param_key
+      when "max_height", "min_height"
+        return false unless validate_height(params_arg, spec_object)
+      when "max_dress_size", "min_dress_size"
+        return false unless validate_dress_size(params_arg, spec_object)
+      else
+        chk_val = user_object[param_key] || spec_object[param_key]
+        return false if chk_val != param_val
+      end
+    end
+    true
+  end
 
-               min_height = 0
-               max_height = 99999
+  # Validate height range
+  def self.validate_height(params_arg, spec_object)
+    model_height = (spec_object["height_feet"].to_i * 12) + spec_object["height_inches"].to_i
+    return false if model_height.zero?
 
-               if params_arg.include? "min_height"
-                 min_height = params_arg["min_height"].to_f
-               end
+    min_height = params_arg["min_height"].to_f * 12 || 0
+    max_height = params_arg["max_height"].to_f * 12 || Float::INFINITY
+    model_height.between?(min_height, max_height)
+  end
 
-               if params_arg.include? "max_height"
-                 max_height = params_arg["max_height"].to_f
-               end
+  # Validate dress size range
+  def self.validate_dress_size(params_arg, spec_object)
+    model_dress_size = spec_object["dress_size"].to_i
+    return false if model_dress_size.zero?
 
-               if model_height_tot < (min_height * 12) || model_height_tot > (max_height * 12)
-                 incl = false
-               end
+    min_size = params_arg["min_dress_size"].to_i || 0
+    max_size = params_arg["max_dress_size"].to_i || Float::INFINITY
+    model_dress_size.between?(min_size, max_size)
+  end
 
-               if model_height_tot == 0
-                 incl = false
-               end
-             elsif param_key == "max_dress_size" || param_key == "min_dress_size"
-               model_dress_size = 0
+  # Validate genres
+  def self.genre_check(checkboxes, genre_string)
+    return false unless genre_string
 
-               if spec_object["dress_size"] != nil
-                 model_dress_size = spec_object["dress_size"]
-               end
+    genre_arr = genre_string.split(",")
+    checkboxes.any? { |genre| genre_arr.include?(genre) }
+  end
 
-               min_size = 0
-               max_size = 99999
-               if params_arg.include? "min_dress_size"
-                 min_size = params_arg["min_dress_size"].to_i
-               end
+  # Find all users with specific_profile_id == 2
+  def self.find_all_users
+    GeneralInfo.all.find_each do |user_object|
+      @final_return.push(user_object[:userKey]) if user_object[:specific_profile_id] == 2
+    end
+  end
 
-               if params_arg.include? "max_dress_size"
-                 max_size = params_arg["max_dress_size"].to_i
-               end
+  # Sets appearance of profile view attributes
+  def attribute_values
+    @attribute_values = {
+      height: "Height: #{height_feet} ft. #{height_inches} in.",
+      bust: "Bust size: #{bust} in.",
+      waist: "Waist size: #{waist} in.",
+      hips: "Hips size: #{hips} in.",
+      cups: "Cup size: #{cups}",
+      shoe_size: "Shoe size: #{shoe_size}",
+      dress_size: "Dress size: #{dress_size}",
+      hair_color: "Hair color: #{hair_color}",
+      eye_color: "Eye color: #{eye_color}",
+      ethnicity: "Ethnicity: #{ethnicity}",
+      skin_color: "Skin color: #{skin_color}",
+      shoot_nudes: "Shoots nudes: #{shoot_nudes}",
+      tattoos: "Has tattoos: #{tattoos}",
+      piercings: "Piercings: #{piercings}",
+      experience: "Experience: #{experience}",
+      genre: format_genres
+    }
+  end
 
-               puts min_size
-               puts max_size
-               puts model_dress_size
-               if model_dress_size < min_size || model_dress_size > max_size
-                 incl = false
-               end
+  # Format genres
+  def format_genres
+    return "Genre: " unless genre
 
-               if model_dress_size == 0
-                 incl = false
-               end
-             else
-
-               chk_val = user_object[param_key]
-
-               if chk_val == nil
-                puts param_key
-                chk_val = spec_object[param_key]
-               end
-
-               if chk_val != param_val
-                incl = false
-               end
-             end
-           end
-
-           # GENRE CHECKING
-
-           if params_arg["checkboxes"] && incl && spec_object["genre"]
-             genre_arr = spec_object["genre"].split(",")
-
-             puts genre_arr
-
-             genre_incl = false
-             params_arg["checkboxes"].each do |genre|
-               if genre_arr.include? genre
-                 puts genre
-                 genre_incl = true
-               end
-             end
-
-             incl = genre_incl
-           end
-
-           if incl
-             @final_return.push(user_object[:userKey])
-           end
-         end
-       end
-     else
-       GeneralInfo.all.find_each do |user_object|
-         if user_object[:specific_profile_id] == 2
-           @final_return.push(user_object[:userKey])
-         end
-       end
-     end
-
-     return @final_return
-   end
-
-   # Sets appearance of profile view attributes
-   def attribute_values
-     @attribute_values = Hash.new
-     @attribute_values[:height] = "Height: " + self.height_feet.to_s + " ft. " + self.height_inches.to_s + " in."
-     @attribute_values[:bust] = "Bust size: " + self.bust.to_s + " in."
-     @attribute_values[:waist] = "Waist size: " + self.bust.to_s + " in."
-     @attribute_values[:hips] = "Hips size: " + self.hips.to_s + " in."
-     @attribute_values[:cups] = "Cup size: " + self.cups.to_s
-     @attribute_values[:shoe_size] = "Shoe size: " + self.shoe_size.to_s
-     @attribute_values[:dress_size] = "Dress size: " + self.dress_size.to_s
-     @attribute_values[:hair_color] = "Hair color: " + self.hair_color.to_s
-     @attribute_values[:eye_color] = "Eye color: " + self.eye_color.to_s
-     @attribute_values[:ethnicity] = "Ethnicity: " + self.ethnicity.to_s
-     @attribute_values[:skin_color] = "Skin color: " + self.skin_color.to_s
-     @attribute_values[:shoot_nudes] = "Shoots nudes: " + self.shoot_nudes.to_s
-     @attribute_values[:tattoos] = "Has tattoos: " + self.tattoos.to_s
-     @attribute_values[:piercings] = "Piercings: " + self.piercings.to_s
-     @attribute_values[:experience] = "Experience: " + self.experience.to_s
-
-     @attribute_values[:genre] = "Genre: "
-     if self.genre != nil
-       self.genre.split(",").each do |genre|
-         @attribute_values[:genre] += genre + ", "
-       end
-       @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
-     end
-
-     @attribute_values
-   end
- end
+    genres = genre.split(",").join(", ")
+    "Genre: #{genres}"
+  end
+end
