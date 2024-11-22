@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
   get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  post 'login_info/new' => 'login_info#new', :as => 'login_info/new'
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
@@ -208,8 +209,8 @@ end
 
 
   devise_scope :user do
-    get 'sign_up', to: 'users/registrations#new', as: :new_user_registration
-    post 'sign_up', to: 'users/registrations#create', as: :user_registration
+    get 'sign_up', to: 'login_info#new', as: :new_user_registration
+    post 'sign_up', to: 'login_info#create', as: :user_registration
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
     post 'sign_in', to: 'devise/sessions#create', as: :user_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
