@@ -50,64 +50,38 @@ class GeneralInfo < ApplicationRecord
   #   self[:name]
   # end
 
-  def self.search searchArg
-    location = nil
-    if searchArg[:location].present? and searchArg[:location] != ''
-      location = searchArg[:location]
+  def self.search(searchArg)
+    location = searchArg[:location].presence
+    distance = searchArg[:distance].presence ? Integer(searchArg[:distance]) : 20
+    query = location ? GeneralInfo.near(location, distance) : GeneralInfo.all
+  
+    query = apply_text_filter(query, searchArg[:first_name], searchArg[:first_name_regex], "first_name") if searchArg[:first_name].present?
+    query = apply_text_filter(query, searchArg[:last_name], searchArg[:last_name_regex], "last_name") if searchArg[:last_name].present?
+  
+    query = apply_direct_filter(query, searchArg[:gender], "gender") if searchArg[:gender].present? && searchArg[:gender] != 'Any'
+    query = apply_direct_filter(query, searchArg[:compensation], "compensation", wildcard: true) if searchArg[:compensation].present? && searchArg[:compensation] != 'Any'
+    query = apply_direct_filter(query, searchArg[:job_type], "job_name") if searchArg[:job_type].present? && searchArg[:job_type] != 'Any'
+  
+    query
+  end
+  
+  private_class_method def self.apply_text_filter(query, value, regex, column)
+    case regex
+    when 'Contains'
+      value = "%#{value}%"
+    when 'Starts With'
+      value = "#{value}%"
+    when 'Ends With'
+      value = "%#{value}"
+    when 'Exactly Matches'
+      value = value
     end
-
-    distance = 20
-    if searchArg[:distance].present? and searchArg[:distance] != ''
-      distance = Integer(searchArg[:distance])
-    end
-
-    if location != nil
-      query = GeneralInfo.near(location, distance)
-    else
-      query = GeneralInfo.all
-    end
-
-    if searchArg[:first_name].present?
-      if searchArg[:first_name_regex] == 'Contains'
-        searchArg[:first_name] = "%" + searchArg[:first_name] + "%"
-      elsif searchArg[:first_name_regex] == 'Starts With'
-        searchArg[:first_name] = searchArg[:first_name] + "%"
-      elsif searchArg[:first_name_regex] == 'Ends With'
-        searchArg[:first_name] = "%" + searchArg[:first_name]
-      elsif searchArg[:first_name_regex] == 'Exactly Matches'
-        searchArg[:first_name] = searchArg[:first_name]
-      end
-      query = query.where("first_name ILIKE ?", searchArg[:first_name])
-    end
-
-    if searchArg[:last_name].present?
-      if searchArg[:last_name_regex]=='Contains'
-        searchArg[:last_name]="%"+searchArg[:last_name]+"%"
-      elsif searchArg[:last_name_regex]=='Starts With'
-        searchArg[:last_name]=searchArg[:last_name]+"%"
-      elsif searchArg[:last_name_regex]=='Ends With'
-        searchArg[:last_name]="%"+searchArg[:last_name]
-      elsif searchArg[:last_name_regex]=='Exactly Matches'
-        searchArg[:last_name]=searchArg[:last_name]
-      end
-      query = query.where("last_name ILIKE ?", searchArg[:last_name])
-    end
-
-    if searchArg[:gender].present? and searchArg[:gender] != 'Any'
-      query = query.where("gender ILIKE ?", searchArg[:gender])
-    end
-
-
-    if searchArg[:compensation].present? and searchArg[:compensation] != 'Any'
-      searchArg[:compensation]="%"+searchArg[:compensation]+"%"
-      query = query.where("compensation ILIKE ?", searchArg[:compensation])
-    end
-
-    if searchArg[:job_type].present? and searchArg[:job_type] != 'Any'
-      query = query.where("job_name ILIKE ?", searchArg[:job_type])
-    end
-
-    return query
+    query.where("#{column} ILIKE ?", value)
+  end
+  
+  private_class_method def self.apply_direct_filter(query, value, column, wildcard: false)
+    value = "%#{value}%" if wildcard
+    query.where("#{column} ILIKE ?", value)
   end
 
   # Sets appearance of profile view attributes
@@ -171,178 +145,146 @@ class GeneralInfo < ApplicationRecord
   end
 
 
-  def self.load_Job_File()
+  def self.load_Job_File
     jobString = $redis.get('jobList')
-    jobArray = Array.new
-    if(jobString != nil && jobString != "")
-      jobArray = jobString.scan(/\w+/)
-      jobArray.each do |job|
-        attrString = $redis.get(job)
-        if(attrString != nil) # If there's a redis for this job  
-          eachAttrMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(%)/).map {Regexp.last_match}
-          eachTypeMatch = attrString.to_enum(:scan, /\w+(\s\w+)*(,|')/).map {Regexp.last_match} # Not really implemented yet, just a copy of the attribute name
-          eachAttrMatch = eachAttrMatch.flatten
-          eachTypeMatch = eachTypeMatch.flatten
-
-          self.create_Job(job, false)
-          if(eachAttrMatch != nil && eachAttrMatch.size > 0)
-            eachAttrMatch.each do |attr|
-              job.constantize.add_Attr(attr.to_s.chop, "String", false) # Add the types you get from TypeMatch to further specialize this
-            end
-            job.constantize.update_File()
-          end
-        end
-      end
-    else # Job Redis is empty/ never been used. Initialize Admin role
-      $redis.set('jobList', '\'Admin\'')
-      $redis.set('Admin', '')
-      self.create_Job('Admin', false)
-    end
-
-    #@@Job_List = jobArray  
-
-  end
-
-  def self.create_Job (className, writeToFile = true)
-
-    # Code to validate the job name has chars only will go here
-
-    if(self.check_Job?(className.upcase_first) == false && className != 'Admin' && className != 'admin')
-      @@Job_List.push(className.upcase_first)
-      @@Job_Attr[className.upcase_first] = Array.new
-      @@Attr_Type[className.upcase_first] = Array.new
-
-
-      # Create entry in Job File List
-
-      creator = Object.const_set(className.upcase_first, Class.new {
-
-
-
-        def self.display_Name()
-          self.name
-        end
-
-        #def display_Name()
-          #self.display_Name()
-        #end
-
-        # def initialize()
-
-        # end
-
-        def self.add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
-          # If Name not in hash already
-          if(@@Job_Attr[self.name].include?(attr_Name) == false)
-            @@Job_Attr[self.name].push(attr_Name)
-            @@Attr_Type[self.name].push(attr_Type)
-            if(writeToRedis)
-              self.update_File
-            end
-          end
-
-          # Else Error, name already exists
-        end
-
-        #def add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
-          #self.add_Attr(attr_Name, attr_Type, writeToRedis)
-        #end
-
-        def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
-          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
-
-          if(indexLoc)
-            @@Job_Attr[self.name][indexLoc] = new_Name
-            if(new_Type != nil)
-              @@Attr_Type[self.name] = new_Type
-            end
-            self.update_File
-            # Code to run through database and edit all existing entries 
-          end
-        end
-
-        #def edit_Attr(attr_Name, new_Name, new_Type = nil)
-          #self.edit_Attr(attr_Name, new_Name, new_Type)
-        #end
-
-        def self.delete_Attr(attr_Name)
-          indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
-
-          if(indexLoc)
-            @@Job_Attr[self.name].delete_at(indexLoc)
-            @@Attr_Type[self.name].delete_at(indexLoc)
-            self.update_File
-            # Code to shift all attributes into place in database is in Admin controller
-          end
-        end
-
-        #def delete_Attr(attr_Name)
-          #self.delete_Attr(attr_Name)
-        #end
-
-        def self.view_Attr()
-          @@Job_Attr[self.name]
-        end
-
-        #def view_Attr()
-          #self.view_Attr()
-        #end
-
-        def self.view_Attr_Type(attr_Name = nil)
-          if (attr_Name == nil)
-            @@Attr_Type[self.name]
-          else
-            indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
-
-            if(indexLoc)
-              @@Attr_Type[self.name][indexLoc]
-            else
-              nil
-            end
-          end
-        end
-
-        #def view_Attr_Type(attr_Name)
-          #self.view_Attr_Type(attr_Name)
-        #end
-
-        def self.update_File()
-          self_Name = self.name
-          attr_Body = '\''
-          x = 0
-          while(x < @@Job_Attr[self.name].size)
-            attr_Body = attr_Body + @@Job_Attr[self.name][x] + '%' + @@Attr_Type[self.name][x] + '\''
-            x = x + 1
-          end
-          if(attr_Body == '\'')
-            attr_Body = '\'\''
-          end
-          #      new_line = self.display_Name + " " + attr_Body
-          #      file_cont = File.read ("jobList.dat")
-          #      new_cont = file_cont.gsub(/^(#{Regexp.escape(self_Name)}).*/, new_line)
-          #      File.open("jobList.dat", "w") {|file| file.puts new_cont}
-          $redis.set(self.name, attr_Body)
-        end
-
-        #def update_File()
-          #self.update_File()
-        #end
-
-      })
-
-      writeToFile = true
-      if(writeToFile)
-        jobString = '\''
-        @@Job_List.each do |job|
-          jobString = jobString + job + '\''
-        end
-        jobString = jobString + className.upcase_first + '\''
-        $redis.set('jobList', jobString)
-        $redis.set(className.upcase_first, '')
-      end
+    
+    if jobString.present?
+      load_jobs_from_redis(jobString)
+    else
+      initialize_admin_role
     end
   end
+  
+  private_class_method def self.load_jobs_from_redis(jobString)
+    jobArray = jobString.scan(/\w+/)
+    
+    jobArray.each do |job|
+      load_job_attributes(job)
+    end
+  end
+  
+  private_class_method def self.load_job_attributes(job)
+    attrString = $redis.get(job)
+    
+    return if attrString.nil? 
+  
+    eachAttrMatch = extract_attributes(attrString)
+    eachTypeMatch = extract_types(attrString)
+  
+    self.create_Job(job, false)
+    
+    if eachAttrMatch.any?
+      eachAttrMatch.each do |attr|
+        job.constantize.add_Attr(attr.to_s.chop, "String", false)
+      end
+      job.constantize.update_File
+    end
+  end
+  
+  private_class_method def self.extract_attributes(attrString)
+    attrString.to_enum(:scan, /\w+(\s\w+)*(%)/).map { Regexp.last_match }.flatten
+  end
+  
+  private_class_method def self.extract_types(attrString)
+    attrString.to_enum(:scan, /\w+(\s\w+)*(,|')/).map { Regexp.last_match }.flatten
+  end
+  
+  private_class_method def self.initialize_admin_role
+    $redis.set('jobList', 'Admin')
+    $redis.set('Admin', '')
+    self.create_Job('Admin', false)
+  end  
 
+  def self.create_Job(className, writeToFile = true)
+    # Return early if job already exists or if it's 'Admin' or 'admin'
+    return if self.check_Job?(className.upcase_first) || className.downcase == 'admin'
+  
+    # Initialize job with empty attributes
+    initialize_job(className)
+  
+    # Create the class dynamically
+    creator = create_job_class(className)
+  
+    # Update Redis with the new job list
+    update_job_list_to_redis(className) if writeToFile
+  end
+  
+  # Initialize the job attributes and list
+  private_class_method def self.initialize_job(className)
+    @@Job_List.push(className.upcase_first)
+    @@Job_Attr[className.upcase_first] = []
+    @@Attr_Type[className.upcase_first] = []
+  end
+  
+  # Dynamically create the job class with the necessary methods
+  private_class_method def self.create_job_class(className)
+    Object.const_set(className.upcase_first, Class.new {
+      # Add methods to the job class
+      def self.display_Name
+        self.name
+      end
+  
+      def self.add_Attr(attr_Name, attr_Type = "String", writeToRedis = true)
+        return if @@Job_Attr[self.name].include?(attr_Name)
+  
+        @@Job_Attr[self.name].push(attr_Name)
+        @@Attr_Type[self.name].push(attr_Type)
+  
+        update_File if writeToRedis
+      end
+  
+      def self.edit_Attr(attr_Name, new_Name, new_Type = nil)
+        indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
+        return unless indexLoc
+  
+        @@Job_Attr[self.name][indexLoc] = new_Name
+        @@Attr_Type[self.name] = new_Type if new_Type
+  
+        update_File
+      end
+  
+      def self.delete_Attr(attr_Name)
+        indexLoc = @@Job_Attr[self.name].find_index(attr_Name)
+        return unless indexLoc
+  
+        @@Job_Attr[self.name].delete_at(indexLoc)
+        @@Attr_Type[self.name].delete_at(indexLoc)
+  
+        update_File
+      end
+  
+      def self.view_Attr
+        @@Job_Attr[self.name]
+      end
+  
+      def self.view_Attr_Type(attr_Name = nil)
+        return @@Attr_Type[self.name] unless attr_Name
+  
+        indexLoc = @@Attr_Type[self.name].find_index(attr_Name)
+        indexLoc ? @@Attr_Type[self.name][indexLoc] : nil
+      end
+  
+      def self.update_File
+        attr_Body = "'" + build_attr_body
+        $redis.set(self.name, attr_Body)
+      end
+  
+      private
+  
+      def self.build_attr_body
+        @@Job_Attr[self.name].each_with_index.map do |attr, index|
+          "#{attr}%#{@@Attr_Type[self.name][index]}"
+        end.join("'")
+      end
+    })
+  end
+  
+  # Update the job list in Redis
+  private_class_method def self.update_job_list_to_redis(className)
+    jobString = @@Job_List.map { |job| "'#{job}'" }.join
+    $redis.set('jobList', "'#{jobString}'")
+    $redis.set(className.upcase_first, '')
+  end  
 
   def follow(id)
     followee = GeneralInfo.find(id)
@@ -362,39 +304,70 @@ class GeneralInfo < ApplicationRecord
      self.follows_others
   end
 
-  def self.filterBy country, state, profession, city
-    #filter by profession, country, state
-    @filteredUsers = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
-    # @filteredUsers = @filteredUsers.where(country: country) #United States
-
-    #@filteredUsers = country.present? ? GeneralInfo.where(country: country) : @filteredUsers
-    @filteredUsers = country.present? ? @filteredUsers.where(country: country) : @filteredUsers
-
-    @filteredUsers = state.present? ? @filteredUsers.where(state: state) : @filteredUsers
-    #adding city on filter list
-    #@filteredUsers = city.present? ? @filteredUsers.where(city: city) : @filteredUsers
-    @filteredUsers = city.present? ? @filteredUsers.where("LOWER(city) = ?", city.downcase) : @filteredUsers
-
-    
-    #@filteredUsers.each do |room|
-    #  puts "users are: #{room[:first_name]}"
-    #end
-
-
-    # add travel feature
-    # if the profession travels to the city within 30 days,
-    # he should show up in the search results
-    @filteredUsers1 = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
-    @filteredUsers1 = country.present? ? @filteredUsers1.where(travel_country: country) : @filteredUsers1
-    @filteredUsers1 = state.present? ? @filteredUsers1.where(travel_state: state) : @filteredUsers1
-    @filteredUsers1 = city.present? ? @filteredUsers1.where(travel_city: city) : @filteredUsers1
-    # @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date) + \
-    #                   @filteredUsers1.where.not(travel_start: Date.today..30.days.from_now.to_date).
-    @filteredUsers1 = @filteredUsers1.where(travel_start: Date.today..30.days.from_now.to_date)\
-                    .or(@filteredUsers1.where(travel_end: Date.today..30.days.from_now.to_date)\
-                    .or(@filteredUsers1.where('travel_start < ?', Date.today).where('travel_end > ?', Date.today) ) )
-          
-    return @filteredUsers.or(@filteredUsers1)
+  def self.filterBy(country, state, profession, city)
+    filtered_by_profession = filter_by_profession(profession)
+    filtered_by_country = filter_by_country(filtered_by_profession, country)
+    filtered_by_state = filter_by_state(filtered_by_country, state)
+    filtered_by_city = filter_by_city(filtered_by_state, city)
+  
+    filtered_by_travel = filter_by_travel(profession, country, state, city)
+  
+    return filtered_by_city.or(filtered_by_travel)
   end
-end
+  
+  # Helper method to filter by profession
+  private_class_method def self.filter_by_profession(profession)
+    profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+  end
+  
+  # Helper method to filter by country
+  private_class_method def self.filter_by_country(filtered_users, country)
+    country.present? ? filtered_users.where(country: country) : filtered_users
+  end
+  
+  # Helper method to filter by state
+  private_class_method def self.filter_by_state(filtered_users, state)
+    state.present? ? filtered_users.where(state: state) : filtered_users
+  end
+  
+  # Helper method to filter by city
+  private_class_method def self.filter_by_city(filtered_users, city)
+    city.present? ? filtered_users.where("LOWER(city) = ?", city.downcase) : filtered_users
+  end
+  
+  # Helper method to filter by travel attributes
+  private_class_method def self.filter_by_travel(profession, country, state, city)
+    filtered_users1 = profession.present? ? GeneralInfo.where(job_name: profession) : GeneralInfo.all
+    filtered_users1 = filter_by_travel_country(filtered_users1, country)
+    filtered_users1 = filter_by_travel_state(filtered_users1, state)
+    filtered_users1 = filter_by_travel_city(filtered_users1, city)
+  
+    filtered_users1 = filter_by_travel_dates(filtered_users1)
+  
+    filtered_users1
+  end
+  
+  # Helper method to filter by travel country
+  private_class_method def self.filter_by_travel_country(filtered_users1, country)
+    country.present? ? filtered_users1.where(travel_country: country) : filtered_users1
+  end
+  
+  # Helper method to filter by travel state
+  private_class_method def self.filter_by_travel_state(filtered_users1, state)
+    state.present? ? filtered_users1.where(travel_state: state) : filtered_users1
+  end
+  
+  # Helper method to filter by travel city
+  private_class_method def self.filter_by_travel_city(filtered_users1, city)
+    city.present? ? filtered_users1.where(travel_city: city) : filtered_users1
+  end
+  
+  # Helper method to filter by travel dates
+  private_class_method def self.filter_by_travel_dates(filtered_users1)
+    filtered_users1.where(travel_start: Date.today..30.days.from_now.to_date)
+                    .or(filtered_users1.where(travel_end: Date.today..30.days.from_now.to_date))
+                    .or(filtered_users1.where('travel_start < ?', Date.today)
+                                        .where('travel_end > ?', Date.today))
+  end  
 
+end
