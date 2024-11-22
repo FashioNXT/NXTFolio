@@ -120,34 +120,34 @@ RSpec.describe GeneralInfoController, type: :controller do
 
   describe "POST #create" do
     it 'should create GeneralInfo' do
-      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Test#1"}
+      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Asdf@123"}
       post :create, params: { :general_info => {:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "test@gmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}}
       expect(response).to have_http_status(:no_content)
       session.delete(:current_login_user)
     end
 
     it 'should not create GeneralInfo' do
-      session[:current_login_user] = {"password" => "Test#1"}
+      session[:current_login_user] = {"password" => "Asdf@123"}
       post :create, params: { :general_info => { :first_name => "", :last_name => "", :highlights => "", :company => "", :industry => "", :job_name => "", :emailaddr => "test@gmail.com", :month_ofbirth => 01, :day_ofbirth => 31,:phone =>892, :year_ofbirth => 1985, :gender => "Female", :country => "", :state => "", :city => "", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 0}}
       expect(response).to render_template :new
       session.delete(:current_login_user)
     end
 
     it 'should not create an admin user if there already exists a user' do 
-      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Test#1"}
+      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Asdf@123"}
       @general_info = GeneralInfo.create(:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "test@gmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2, :is_admin => true)
       post :create, params: { :general_info => {:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :job_name => "admin", :industry => "test industry", :emailaddr => "test@gmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}}
       session.delete(:current_login_user)
     end
 
     it 'should show the second user creation page' do 
-      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Test#1"}
+      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Asdf@123"}
       post :create, params: { select_one: true,  :general_info => {:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "test@gmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}}
       expect(response).to redirect_to general_info_new2_path
     end
 
     it 'should show the search engine' do 
-      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Test#1"}
+      session[:current_login_user] = {"email" => "test@gmail.com", "password" => "Asdf@123"}
       post :create, params: { select_two: true,  :general_info => {:first_name => "R", :last_name => "Spec", :highlights => "test highlights", :company => "test company", :industry => "test industry", :emailaddr => "test@gmail.com", :phone =>892, :month_ofbirth => 01,:day_ofbirth => 31, :year_ofbirth => 1985, :gender => "Female", :country => "United States", :state => "TX", :city => "Denver", :compensation => "Any Payment", :facebook_link => "www.fb.com/rspec", :linkedIn_link => "www.li.com/rspec", :instagram_link => "www.ig.com/rspec", :personalWebsite_link => "www.rspec.com", :bio => "I'm RSpec", :specific_profile_id => 2}}
       expect(response).to redirect_to search_engine_show_path
     end

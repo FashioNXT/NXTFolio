@@ -3,12 +3,12 @@ require 'rails_helper'
 
 RSpec.describe 'Users Routing', type: :routing do
   # Test routes for sign-up
-  it 'routes GET /sign_up to users/registrations#new' do
-    expect(get: '/sign_up').to route_to(controller: 'users/registrations', action: 'new')
+  it 'routes GET /sign_up to login_info#new' do
+    expect(get: '/sign_up').to route_to(controller: 'login_info', action: 'new')
   end
 
-  it 'routes POST /sign_up to users/registrations#create' do
-    expect(post: '/sign_up').to route_to(controller: 'users/registrations', action: 'create')
+  it 'routes POST /sign_up to login_info#create' do
+    expect(post: '/sign_up').to route_to(controller: 'login_info', action: 'create')
   end
 
   # Test routes for sign-in
