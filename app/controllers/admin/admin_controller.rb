@@ -6,7 +6,9 @@ module Admin
     
     def landing
       @hasPermission = check_admin_permission
-      redirect_to "/login_info/login" unless @hasPermission
+      if(@hasPermission == false)
+        redirect_to "/login_info/login"
+      end
     end
     
     def create
