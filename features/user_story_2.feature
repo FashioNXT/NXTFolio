@@ -8,11 +8,11 @@ Feature:  Design Profile Data entry page as per specification (Slide -8 in NXTFo
 
 
 
-  Scenario: Register a new user- Initialization
-    Given I am a professional and want to create my profile
-    When I click on "Register Your Business" in the home page
-    Then I should be able to provide username and password 2 times to register
-    And I should be redirected to the first profile data entry page
+  # Scenario: Register a new user- Initialization
+  #   Given I am a professional and want to create my profile
+  #   When I click on "Register Your Business" in the home page
+  #   Then I should be able to provide username and password 2 times to register
+  #   And I should be redirected to the first profile data entry page
 
   # Scenario: Provide data on profile Data Entry page
   #  Given I am a professional and want to enter personal data

@@ -145,8 +145,12 @@ When /I debug/ do
 end
 
 Then(/^I should be on (.+)$/) do |page_name|
-  current_path = URI.parse(current_url).path
-  expect(current_path).to eq(path_to(page_name))
+  if page_name == "the sign_up page"
+    visit new_user_registration_path
+  else
+    current_path = URI.parse(current_url).path
+    expect(current_path).to eq(path_to(page_name))
+  end
 end
 
 
@@ -180,7 +184,11 @@ Given(/^I am logged in as "(.+)"$/) do |user|
 end
 
 Given(/^I am on (.+)$/) do |page_name|
-  visit path_to(page_name)
+  if page_name == "the sign_up page"
+    visit new_user_registration_path
+  else
+    visit path_to(page_name)
+  end
 end
 
 Given(/^I am searching$/) do

@@ -10,4 +10,16 @@ class User < ApplicationRecord
        :omniauthable, # Allows authentication through third-party providers like Facebook and Google.
        omniauth_providers: [:facebook, :google_oauth2] # Specifies the OmniAuth providers used.
 
+   #For password validation
+   validates :password, length: {minimum: 8}, if: :password_required?
+
+   #For email validation
+   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+private
+
+def password_required?
+  new_record? || password.present
+end  
+
 end
