@@ -28,17 +28,29 @@
 		</div>
     </div>
 
-	<% if flash[:notice] %>
-	<div class="alert alert-danger">
-		<%= flash[:notice] %>
-	</div>
-	<% end %>
-
-	<% if flash.now[:error] %>
-	<div class="alert alert-danger">
-		<%= flash.now[:error] %>
-	</div>
-	<% end %>
+	<div class="large-popup-fixed"></div>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:notice]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(4, 199, 4, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:success]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(255, 0, 0, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:error]%></strong>
+      </div>
+      </div>
+    <% end %>
 
 	
 
