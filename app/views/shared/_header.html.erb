@@ -1,15 +1,5 @@
 <!-- THE HEADER -->
 <header>
-  <!-- Display flash messages -->
-  <% if flash[:success] %>
-    <div class="alert alert-success">
-      <%= flash[:success] %>
-    </div>
-  <% elsif flash[:error] %>
-    <div class="alert alert-warning">
-      <%= flash[:error] %>
-    </div>
-  <% end %>
   <div class="container-fluid custom-container">
     <div class="row no_row row-header">
       
@@ -36,7 +26,7 @@
               <%= link_to 'Log out', logout_path, method: :get, class: "btn color-1 size-2 hover-2" %>
             <% else %>
               <a class="btn color-1 size-2 hover-2" href="/login" id="sign_in_up"><i class="fa fa-lock"></i>Sign In</a>
-              <a class="btn be-register color-1 size-2 hover-2" href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i>Sign Up</a>
+              <a class="btn color-1 size-2 hover-2" href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i>Sign Up</a>
             <% end %>
           </div>
         </div>
@@ -44,28 +34,3 @@
     </div>
   </div>
 </header>
-
-<script> 
-  var element = document.getElementById("messages");
-  element.scrollTop = element.scrollHeight;
-
-  /* When the user clicks on the button,
-  toggle between hiding and showing the dropdown content */
-  function dropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-
-  // Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
-</script>

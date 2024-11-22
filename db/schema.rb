@@ -183,19 +183,6 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
     t.string "userKey"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "country"
-    t.string "state"
-    t.string "city"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "location_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_locations_on_profile_id"
-  end
-
   create_table "login_infos", id: :serial, force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -234,34 +221,6 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
   end
 
-  create_table "professional_details", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "company"
-    t.string "industry"
-    t.string "job_name"
-    t.string "experience"
-    t.string "specialization"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_professional_details_on_profile_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.date "date_of_birth"
-    t.string "gender"
-    t.string "phone"
-    t.text "bio"
-    t.text "highlights"
-    t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["template_id"], name: "index_profiles_on_template_id"
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
   create_table "reviews", id: :serial, force: :cascade do |t|
     t.integer "rating"
     t.text "comments"
@@ -277,15 +236,6 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
     t.boolean "is_private", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "social_links", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "platform"
-    t.string "url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_social_links_on_profile_id"
   end
 
   create_table "specific_designers", id: :serial, force: :cascade do |t|
@@ -334,15 +284,6 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
     t.string "state"
   end
 
-  create_table "specific_profiles", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "type"
-    t.text "attributes_data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_specific_profiles_on_profile_id"
-  end
-
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "state_code"
@@ -367,19 +308,6 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
     t.json "prof_attribute"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "travel_details", force: :cascade do |t|
-    t.bigint "profile_id", null: false
-    t.string "country"
-    t.string "state"
-    t.string "city"
-    t.date "start_date"
-    t.date "end_date"
-    t.string "details"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_travel_details_on_profile_id"
   end
 
   create_table "user_activity_details", force: :cascade do |t|
@@ -424,15 +352,8 @@ ActiveRecord::Schema.define(version: 2024_11_18_233932) do
   add_foreign_key "comments", "galleries"
   add_foreign_key "gallery_taggings", "galleries"
   add_foreign_key "gallery_taggings", "general_infos"
-  add_foreign_key "locations", "profiles"
   add_foreign_key "messages", "general_infos"
   add_foreign_key "messages", "rooms"
-  add_foreign_key "professional_details", "profiles"
-  add_foreign_key "profiles", "templates"
-  add_foreign_key "profiles", "users"
-  add_foreign_key "social_links", "profiles"
-  add_foreign_key "specific_profiles", "profiles"
   add_foreign_key "states", "countries"
   add_foreign_key "tags", "galleries"
-  add_foreign_key "travel_details", "profiles"
 end
