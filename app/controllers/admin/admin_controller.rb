@@ -30,8 +30,9 @@ module Admin
 
     def edit
       @hasPermission = check_admin_permission
-      redirect_to "/login_info/login" unless @hasPermission
-    
+      if @hasPermission == false
+        redirect_to "/login_info/login" 
+      end
       @jobs = GeneralInfo.see_Jobs.map(&:titleize)
     
       if params[:job_name].present? && params[:attr_action].present? && params[:attr_name].present?
@@ -52,7 +53,9 @@ module Admin
 
     def delete
       @hasPermission = check_admin_permission
-      redirect_to "/login_info/login" unless @hasPermission
+      if @hasPermission == false
+        redirect_to "/login_info/login" 
+      end
     
       @jobs = GeneralInfo.see_Jobs.map(&:titleize)
     
