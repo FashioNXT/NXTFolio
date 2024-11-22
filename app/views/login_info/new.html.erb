@@ -1,69 +1,157 @@
-<%= render :partial => "/layout/header" %>
-<body>
-<%= render :partial => "/layout/navigation" %>
-<%= render :partial => "/layout/body" %>
-<section id="login_section" class="container content-section text-center">
-<div id="LOGINFORM">
-  <div class="container">
-    <h1>
-      <b>SIGN UP</b>
-      <div class="notice">
-        <%= flash[:notice] %>
-      </div>
-    </h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FashioNXT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
+
+</head>
+<div >
+
+<!-- THE LOADER -->
+
+<div class="be-loader">
+  <div class="spinner">
+    <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+    <p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+    </p>
   </div>
-  <%= form_for @login_info, :url => '/login_info' do |f| %>
-
-    <div class="container">
-      <div class="row main">
-        <div class="main-center">
-          <form class="" method="post" action="#">
-
-			
-
-
-            <div class="form-group">
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Enter your email' %>
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div class="form-group">
-                            <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <%= f.password_field :password, :class => 'form-control', :id => 'password', :placeholder => 'Enter your Password' %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-                            <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'confirm', :placeholder => 'Confirm your Password' %>
-                </div>
-              </div>
-            </div>
-			
-		
-            <p class="button"></p>
-            <%= f.submit "Create my Account" , :class => 'btn btn-default'  %>
-
-          </form>
-        </div>
-      </div>
-    </div>
-
-  <% end %>
 </div>
-</section>
-<%= render :partial => "/layout/javascripts" %>
+
+<!-- THE HEADER -->
+
+<header>
+
+  <div class="container-fluid custom-container">
+    <div class="row no_row row-header">
+      <div class="brand-be">
+        <a href="/">
+          <img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+          <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
+          <img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
+          <img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+</header>
+
+<!-- MAIN CONTENT -->
+<div id="content-block">
+  <div class="head-bg">
+    <div class="head-bg-img"></div>
+
+    <div class="large-popup-fixed"></div>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:notice]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(4, 199, 4, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:success]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(255, 0, 0, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:error]%></strong>
+      </div>
+      </div>
+    <% end %>
+
+
+    <div class="head-bg-content">
+      <div class="col-md-12">
+
+         <!--Sign up-->
+        <div class="col-md-4">
+          <h1>Sign Up</h1>
+          <div class="row-fluid">
+            <%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
+            <!-- %= form_for :sign_in_up, :action => 'create', :url => login_info_create_path do |form| % -->
+                <form action="./" class="popup-input-search" method="post">
+                  <div class = "span5">
+                    <%= form.text_field :email, :class => 'input-signtype', :id => 'sign_up_email', :placeholder => 'Email', :required => ''%>
+                  </div>
+                  <br>
+                  <div class = "span5">
+                    <%= form.password_field :password, :class => 'input-signtype', :id => 'sign_up_password', :placeholder => 'Password', :required => '' %>
+                  </div>
+                  <br>
+                  <div class="span5">
+                    <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'sign_up_confirm', :placeholder => 'Repeat Password', :required => '' %>
+                  </div>
+                  <br>
+                  <div class="span5 for-signin">
+                    <!--%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :id => 'sign_in_up', :type => 'submit' %-->
+                    <%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
+                  </div>
+                </form>
+            <% end %>
+            <br>
+            <%= link_to "Existing user? Sign In Here!", login_info_login_path, :class => 'forgot' %>
+          </div>
+        </div> <!-- end of Sign up-->
+
+        <!-- Password Rules -->
+        <div class="col-md-4">
+          <h1>Password Rules</h1>
+          <div class="row-fluid">
+            <div class="span12">
+              <ul class="password-rules" style="color:white">
+                <li>Password must contain atleast:</li>
+                <ul style="color:white;text-align:left">
+                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;8 characters</li>
+                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 uppercase letter</li>
+                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 special character</li>
+                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 digit</li>
+                </ul>
+              </ul>
+            </div>
+          </div><!-- /row-fluid -->
+        </div> <!-- end of Password Rules-->
+      </div>
+   </div> <!-- bg head content -->
+  </div>
+</div>
+
+  <!-- THE FOOTER -->
+  <%= render 'shared/footer' %>
+
+  <!-- SCRIPTS	 -->
+  <script src="<%= asset_path "jquery.min.js"%>"></script>
+  <script src="<%= asset_path "jquery-ui.js"%>"></script>
+  <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+  <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+  <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+  <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+  <script src="<%= asset_path "global.js"%>"></script>
+  <script src="<%= asset_path "application.js"%>"></script>
+
+</div>
 </body>
-<%= render :partial => "/layout/footer" %>
+</html>

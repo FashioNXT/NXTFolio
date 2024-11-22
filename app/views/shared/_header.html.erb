@@ -1,118 +1,36 @@
-	<!-- THE HEADER -->
-	<header>
-		<!-- Display flash messages -->
-		<% if flash[:success] %>
-		<div class="alert alert-success">
-			<%= flash[:success] %>
-		</div>
-		<% elsif flash[:error] %>
-		<div class="alert alert-warning">
-			<%= flash[:error] %>
-		</div>
-		<% end %>
-		<div class="container-fluid custom-container">
-			<div class="row no_row row-header">
-				
-				<!-- This is for the clickable icon on the left up corner in the landing page-->
-				<div class="brand-be">
-					<a href="/">
-						<img class="logo-c active be_logo" src="<%= asset_path "new_logo.png"%>" alt="logo">
-						<!-- if useless, we can delete it
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
-						-->
-					</a>
-				</div>
-				
-				<div class="header-menu-block">
-					
+<!-- THE HEADER -->
+<header>
+  <div class="container-fluid custom-container">
+    <div class="row no_row row-header">
+      
+      <!-- This is for the clickable icon on the left up corner in the landing page-->
+      <div class="brand-be">
+        <a href="/">
+          <img class="logo-c active be_logo" src="<%= asset_path "new_logo.png"%>" alt="logo">
+        </a>
+      </div>
+      
+      <div class="header-menu-block">
+        <ul class="header-menu" id="one">
+          <!-- Additional menu items can go here -->
+        </ul>
+      </div>
 
-					<!-- <button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button> -->
-
-					<ul class="header-menu" id="one" style=>
-						
-						<!-- <li><a href="/search_profile/search">Search</a></li> -->
-						
-						<!--<% if session[:current_user_key] %>
-							<li><a href="/show_profile">My Profile</a></li>
-						<% end %>
-						-->
-					</ul>
-
-
-				</div>
-				<!--Logout Button Begin -->
-				<div class="login-header-block">
-						<div class="login_block">
-							<div class="login_block_rightup">
-                <% if session[:current_user_key] %>
-									<div class="dropdown">
-										<%if GeneralInfo.find_by(userKey: session[:current_user_key]) && GeneralInfo.find_by(userKey: session[:current_user_key]).notification %>
-											<button onclick="dropdown()" class="dropbtn" id='notif'><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
-											<div id="myDropdown" class="dropdown-content">
-												<% @notifications_from = GeneralInfo.find_by(userKey: session[:current_user_key]).notification_from %>
-												<% @notifications_from.each do |notification|%>
-													<a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
-												<% end %>
-										<% else %>
-											<button onclick="dropdown()" class="dropbtn" id='notif'><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
-											<div id="myDropdown" class="dropdown-content">
-												<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
-												<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> You're all caught up! </b> </div>
-												<div style="color: black; height: 20px; width 0px; overflow-wrap: break-word;"> <b> No new messages. </b> </div>
-										<% end %>
-											</div>
-										</div>
-									<a href="/dm" class="dropbtn" id="dm"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
-                  <a class="btn color-1 size-2 hover-2" href="/show_profile">My Profile</a>
-                  <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-                <% else %>
-                  <a class="btn color-1 size-2 hover-2" href="/login" id="sign_in_up"><i class="fa fa-lock"></i>Sign In</a>
-              <% end %>
-
-                <!-- DELETE BELOW BLOCK -->
-                <!--
-								<% if session[:current_user_key] %>
-									<%= link_to 'My Profile', show_profile_show_profile_path, :class => "btn color-1 size-2 hover-2" %>
-									<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-								<% else %>
-									<%= link_to 'Log in', login_path, method: :get, :class => "btn btn-login color-1 size-2 hover-2" %>
-									<a class="btn be-register color-1 size-2 hover-2" href=""><i class="fa fa-lock"></i>sign up now</a>
-								<% end %>
-                -->
-                <!--DELETE ABOVE BLOCK -->
-
-							</div>
-						</div>
-				</div>
-				<!--Logout Button End-->  
-			</div>
-		</div>
-
-	</header>
-
-	<script> 
-		var element = document.getElementById("messages");
-		element.scrollTop = element.scrollHeight;
-
-			/* When the user clicks on the button,
-		toggle between hiding and showing the dropdown content */
-		function dropdown() {
-		document.getElementById("myDropdown").classList.toggle("show");
-		}
-
-		// Close the dropdown menu if the user clicks outside of it
-		window.onclick = function(event) {
-		if (!event.target.matches('.dropbtn')) {
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length(); i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');s
-			}
-			}
-		}
-		}
-	</script>
+      <!-- Login and Sign Up Buttons -->
+      <div class="login-header-block">
+        <div class="login_block">
+          <div class="login_block_rightup">
+            <% if session[:current_user_key] %>
+              <a href="/dm" class="dropbtn" id="dm"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
+              <a class="btn color-1 size-2 hover-2" href="/show_profile">My Profile</a>
+              <%= link_to 'Log out', logout_path, method: :get, class: "btn color-1 size-2 hover-2" %>
+            <% else %>
+              <a class="btn color-1 size-2 hover-2" href="/login" id="sign_in_up"><i class="fa fa-lock"></i>Sign In</a>
+              <a class="btn color-1 size-2 hover-2" href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i>Sign Up</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

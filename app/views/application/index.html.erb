@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
     <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
     <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= asset_path "initializer.js"%>"></script>
   </head>
   <br>
@@ -40,28 +39,28 @@
     <div class="head-bg">
       <div class="head-bg-img"></div>
       <div class="large-popup-fixed"></div>
-      <% if flash[:notice] %>
-        <div class="alert-container col-md-12">
-          <div class="alert style-3 alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= flash[:notice]%></strong>
-          </div>
-        </div>
-      <% elsif flash[:success] %>
-        <div class="alert-container col-md-12">
-          <div class="alert style-3 alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= flash[:success]%></strong>
-          </div>
-        </div>
-      <% elsif flash[:error] %>
-        <div class="alert-container col-md-12">
-          <div class="alert style-3 alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong><%= flash[:error] %></strong>
-          </div>
-        </div>
-      <% end %>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:notice]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(4, 199, 4, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:success]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(255, 0, 0, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:error]%></strong>
+      </div>
+      </div>
+    <% end %>
       <div class=head-bg-content>
         <%= form_tag(search_engine_show_path, :method=>'get') do %>
           <div class="container">

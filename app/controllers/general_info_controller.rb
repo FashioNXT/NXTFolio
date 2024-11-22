@@ -62,7 +62,9 @@ class GeneralInfoController < ApplicationController
   end
 
   def new2
-    initialize_general_info
+    load_general_info
+    @show_generate_about_me_button = true
+    render :edit2
   end
 
   def create
