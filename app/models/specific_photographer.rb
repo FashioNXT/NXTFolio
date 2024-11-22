@@ -1,91 +1,65 @@
- class SpecificPhotographer < ApplicationRecord
-   attr_accessor :allgenres
+class SpecificPhotographer < ApplicationRecord
+  attr_accessor :allgenres
 
-   def self.search params_arg
-     @final_return = []
+  def self.search(params_arg)
+    @final_return = []
 
-     if params_arg.length > 0
-       GeneralInfo.all.find_each do |user_object|
+    if params_arg.empty?
+      # Handle the no-parameters case explicitly
+      GeneralInfo.where(specific_profile_id: 3).find_each do |user_object|
+        @final_return.push(user_object[:userKey])
+      end
+      return @final_return
+    end
 
-         if user_object[:specific_profile_id] == 3
-           spec_object = SpecificPhotographer.find_by(user_key: user_object["userKey"])
+    GeneralInfo.where(specific_profile_id: 3).find_each do |user_object|
+      spec_object = SpecificPhotographer.find_by(user_key: user_object["userKey"])
+      next unless spec_object
 
-           puts spec_object.inspect
+      if params_match?(params_arg, user_object, spec_object) &&
+         genre_match?(params_arg["checkboxes"], spec_object["genre"])
+        @final_return.push(user_object[:userKey])
+      end
+    end
 
-           incl = true
-           params_arg.each do |param_key, param_val|
-             if param_key == "checkboxes"
-               next
-             end
+    @final_return
+  end
 
-             chk_val = user_object[param_key]
+  # Checks if user attributes and params match
+  def self.params_match?(params_arg, user_object, spec_object)
+    params_arg.all? do |param_key, param_val|
+      next true if param_key == "checkboxes"
 
-             if chk_val == nil
-               puts param_key
-               chk_val = spec_object[param_key]
-             end
+      chk_val = user_object[param_key] || spec_object[param_key]
+      chk_val == param_val
+    end
+  end
 
-             if chk_val != param_val
-               incl = false
-             end
-           end
+  # Checks if genres match
+  def self.genre_match?(checkboxes, genre_string)
+    return true unless checkboxes
+    return false unless genre_string
 
-           # GENRE CHECKING
+    genre_arr = genre_string.split(",")
+    checkboxes.any? { |genre| genre_arr.include?(genre) }
+  end
 
-           if spec_object
-             if params_arg["checkboxes"] && incl && spec_object["genre"]
-               genre_arr = spec_object["genre"].split(",")
+  def attribute_values
+    {
+      influencers: "Influencers: #{influencers}",
+      specialties: "Specialities: #{specialties}",
+      compensation: "Compensation: #{compensation}",
+      experience: "Experience: #{experience}",
+      genre: format_genres
+    }
+  end
 
-               puts genre_arr
+  private
 
-               genre_incl = false
-               params_arg["checkboxes"].each do |genre|
-                 if genre_arr.include? genre
-                   puts genre
-                   genre_incl = true
-                 end
-               end
+  def format_genres
+    return "Genre(s): " unless genre
 
-               incl = genre_incl
-             else
-               incl = false
-             end
-
-             if incl
-               @final_return.push(user_object[:userKey])
-             end
-           else
-             incl = false
-           end
-         end
-       end
-     else
-       GeneralInfo.all.find_each do |user_object|
-         if user_object[:specific_profile_id] == 3
-           @final_return.push(user_object[:userKey])
-         end
-       end
-     end
-
-     return @final_return
-   end
-
-   # Sets appearance of profile view attributes
-   def attribute_values
-     @attribute_values = Hash.new
-     @attribute_values[:influencers] = "Influencers: " + self.influencers.to_s
-     @attribute_values[:specialties] = "Specialities: " + self.specialties.to_s
-     @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s
-     @attribute_values[:experience] = "Experience: " + self.experience.to_s
-
-     @attribute_values[:genre] = "Genre(s): "
-     if self.genre != nil
-       self.genre.split(",").each do |genre|
-         @attribute_values[:genre] += genre + ", "
-       end
-       @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
-     end
-
-     @attribute_values
-   end
- end
+    genre_list = genre.split(",").map(&:strip).join(", ")
+    "Genre(s): #{genre_list}"
+  end
+end
