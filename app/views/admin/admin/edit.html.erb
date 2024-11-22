@@ -1,4 +1,10 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  </head>
+  <body>
+    <%= render :partial => "/layout/profile_header" %>
   <%= content_tag :div, flash.now[:notice], class: "notice" %>
 
   <%= form_tag("/admin/edit", method: "post") do %>  
@@ -9,9 +15,7 @@
     <%= submit_tag("Edit") %>
   <% end %>
 
-
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
 <%= render :partial => "/layout/profile_javascripts" %>
-
+<%= render 'shared/footer' %>
+</body>
+</html>

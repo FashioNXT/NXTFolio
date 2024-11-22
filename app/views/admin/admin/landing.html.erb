@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+</head>
 <%= render :partial => "/layout/profile_header" %>
 <body data-spy="scroll" data-offset="0" data-target="#nav">
 <%= render :partial => "/layout/navigation" %>
@@ -20,8 +25,8 @@
  </section>
 
 
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
+
 <%= render :partial => "/layout/profile_javascripts" %>
+<%= render 'shared/footer' %>
 </body>
+</html>
