@@ -1,21 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-  </head>
-  <body>
-    <%= render :partial => "/layout/profile_header" %>
-  <%= content_tag :div, flash.now[:notice], class: "notice" %>
+<head>
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css" %>">
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+    }
+    footer {
+      padding: 1rem;
+      text-align: center;
+    }
 
-  <%= form_tag("/admin/edit", method: "post") do %>  
-    <%= label_tag(:job_name, "Select the job you want to edit, then add or delete an attribute via the text box:") %>
-    <%= select_tag :job_name, options_for_select(@jobs) %>
-    <%= select_tag :attr_action, options_for_select(['Add', 'Remove']) %>
-    <%= text_field_tag(:attr_name) %>
-    <%= submit_tag("Edit") %>
-  <% end %>
+    .form-container {
+      min-height: 65vh; /* Ensures the form occupies significant space */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-<%= render :partial => "/layout/profile_javascripts" %>
-<%= render 'shared/footer' %>
+    .form-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <%= render :partial => "/layout/profile_header" %>
+
+  <!-- Flash Messages -->
+  <div class="container">
+    <%= content_tag :div, flash.now[:notice], class: "notice alert alert-info text-center" %>
+  </div>
+
+  <!-- Form Section -->
+  <div class="container form-container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-12 col-lg-12">
+        <%= form_tag("/admin/edit", method: "post", class: "needs-validation") do %>
+          <!-- Form Title -->
+          <h3 class="form-title">Edit Job Attributes</h3>
+          
+          <!-- Select Job -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:job_name, "Select the job you want to edit:", class: "form-label") %>
+            <%= select_tag :job_name, options_for_select(@jobs), class: "form-select" %>
+          </div>
+          
+          <!-- Action Selection -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:attr_action, "Choose an action:", class: "form-label") %>
+            <%= select_tag :attr_action, options_for_select(['Add', 'Remove']), class: "form-select" %>
+          </div>
+          
+          <!-- Attribute Name -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:attr_name, "Attribute Name:", class: "form-label") %>
+            <%= text_field_tag(:attr_name, nil, class: "form-control", placeholder: "e.g., Salary") %>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12" style="min-height: 20px"></div>
+          <!-- Submit Button -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <%= submit_tag("Edit", class: "btn btn-primary btn-block") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <%= render 'shared/footer' %>
 </body>
 </html>

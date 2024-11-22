@@ -2,18 +2,56 @@
 <html>
   <head>
     <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      .content {
+        flex: 1;
+      }
+      footer {
+        padding: 1rem;
+        text-align: center;
+      }
+      form {
+        min-height: 65%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
-  <%= render :partial => "/layout/profile_header" %>
-  <%= content_tag :div, flash.now[:notice], class: "notice" %>
-  
-  <%= form_tag("/admin/delete", method: "post") do %>  
-    <%= select_tag :job_name, options_for_select(@jobs) %>
-    <%= submit_tag("Delete") %>
-  <% end %>
+    <!-- Header -->
+    <%= render :partial => "/layout/profile_header" %>
 
+    <div class="container-fluid">
+      <!-- Flash Messages -->
+      <%= content_tag :div, flash.now[:notice], class: "notice alert alert-info text-center" %>
 
-<%= render :partial => "/layout/profile_javascripts" %>
-<%= render 'shared/footer' %>
+      <!-- Form -->
+      <div class="row justify-content-center align-items-center" style="min-height: 65vh;">
+        <div class="col-12">
+          <%= form_tag("/admin/delete", method: "post", class: "needs-validation") do %>
+          <div class="container">
+            <!-- Dropdown Field -->
+            <div class="col-12 col-sm-6 col-md-6 mb-3">
+              <%= label_tag(:job_name, "Select Job to Delete:", class: "form-label") %>
+              <%= select_tag :job_name, options_for_select(@jobs), class: "form-select" %>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="col-12 col-sm-4 col-md-4">
+              <%= submit_tag("Delete", class: "btn btn-danger btn-block") %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%= render 'shared/footer' %>
   </body>
 </html>
