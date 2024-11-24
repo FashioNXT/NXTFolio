@@ -145,7 +145,7 @@ header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: wh
 
 header .custom-container { position: relative; }
 
-header .row-header .brand-be { margin-top: 16.5px; float: center; }
+header .row-header .brand-be { margin-top: 16.5px; float: center}
 
 header .row-header .header-menu-block { position: absolute;
     top: 0px; left: 50%; -webkit-transform: translateX(-50%);
@@ -401,7 +401,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 }
 
 /*  Mobile view for Edit profile labels navigation bar*/
-@media screen and (max-width: 560px){
+@media screen and (max-width: 560px){ 
     .header-menu > li a { display: inline; line-height: 42px; padding: 0 75px; text-align: left;}
     .header-menu > li > a { font-size: 18px; text-align: left;}
     .header-menu > li > ul > li > a { font-size: 15px; text-align: left; width: 10px; color: black;}
@@ -427,7 +427,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 
 /*Mobile View search engine background picture*/
-@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }}
 
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
@@ -1617,7 +1617,23 @@ display: inline-block; float: none; margin: 0 10px;}
 .subblock .type-2:after{color:#fff !important;}
 .subblock .pagination{text-align: left; margin: 0;}
 /*buttons*/
-.btn { display: inline-block; font-size: 15px; line-height: 15px; font-weight: 400; color: black;  margin-bottom: 10px; margin-right: 10px; border: 1px solid black; border-radius: 9px; }
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn { display: inline-block; 
+  font-size: 15px; 
+  line-height: 15px; 
+  font-weight: 400; color: black;  
+  margin-bottom: 10px; 
+  margin-right: 10px; 
+  border: 1px solid black; 
+  border-radius: 9px; 
+}
 
 .btn.color-1 { background: white; border: 1px solid #222835; }
 
@@ -1690,7 +1706,8 @@ display: inline-block; float: none; margin: 0 10px;}
 /*mobile view*/
 @media screen and (max-width: 560px)
 {
-  .btn.full { margin-right: 0px; }
+  .btn.full { width: 90%; margin-top: 88px;}
+  .btn.size-1 { padding: 10px 20px; }
 }
 
 .btn.btn-right { float: right; margin-right: 0px; margin-left: 20px; }
