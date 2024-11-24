@@ -91,6 +91,37 @@
     }
 }
 
+@media screen and (max-width: 480px)
+{
+    #advsearch {
+        height: 500px;
+    }
+
+    .searchContainer {
+        width: 350px;
+        background-color: #969693; /*#a8a7a5; /*#333; #BA5555;*/
+        position: relative;
+        border-radius: 25px;
+    }
+
+    .searchpagesearch {
+        width: 350px;
+        background-color: #BA5555;
+        border-radius: 25px;
+        position: relative;
+        top: 80px;
+        left: 20px;
+    }
+
+    .mod-1 {
+        color: white;
+        font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 20px;
+        text-align: left;
+        padding-left: 46px;
+    }
+}
+
 .searchboxcontainer {
     min-height: 400px;
 }
