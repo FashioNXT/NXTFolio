@@ -1659,7 +1659,12 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .btn.size-1 { padding: 15px 28px; }
 
-.btn.size-2 { font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 18px; line-height: 10px; padding: 12px 19px 10px 19px; }
+.btn.size-2 { 
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; 
+  font-size: 18px; 
+  line-height: 10px; 
+  padding: 6% 5% 6% 1%; 
+  }
 
 .btn.size-3 { font-size: 9px; line-height: 9px; padding: 9px 10px; }
 
@@ -1706,8 +1711,20 @@ display: inline-block; float: none; margin: 0 10px;}
 /*mobile view*/
 @media screen and (max-width: 560px)
 {
+  .brand-be {
+    position: absolute; 
+    left: 28%;
+  }
+
+  .btn.size-2 { 
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; 
+  font-size: 12px; 
+  line-height: 10px; 
+  padding: 8% 5% 8% 2%; 
+  }
+
   .btn.full { width: 90%; margin-top: 88px;}
-  .btn.size-1 { padding: 10px 20px; }
+  .btn.size-1 { padding: 10px 20px;}
 }
 
 .btn.btn-right { float: right; margin-right: 0px; margin-left: 20px; }
@@ -4096,14 +4113,6 @@ button #Model {
 
 /*Mobile View of pictures in each project*/
 @media screen and (max-width:560px)
-{
-  .btn.size-2 { 
-    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; 
-    font-size: 12px; 
-    line-height: 10px; 
-    padding: 12px 8px 10px 5px; 
-  }
-
   .col-md-3 {
     padding: 20px;
     padding-bottom: 120px;
