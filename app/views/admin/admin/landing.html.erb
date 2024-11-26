@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
 <%= render :partial => "/layout/profile_header" %>
 <body data-spy="scroll" data-offset="0" data-target="#nav">
 <%= render :partial => "/layout/navigation" %>
 
-<section id="adminPanel" class="container text-center">
+<section id="adminPanel" class="container text-center" style="min-height: 65vh;">
   <div id="ADMINPANEL">
     <h1>
       <b>Job Management Page</b>
@@ -20,8 +31,8 @@
  </section>
 
 
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
+
 <%= render :partial => "/layout/profile_javascripts" %>
+<%= render 'shared/footer' %>
 </body>
+</html>
