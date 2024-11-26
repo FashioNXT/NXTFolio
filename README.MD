@@ -526,6 +526,16 @@ For Running Locally:
 
 ## Contact
 
+Contact for most recent team (Fall 24)
+
+- Likhith Majjigapu: likhi@tamu.edu
+- Manikanta Gudipudi: manikanta@tamu.edu
+- Omar Khater: omarkhater@tamu.edu
+- Venkat Pitta: pitta.venkat@tamu.edu
+- Yash Honrao: yash.honrao@tamu.edu
+- Caroline Li: zhiheng@tamu.edu
+- Brandon Hill: bhill24@tamu.edu    
+
 Contact previous teams for testing, deployment and issues related to following features :
 
 1. AI Chatbot -> liewgh1995@tamu.edu
