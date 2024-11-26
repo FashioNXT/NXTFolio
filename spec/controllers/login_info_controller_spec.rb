@@ -20,7 +20,7 @@ RSpec.describe LoginInfoController, type: :controller do
    describe "POST #create" do 
         it 'should create LoginInfo' do
             post :create, params: {:login_info => { :email => "me@me.com", :password => "Apple12345*", :password_confirmation => "Apple12345*" }}
-            expect(response).to redirect_to root_path
+            expect(response).to redirect_to unconfirmed_user_new_path
         end
 
         it 'should not create LoginInfo if email already exists' do

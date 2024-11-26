@@ -110,6 +110,9 @@ Rails.application.routes.draw do
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
+  get 'unconfirmed_user/new' => 'unconfirmed_user#new', :as => 'unconfirmed_user/new'
+  post 'unconfirmed_user/verify' => 'unconfirmed_user#verify', :as => 'unconfirmed_user/verify'
+  get 'unconfirmed_user/regenerate_token' => 'unconfirmed_user#regenerate_token', :as => 'unconfirmed_user/regenerate_token'
 
 
   get 'login' => 'login_info#login', :as => 'login'

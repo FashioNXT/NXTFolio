@@ -31,29 +31,29 @@ require 'rails_helper'
   #For Email Confirmation
   describe 'validations' do
     it 'is valid with valid attributes' do
-      user = User.new(email: 'test@example.com', password: 'Test1234!')
+      user = LoginInfo.new(email: 'test@example.com', password: 'Test1234!')
       expect(user).to be_valid
     end
       
     it 'is not valid without an email' do
-      user = User.new(password: 'Test1234!')
+      user = LoginInfo.new(password: 'Test1234!')
       expect(user).to_not be_valid
     end
 
     it 'is not valid with an invalid email format' do
-      user = User.new(email: 'invalid_email', password: 'Test1234!')
+      user = LoginInfo.new(email: 'invalid_email', password: 'Test1234!')
       expect(user).to_not be_valid
     end
 
     it 'is not valid without a password' do
-      user = User.new(email: 'test@example.com')
+      user = LoginInfo.new(email: 'test@example.com')
       expect(user).to_not be_valid
     end
 
     it 'is not valid with a password less than 8 characters' do
-      user = User.new(email: 'test@example.com', password: 'Short1!')
+      user = LoginInfo.new(email: 'test@example.com', password: 'Short1!')
       expect(user).to_not be_valid
-      expect(user.errors[:password]).to include("is too short (minimum is 8 characters)")
+      expect(user.errors[:password]).to include(" must be at least 8 characters long")
     end
 
       

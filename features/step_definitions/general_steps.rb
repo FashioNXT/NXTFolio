@@ -11,12 +11,6 @@ Given(/the following users exist/) do |users_table|
     email = "#{first_name}.#{last_name}@example.com"
     userkey = SecureRandom.hex(10)
 
-    user_record = User.create!(
-      email: email,
-      password: fake_password,
-      confirmed_at: Time.current # Mark user as confirmed
-    )
-
 
     login_info = LoginInfo.new
     login_info.email = "#{first_name}.#{last_name}@example.com"
@@ -157,7 +151,6 @@ end
 
 
 Given(/^I am logged in$/) do
-  user = User.first # Use the first user for simplicity
   visit new_user_session_path
   # visit 'login_info/login'
   fill_in "email", :with => @login_info.email
@@ -169,7 +162,6 @@ Given(/^I am logged in as "(.+)"$/) do |user|
   # get user info
   name = user.split(".")
   email = "#{name[0]}.#{name[1]}@example.com"
-  user = User.find_by(email: email)
   login_info = LoginInfo.find_by(email: email)
 
   # login as user

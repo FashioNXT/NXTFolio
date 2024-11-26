@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FashioNXT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+  <link rel="stylesheet" href="<%= asset_path "search_button.css"%>">
+
+</head>
+<div >
+
+<!-- THE LOADER -->
+
+<div class="be-loader">
+  <div class="spinner">
+    <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
+    <p class="circle">
+			  <span class="ouro">
+			    <span class="left"><span class="anim"></span></span>
+			    <span class="right"><span class="anim"></span></span>
+			  </span>
+    </p>
+  </div>
+</div>
+
+<!-- THE HEADER -->
+<%= render 'shared/header' %>
+
+<!-- MAIN CONTENT -->
+<div id="content-block">
+  <div class="head-bg">
+    <div class="head-bg-img"></div>
+
+    <div class="large-popup-fixed"></div>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:notice]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(4, 199, 4, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:success]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(255, 0, 0, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:error]%></strong>
+      </div>
+      </div>
+    <% end %>
+
+
+    <div class="head-bg-content">
+      <div class="col-md-12">
+
+        <!-- Email Verification -->
+        <div class="col-md-4">
+          <h1>Verify Your Email</h1>
+          <div class="row-fluid" id="log_in_div">
+            <%= form_for :unconfirmed_user, :action => 'verify', :url => unconfirmed_user_verify_path do |form| %>
+              <form action="#" class="popup-input-search" method="post">
+                <div class="span3" id = "email">
+                  <%= form.text_field :confirmation_token, :class => 'input-signtype', :id => 'verification_token', :placeholder => 'Verification Token', :required => ''%>
+                </div>
+                <br>
+                <div class="span3 for-signin">
+                  <%= form.submit "Verify", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
+                </div>
+              </form>
+            <% end %>
+            <br>
+            <%= link_to "Didnot recieve mail? Resend token!", unconfirmed_user_regenerate_token_path, :class => 'forgot' %>
+          </div>
+        </div>
+      </div>
+   </div> <!-- bg head content -->
+  </div>
+</div>
+
+  <!-- THE FOOTER -->
+  <%= render 'shared/footer' %>
+
+  <!-- SCRIPTS	 -->
+  <script src="<%= asset_path "jquery.min.js"%>"></script>
+  <script src="<%= asset_path "jquery-ui.js"%>"></script>
+  <script src="<%= asset_path "bootstrap.min.js"%>"></script>
+  <script src="<%= asset_path "idangerous.swiper.min.js"%>"></script>
+  <script src="<%= asset_path "jquery.mixitup.js"%>"></script>
+  <script src="<%= asset_path "jquery.viewportchecker.min.js"%>"></script>
+  <script src="<%= asset_path "global.js"%>"></script>
+  <script src="<%= asset_path "application.js"%>"></script>
+
+</div>
+</body>
+</html>

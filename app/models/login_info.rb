@@ -41,8 +41,12 @@ class LoginInfo < ApplicationRecord
       " must contain at least one lowercase letter"  => /[a-z]+/
     }
 
-    rules.each do |message, regex|
-      errors.add(:password, message) unless password.match(regex)
+    if password.nil?
+      errors.add(:password, " must be at least 8 characters long")
+    else
+      rules.each do |message, regex|
+        errors.add(:password, message) unless password.match(regex)
+      end
     end
   end
 

@@ -69,7 +69,6 @@ Country.transaction do
 # #####################################
 require 'securerandom'
 
-User.destroy_all
 LoginInfo.destroy_all
 GeneralInfo.destroy_all
 Gallery.destroy_all
