@@ -103,6 +103,9 @@
                   </div>
                   <br>
                   <div class="span5">
+                    <p style="color:white;">(Must contain: 8 characters, 1 uppercase, 1 lowercase, 1 special character, and 1 digit)</p>
+                  </div>
+                  <div class="span5">
                     <%= form.password_field :password_confirmation, :class => 'input-signtype', :id => 'sign_up_confirm', :placeholder => 'Repeat Password', :required => '' %>
                   </div>
                   <br>
@@ -117,24 +120,6 @@
             <%= link_to "Existing user? Sign In Here!", login_info_login_path, :class => 'forgot' %>
           </div>
         </div> <!-- end of Sign up-->
-
-        <!-- Password Rules -->
-        <div class="col-md-4">
-          <h1>Password Rules</h1>
-          <div class="row-fluid">
-            <div class="span12">
-              <ul class="password-rules" style="color:white">
-                <li>Password must contain at least:</li>
-                <ul style="color:white;text-align:left">
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;8 characters</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 uppercase letter</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 special character</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 digit</li>
-                </ul>
-              </ul>
-            </div>
-          </div><!-- /row-fluid -->
-        </div> <!-- end of Password Rules-->
       </div>
    </div> <!-- bg head content -->
   </div>
