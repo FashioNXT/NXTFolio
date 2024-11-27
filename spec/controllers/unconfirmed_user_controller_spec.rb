@@ -13,10 +13,18 @@ RSpec.describe UnconfirmedUserController, type: :controller do
   end
 
   describe "POST #verify" do
-    @unconfirmed_user = UnconfirmedUser.new
+    let!(:unconfirmed_user) do
+      UnconfirmedUser.create!(
+        unconfirmed_email: 'test1@mail.com',
+        encrypted_password: 'Test#123',
+        confirmation_token: '123456',
+        confirmation_sent_at: Time.current
+      )
+    end
+
     context "with valid token" do
       it "verifies the user and redirects to new_general_info_path" do
-        post :verify, params: { :unconfirmed_user => { unconfirmed_email: "test1@mail.com", encrypted_password: "Test#123", confirmation_token: "123456", confirmation_sent_at: Time.current } }
+        post :verify, params: { unconfirmed_user: { confirmation_token: unconfirmed_user.confirmation_token } }
         expect(flash[:success]).to eq("You Have Successfully Verified your email!")
         expect(response).to redirect_to(new_general_info_path)
       end
