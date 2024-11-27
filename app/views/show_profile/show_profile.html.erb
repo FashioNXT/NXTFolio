@@ -20,6 +20,26 @@
 			.big{
 				font-size: 25px;
 			}
+			.navbar-toggle .icon-bar {
+  				background-color: black !important;
+			}
+			.navbar a {
+  				color: black !important; /* Ensures links are black */
+			}
+			.navbar-collapse {
+  				background-color: white; /* Sets the collapsed navbar background color */
+			}
+			@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
 		</style>
 		
 	</head>
@@ -41,83 +61,96 @@
     </div>
 	<!-- THE HEADER -->
 	<header>
-		
-		<div class="container-fluid custom-container">
-			<div class="row no_row row-header">
-				<div class="brand-be">
-					<a href="/">
+		<nav class="navbar" style="color: black;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+					<a class="navbar-brand" href="/">
 						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo2">
-						<img  class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo3">
-						<img class="logo-c be_logo" src="<%= asset_path "logo.png"%>" alt="logo4">
 					</a>
 				</div>
-				
-				<div class="header-menu-block">
-					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
-					<ul class="header-menu" id="one">
-						<!--li><a href="/search_profile/search">Search</a--> 
-						<li><a href="/chat">AI Chatbot</a>
-						</li>
-						<li><a href="/search_engine/show">Search</a>
-						</li>
-						<% if session[:current_user_key] %>
-							<li><a href="/show_profile">My Profile</a></li>
-							<% if @on_Own %>
-								<li><a href="/general_info/edit">Edit Profile</a>
-									<ul>
-										<li><a href="/general_info/edit">Edit Personal Info</a></li>
-										<% if @attribute_titles && !@is_Admin %>
-											<li><a href="/general_info/edit2">Edit Professional Info</a></li>
-										<% end %>
-										<li><a href="/login_info/edit">Change Password</a></li>
-										<% if !@is_Admin %>
-											<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
-										<% elsif @is_Admin%>
-											<li><a href="/admin">Admin Dashboard</a></li>
-										<% end %>
-									</ul>
-								</li>
+				<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/general_info/edit_travel">Travel</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Profile
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/general_info/edit">Edit Personal Info</a></li>
+							<% if @attribute_titles && !@is_Admin %>
+								<li><a href="/general_info/edit2">Edit Professional Info</a></li>
 							<% end %>
+								<li><a href="/login_info/edit">Change Password</a></li>
+							<% if !@is_Admin %>
+								<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
+							<% elsif @is_Admin%>
+								<li><a href="/admin">Admin Dashboard</a></li>
+							<% end %>
+						</ul>
+					</li>
+					<li class="active"><a href="/show_profile">My Profile</a></li>
+					<li><a href="/search_engine/show">Search</a></li>
+					<li><a href="/chat">AI Chatbot</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				<% if session[:current_user_key] %>
+					<!-- Notifications Dropdown -->
+					<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+						<% if @user && @user.notification %>
+						<i class="fa-regular fa-bell fa-xl" style="color:#147efb"></i>
+						<% else %>
+						<i class="fa-regular fa-bell fa-xl" style="color:black"></i>
 						<% end %>
-						<li><a href="/general_info/edit_travel">Travel</a>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+						<% if @user && @user.notification %>
+						<% @notifications_from.each do |notification| %>
+							<li><a class="dropdown-item" href="/dm/<%= notification %>">
+							<b><%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message!</b>
+							</a></li>
+						<% end %>
+						<% else %>
+						<li class="dropdown-item text-center">
+							<i class="fa-regular fa-circle-check fa-5x" style="color:black; padding:30px;"></i>
+							<div style="color: black; height: 20px;"><b>You're all caught up!</b></div>
+							<div style="color: black; height: 20px;"><b>No new messages.</b></div>
 						</li>
+						<% end %>
 					</ul>
-				</div>
+					</li>
 
-                <!--Logout Button Begin -->
-                <div class="login-header-block">
-                    <div class="login_block">
-                        <% if session[:current_user_key] %>
-													<div class="dropdown">
-													<%if @user && @user.notification %>
-														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:#147efb"></i></button>
-														<div id="myDropdown" class="dropdown-content">
-															<% @notifications_from.each do |notification|%>
-																<a href="/dm/<%= notification %>"> <b> <%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message! </b> </a>
-															<% end %>
-													<% else %>
-														<button onclick="dropdown()" class="dropbtn"><i class="fa-regular fa-bell fa-xl fa-fw" style="color:black"></i></button>
-														<div id="myDropdown" class="dropdown-content">
-															<i class="fa-regular fa-circle-check fa-5x" style="color:black;padding:30px"></i>
-															<div style="color: black; height: 20px;"> <b> You're all caught up! </b> </div>
-															<div style="color: black; height: 20px;"> <b> No new messages. </b> </div>
-													<% end %>
-														</div>
-													</div>
-													<a href="/dm" class="dropbtn"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
-													<%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-                        <% else %>
-                        	<%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
-                        <% end %>
-                    </div>
-                </div>
-                <!--Logout Button End-->
-    
+					<!-- Direct Messages Button -->
+					<li class="nav-item">
+					<a href="/dm" class="nav-link">
+						<i class="fa-regular fa-message fa-xl" style="color:black"></i>
+					</a>
+					</li>
+
+					<!-- Log Out Button -->
+					<li class="nav-item">
+					<%= link_to logout_path, method: :get, class: "nav-link" do %>
+						<span class="glyphicon glyphicon-log-out"></span> Log out
+					<% end %>
+					</li>
+				<% else %>
+					<!-- Log In Button -->
+					<li class="nav-item">
+					<%= link_to login_path, method: :get, class: "nav-link" do %>
+						<span class="glyphicon glyphicon-log-in"></span> Login
+					<% end %>
+					</li>
+				<% end %>
+				</ul>
+
+				</div>
 			</div>
-		</div>
-		
-		</div>
+		</nav>
 	</header>
 	
 	
@@ -351,7 +384,7 @@
 													</a>
 													<div class="profile-img-container">
 														<a class="be-img-block profile-img img-thumbnail">
-															<img src="<%= gallery.gallery_picture[0].url %>" alt="omg">
+															<img src="<%= gallery.gallery_picture[0].url %>" alt="omg" class="img-fluid">
 														</a>
 														<div class="mask"></div>
 									     			</div>
