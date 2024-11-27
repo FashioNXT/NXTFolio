@@ -1,13 +1,5 @@
 class UnconfirmedUserController < ApplicationController
 
-  def list
-    @unconfirmed_users = LoginInfo.all
-  end
-  
-  def show
-    @unconfirmed_user = UnconfirmedUser.find(params[:id])
-  end
-
   def new
     @unconfirmed_user = UnconfirmedUser.new
   end
