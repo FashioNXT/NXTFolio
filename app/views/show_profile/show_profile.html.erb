@@ -79,7 +79,7 @@
 							<% else %>
                                 <img class="profile-img" src="<%= asset_path 'avatar-icon.png' %>" width="100px" height="100px" style="position:absolute;top:10px;left:30px" alt="">
 							<% end %>
-							<% if @general_info && @general_info.profile_picture.url %>
+							<% if @general_info %>
 								<p style="font-size: 16px; margin-top:5px; text-align: center; margin-left: 200px"><label>Name:</label><%= " "+ @general_info.first_name+" " %><%= @general_info.last_name %></p>
 								<p style="font-size: 16px; margin-top:5px; text-align: center; margin-left: 200px"><label>Location:</label><%= " "+ @general_info.city+", " %><%= @general_info.state+", " %><%= @general_info.country %></p>
 								<p style="font-size: 16px; margin-top:5px; text-align: center; margin-left: 200px"><label>Category:</label><%= " "+ (@general_info[:industry] ? @general_info.industry : "Not defined") %></p>
