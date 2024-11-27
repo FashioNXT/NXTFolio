@@ -90,7 +90,7 @@
          <!--Sign up-->
         <div class="col-md-4">
           <h1>Sign Up</h1>
-          <div class="row-fluid">
+          <div class="row-fluid" style="display: flex; flex-direction: column;">
             <%= form_for :login_info, :action => 'create', :url => login_info_create_path do |form| %>
             <!-- %= form_for :sign_in_up, :action => 'create', :url => login_info_create_path do |form| % -->
                 <form action="./" class="popup-input-search" method="post">
@@ -98,8 +98,14 @@
                     <%= form.text_field :email, :class => 'input-signtype', :id => 'sign_up_email', :placeholder => 'Email', :required => ''%>
                   </div>
                   <br>
-                  <div class = "span5">
+                  <div class="span5">
                     <%= form.password_field :password, :class => 'input-signtype', :id => 'sign_up_password', :placeholder => 'Password', :required => '' %>
+                    <!-- Password Rules -->
+                    <div class="password-rules" style="font-size: 12px; margin-top: 5px; color: white;">
+                      <ul>
+                        <li>*At least 8 characters, 1 uppercase, 1 digit, and 1 special character.</li>
+                      </ul>
+                    </div>
                   </div>
                   <br>
                   <div class="span5">
@@ -107,7 +113,6 @@
                   </div>
                   <br>
                   <div class="span5 for-signin">
-                  <div class="d-flex flex-column align-items-center">
                     <!--%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :id => 'sign_in_up', :type => 'submit' %-->
                     <%= form.submit "SIGN UP", class: "btn color-1 size-1 hover-1", :type => 'submit' %>
                   </div>
@@ -117,24 +122,6 @@
             <%= link_to "Existing user? Sign In Here!", login_info_login_path, :class => 'forgot' %>
           </div>
         </div> <!-- end of Sign up-->
-
-        <!-- Password Rules -->
-        <div class="col-md-4">
-          <h1>Password Rules</h1>
-          <div class="row-fluid">
-            <div class="span12">
-              <ul class="password-rules" style="color:white">
-                <li>Password must contain at least:</li>
-                <ul style="color:white;text-align:left">
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;8 characters</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 uppercase letter</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 special character</li>
-                  <li>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;●&emsp;1 digit</li>
-                </ul>
-              </ul>
-            </div>
-          </div><!-- /row-fluid -->
-        </div> <!-- end of Password Rules-->
       </div>
    </div> <!-- bg head content -->
   </div>
