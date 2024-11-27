@@ -3,11 +3,11 @@ require "rails_helper"
 RSpec.describe InvitationMailer, type: :mailer do
   #pending "add some examples to (or delete) #{__FILE__}"
   describe "invitation_email" do
-    let(:inviter) { User.create(name: "John Doe", email: "john@example.com") }
+    let(:inviter) { GeneralInfo.create(first_name: "John", last_name: "Doe", email: "john@example.com") }
     let(:invitee_email) { "jane@example.com" }
     let(:project_name) { "Test Project" }
     let(:project_key) { "test_key_123" }
-    let(:mail) { InvitationMailer.invitation_email(invitee_email, "Jane Doe", inviter.name, project_name, project_key) }
+    let(:mail) { InvitationMailer.invitation_email(invitee_email, "Jane Doe", inviter.first_name, project_name, project_key) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("You have been invited to collaborate on a project.")
@@ -17,7 +17,7 @@ RSpec.describe InvitationMailer, type: :mailer do
 
     it "renders the body" do
       expect(mail.body.encoded).to match("Jane Doe")
-      expect(mail.body.encoded).to match(inviter.name)
+      expect(mail.body.encoded).to match(inviter.first_name)
       expect(mail.body.encoded).to match(project_name)
     end
 

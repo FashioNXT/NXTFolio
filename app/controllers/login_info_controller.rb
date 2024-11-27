@@ -38,11 +38,22 @@ class LoginInfoController < ApplicationController
       flash[:error] = "#{@login_info.errors.full_messages.first}"
       redirect_to login_info_new_path and return
     end
-
-    session[:current_login_user]=@login_info
-    EmailVerificationMailer.verification_email(session[:current_login_user]).deliver_now!
-    redirect_to root_path, :notice => "We have sent you a link to verify the email. Please verify your email and continue signing up there."
-    # redirect_to new_general_info_path
+    # @unconfirmed_user.verification_email
+    @user = UnconfirmedUser.find_by(unconfirmed_email: @login_info.email)
+    if @user.present?
+      flash[:notice] = 'We have already sent you a code to verify your email. Please check your inbox and spam!'
+      redirect_to unconfirmed_user_new_path and return
+    end
+    UnconfirmedUser.create!(
+      unconfirmed_email: @login_info.email,
+      encrypted_password: @login_info.password,
+      confirmation_token: SecureRandom.random_number(1000000).to_s.rjust(6, '0'),
+      confirmation_sent_at: Time.current
+    )
+    
+    EmailVerificationMailer.verification_email(UnconfirmedUser.last).deliver_now!
+    session[:current_login_user] = @login_info
+    redirect_to unconfirmed_user_new_path, notice: 'We have sent you a new code to verify the email. Please verify your email and continue your registration!'
   end
 
   # Params used to create the LoginInfo object
