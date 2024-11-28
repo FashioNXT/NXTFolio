@@ -278,7 +278,7 @@ end
 Given (/"(.+)" sends a message to "(.+)" saying "(.+)"/) do |from_user, to_user, msg|
   step "I am logged in as \"#{from_user}\""
   visit path_to "the DM page"
-  step "I click on \"Search\""
+  step "I click on \"search_button\""
   step "I fill in \"user_search\" with \"#{to_user.gsub('.', ' ')}\""
   step "I select \"#{to_user.gsub('.', ' ')}\" chat"
   fill_in("body", :with => msg)

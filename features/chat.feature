@@ -23,7 +23,7 @@ Feature: Chat
     Scenario: I should be able to search for users to chat with
         Given I am logged in as "Andrea.Picardo"
         And I am on the DM page
-        When I click on "Search"
+        When I click on "search_button"
         And I fill in "user_search" with "Anthony"
         Then I should see "Anthony Gray - Model"
 
@@ -31,7 +31,7 @@ Feature: Chat
     Scenario: I should be able to send messages to other users
         Given I am logged in as "Andrea.Picardo"
         And I am on the DM page
-        When I click on "Search"
+        When I click on "search_button"
         And I fill in "user_search" with "Anthony"
         Then I should see "Anthony Gray - Model"
         When I select "Anthony Gray" chat
@@ -65,7 +65,7 @@ Feature: Chat
     Scenario: I should be able to send a message with an attachment
         Given I am logged in as "Andrea.Picardo"
         And I am on the DM page
-        When I click on "Search"
+        When I click on "search_button"
         And I fill in "user_search" with "Anthony"
         Then I should see "Anthony Gray - Model"
         When I select "Anthony Gray" chat
@@ -77,6 +77,6 @@ Feature: Chat
     Scenario: I should be able to search and see no users found when I search for non-existent user
         Given I am logged in as "Andrea.Picardo"
         And I am on the DM page
-        When I click on "Search"
+        When I click on "search_button"
         And I fill in "user_search" with "Daniel"
         Then I should see "No users found"

@@ -141,7 +141,7 @@ a:focus { outline: none; outline-offset: 0px; color: inherit; }
 */
 header * { -webkit-backface-visibility: hidden; }
 
-header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: white; position: fixed; top: 0; line-height: 0; z-index: 1000; }
+header { height: 70px; width: 100%; font-size: 14px; background: white; position: fixed; top: 0; line-height: 0; z-index: 1000; }
 
 header .custom-container { position: relative; }
 
@@ -170,6 +170,26 @@ img.be_logo { text-align: left; }
 .header-menu { text-align: center; }
 
 .fa-angle-down { display: none; }
+
+.navbar-toggle .icon-bar {
+  background-color: black !important;
+}
+.navbar a {
+  color: black !important; /* Ensures links are black */
+}
+.navbar-collapse {
+  background-color: white; /* Sets the collapsed navbar background color */
+}
+@media (min-width: 768px) {
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+}
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+}
 
 /*login-block*/
 .login-header-block { margin-top: 10.5px; align: center; margin-bottom: 10.5px; padding-bottom: 15px; width: 500px;}
@@ -693,7 +713,7 @@ form.input-search { position: relative; margin-bottom: 50px; }
 /*Mobile view of entire gallery of projects on homepage and my profile page*/
 @media screen and (max-width:560px)
 {
-    .be-post {  border-radius: 2px; width: 100%; margin-bottom: 00px !important; padding-left: 120px;}
+    .be-post {  border-radius: 2px; width: 100%; margin-bottom: 00px !important;}
 }
 
 
@@ -3934,8 +3954,7 @@ body .login-user-down:hover {
 
 .profile-img {
 
-  max-width: 380px;
-  max-height: 240px
+  max-height: 240px;
 }
 
 .job_title-style {
@@ -4141,7 +4160,7 @@ button #Model {
     .photo-hover .mask,
     .photo-img,
     .photo-info {
-        width: 370px;
+        width: 350px;
         height: 230px;
     }
 }
@@ -5092,7 +5111,7 @@ legend {
         background-size: cover;
         padding: 15px;
         font-family: 'Roboto', sans-serif;
-        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; width: 630px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
     }
 }
 

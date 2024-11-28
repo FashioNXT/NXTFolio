@@ -1,36 +1,103 @@
 <!-- THE HEADER -->
 <header>
-  <div class="container-fluid custom-container">
-    <div class="row no_row row-header">
-      
-      <!-- This is for the clickable icon on the left up corner in the landing page-->
-      <div class="brand-be">
-        <a href="/">
-          <img class="logo-c active be_logo" src="<%= asset_path "new_logo.png"%>" alt="logo">
-        </a>
-      </div>
-      
-      <div class="header-menu-block">
-        <ul class="header-menu" id="one">
-          <!-- Additional menu items can go here -->
-        </ul>
-      </div>
+		<nav class="navbar" style="color: black;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+					<a class="navbar-brand" href="/">
+						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+					</a>
+				</div>
+				<!-- Main Buttons -->
+				<div class="collapse navbar-collapse" id="myNavbar">
+        <% if session[:current_user_key] %>
+				<ul class="nav navbar-nav">
+					<li><a href="/general_info/edit_travel">Travel</a></li>
+          <% if @on_Own %>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Profile
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/general_info/edit">Edit Personal Info</a></li>
+							<% if @attribute_titles && !@is_Admin %>
+								<li><a href="/general_info/edit2">Edit Professional Info</a></li>
+							<% end %>
+								<li><a href="/login_info/edit">Change Password</a></li>
+							<% if !@is_Admin %>
+								<li><a href="general_info/make_admin/<%=@addUser%>">Make Administrator</a></li>
+							<% elsif @is_Admin%>
+								<li><a href="/admin">Admin Dashboard</a></li>
+							<% end %>
+						</ul>
+					</li>
+          <% end %>
+					<li class="active"><a href="/show_profile">My Profile</a></li>
+					<li><a href="/search_engine/show">Search</a></li>
+					<li><a href="/chat">AI Chatbot</a></li>
+          <% end %>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				<% if session[:current_user_key] %>
+					<!-- Notifications Dropdown -->
+					<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+						<% if @user && @user.notification %>
+						<i class="fa-regular fa-bell fa-xl" style="color:#147efb"></i>
+						<% else %>
+						<i class="fa-regular fa-bell fa-xl" style="color:black"></i>
+						<% end %>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+						<% if @user && @user.notification %>
+						<% @notifications_from.each do |notification| %>
+							<li><a class="dropdown-item" href="/dm/<%= notification %>">
+							<b><%= GeneralInfo.find_by(id: notification).first_name %> <%= GeneralInfo.find_by(id: notification).last_name %> sent you a message!</b>
+							</a></li>
+						<% end %>
+						<% else %>
+						<li class="dropdown-item text-center">
+							<i class="fa-regular fa-circle-check fa-5x" style="color:black; padding:30px;"></i>
+							<div style="color: black; height: 20px;"><b>You're all caught up!</b></div>
+							<div style="color: black; height: 20px;"><b>No new messages.</b></div>
+						</li>
+						<% end %>
+					</ul>
+					</li>
 
-      <!-- Login and Sign Up Buttons -->
-      <div class="login-header-block">
-        <div class="login_block">
-          <div class="login_block_rightup">
-            <% if session[:current_user_key] %>
-              <a href="/dm" class="dropbtn" id="dm"><i class="fa-regular fa-message fa-xl fa-fw" style="color:black"></i></a>
-              <a class="btn color-1 size-2 hover-2" href="/show_profile">My Profile</a>
-              <%= link_to 'Log out', logout_path, method: :get, class: "btn color-1 size-2 hover-2" %>
-            <% else %>
-              <a class="btn color-1 size-2 hover-2" href="/login" id="sign_in_up"><i class="fa fa-lock"></i>Sign In</a>
-              <a class="btn color-1 size-2 hover-2" href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i>Sign Up</a>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+					<!-- Direct Messages Button -->
+					<li class="nav-item">
+					<a href="/dm" class="nav-link" id="dm">
+						<i class="fa-regular fa-message fa-xl" style="color:black"></i>
+					</a>
+					</li>
+
+					<!-- Log Out Button -->
+					<li class="nav-item">
+					<%= link_to logout_path, method: :get, class: "nav-link" do %>
+						<span class="glyphicon glyphicon-log-out"></span> Log out
+					<% end %>
+					</li>
+				<% else %>
+					<!-- Log In Button -->
+					<li class="nav-item">
+					<%= link_to login_path, method: :get, class: "nav-link" do %>
+						<span class="glyphicon glyphicon-log-in"></span> Sign In
+					<% end %>
+          <!-- Sign Up Button -->
+					<li class="nav-item">
+					<%= link_to new_user_registration_path, method: :get, class: "nav-link" do %>
+						<span class="fa fa-user-plus"></span> Sign Up
+					<% end %>
+					</li>
+				<% end %>
+				</ul>
+
+				</div>
+			</div>
+		</nav>
+	</header>

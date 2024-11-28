@@ -96,7 +96,7 @@
 /* This is for mobile friendlyness*/
 @media (max-width: 767px) {
   .custom-container, .be-post, .photo, .photo-info {
-    padding: 0 15px;
+    padding: 0 0px;
   }
   
   .be-img-block img {
