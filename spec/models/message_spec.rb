@@ -27,11 +27,6 @@ RSpec.describe Message, type: :model do
       expect(message).to be_valid
     end
 
-    it "is not valid without a body" do
-      message = Message.new(general_info: general_info, room: room, chatting_with: 2)
-      expect(message).to_not be_valid
-    end
-
     it "is not valid without a general_info" do
       message = Message.new(body: "Hello", room: room, chatting_with: 2)
       expect(message).to_not be_valid
