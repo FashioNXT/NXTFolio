@@ -27,5 +27,37 @@ require 'rails_helper'
             expect(login_info.validate_pwd).not_to eq(nil)
         end
     end
-    
+
+  #For Email Confirmation
+  describe 'validations' do
+    it 'is valid with valid attributes' do
+      user = LoginInfo.new(email: 'test@example.com', password: 'Test1234!')
+      expect(user).to be_valid
+    end
+      
+    it 'is not valid without an email' do
+      user = LoginInfo.new(password: 'Test1234!')
+      expect(user).to_not be_valid
+    end
+
+    it 'is not valid with an invalid email format' do
+      user = LoginInfo.new(email: 'invalid_email', password: 'Test1234!')
+      expect(user).to_not be_valid
+    end
+
+    it 'is not valid without a password' do
+      user = LoginInfo.new(email: 'test@example.com')
+      expect(user).to_not be_valid
+    end
+
+    it 'is not valid with a password less than 8 characters' do
+      user = LoginInfo.new(email: 'test@example.com', password: 'Short1!')
+      expect(user).to_not be_valid
+      expect(user.errors[:password]).to include(" must be at least 8 characters long")
+    end
+
+      
+   
   end
+  
+end

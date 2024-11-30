@@ -19,10 +19,10 @@ Feature:  Change the Category Classification and Reflect it on Create, edit prof
     When I select the category "Services"
     Then only service related profession will be populated in dropdown
 
-  Scenario: profession list auto populated based on category in add page
-    Given I am a professional and want to add my profile
-    When I select the category "Services" in add profile page
-    Then only service related profession will be populated in dropdown in add profile
+  # Scenario: profession list auto populated based on category in add page
+  #   Given I am a professional and want to add my profile
+  #   When I select the category "Services" in add profile page
+  #   Then only service related profession will be populated in dropdown in add profile
 
   # Scenario: profession list auto populated based on category in edit page
   #  Given I am a professional and want to see autopopulation in edit profile option

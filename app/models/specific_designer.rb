@@ -1,105 +1,97 @@
- class SpecificDesigner < ApplicationRecord
-   attr_accessor :allgenres
+class SpecificDesigner < ApplicationRecord
+  attr_accessor :allgenres
 
-   def self.search checkboxes, general_info_user_keys, experience_arg
-     @user_array = Array.new
-     @genre_checked_array = Array.new
-     @return_array = Array.new
+  def self.search(checkboxes, general_info_user_keys, experience_arg)
+    @user_array = fetch_user_array(general_info_user_keys)
+    @genre_checked_array = fetch_genre_checked_array(@user_array, checkboxes)
+    @return_array = fetch_return_array(@genre_checked_array, experience_arg)
+    @return_array
+  end
 
-     # Search based on the room keys retrieved from GeneralInfo, store into @user_array
-     if (general_info_user_keys.length > 0)
-       # Gets here if general_info_user_keys has entries
-       general_info_user_keys.each do |user_key_element|
-         if SpecificDesigner.exists?(user_key: user_key_element)
-           @user_array.push(SpecificDesigner.find_by(user_key: user_key_element))
-         end
-       end
-     else
-       # Gets here if nothing came through general_info_user_keys
-     end
+  # Sets appearance of profile view attributes
+  def attribute_values
+    # Define attributes to be processed
+    attributes = {
+      influencers: "Influencers: ",
+      specialties: "Specialities: ",
+      compensation: "Compensation: ",
+      experience: "Experience: "
+    }
+    
+    # Initialize the attribute values hash
+    @attribute_values = {}
 
-     # Genre requires a slightly different search
-     # For every room in user_array, check if A genre matches ANY genre
-     # If there are no genres, loop through @user_array & push the keys into @genre_checked_array
-     if checkboxes.nil?
-       # Gets here if genre is empty
-       # Leave genre checked hash empty since we're not searching for genres
-     elsif !(@user_array.length > 0)
-       # They did not search for anything in GeneralInfo and room array never got populated,
-       # Therefore they are looking for everyone in the profession, using genres
-       SpecificDesigner.all.find_each do |user_object|
-         checkboxes.each do |key, checkbox_genre|
-           if user_object[:genre].to_s.include? key.to_s
-             @genre_checked_array.push(user_object)
-             break
-           end
-         end
-       end
-     else
-       # Gets here if user_array has entries
-       @user_array.each do |user_object|
-         checkboxes.each do |key, checkbox_genre|
-           if user_object[:genre].to_s.include? key.to_s
-             @genre_checked_array.push(user_object)
-             break
-           end
-         end
-       end
-     end
+    # Loop through each attribute and assign its value
+    attributes.each do |key, label|
+      @attribute_values[key] = "#{label}#{self[key].to_s}"
+    end
+    
+    # Handle genre attribute separately
+    @attribute_values[:genre] = "Genre(s): "
+    if self.genre.present?
+      @attribute_values[:genre] += self.genre.split(",").map(&:strip).join(", ")
+    end
 
-     # 1st check that there are any params worth searching
-     if !experience_arg.nil?
-       if(@genre_checked_array.length > 0)
-         # Can search by experience & previous genre-checked results
-         @genre_checked_array.each do |user_object|
-           if SpecificDesigner.where("user_key ILIKE ? AND experience ILIKE ?)" , user_object[:user_key], @experiece_arg)
-             @return_array.push(user_object[:user_key])
-           end
-         end
-       else
-         # Can search by experience but have no previous genre-checked results
-         # Search entire model and check for the params
-         SpecificDesigner.all.find_each do |user_object|
-           if SpecificDesigner.where("user_key ILIKE ?", user_object[:user_key])
-             @return_array.push(user_object[:user_key])   #Might need to find by instead... very worse in efficiency tbh.
-           end
-         end
-       end
-     else
-       if(@genre_checked_array.length > 0)
-         # Have no experience to search by but have genre-checks
-         # Return genre-checked results
-         @genre_checked_array.each do |user_object|
-           @return_array.push(user_object[:user_key])
-         end
-       else
-         # Have no experience to search by and no genre-checked results
-         # Return everything in the table
-         SpecificDesigner.all.find_each do |user_object|
-           @return_array.push(user_object[:user_key])
-         end
-       end
-     end
+    @attribute_values
+  end
 
-     return @return_array
-   end
+  private
 
-   # Sets appearance of profile view attributes
-   def attribute_values
-     @attribute_values = Hash.new
-     @attribute_values[:influencers] = "Influencers: " + self.influencers.to_s
-     @attribute_values[:specialties] = "Specialities: " + self.specialties.to_s
-     @attribute_values[:compensation] = "Compensation: " + self.compensation.to_s
-     @attribute_values[:experience] = "Experience: " + self.experience.to_s
+  def self.fetch_user_array(general_info_user_keys)
+    user_array = []
+    general_info_user_keys.each do |user_key_element|
+      user = SpecificDesigner.find_by(user_key: user_key_element)
+      user_array.push(user) if user
+    end
+    user_array
+  end
 
-     @attribute_values[:genre] = "Genre(s): "
-     if self.genre != nil
-       self.genre.split(",").each do |genre|
-         @attribute_values[:genre] += genre + ", "
-       end
-       @attribute_values[:genre] = @attribute_values[:genre][0, @attribute_values[:genre].length-2]
-     end
+  def self.fetch_genre_checked_array(user_array, checkboxes)
+    genre_checked_array = []
 
-     @attribute_values
-   end
+    if checkboxes.nil?
+      # No genres to search, leave genre_checked_array empty
+    elsif user_array.empty?
+      SpecificDesigner.all.find_each do |user_object|
+        if checkboxes.keys.any? { |key| user_object[:genre].to_s.include?(key.to_s) }
+          genre_checked_array.push(user_object)
+        end
+      end
+    else
+      user_array.each do |user_object|
+        if checkboxes.keys.any? { |key| user_object[:genre].to_s.include?(key.to_s) }
+          genre_checked_array.push(user_object)
+        end
+      end
+    end
+
+    genre_checked_array
+  end
+
+  def self.fetch_return_array(genre_checked_array, experience_arg)
+    return_array = []
+
+    if experience_arg.present?
+      if genre_checked_array.any?
+        genre_checked_array.each do |user_object|
+          if SpecificDesigner.where("user_key ILIKE ? AND experience ILIKE ?", user_object[:user_key], experience_arg).exists?
+            return_array.push(user_object[:user_key])
+          end
+        end
+      else
+        SpecificDesigner.all.find_each do |user_object|
+          if SpecificDesigner.where("user_key ILIKE ?", user_object[:user_key]).exists?
+            return_array.push(user_object[:user_key])
+          end
+        end
+      end
+    elsif genre_checked_array.any?
+      genre_checked_array.each { |user_object| return_array.push(user_object[:user_key]) }
+    else
+      SpecificDesigner.all.find_each { |user_object| return_array.push(user_object[:user_key]) }
+    end
+
+    return_array
+  end
  end
+

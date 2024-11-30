@@ -1,31 +1,53 @@
 class GeneralInfoController < ApplicationController
-  # Variable that holds a params/object with all the attributes filled in
+
   def list
     @general_infos = GeneralInfo.all
   end
+  
+  def generate_about_me
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    generator = AboutMeGenerator.new(@general_info)
 
+    # Return 404 if no matching user is found
+  unless @general_info
+    render json: { error: 'User not found' }, status: :not_found and return
+  end
+  
+    missing_fields = generator.missing_fields
+    Rails.logger.info "Missing fields: #{missing_fields}" # Debugging
+  
+    # Generate the About Me content, even if there are missing fields
+    about_me_content = generator.generate_about_me
+    Rails.logger.info "About Me content: #{about_me_content}"
+  
+    # If there are missing fields, include them as recommendations
+    if missing_fields.any?
+      render json: { 
+        about_me: about_me_content, 
+        missing_fields: missing_fields, 
+        message: "For better personalization, please complete the following fields: #{missing_fields.join(', ')}."
+      }
+    else
+      # If no missing fields, just return the generated About Me content
+      render json: { about_me: about_me_content }
+    end
+  end
+  
   def show
     # @general_info = GeneralInfo.find(params[:id])
   end
 
-  def get_user_keys array
-  #   @return_array = Array.new
-  #   array.each do |element,index|
-  #     @return_array.push(element[:userKey])
-  #   end
-
-  #   return @return_array
+  def get_user_keys(array)
+    # Placeholder for logic to extract user keys from array
   end
 
   def make_admin
-    if !(session[:current_user_key] != params[:user] && GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin)
-      @user_entry = GeneralInfo.find_by(userKey: params[:user])
-      if @user_entry
-        @user_entry.update_attribute(:is_admin, true)
-        @user_entry.update_attribute(:job_name,'Admin')
-        redirect_to "/show_profile?user_key="+ params[:user].to_s
+    if admin_authorized?
+      user_entry = GeneralInfo.find_by(userKey: params[:user])
+      if user_entry
+        update_user_as_admin(user_entry)
+        redirect_to show_profile_show_profile_path(user_key: params[:user])
       else
-        puts @user_entry.inspect
         redirect_to root_path
       end
     else
@@ -33,311 +55,190 @@ class GeneralInfoController < ApplicationController
     end
   end
 
-  # Displays the correct specific profile search when selected during GeneralInfo search
-  def search_redirect
-    # @objects = params.except("utf8")
-    # @objects = @objects.except("button")
-
-    # @general_queries = GeneralInfo.search @objects
-
-    # flash[:general_queries] = get_user_keys @general_queries
-
-    # if @objects[:profession] == "1"
-    #   redirect_to specific_designer_search_path
-    # elsif @objects[:profession] == "2"
-    #   redirect_to specific_model_search_path
-    # elsif @objects[:profession] == "3"
-    #   redirect_to specific_photographer_search_path
-    # else
-    #   redirect_to root_path
-    # end
-  end
-
-  # Associated with the view used for create
   def new
-    @possible_Jobs = GeneralInfo.see_Jobs
-    # @templates = Template.uniq.pluck(:prof_name).sort
-    @templates = Template.pluck(:prof_name).sort
-    @templates.unshift('Designer')
-    @templates.unshift('Model')
-    @templates.unshift('Photographer')
-
-    # get list of countries
-    @countries = Country.all.order(:name)
-
-    # get default email from session if available
-    @general_info ||= GeneralInfo.new
-    @general_info.emailaddr = session[:current_login_user]["email"] if session.has_key? :current_login_user
+    set_possible_jobs_and_templates
+    set_countries
+    initialize_general_info
   end
 
   def new2
-    @general_info ||= GeneralInfo.new
+    load_general_info
+    @show_generate_about_me_button = true
+    render :edit2
   end
 
-  # def profession_specific
-  #   last_template_id = GeneralInfo.last.template_id
-  #   template = Template.find(last_template_id)
-  #   $prof_name = template.prof_name
-  #   @some = eval(template.prof_attribute)
-  # end
-
-  # # POST request action for profession_specifi, called when profession_specific form is submitted     
-  # def profession_specific_create
-  #   field_name_arr = params[:field_name]
-  #   field_value_arr = params[:field_value]
-  #   attributes_json = {}
-  #   if (field_name_arr != nil)
-  #     field_name_arr.each_with_index do |field_name, index|
-  #       attributes_json[field_name] = field_value_arr[index]
-  #     end
-  #   end
-  #   attributes_json = attributes_json.to_json
-  #   ginfo_last = GeneralInfo.last # this would be last entry in general_info i.e. the one created by previous (general_info/new) page
-  #   ginfo_last.specific_profile = attributes_json
-  #   ginfo_last.save
-  #   if ginfo_last.save!
-  #     redirect_to '/show_profile'
-  #   else
-  #     render :action=> 'new'
-  #   end
-  # end
-
-  # Create is called upon for the 2nd part of profile creation & routes to which specific profile to create after general info is submitted
   def create
     @possible_Jobs = GeneralInfo.see_Jobs
-    # Check to see if the required params are filled in
     @general_info = GeneralInfo.new(general_info_params)
-    error_statement = ""
-    # if params[:general_info][:first_name] == ""
-    #   error_statement += "First Name, "
-    # end
-    # if params[:general_info][:highlights] == ""
-    #   error_statement += "Highlights, "
-    # end
-    # if params[:general_info][:last_name] == ""
-    #   error_statement += "Last Name, "
-    # end
-    # if params[:general_info][:company] == ""
-    #   error_statement += "Company"
-    # end
-    # if params[:general_info][:industry] == ""
-    #   error_statement += "Industry"
-    # end
-    # if params[:general_info][:job_name] == ""
-    #   error_statement += "Profession"
-    # end
-    # if params[:general_info][:country] == ""
-    #   error_statement += "Country, "
-    # end
-    # if params[:general_info][:state] == ""
-    #   error_statement += "State, "
-    # end
-    # if params[:general_info][:city] == ""
-    #   error_statement += "City, "
-    # end
-    # if params[:general_info][:emailaddr] == ""
-    #   error_statement += "Email, "
-    # end
-
-    if error_statement.length > 0
-      # error_statement = error_statement[0, error_statement.length-2]
-      # error_statement += " are required."
-      # flash[:notice] = error_statement
-      # render :new and return
+  
+    if email_exists?
+      flash[:error] = "An account with this email already exists. Please log in or use a different email."
+      render :new and return
     end
-
-    # Add room to LoginInfo DB here to
-    # synchronize with GeneralInfo DB
-    logger.debug(session.inspect)
-    current_user = session[:current_login_user]
-    login_user = LoginInfo.new(
-      :email => params[:general_info][:emailaddr], 
-      :password => current_user["password"], 
-      :password_confirmation => current_user["password"]
-    )
-    userKey = SecureRandom.hex(10)
-    login_user.userKey = userKey
-    login_user.save!
-    session[:current_user_key] = userKey
-
-    # Creates a GeneralInfo object & assigns userKey to be the session key of the current room
-    @general_info = GeneralInfo.new(general_info_params)
-    logger.info("Hey I am here")
-    logger.debug(@general_info.inspect)
-    @general_info.userKey = session[:current_user_key]
-    @general_info.is_admin = false
-
-    $template_name = params[:general_info][:job_name]
-
-    if GeneralInfo.any?
-      @general_info.is_admin = false
-      if(@general_info.job_name == 'Admin' || @general_info.job_name == 'admin')
-        @general_info.job_name = 'Photographer'
+  
+    setup_login_user
+  
+    if @general_info.save
+      flash[:success] = "Profile created successfully."
+  
+      # Send the welcome email only if the profile was saved successfully
+      UserMailer.welcome_email(@general_info, session[:current_login_user]).deliver_now!
+  
+      # Handle redirection based on the selected option
+      if params[:select_one]
+        session.delete(:current_login_user)
+        redirect_to general_info_new2_path   and return
+      elsif params[:select_two]
+        redirect_to search_engine_show_path  and return
+      else
+        head :no_content # Return 204 No Content for successful creation without redirection
       end
     else
-      @general_info.job_name = 'Admin'
-      @general_info.is_admin = true
+      flash[:error] = @general_info.errors.full_messages.to_sentence
+      render :new
     end
-
-    if !@general_info.save
-      flash[:error] = "Unknown error when saving: try again later"
-      render :action => 'new' and return
-    end
-
-    # Send Verification Email upon successful sign-up
-    UserMailer.welcome_email(@general_info,current_user).deliver_now! #works
-    if params[:select_one]
-      session.delete(:current_login_user)
-      redirect_to "/general_info/new2"
-    elsif params[:select_two]
-      redirect_to "/search_engine/show"
-    end
-    
-    # Redirect to specific profession edit page
-    #if $template_name == "Designer"
-      #@general_info.update_attribute(:specific_profile_id,1)
-      #redirect_to "/specific_designer/edit"
-      #elsif $template_name == "Model"
-      #@general_info.update_attribute(:specific_profile_id,2)
-      #redirect_to "/specific_model/edit"
-      #elsif $template_name == "Photographer"
-      #@general_info.update_attribute(:specific_profile_id,3)
-      #redirect_to "/specific_photographer/edit"
-    #end
   end
 
-  # Params used to create the GeneralInfo object
-  def general_info_params
-    params.require(:general_info).permit(:first_name, :last_name, :company, :industry, \
-        :highlights, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, \
-        :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, \
-        :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture, :gallery_pictures, \
-        :travel_country, :travel_state, :travel_city, :travel_start, :travel_end, :travel_details, :tempVar => [])
-        # the tempVar here does not have any meaning, 
-        # but if deleted, the last variable will not be permit, don't know why
-        # keep the tempVar at the end!
-  end
-
-  # Allows room to edit the general_info_params of the GeneralInfo object
-  # Displays information pulled from database that matches the session key of the current room
-  # Associated with the view used for update
   def edit
-    # get list of countries
-    @countries = Country.all.order(:name)
-
-    @possible_Jobs = GeneralInfo.see_Jobs
-    if GeneralInfo.exists?(:userKey => session[:current_user_key])
-      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-      @username = @general_info[:first_name]
-    else
-      redirect_to :action => 'new'
-    end
+    set_countries_and_jobs
+    load_general_info || redirect_to(action: 'new')
   end
 
   def edit2
-    if GeneralInfo.exists?(:userKey => session[:current_user_key])
-      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    if load_general_info
       @username = @general_info[:first_name]
     else
-      redirect_to :action => 'new'
+      puts "No GeneralInfo found for userKey: #{session[:current_user_key]}"
+      flash[:notice] = "Please complete your profile to proceed."
+      redirect_to :action => 'new' and return
     end
 
+    load_general_info || redirect_to(action: 'new')
   end
 
-  # edit travel info
   def edit_travel
-    if GeneralInfo.exists?(:userKey => session[:current_user_key])
-      @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-      @username = @general_info[:first_name]
-    else
-      redirect_to :action => 'new'
-    end
-
+    load_general_info || redirect_to(action: 'new')
   end
 
-  # Saves the edit of the GeneralInfo object to the database
   def update
-    logger.info("Debugging general info edit")
-    logger.debug(params.inspect)
     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-    
-    #if @general_info.update_attributes!(general_info_update_param)
+
     if @general_info.update(general_info_update_param)
-      if params[:select_one] || params[:select_two]
-        redirect_to '/show_profile'
-      end
+      params[:continue] ? redirect_to('/general_info/edit2') : redirect_to('/show_profile')
     else
-      render :action => 'edit'
+      render :edit
     end
   end
-
-  # Params used to edit the GeneralInfo object
-  def general_info_update_param
-    params.require(:general_info).permit(:first_name, :last_name, :company, :highlights, \
-        :industry, :country, :state, :city, :emailaddr, :bio, :specialization, :profdetails, \
-        :facebook_link, :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation, \
-        :experience, :cover_picture, :gallery_pictures, \
-        :travel_country, :travel_state, :travel_city, :travel_start, :travel_end, :travel_details, :tempVar => [])
-          # the tempVar here does not have any meaning, 
-          # but if deleted, the last variable will not be permit, don't know why
-          # keep the tempVar at the end!
-  end
-
-  # Allows room to edit the profession of the GeneralInfo object
-  # Displays information pulled from database that matches the session key of the current room
-  # Associated with the view used for update_profession
-  # def edit_profession
-  #   if GeneralInfo.exists?(:userKey => session[:current_user_key])
-  #     @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-  #   else
-  #     redirect_to :action => 'new'
-  #   end
-  # end
-
-  # # Saves the edit of the GeneralInfo object's profession to the database
-  # def update_profession
-  #   @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
-
-  #   if @general_info.update_attribute(specific_profile_id, :specific_profile_id)
-  #     redirect_to '/show_profile'
-  #   else
-  #     render :action => 'edit_profession'
-  #   end
-  # end
 
   def follow
-    user = GeneralInfo.find_by(userKey: session[:current_user_key])
-    user.follow(params[:id])
+    current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
     other_user = GeneralInfo.find(params[:id])
-    redirect_to show_profile_show_profile_path(:user_key => other_user.userKey)
+    current_user.follow(params[:id])
+    redirect_to show_profile_show_profile_path(user_key: other_user.userKey)
   end
 
   def unfollow
-    user = GeneralInfo.find_by(userKey: session[:current_user_key])
-    user.unfollow(params[:id])
+    current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
     other_user = GeneralInfo.find(params[:id])
-    redirect_to show_profile_show_profile_path(:user_key => other_user.userKey)
+    current_user.unfollow(params[:id])
+    redirect_to show_profile_show_profile_path(user_key: other_user.userKey)
   end
 
-  # # Params used to edit the GeneralInfo object's profession
-  # def general_info_update_profession_param
-  #   params.require(:general_info).permit(:specific_profile_id)
-  # end
-
-  # Not implemented
-  #def delete
-  #  # GeneralInfo.find(params[:userKey]).destroy
-  #  GeneralInfo.find_by(userKey: params[:id]).destroy
-  #end
-
-
-  #for destroying Gallery
   def destroy
-    # GeneralInfo.find(params[:gallery]).destroy
+    # Placeholder for Gallery destroy logic
   end
 
-
-  # Takes input from the search view & calls the model search functions
   def search
+    # Placeholder for search logic
+  end
+
+  private
+
+  def admin_authorized?
+    session[:current_user_key] != params[:user] &&
+      GeneralInfo.find_by(userKey: session[:current_user_key]).is_admin
+  end
+
+  def update_user_as_admin(user_entry)
+    user_entry.update(is_admin: true, job_name: 'Admin')
+  end
+
+  def set_possible_jobs_and_templates
+    @possible_Jobs = GeneralInfo.see_Jobs
+    @templates = Template.pluck(:prof_name).sort.unshift('Designer', 'Model', 'Photographer')
+  end
+
+  def set_countries
+    @countries = Country.all.order(:name)
+  end
+
+  def initialize_general_info
+    @general_info ||= GeneralInfo.new
+    @general_info.emailaddr = session[:current_login_user]["email"] if session.key?(:current_login_user)
+  end
+
+  def email_exists?
+    LoginInfo.exists?(email: params[:general_info][:emailaddr])
+  end
+
+  def setup_login_user
+    current_user = session[:current_login_user]
+    login_user = LoginInfo.create!(
+      email: params[:general_info][:emailaddr],
+      password: current_user["password"],
+      password_confirmation: current_user["password"],
+      userKey: generate_user_key
+    )
+    session[:current_user_key] = login_user.userKey
+
+    initialize_general_info_profile
+  end
+
+  def generate_user_key
+    SecureRandom.hex(10)
+  end
+
+  def initialize_general_info_profile
+    @general_info.userKey = session[:current_user_key]
+    @general_info.is_admin = GeneralInfo.none?
+    @general_info.job_name = assign_job_name
+  end
+
+  def assign_job_name
+    job_name = params[:general_info][:job_name]
+    GeneralInfo.any? && job_name.to_s.casecmp('admin').zero? ? 'Photographer' : job_name
+  end
+
+  def set_countries_and_jobs
+    set_countries
+    @possible_Jobs = GeneralInfo.see_Jobs
+  end
+
+  def load_general_info
+    return unless GeneralInfo.exists?(userKey: session[:current_user_key])
+
+    @general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+    @username = @general_info.first_name
+  end
+
+  def general_info_params
+    params.require(:general_info).permit(
+      :first_name, :last_name, :company, :industry, :highlights, :country, :state,
+      :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link,
+      :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation,
+      :experience, :specific_profile_id, :job_name, :profile_picture, :cover_picture,
+      :gallery_pictures, :travel_country, :travel_state, :travel_city, :travel_start,
+      :travel_end, :travel_details, tempVar: []
+    )
+  end
+
+  def general_info_update_param
+    params.require(:general_info).permit(
+      :first_name, :last_name, :company, :highlights, :industry, :country, :state,
+      :city, :emailaddr, :bio, :specialization, :profdetails, :facebook_link,
+      :linkedIn_link, :profile_picture, :personalWebsite_link, :compensation,
+      :experience, :cover_picture, :gallery_pictures, :travel_country, :travel_state,
+      :travel_city, :travel_start, :travel_end, :travel_details, tempVar: []
+    )
   end
 end

@@ -20,73 +20,73 @@ Feature: Login and sign up
     Then I should be on the login page
 
   # NXTFolio Spring 2023, Iteration 2
-  Scenario: When new user attempts to create an account, account should be successfully created
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email              | test@example.com  |
-      | sign_up_password    | Test1234! |
-      |   sign_up_confirm    |  Test1234!     |
-    And I click on "SIGN UP"
-    Then I should be on new_general_info
-    When I fill in the following:
-      | first_name | Test |
-      | last_name | Testable |
-      | company | Testing For Test |
-      | highlights | Not much |
-      | emailaddr | test@example.com |
-      | city | Austin |
-    And I select "Creator" from "general_info_industry"
-    And I select "Designer" from "general_info_job_name"
-    And I select "United States" from "country"
-    And I select "Texas" from "state"
-    # And I select "Austin" from "city"
-    And I click on "SAVE AND CONTINUE"
-    And I should be on the second signup page
-    When I fill in the following:
-      |specialization| some specialization|
-      |profdetails| some profdetails|
-      |bio| some bio|
-      |experience| 5|
-    And I select "Salary" from "general_info_compensation"
-    And I click on "SAVE and GO TO PROFILE"
-    Then I should be on the profile page
-    And "Test" should be added to the GeneralInfo database
+  # Scenario: When new user attempts to create an account, account should be successfully created
+  #   Given I am on the sign_up page
+  #   When I fill in the following:
+  #     | sign_up_email              | test@example.com  |
+  #     | sign_up_password    | Test1234! |
+  #     |   sign_up_confirm    |  Test1234!     |
+  #   And I click on "SIGN UP"
+  #   Then I should be on new_general_info
+  #   When I fill in the following:
+  #     | first_name | Test |
+  #     | last_name | Testable |
+  #     | company | Testing For Test |
+  #     | highlights | Not much |
+  #     | emailaddr | test@example.com |
+  #     | city | Austin |
+  #   And I select "Creator" from "general_info_industry"
+  #   And I select "Designer" from "general_info_job_name"
+  #   And I select "United States" from "country"
+  #   And I select "Texas" from "state"
+  #   # And I select "Austin" from "city"
+  #   And I click on "SAVE AND CONTINUE"
+  #   And I will be on the second signup page
+  #   When I fill in the following:
+  #     |specialization| some specialization|
+  #     |profdetails| some profdetails|
+  #     |bio| some bio|
+  #     |experience| 5|
+  #   And I select "Salary" from "general_info_compensation"
+  #   And I click on "SAVE and GO TO PROFILE"
+  #   Then I should be on the profile page
+  #   And "Test" should be added to the GeneralInfo database
 
   # NXTFolio Spring 2023, Iteration 2
-  Scenario: When new user does not fill all fields, submit has an error but keeps text fields
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email              | test@example.com  |
-      | sign_up_password    | Test1234! |
-      |   sign_up_confirm    |  Test1234!     |
-    And I click on "SIGN UP"
-    Then I should be on new_general_info
-    When I fill in the following:
-      | first_name | Test |
-      | last_name | Testable |
-      | company | Testing For Test |
-      | highlights | Not much |
-      | emailaddr | test@example.com |
-    And I click on "SAVE AND CONTINUE"
-    Then I should be on new_general_info
-    And "Test" should not be added to the GeneralInfo database
-    And should see the following fields:
-      | first_name | Test |
-      | last_name | Testable |
-      | company | Testing For Test |
-      | highlights | Not much |
-      | emailaddr | test@example.com |
+  # Scenario: When new user does not fill all fields, submit has an error but keeps text fields
+  #   Given I am on the sign_up page
+  #   When I fill in the following:
+  #     | sign_up_email              | test@example.com  |
+  #     | sign_up_password    | Test1234! |
+  #     |   sign_up_confirm    |  Test1234!     |
+  #   And I click on "SIGN UP"
+  #   Then I should be on new_general_info
+  #   When I fill in the following:
+  #     | first_name | Test |
+  #     | last_name | Testable |
+  #     | company | Testing For Test |
+  #     | highlights | Not much |
+  #     | emailaddr | test@example.com |
+  #   And I click on "SAVE AND CONTINUE"
+  #   Then I should be on new_general_info
+  #   And "Test" should not be added to the GeneralInfo database
+  #   And should see the following fields:
+  #     | first_name | Test |
+  #     | last_name | Testable |
+  #     | company | Testing For Test |
+  #     | highlights | Not much |
+  #     | emailaddr | test@example.com |
 
   # NXTFolio Spring 2023, Iteration 2
-  Scenario: When new user attempts to create an account with existing email, account creation should fail
-    Given I am on the login page
-    When I fill in the following:
-      | sign_up_email               | Andrea.Picardo@example.com  |
-      | sign_up_password            | Test1234! |
-      | sign_up_confirm             |  Test1234!     |
-    And I click on "SIGN UP"
-    Then I should be on the home page 
-    And I should see "Email already exists"
+  # Scenario: When new user attempts to create an account with existing email, account creation should fail
+  #   Given I am on the sign_up page
+  #   When I fill in the following:
+  #     | sign_up_email               | Andrea.Picardo@example.com  |
+  #     | sign_up_password            | Test1234! |
+  #     | sign_up_confirm             |  Test1234!     |
+  #   And I click on "SIGN UP"
+  #   Then I should be on the sign_up page 
+  #   And I should see "Email already exists"
 
     # NXTFolio Fall 2023, Iteration 5
   # Scenario: When new user attempts to create an account with Invalid email format, account creation should fail

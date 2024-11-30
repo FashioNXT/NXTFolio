@@ -1,10 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
+  <style>
+    .container {
+      padding-top: 50px;
+    }
+  </style>
+</head>
 <%= render :partial => "/layout/profile_header" %>
 <body data-spy="scroll" data-offset="0" data-target="#nav">
-<%= render :partial => "/layout/navigation" %>
+<!-- THE HEADER -->
+  <%= render 'shared/header' %>
 
-<section id="adminPanel" class="container text-center">
+<div class="container">
+<section id="adminPanel" class="container text-center" style="min-height: 65vh;">
   <div id="ADMINPANEL">
-    <h1>
+    <h1 >
       <b>Job Management Page</b>
     </h1>
     
@@ -20,8 +43,8 @@
  </section>
 
 
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
+</div>
 <%= render :partial => "/layout/profile_javascripts" %>
+<%= render 'shared/footer' %>
 </body>
+</html>

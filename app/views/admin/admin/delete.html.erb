@@ -1,15 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      .content {
+        flex: 1;
+      }
+      footer {
+        padding: 1rem;
+        text-align: center;
+      }
+      form {
+        min-height: 65%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+      padding-top: 75px;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <!-- THE HEADER -->
+  <%= render 'shared/header' %>
+    <%= render :partial => "/layout/profile_header" %>
 
-  
-  <%= content_tag :div, flash.now[:notice], class: "notice" %>
-  
-  <%= form_tag("/admin/delete", method: "post") do %>  
-    <%= select_tag :job_name, options_for_select(@jobs) %>
-    <%= submit_tag("Delete") %>
-  <% end %>
+    <div class="container-fluid">
+      <!-- Flash Messages -->
+      <%= content_tag :div, flash.now[:notice], class: "notice alert alert-info text-center" %>
 
+      <!-- Form -->
+      <div class="row justify-content-center align-items-center" style="min-height: 65vh;">
+        <div class="col-12">
+          <%= form_tag("/admin/delete", method: "post", class: "needs-validation") do %>
+          <div class="container">
+            <!-- Dropdown Field -->
+            <div class="col-12 col-sm-6 col-md-6 mb-3">
+              <%= label_tag(:job_name, "Select Job to Delete:", class: "form-label") %>
+              <%= select_tag :job_name, options_for_select(@jobs), class: "form-select" %>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="col-12 col-sm-4 col-md-4">
+              <%= submit_tag("Delete", class: "btn btn-danger btn-block") %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
-  </div>
-<%= render :partial => "/layout/profile_javascripts" %>
-
+    <!-- Footer -->
+    <%= render 'shared/footer' %>
+  </body>
+</html>

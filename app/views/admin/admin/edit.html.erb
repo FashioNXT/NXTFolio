@@ -1,17 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+    }
+    footer {
+      padding: 1rem;
+      text-align: center;
+    }
 
-  <%= content_tag :div, flash.now[:notice], class: "notice" %>
+    .form-container {
+      min-height: 65vh; /* Ensures the form occupies significant space */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  <%= form_tag("/admin/edit", method: "post") do %>  
-    <%= label_tag(:job_name, "Select the job you want to edit, then add or delete an attribute via the text box:") %>
-    <%= select_tag :job_name, options_for_select(@jobs) %>
-    <%= select_tag :attr_action, options_for_select(['Add', 'Remove']) %>
-    <%= text_field_tag(:attr_name) %>
-    <%= submit_tag("Edit") %>
-  <% end %>
+    .form-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- THE HEADER -->
+  <%= render 'shared/header' %>
+  <%= render :partial => "/layout/profile_header" %>
 
-
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
+  <!-- Flash Messages -->
+  <div class="container">
+    <%= content_tag :div, flash.now[:notice], class: "notice alert alert-info text-center" %>
   </div>
-<%= render :partial => "/layout/profile_javascripts" %>
 
+  <!-- Form Section -->
+  <div class="container form-container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-12 col-lg-12">
+        <%= form_tag("/admin/edit", method: "post", class: "needs-validation") do %>
+          <!-- Form Title -->
+          <h3 class="form-title">Edit Job Attributes</h3>
+          
+          <!-- Select Job -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:job_name, "Select the job you want to edit:", class: "form-label") %>
+            <%= select_tag :job_name, options_for_select(@jobs), class: "form-select" %>
+          </div>
+          
+          <!-- Action Selection -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:attr_action, "Choose an action:", class: "form-label") %>
+            <%= select_tag :attr_action, options_for_select(['Add', 'Remove']), class: "form-select" %>
+          </div>
+          
+          <!-- Attribute Name -->
+          <div class="col-12 col-md-12 col-lg-12">
+            <%= label_tag(:attr_name, "Attribute Name:", class: "form-label") %>
+            <%= text_field_tag(:attr_name, nil, class: "form-control", placeholder: "e.g., Salary") %>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12" style="min-height: 20px"></div>
+          <!-- Submit Button -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <%= submit_tag("Edit", class: "btn btn-primary btn-block") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <%= render 'shared/footer' %>
+</body>
+</html>

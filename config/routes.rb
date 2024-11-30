@@ -1,9 +1,10 @@
-
 Rails.application.routes.draw do
-
+  get 'general_info/:id/profile', to: 'general_info#profile', as: 'profile'
   # to retrive states and cities
+  get 'messages', to: 'room#index'
   get 'states/:country_id', to: 'states#index', as: 'states'
   get 'cities/:state_id', to: 'cities#index', as: 'cities'
+  post 'general_info/generate_about_me', to: 'general_info#generate_about_me', as: :generate_about_me
 
   post '/dm/:id', to: 'room#create_message'
 
@@ -58,19 +59,22 @@ Rails.application.routes.draw do
   #post 'template/create' => 'template#create', :as => 'template/create1'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks",
+                                   registrations: "users/registrations",
+                                   sessions: "devise/sessions" }, 
+                    skip: [:registrations] 
   get 'general_info_list' => 'general_info#list', :as => 'general_info_list'
   get 'general_info_save' => 'general_info#save', :as => 'general_info_save'
   get 'general_info/edit' => 'general_info#edit', :as => 'general_info/edit'
   get 'general_info/edit2' => 'general_info#edit2', :as => 'general_info/edit2'
   get 'general_info/edit_travel' => 'general_info#edit_travel', :as => 'general_info/edit_travel'
+  get 'general_info/new', to: 'general_info#new', as: 'general_info_new'
   get 'general_info/new2' => 'general_info#new2', :as => 'general_info/new2'
   post 'general_info/update' => 'general_info#update', :as => 'general_info/update'
   get 'general_info/edit_profession' => 'general_info#edit_profession', :as => 'general_info/edit_profession'
   post 'general_info/update_profession' => 'general_info#update_profession', :as => 'general_info/update_profession'
   get 'general_info/profession_specific' => 'general_info#profession_specific', :as => 'general_info/profession_specific'
   post 'general_info/profession_specific' => 'general_info#profession_specific_create', :as => 'general_info/profession_specific_create'
-
   # Follow Feature
   get 'general_info/follow/:id' => 'general_info#follow'
   get 'general_info/unfollow/:id' => 'general_info#unfollow'
@@ -102,9 +106,13 @@ Rails.application.routes.draw do
   get 'login_info/login' => 'login_info#login', :as => 'login_info/login'
   post 'login_info/login_submit' => 'login_info#login_submit', :as => 'login_info/login_submit'
   get 'login_info/logout' => 'login_info#logout', :as => 'login_info/logout'
+  post 'login_info/new' => 'login_info#new', :as => 'login_info/new'
   post 'login_info/create' => 'login_info#create', :as => 'login_info/create'
   get 'login_info/edit' => 'login_info#edit', :as => 'login_info/edit'
   post 'login_info/update' => 'login_info#update', :as => 'login_info/update'
+  get 'unconfirmed_user/new' => 'unconfirmed_user#new', :as => 'unconfirmed_user/new'
+  post 'unconfirmed_user/verify' => 'unconfirmed_user#verify', :as => 'unconfirmed_user/verify'
+  get 'unconfirmed_user/regenerate_token' => 'unconfirmed_user#regenerate_token', :as => 'unconfirmed_user/regenerate_token'
 
 
   get 'login' => 'login_info#login', :as => 'login'
@@ -202,11 +210,17 @@ end
   resources :search_engine
   resources :job_search
 
+
   devise_scope :user do
+    get 'sign_up', to: 'login_info#new', as: :new_user_registration
+    post 'sign_up', to: 'login_info#create', as: :user_registration
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    post 'sign_in', to: 'devise/sessions#create', as: :user_session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   root 'application#index'
+
+ 
 
 end
 

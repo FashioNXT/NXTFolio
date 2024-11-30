@@ -20,23 +20,23 @@ RSpec.describe LoginInfoController, type: :controller do
    describe "POST #create" do 
         it 'should create LoginInfo' do
             post :create, params: {:login_info => { :email => "me@me.com", :password => "Apple12345*", :password_confirmation => "Apple12345*" }}
-            expect(response).to redirect_to new_general_info_path
+            expect(response).to redirect_to unconfirmed_user_new_path
         end
 
         it 'should not create LoginInfo if email already exists' do
-            @login_info = LoginInfo.create!(email: "me@me.com", password: "Test#1")
+            @login_info = LoginInfo.create!(email: "me@me.com", password: "Asdf@123")
             post :create, params: {:login_info => { :email => "me@me.com", :password => "Apple12345*", :password_confirmation => "Apple12345*" }}
-            expect(response).to redirect_to root_path
+            expect(response).to redirect_to login_info_new_path
         end
 
         it 'should not create LoginInfo if passwords do not match' do
             post :create, params: {:login_info => { :email => "me@me.com", :password => "Apple12345*", :password_confirmation => "Orange12345*" }}
-            expect(response).to redirect_to login_info_login_path
+            expect(response).to redirect_to login_info_new_path
         end
 
         it 'should not create LoginInfo if password does not meet requirements' do
             post :create, params: {:login_info => { :email => "me@me.com", :password => "test", :password_confirmation => "test" }}
-            expect(response).to redirect_to login_info_login_path
+            expect(response).to redirect_to login_info_new_path
         end
 
    end
@@ -44,7 +44,7 @@ RSpec.describe LoginInfoController, type: :controller do
     describe "GET #edit" do
         it 'should edit the login info parameters' do
             session[:current_user_key] = SecureRandom.hex(10)
-            @login_info = LoginInfo.create!(email: "me@me.com", password: "Test#1", userKey: session[:current_user_key])
+            @login_info = LoginInfo.create!(email: "me@me.com", password: "Asdf@123", userKey: session[:current_user_key])
             get :edit, params: {id: LoginInfo.to_param, template: 'login_info/edit'}
         end
     end
@@ -110,13 +110,13 @@ RSpec.describe LoginInfoController, type: :controller do
         it 'should not successfully submit credentials for login when passwords do not match' do
             LoginInfo.create(email: 'me@me.com', password: 'Apple12345*', userKey: SecureRandom.hex(10), is_admin: true)
             post :login_submit, params: { login_info: { email: 'me@me.com', password: 'Orange12345*' }}
-            expect(flash[:notice]).to eq("The Credentials You Provided Are Not Valid. Please Try Again.")
+            expect(flash[:error]).to eq("The Credentials You Provided Are Not Valid. Please Try Again.")
             expect(response).to redirect_to login_info_login_path
         end
 
         it 'should not successfully submit credentials for login when user does not exist' do
             post :login_submit, params: { login_info: { email: 'me@me.com', password: 'Apple12345*' }}
-            expect(flash[:notice]).to eq("The Credentials You Provided Are Not Valid. Please Try Again.")
+            expect(flash[:error]).to eq("The Credentials You Provided Are Not Valid. Please Try Again.")
             expect(response).to redirect_to login_info_login_path
         end
    end

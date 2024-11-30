@@ -1,16 +1,18 @@
-<!-- THE FOOTER -->
 <footer>
   <div class="footer-main">
     <div class="container-fluid custom-container">
       <div class="row">
-        <div class="col-md-2 col-xl-4">
+        <!-- Empty Column for Layout -->
+        <div class="col-12 col-md-2 col-xl-4">
         </div>
-        <div class="col-md-4 col-xl-4">
+
+        <!-- Centered Logo and Description Block -->
+        <div class="col-12 col-md-4 col-xl-4 text-center">
           <div class="footer-block">
-            <img id="spinner-img" src="<%= asset_path "logo.png"%>"  alt="">
-            <p>© FashioNXT, 2022</p>p>
-            <p><a href="https://fashionxt.com/">FashioNXT</a> hello create innovative fashion experiences and the creative edge in lifestyle technology.</p>
-            <ul class="soc_buttons">
+            <img id="spinner-img" src="<%= asset_path "logo.png" %>" alt="" style="max-width: 100%; height: auto;">
+            <p>© FashioNXT, 2022</p>
+            <p><a href="https://fashionxt.com/" style="position: relative; z-index: 10;">FashioNXT</a> creates innovative fashion experiences and brings the creative edge in lifestyle technology.</p>
+            <ul class="soc_buttons d-flex justify-content-center" style="flex-flow: row nowrap;">
               <li id="fb"><a href="https://www.facebook.com/FASHIONXtONLINE/"><i class="fa fa-facebook"></i></a></li>
               <li id="twitter"><a href="https://twitter.com/fashionxtonline"><i class="fa fa-twitter"></i></a></li>
               <li id="pinterest"><a href="https://www.pinterest.com/fashionxtonline/"><i class="fa fa-pinterest"></i></a></li>
@@ -19,32 +21,31 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+
+        <!-- Useful Links Block -->
+        <div class="col-12 col-md-6 col-xl-2 text-center text-md-start">
           <div class="footer-block">
             <h1 class="footer-title">Useful Links</h1>
-            <div class="row footer-list-footer">
-              <div class="col-md-6">
-                <ul class="link-list">
-                  <li><a href="https://fashionxt.com/agency/">About Us</a></li>
-                  <li><a href="https://fashionxt.com/contact/">Help</a></li>
-                  <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
-                  <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
-                </ul></div>
-            </div>
+            <ul class="link-list">
+              <li><a href="https://fashionxt.com/agency/">About Us</a></li>
+              <li><a href="https://fashionxt.com/contact/">Help</a></li>
+              <li><a href="https://fashionxt.com/contact/">Contacts</a></li>
+              <li><a href="https://www.linkedin.com/company/fashionxt/jobs/">Job</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="footer-bottom">
     <div class="container-fluid custom-container">
-      <div class="col-md-12 footer-end clearfix">
-        <div class="centered">
-          <span class="copy">© 2020. All rights reserved. &nbsp <span class="white"><a href="fashionxt.com"> FashioNXT</a></span></span>
-          <span class="created">Created by <span class="white"><a href=""> CodeCreators</a></span></span>
+      <div class="row">
+        <div class="col-12 text-center footer-end">
+          <span class="copy">© 2020. All rights reserved. &nbsp; <a href="https://fashionxt.com">FashioNXT</a></span>
+          <span class="created">Created by <a href="">CodeCreators</a></span>
         </div>
       </div>
     </div>
   </div>
 </footer>
-

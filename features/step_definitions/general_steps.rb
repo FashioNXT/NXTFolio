@@ -8,7 +8,10 @@ Given(/the following users exist/) do |users_table|
 
     first_name = name[0]
     last_name = name[1]
+    email = "#{first_name}.#{last_name}@example.com"
     userkey = SecureRandom.hex(10)
+
+
     login_info = LoginInfo.new
     login_info.email = "#{first_name}.#{last_name}@example.com"
     login_info.password = fake_password
@@ -26,12 +29,8 @@ Given(/the following users exist/) do |users_table|
     general_info.company = "TestInc"
     general_info.industry = "Fashion"
     general_info.job_name = job
-
     general_info.highlights = user['highlights']
-
     general_info.country = "United States"
-    #general_info.state = "Texas"
-    #general_info.city = "College Station"
     general_info.city = user['city']
     general_info.state = user['state']
     general_info.emailaddr = "#{first_name}.#{last_name}@example.com"
@@ -43,8 +42,6 @@ When(/^I click the button with id "([^"]*)"$/) do |id|
   button = find_by_id(id)
   button.click
 end
-
-
 
 Given(/^the following galleries exist$/) do |table|
   image_path = File.join(Rails.root, 'app', 'assets', 'images', '1.jpg')
@@ -128,42 +125,6 @@ And(/^the following reviews exist for galleries$/) do |table|
 end
 
 
-#  Given(/the following galleries exist/) do |gallery_table|
-
-  
-#   gallery_table.hashes.each do |gall|
-
-#     gallery_info = Gallery.new
-#     gallery_info.gallery_title = gall['title']
-#     gallery_info.gallery_description = gall['description']
-    
-#     gallery_info.gallery_picture = [nil]
-#     gallery_info.GeneralInfo_id = 1
-
-#     gallery_info.reviews = Review.find(gallery_id: 1)
-#     gallery_info.save!
-#   end
-
-
-# end
-
-# Given(/the following reviews exist/) do |table|
-#   table.hashes.each do |review|
-#     review_info = Review.new
-#     nums = review['rating'].split(",")
-#     for x in nums 
-#       x = x.to_i
-#     end
-#     review_info.rating = nums
-#     review_info.general_info_id = review['general_info_id']
-#     review_info.gallery_id = review['gallery_id']
-
-#     review_info.save!
-#   end
-# end
-
-
-
 Given(/the following countries exist/) do |location_table|
   location_table.hashes.each do |location|
     c = Country.create!(name: location['country'], iso3: location['country'])
@@ -178,15 +139,20 @@ When /I debug/ do
 end
 
 Then(/^I should be on (.+)$/) do |page_name|
-  current_path = URI.parse(current_url).path
-  expect(current_path).to eq(path_to(page_name))
+  if page_name == "the sign_up page"
+    visit new_user_registration_path
+  else
+    current_path = URI.parse(current_url).path
+    expect(current_path).to eq(path_to(page_name))
+  end
 end
 
 
 
 
 Given(/^I am logged in$/) do
-  visit 'login_info/login'
+  visit new_user_session_path
+  # visit 'login_info/login'
   fill_in "email", :with => @login_info.email
   fill_in "password", :with => @login_info.password
   click_button "Login"
@@ -199,6 +165,10 @@ Given(/^I am logged in as "(.+)"$/) do |user|
   login_info = LoginInfo.find_by(email: email)
 
   # login as user
+  # visit new_user_session_path
+  # fill_in "Email", with: user.email
+  # fill_in "Password", with: 'password' # Replace with test password
+  # click_button "Log in"
   visit 'login_info/login'
   fill_in "login_email", :with => login_info.email
   fill_in "login_password", :with => login_info.password
@@ -206,7 +176,11 @@ Given(/^I am logged in as "(.+)"$/) do |user|
 end
 
 Given(/^I am on (.+)$/) do |page_name|
-  visit path_to(page_name)
+  if page_name == "the sign_up page"
+    visit new_user_registration_path
+  else
+    visit path_to(page_name)
+  end
 end
 
 Given(/^I am searching$/) do
@@ -304,9 +278,11 @@ end
 Given (/"(.+)" sends a message to "(.+)" saying "(.+)"/) do |from_user, to_user, msg|
   step "I am logged in as \"#{from_user}\""
   visit path_to "the DM page"
+  step "I click on \"search_button\""
+  step "I fill in \"user_search\" with \"#{to_user.gsub('.', ' ')}\""
   step "I select \"#{to_user.gsub('.', ' ')}\" chat"
   fill_in("body", :with => msg)
-  click_link_or_button "send"
+  click_link_or_button "Send"
   click_link_or_button "Log out"
 end
 When("I click on the image with alt text {string}") do |alt_text|

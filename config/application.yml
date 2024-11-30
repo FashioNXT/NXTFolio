@@ -25,7 +25,7 @@ google_client_secret: 'dgdnNbSSYUJnIaYvg7aBWJLf'
 #For UserMailer production:
 #domain_url: 'damp-atoll-07859.herokuapp.com'
 #domain_url: 'fashionnxt.herokuapp.com'
-domain_url: 'nxtfolio.herokuapp.com'
+domain_url: 'nxtfolio-fall-24-ff06e002a0ca.herokuapp.com'
 #For UserMailer:
 #gmail_username: 'fashioNTWRKtesting@gmail.com'
 #gmail_password: 'test123#'

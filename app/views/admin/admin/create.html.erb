@@ -1,14 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="<%= asset_path "favicon.jpg"%>">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/390013241f.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+		<link rel="stylesheet" href="<%= asset_path "collaborators.css"%>">
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+    }
+    .content {
+      flex: 1; /* Fills the remaining space between header and footer */
+    }
+    footer {
+      padding: 1rem;
+      text-align: center;
+    }
 
-  <%= content_tag :div, flash.now[:notice], class: "notice" %>
+    form {
+      min-height: 65%;
+      display: flex; /* Optionally use flexbox for better alignment */
+      justify-content: center; /* Center content vertically */
+      align-items: center; /* Center content horizontally */
+    }
+    .container {
+      padding-top: 75px;
+    }
+  </style>
+</head>
+<body>
+  <%= render :partial => "/layout/profile_header" %>
+  <%= render 'shared/header' %>
+  <div class="container-fluid">
+    <!-- THE HEADER -->
+  
+    
+    
+    <!-- Flash Messages -->
+    
 
-  <%= form_tag("/admin/create", method: "post") do %>
-    <%= label_tag(:job_name, "Enter Job Name:") %>
-    <%= text_field_tag(:job_name) %>
-    <%= submit_tag("Create") %>
-  <% end %>
-
-<div id="c">
-    <%= render :partial => "/layout/footer" %>
+    <div class="container">
+      <%= content_tag :div, flash.now[:notice], class: "notice alert alert-info text-center" %>
+    <!-- Form -->
+    <div class="row justify-content-center align-items-center" style="min-height: 65vh;">
+      <div class="col-12">
+        <%= form_tag("/admin/create", method: "post", class: "needs-validation") do %>
+        <div class="container">
+          <div class="col-12 col-sm-4 col-md-4" style="text-align: center;">
+            <%= label_tag(:job_name, "Enter Job Name:", class: "form-label") %>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+            <%= text_field_tag(:job_name, nil, class: "form-control", placeholder: "e.g., Fashion Designer") %>
+            </div>
+            <div class="col-12 col-sm-2 col-md-2">
+            <%= submit_tag("Create", class: "btn btn-primary btn-block") %>
+          </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<%= render :partial => "/layout/profile_javascripts" %>
+  </div>
 
+  <!-- Footer -->
+  <%= render 'shared/footer' %>
+</body>
+
+</html>

@@ -28,18 +28,31 @@
 		</div>
     </div>
 
-<h1 class="d-flex justify-content-center">Add images (No more than 5 images pre gallery!)</h1>
-<% if flash[:notice] %>
-	<div class="alert alert-success">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
+<h1 class="d-flex justify-content-center">Edit Gallery Details</h1>
 
-<% if flash.now[:error] %>
-	<div class="alert alert-danger">
-		<%= flash.now[:error] %>
-	</div>
-<% end %>
+<div class="large-popup-fixed"></div>
+    <% if flash[:notice] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= flash[:notice]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(4, 199, 4, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:success]%></strong>
+      </div>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert-container col-md-12">
+      <div class="alert style-3 alert-dismissible" style="background-color: rgba(255, 0, 0, 0.2);">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= flash[:error]%></strong>
+      </div>
+      </div>
+    <% end %>
 
 
 <%@gallery = Gallery.find(params[:id])%>
@@ -48,7 +61,6 @@
   <% if @gallery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
-
       <ul>
       <% @gallery.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -72,11 +84,17 @@
 <div class="form-group" class="d-flex justify-content-center" style="text-align: center;">
   <%= f.label :gallery_pictures , multipart: true %>
 
-  <div class="row">
+  <div>
   <% @gallery.gallery_picture.each do |picture| %>
     <div class="col-sm-4 custom-padding mb-2">
       <div class="card mb-4">
         <img src="<%= picture.url %>" class="card-img-top">
+        <div class="card-body text-center">
+          <% idx = @gallery.gallery_picture.index(picture)%>
+          <% if @gallery.gallery_picture.length > 1 %>
+            <%= link_to 'Delete', gallery_delete_path(@gallery, idx), method: :get%>
+          <% end %>
+          </div>
       </div>
     </div>
   <% end %>
@@ -85,23 +103,19 @@
 
 <div class="d-flex justify-content-center">
   <div class="custom-file">
-    <%= f.label :upload_images , multipart: true %>
-    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' , style: "margin-bottom: 10px;"%>
-
-    <div class="actions" style="margin-bottom: 10px;" >
-      <%= button_tag "Add images", type: "submit" %>
+    <%= f.label :upload_images, 'Choose Files', class: 'custom-file-label' %>
+    <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' %>
+    <div class="actions" style="margin-top: 10px;">
+      <%= submit_tag 'Update Project', class: 'btn btn-primary' %>
     </div>
-
-    <a  href="add_images" class="btn btn-success" style="margin-bottom: 10px;" >Update gallery</a>
   </div>
 </div>
+
 
 
 <% end %>
 <a class="btn full color-1 size-1 hover-1" href = show method="get"><i class="fa fa-chevron-left"></i>Back</a>
 
-
-        
 
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 	  <!-- SCRIPT	-->

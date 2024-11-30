@@ -141,11 +141,11 @@ a:focus { outline: none; outline-offset: 0px; color: inherit; }
 */
 header * { -webkit-backface-visibility: hidden; }
 
-header { height: 70px; width: 100%; color: #fff; font-size: 14px; background: white; position: fixed; top: 0; line-height: 0; z-index: 1000; }
+header { height: 70px; width: 100%; font-size: 14px; background: white; position: fixed; top: 0; line-height: 0; z-index: 1000; }
 
 header .custom-container { position: relative; }
 
-header .row-header .brand-be { margin-top: 16.5px; float: center; }
+header .row-header .brand-be { margin-top: 16.5px; float: center}
 
 header .row-header .header-menu-block { position: absolute;
     top: 0px; left: 50%; -webkit-transform: translateX(-50%);
@@ -170,6 +170,26 @@ img.be_logo { text-align: left; }
 .header-menu { text-align: center; }
 
 .fa-angle-down { display: none; }
+
+.navbar-toggle .icon-bar {
+  background-color: black !important;
+}
+.navbar a {
+  color: black !important; /* Ensures links are black */
+}
+.navbar-collapse {
+  background-color: white; /* Sets the collapsed navbar background color */
+}
+@media (min-width: 768px) {
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+}
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+}
 
 /*login-block*/
 .login-header-block { margin-top: 10.5px; align: center; margin-bottom: 10.5px; padding-bottom: 15px; width: 500px;}
@@ -401,7 +421,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 }
 
 /*  Mobile view for Edit profile labels navigation bar*/
-@media screen and (max-width: 560px){
+@media screen and (max-width: 560px){ 
     .header-menu > li a { display: inline; line-height: 42px; padding: 0 75px; text-align: left;}
     .header-menu > li > a { font-size: 18px; text-align: left;}
     .header-menu > li > ul > li > a { font-size: 15px; text-align: left; width: 10px; color: black;}
@@ -427,7 +447,7 @@ header .header-menu > #ad-work-li {position: static; float: right;margin-top: 20
 #content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
 
 /*Mobile View search engine background picture*/
-@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 650px; background-size: cover; opacity: 1.0; z-index: 1; background-position: center center; }}
+@media screen and (min-width:0px) and (max-width:560px) {#content-block .head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }}
 
 .head-bg-img { position: absolute; left: 0; top: 0; background: url('https://www2.centrepointstores.com/om/sites/default/files/carousel-women.jpg'); height: 100%; width: 100%; background-size: cover; opacity: 0.2; z-index: 1; background-position: center center; }
 
@@ -693,7 +713,7 @@ form.input-search { position: relative; margin-bottom: 50px; }
 /*Mobile view of entire gallery of projects on homepage and my profile page*/
 @media screen and (max-width:560px)
 {
-    .be-post {  border-radius: 2px; width: 100%; margin-bottom: 00px !important; padding-left: 120px;}
+    .be-post {  border-radius: 2px; width: 100%; margin-bottom: 00px !important;}
 }
 
 
@@ -816,7 +836,7 @@ transition: all ease-out 0.3s;}
 footer { background: #222835;}
 
 /*Mobile View of whole footer block*/
-@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835; width: 650px;}}
+@media screen and (min-width:0px) and (max-width:560px) {footer { background: #222835;}}
 
 .footer_slider .swiper-slide { position: relative; }
 
@@ -926,7 +946,7 @@ span.right { float: right; }
 
 @media screen and (max-width: 991px) { .footer-list-footer > div:last-child { margin: 0; }
   .footer-list-footer li { display: inline-block; }
-  footer .soc_buttons { margin-bottom: 15px; }
+  footer .soc_buttons { margin-bottom: 15px; position: relative;z-index: 10;}
   footer .galerry { margin-bottom: 15px; }
   footer .soc-activity { margin-bottom: 20px; }
   .footer-block { margin-bottom: 20px; }
@@ -1512,7 +1532,7 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 .be-large-post { border: 1px solid #edeff2; border-radius: 2px; padding-bottom: 50px; margin-bottom: 50px; padding-top: 80px; }
 
 /*mobile view edit profile boundary*/
-@media screen and (min-width:350px) and (max-width:560px) {.be-large-post {width: 620px;}}
+@media screen and (min-width:350px) and (max-width:560px) {.be-large-post}
 
 .be-largepost-iframe { margin-bottom: 50px !important; padding-left: 0; }
 
@@ -1617,7 +1637,23 @@ display: inline-block; float: none; margin: 0 10px;}
 .subblock .type-2:after{color:#fff !important;}
 .subblock .pagination{text-align: left; margin: 0;}
 /*buttons*/
-.btn { display: inline-block; font-size: 15px; line-height: 15px; font-weight: 400; color: black;  margin-bottom: 10px; margin-right: 10px; border: 1px solid black; border-radius: 9px; }
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn { display: inline-block; 
+  font-size: 15px; 
+  line-height: 15px; 
+  font-weight: 400; color: black;  
+  margin-bottom: 10px; 
+  margin-right: 10px; 
+  border: 1px solid black; 
+  border-radius: 9px; 
+}
 
 .btn.color-1 { background: white; border: 1px solid #222835; }
 
@@ -1643,7 +1679,12 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .btn.size-1 { padding: 15px 28px; }
 
-.btn.size-2 { font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 18px; line-height: 10px; padding: 12px 19px 10px 19px; }
+.btn.size-2 { 
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; 
+  font-size: 18px; 
+  line-height: 10px; 
+  padding: 6% 5% 6% 1%; 
+  }
 
 .btn.size-3 { font-size: 9px; line-height: 9px; padding: 9px 10px; }
 
@@ -1690,7 +1731,20 @@ display: inline-block; float: none; margin: 0 10px;}
 /*mobile view*/
 @media screen and (max-width: 560px)
 {
-  .btn.full { width: 600px; margin-right: 0px; }
+  .brand-be {
+    position: absolute; 
+    left: 28%;
+  }
+
+  .btn.size-2 { 
+  font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif; 
+  font-size: 12px; 
+  line-height: 10px; 
+  padding: 8% 5% 8% 2%; 
+  }
+
+  .btn.full { width: 90%; margin-top: 88px;}
+  .btn.size-1 { padding: 10px 20px;}
 }
 
 .btn.btn-right { float: right; margin-right: 0px; margin-left: 20px; }
@@ -3900,8 +3954,7 @@ body .login-user-down:hover {
 
 .profile-img {
 
-  max-width: 380px;
-  max-height: 240px
+  max-height: 240px;
 }
 
 .job_title-style {
@@ -3947,7 +4000,7 @@ body .login-user-down:hover {
   pointer-events: auto;
 }
 .modalWindow > div {
-  width: 500px;
+  width: 50%;
   position: relative;
   margin: 10% auto;
   background: #fff;
@@ -3986,7 +4039,6 @@ body .login-user-down:hover {
         padding: 1px;
         margin-bottom: 5px !important;
         padding-top: 86px;
-        width: 650px;
     }
 }
 
@@ -4046,7 +4098,6 @@ a.register-but-below-search-but{
 }
 #category {
   display: inline-block;
-  margin-right: 10px;
 }
 
 button #Model {
@@ -4081,11 +4132,10 @@ button #Model {
 
 /*Mobile View of pictures in each project*/
 @media screen and (max-width:560px)
-{
-    .col-md-3 {
-        padding: 20px;
-        padding-bottom: 120px;
-    }
+  .col-md-3 {
+    padding: 20px;
+    padding-bottom: 120px;
+  }
 }
 
 .photo {
@@ -4110,7 +4160,7 @@ button #Model {
     .photo-hover .mask,
     .photo-img,
     .photo-info {
-        width: 370px;
+        width: 350px;
         height: 230px;
     }
 }
@@ -5061,7 +5111,7 @@ legend {
         background-size: cover;
         padding: 15px;
         font-family: 'Roboto', sans-serif;
-        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; width: 630px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
+        position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 1120px; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center;
     }
 }
 
@@ -5387,3 +5437,21 @@ legend {
 
 
 .s008 #head-bg-img { position: absolute; left: 0; top: 0; background: url(<%= asset_path "carouselwomen.jpg"%>); height: 100%; width: 100%; background-size: cover; opacity: 0.6; z-index: 1; background-position: center center; }
+
+/* Center alignment for social buttons in footer */
+.soc_buttons li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* Responsive footer padding */
+.footer-main, .footer-bottom {
+  padding: 15px;
+}
+
+@media (max-width: 576px) {
+  .footer-block p, .footer-title, .link-list {
+    font-size: 14px;
+  }
+}
+
