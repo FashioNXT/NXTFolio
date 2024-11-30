@@ -3,7 +3,6 @@ class Message < ApplicationRecord
   belongs_to :room
   has_many_attached :files
   after_commit :notify, on: :create
-  validates :body, presence: true
   
   def notify
     @from = self.general_info_id
