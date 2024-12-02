@@ -1,16 +1,33 @@
 <!-- THE HEADER -->
+<style>
+	/* CSS for small screens */
+@media (max-width: 560px) {
+  .navbar-toggle {
+    width: 20%; /* Take half the width */
+  }
+
+  .navbar-brand {
+    width: 60%; /* Take half the width */
+  }
+
+  .navbar-brand img {
+    max-width: 100%; /* Ensure the logo scales properly */
+  }
+}
+
+</style>
 <header>
 		<nav class="navbar" style="color: black;">
 			<div class="container-fluid">
 				<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<button type="button" class="navbar-toggle col-6" data-toggle="collapse" data-target="#myNavbar"> 
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-					<a class="navbar-brand" href="/">
-						<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
-					</a>
+				<a class="navbar-brand col-6" href="/">
+					<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+				</a>
 				</div>
 				<!-- Main Buttons -->
 				<div class="collapse navbar-collapse" id="myNavbar">

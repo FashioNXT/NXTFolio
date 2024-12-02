@@ -1532,7 +1532,11 @@ a.social-btn:hover { opacity: 0.6; color: #fff; }
 .be-large-post { border: 1px solid #edeff2; border-radius: 2px; padding-bottom: 50px; margin-bottom: 50px; padding-top: 80px; }
 
 /*mobile view edit profile boundary*/
-@media screen and (min-width:350px) and (max-width:560px) {.be-large-post}
+@media (min-width:350px) and (max-width:560px) {
+  .be-large-post {
+    /* Add your styles here */
+  }
+}
 
 .be-largepost-iframe { margin-bottom: 50px !important; padding-left: 0; }
 
@@ -4131,7 +4135,7 @@ button #Model {
 }
 
 /*Mobile View of pictures in each project*/
-@media screen and (max-width:560px)
+@media screen and (max-width:560px) {
   .col-md-3 {
     padding: 20px;
     padding-bottom: 120px;
