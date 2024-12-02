@@ -1,13 +1,13 @@
 <!-- THE HEADER -->
 <style>
 	/* CSS for small screens */
-@media (max-width: 576px) {
+@media (max-width: 560px) {
   .navbar-toggle {
-    width: 30%; /* Take half the width */
+    width: 20%; /* Take half the width */
   }
 
   .navbar-brand {
-    width: 50%; /* Take half the width */
+    width: 60%; /* Take half the width */
   }
 
   .navbar-brand img {
@@ -20,7 +20,10 @@
 		<nav class="navbar" style="color: black;">
 			<div class="container-fluid">
 				<div class="navbar-header">
-				<button type="button" class="navbar-toggle col-6" data-toggle="collapse" data-target="#myNavbar">  &#x25BC; Options
+				<button type="button" class="navbar-toggle col-6" data-toggle="collapse" data-target="#myNavbar"> 
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand col-6" href="/">
 					<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">

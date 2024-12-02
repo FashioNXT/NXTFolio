@@ -1,0 +1,1 @@
+function removeFields(){var e=document.getElementById("prof_form_group"),o=(e.getElementsByTagName("input").length,e.childNodes.length);o>5&&e.removeChild(e.childNodes[o-1])}
