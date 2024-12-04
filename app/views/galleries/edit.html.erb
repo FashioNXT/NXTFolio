@@ -4,6 +4,7 @@
     <title>FashioNXT</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<%= asset_path "bootstrap.min.css"%>">
 	<link rel="stylesheet" href="<%= asset_path "icon.css"%>">
 	<link rel="stylesheet" href="<%= asset_path "loader.css"%>">
@@ -84,9 +85,9 @@
 <div class="form-group" class="d-flex justify-content-center" style="text-align: center;">
   <%= f.label :gallery_pictures , multipart: true %>
 
-  <div>
+  <div class="container">
   <% @gallery.gallery_picture.each do |picture| %>
-    <div class="col-sm-4 custom-padding mb-2">
+    <div class="col-12 col-md-4 custom-padding mb-2">
       <div class="card mb-4">
         <img src="<%= picture.url %>" class="card-img-top">
         <div class="card-body text-center">
@@ -105,6 +106,7 @@
   <div class="custom-file">
     <%= f.label :upload_images, 'Choose Files', class: 'custom-file-label' %>
     <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' %>
+    <p>Maximum limit: 5</p>
     <div class="actions" style="margin-top: 10px;">
       <%= submit_tag 'Update Project', class: 'btn btn-primary' %>
     </div>
