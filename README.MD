@@ -1,5 +1,5 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/585c984c77cfbfe8f1a0/maintainability)](https://codeclimate.com/github/omarkhater-school/NXTFolio/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/585c984c77cfbfe8f1a0/test_coverage)](https://codeclimate.com/github/omarkhater-school/NXTFolio/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6f7fef4127a7feb0c50a/maintainability)](https://codeclimate.com/github/FashioNXT/NXTFolio/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6f7fef4127a7feb0c50a/test_coverage)](https://codeclimate.com/github/FashioNXT/NXTFolio/test_coverage)
 
 Heroku link - https://nxtfolio.herokuapp.com
 
