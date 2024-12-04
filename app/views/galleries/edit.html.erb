@@ -106,6 +106,7 @@
   <div class="custom-file">
     <%= f.label :upload_images, 'Choose Files', class: 'custom-file-label' %>
     <%= f.file_field :test_picture, multiple: true, class: 'custom-file-input', id: 'test_picture' %>
+    <p>Maximum limit: 5</p>
     <div class="actions" style="margin-top: 10px;">
       <%= submit_tag 'Update Project', class: 'btn btn-primary' %>
     </div>
