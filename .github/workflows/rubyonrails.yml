@@ -100,8 +100,14 @@ jobs:
         run: echo "RAILS_HOST=$(hostname -I | awk '{print $1}')" >> $GITHUB_ENV
       - name: Run spec tests
         run: bin/rake spec
-      - name: Debug coverage file
-        run: ls -lah coverage/
+      - name: Debug CC Test Reporter ID
+        run: |
+          if [ -z "$CC_TEST_REPORTER_ID" ]; then
+            echo "Error: CC_TEST_REPORTER_ID is not set or is empty"
+            exit 1
+          else
+            echo "CC_TEST_REPORTER_ID is set."
+          fi
       - name: Report coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
