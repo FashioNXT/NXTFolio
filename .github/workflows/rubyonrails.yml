@@ -101,6 +101,8 @@ jobs:
       - name: Run spec tests
         run: bin/rake spec
       - name: Debug CC Test Reporter ID
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         run: |
           if [ -z "$CC_TEST_REPORTER_ID" ]; then
             echo "Error: CC_TEST_REPORTER_ID is not set or is empty"
