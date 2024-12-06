@@ -96,10 +96,10 @@
             <% map = {} %>
             <% if @all_galleries.present? %>
               <% @all_galleries.each do |gal| %>
-                <% total = gal.reviews.sum(&:rating).to_i if gal.reviews.present? %>
                 <% total ||= 0 %> 
-                <% count = gal.reviews.size if gal.reviews.present? %>
+                <% total = gal.reviews.sum { |review| review.rating || 0 }.to_i if gal.reviews.exists? %>
                 <% count ||= 0 %>
+                <% count = gal.reviews&.size || 0 %>
                 <% gal.gallery_totalRate ||= total %>
                 <% gal.gallery_totalRator ||= count %>
                 <% if map.size < 50 && gal.gallery_totalRator > 0 && (gal.gallery_totalRate / gal.gallery_totalRator >= 3) %>
