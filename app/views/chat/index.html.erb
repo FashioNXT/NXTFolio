@@ -22,13 +22,35 @@
 .main {
    flex-shrink: 0;
 }
+@media (max-width: 560px) {
+  .navbar-toggle {
+    width: 20%; /* Take half the width */
+  }
+
+  .navbar-brand {
+    width: 60%; /* Take half the width */
+  }
+
+  .navbar-brand img {
+    max-width: 100%; /* Ensure the logo scales properly */
+  }
+}
   </style>
 
 </head>
 <body style="width: 100%; height: 100%;">
 <div style=" min-height: 100%; display: flex; flex-direction: column; align-items: stretch;">
 <!-- THE HEADER -->
-<%= render 'shared/header' %>
+<header>
+		<nav class="navbar" style="color: black;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				<a class="navbar-brand col-6" href="/">
+					<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+				</a>
+				</div>
+		</nav>
+	</header>
 <div class="main" style="flex-grow: 1;">
 
 <div class="container">

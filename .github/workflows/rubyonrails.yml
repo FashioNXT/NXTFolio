@@ -103,7 +103,7 @@ jobs:
       - name: Report coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          CC_TEST_REPORTER_ID: 4728d9a470b095eb09ea372c166b1af6c7c855a70758086972502362e67368f6
         with:
           coverageLocations: ${{github.workspace}}/coverage/coverage.json:simplecov
           debug: true

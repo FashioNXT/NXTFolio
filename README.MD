@@ -1,7 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/6f7fef4127a7feb0c50a/maintainability)](https://codeclimate.com/github/FashioNXT/NXTFolio/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6f7fef4127a7feb0c50a/test_coverage)](https://codeclimate.com/github/FashioNXT/NXTFolio/test_coverage)
 
-Heroku link - https://nxtfolio-fall-24-ff06e002a0ca.herokuapp.com/
+Heroku link - https://nxtfolio.herokuapp.com
 
 Taiga Tracker link - https://tree.taiga.io/project/honraoyash-fashionxt-nxtfolio/timeline
 

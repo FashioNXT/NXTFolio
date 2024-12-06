@@ -15,12 +15,37 @@
   <link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
   <link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
   <link rel="stylesheet" href="<%= asset_path "notifications.css"%>">
+<style>
+/* CSS for small screens */
+@media (max-width: 560px) {
+  .navbar-toggle {
+    width: 20%; /* Take half the width */
+  }
 
+  .navbar-brand {
+    width: 60%; /* Take half the width */
+  }
+
+  .navbar-brand img {
+    max-width: 100%; /* Ensure the logo scales properly */
+  }
+}
+
+</style>
 </head>
 <body>
 
 <!-- THE HEADER -->
-<%= render 'shared/header' %>
+<header>
+		<nav class="navbar" style="color: black;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				<a class="navbar-brand col-6" href="/">
+					<img class="logo-c active be_logo"  src="<%= asset_path "new_logo.png"%>" alt="logo">
+				</a>
+				</div>
+		</nav>
+	</header>
 
 
 
