@@ -94,15 +94,17 @@
           <% else %>
             <% @all_galleries = Gallery.all %>
             <% map = {} %>
-            <% @all_galleries.each do |gal| %>
-              <% total = gal.reviews.sum(&:rating).to_i if gal.reviews.present? %>
-              <% total ||= 0 %> 
-              <% count = gal.reviews.size if gal.reviews.present? %>
-              <% count ||= 0 %>
-              <% gal.gallery_totalRate ||= total %>
-              <% gal.gallery_totalRator ||= count %>
-              <% if map.size < 50 && gal.gallery_totalRator > 0 && (gal.gallery_totalRate / gal.gallery_totalRator >= 3) %>
-                <% map[gal] = gal.gallery_totalRate / gal.gallery_totalRator %>
+            <% if @all_galleries.present? %>
+              <% @all_galleries.each do |gal| %>
+                <% total = gal.reviews.sum(&:rating).to_i if gal.reviews.present? %>
+                <% total ||= 0 %> 
+                <% count = gal.reviews.size if gal.reviews.present? %>
+                <% count ||= 0 %>
+                <% gal.gallery_totalRate ||= total %>
+                <% gal.gallery_totalRator ||= count %>
+                <% if map.size < 50 && gal.gallery_totalRator > 0 && (gal.gallery_totalRate / gal.gallery_totalRator >= 3) %>
+                  <% map[gal] = gal.gallery_totalRate / gal.gallery_totalRator %>
+                <% end %>
               <% end %>
             <% end %>
             <% sorted_map = map.sort_by { |_, v| -v }.to_h %>
