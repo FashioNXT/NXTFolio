@@ -109,7 +109,6 @@
   }
 
   .gallery-pair, .photo-type-line {
-    width: 100%;
     overflow-x: auto;
   }
 
