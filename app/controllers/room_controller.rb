@@ -4,7 +4,9 @@ class RoomController < ApplicationController
     return redirect_to "/login_info/login" if user_key_current.nil?
 
     @user = GeneralInfo.find_by(userKey: user_key_current)
-    return redirect_to "/login_info/login" unless @user
+    if !@user
+      redirect_to "/login_info/login"
+    end
 
     fetch_users_and_notifications(user_key_current)
 
