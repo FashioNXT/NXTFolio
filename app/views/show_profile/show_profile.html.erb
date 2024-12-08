@@ -140,28 +140,16 @@
 								<a style="font-size: 20px"><%= @job_title %></a>
 							</div>
 							<div class="be-user-social">
-								<% if @general_info && @general_info.facebook_link != "" %>							
-									<% if @general_info.facebook_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
-									<% else %>
+								<% if @general_info %>							
+									<% if not @general_info.facebook_link.blank? %>
 										<a class="social-btn color-1" href=<%= @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>	
 									<% end %>
-									<% if @general_info.linkedIn_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-linkedin"></i></a>
-									<% else %>
+									<% if not @general_info.linkedIn_link.blank? %>
 										<a class="social-btn color-1" href=<%=@general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>	
 									<% end %>
-									<% if @general_info.linkedIn_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-link"></i></a>
-									<% else %>
+									<% if not @general_info.personalWebsite_link.blank? %>
 										<a class="social-btn color-1" href=<%=@general_info.personalWebsite_link%> target="_blank"><i class="fa fa-link"></i></a>	
 									<% end %>
-									<a class="social-btn color-3" href="mailto:<%= @login_info.email %>"><i class="fa fa-envelope"></i></a>
-									<% if @on_Own %>
-										<a class="social-btn color-4" href="/dm"> <i class="fa fa-message"></i> </a>
-									<% else %>
-										<a class="social-btn color-4" href="/dm/<%= @general_info.id %>"><i class="fa fa-message"></i></a>
-									<% end%>
 								<% end%>
 							</div>
 
