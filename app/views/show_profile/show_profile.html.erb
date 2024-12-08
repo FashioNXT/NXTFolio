@@ -141,19 +141,13 @@
 							</div>
 							<div class="be-user-social">
 								<% if @general_info %>							
-									<% if @general_info.facebook_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-facebook"></i></a>
-									<% else %>
+									<% if not @general_info.facebook_link.blank? %>
 										<a class="social-btn color-1" href=<%= @general_info.facebook_link%> target="_blank"><i class="fa fa-facebook"></i></a>	
 									<% end %>
-									<% if @general_info.linkedIn_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-linkedin"></i></a>
-									<% else %>
+									<% if not @general_info.linkedIn_link.blank? %>
 										<a class="social-btn color-1" href=<%=@general_info.linkedIn_link%> target="_blank"><i class="fa fa-linkedin"></i></a>	
 									<% end %>
-									<% if @general_info.linkedIn_link.blank? %> 
-										<a class="social-btn color-1"><i class="fa fa-link"></i></a>
-									<% else %>
+									<% if not @general_info.personalWebsite_link.blank? %>
 										<a class="social-btn color-1" href=<%=@general_info.personalWebsite_link%> target="_blank"><i class="fa fa-link"></i></a>	
 									<% end %>
 								<% end%>
